@@ -1,0 +1,84 @@
+# Peer Discussions {.unnumbered}
+
+## Overview
+
+You will participate in 5-6 recorded peer technical discussions over the course of the semester. Each session is conducted via Zoom in rotating groups of 4-6 students, lasts 30-60 minutes, and centers on a novel problem you work through together in real time.
+
+Peer discussions are worth 18% of your course grade — more than the technical reports. This reflects what they actually test: the ability to reason out loud, in real time, with other engineers, about a problem you have not seen before. That is one of the most authentic engineering skills this course can develop, and one of the hardest things to fake.
+
+## Why Peer Discussions
+
+Writing a technical report gives you time to look things up, revise your reasoning, and present a polished product. A peer discussion gives you none of that. You have to engage with the physics as it unfolds, respond to your peers' ideas, catch errors in real time, and contribute something that moves the group forward.
+
+This is also excellent preparation for the oral exams. Students who participate actively in peer discussions consistently find the oral exam format less surprising.
+
+## Format
+
+**Group size:** 4-6 students, rotating across sessions so you work with different peers throughout the course
+
+**Duration:** 30-60 minutes per session
+
+**Problem:** A novel problem released at the start of the session — one you have not seen before, but drawn from material already covered in the course
+
+**Recording:** Sessions are recorded via Zoom for assessment purposes. You are expected to state your name clearly at the start of the session to support accurate transcript labeling.
+
+**What you are expected to do:** Work through the problem together. Explain your reasoning, respond to others' ideas, ask probing questions, catch errors, and push the group toward a physically sound solution. You are not expected to arrive at a perfect answer — you are expected to reason well.
+
+**Final 5 minutes:** In the last 5 minutes of each session, the group should converge on a collective answer to the core question: what is the dominant heat transfer mechanism, what model would you use, and what are your key assumptions? This verbal summary will be captured in the transcript and is factored into individual assessments. No separate submission is required.
+
+## How You Are Assessed
+
+After each session, an AI language model analyzes the discussion transcript and generates an individual assessment report for each student. You receive your report within 24-48 hours of the session.
+
+### The Rubric (1-4 scale)
+
+| Score | Label | Description |
+|---|---|---|
+| 4 | Leading | Drove physical reasoning; introduced key concepts; resolved confusion; asked probing questions that advanced the group |
+| 3 | Contributing | Made at least one substantive physical contribution the group built on |
+| 2 | Present | Engaged but mostly social or confirmatory — agreed with others, restated ideas, but did not add physical substance |
+| 1 | Peripheral | Spoke rarely; contributions did not advance physical reasoning |
+
+**The key principle: substance over quantity.** A single probing question that reorients the group's reasoning scores higher than ten confirmatory statements. Talking frequently is not the same as contributing substantively. The assessment is calibrated to reflect this.
+
+### What Your Report Contains
+
+Your individual assessment report includes:
+
+1. Your key physics contributions, with direct quotes from the transcript
+2. An evaluation of your reasoning quality — whether your contributions reflected genuine understanding or were vague and surface-level
+3. Your discussion role — driver, responder, or peripheral
+4. Your score (1-4)
+5. Any uncertainty flags — places where the transcript was ambiguous about attribution or intent
+
+### Transparency
+
+The full system prompt used to instruct the AI assessor is shared with you at the beginning of the course. You will know exactly what the AI is looking for, what it is instructed to reward, and what it is instructed to flag. There are no hidden criteria.
+
+This is intentional. The assessment is not trying to catch you out — it is trying to accurately characterize your contribution to the group's physical reasoning.
+
+### A Note on Incorrect Statements
+
+The AI is instructed to note physically incorrect statements even when delivered confidently. Getting something wrong in a discussion is not penalized heavily — reasoning through an error and correcting it can be a substantive contribution. Confidently stating something incorrect without correction is noted.
+
+## The Contestation Process
+
+If you believe your assessment report is inaccurate, you may contest it.
+
+**Window:** 3-5 days after receiving your report
+
+**How to contest:** Submit a written response that identifies specifically which part of the assessment you disagree with and why, with reference to the transcript if possible. ("I believe my contribution at approximately 14:30 was substantive because it introduced the Biot number criterion that the group had not yet applied" is a useful contestation. "I think I deserved a higher score" is not.)
+
+**What happens:** A TA reads the transcript, your report, and your contestation, and makes a final determination. The TA's decision is final.
+
+**Why this process exists:** AI assessment is imperfect. Transcripts have attribution errors. Ambiguous statements get miscategorized. The contestation process is a real mechanism, not a formality — if your report is wrong, this is how you correct it.
+
+## This Is Also a Research Study
+
+The peer discussion assessment system is part of an IRB-approved research study examining how well AI-generated assessments agree with human expert ratings, and how students perceive transparent AI grading.
+
+Participation in the research component is optional and separate from participation in the course activity. You participate in the discussions and receive assessments regardless of whether you consent to research participation. Research participation means your transcript and assessment data may be used in a published study — with all identifying information removed.
+
+You will receive more information about the research study and the consent process in Week 1.
+
+Whether or not you participate in the research, the assessment process is identical.

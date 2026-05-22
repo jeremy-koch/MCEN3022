@@ -1,0 +1,488 @@
+# Conduction Eqn
+
+This week we are going to focus on conductivity, the dominant mode of heat transfer within solids -- the basic picture in your head can be a a rod where heat is being applied to one end and removed from the other. That is, heat is "flowing" through the solid. (Conduction occurs in liquids and gases as well, but convection is dominant there. And radiation occurs at the surfaces of all of them.)
+
+Starting with Fourier's Law, we will derive the conductivity equation, a PDE (partial differential equation... but don't worry). The most important result from this week will be the description of the "thermal resistors" in planar, cylindrical, and spherical geometries. This is a productive way of thinking about problems and will be something that we keep coming back to.
+
+For organization reasons, I put some introductory content in [an intro page](0intro.qmd) -- this should be read first!
+
+## Think First
+
+Recall
+
+1. How many boundary conditions are needed to solve a second-order differential equation?
+2. Second Law of Thermodynamics: heat flows hot to cold.
+
+Look Ahead
+
+1. How can we mathematically engrain the truth that heat flows from hot to cold?
+2. Can we consider time variation of temperature in our material? Heat generation? A non-constant thermal conductivity?
+
+## Fourier's Law
+
+We have an [empirical law]{.underline} that describes heat conduction known as Fourier's Law. Stated mathematically in one (spatial) dimension and three dimensions:
+
+::: {.column-margin}
+"Empirical laws" are learned/guessed from experimental data... we can't derive them. In the case of Fourier's Law, we at least have a bit of the Second Law of Thermodynamics in there: heat flows from hot to cold. But otherwise, we guessed that the heat flux would be proportional to the temperature gradient, and invented a material property called "the thermal conductivity" that is basically the constant of proportionality.
+:::
+
+$$
+\begin{align}
+q''&=-k \frac{dT}{dx}\\
+\mathbf{q}'' &= -k \boldsymbol{\nabla} T.
+\end{align}
+$$
+
+| Symbol | Meaning | Units |
+|---|---|---|
+| $T$ | Always temperature in this class | K or °C |
+| $q''$ | heat flux | W/m² |
+| $k$ | thermal conductivity, a material property | W/m·K |
+| $dT/dx$ or $\boldsymbol{\nabla}$ | temperature gradient | K/m |
+
+The general three dimensional version of Fourier's Law is a vector equation, with a vector form of the heat flux $\mathbf{q}''$. The thermal conductivity is a material property... for foam, a really good "insulator", its value is about 0.03 W/m·K. For copper, a really good "heat conductor", its value is about 400 W/m·K. 
+
+::: {.column-margin}
+In Cartesian coordinates, $\boldsymbol{\nabla} = \left<\partial/\partial x, \partial/\partial y, \partial/\partial z\right>$.
+:::
+
+::: {.callout-important}
+The gradient is essentially a temperature difference as we change position, and a temperature difference of 5 K is the same as a temperature difference of 5°C. For this reason we could equivalently write the units of $k$ as W/m·°C, i.e. $k=$ 15 W/m·K = 15 W/m·°C. Per-Kelvin is more standard.
+:::
+
+### The significance of the gradient and minus sign
+The "heat flux" $\mathbf{q}''$ is basically the heat transfer rate per area $\dot{Q}/A$ (though in the continuum limit). Note that it is proportional to the gradient in temperature $\boldsymbol{\nabla}T$... recall that the gradient of a scalar field (and temperature is a scalar field) tells us the direction of greatest increase. The negative sign in Fourier's Law tells us that heat flows OPPOSITE to the direction of greatest increase. That is: heat flows from hot to cold.
+
+
+### The thermal conductivity
+
+The thermal conductivity is a material property. It's value changes even with subtle changes in the material: 6061 aluminum has $k=150$ W/m·K, while 3003 aluminum has $k=180$ W/m·K. Moreover, it is a property that is highly dependent on temperature:
+
+In this class, we will usually take $k$ as constant at some sort of average temperature. Occasionally we will need to guess the average, and in principle should consider iterating if our solution has a different average.
+
+One last comment: there are interesting design opportunities involving materials where $k$ has high variation (e.g., a conductivity that dramatically increases with temperature) or where $k$ is direction dependent (e.g. conductivity occurs more readily in the vertical direction owing to the printing of special, orientable molecules). These things are beyond the scope of this class. 
+
+
+
+<!-- *Diagram: A slab of material with conductivity $k$, hot face $T_H$ on the left, cold face $T_C$ on the right, with $x$ increasing to the right. Heat flux arrows point right (positive $\hat{x}$).*
+
+
+
+Seems that $\frac{dT}{dx} < 0$, but heat flux will be positive: $q'' > 0$
+
+--- -->
+
+## The Conduction Equation
+
+Think back to the First Law of Thermodynamics... the Conservation of Energy.
+
+::: {.column-margin}
+We will be dealing with the Conservation of Energy, written in a few different ways, in almost every aspect of this course.
+:::
+
+For a solid object, we 
+
+$$\frac{dE}{dt} = \dot{Q} + \dot{W} + \dot{E}_\text{mass}$$
+
+(neglect $\dot{W}$, neglect $\dot{E}_\text{mass}$; $\dot{Q}$ is for sure relevant)
+
+Model: $E \sim T$, proportional by factor $mc$, $c$ = specific heat. $mc$ can be thought of as a "thermal inertia."
+
+Rewrite in terms of temperature:
+
+$$mc \frac{\partial T}{\partial t} = \dot{Q}_\text{in} - \dot{Q}_\text{out}$$
+
+**Apply here (1D to start):**
+
+*Diagram: A 1D slab element of width $\Delta x$ and cross-section $A$, with heat flux $q''(x)$ entering from the left, $q''(x+\Delta x)$ leaving on the right, and volumetric heat generation $\dot{q}$ inside.*
+
+$\dot{q}$ = (volumetric) heat generation
+
+$$mc \frac{\partial T}{\partial t} = q''(x) \cdot A - q''(x + \Delta x) \cdot A + \dot{q} \cdot A \cdot \Delta x$$
+
+where $m = \rho A \Delta x$.
+
+Divide by $A \cdot \Delta x$ and use Fourier's Law:
+
+$$\rho c \frac{\partial T}{\partial t} = \frac{q''(x) - q''(x+\Delta x)}{\Delta x} + \dot{q}$$
+
+$$= \frac{-k\frac{\partial T}{\partial x}(x) + k\frac{\partial T}{\partial x}(x+\Delta x)}{\Delta x} + \dot{q}$$
+
+Taking the limit $\Delta x \to 0$ (definition of derivative):
+
+$$\boxed{\rho c \frac{\partial T}{\partial t} = \frac{\partial}{\partial x}\left(k \frac{\partial T}{\partial x}\right) + \dot{q}}$$
+
+**1D Conduction Equation**
+
+$$\boxed{\rho c \frac{\partial T}{\partial t} = \nabla \cdot \left(k \,\nabla T\right) + \dot{q}}$$
+
+**3D Conduction Equation**
+
+---
+
+### Special Cases
+
+**Case 1:** Reasonable to claim $k \approx \text{constant}$ (for a given material at some average $T$ value):
+
+$$\rho c \frac{\partial T}{\partial t} = k \nabla^2 T + \dot{q}$$
+
+(Interesting research on material anisotropy that leads to a tensor description of $k$, e.g. liquid crystals)
+
+**Case 2:** No heat generation:
+
+$$\rho c \frac{\partial T}{\partial t} = k \nabla^2 T$$
+
+Define a "thermal diffusivity" $\alpha = \frac{k}{\rho c}$:
+
+$$\frac{\partial T}{\partial t} = \alpha \nabla^2 T \quad \text{"the heat equation" in PDE class}$$
+
+**Case 3:** No heat generation, steady:
+
+$$\nabla^2 T = 0$$
+
+1D (Cartesian): $\dfrac{d^2T}{dx^2} = 0 \;\Rightarrow\;$ linear function $T(x) = mx + b$
+
+---
+
+In general, the conduction equation is a PDE for $T(x,y,z,t)$ or $T(r,\theta,z,t)$ — i.e. we can determine the spatial and temporal distribution of temperature.
+
+The heat generation term can also be a function of $(x,y,z,t)$:
+- Electrical resistance
+- Radioactive decay
+
+---
+
+
+## Thermal Resistance
+
+
+
+### Last Time
+
+The Conduction Equation: $T(x,t)$, $\dot{q}(x,t)$
+
+$$\rho c \frac{\partial T}{\partial t} = \nabla \cdot \left(k \nabla T\right) + \dot{q}$$
+
+| Term | Meaning |
+|---|---|
+| $\rho c \frac{\partial T}{\partial t}$ | Change in energy (locally) |
+| $\nabla \cdot (k \nabla T)$ | Fourier's Law (for conduction), $q'' = -k\frac{\partial T}{\partial x}$ |
+| $\dot{q}$ | Heat generation, e.g. due to electrical resistance, radioactive decay |
+
+**For today, some assumptions:**
+- Steady-state: $\frac{\partial}{\partial t} = 0$
+- Constant conductivity: $\nabla \cdot (k\nabla T) = k\nabla^2 T$
+- One-dimensional: $\nabla^2 T = \frac{d^2T}{dx^2}$
+- No heat generation: $\dot{q} = 0$
+
+$$\Rightarrow \quad 0 = k\frac{d^2T}{dx^2} + 0 \quad \Rightarrow \quad \frac{d^2T}{dx^2} = 0$$
+
+---
+
+## Planar Wall (Infinite)
+
+*Diagram: A slab of material with conductivity $k$, temperature $T_0$ at $x=0$ and $T_L$ at $x=L$. Temperature profile is linear.*
+
+Start with $\frac{d^2T}{dx^2} = 0$:
+
+$$\int \cdot\, dx \;\Rightarrow\; \frac{dT}{dx} = C_1$$
+
+$$\int \cdot\, dx \;\Rightarrow\; T(x) = C_1 x + C_2$$
+
+**Comment on boundary conditions — three types:**
+
+1. $T(0) = T_0$ — a known value on the boundary
+   - *Ex: CPU adopts a certain steady-state temperature, and some metal fins remove heat*
+
+2. $\left.\frac{dT}{dx}\right|_0 = -\frac{q_0''}{k}$ — a known heat flux
+   - Special case: "adiabatic," $q_0'' = 0$
+
+3. $T(0) = c \left.\frac{dT}{dx}\right|_0$ — mixed condition
+
+**Let's presume BC:** $T(0) = T_0$ and $T(L) = T_L$
+
+$$T_0 = C_1 \cdot 0 + C_2 \;\Rightarrow\; C_2 = T_0$$
+$$T_L = C_1 \cdot L + T_0 \;\Rightarrow\; C_1 = \frac{T_L - T_0}{L}$$
+
+$$\therefore \quad T(x) = -\left(\frac{T_0 - T_L}{L}\right)x + T_0$$
+
+**Compute the heat flux:**
+
+$$q'' = -k\frac{dT}{dx} = k\left(\frac{T_0 - T_L}{L}\right)$$
+
+(positive $\Rightarrow$ heat flux is to the right, positive $\hat{x}$)
+
+---
+
+## "Composite" Wall
+
+*Diagram: Two-layer slab with $k_1$, $L_1$ on the left and $k_2$, $L_2$ on the right. Temperature $T_0$ at left face, $T_L$ at right face.*
+
+Is it simply $\frac{d^2T}{dx^2} = 0$?
+
+Yes, but we need **two** of these for the two materials.
+
+Solutions: $T_1 = c_1 x + d_1$, $T_2 = c_2 x + d_2$
+
+**What are our boundary conditions?**
+
+| Left BC | Right BC |
+|---|---|
+| $T_1(0) = T_0$ | $T_2(L_1 + L_2) = T_L$ |
+| $T_1(L_1) = T_2(L_1)$ (continuous $T$) | $-k_1 \left.\frac{dT_1}{dx}\right|_{L_1} = -k_2 \left.\frac{dT_2}{dx}\right|_{L_1}$ (constant heat flux through wall, otherwise won't be steady) *(mistake in lecture)* |
+
+We have four unknowns $c_1, d_1, c_2, d_2$ and four boundary conditions → well-posed problem, but the algebra is annoying! Will show a method below for which it is easier to extract useful information (Ohm's Law).
+
+**Let's think intuitively before completing the calculation** ($q'' = -k\frac{dT}{dx}$):
+
+*Diagram (left): $k_1 > k_2$ — temperature profile has a shallow slope in layer 1 and a steep slope in layer 2.*
+*Diagram (right): $k_1 < k_2$ — temperature profile has a steep slope in layer 1 and shallow slope in layer 2.*
+
+$$k_1 \left.\frac{dT_1}{dx}\right|_\text{interface} = k_2 \left.\frac{dT_2}{dx}\right|_\text{interface}$$
+
+$$k_1 > k_2 \;\Rightarrow\; \frac{dT_1}{dx} < \frac{dT_2}{dx}$$
+
+---
+
+## Ohm's Law Metaphor
+
+Ohm's Law: $V = IR$
+
+For 1D conduction: $q'' = -k\frac{dT}{dx}$
+
+Planar $\Rightarrow$
+
+$$\dot{Q} = Ak\frac{\Delta T}{L} = q'' \cdot A$$
+
+$\dot{Q} \leftrightarrow I$, $\Delta T \leftrightarrow V$
+
+$$\Delta T = \dot{Q} R$$
+
+$$\boxed{R_\text{conductive} = \frac{L}{A \cdot k}}$$
+
+---
+
+## Expanding the Metaphor
+
+Briefly introduce two concepts that expand the utility of this metaphor:
+
+**1. Convection** (we introduced this already and will go into detail about determining $h$ later)
+
+*Diagram: A slab with surface temperature $T_1$, wind (with $h$) blowing over it, fluid at $T_\infty$.*
+
+$$\dot{Q}_\text{convection} = hA \cdot \Delta T \qquad (T_1 - T_\infty)$$
+
+$$\Rightarrow \quad R_\text{convection} = \frac{1}{hA}$$
+
+**2. Contact Resistance**
+
+*Diagram: Two materials in contact; zoomed view shows rough surfaces with air/vacuum gaps at the interface that inhibit heat flux. Temperature shows a jump at the interface.*
+
+$$\dot{Q} = \frac{\Delta T}{R_\text{contact}}$$
+
+(Look up for material pairings)
+
+Given on a "per area" basis:
+
+$$\frac{\dot{Q}}{A} = q'' = \frac{\Delta T}{R''_\text{contact}} \quad \leftarrow \text{pay attention to units}$$
+
+---
+
+## Examples
+
+**Example 1:** Two-layer wall with convection on both sides and contact resistance
+
+*Diagram: Composite wall with layers $k_1$ (thickness $L_1$) and $k_2$ (thickness $L_2$), outside convection $h_\text{out}$ at $T_\text{out}$, inside convection $h_\text{in}$ at $T_\text{in}$, contact resistance $R''_\text{cont}$ at the interface.*
+
+All listed variables known, what is $q''$?
+
+Resistor diagram "per area":
+
+$$T_\text{out} \;-\!\!\!-\!\!-\; \frac{1}{h_\text{out}} \;-\!\!\!-\!\!-\; \frac{L_1}{k_1} \;-\!\!\!-\!\!-\; R''_\text{cont} \;-\!\!\!-\!\!-\; \frac{L_2}{k_2} \;-\!\!\!-\!\!-\; \frac{1}{h_\text{in}} \;-\!\!\!-\!\!-\; T_\text{in}$$
+
+$$R''_\text{total} = \frac{1}{h_\text{out}} + \frac{L_1}{k_1} + R''_\text{cont} + \frac{L_2}{k_2} + \frac{1}{h_\text{in}}$$
+
+$$\Delta T = T_\text{out} - T_\text{in}$$
+
+$$\boxed{q'' = \frac{\Delta T}{R''_\text{total}}}$$
+
+---
+
+**Example 2:** Three-region composite wall — two materials ($k_1$, $k_2$) in parallel on top, one material ($k_3$) spanning the full width on the bottom; convection on both faces. Assume no $R_\text{contact}$.
+
+*Diagram: Top half has $k_1$ (area $A_1$) and $k_2$ (area $A_1$) in parallel over lengths $L_1 + L_2$; bottom half has $k_3$ (area $A_\text{tot} - A_1$) spanning the same length. Convection $h_\text{out}$ on left, $h_\text{in}$ on right.*
+
+Note: could probably include two $h$'s as depends on $T$, but not common.
+
+Resistor circuit: parallel combination of $\frac{L_1}{k_1 A_1}$ and $\frac{L_2}{k_2 A_1}$ in series with $\frac{L_1 + L_2}{k_3(A_\text{tot} - A_1)}$, all flanked by $\frac{1}{h_\text{out} A_\text{tot}}$ and $\frac{1}{h_\text{in} A_\text{tot}}$.
+
+Write equivalent total resistor, then it is just:
+
+$$\dot{Q} = \frac{\Delta T}{R_\text{tot}}$$
+
+---
+
+# Radial Systems
+
+MCEN 3022 — 3 Sep 2025
+
+HW #1 Due Thurs 4 Sept 11:59PM
+OH: Today after class → 6PM, my office ECME 130; Thurs 5–6PM ECOT 615
+*(Typically Wed in ECOT, Thurs in ECME)*
+
+Last class: Planar composite walls
+Today: Radial Systems
+
+---
+
+## Last Time
+
+*Diagram: Composite planar wall with two layers ($k_1$, $k_2$) and convection ($h_1$, $h_2$) on both sides, contact resistance $R''_\text{contact}$ at interface. Resistor diagram: $T_1 \to \frac{1}{h_1} \to \frac{L_1}{k_1} \to R''_\text{contact} \to \frac{L_2}{k_2} \to \frac{1}{h_2} \to T_2$, with heat flux $q''$ flowing right.*
+
+Could solve for $T_\text{left}(x)$ and $T_\text{right}(x)$.
+
+More interesting: $q'' \to \dot{Q}$ $\Rightarrow$ we get useful information from resistor model.
+
+---
+
+## Radial Systems
+
+Let's start with some intuition. Suppose we have the following cylindrical geometry, $\theta$ & $z$ symmetry, and steady, no heat generation.
+
+*Diagram: Hollow cylinder (annulus cross-section), inner radius $r_\text{in}$ at temperature $T_\text{in}$, outer radius $r_\text{out}$ at $T_\text{out}$.*
+
+If steady:
+
+$$\left|q''(r_\text{in}) \cdot A_\text{in}\right| = \left|q''(r_\text{out}) \cdot A_\text{out}\right|$$
+
+where $A_\text{in} = 2\pi r_\text{in} \cdot h$ and $A_\text{out} = 2\pi r_\text{out} \cdot h$.
+
+$$q''(r_\text{in}) \cdot r_\text{in} = q''(r_\text{out}) \cdot r_\text{out}$$
+
+$$\therefore \quad q''(r_\text{in}) > q''(r_\text{out})$$
+
+$$q'' \equiv -k\frac{dT}{dr} \quad \text{(the }\hat{r}\text{-component)}$$
+
+*Graph: $T$ vs $r$ from $r_\text{in}$ to $r_\text{out}$ — a concave-up curve (logarithmic).*
+
+---
+
+## Derivation — Cylindrical Case
+
+Start from the conduction equation, $k = \text{constant}$:
+
+$$\rho c \frac{\partial T}{\partial t} = k\nabla^2 T + \dot{q}$$
+
+With $\partial T/\partial t = 0$ (steady) and $\dot{q} = 0$:
+
+$$\nabla^2 T = 0$$
+
+**In Cartesian:**
+
+$$\nabla^2 T = \frac{\partial^2 T}{\partial x^2} + \frac{\partial^2 T}{\partial y^2} + \frac{\partial^2 T}{\partial z^2}$$
+
+**In cylindrical** (with $\theta$ symmetry → 0, $z$ symmetry → 0):
+
+$$\nabla^2 T = \underbrace{\frac{1}{r}\frac{\partial}{\partial r}\left(r\frac{\partial T}{\partial r}\right)}_{\text{highlighted}} + \underbrace{\frac{1}{r^2}\frac{\partial^2 T}{\partial \theta^2}}_{\to 0} + \underbrace{\frac{\partial^2 T}{\partial z^2}}_{\to 0}$$
+
+**In spherical** (with symmetry → 0):
+
+$$\nabla^2 T = \underbrace{\frac{1}{r^2}\frac{\partial}{\partial r}\left(r^2\frac{\partial T}{\partial r}\right)}_{\text{highlighted}} + \underbrace{\frac{1}{r^2\sin\theta}\frac{\partial}{\partial\theta}\left(\sin\theta\frac{\partial T}{\partial\theta}\right)}_{\to 0} + \underbrace{\frac{1}{r^2\sin^2\theta}\frac{\partial^2 T}{\partial\phi^2}}_{\to 0}$$
+
+---
+
+## Cylindrical Solution
+
+Governing equation:
+
+$$\frac{1}{r}\frac{d}{dr}\left(r\frac{dT}{dr}\right) = 0$$
+
+BC1: $T(r_\text{in}) = T_\text{in}$, $T(r_\text{out}) = T_\text{out}$
+
+*(Added after class):*
+
+$$\int d\left(r\frac{dT}{dr}\right) = \int 0 \cdot dr \;\Rightarrow\; r\frac{dT}{dr} = c_1$$
+
+$$\Rightarrow \quad T = c_1 \ln r + c_2 \quad \text{(solution to governing equation)}$$
+
+Applying BCs:
+
+$$T_\text{in} = c_1 \ln r_\text{in} + c_2$$
+$$T_\text{out} = c_1 \ln r_\text{out} + c_2$$
+$$\overline{T_\text{out} - T_\text{in} = c_1 \ln\left(\frac{r_\text{out}}{r_\text{in}}\right)} \;\Rightarrow\; c_1 = \frac{T_\text{out} - T_\text{in}}{\ln(r_\text{out}/r_\text{in})}$$
+
+$$\Rightarrow \quad c_2 = T_\text{in} - \frac{T_\text{out} - T_\text{in}}{\ln(r_\text{out}/r_\text{in})} \ln r_\text{in}$$
+
+**Result:**
+
+$$T(r) = T_\text{in} + \frac{T_\text{out} - T_\text{in}}{\ln(r_\text{out}/r_\text{in})} \cdot \ln\left(\frac{r}{r_\text{in}}\right)$$
+
+*Graph: $T$ vs $r$ — logarithmic curve from $T_\text{in}$ at $r_\text{in}$ to $T_\text{out}$ at $r_\text{out}$.*
+
+**Heat flux:**
+
+$$q''(r) = -k\frac{dT}{dr} = -k \frac{T_\text{out} - T_\text{in}}{\ln(r_\text{out}/r_\text{in})} \cdot \frac{1}{r}$$
+
+**Heat transfer rate:**
+
+$$|\dot{Q}| = |q''(r)| \cdot A(r) = k\frac{T_\text{out} - T_\text{in}}{\ln(r_\text{out}/r_\text{in})} \cdot \frac{1}{r} \cdot 2\pi r \cdot w$$
+
+$$\dot{Q} = k \frac{\Delta T}{\ln(r_\text{out}/r_\text{in})} \cdot 2\pi w = \frac{\Delta T}{R_\text{conduction}}$$
+
+Again referencing Ohm's Law $I = V/R$:
+
+$$\boxed{R_\text{conduction (cylinder)} = \frac{\ln(r_\text{out}/r_\text{in})}{2\pi k w}}$$
+
+**Note:** If $r_\text{out} \approx r_\text{in}$, e.g. $\frac{r_\text{out}}{r_\text{in}} = 1 + \delta$ for $\delta \ll 1$:
+
+$$\ln\left(\frac{r_\text{out}}{r_\text{in}}\right) = \ln(1+\delta) \approx \delta \quad \text{(Taylor Series)}$$
+
+$$\Rightarrow R_\text{conduction (cylindrical)} \approx \frac{\delta}{2\pi kw} = \frac{\frac{r_\text{out}}{r_\text{in}} - 1}{2\pi kw} = \frac{r_\text{out} - r_\text{in}}{k(2\pi w r_\text{in})} \quad \text{(wall thickness / area)}$$
+
+(approximately planar when $r_\text{out}/r_\text{in} \approx 1$)
+
+---
+
+## Spherical Case
+
+*Diagram: Hollow sphere, inner radius $r_\text{in}$ at $T_\text{in}$, outer radius $r_\text{out}$ at $T_\text{out}$.*
+
+Conduction equation:
+
+$$\frac{1}{r^2}\frac{d}{dr}\left(r^2\frac{dT}{dr}\right) = 0$$
+
+BC1: $T(r_\text{in}) = T_\text{in}$; BC2: $T(r_\text{out}) = T_\text{out}$
+
+$$\int d\left(r^2\frac{dT}{dr}\right) = \int 0\,dr \;\Rightarrow\; r^2\frac{dT}{dr} = c_1$$
+
+$$\Rightarrow \quad T = -\frac{c_1}{r} + c_2$$
+
+Applying BCs:
+
+$$T_\text{in} = c_2 - \frac{c_1}{r_\text{in}}, \qquad T_\text{out} = c_2 - \frac{c_1}{r_\text{out}}$$
+
+$$\overline{T_\text{out} - T_\text{in} = -c_1\left(\frac{1}{r_\text{out}} - \frac{1}{r_\text{in}}\right)} \;\Rightarrow\; c_1 = \frac{T_\text{out} - T_\text{in}}{\frac{1}{r_\text{in}} - \frac{1}{r_\text{out}}}$$
+
+$$c_2 = T_\text{in} + \frac{c_1}{r_\text{in}}$$
+
+**Result:**
+
+$$T(r) = \left(\frac{T_\text{out} - T_\text{in}}{\frac{1}{r_\text{in}} - \frac{1}{r_\text{out}}}\right)\left(\frac{1}{r_\text{in}} - \frac{1}{r}\right) + T_\text{in}$$
+
+**Heat flux:**
+
+$$q''(r) = -k\frac{dT}{dr} = -\left(\frac{T_\text{out} - T_\text{in}}{\frac{1}{r_\text{in}} - \frac{1}{r_\text{out}}}\right) \cdot \frac{k}{r^2}$$
+
+**Heat transfer rate:**
+
+$$\dot{Q} = |q''(r)| \cdot A(r) = \left(\frac{\Delta T}{\frac{1}{r_\text{in}} - \frac{1}{r_\text{out}}}\right) \cdot \frac{k}{r^2} \cdot 4\pi r^2 = \left(\frac{\Delta T}{\frac{1}{r_\text{in}} - \frac{1}{r_\text{out}}}\right) 4\pi k$$
+
+$$\boxed{R_\text{conduction (sphere)} = \frac{\frac{1}{r_\text{in}} - \frac{1}{r_\text{out}}}{4\pi k}}$$
+
+**Thin-shell limit** ($r_\text{out}/r_\text{in} \approx 1$, $\delta \ll 1$):
+
+$$R_\text{cond} = \frac{\frac{1}{r_\text{in}} - \frac{1}{r_\text{out}}}{4\pi k} = \frac{1 - \frac{r_\text{in}}{r_\text{out}}}{4\pi k r_\text{in}} \approx \frac{1 - \frac{1}{1+\delta}}{4\pi k r_\text{in}}$$
+
+Using $\frac{1}{1+\delta} \approx 1 - \delta$ (Taylor Series):
+
+$$\approx \frac{\delta}{4\pi k r_\text{in}} = \frac{\frac{r_\text{out}}{r_\text{in}} - 1}{4\pi k r_\text{in}} = \frac{r_\text{out} - r_\text{in}}{k(4\pi r_\text{in}^2)} \quad \text{(wall thickness / area)}$$

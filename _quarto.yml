@@ -1,0 +1,54 @@
+project:
+  type: book
+  output-dir: _book
+
+book:
+  title: "MCEN3022: Heat Transfer"
+  author: "Jeremy Koch"
+  date: "May 18, 2026"
+  site-url: https://jeremy-koch.github.io/MCEN3022
+  sidebar:
+    logo: images/logo.png
+    style: "docked"
+    search: true
+    collapse-level: 1
+  page-navigation: true
+  draft-mode: unlinked
+  drafts:
+    - demos/wall_demo.qmd
+  chapters:
+    - index.qmd
+
+    - part: "Course Details"
+      chapters:
+        - course_details/assessment_overview.qmd
+        - course_details/tier1_problems.qmd
+        - course_details/technical_reports.qmd
+        - course_details/oral_exams.qmd
+        - course_details/peer_discussions.qmd
+        - course_details/notebooklm.qmd
+        - course_details/capstone.qmd
+
+    - 0intro.qmd
+    - 1conduction.qmd
+    # - 2fins.qmd
+    # - 3transient.qmd
+    # - 4convection.qmd
+    # - 5internal.qmd
+    # - 6heatXer.qmd
+    # - 7radiation.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    code-fold: true
+    code-tools: true
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    smooth-scroll: true
+    highlight-style: github
+    html-math-method: mathjax

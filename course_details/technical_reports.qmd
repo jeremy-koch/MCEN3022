@@ -1,0 +1,102 @@
+# Technical Reports {.unnumbered}
+
+## Overview
+
+You will submit 5-6 technical reports over the course of the semester. These are full engineering analyses — not just solutions, but professional documents that justify every assumption, explain every modeling choice, and interrogate every result.
+
+The reports are not graded primarily on polish. They are graded on the quality of your physical reasoning and your ability to catch and correct your own mistakes. A messy report that shows genuine reasoning scores higher than a clean report that could have been produced without understanding the problem.
+
+**Why?** Because the oral exam is where report quality truly gets assessed. You will be asked to walk through your reasoning, defend your choices, and answer follow-up questions drawn directly from what you wrote. A report you did not genuinely produce is a liability in the oral exam, not an asset.
+
+## The Two-Stage Submission Process
+
+Each technical report has two submissions, both managed through Canvas.
+
+### Stage 1: Initial Submission (Thursday, 11:59 PM)
+
+Submit a genuine attempt at the problem. This does not need to be polished — it needs to be honest. Legible work, units carried, an attempt at the key physics.
+
+**Grading:** Completion only. A genuine attempt earns full credit for this stage.
+
+**What unlocks:** Submitting Stage 1 immediately unlocks the Stage 2 assignment, which includes milestone checkpoints for the problem. These checkpoints confirm whether your approach is correct and flag common errors. You do not need to wait until Sunday to access them — submit Stage 1 early in the week and you have the checkpoints immediately.
+
+### Stage 2: Final Submission (Sunday, 11:59 PM)
+
+A complete technical report following the structure below. This is what is graded on the full rubric.
+
+The reflection section (see below) asks you to describe specifically what you got wrong or nearly got wrong in your Stage 1 submission and how you caught and corrected it. This section requires a genuine Stage 1 attempt — it cannot be written without one.
+
+## Report Structure
+
+Every technical report should follow this structure:
+
+1. **Problem Statement & Assumptions** (~½ page)
+   Restate the problem in your own words. List and justify every assumption. "Steady state" is not a justification — "steady state because the problem specifies constant boundary conditions and we are not asked about transient behavior" is.
+
+2. **Approach & Solution Method** (~½–1 page)
+   Why this method? Explain the physical reasoning behind your modeling choices. What did you consider and reject? Why does this approach capture the important physics?
+
+3. **Solution**
+   Equations numbered and referenced in text. Units carried throughout every line. No orphaned equations.
+
+4. **Results & Sanity Checks** (~½ page)
+   Does your answer make sense? Check order of magnitude, limiting behavior, units. Compare to intuition or a simpler case. An answer that passes a sanity check earns more credit than the same answer without one.
+
+5. **Common Pitfall & Correction** (~¼ page)
+   *What assumption or approach did you initially get wrong or nearly get wrong? How did you detect the error — did units not work out, did a sanity check fail, did a limiting case give a nonsensical result? What did you do to correct it?*
+
+   This section is one of the most important in the report. Every engineer makes wrong assumptions. The skill is catching them. A strong response to this section is better preparation for the oral exam than a perfect first attempt would have been.
+
+6. **Reflection** (~¼ page)
+   What was the hardest part of this problem? What connects to real engineering systems or other course material? What would you want to know more about?
+
+## Grading Rubric
+
+Each final submission is graded on 8 points across three dimensions.
+
+### Physics Reasoning (4 points)
+
+| Score | Description |
+|---|---|
+| 4 | Physical reasoning complete and followable throughout. All assumptions stated and justified. Sanity check attempted with genuine physical interpretation. Units carried throughout. |
+| 3 | Reasoning mostly present. Minor gaps — one assumption unjustified, sanity check cursory, or isolated unit lapse. |
+| 2 | Reasoning partially present. Significant gap: major assumption unjustified, sanity check missing, or solution presented without connecting physical logic. |
+| 1 | Minimal reasoning. Solution may be correct but student cannot be credited with understanding why. |
+| 0 | No physical reasoning visible. Could have been copied without understanding. |
+
+### Common Pitfall & Correction (2 points)
+
+| Score | Description |
+|---|---|
+| 2 | Specific error or near-miss identified. Detection method explained clearly (units, sanity check, limiting case, etc.). Correction described. Consistent with Stage 1 submission. |
+| 1 | Reflection present but vague, generic ("I made a math error"), or partially inconsistent with Stage 1 submission. |
+| 0 | Section absent, or clearly inconsistent with Stage 1 submission in a way that suggests Stage 1 was not a genuine attempt. |
+
+### Presentation (2 points)
+
+| Score | Description |
+|---|---|
+| 2 | Report follows required structure. Equations numbered and referenced in text. Writing is clear and followable throughout. |
+| 1 | Mostly organized but with missing elements — unreferenced equations, unclear section, or writing that impedes understanding in places. |
+| 0 | Missing sections, or writing that consistently impedes understanding. |
+
+**Total: 8 points per report**
+
+## What TAs Are Looking For
+
+When TAs read your report, they are asking one question above all others: *can I tell that this student understands why they did what they did?*
+
+A technically correct solution with no visible reasoning scores lower than a partially correct solution with clear physical reasoning. The oral exam is where correctness is verified — the report is where reasoning is demonstrated.
+
+TA feedback on draft submissions will focus on reasoning gaps, not on polish. If your reasoning is incomplete, you will be told specifically where and why.
+
+## Connection to Oral Exams
+
+Your submitted reports become the text interrogated in the oral exams. Expect questions like:
+
+- "You wrote X on page 2 — walk me through that reasoning."
+- "You assumed Y here — what would change if that assumption didn't hold?"
+- "Your sanity check gave Z — is that what you expected, and why?"
+- "You said in your pitfall section that you initially got the boundary condition wrong — how did you catch that?"
+
+The best preparation for these questions is writing the report yourself.

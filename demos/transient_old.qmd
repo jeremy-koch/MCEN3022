@@ -1,0 +1,219 @@
+---
+title: "Transient Conduction"
+---
+
+$$
+\newcommand{\Bi}{\mathrm{Bi}}
+\newcommand{\Fo}{\mathrm{Fo}}
+\newcommand{\dd}[2]{\dfrac{d#1}{d#2}}
+\newcommand{\pp}[2]{\dfrac{\partial #1}{\partial #2}}
+$$
+
+## The transient heat conduction problem {#sec-transient-setup}
+
+A solid body initially at a uniform temperature $T_i$ is suddenly exposed to a
+fluid at temperature $T_\infty$ with convection coefficient $h$. We want to know
+how the temperature inside the body evolves in time.
+
+The governing PDE (for a 1-D geometry) is
+
+$$
+\pp{T}{t} = \alpha \, \nabla^2 T,
+$$ {#eq-heat-pde}
+
+subject to:
+
+- **Initial condition:** $T(x,0) = T_i$
+- **Boundary condition (convection):** $-k \pp{T}{n}\Big|_\text{surface} = h\bigl(T_s - T_\infty\bigr)$
+
+### Dimensionless form
+
+It is convenient to define a dimensionless excess temperature:
+
+::: {.callout-note icon=false}
+## Definition 1.1 — Dimensionless temperature
+$$
+\theta^*(r^*, \Fo) = \frac{T(r,t) - T_\infty}{T_i - T_\infty},
+$$
+where $r^* = r/L_c$ is the dimensionless spatial coordinate and $\Fo = \alpha t / L_c^2$ is the **Fourier number**.
+:::
+
+Note that $\theta^* = 1$ initially and $\theta^* \to 0$ as $t \to \infty$.
+
+The Biot number characterises the ratio of internal conduction resistance to
+external convection resistance:
+
+::: {.callout-note icon=false}
+## Definition 1.2 — Biot number
+$$
+\Bi = \frac{h L_c}{k},
+$$
+where $L_c$ is a characteristic length and $k$ is the thermal conductivity of the solid.
+:::
+
+---
+
+## The lumped capacitance model ($\Bi \ll 1$) {#sec-lumped}
+
+When $\Bi < 0.1$, spatial temperature gradients inside the body are small enough
+to neglect. The entire solid is treated as a single lump at a single temperature.
+
+::: {.callout-note icon=false}
+## Theorem 1.1 — Lumped capacitance solution
+For $\Bi \ll 1$, the temperature history is
+
+$$
+\theta^*_\text{lump}(\Fo) = e^{-\Bi \cdot \Fo}.
+$$ {#eq-lumped}
+:::
+
+::: {.callout-tip collapse=true}
+## Derivation
+An energy balance on the entire body gives
+
+$$
+\rho V c_p \dd{T}{t} = -h A_s (T - T_\infty).
+$$
+
+Separating variables and integrating with $T(0)=T_i$:
+
+$$
+\ln\frac{T-T_\infty}{T_i-T_\infty} = -\frac{hA_s}{\rho V c_p}\,t.
+$$
+
+Identifying $\text{Bi} = hL_c/k$, $\text{Fo} = \alpha t/L_c^2$, and $L_c = V/A_s$
+(for a plane wall), this becomes @eq-lumped.
+:::
+
+::: {.callout-caution}
+## When is lumped analysis valid?
+Use $\Bi < 0.1$ as the rule of thumb. For a sphere, $L_c = r_o / 3$, so
+$\Bi = h r_o / (3k)$.
+:::
+
+**Example 1.1.** A copper sphere ($k = 401\ \text{W/m·K}$, $\rho = 8933\ \text{kg/m}^3$,
+$c_p = 385\ \text{J/kg·K}$) of radius $r_o = 5\ \text{mm}$ is suddenly placed in
+an airstream at $T_\infty = 20\ \text{°C}$ with $h = 100\ \text{W/m}^2\text{·K}$.
+The initial temperature is $T_i = 200\ \text{°C}$. Calculate the Biot number
+and determine whether the lumped model applies.
+
+```{ojs}
+//| echo: true
+//| code-fold: true
+
+ex1 = {
+  const k = 401, r_o = 5e-3, h = 100
+  const Lc = r_o / 3
+  const Bi = h * Lc / k
+  return { Lc, Bi, valid: Bi < 0.1 }
+}
+
+html`<pre>Characteristic length  Lc = ${(ex1.Lc*1e3).toFixed(3)} mm
+Biot number            Bi = ${ex1.Bi.toFixed(5)}
+Lumped model valid?       ${ex1.valid ? "Yes (Bi < 0.1)" : "No  (Bi >= 0.1)"}</pre>`
+```
+
+---
+
+## One-dimensional solutions {#sec-1d}
+
+For geometries where spatial variation matters ($\Bi \ge 0.1$), we solve the
+heat equation with separation of variables, yielding an infinite series.
+
+### The one-term approximation {#sec-oneterm}
+
+For $\Fo \ge 0.2$, the series converges rapidly and only the **first term** is
+needed.
+
+::: {.callout-note icon=false}
+## Theorem 1.2 — One-term approximation (sphere)
+For a sphere of radius $r_o$, the dimensionless centre temperature is
+
+$$
+\theta^*(0, \Fo) \approx C_1 \, e^{-\zeta_1^2 \Fo},
+$$
+
+and at any radial location $r^* = r/r_o$:
+
+$$
+\theta^*(r^*, \Fo) \approx C_1 \, e^{-\zeta_1^2 \Fo} \cdot \frac{\sin(\zeta_1 r^*)}{\zeta_1 r^*},
+$$ {#eq-oneterm}
+
+where $\zeta_1$ is the first root of the transcendental equation
+
+$$
+1 - \zeta_1 \cot(\zeta_1) = \Bi,
+$$
+
+and $C_1 = 4\left[\sin(\zeta_1) - \zeta_1\cos(\zeta_1)\right] / \left[2\zeta_1 - \sin(2\zeta_1)\right]$.
+:::
+
+**Example 1.2.** Find $\zeta_1$ and $C_1$ for $\Bi = 1$.
+
+```{ojs}
+//| echo: true
+//| code-fold: true
+
+ex2 = {
+  const Bi = 1.0
+  // brentq is defined in sphere_demo.qmd — but we need it here too,
+  // so inline a simple bisection for this standalone cell
+  function bisect(f, a, b, tol=1e-10) {
+    for (let i = 0; i < 100; i++) {
+      const m = (a + b) / 2
+      if (Math.abs(b - a) < tol) return m
+      f(a) * f(m) < 0 ? (b = m) : (a = m)
+    }
+    return (a + b) / 2
+  }
+  const f = z => 1 - z / Math.tan(z) - Bi
+  const zeta1 = bisect(f, 1e-6, Math.PI - 1e-6)
+  const C1 = 4*(Math.sin(zeta1) - zeta1*Math.cos(zeta1))
+           / (2*zeta1 - Math.sin(2*zeta1))
+  return { Bi, zeta1, C1 }
+}
+
+html`<pre>Bi   = ${ex2.Bi.toFixed(1)}
+ζ₁   = ${ex2.zeta1.toFixed(6)} rad
+C₁   = ${ex2.C1.toFixed(6)}</pre>`
+```
+
+### Full Fourier series {#sec-series}
+
+The exact solution for a sphere is:
+
+::: {.callout-note icon=false}
+## Theorem 1.3 — Fourier series solution (sphere)
+$$
+\theta^*(r^*, \Fo) = \sum_{n=1}^{\infty} C_n \, e^{-\zeta_n^2 \Fo}
+  \cdot \frac{\sin(\zeta_n r^*)}{\zeta_n r^*},
+$$ {#eq-series}
+
+where $\zeta_n$ are successive positive roots of $1 - \zeta\cot(\zeta) = \Bi$
+and the coefficients are
+
+$$
+C_n = \frac{4[\sin(\zeta_n) - \zeta_n\cos(\zeta_n)]}{2\zeta_n - \sin(2\zeta_n)}.
+$$
+:::
+
+At the centre ($r^* \to 0$) we use L'Hôpital's rule:
+$\sin(\zeta_n r^*)/(\zeta_n r^*) \to 1$.
+
+::: {.callout-note}
+The one-term approximation (@eq-oneterm) uses only the $n=1$ term of
+@eq-series. For $\Fo \ge 0.2$, higher terms decay exponentially fast and
+the error is typically less than 2 %.
+:::
+
+---
+
+## Summary table {#sec-summary}
+
+| Model | When to use | Temperature profile |
+|-------|-------------|---------------------|
+| Lumped ($\Bi < 0.1$) | Uniform internal $T$ | $\theta^* = e^{-\Bi\,\Fo}$ |
+| One-term ($\Fo \ge 0.2$) | Moderate $\Bi$, large $\Fo$ | @eq-oneterm |
+| Full series | Any $\Bi$, any $\Fo > 0$ | @eq-series |
+
+: Transient conduction models for a sphere. {#tbl-summary}

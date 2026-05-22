@@ -1,0 +1,70 @@
+# Assessment Overview & Philosophy {.unnumbered}
+
+## Why This Course Is Designed the Way It Is
+
+Traditional engineering course assessments — homework sets, midterms, finals — were designed for a world where producing a correct solution required understanding the material. That assumption is no longer reliable. AI tools can generate technically correct solutions, clean derivations, and plausible physical interpretations.
+
+This creates an unfairness that is easy to overlook: in a traditional grading scheme, a student who works through every problem honestly and a student who outsources everything to AI may receive the same homework grade. That is not fair to the student who worked honestly.
+
+This course is designed so that **real understanding is visible and rewarded**. The primary mechanism is simple: a significant portion of your grade comes from real-time conversation — oral exams and peer discussions — where understanding either shows up or it does not.
+
+<!-- ## The Authenticity Spectrum
+
+Not all assessments are equally hard to fake. From hardest to easiest:
+
+1. **Oral exams** — nearly impossible to fake; understanding shows up in real time
+2. **Peer discussions** — very hard to fake; recorded, social, real-time reasoning
+3. **Technical reports** — can be AI-generated, but you will defend them in the oral
+4. **Tier 1 problems** — easy to fake, but low consequence; the oral is the check
+5. **NotebookLM portfolio** — partially self-referential; query logs reflect your actual engagement
+
+The grade weights are designed to track this spectrum. The components that are hardest to fake carry the most weight. -->
+
+## Grade Breakdown
+<!-- 
+| Component | Weight | Authenticity | Primary Purpose |
+|---|---|---|---|
+| Capstone report + final oral | 30% | Very high | Synthesis and demonstration |
+| Midterm oral | 15% | Very high | Calibration and accountability |
+| Peer discussions | 20% | High | Real-time reasoning practice |
+| Technical reports | 15% | Moderate | Scaffolding for oral exams |
+| Tier 1 problems | 10% | Lower | Fluency building |
+| NotebookLM portfolio | 10% | Moderate | Study process and AI literacy | -->
+
+| Component | Weight | Authenticity | Primary Purpose |
+|---|---|---|---|
+| NotebookLM portfolio | 10% |
+| Tier 1 problems | 10% |
+| Technical reports | 15% |
+| Peer discussions | 20% |
+| Midterm oral | 15% |
+| Capstone report | 5% | 
+| Final oral | 25% |
+
+<!-- Authentic: 20+15+25 = 60
+     Formative: 10+10+15+5 = 40
+-->
+
+## What Each Component Is Actually For
+
+**Tier 1 problems** exist because fluency requires repetition. You cannot reason well about transient conduction in a fin if you have never worked a conduction problem under time pressure. These problems build the background knowledge that makes the oral exam feel natural rather than overwhelming.
+
+**Technical reports** exist to force you to write down your reasoning in a form that can be interrogated. The report is not the product — the oral exam is. But you cannot have a good oral exam conversation without a document to point at. The report also builds professional writing habits that matter beyond this course.
+
+**Peer discussions** exist because engineering happens in teams. Explaining your reasoning to a peer, in real time, without notes, is a different cognitive act than writing it down. It is also excellent preparation for the oral exam.
+
+**Oral exams** exist because they are the most direct window into understanding. You will be asked to explain your reasoning, defend your choices, and respond to "what if" questions that were not on any assignment. These conversations cannot be prepared for by memorizing solutions — only by understanding the material.
+
+**The capstone** exists to require synthesis. Heat transfer problems in practice do not come labeled by mode. You will be given an open-ended system, asked to identify what matters, build an appropriate model, and justify every choice.
+
+## A Word on Oral Exams
+
+Oral exams are uncommon in undergraduate engineering programs, and many students find them anxiety-inducing at first. A few things worth knowing:
+
+The exam is not designed to trick you or be a "gotcha". It is a conversation about material you have been working with for weeks. Stumbling on a question and recovering is fine -- recovery is part of what we are watching for. Getting something wrong and correcting yourself is better than getting it right the first time with no visible reasoning.
+
+The anchor question for the midterm oral will be released one week in advance. You will know exactly what the opening question is. The follow-up questions draw from your own submitted reports — material you wrote yourself.
+
+You may bring your NotebookLM notebook to both oral exams.
+
+A retake of the midterm oral is available. See [Oral Exams](oral_exams.qmd) for details.

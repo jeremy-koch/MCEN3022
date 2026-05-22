@@ -1,0 +1,77 @@
+# Home {.unnumbered}
+
+Welcome to MCEN 3022: Heat Transfer! This course is being taught in summer 2026 by Professor Jeremy Koch at the University of Colorado Boulder.
+
+This page contains some perspective and important policies.
+
+
+## Some things to look forward to
+
+- Heat Transfer is a delightfully practical course where we get to do some genuine engineering analyses. Problems like: "A GPU produces 800 W of waste heat and needs to be kept below 80°C. If we air cool it, how fast must the fan be? If we water cool it, how high must the flow rate be?"
+- Despite the asynchronous nature of this course, we are going to have some technical discussions over Zoom. These will be some of the most authentic engineering experiences you will have here at CU, with you and a small number of colleagues getting together to talk through a problem for ~30 minutes. 
+- We will "use AI the right way" and get some experience with Google's NotebookLM. I envision this as being a useful tool for your other courses, maybe most significantly your senior design course, and in your career, so let's get some practice with it this semester. 
+
+## Class Expectations
+
+- This is an 8-week course that will cover the same amount of content as in a regular semester with 15 weeks. Maybe most worryingly, there are only seven weekends -- very little chance to recover! Due to the fast pace of this course, you cannot fall behind -- there will be **no late work accepted** and **no extensions**.
+- This is also an **asynchronous** course, meaning that you will consume the course content on your own schedule. This will require self-motivation to stay on track! (There are due dates, and there are some events that you will need to schedule.)
+- In a regular semester we would see each other 150 minutes per week, plus office hours (always a good idea to attend). Since this course is half as long, does that mean that you will be watching 300 minutes of videos per week? No!
+    - I am making an effort to streamline the videos -- fewer umms, pauses, and stumbles. Derivations will mostly be placed on this website, read them there. 
+    - I expect you will pause, think, rewind, and revisit other sections of your notes. A 15-minute video might take 25 minutes to consume.
+    - This website is meant to augment the lecture content and contains abbreviated descriptions, derivations, equation and algorithm summaries, interactive examples, and some quick "check your understanding" questions. You should be reading the website to review/solidify the content.
+- Your work, particularly the "technical reports", will be neat and professional. Creating detailed, readable reports is an engineering skill!
+
+## Workflow
+
+I recommend the following:
+- This website will be the guide, but we are required to use Canvas for the gradebook, homework submissions, etc. 
+
+
+<!-- This page is the most important thing to read before the course begins. It explains what you will be asked to do, how your work will be graded, and — more importantly — *why* the course is designed the way it is. -->
+
+<!-- ## The Short Version
+
+This is a course about heat transfer. But it is also a course about demonstrating that you actually understand heat transfer — not just producing work that looks like understanding.
+
+That distinction matters more now than it ever has. AI tools can generate technically correct solutions, clean reports, and plausible explanations. The assessments in this course are designed so that *genuine understanding is visible and rewarded*, and so that the grade you earn means something — to you, to future employers, and to me.
+
+Some of what you will be asked to do is unfamiliar. Oral exams, in particular, are not common in undergraduate engineering courses. This page explains the reasoning behind each component so you can engage with the course on its own terms rather than just react to the requirements.
+
+## A Note on AI Tools
+
+You will encounter AI tools throughout this course in two ways:
+
+**NotebookLM is encouraged.** It is a domain-specific retrieval tool that searches only your own notes. It models good AI practice, helps you manage a large amount of material in a compressed format, and you may bring it to oral exams.
+
+**Using AI to generate solutions or reports is not banned, but it is self-defeating.** The oral exams are where understanding is assessed. A student who genuinely worked through the problems will find the oral exam straightforward. A student who outsourced their work will find it very uncomfortable. The grade distribution will reflect this.
+
+This is not a threat. It is a description of how the system works.x
+
+## Grade Breakdown
+
+| Component | Weight | Notes |
+|---|---|---|
+| Capstone + final oral exam | 32% | Highest authenticity, synthesis of everything |
+| Midterm oral exam | 20% | Retake available (see [Oral Exams](oral_exams.qmd)) |
+| Technical reports | 15% | Core written work, feeds oral exams |
+| Peer discussions | 18% | Real-time reasoning, LLM-assisted assessment |
+| Tier 1 practice problems | 10% | Engagement and fluency building |
+| NotebookLM portfolio | 5% | Study process and AI literacy |
+
+**Total: 100%**
+
+The oral exams and peer discussions together account for 70% of your grade. This is intentional. Real-time reasoning is the hardest thing to fake and the most important thing to demonstrate. -->
+
+## Assessment components
+
+The course is designed as a connected system, not a collection of independent assignments:
+
+- **Tier 1 problems** build the fluency you need for the technical reports
+- **Technical reports** create documents you will defend in the oral exams
+- **Peer discussions** give you practice reasoning out loud before the oral exams
+- **NotebookLM** helps you build a retrievable knowledge base you can bring to the oral exams
+- **Midterm oral** is a calibration point — you find out where you stand while there is still time to improve
+- **Capstone + final oral** is where everything comes together
+
+Missing any one of these components does not just cost you points on that component. It makes the downstream components harder. See [Assessment Overview & Philosophy](assessment_overview.qmd) for more details on these.
+

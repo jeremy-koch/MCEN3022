@@ -1,0 +1,64 @@
+# Capstone Project {.unnumbered}
+
+## Overview
+
+The capstone is the synthesis assessment for the course. It is released approximately Week 5 and due approximately Week 7, giving you two weeks to develop your analysis while you are still encountering new material. The capstone report and the final oral exam together are worth 32% of your course grade.
+
+The capstone is not a harder version of a technical report. It is a different kind of problem entirely.
+
+## What Makes the Capstone Different
+
+Every technical report in this course gives you a well-posed problem: a geometry, a set of boundary conditions, a quantity to find. The physics is already identified for you. Your job is to apply the appropriate method correctly and justify your reasoning.
+
+The capstone gives you a real system and a question. You decide which heat transfer mechanisms matter. You decide what to model and what to neglect. You decide how much complexity is warranted and how to check that your model is physically reasonable. There is no single correct answer — there are better and worse justified approaches.
+
+This is closer to what engineering analysis actually looks like.
+
+## The Prompt
+
+You will be given a real engineering system and asked something like:
+
+> *"You are an engineer asked to evaluate [system]. Characterize the dominant heat transfer mechanisms, develop an appropriate model, and provide quantitative estimates with uncertainty. Justify every assumption you make."*
+
+The specific system will be announced when the capstone is released. It will involve multiple heat transfer modes — conduction, convection, and radiation will all be potentially relevant, and part of your task is deciding which ones matter enough to model explicitly and which ones can be reasonably neglected.
+
+## Report Structure
+
+The capstone uses the same technical report structure as your earlier reports, with one addition:
+
+1. **Problem Statement & Assumptions** — restate the system, identify what you are trying to characterize, list and justify every assumption
+2. **Mechanism Identification** — which heat transfer modes are present? Which dominate? Why are others negligible? This section is new and central to the capstone.
+3. **Approach & Solution Method** — why this model? What did you consider and reject?
+4. **Solution** — equations numbered, units throughout
+5. **Results & Sanity Checks** — does your answer make sense? What is the uncertainty in your estimates?
+6. **Common Pitfall & Correction** — what did you initially get wrong or nearly get wrong in your modeling approach?
+7. **Reflection** — what would you do differently with more time or data? What are you least confident in?
+
+The mechanism identification section is where most capstone analyses succeed or fail. A strong analysis identifies the dominant modes with physical justification and makes a principled argument for why others are negligible. A weak analysis models everything without discrimination, or neglects something important without justification.
+
+## Grading
+
+The capstone report is graded on the same 8-point rubric as the technical reports (physics reasoning 4 points, reflection 2 points, presentation 2 points), with additional weight given to the mechanism identification section within the physics reasoning dimension.
+
+The capstone report grade is combined with the final oral exam score to produce the 32% component. The final oral exam carries more weight than the report — approximately 70/30. A strong oral exam can recover a weak report; a weak oral exam reveals the limits of a strong-looking report.
+
+## The Final Oral Exam
+
+The final oral exam interrogates your capstone directly. See [Oral Exams](oral_exams.qmd) for the full structure. In brief:
+
+- You open with a 2-minute unprompted summary of your system and findings
+- The examiner probes your mechanism identification and modeling choices
+- "What if" questions modify your system — a different material, a different operating condition, an additional mode
+- You close by identifying what you are least confident in and what you would do differently
+
+The last part is not a trap. An engineer who can articulate the limitations of their own analysis is more valuable than one who presents false certainty. The capstone is a document you should be able to defend, critique, and extend.
+
+## Advice
+
+**Start with the mechanisms, not the math.** The most common capstone error is jumping to equations before establishing which physics dominates. Spend real time on mechanism identification before you write a single equation. Order-of-magnitude estimates of each mode's contribution are more valuable at this stage than precise calculations.
+
+**Justify everything.** Every assumption you make is a potential oral exam question. "I neglected radiation because..." should appear in your report before the examiner asks it.
+
+**Use your NotebookLM.** You have been building a notebook for weeks. The capstone is exactly the kind of open-ended synthesis task it is designed to support. Query it for definitions, criteria, and material properties. You can bring it to the final oral exam.
+
+**The uncertainty estimate is real.** You are working from a described system, not a controlled laboratory. Your inputs have uncertainty. Acknowledging that uncertainty — and reasoning about how it propagates through your analysis — is part of a professional engineering analysis, not a sign of weakness.

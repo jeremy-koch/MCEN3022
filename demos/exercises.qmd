@@ -1,0 +1,64 @@
+---
+title: "Exercises"
+---
+
+The following problems reinforce the concepts from Chapters 1 and 2. Unless
+stated otherwise, assume the sphere starts at a **uniform** temperature $T_i$
+and is suddenly exposed to a fluid at $T_\infty$.
+
+---
+
+**Exercise 1.** A solid copper sphere ($k = 401\ \text{W/m·K}$,
+$\rho = 8933\ \text{kg/m}^3$, $c_p = 385\ \text{J/kg·K}$) of radius
+$r_o = 10\ \text{mm}$ is initially at $T_i = 300\ \text{°C}$ and is suddenly
+placed in a water bath at $T_\infty = 25\ \text{°C}$ with
+$h = 6000\ \text{W/m}^2\text{·K}$.
+
+(a) Calculate $\text{Bi}$ (using $L_c = r_o/3$). Is the lumped model valid?
+(b) Calculate the Fourier number at $t = 1\ \text{s}$.
+(c) Using the appropriate model, estimate the sphere's centre temperature at $t = 1\ \text{s}$.
+
+---
+
+**Exercise 2.** For a sphere at $\text{Bi} = 5$ and $\text{Fo} = 0.1$:
+
+(a) How many terms of the Fourier series are needed to achieve 1% accuracy at
+    the centre?
+(b) Repeat for $\text{Fo} = 0.5$. What do you observe?
+
+*(Hint: compute the partial sums $\sum_{n=1}^{N} C_n e^{-\zeta_n^2 \text{Fo}}$
+and find the $N$ at which it converges.)*
+
+---
+
+**Exercise 3.** Show analytically that as $r^* \to 0$,
+
+$$
+\frac{\sin(\zeta_n r^*)}{\zeta_n r^*} \to 1.
+$$
+
+*(Hint: use the Taylor expansion $\sin(\epsilon) \approx \epsilon - \epsilon^3/6$
+for small $\epsilon$.)*
+
+---
+
+**Exercise 4 (design).** You need to quench a steel sphere ($k = 45\ \text{W/m·K}$,
+$\alpha = 1.2 \times 10^{-5}\ \text{m}^2/\text{s}$) from $T_i = 900\ \text{°C}$
+to a *centre* temperature of $T_c \le 100\ \text{°C}$ in at most 5 minutes.
+The quench fluid is at $T_\infty = 20\ \text{°C}$ with $h = 1000\ \text{W/m}^2\text{·K}$.
+
+What is the **maximum radius** of the sphere that satisfies this requirement?
+
+---
+
+**Exercise 5 (exploration).** Open the interactive demo in @sec-demo and answer
+the following qualitatively:
+
+(a) At $\text{Bi} = 0.01$ and $\text{Fo} = 0.3$, do all three models agree?
+    Explain why.
+(b) Set $\text{Bi} = 10$ and decrease $\text{Fo}$ from 1.0 to 0.05.  At what
+    approximate $\text{Fo}$ does the one-term approximation start to visibly
+    diverge from the full series near the surface?
+(c) For $\text{Bi} = 1$ and $\text{Fo} = 0.5$, what is the approximate value
+    of $\theta^*$ at the centre? At the surface? What does the ratio of these
+    two values tell you physically?

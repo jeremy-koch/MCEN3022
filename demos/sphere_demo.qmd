@@ -1,0 +1,288 @@
+---
+title: "Sphere Temperature Profile — Interactive Demo"
+---
+
+$$
+\newcommand{\Bi}{\mathrm{Bi}}
+\newcommand{\Fo}{\mathrm{Fo}}
+$$
+
+This page lets you explore all three levels of approximation for transient
+conduction in a **sphere** side-by-side:
+
+| Curve | Model | Valid when |
+|-------|-------|------------|
+| Lumped | $\theta^* = e^{-\Bi\,\Fo}$ (spatially uniform) | $\Bi < 0.1$ |
+| One-term | First term of Fourier series | $\Fo \ge 0.2$ |
+| Full series | Sum of many Fourier terms | Always |
+
+Adjust the sliders below and observe how the three curves compare.
+
+::: {.callout-note}
+The lumped model predicts a *single* temperature for the whole sphere — it
+appears as a horizontal dotted line because it has no spatial variation.
+:::
+
+---
+
+## Interactive demo {#sec-demo}
+
+```{ojs}
+//| echo: false
+
+viewof Bi_exp = Inputs.range([-2, 2], {
+  value: 0,
+  step: 0.05,
+  label: "log₁₀(Bi)"
+})
+
+viewof Fo = Inputs.range([0.01, 2.0], {
+  value: 0.3,
+  step: 0.01,
+  label: "Fourier number (Fo)"
+})
+```
+
+```{ojs}
+//| echo: false
+
+Bi = Math.pow(10, Bi_exp)
+
+validity_msg = Fo >= 0.2
+  ? "Fo ≥ 0.2 ✓ — one-term approximation is reliable"
+  : "Fo < 0.2 ⚠ — one-term approximation may be inaccurate"
+
+html`<p style="font-size:0.95em; margin: 0.2em 0 0.8em 0;">
+  <strong>Bi = ${Bi.toFixed(3)}</strong> &nbsp;|&nbsp;
+  <strong>Fo = ${Fo.toFixed(2)}</strong> &nbsp;|&nbsp;
+  <span style="color:${Fo >= 0.2 ? '#2a7a2a' : '#b85c00'}">${validity_msg}</span>
+</p>`
+```
+
+```{ojs}
+//| echo: false
+
+// ── Root finder (Brent's method) ──────────────────────────────────────────────
+function brentq(f, a, b, args, tol = 1e-10, maxIter = 200) {
+  let fa = f(a, ...args), fb = f(b, ...args);
+  if (fa * fb > 0) return NaN;
+  if (Math.abs(fa) < Math.abs(fb)) { [a, b] = [b, a]; [fa, fb] = [fb, fa]; }
+  let c = a, fc = fa, mflag = true, s, d;
+  for (let i = 0; i < maxIter; i++) {
+    if (Math.abs(b - a) < tol) return b;
+    if (fa !== fc && fb !== fc) {
+      s = a*fb*fc/((fa-fb)*(fa-fc))
+        + b*fa*fc/((fb-fa)*(fb-fc))
+        + c*fa*fb/((fc-fa)*(fc-fb));
+    } else {
+      s = b - fb*(b-a)/(fb-fa);
+    }
+    const cond1 = !((3*a+b)/4 < s && s < b || b < s && s < (3*a+b)/4);
+    const cond2 = mflag  && Math.abs(s-b) >= Math.abs(b-c)/2;
+    const cond3 = !mflag && Math.abs(s-b) >= Math.abs(c-d)/2;
+    const cond4 = mflag  && Math.abs(b-c) < tol;
+    const cond5 = !mflag && Math.abs(c-d) < tol;
+    if (cond1||cond2||cond3||cond4||cond5) { s=(a+b)/2; mflag=true; }
+    else { mflag=false; }
+    const fs = f(s, ...args);
+    d=c; c=b; fc=fb;
+    if (fa*fs < 0) { b=s; fb=fs; } else { a=s; fa=fs; }
+    if (Math.abs(fa) < Math.abs(fb)) { [a,b]=[b,a]; [fa,fb]=[fb,fa]; }
+  }
+  return b;
+}
+
+// Sphere transcendental: 1 − ζ cot(ζ) − Bi = 0
+function transcendental(zeta, Bi) {
+  return 1.0 - zeta / Math.tan(zeta) - Bi;
+}
+
+// Fourier coefficient C_n
+function coeff(zeta) {
+  return 4*(Math.sin(zeta) - zeta*Math.cos(zeta))
+         / (2*zeta - Math.sin(2*zeta));
+}
+
+// First N positive roots of the transcendental equation
+function getRoots(Bi, N = 50) {
+  const roots = [];
+  for (let n = 1; n <= N; n++) {
+    const lo = (n-1)*Math.PI + 1e-9;
+    const hi =  n   *Math.PI - 1e-9;
+    const z = brentq(transcendental, lo, hi, [Bi]);
+    if (!isNaN(z)) roots.push(z);
+  }
+  return roots;
+}
+
+// Evaluate dimensionless temperature profile along r*
+function thetaProfile(rArr, roots, Cn, Fo) {
+  return rArr.map(r => {
+    let sum = 0;
+    for (let i = 0; i < roots.length; i++) {
+      const z = roots[i];
+      const decay   = Cn[i] * Math.exp(-z*z*Fo);
+      const spatial = r < 1e-10 ? 1.0 : Math.sin(z*r)/(z*r);
+      sum += decay * spatial;
+    }
+    return Math.max(0, sum);
+  });
+}
+
+// ── Compute everything ────────────────────────────────────────────────────────
+
+N_PTS  = 300
+r_star = Array.from({length: N_PTS}, (_, i) => i / (N_PTS - 1))
+
+roots  = getRoots(Bi, 50)
+Cn_all = roots.map(coeff)
+
+theta_full    = thetaProfile(r_star, roots,          Cn_all,          Fo)
+theta_oneterm = thetaProfile(r_star, roots.slice(0,1), Cn_all.slice(0,1), Fo)
+theta_lumped  = r_star.map(() => Math.exp(-Bi * Fo))   // horizontal line
+
+// Pack into Plot-friendly row arrays
+full_rows    = r_star.map((r,i) => ({r, theta: theta_full[i],    series: "Full series (N=50)"}))
+oneterm_rows = r_star.map((r,i) => ({r, theta: theta_oneterm[i], series: "One-term"}))
+lumped_rows  = r_star.map((r,i) => ({r, theta: theta_lumped[i],  series: "Lumped"}))
+```
+
+```{ojs}
+//| echo: false
+
+// ── Observable Plot ───────────────────────────────────────────────────────────
+
+Plot.plot({
+  width: 660,
+  height: 400,
+  marginLeft: 65,
+  marginBottom: 50,
+  style: { fontFamily: "Georgia, serif", fontSize: "13px" },
+  x: { label: "r* = r / r₀  →", domain: [0, 1] },
+  y: { label: "↑  θ* = (T − T∞) / (Tᵢ − T∞)", domain: [-0.02, 1.05] },
+  color: {
+    domain: ["Full series (N=50)", "One-term", "Lumped"],
+    range:  ["#1f77b4",            "#ff7f0e",  "#2ca02c"],
+    legend: true
+  },
+  marks: [
+    Plot.gridX({stroke: "#ddd"}),
+    Plot.gridY({stroke: "#ddd"}),
+
+    Plot.line(full_rows,
+      {x: "r", y: "theta", stroke: "series", strokeWidth: 3}),
+
+    Plot.line(oneterm_rows,
+      {x: "r", y: "theta", stroke: "series", strokeWidth: 2.5,
+       strokeDasharray: "8,4"}),
+
+    Plot.line(lumped_rows,
+      {x: "r", y: "theta", stroke: "series", strokeWidth: 2,
+       strokeDasharray: "3,6"}),
+  ]
+})
+```
+
+---
+
+## What to look for {#sec-observations}
+
+**Observation 1 — Lumped model breaks down at large Bi.**
+When $\Bi \ll 1$ all three curves nearly coincide: the sphere equilibrates
+internally much faster than it exchanges heat with the fluid.
+As $\Bi$ increases the surface cools faster than the core, and the lumped
+model — which predicts no spatial gradient — diverges from the correct solution.
+
+**Observation 2 — One-term accuracy improves with Fo.**
+At small $\Fo$ (say 0.05) many Fourier terms contribute because the
+exponentials $e^{-\zeta_n^2 \Fo}$ have not yet decayed.
+Drag $\Fo$ above 0.2 and watch the one-term curve collapse onto the full series.
+
+**Observation 3 — Centre vs. surface temperature.**
+The centre ($r^* = 0$) always lags behind the surface ($r^* = 1$). The
+larger the Biot number, the steeper the radial gradient.
+
+---
+
+## A worked example {#sec-worked}
+
+**Example 2.1.** A steel sphere ($k = 50\ \text{W/m·K}$,
+$\alpha = 1.4 \times 10^{-5}\ \text{m}^2/\text{s}$) of radius
+$r_o = 20\ \text{mm}$ is quenched in oil at $T_\infty = 40\ \text{°C}$ with
+$h = 500\ \text{W/m}^2\text{·K}$. The initial temperature is
+$T_i = 800\ \text{°C}$. Find the centre and surface temperatures after 2 min.
+
+```{ojs}
+//| echo: false
+
+// ── Problem parameters ────────────────────────────────────────────────────────
+ex_k    = 50.0;   ex_alpha = 1.4e-5;  ex_ro   = 20e-3
+ex_h    = 500.0;  ex_Tinf  = 40.0;    ex_Ti   = 800.0;  ex_t = 120.0
+
+ex_Bi = ex_h * ex_ro / ex_k
+ex_Fo = ex_alpha * ex_t / (ex_ro * ex_ro)
+
+// Reuse helpers defined above (getRoots, coeff, thetaProfile, brentq)
+ex_roots = getRoots(ex_Bi, 50)
+ex_Cn    = ex_roots.map(coeff)
+
+function thetaAt(rStar, nTerms) {
+  const rr = ex_roots.slice(0, nTerms)
+  const cc = ex_Cn.slice(0, nTerms)
+  return thetaProfile([rStar], rr, cc, ex_Fo)[0]
+}
+
+toT = th => th * (ex_Ti - ex_Tinf) + ex_Tinf
+fmt4 = v => v.toFixed(4)
+fmt1 = v => v.toFixed(1)
+
+ex_lump       = Math.exp(-ex_Bi * ex_Fo)
+ex_c_one      = thetaAt(0.0, 1)
+ex_c_full     = thetaAt(0.0, 50)
+ex_s_one      = thetaAt(1.0, 1)
+ex_s_full     = thetaAt(1.0, 50)
+
+html`
+<p><strong>Bi = ${ex_Bi.toFixed(4)}, &nbsp; Fo = ${ex_Fo.toFixed(4)}</strong></p>
+<table style="border-collapse:collapse; font-family:Georgia,serif; font-size:0.95em; width:100%">
+  <thead>
+    <tr style="background:#f0f4f8">
+      <th style="padding:6px 12px; border:1px solid #ccc; text-align:left">Model</th>
+      <th style="padding:6px 12px; border:1px solid #ccc">θ* centre</th>
+      <th style="padding:6px 12px; border:1px solid #ccc">T centre (°C)</th>
+      <th style="padding:6px 12px; border:1px solid #ccc">θ* surface</th>
+      <th style="padding:6px 12px; border:1px solid #ccc">T surface (°C)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="padding:6px 12px; border:1px solid #ccc">Lumped</td>
+      <td style="padding:6px 12px; border:1px solid #ccc; text-align:center">${fmt4(ex_lump)}</td>
+      <td style="padding:6px 12px; border:1px solid #ccc; text-align:center">${fmt1(toT(ex_lump))}</td>
+      <td style="padding:6px 12px; border:1px solid #ccc; text-align:center">${fmt4(ex_lump)}</td>
+      <td style="padding:6px 12px; border:1px solid #ccc; text-align:center">${fmt1(toT(ex_lump))}</td>
+    </tr>
+    <tr style="background:#fafafa">
+      <td style="padding:6px 12px; border:1px solid #ccc">One-term</td>
+      <td style="padding:6px 12px; border:1px solid #ccc; text-align:center">${fmt4(ex_c_one)}</td>
+      <td style="padding:6px 12px; border:1px solid #ccc; text-align:center">${fmt1(toT(ex_c_one))}</td>
+      <td style="padding:6px 12px; border:1px solid #ccc; text-align:center">${fmt4(ex_s_one)}</td>
+      <td style="padding:6px 12px; border:1px solid #ccc; text-align:center">${fmt1(toT(ex_s_one))}</td>
+    </tr>
+    <tr>
+      <td style="padding:6px 12px; border:1px solid #ccc">Full (N=50)</td>
+      <td style="padding:6px 12px; border:1px solid #ccc; text-align:center">${fmt4(ex_c_full)}</td>
+      <td style="padding:6px 12px; border:1px solid #ccc; text-align:center">${fmt1(toT(ex_c_full))}</td>
+      <td style="padding:6px 12px; border:1px solid #ccc; text-align:center">${fmt4(ex_s_full)}</td>
+      <td style="padding:6px 12px; border:1px solid #ccc; text-align:center">${fmt1(toT(ex_s_full))}</td>
+    </tr>
+  </tbody>
+</table>`
+```
+
+::: {.callout-tip}
+## Interpretation
+With $\Bi \approx 0.2$ this sphere is borderline for the lumped model — the
+surface and centre temperatures differ noticeably. The one-term approximation
+matches the full series very closely because $\Fo \approx 0.21 \ge 0.2$.
+:::

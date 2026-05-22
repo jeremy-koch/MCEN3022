@@ -1,0 +1,142 @@
+# Intro {.unnumbered}
+
+Let's get started! This is part of your Week 1 content. We will introduce the three modes of heat transfer and introduce some vocabulary that will be used throughout the course.
+
+## Warm-Up
+
+In general I will try to start off each week with a few questions like these to get the gears turning. The "Recall" questions you should know, and if you don't, revisit your notes. The "Look Ahead" questions you should not expect to know -- the purpose is to prime your brain to seek the answers to those questions in the videos and readings. At the end of the week, revisit these questions.
+
+Recall
+1. From thermodynamics: energy can be transferred via heat or work. This class is about heat!
+
+
+1. What are the different ways that heat can be transferred?
+2. What are the meanings of thermal conductivity $k$ and the convective heat transfer coefficient $h$? What are their units?
+3. How does the Sun heat up the Earth through the vacuum of space?
+
+
+
+
+
+
+## The Three Modes of Heat Transfer
+
+::: {.callout-tip}
+## Video
+
+Start with this video. Then read this section... it will hopefully help you solidify and maybe extend your learning.
+:::
+
+From thermodynamics, recall that the energy of a system is changed via heat transfer or work (on or by). The Laws of Thermodynamics say nothing about rates! Heat transfer is the study of the heat transfer [rate]{.underline}.
+
+We give the symbol $\dot{Q}$ to the heat transfer rate, where $Q$ is the amount of heat (energy), in Joules, and the dot on top references a time derivative. 
+
+
+### Conduction
+
+**Primarily associated with solids**, though fluids have a "thermal conductivity" too (convection is stronger).
+
+$$\dot{Q}_\text{conduction} \sim k \cdot A \cdot \frac{T - T_0}{w}$$
+
+| Symbol | Meaning | Units |
+|---|---|---|
+| $k$ | thermal conductivity (material property) | W/m·K |
+| $A$ | cross-sectional area | m² |
+| $T - T_0$ | temperature difference between surfaces separated by width $w$ | K |
+| $w$ | width (thickness) | m |
+
+---
+
+### Convection
+
+**Medium is a fluid** (gas or liquid), somehow correlated with speed.
+
+$$\dot{Q}_\text{convection} \sim h \cdot A \cdot (T - T_0)$$
+
+| Symbol | Meaning | Units |
+|---|---|---|
+| $h$ | convective heat transfer coefficient (depends on material, size, speed, ...) | W/m²·K |
+| $A$ | surface area | m² |
+| $T$ | object temperature | K |
+| $T_0$ | fluid temperature | K |
+
+---
+
+### Radiation
+
+**Does not require a medium** — transmitted by light/photons.
+
+$$\dot{Q}_\text{radiation} \sim \varepsilon \cdot \sigma \cdot F \cdot A \cdot (T^4 - T_0^4)$$
+
+| Symbol | Meaning | Units |
+|---|---|---|
+| $\varepsilon$ | emissivity — how perfect is "the emitter" (material property, $0 \leq \varepsilon \leq 1$) | — |
+| $\sigma$ | Stefan-Boltzmann constant | $5.67 \times 10^{-8}$ W/m²·K⁴ |
+| $F$ | view factor — how well the objects "see" each other | — |
+| $A$ | surface area | m² |
+| $T$ | object surface temperature | K |
+| $T_0$ | surroundings temperature (e.g. $T_\text{sun}$) | K |
+
+---
+
+
+## Course outline
+
+To give some context for the course flow:
+
+- Weeks 1-3 will be about conduction: the conduction equation, the thermal resistance model, fins (one of the most important engineering design strategies), and transient conduction.
+- Weeks 4-6 will be about convection: boundary layers, the significance of turbulence, flow over objects (external flow), flow through objects (internal flow), and heat exchangers.
+- Weeks 7-8 will be about radiation: emissivity (a material property), the view factor, and the radiation resistance model.
+
+<!-- ## Last Time
+
+The three modes of heat transfer:
+
+1. **Conduction** — Typically for solids problems, though liquids/gases have a "thermal conductivity" too. $k$, an important material property.
+
+2. **Convection** — Fluids (gas/liquid). Characterized by $h$, a function of material, speed, geometry.
+
+3. **Radiation** — No medium required (but can pass through gas). Characterized by $\varepsilon$ (emissivity, a material property), geometry (view factor).
+
+For all three: $\dot{Q}$ increases with increasing surface area and temperature difference. (Note: radiation $\sim T^4$)
+
+--- -->
+
+
+
+
+
+## Some vocabulary
+
+adiabatic
+: No heat transfer. Mathematically (from Fourier's Law), $dT/dx$ at an adiabatic surface is zero.
+
+insulator
+: A material with low conductivity. A "perfect insulator" has $k=0$, but a practical insulator like foam has $k\approx 0.03$~W/m$\cdot$K. Air is a good insulator (indeed, foam is mostly air) with $k=0.026$~W/m$\cdot$K, but one must be careful to not induce natural convection (which would increase heat transfer).
+
+parameters
+: Parameters are things that can adopt different values, but that tend to be kept constant within a problem. Examples are: material properties like density $\rho$ and viscosity $\mu$, sizes like length $L$ and diameter $D$, and usually surface $T_\text{surf}$ or ambient $T_\infty$ temperatures. Technically all of these are described by symbols, but the values tend to stay constant within a problem. We know we are using water, we know the incoming air is at a controlled temperature, etc.
+
+variables
+: Variables can adopt different values within an analysis, e.g.: how much more heat transfer $\dot{Q}$ will we get if we double the incoming flow speed $U$? Both $\dot{Q}$ and $U$ are variables in this problem. I might use a notation like $\dot{Q}(U;\rho,\mu)$, with parameters after the ;, to make clear that the value of $\dot{Q}$ technically depends on $\rho$ and $\mu$ but the primary variation we are examining is with respect to $U$.
+
+thermal conductivity
+: A material property that emerges from the empirical Fourier's Law. SI units: (Watts)/(meter Kelvin). Note that the Kelvin here is related to a **difference** in temperature, and $\Delta T = 1~\text{K} = 1^\circ\text{C}$. That is, no unit transformation is necessary to go between W/m$\cdot$K and W/m$\cdot^\circ$ C.
+
+thermal diffusivity
+: A material property .
+
+thermal inertia
+:
+
+
+
+
+
+## Notational conventions
+
+I encourage you to adopt these conventions and be consistent with them.
+
+When writing by hand, I underline my vectors; when typed, vectors are bold and not italicized.
+
+If a function is written as $
