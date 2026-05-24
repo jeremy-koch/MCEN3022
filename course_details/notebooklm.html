@@ -109,6 +109,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -241,10 +270,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#query-log" id="toc-query-log" class="nav-link" data-scroll-target="#query-log">Query Log</a></li>
   <li><a href="#reflection" id="toc-reflection" class="nav-link" data-scroll-target="#reflection">Reflection</a></li>
   </ul></li>
-  <li><a href="#checkpoints" id="toc-checkpoints" class="nav-link" data-scroll-target="#checkpoints">Checkpoints</a></li>
   <li><a href="#grading" id="toc-grading" class="nav-link" data-scroll-target="#grading">Grading</a></li>
   <li><a href="#bringing-your-notebook-to-oral-exams" id="toc-bringing-your-notebook-to-oral-exams" class="nav-link" data-scroll-target="#bringing-your-notebook-to-oral-exams">Bringing Your Notebook to Oral Exams</a></li>
-  <li><a href="#privacy" id="toc-privacy" class="nav-link" data-scroll-target="#privacy">Privacy</a></li>
+  <li><a href="#some-ways-of-thinking-about-notebooklm" id="toc-some-ways-of-thinking-about-notebooklm" class="nav-link" data-scroll-target="#some-ways-of-thinking-about-notebooklm">Some ways of thinking about NotebookLM</a></li>
+  <li><a href="#some-words-on-note-taking" id="toc-some-words-on-note-taking" class="nav-link" data-scroll-target="#some-words-on-note-taking">Some words on note-taking</a></li>
+  <li><a href="#ai-policy" id="toc-ai-policy" class="nav-link" data-scroll-target="#ai-policy">AI Policy</a></li>
   </ul>
 </nav>
     </div>
@@ -273,29 +303,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
 <p>NotebookLM is a free AI tool from Google that retrieves and synthesizes content from documents you upload. Unlike general AI tools like ChatGPT, it can only draw from sources you provide — it cannot generate answers from general knowledge. If the answer is not in your notes, NotebookLM cannot give it to you.</p>
-<p>You will use NotebookLM throughout this course to organize and query your lecture notes. The NotebookLM portfolio is worth 5% of your course grade and is submitted at two checkpoints: Week 4 (formative feedback only) and Week 8 (graded).</p>
+<p>You will use NotebookLM throughout this course to organize and query your lecture notes. The NotebookLM portfolio is worth X% of your course grade and is submitted at two checkpoints: Week 4 (formative feedback only) and Week 8 (graded).</p>
 </section>
 <section id="why-notebooklm" class="level2">
 <h2 class="anchored" data-anchor-id="why-notebooklm">Why NotebookLM</h2>
 <p>Three reasons this tool is part of the course:</p>
 <p><strong>First, it encourages better notes.</strong> Heat transfer is highly cumulative — material from Week 1 appears in problems in Week 6. A well-organized, searchable notebook makes that cumulative structure manageable rather than overwhelming.</p>
 <p><strong>Second, it supports engagement in an asynchronous course.</strong> NotebookLM is only as good as the notes you put into it. Weak notes produce a weak notebook. The portfolio submission is partly a check that you are actually watching lectures and engaging with the material.</p>
-<p><strong>Third, it models appropriate AI use.</strong> There is a meaningful difference between an AI tool that retrieves your own understanding and one that generates answers you do not have. NotebookLM cannot do your thinking for you — it can only help you access thinking you have already done. That is a useful distinction to internalize, and one that generalizes well beyond this course.</p>
+<p><strong>Third, it models appropriate AI use.</strong> There is a meaningful difference between an AI tool that retrieves your own understanding and one that generates answers you do not have. NotebookLM cannot do your thinking for you — it can only help you access thinking you have already done. That is a useful distinction, and one that generalizes beyond this course.</p>
 </section>
 <section id="how-notebooklm-works" class="level2">
 <h2 class="anchored" data-anchor-id="how-notebooklm-works">How NotebookLM Works</h2>
 <ol type="1">
-<li>Create a free notebook at <a href="https://notebooklm.google.com">notebooklm.google.com</a> using a Google account</li>
-<li>Upload your lecture notes as sources — PDFs, Google Docs, or text files work well</li>
-<li>Query your notebook using natural language: <em>“What is the physical significance of the Biot number?”</em> or <em>“Show me my notes on fin efficiency”</em></li>
-<li>NotebookLM synthesizes relevant content from your uploaded sources and cites which source it drew from</li>
+<li>Create a free notebook at <a href="https://notebooklm.google.com">notebooklm.google.com</a> using your CU Boulder account. (We get a slightly more robust version when we login using CU credentials.)</li>
+<li>Upload your lecture notes as sources: PDFs, Google Docs, or text files work well. If you want to talk about preparing your notes using Markdown or LaTeX, let me know and I can prepare a tutorial!</li>
+<li>Query your notebook using natural language: <em>“What is the physical significance of the Biot number?”</em> or <em>“Show me my notes on fin efficiency”</em>.</li>
+<li>NotebookLM synthesizes relevant content from your uploaded sources and cites which source it drew from.</li>
 </ol>
-<p><strong>Key constraint:</strong> If you did not take notes on it, it is not in your notebook. The tool surfaces your understanding — it does not supplement it.</p>
 </section>
 <section id="setup-week-1" class="level2">
 <h2 class="anchored" data-anchor-id="setup-week-1">Setup (Week 1)</h2>
-<p>There is a brief in-course orientation activity in Week 1 (~30 minutes) that walks you through setting up your notebook and uploading your first set of notes. After that, notebook maintenance is your responsibility throughout the course.</p>
-<p><strong>Minimum requirement:</strong> Notes from every lecture module uploaded to your notebook. You do not need to use any particular note format — structured outlines, prose summaries, and annotated slides all work.</p>
+<p>There is a <a href="https://canvas.colorado.edu/courses/136150/pages/notebooklm-tutorial">course video for Week 1</a> (~15 minutes) that walks you through NotebookLM.</p>
 </section>
 <section id="portfolio-submission" class="level2">
 <h2 class="anchored" data-anchor-id="portfolio-submission">Portfolio Submission</h2>
@@ -327,42 +355,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>What did you search for that your notebook <em>could not</em> answer — and why not?</li>
 <li>How did you resolve the gap? (Rewatched a lecture, worked a problem, asked during office hours, found it in the textbook?)</li>
 </ul>
-<p>This section is more valuable than the query log in some ways. The gaps in your notebook are a record of where your notes were thin, where a concept didn’t stick, or where you needed a source your notebook didn’t have. Reflecting on how you resolved those gaps is exactly the kind of metacognitive habit that makes the oral exam manageable.</p>
+<p>This section is more valuable than the query log in some ways. The gaps in your notebook are a record of where your notes were thin, where a concept didn’t stick, or where you needed a source your notebook didn’t have. Reflecting on how you resolved those gaps is exactly the kind of metacognitive habit that leads to a greater understanding… of your understanding!</p>
 </section>
-</section>
-<section id="checkpoints" class="level2">
-<h2 class="anchored" data-anchor-id="checkpoints">Checkpoints</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Checkpoint</th>
-<th>Week</th>
-<th>Basis</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Week 4 submission</td>
-<td>Week 4</td>
-<td>Formative only — feedback on query log quality and reflection depth, no grade</td>
-</tr>
-<tr class="even">
-<td>Week 8 submission</td>
-<td>Week 8</td>
-<td>Graded on completion and genuine engagement</td>
-</tr>
-</tbody>
-</table>
-<p>The Week 4 checkpoint is an opportunity to get feedback on whether your query log annotations are at the right level of specificity before the graded submission. Take it seriously.</p>
 </section>
 <section id="grading" class="level2">
 <h2 class="anchored" data-anchor-id="grading">Grading</h2>
-<p>The Week 8 submission is graded on completion and genuine engagement — not on the quality of your heat transfer answers or the sophistication of your queries. A notebook built from genuine note-taking and queried thoughtfully earns full marks.</p>
+<p>This will largely be graded on completion and genuine engagement, not on the sophistication of your notes or of your queries. A notebook built from genuine note-taking with thoughtful queries should earn full marks.</p>
 <p>What earns less than full marks: query logs with vague annotations that do not explain what was useful, or reflections that describe no gaps (which suggests either the notebook is not being used or the reflections are not genuine).</p>
 </section>
 <section id="bringing-your-notebook-to-oral-exams" class="level2">
@@ -370,24 +368,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>You are strongly encouraged to bring your NotebookLM to both oral exams. You may query it during the exam.</p>
 <p>This is an advantage — but only if you built it well. Students with rich, well-organized notebooks find it genuinely useful under pressure. Students who uploaded thin notes find that querying returns thin results at an inconvenient moment.</p>
 <p>The oral exam is, among other things, an authenticity check on the portfolio. A student who built a strong notebook uses it fluently. A student who did not built one finds quickly that there is nothing useful to retrieve.</p>
+<!-- ## Privacy
+
+Your notebook is private to you. The instructor does not have access to your notebook contents. The only thing submitted for grading is the query log and reflection you choose to include in your portfolio submission.
+
+Query logs submitted as course artifacts are subject to standard FERPA protections. If you consent to participate in the research study associated with this course, your query logs may also be used as research data — with all identifying information removed. Research participation is optional and does not affect your grade. -->
 </section>
-<section id="privacy" class="level2">
-<h2 class="anchored" data-anchor-id="privacy">Privacy</h2>
-<p>Your notebook is private to you. The instructor does not have access to your notebook contents. The only thing submitted for grading is the query log and reflection you choose to include in your portfolio submission.</p>
-<p>Query logs submitted as course artifacts are subject to standard FERPA protections. If you consent to participate in the research study associated with this course, your query logs may also be used as research data — with all identifying information removed. Research participation is optional and does not affect your grade.</p>
-<p>Notes:</p>
-<p>In this course, your notebook is not a diary of your feelings; it is a legal and technical document. In industry, if your work isn’t documented, it didn’t happen. We are dedicating 10% of your grade to ‘Knowledge Management’ because being a great engineer who can’t communicate their process is a liability to a team. NotebookLM is our ‘client’—if the client can’t understand your specs, the project fails.</p>
-<p>I don’t care about ‘pretty’ handwriting, but I care deeply about Machine-Readable Legibility. If you have messy handwriting, you are currently an engineer with a ‘noisy’ communication channel. Use NotebookLM as your objective mirror. If the AI misreads your<br>
-m ˙ as an n, that is the AI telling you: ‘Your communication is ambiguous.’ Don’t get mad at the AI—use that feedback to refine your printing. In a 2x speed course, you cannot afford to spend 20 minutes trying to remember if you wrote a 5 or an s three weeks ago.” The Advice: “Switch to block printing for variables. Use a darker pen. Box your final equations. If the AI can read it, your colleagues can read it.</p>
-<p>“If you take sparse notes, you are relying on your short-term memory. In an 8-week course, your brain will hit a ‘cognitive bottleneck’ by Week 3. You are essentially trying to run a high-fidelity simulation on a computer with no RAM. Your NotebookLM portfolio is your External RAM. If your notes are sparse, your AI will have no ‘context’ to help you. When you ask it a question during the final project, it will hallucinate or give you generic garbage because you didn’t give it the specific data from our lectures. You are grading yourself on the quality of the tool you build.” The Advice: “Don’t just write the final formula. Write the Assumptions. (e.g., ‘Assumed steady-state, constant k’). That is the ‘metadata’ that makes your RAG database actually work.”</p>
-<p>“This course moves at 200% speed. You will see more heat transfer concepts in the next 56 days than most people see in a year. This 10% isn’t ‘extra work’—it’s an insurance policy. By building this notebook, you are creating a searchable ‘cheat sheet’ for your future self. You are paying yourself in 10% grade points now to save yourself 10 hours of panic during Finals Week.”</p>
-<p>“Heat transfer is one of the most conceptually dense courses in the curriculum, and we’re doing it at 2x speed. My goal isn’t to bury you in more work; it’s to help you build a Customized AI Tutor that knows exactly what you know. NotebookLM is your co-pilot. It’s here to take the ‘mental load’ off of you—it can find that one specific Nusselt correlation from Week 3 in seconds so you can spend your energy on the actual engineering, not on flipping through pages of paper.”</p>
-<p>“I know some of you have handwriting that looks like a doctor’s prescription. That’s okay! But think of NotebookLM as a translator. If you give it a ‘noisy’ signal (blurry, messy, or cramped), it’s going to give you a ‘noisy’ translation. If you find the AI is struggling to read your notes, don’t sweat it—just see it as a nudge to ‘clean up the signal.’ Try using a scanning app to boost the contrast or print your subscripts a bit larger. You’re helping your Co-Pilot help you.”</p>
-<p>“If you take very sparse notes, you’re essentially asking your Co-Pilot to fly a plane with an empty fuel tank. When you get to the final project and ask it for help, it’s going to say ‘I don’t know’ because you didn’t give it the data. Your 10% grade here is for ‘Future-Proofing Your Learning.’ By writing down the ‘why’ behind a derivation—not just the ‘what’—you are giving your future self a gift. You’re building a library that will actually be useful to you long after this 8-week sprint is over.”</p>
-<p>++++++++</p>
-<p>This “Professional Partner” hybrid is arguably the most “engineering” way to frame this. It treats the student as a Project Manager and the AI as a Junior Engineer they are training. If the Junior Engineer (AI) fails because the Project Manager (Student) gave them bad data, that’s a professional breakdown. But if they work together, they can survive the 8-week “crunch time” with much higher efficiency. Syllabus: The “Professional Partner” &amp; Knowledge Management (10% of Grade) The Concept: Your External Research Assistant In this 8-week sprint, you aren’t just a student; you are a lead engineer managing a high-speed project. To help you handle the 2x pace, you will build an “External Brain” using NotebookLM. This tool acts as your Professional Partner—a junior researcher that only knows what you teach it. Why this is 10% of your grade: In industry, a “brilliant” engineer who keeps messy, unsearchable records is a liability to the firm. We are grading your ability to curate, verify, and manage technical data. — 1. Messaging for the “Messy Writer”: Signal-to-Noise Ratio In engineering, we care about the Signal-to-Noise (S/N) Ratio. * The Liability: If your handwriting is “noisy” (cramped, blurry, or ambiguous), your Junior Engineer (the AI) will give you “noisy” answers. If it misreads T ∞ ​<br>
-as T 2 ​<br>
-, your calculations will fail. The Partnership: Don’t view “cleaner printing” as an aesthetic chore. View it as data optimization. By using block letters for variables and high-contrast scans, you are “cleaning the signal” so your partner can actually support you. The Test: If the AI can’t summarize your page accurately, neither can a human colleague. Use the AI’s confusion as an objective “legibility check” before you submit your work. 2. Messaging for the “Sparse Notetaker”: Fueling the RAG NotebookLM uses Retrieval-Augmented Generation (RAG). It is only as smart as the fuel you give it. The Liability: If your notes are “sparse” (just equations with no context), your AI partner has no “fuel.” When you ask it, “Why did we assume steady-state here?”, it will have to guess (hallucinate) or fail. In a professional setting, “guessing” leads to catastrophic failure. The Partnership: Your goal is to provide the context. When you write down the assumptions (e.g., “Assumed 1D, Constant Properties”) alongside the math, you are giving your partner the logic it needs to help you during the final exam. You are “investing” in your notes now so the AI can “pay you back” during the crunch. How the 10% “Professionalism Grade” is Earned We will have three Portfolio Audits (Weeks 2, 5, and 8). You will be graded on: Curation (3%): Is your Notebook organized? Have you merged files to stay under the 50-source limit? Multimodal Quality (4%): Are your handwritten diagrams boxed and labeled (e.g., “Fig 1”) so they are machine-readable? Do you have “high-signal” notes for every module? Verification (3%): Provide one screenshot of a chat where you corrected the AI. Show us where you caught the AI misreading your notes and how you updated your notes or the prompt to fix it. We reward you for catching the AI’s mistakes! Why this works for your paper: This hybrid approach is a “gold mine” for your research because it creates Active Users. * The Liability side forces them to produce high-quality artifacts (the notes). The Partner side encourages them to interact with those artifacts (the RAG). When you write your paper, you can categorize student behavior: “Did the student treat the AI as a judge to be feared (Liability) or a tool to be optimized (Partner)?”</p>
+<section id="some-ways-of-thinking-about-notebooklm" class="level2">
+<h2 class="anchored" data-anchor-id="some-ways-of-thinking-about-notebooklm">Some ways of thinking about NotebookLM</h2>
+<p>Maybe one of these will speak to you?</p>
+<ol type="1">
+<li>NotebookLM can be thought of as an “external brain” that contains the details, while you focus on the engineering process. You know there is a correlation for the Nusselt Number for a particular geometry, and instead of digging through your notes to find it, you prompt your notebook and get started writing out the problem while it thinks. In the 15 seconds it takes to retrieve the relevant equation, you have already written out the assumptions and first step of the solution and are ready to plug-in the equation.</li>
+<li>Similarly: you can think of yourself as a senior engineer, and NotebookLM is a junior engineer, and you are working on a project together. Don’t blame the junior engineer if there are bogus results, you trained them!</li>
+<li>NotebookLM is a way to check that a human colleague (or maybe you in six months) could get up-to-speed on a project based on your notes. If the AI can’t read your work, or is confused by your organization, or makes some incorrect connections, a human would probably do the same. If your notebook is good, a person could use it to pick up a project easily. Future you will thank you.</li>
+</ol>
+</section>
+<section id="some-words-on-note-taking" class="level2">
+<h2 class="anchored" data-anchor-id="some-words-on-note-taking">Some words on note-taking</h2>
+<p>This aspect of the course is a bit peculiar, particularly for an upper-level course… you get points for taking notes? But you take notes in other classes and don’t get points? We are emphasizing “knowledge management” in this course because it is a skill that is going to become very important to you very soon, with senior design and your career on the horizon. In industry, if your work isn’t documented well, it didn’t happen.</p>
+<p>Some students are already taking clean detailed notes - for them, cultivating their notebook will be easier, and they will be less likely to encounter a confused AI… is that an m, or an n? But this isn’t that different from a student who has a stronger background in differential equations: that student will likely have an easier time with the math in this course. Both technical ability and the ability to communicate are being emphasized in this course.</p>
+</section>
+<section id="ai-policy" class="level2">
+<h2 class="anchored" data-anchor-id="ai-policy">AI Policy</h2>
+<p>NotebookLM is indeed an AI tool, though I believe it is an example of “using AI the right way”. There are right ways to use any AI, but the trouble with LLMs, at least in an educational context, is that they are too eager to just do the work for you. “How can I factor a heat generation rate of <span class="math inline">\(5x(1-x)\)</span> into my conduction equation?” gets an immediate response: “Here is the solution, and here is the maximum temperature, and here is the heat flux out each wall. Is there anything else I can help you with?” That is not serving your development as an engineer. Officially, general AI use is prohibited in this class, though I am not naive enough to think that policing it is a good use of my time.</p>
+<p>There are probably wrong ways to use NotebookLM as well. As we saw in <a href="https://canvas.colorado.edu/courses/136150/pages/notebooklm-tutorial">the tutorial video</a>, you can push NotebookLM to do a little math for you. I’m not sure how far this can go… I guess you can explore, but make sure you are the one doing your homework.</p>
 
 
 <!-- -->
@@ -864,7 +868,7 @@ as T 2 ​<br>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>NotebookLM is a free AI tool from Google that retrieves and synthesizes content from documents you upload. Unlike general AI tools like ChatGPT, it can only draw from sources you provide — it cannot generate answers from general knowledge. If the answer is not in your notes, NotebookLM cannot give it to you.</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>You will use NotebookLM throughout this course to organize and query your lecture notes. The NotebookLM portfolio is worth 5% of your course grade and is submitted at two checkpoints: Week 4 (formative feedback only) and Week 8 (graded).</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>You will use NotebookLM throughout this course to organize and query your lecture notes. The NotebookLM portfolio is worth X% of your course grade and is submitted at two checkpoints: Week 4 (formative feedback only) and Week 8 (graded).</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Why NotebookLM</span></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
@@ -874,152 +878,97 @@ as T 2 ​<br>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>**Second, it supports engagement in an asynchronous course.** NotebookLM is only as good as the notes you put into it. Weak notes produce a weak notebook. The portfolio submission is partly a check that you are actually watching lectures and engaging with the material.</span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>**Third, it models appropriate AI use.** There is a meaningful difference between an AI tool that retrieves your own understanding and one that generates answers you do not have. NotebookLM cannot do your thinking for you — it can only help you access thinking you have already done. That is a useful distinction to internalize, and one that generalizes well beyond this course.</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>**Third, it models appropriate AI use.** There is a meaningful difference between an AI tool that retrieves your own understanding and one that generates answers you do not have. NotebookLM cannot do your thinking for you — it can only help you access thinking you have already done. That is a useful distinction, and one that generalizes beyond this course.</span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">## How NotebookLM Works</span></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Create a free notebook at <span class="co">[</span><span class="ot">notebooklm.google.com</span><span class="co">](https://notebooklm.google.com)</span> using a Google account</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Upload your lecture notes as sources — PDFs, Google Docs, or text files work well</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Query your notebook using natural language: *"What is the physical significance of the Biot number?"* or *"Show me my notes on fin efficiency"*</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>NotebookLM synthesizes relevant content from your uploaded sources and cites which source it drew from</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Create a free notebook at <span class="co">[</span><span class="ot">notebooklm.google.com</span><span class="co">](https://notebooklm.google.com)</span> using your CU Boulder account. (We get a slightly more robust version when we login using CU credentials.)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Upload your lecture notes as sources: PDFs, Google Docs, or text files work well. If you want to talk about preparing your notes using Markdown or LaTeX, let me know and I can prepare a tutorial!</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Query your notebook using natural language: *"What is the physical significance of the Biot number?"* or *"Show me my notes on fin efficiency"*.</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>NotebookLM synthesizes relevant content from your uploaded sources and cites which source it drew from.</span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>**Key constraint:** If you did not take notes on it, it is not in your notebook. The tool surfaces your understanding — it does not supplement it.</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="fu">## Setup (Week 1)</span></span>
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="fu">## Setup (Week 1)</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>There is a <span class="co">[</span><span class="ot">course video for Week 1</span><span class="co">](https://canvas.colorado.edu/courses/136150/pages/notebooklm-tutorial)</span> (~15 minutes) that walks you through NotebookLM. </span>
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>There is a brief in-course orientation activity in Week 1 (~30 minutes) that walks you through setting up your notebook and uploading your first set of notes. After that, notebook maintenance is your responsibility throughout the course.</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="fu">## Portfolio Submission</span></span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>**Minimum requirement:** Notes from every lecture module uploaded to your notebook. You do not need to use any particular note format — structured outlines, prose summaries, and annotated slides all work.</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>The portfolio has two components, submitted together at each checkpoint.</span>
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="fu">## Portfolio Submission</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="fu">### Query Log</span></span>
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>The portfolio has two components, submitted together at each checkpoint.</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>A curated list of **10-15 queries** you found most useful, with brief annotations. For each query:</span>
 <span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="fu">### Query Log</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>A curated list of **10-15 queries** you found most useful, with brief annotations. For each query:</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The query you submitted</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>A 1-2 sentence annotation explaining why this query was useful — what it helped you retrieve, clarify, or connect</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The query you submitted</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>A 1-2 sentence annotation explaining why this query was useful — what it helped you retrieve, clarify, or connect</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>The goal is not a comprehensive log of every query you ran. It is a curated selection that demonstrates you used the tool in a way that supported your learning.</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>**Example of a useful annotated entry:**</span>
 <span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>The goal is not a comprehensive log of every query you ran. It is a curated selection that demonstrates you used the tool in a way that supported your learning.</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>**Example of a useful annotated entry:**</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; *Query:* "What assumptions are required for the lumped capacitance method?"</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="at">&gt;</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; *Annotation:* This came up when I was working on Report 2 and couldn't remember the Biot number criterion. The notebook pulled my notes from the Week 3 lecture and reminded me that Bi &lt; 0.1 is the standard threshold, which I had written down but forgotten. Confirmed my approach was valid.</span></span>
 <span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; *Query:* "What assumptions are required for the lumped capacitance method?"</span></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="at">&gt;</span></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; *Annotation:* This came up when I was working on Report 2 and couldn't remember the Biot number criterion. The notebook pulled my notes from the Week 3 lecture and reminded me that Bi &lt; 0.1 is the standard threshold, which I had written down but forgotten. Confirmed my approach was valid.</span></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>**Example of a less useful annotated entry:**</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>**Example of a less useful annotated entry:**</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; *Query:* "convection"</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="at">&gt;</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; *Annotation:* I looked this up to review convection.</span></span>
 <span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; *Query:* "convection"</span></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="at">&gt;</span></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; *Annotation:* I looked this up to review convection.</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>The first example shows genuine engagement. The second does not.</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="fu">### Reflection</span></span>
 <span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>The first example shows genuine engagement. The second does not.</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>For each major course unit, **1-2 paragraphs** addressing:</span>
 <span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="fu">### Reflection</span></span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>For each major course unit, **1-2 paragraphs** addressing:</span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What did you search for that your notebook *could not* answer — and why not?</span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>How did you resolve the gap? (Rewatched a lecture, worked a problem, asked during office hours, found it in the textbook?)</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What did you search for that your notebook *could not* answer — and why not?</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>How did you resolve the gap? (Rewatched a lecture, worked a problem, asked during office hours, found it in the textbook?)</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>This section is more valuable than the query log in some ways. The gaps in your notebook are a record of where your notes were thin, where a concept didn't stick, or where you needed a source your notebook didn't have. Reflecting on how you resolved those gaps is exactly the kind of metacognitive habit that leads to a greater understanding... of your understanding!</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>This section is more valuable than the query log in some ways. The gaps in your notebook are a record of where your notes were thin, where a concept didn't stick, or where you needed a source your notebook didn't have. Reflecting on how you resolved those gaps is exactly the kind of metacognitive habit that makes the oral exam manageable.</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="fu">## Grading</span></span>
 <span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="fu">## Checkpoints</span></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>This will largely be graded on completion and genuine engagement, not on the sophistication of your notes or of your queries. A notebook built from genuine note-taking with thoughtful queries should earn full marks.</span>
 <span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Checkpoint <span class="pp">|</span> Week <span class="pp">|</span> Basis <span class="pp">|</span></span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Week 4 submission <span class="pp">|</span> Week 4 <span class="pp">|</span> Formative only — feedback on query log quality and reflection depth, no grade <span class="pp">|</span></span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Week 8 submission <span class="pp">|</span> Week 8 <span class="pp">|</span> Graded on completion and genuine engagement <span class="pp">|</span></span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>The Week 4 checkpoint is an opportunity to get feedback on whether your query log annotations are at the right level of specificity before the graded submission. Take it seriously.</span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a><span class="fu">## Grading</span></span>
-<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>The Week 8 submission is graded on completion and genuine engagement — not on the quality of your heat transfer answers or the sophistication of your queries. A notebook built from genuine note-taking and queried thoughtfully earns full marks.</span>
-<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>What earns less than full marks: query logs with vague annotations that do not explain what was useful, or reflections that describe no gaps (which suggests either the notebook is not being used or the reflections are not genuine).</span>
-<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="fu">## Bringing Your Notebook to Oral Exams</span></span>
-<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>You are strongly encouraged to bring your NotebookLM to both oral exams. You may query it during the exam.</span>
-<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>This is an advantage — but only if you built it well. Students with rich, well-organized notebooks find it genuinely useful under pressure. Students who uploaded thin notes find that querying returns thin results at an inconvenient moment.</span>
-<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>The oral exam is, among other things, an authenticity check on the portfolio. A student who built a strong notebook uses it fluently. A student who did not built one finds quickly that there is nothing useful to retrieve.</span>
-<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a><span class="fu">## Privacy</span></span>
-<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>Your notebook is private to you. The instructor does not have access to your notebook contents. The only thing submitted for grading is the query log and reflection you choose to include in your portfolio submission.</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>What earns less than full marks: query logs with vague annotations that do not explain what was useful, or reflections that describe no gaps (which suggests either the notebook is not being used or the reflections are not genuine).</span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="fu">## Bringing Your Notebook to Oral Exams</span></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>You are strongly encouraged to bring your NotebookLM to both oral exams. You may query it during the exam.</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>This is an advantage — but only if you built it well. Students with rich, well-organized notebooks find it genuinely useful under pressure. Students who uploaded thin notes find that querying returns thin results at an inconvenient moment.</span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>The oral exam is, among other things, an authenticity check on the portfolio. A student who built a strong notebook uses it fluently. A student who did not built one finds quickly that there is nothing useful to retrieve.</span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ## Privacy</span></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="co">Your notebook is private to you. The instructor does not have access to your notebook contents. The only thing submitted for grading is the query log and reflection you choose to include in your portfolio submission.</span></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="co">Query logs submitted as course artifacts are subject to standard FERPA protections. If you consent to participate in the research study associated with this course, your query logs may also be used as research data — with all identifying information removed. Research participation is optional and does not affect your grade. --&gt;</span></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="fu">## Some ways of thinking about NotebookLM</span></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>Maybe one of these will speak to you?</span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>NotebookLM can be thought of as an "external brain" that contains the details, while you focus on the engineering process. You know there is a correlation for the Nusselt Number for a particular geometry, and instead of digging through your notes to find it, you prompt your notebook and get started writing out the problem while it thinks. In the 15 seconds it takes to retrieve the relevant equation, you have already written out the assumptions and first step of the solution and are ready to plug-in the equation.</span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Similarly: you can think of yourself as a senior engineer, and NotebookLM is a junior engineer, and you are working on a project together. Don't blame the junior engineer if there are bogus results, you trained them!</span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>NotebookLM is a way to check that a human colleague (or maybe you in six months) could get up-to-speed on a project based on your notes. If the AI can't read your work, or is confused by your organization, or makes some incorrect connections, a human would probably do the same. If your notebook is good, a person could use it to pick up a project easily. Future you will thank you. </span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>Query logs submitted as course artifacts are subject to standard FERPA protections. If you consent to participate in the research study associated with this course, your query logs may also be used as research data — with all identifying information removed. Research participation is optional and does not affect your grade.</span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="fu">## Some words on note-taking</span></span>
 <span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>This aspect of the course is a bit peculiar, particularly for an upper-level course... you get points for taking notes? But you take notes in other classes and don't get points? We are emphasizing "knowledge management" in this course because it is a skill that is going to become very important to you very soon, with senior design and your career on the horizon. In industry, if your work isn't documented well, it didn't happen.</span>
 <span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a>Some students are already taking clean detailed notes - for them, cultivating their notebook will be easier, and they will be less likely to encounter a confused AI... is that an m, or an n? But this isn't that different from a student who has a stronger background in differential equations: that student will likely have an easier time with the math in this course. Both technical ability and the ability to communicate are being emphasized in this course.</span>
 <span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a>Notes:</span>
-<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a>In this course, your notebook is not a diary of your feelings; it is a legal and technical document. In industry, if your work isn't documented, it didn't happen. We are dedicating 10% of your grade to 'Knowledge Management' because being a great engineer who can’t communicate their process is a liability to a team. NotebookLM is our 'client'—if the client can’t understand your specs, the project fails.</span>
-<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a>I don't care about 'pretty' handwriting, but I care deeply about Machine-Readable Legibility. If you have messy handwriting, you are currently an engineer with a 'noisy' communication channel.</span>
-<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>Use NotebookLM as your objective mirror. If the AI misreads your  </span>
-<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a>m</span>
-<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a>˙</span>
-<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a>  as an n, that is the AI telling you: 'Your communication is ambiguous.' Don't get mad at the AI—use that feedback to refine your printing. In a 2x speed course, you cannot afford to spend 20 minutes trying to remember if you wrote a 5 or an s three weeks ago."</span>
-<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a>The Advice: "Switch to block printing for variables. Use a darker pen. Box your final equations. If the AI can read it, your colleagues can read it.</span>
-<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a>"If you take sparse notes, you are relying on your short-term memory. In an 8-week course, your brain will hit a 'cognitive bottleneck' by Week 3. You are essentially trying to run a high-fidelity simulation on a computer with no RAM.</span>
-<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a>Your NotebookLM portfolio is your External RAM. If your notes are sparse, your AI will have no 'context' to help you. When you ask it a question during the final project, it will hallucinate or give you generic garbage because you didn't give it the specific data from our lectures. You are grading yourself on the quality of the tool you build."</span>
-<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a>The Advice: "Don't just write the final formula. Write the Assumptions. (e.g., 'Assumed steady-state, constant k'). That is the 'metadata' that makes your RAG database actually work."</span>
-<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a>"This course moves at 200% speed. You will see more heat transfer concepts in the next 56 days than most people see in a year. This 10% isn't 'extra work'—it’s an insurance policy. By building this notebook, you are creating a searchable 'cheat sheet' for your future self. You are paying yourself in 10% grade points now to save yourself 10 hours of panic during Finals Week."</span>
-<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a>"Heat transfer is one of the most conceptually dense courses in the curriculum, and we’re doing it at 2x speed. My goal isn't to bury you in more work; it’s to help you build a Customized AI Tutor that knows exactly what you know.</span>
-<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a>NotebookLM is your co-pilot. It’s here to take the 'mental load' off of you—it can find that one specific Nusselt correlation from Week 3 in seconds so you can spend your energy on the actual engineering, not on flipping through pages of paper."</span>
-<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a>"I know some of you have handwriting that looks like a doctor’s prescription. That’s okay! But think of NotebookLM as a translator. If you give it a 'noisy' signal (blurry, messy, or cramped), it’s going to give you a 'noisy' translation.</span>
-<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a>If you find the AI is struggling to read your notes, don't sweat it—just see it as a nudge to 'clean up the signal.' Try using a scanning app to boost the contrast or print your subscripts a bit larger. You’re helping your Co-Pilot help you."</span>
-<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a>"If you take very sparse notes, you’re essentially asking your Co-Pilot to fly a plane with an empty fuel tank. When you get to the final project and ask it for help, it’s going to say 'I don't know' because you didn't give it the data.</span>
-<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a>Your 10% grade here is for 'Future-Proofing Your Learning.' By writing down the 'why' behind a derivation—not just the 'what'—you are giving your future self a gift. You’re building a library that will actually be useful to you long after this 8-week sprint is over."</span>
-<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a>++++++++</span>
-<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a>This "Professional Partner" hybrid is arguably the most "engineering" way to frame this. It treats the student as a Project Manager and the AI as a Junior Engineer they are training.</span>
-<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a>If the Junior Engineer (AI) fails because the Project Manager (Student) gave them bad data, that’s a professional breakdown. But if they work together, they can survive the 8-week "crunch time" with much higher efficiency.</span>
-<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a>Syllabus: The "Professional Partner" &amp; Knowledge Management (10% of Grade)</span>
-<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a>The Concept: Your External Research Assistant</span>
-<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a>In this 8-week sprint, you aren't just a student; you are a lead engineer managing a high-speed project. To help you handle the 2x pace, you will build an "External Brain" using NotebookLM. This tool acts as your Professional Partner—a junior researcher that only knows what you teach it.</span>
-<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a>Why this is 10% of your grade:</span>
-<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a>In industry, a "brilliant" engineer who keeps messy, unsearchable records is a liability to the firm. We are grading your ability to curate, verify, and manage technical data. ---</span>
-<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Messaging for the "Messy Writer": Signal-to-Noise Ratio</span>
-<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a>In engineering, we care about the Signal-to-Noise (S/N) Ratio. * The Liability: If your handwriting is "noisy" (cramped, blurry, or ambiguous), your Junior Engineer (the AI) will give you "noisy" answers. If it misreads T </span>
-<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a>∞</span>
-<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a>​   </span>
-<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a>  as T </span>
-<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a>2</span>
-<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a>​   </span>
-<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a> , your calculations will fail.</span>
-<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a>The Partnership: Don't view "cleaner printing" as an aesthetic chore. View it as data optimization. By using block letters for variables and high-contrast scans, you are "cleaning the signal" so your partner can actually support you.</span>
-<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a>The Test: If the AI can’t summarize your page accurately, neither can a human colleague. Use the AI’s confusion as an objective "legibility check" before you submit your work.</span>
-<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Messaging for the "Sparse Notetaker": Fueling the RAG</span>
-<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a>NotebookLM uses Retrieval-Augmented Generation (RAG). It is only as smart as the fuel you give it.</span>
-<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a>The Liability: If your notes are "sparse" (just equations with no context), your AI partner has no "fuel." When you ask it, "Why did we assume steady-state here?", it will have to guess (hallucinate) or fail. In a professional setting, "guessing" leads to catastrophic failure.</span>
-<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a>The Partnership: Your goal is to provide the context. When you write down the assumptions (e.g., "Assumed 1D, Constant Properties") alongside the math, you are giving your partner the logic it needs to help you during the final exam. You are "investing" in your notes now so the AI can "pay you back" during the crunch.</span>
-<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a>How the 10% "Professionalism Grade" is Earned</span>
-<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a>We will have three Portfolio Audits (Weeks 2, 5, and 8). You will be graded on:</span>
-<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a>Curation (3%): Is your Notebook organized? Have you merged files to stay under the 50-source limit?</span>
-<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a>Multimodal Quality (4%): Are your handwritten diagrams boxed and labeled (e.g., "Fig 1") so they are machine-readable? Do you have "high-signal" notes for every module?</span>
-<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a>Verification (3%): Provide one screenshot of a chat where you corrected the AI. Show us where you caught the AI misreading your notes and how you updated your notes or the prompt to fix it. We reward you for catching the AI's mistakes!</span>
-<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a>Why this works for your paper:</span>
-<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a>This hybrid approach is a "gold mine" for your research because it creates Active Users. * The Liability side forces them to produce high-quality artifacts (the notes).</span>
-<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a>The Partner side encourages them to interact with those artifacts (the RAG).</span>
-<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a>When you write your paper, you can categorize student behavior: "Did the student treat the AI as a judge to be feared (Liability) or a tool to be optimized (Partner)?"</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="fu">## AI Policy</span></span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>NotebookLM is indeed an AI tool, though I believe it is an example of "using AI the right way". There are right ways to use any AI, but the trouble with LLMs, at least in an educational context, is that they are too eager to just do the work for you. "How can I factor a heat generation rate of $5x(1-x)$ into my conduction equation?" gets an immediate response: "Here is the solution, and here is the maximum temperature, and here is the heat flux out each wall. Is there anything else I can help you with?" That is not serving your development as an engineer. Officially, general AI use is prohibited in this class, though I am not naive enough to think that policing it is a good use of my time.</span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>There are probably wrong ways to use NotebookLM as well. As we saw in <span class="co">[</span><span class="ot">the tutorial video</span><span class="co">](https://canvas.colorado.edu/courses/136150/pages/notebooklm-tutorial)</span>, you can push NotebookLM to do a little math for you. I'm not sure how far this can go... I guess you can explore, but make sure you are the one doing your homework.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
