@@ -4,7 +4,7 @@
 
 NotebookLM is a free AI tool from Google that retrieves and synthesizes content from documents you upload. Unlike general AI tools like ChatGPT, it can only draw from sources you provide — it cannot generate answers from general knowledge. If the answer is not in your notes, NotebookLM cannot give it to you.
 
-You will use NotebookLM throughout this course to organize and query your lecture notes. The NotebookLM portfolio is worth 5% of your course grade and is submitted at two checkpoints: Week 4 (formative feedback only) and Week 8 (graded).
+You will use NotebookLM throughout this course to organize and query your lecture notes. The NotebookLM portfolio is worth X% of your course grade and is submitted at two checkpoints: Week 4 (formative feedback only) and Week 8 (graded).
 
 ## Why NotebookLM
 
@@ -14,22 +14,18 @@ Three reasons this tool is part of the course:
 
 **Second, it supports engagement in an asynchronous course.** NotebookLM is only as good as the notes you put into it. Weak notes produce a weak notebook. The portfolio submission is partly a check that you are actually watching lectures and engaging with the material.
 
-**Third, it models appropriate AI use.** There is a meaningful difference between an AI tool that retrieves your own understanding and one that generates answers you do not have. NotebookLM cannot do your thinking for you — it can only help you access thinking you have already done. That is a useful distinction to internalize, and one that generalizes well beyond this course.
+**Third, it models appropriate AI use.** There is a meaningful difference between an AI tool that retrieves your own understanding and one that generates answers you do not have. NotebookLM cannot do your thinking for you — it can only help you access thinking you have already done. That is a useful distinction, and one that generalizes beyond this course.
 
 ## How NotebookLM Works
 
-1. Create a free notebook at [notebooklm.google.com](https://notebooklm.google.com) using a Google account
-2. Upload your lecture notes as sources — PDFs, Google Docs, or text files work well
-3. Query your notebook using natural language: *"What is the physical significance of the Biot number?"* or *"Show me my notes on fin efficiency"*
-4. NotebookLM synthesizes relevant content from your uploaded sources and cites which source it drew from
-
-**Key constraint:** If you did not take notes on it, it is not in your notebook. The tool surfaces your understanding — it does not supplement it.
+1. Create a free notebook at [notebooklm.google.com](https://notebooklm.google.com) using your CU Boulder account. (We get a slightly more robust version when we login using CU credentials.)
+2. Upload your lecture notes as sources: PDFs, Google Docs, or text files work well. If you want to talk about preparing your notes using Markdown or LaTeX, let me know and I can prepare a tutorial!
+3. Query your notebook using natural language: *"What is the physical significance of the Biot number?"* or *"Show me my notes on fin efficiency"*.
+4. NotebookLM synthesizes relevant content from your uploaded sources and cites which source it drew from.
 
 ## Setup (Week 1)
 
-There is a brief in-course orientation activity in Week 1 (~30 minutes) that walks you through setting up your notebook and uploading your first set of notes. After that, notebook maintenance is your responsibility throughout the course.
-
-**Minimum requirement:** Notes from every lecture module uploaded to your notebook. You do not need to use any particular note format — structured outlines, prose summaries, and annotated slides all work.
+There is a [course video for Week 1](https://canvas.colorado.edu/courses/136150/pages/notebooklm-tutorial) (~15 minutes) that walks you through NotebookLM. 
 
 ## Portfolio Submission
 
@@ -65,20 +61,13 @@ For each major course unit, **1-2 paragraphs** addressing:
 - What did you search for that your notebook *could not* answer — and why not?
 - How did you resolve the gap? (Rewatched a lecture, worked a problem, asked during office hours, found it in the textbook?)
 
-This section is more valuable than the query log in some ways. The gaps in your notebook are a record of where your notes were thin, where a concept didn't stick, or where you needed a source your notebook didn't have. Reflecting on how you resolved those gaps is exactly the kind of metacognitive habit that makes the oral exam manageable.
+This section is more valuable than the query log in some ways. The gaps in your notebook are a record of where your notes were thin, where a concept didn't stick, or where you needed a source your notebook didn't have. Reflecting on how you resolved those gaps is exactly the kind of metacognitive habit that leads to a greater understanding... of your understanding!
 
-## Checkpoints
 
-| Checkpoint | Week | Basis |
-|---|---|---|
-| Week 4 submission | Week 4 | Formative only — feedback on query log quality and reflection depth, no grade |
-| Week 8 submission | Week 8 | Graded on completion and genuine engagement |
-
-The Week 4 checkpoint is an opportunity to get feedback on whether your query log annotations are at the right level of specificity before the graded submission. Take it seriously.
 
 ## Grading
 
-The Week 8 submission is graded on completion and genuine engagement — not on the quality of your heat transfer answers or the sophistication of your queries. A notebook built from genuine note-taking and queried thoughtfully earns full marks.
+This will largely be graded on completion and genuine engagement, not on the sophistication of your notes or of your queries. A notebook built from genuine note-taking with thoughtful queries should earn full marks.
 
 What earns less than full marks: query logs with vague annotations that do not explain what was useful, or reflections that describe no gaps (which suggests either the notebook is not being used or the reflections are not genuine).
 
@@ -90,73 +79,29 @@ This is an advantage — but only if you built it well. Students with rich, well
 
 The oral exam is, among other things, an authenticity check on the portfolio. A student who built a strong notebook uses it fluently. A student who did not built one finds quickly that there is nothing useful to retrieve.
 
-## Privacy
+<!-- ## Privacy
 
 Your notebook is private to you. The instructor does not have access to your notebook contents. The only thing submitted for grading is the query log and reflection you choose to include in your portfolio submission.
 
-Query logs submitted as course artifacts are subject to standard FERPA protections. If you consent to participate in the research study associated with this course, your query logs may also be used as research data — with all identifying information removed. Research participation is optional and does not affect your grade.
+Query logs submitted as course artifacts are subject to standard FERPA protections. If you consent to participate in the research study associated with this course, your query logs may also be used as research data — with all identifying information removed. Research participation is optional and does not affect your grade. -->
+
+## Some ways of thinking about NotebookLM
+
+Maybe one of these will speak to you?
+
+1. NotebookLM can be thought of as an "external brain" that contains the details, while you focus on the engineering process. You know there is a correlation for the Nusselt Number for a particular geometry, and instead of digging through your notes to find it, you prompt your notebook and get started writing out the problem while it thinks. In the 15 seconds it takes to retrieve the relevant equation, you have already written out the assumptions and first step of the solution and are ready to plug-in the equation.
+2. Similarly: you can think of yourself as a senior engineer, and NotebookLM is a junior engineer, and you are working on a project together. Don't blame the junior engineer if there are bogus results, you trained them!
+3. NotebookLM is a way to check that a human colleague (or maybe you in six months) could get up-to-speed on a project based on your notes. If the AI can't read your work, or is confused by your organization, or makes some incorrect connections, a human would probably do the same. If your notebook is good, a person could use it to pick up a project easily. Future you will thank you. 
 
 
+## Some words on note-taking
 
+This aspect of the course is a bit peculiar, particularly for an upper-level course... you get points for taking notes? But you take notes in other classes and don't get points? We are emphasizing "knowledge management" in this course because it is a skill that is going to become very important to you very soon, with senior design and your career on the horizon. In industry, if your work isn't documented well, it didn't happen.
 
+Some students are already taking clean detailed notes - for them, cultivating their notebook will be easier, and they will be less likely to encounter a confused AI... is that an m, or an n? But this isn't that different from a student who has a stronger background in differential equations: that student will likely have an easier time with the math in this course. Both technical ability and the ability to communicate are being emphasized in this course.
 
+## AI Policy
 
-Notes:
+NotebookLM is indeed an AI tool, though I believe it is an example of "using AI the right way". There are right ways to use any AI, but the trouble with LLMs, at least in an educational context, is that they are too eager to just do the work for you. "How can I factor a heat generation rate of $5x(1-x)$ into my conduction equation?" gets an immediate response: "Here is the solution, and here is the maximum temperature, and here is the heat flux out each wall. Is there anything else I can help you with?" That is not serving your development as an engineer. Officially, general AI use is prohibited in this class, though I am not naive enough to think that policing it is a good use of my time.
 
-In this course, your notebook is not a diary of your feelings; it is a legal and technical document. In industry, if your work isn't documented, it didn't happen. We are dedicating 10% of your grade to 'Knowledge Management' because being a great engineer who can’t communicate their process is a liability to a team. NotebookLM is our 'client'—if the client can’t understand your specs, the project fails.
-
-I don't care about 'pretty' handwriting, but I care deeply about Machine-Readable Legibility. If you have messy handwriting, you are currently an engineer with a 'noisy' communication channel.
-Use NotebookLM as your objective mirror. If the AI misreads your  
-m
-˙
-  as an n, that is the AI telling you: 'Your communication is ambiguous.' Don't get mad at the AI—use that feedback to refine your printing. In a 2x speed course, you cannot afford to spend 20 minutes trying to remember if you wrote a 5 or an s three weeks ago."
-The Advice: "Switch to block printing for variables. Use a darker pen. Box your final equations. If the AI can read it, your colleagues can read it.
-
-"If you take sparse notes, you are relying on your short-term memory. In an 8-week course, your brain will hit a 'cognitive bottleneck' by Week 3. You are essentially trying to run a high-fidelity simulation on a computer with no RAM.
-Your NotebookLM portfolio is your External RAM. If your notes are sparse, your AI will have no 'context' to help you. When you ask it a question during the final project, it will hallucinate or give you generic garbage because you didn't give it the specific data from our lectures. You are grading yourself on the quality of the tool you build."
-The Advice: "Don't just write the final formula. Write the Assumptions. (e.g., 'Assumed steady-state, constant k'). That is the 'metadata' that makes your RAG database actually work."
-
-"This course moves at 200% speed. You will see more heat transfer concepts in the next 56 days than most people see in a year. This 10% isn't 'extra work'—it’s an insurance policy. By building this notebook, you are creating a searchable 'cheat sheet' for your future self. You are paying yourself in 10% grade points now to save yourself 10 hours of panic during Finals Week."
-
-"Heat transfer is one of the most conceptually dense courses in the curriculum, and we’re doing it at 2x speed. My goal isn't to bury you in more work; it’s to help you build a Customized AI Tutor that knows exactly what you know.
-NotebookLM is your co-pilot. It’s here to take the 'mental load' off of you—it can find that one specific Nusselt correlation from Week 3 in seconds so you can spend your energy on the actual engineering, not on flipping through pages of paper."
-
-"I know some of you have handwriting that looks like a doctor’s prescription. That’s okay! But think of NotebookLM as a translator. If you give it a 'noisy' signal (blurry, messy, or cramped), it’s going to give you a 'noisy' translation.
-If you find the AI is struggling to read your notes, don't sweat it—just see it as a nudge to 'clean up the signal.' Try using a scanning app to boost the contrast or print your subscripts a bit larger. You’re helping your Co-Pilot help you."
-
-"If you take very sparse notes, you’re essentially asking your Co-Pilot to fly a plane with an empty fuel tank. When you get to the final project and ask it for help, it’s going to say 'I don't know' because you didn't give it the data.
-Your 10% grade here is for 'Future-Proofing Your Learning.' By writing down the 'why' behind a derivation—not just the 'what'—you are giving your future self a gift. You’re building a library that will actually be useful to you long after this 8-week sprint is over."
-
-
-++++++++
-
-This "Professional Partner" hybrid is arguably the most "engineering" way to frame this. It treats the student as a Project Manager and the AI as a Junior Engineer they are training.
-If the Junior Engineer (AI) fails because the Project Manager (Student) gave them bad data, that’s a professional breakdown. But if they work together, they can survive the 8-week "crunch time" with much higher efficiency.
-Syllabus: The "Professional Partner" & Knowledge Management (10% of Grade)
-The Concept: Your External Research Assistant
-In this 8-week sprint, you aren't just a student; you are a lead engineer managing a high-speed project. To help you handle the 2x pace, you will build an "External Brain" using NotebookLM. This tool acts as your Professional Partner—a junior researcher that only knows what you teach it.
-Why this is 10% of your grade:
-In industry, a "brilliant" engineer who keeps messy, unsearchable records is a liability to the firm. We are grading your ability to curate, verify, and manage technical data. ---
-1. Messaging for the "Messy Writer": Signal-to-Noise Ratio
-In engineering, we care about the Signal-to-Noise (S/N) Ratio. * The Liability: If your handwriting is "noisy" (cramped, blurry, or ambiguous), your Junior Engineer (the AI) will give you "noisy" answers. If it misreads T 
-∞
-​	
-  as T 
-2
-​	
- , your calculations will fail.
-The Partnership: Don't view "cleaner printing" as an aesthetic chore. View it as data optimization. By using block letters for variables and high-contrast scans, you are "cleaning the signal" so your partner can actually support you.
-The Test: If the AI can’t summarize your page accurately, neither can a human colleague. Use the AI’s confusion as an objective "legibility check" before you submit your work.
-2. Messaging for the "Sparse Notetaker": Fueling the RAG
-NotebookLM uses Retrieval-Augmented Generation (RAG). It is only as smart as the fuel you give it.
-The Liability: If your notes are "sparse" (just equations with no context), your AI partner has no "fuel." When you ask it, "Why did we assume steady-state here?", it will have to guess (hallucinate) or fail. In a professional setting, "guessing" leads to catastrophic failure.
-The Partnership: Your goal is to provide the context. When you write down the assumptions (e.g., "Assumed 1D, Constant Properties") alongside the math, you are giving your partner the logic it needs to help you during the final exam. You are "investing" in your notes now so the AI can "pay you back" during the crunch.
-How the 10% "Professionalism Grade" is Earned
-We will have three Portfolio Audits (Weeks 2, 5, and 8). You will be graded on:
-Curation (3%): Is your Notebook organized? Have you merged files to stay under the 50-source limit?
-Multimodal Quality (4%): Are your handwritten diagrams boxed and labeled (e.g., "Fig 1") so they are machine-readable? Do you have "high-signal" notes for every module?
-Verification (3%): Provide one screenshot of a chat where you corrected the AI. Show us where you caught the AI misreading your notes and how you updated your notes or the prompt to fix it. We reward you for catching the AI's mistakes!
-Why this works for your paper:
-This hybrid approach is a "gold mine" for your research because it creates Active Users. * The Liability side forces them to produce high-quality artifacts (the notes).
-The Partner side encourages them to interact with those artifacts (the RAG).
-When you write your paper, you can categorize student behavior: "Did the student treat the AI as a judge to be feared (Liability) or a tool to be optimized (Partner)?"
+There are probably wrong ways to use NotebookLM as well. As we saw in [the tutorial video](https://canvas.colorado.edu/courses/136150/pages/notebooklm-tutorial), you can push NotebookLM to do a little math for you. I'm not sure how far this can go... I guess you can explore, but make sure you are the one doing your homework.

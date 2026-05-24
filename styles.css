@@ -5,3 +5,11 @@
 .chapter-number::after {
   content: ":";
 }
+
+.example, .callout-example {
+  border: 1px solid #d3d3d3; /* Thin gray border */
+  border-left: 4px solid #888888; /* Optional thicker gray left accent line */
+  border-radius: 4px; /* Slightly rounded corners */
+  padding: 15px;
+  margin-bottom: 20px;
+}

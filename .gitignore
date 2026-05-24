@@ -9,3 +9,5 @@ CLAUDE_CODE_CONTEXT.md
 5internal.qmd
 6heatXer.qmd
 7radiation.qmd
+admonitions.md
+**/*.quarto_ipynb
