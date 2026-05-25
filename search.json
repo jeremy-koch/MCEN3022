@@ -4,47 +4,57 @@
     "href": "index.html",
     "title": "MCEN3022: Heat Transfer",
     "section": "",
-    "text": "Home\nWelcome to MCEN 3022: Heat Transfer! This course is being taught in summer 2026 by Professor Jeremy Koch at the University of Colorado Boulder.\nThis page contains some perspective and important policies.",
+    "text": "Home\nWelcome to MCEN 3022: Heat Transfer — taught in Summer 2026 by Professor Jeremy Koch at the University of Colorado Boulder.",
     "crumbs": [
       "Home"
     ]
   },
   {
-    "objectID": "index.html#some-things-to-look-forward-to",
-    "href": "index.html#some-things-to-look-forward-to",
+    "objectID": "index.html#what-youll-be-able-to-do",
+    "href": "index.html#what-youll-be-able-to-do",
     "title": "MCEN3022: Heat Transfer",
-    "section": "Some things to look forward to",
-    "text": "Some things to look forward to\n\nHeat Transfer is a delightfully practical course where we get to do some genuine engineering analyses. Problems like: “A GPU produces 800 W of waste heat and needs to be kept below 80°C. If we air cool it, how fast must the fan be? If we water cool it, how high must the flow rate be?”\nDespite the asynchronous nature of this course, we are going to have some technical discussions over Zoom. These will be some of the most authentic engineering experiences you will have here at CU, with you and a small number of colleagues getting together to talk through a problem for ~30 minutes.\nWe will “use AI the right way” and get some experience with Google’s NotebookLM. I envision this as being a useful tool for your other courses, maybe most significantly your senior design course, and in your career, so let’s get some practice with it this semester.",
+    "section": "What you’ll be able to do",
+    "text": "What you’ll be able to do\nHeat transfer is one of the most practically useful courses in mechanical engineering. By the end of this semester, you’ll be able to work through problems like:\n\nA GPU produces 800 W of waste heat and needs to stay below 80°C. If we air-cool it, how fast must the fan spin? If we water-cool it, how high must the flow rate be?\nThe Trans-Alaska Pipeline carries crude oil at 65°C across 800 miles of arctic tundra. The oil must stay warm enough to flow, but the heat leaking into the permafrost would cause it to thaw and destabilize the supports. How do you design the insulation to satisfy both constraints?\nA satellite has no atmosphere to convect heat away. How do we keep the electronics from cooking?\n\nThese are not toy problems — they are the kind of analyses that show up in real engineering work, and you will be equipped to do them.",
     "crumbs": [
       "Home"
     ]
   },
   {
-    "objectID": "index.html#class-expectations",
-    "href": "index.html#class-expectations",
+    "objectID": "index.html#this-page-is-your-home-base",
+    "href": "index.html#this-page-is-your-home-base",
     "title": "MCEN3022: Heat Transfer",
-    "section": "Class Expectations",
-    "text": "Class Expectations\n\nThis is an 8-week course that will cover the same amount of content as in a regular semester with 15 weeks. Maybe most worryingly, there are only seven weekends – very little chance to recover! Due to the fast pace of this course, you cannot fall behind – there will be no late work accepted and no extensions.\nThis is also an asynchronous course, meaning that you will consume the course content on your own schedule. This will require self-motivation to stay on track! (There are due dates, and there are some events that you will need to schedule.)\nIn a regular semester we would see each other 150 minutes per week, plus office hours (always a good idea to attend). Since this course is half as long, does that mean that you will be watching 300 minutes of videos per week? No!\n\nI am making an effort to streamline the videos – fewer umms, pauses, and stumbles. Derivations will mostly be placed on this website, read them there.\nI expect you will pause, think, rewind, and revisit other sections of your notes. A 15-minute video might take 25 minutes to consume.\nThis website is meant to augment the lecture content and contains abbreviated descriptions, derivations, equation and algorithm summaries, interactive examples, and some quick “check your understanding” questions. You should be reading the website to review/solidify the content.\n\nYour work, particularly the “technical reports”, will be neat and professional. Creating detailed, readable reports is an engineering skill!",
+    "section": "This page is your home base",
+    "text": "This page is your home base\nUse this website as your primary course resource. Each chapter contains the lecture notes, derivations, interactive examples, and links to the associated videos — all in one place. The left sidebar lists everything by week; start there.\nCanvas exists for submitting work and checking your grades, and technically it hosts the videos (though they are linked from here).",
     "crumbs": [
       "Home"
     ]
   },
   {
-    "objectID": "index.html#workflow",
-    "href": "index.html#workflow",
+    "objectID": "index.html#what-makes-this-course-distinctive",
+    "href": "index.html#what-makes-this-course-distinctive",
     "title": "MCEN3022: Heat Transfer",
-    "section": "Workflow",
-    "text": "Workflow\nI recommend the following: - This website will be the guide, but we are required to use Canvas for the gradebook, homework submissions, etc.",
+    "section": "What makes this course distinctive",
+    "text": "What makes this course distinctive\nIt’s compressed. Eight weeks covering a full semester of material. The format is designed to make that manageable: videos are tightly edited (no long pauses or repeated explanations), derivations live on this website so you can read at your own pace, and each piece of coursework feeds directly into the next.\nIt’s asynchronous. You consume the content on your own schedule, though there are weekly deadlines. This requires self-discipline — the flip side is that you control your own time.\nThe exams are oral. Rather than a written final, you’ll have two oral exams: a midterm calibration point and a final capstone defense. These are conversations about engineering design — you will not be asked to grind through algebra under pressure. Students who have done the work consistently find these conversations genuinely enjoyable.\nYou’ll talk through problems with peers. Small-group Zoom sessions where you and a few colleagues work through a problem together (over about 30 minutes). These are some of the most authentic engineering experiences you will have during your engineering education.",
     "crumbs": [
       "Home"
     ]
   },
   {
-    "objectID": "index.html#assessment-components",
-    "href": "index.html#assessment-components",
+    "objectID": "index.html#how-the-assessments-connect",
+    "href": "index.html#how-the-assessments-connect",
     "title": "MCEN3022: Heat Transfer",
-    "section": "Assessment components",
-    "text": "Assessment components\nThe course is designed as a connected system, not a collection of independent assignments:\n\nTier 1 problems build the fluency you need for the technical reports\nTechnical reports create documents you will defend in the oral exams\nPeer discussions give you practice reasoning out loud before the oral exams\nNotebookLM helps you build a retrievable knowledge base you can bring to the oral exams\nMidterm oral is a calibration point — you find out where you stand while there is still time to improve\nCapstone + final oral is where everything comes together\n\nMissing any one of these components does not just cost you points on that component. It makes the downstream components harder. See Assessment Overview & Philosophy for more details on these.",
+    "section": "How the assessments connect",
+    "text": "How the assessments connect\nThe course is designed as a connected system:\n\nTier 1 problems build the fluency you need to write the technical reports\nTechnical reports create the documents you’ll discuss in the oral exams\nPeer discussions give you practice reasoning out loud before those exams\nNotebookLM helps you build a searchable knowledge base you can bring to oral exams\nMidterm oral is a calibration point — you find out where you stand while there’s still time to improve\nCapstone + final oral is where everything comes together\n\nEach component sets you up for the next. See Assessment Overview & Philosophy for the full picture.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#getting-started",
+    "href": "index.html#getting-started",
+    "title": "MCEN3022: Heat Transfer",
+    "section": "Getting started",
+    "text": "Getting started\n\nRead through Course Details to understand the structure\nStart with Week 0: Introduction for context before diving into the content\nReturn here each week — the chapter pages are where the videos are linked",
     "crumbs": [
       "Home"
     ]
@@ -54,7 +64,18 @@
     "href": "course_details/assessment_overview.html",
     "title": "Assessment Overview & Philosophy",
     "section": "",
-    "text": "Why This Course Is Designed the Way It Is\nTraditional engineering course assessments — homework sets, midterms, finals — were designed for a world where producing a correct solution required understanding the material. That assumption is no longer reliable. AI tools can generate technically correct solutions, clean derivations, and plausible physical interpretations.\nThis creates an unfairness that is easy to overlook: in a traditional grading scheme, a student who works through every problem honestly and a student who outsources everything to AI may receive the same homework grade. That is not fair to the student who worked honestly.\nThis course is designed so that real understanding is visible and rewarded. The primary mechanism is simple: a significant portion of your grade comes from real-time conversation — oral exams and peer discussions — where understanding either shows up or it does not.",
+    "text": "Why This Course Is Designed the Way It Is\nWhat do engineers actually do? They write technical documents, present their reasoning to colleagues, defend design choices under questioning, and collaborate to solve problems. These are skills — this course is organized around practicing these skills.",
+    "crumbs": [
+      "Course Details",
+      "Assessment Overview & Philosophy"
+    ]
+  },
+  {
+    "objectID": "course_details/assessment_overview.html#why-this-course-is-designed-the-way-it-is",
+    "href": "course_details/assessment_overview.html#why-this-course-is-designed-the-way-it-is",
+    "title": "Assessment Overview & Philosophy",
+    "section": "",
+    "text": "You will create technical reports that explain your reasoning.\nYou will discuss engineering problems with colleagues.\nYou will defend your analyses and activel think and respond to follow-up questions.",
     "crumbs": [
       "Course Details",
       "Assessment Overview & Philosophy"
@@ -65,29 +86,7 @@
     "href": "course_details/assessment_overview.html#grade-breakdown",
     "title": "Assessment Overview & Philosophy",
     "section": "Grade Breakdown",
-    "text": "Grade Breakdown\n\n\n\n\nComponent\nWeight\nAuthenticity\nPrimary Purpose\n\n\n\n\nNotebookLM portfolio\n10%\n\n\n\n\nTier 1 problems\n10%\n\n\n\n\nTechnical reports\n15%\n\n\n\n\nPeer discussions\n20%\n\n\n\n\nMidterm oral\n15%\n\n\n\n\nCapstone report\n5%\n\n\n\n\nFinal oral\n25%",
-    "crumbs": [
-      "Course Details",
-      "Assessment Overview & Philosophy"
-    ]
-  },
-  {
-    "objectID": "course_details/assessment_overview.html#what-each-component-is-actually-for",
-    "href": "course_details/assessment_overview.html#what-each-component-is-actually-for",
-    "title": "Assessment Overview & Philosophy",
-    "section": "What Each Component Is Actually For",
-    "text": "What Each Component Is Actually For\nTier 1 problems exist because fluency requires repetition. You cannot reason well about transient conduction in a fin if you have never worked a conduction problem under time pressure. These problems build the background knowledge that makes the oral exam feel natural rather than overwhelming.\nTechnical reports exist to force you to write down your reasoning in a form that can be interrogated. The report is not the product — the oral exam is. But you cannot have a good oral exam conversation without a document to point at. The report also builds professional writing habits that matter beyond this course.\nPeer discussions exist because engineering happens in teams. Explaining your reasoning to a peer, in real time, without notes, is a different cognitive act than writing it down. It is also excellent preparation for the oral exam.\nOral exams exist because they are the most direct window into understanding. You will be asked to explain your reasoning, defend your choices, and respond to “what if” questions that were not on any assignment. These conversations cannot be prepared for by memorizing solutions — only by understanding the material.\nThe capstone exists to require synthesis. Heat transfer problems in practice do not come labeled by mode. You will be given an open-ended system, asked to identify what matters, build an appropriate model, and justify every choice.",
-    "crumbs": [
-      "Course Details",
-      "Assessment Overview & Philosophy"
-    ]
-  },
-  {
-    "objectID": "course_details/assessment_overview.html#a-word-on-oral-exams",
-    "href": "course_details/assessment_overview.html#a-word-on-oral-exams",
-    "title": "Assessment Overview & Philosophy",
-    "section": "A Word on Oral Exams",
-    "text": "A Word on Oral Exams\nOral exams are uncommon in undergraduate engineering programs, and many students find them anxiety-inducing at first. A few things worth knowing:\nThe exam is not designed to trick you or be a “gotcha”. It is a conversation about material you have been working with for weeks. Stumbling on a question and recovering is fine – recovery is part of what we are watching for. Getting something wrong and correcting yourself is better than getting it right the first time with no visible reasoning.\nThe anchor question for the midterm oral will be released one week in advance. You will know exactly what the opening question is. The follow-up questions draw from your own submitted reports — material you wrote yourself.\nYou may bring your NotebookLM notebook to both oral exams.\nA retake of the midterm oral is available. See Oral Exams for details.",
+    "text": "Grade Breakdown\n\n\n\nComponent\nWeight\n\n\n\n\nNotebookLM portfolio\n10%\n\n\nTier 1 problems\n10%\n\n\nTechnical reports\n15%\n\n\nPeer discussions\n20%\n\n\nMidterm oral exam\n15%\n\n\nCapstone report\n5%\n\n\nFinal oral exam\n25%\n\n\n\nNotebookLM is a modern tool for organizing and recalling your notes. It rewards good note taking and let’s you access your “external brain” with context-filled prompts.\nTier 1 problems build intuition and basic ability with the tools of heat transfer. These won’t require the full detail of a technical report but will get you practice with the content.\nTechnical reports train you to effectively communicate your work in written form. State your assumptions and justify them, your colleagues who read your documentation in five months will appreciate it!\nPeer discussions exist because engineering happens in teams. Explaining your reasoning and assessing your colleagues’ reasoning are extremely important skills.\nOral exams are the most direct way to demonstrate understanding - they are not memorization, they require actual understanding. They are also, for most students, more interesting than a written exam, and indeed are probably more practically relevant than a written exam!",
     "crumbs": [
       "Course Details",
       "Assessment Overview & Philosophy"
@@ -98,7 +97,7 @@
     "href": "course_details/tier1_problems.html",
     "title": "Tier 1 Practice Problems",
     "section": "",
-    "text": "Overview\nTier 1 problems are practice. There are approximately 20 of them distributed across the course, covering the full range of course content. They vary in type — some are conceptual (“why is there a negative sign in Fourier’s law?”), some are quantitative (“find the heat flux through this composite wall”), and some are analytical (“derive the fin efficiency for these boundary conditions”).\nWhat they have in common: they do not require a full technical report. A clean solution with units, a clearly stated answer, and one sentence of physical interpretation is sufficient.",
+    "text": "Overview\nTier 1 problems are practice and will make up the bulk of your homework. They vary in type — some are conceptual (“why is there a negative sign in Fourier’s law?”), some are quantitative (“find the heat flux through this composite wall”), and some are analytical (“derive the fin efficiency for these boundary conditions”).\nThey don’t require a full technical report, but a neat solution with a clearly stated answer, with units, and probably a bit of narration (“Melting in about 30 minutes indeed seems realistic”) is necessary.",
     "crumbs": [
       "Course Details",
       "Tier 1 Practice Problems"
@@ -109,7 +108,7 @@
     "href": "course_details/tier1_problems.html#why-these-problems-exist",
     "title": "Tier 1 Practice Problems",
     "section": "Why These Problems Exist",
-    "text": "Why These Problems Exist\nFluency requires repetition. You cannot reason well about transient conduction in a fin if you have never worked a conduction problem under time pressure. These problems build the background knowledge and physical intuition that make the oral exam feel natural rather than overwhelming.\nThey are worth 10% of your grade and graded primarily on completion. That is not because they are unimportant — it is because the point is the doing, not the product. The oral exam is where the doing gets verified.\n\nThese problems are worth 10% and graded on completion. That is not where the value is. The value is that students who work them find the oral exam straightforward. Students who do not find it very uncomfortable. The math is designed to be obvious.",
+    "text": "Why These Problems Exist\nThe best way to learn a topic is to struggle - you cannot read someone else’s solution to learn a topic. (And ChatGPT, etc., fall into the category of “someone else”.) You were not faced with uncertainty, you did not have to review your notes, you did not have to make choices about what path to take, you didn’t have to be careful with the units, and you didn’t have to check your work. In short, you have to do problems to learn the material.\nThese Tier 1 problems are opportunities to work through the material so that you can actually learn. They are worth 10% of your grade and graded primarily on completion. That is not because they are unimportant — it is because the point is the doing, not the product.",
     "crumbs": [
       "Course Details",
       "Tier 1 Practice Problems"
@@ -120,7 +119,7 @@
     "href": "course_details/tier1_problems.html#submission-format",
     "title": "Tier 1 Practice Problems",
     "section": "Submission Format",
-    "text": "Submission Format\nEach Tier 1 problem follows the same two-stage process as the technical reports:\nStage 1 (Thursday, 11:59 PM): Submit a genuine attempt. Legible work, units carried, answer stated. Completion earns full credit for this stage. Submitting Stage 1 unlocks the Stage 2 assignment, which includes milestone checkpoints.\nStage 2 (Sunday, 11:59 PM): Submit a clean final version. This is lightly graded on completion and correctness — the goal is a document you could hand to a colleague and they could follow your work.",
+    "text": "Submission Format\nEach Tier 1 problem follows the same two-stage process as the technical reports:\nStage 1 (Friday, 6:00 AM): Submit a genuine attempt. Legible work, units carried, answer stated. Completion probably earns full credit for this stage. Submitting Stage 1 unlocks the Stage 2 assignment, which includes milestone checkpoints.\nStage 2 (Monday, 6:00 PM): Submit a clean final version. This is lightly graded on correctness, and .",
     "crumbs": [
       "Course Details",
       "Tier 1 Practice Problems"
@@ -149,22 +148,11 @@
     ]
   },
   {
-    "objectID": "course_details/tier1_problems.html#a-note-on-ai",
-    "href": "course_details/tier1_problems.html#a-note-on-ai",
-    "title": "Tier 1 Practice Problems",
-    "section": "A Note on AI",
-    "text": "A Note on AI\nYou can use AI to generate a Tier 1 solution. The completion grade does not depend on how you produced it.\nWhat it does depend on: the oral exam. A student who worked the problems will find the oral exam’s follow-up questions familiar. A student who did not will find them uncomfortable in proportion to how many problems they skipped. There is no penalty attached to this observation — it is simply how the course works.",
-    "crumbs": [
-      "Course Details",
-      "Tier 1 Practice Problems"
-    ]
-  },
-  {
     "objectID": "course_details/technical_reports.html",
     "href": "course_details/technical_reports.html",
     "title": "Technical Reports",
     "section": "",
-    "text": "Overview\nYou will submit 5-6 technical reports over the course of the semester. These are full engineering analyses — not just solutions, but professional documents that justify every assumption, explain every modeling choice, and interrogate every result.\nThe reports are not graded primarily on polish. They are graded on the quality of your physical reasoning and your ability to catch and correct your own mistakes. A messy report that shows genuine reasoning scores higher than a clean report that could have been produced without understanding the problem.\nWhy? Because the oral exam is where report quality truly gets assessed. You will be asked to walk through your reasoning, defend your choices, and answer follow-up questions drawn directly from what you wrote. A report you did not genuinely produce is a liability in the oral exam, not an asset.",
+    "text": "Overview\nEach week, one of the homework problems will be a technical report. With these we are not just looking for the correct answer, we are looking for an explanation of the logic.",
     "crumbs": [
       "Course Details",
       "Technical Reports"
@@ -175,7 +163,7 @@
     "href": "course_details/technical_reports.html#the-two-stage-submission-process",
     "title": "Technical Reports",
     "section": "The Two-Stage Submission Process",
-    "text": "The Two-Stage Submission Process\nEach technical report has two submissions, both managed through Canvas.\n\nStage 1: Initial Submission (Thursday, 11:59 PM)\nSubmit a genuine attempt at the problem. This does not need to be polished — it needs to be honest. Legible work, units carried, an attempt at the key physics.\nGrading: Completion only. A genuine attempt earns full credit for this stage.\nWhat unlocks: Submitting Stage 1 immediately unlocks the Stage 2 assignment, which includes milestone checkpoints for the problem. These checkpoints confirm whether your approach is correct and flag common errors. You do not need to wait until Sunday to access them — submit Stage 1 early in the week and you have the checkpoints immediately.\n\n\nStage 2: Final Submission (Sunday, 11:59 PM)\nA complete technical report following the structure below. This is what is graded on the full rubric.\nThe reflection section (see below) asks you to describe specifically what you got wrong or nearly got wrong in your Stage 1 submission and how you caught and corrected it. This section requires a genuine Stage 1 attempt — it cannot be written without one.",
+    "text": "The Two-Stage Submission Process\nWe will have a revision process for the technical reports, the idea being: you submit an initial draft where you work out the physics, and then get some hints with which you can check your work before submitting a final draft. After all, the point of homework is to learn the material! …This approach encourages that attitude and avoids punishing initial misconceptions.\n\nStage 1: Initial Submission (Friday, 6:00 AM)\nSubmit a genuine attempt at the problem alongside the Tier 1 problems. This does not need all the details of a technical report - if you don’t fully rationalize your assumptions, that’s fine. Don’t forget those aspects for the final submission, but this first one is about checking your physics.\nGrading: Completion only. A genuine attempt earns full credit for this stage. Do not try to game this and submit incomplete work - you will have points deducted and will not be able to earnestly answer the reflection question in Stage 2.\nAs soon as you submit, a new assignment will open on Canvas. It’s description will include some milestone checkpoints that you can use to confirm you have the right approach - e.g., “You should get a Reynolds Number of around 12000”, “The outlet temperature is about 295 K”, “Don’t forget to use \\(w/2\\) as the characteristic length”.\n\n\nAs soon as you submit, the milestones will be revealed and the Stage 2 submission portal will open. This means you could submit your Stage 1 and Stage 2 reports on Tuesday, if you desire.\n\n\nStage 2: Final Submission (Monday, 6:00 AM)\nSubmit a complete technical report following the structure below, separate from the Tier 1 problems.\nGrading: Based on the full rubric described below. The reflection section asks you to describe specifically what you got wrong or nearly got wrong in your Stage 1 submission and how you caught and corrected it - this section requires a genuine Stage 1 attempt.",
     "crumbs": [
       "Course Details",
       "Technical Reports"
@@ -204,17 +192,6 @@
     ]
   },
   {
-    "objectID": "course_details/technical_reports.html#what-tas-are-looking-for",
-    "href": "course_details/technical_reports.html#what-tas-are-looking-for",
-    "title": "Technical Reports",
-    "section": "What TAs Are Looking For",
-    "text": "What TAs Are Looking For\nWhen TAs read your report, they are asking one question above all others: can I tell that this student understands why they did what they did?\nA technically correct solution with no visible reasoning scores lower than a partially correct solution with clear physical reasoning. The oral exam is where correctness is verified — the report is where reasoning is demonstrated.\nTA feedback on draft submissions will focus on reasoning gaps, not on polish. If your reasoning is incomplete, you will be told specifically where and why.",
-    "crumbs": [
-      "Course Details",
-      "Technical Reports"
-    ]
-  },
-  {
     "objectID": "course_details/technical_reports.html#connection-to-oral-exams",
     "href": "course_details/technical_reports.html#connection-to-oral-exams",
     "title": "Technical Reports",
@@ -230,7 +207,7 @@
     "href": "course_details/oral_exams.html",
     "title": "Oral Exams",
     "section": "",
-    "text": "Overview\nThere are two oral exams in this course: a midterm oral (~Week 4) and a final oral (~Week 7-8). Together with the capstone report, they account for 52% of your course grade.\nOral exams are uncommon in undergraduate engineering programs. This page explains how they work, what is expected, and how to prepare.",
+    "text": "Overview\nThere are two oral exams in this course: a midterm oral (~Week 4) and a final oral (~Week 8). Oral exams are uncommon in undergraduate engineering programs. This page explains how they work, what is expected, and how to prepare.",
     "crumbs": [
       "Course Details",
       "Oral Exams"
@@ -241,7 +218,7 @@
     "href": "course_details/oral_exams.html#why-oral-exams",
     "title": "Oral Exams",
     "section": "Why Oral Exams",
-    "text": "Why Oral Exams\nThe short answer: they are the most direct window into understanding that exists in a course setting.\nA written solution can be produced without understanding the reasoning behind it. A conversation cannot. When you are asked to explain why you made a modeling choice, what would change if a parameter shifted, or where your solution would break down — the answer either comes from genuine understanding or it does not. There is no middle ground.\nThis is not about catching anyone out. It is about making the grade mean something. A student who earns a strong grade in this course has demonstrated, in real time, that they can reason about heat transfer. That is a credential worth having.",
+    "text": "Why Oral Exams\nThe short answer: they are the most direct window into your actual understanding of the course content. A written solution can be produced without understanding the reasoning behind it, but a conversation cannot. When you are asked to explain why you made a modeling choice, what would change if a parameter shifted, or where your solution would break down — your answer comes from genuine understanding. There is no middle ground.\nMoreover, conversations like these are extremely authentic engineering experiences. You present a technical report in a team meeting and a colleague asks a question. You can’t say “hold on, let me ask ChatGPT”, you need to actually have ownership of your knowledge to have that human-to-human interaction.\nThis format is not about trying to make you nervous and make a mistake. Actually, you can make a mistake - staying in the discussion and recognizing your mistake is an extremely compelling demonstration of your wisdom.",
     "crumbs": [
       "Course Details",
       "Oral Exams"
@@ -252,7 +229,7 @@
     "href": "course_details/oral_exams.html#format",
     "title": "Oral Exams",
     "section": "Format",
-    "text": "Format\nBoth oral exams follow the same three-part structure:\n\nPart 1: Anchor Question (~4-5 minutes)\nA conceptual question, the same for every student, released one week before the exam. You will know exactly what this question is before you sit down.\nExample: “Walk me through transient conduction in a semi-infinite solid — what is happening physically, what are the key parameters, and what does the solution tell you?”\nThe anchor question is released in advance to reduce anxiety and reward preparation, not to make the exam easy. A strong answer demonstrates organized conceptual understanding. A weak answer — even on a question you had a week to prepare — tells us something important.\n\n\nPart 2: Report Defense (~5-7 minutes)\nThe examiner will draw from one of your submitted technical reports. You will be asked to walk through your reasoning, justify your assumptions, and explain your sanity checks.\nExpect questions like:\n\n“You wrote X on page 2 — walk me through that reasoning.”\n“You assumed Y here. What would change if that assumption didn’t hold?”\n“Your pitfall section says you initially got the boundary condition wrong. How did you catch that?”\n\nThe report you defend will be drawn from your submitted work up to that point. For the midterm, this means reports submitted through approximately Week 3. You will not be told in advance which report will be discussed.\n\n\nPart 3: Extension Question (~3-5 minutes)\nA “what if” question that modifies a parameter or removes an assumption from the problem you just discussed.\nExample: “You found the steady-state temperature distribution assuming constant thermal conductivity. What would change if conductivity varied with temperature?”\nThis part of the exam cannot be prepared for by memorizing solutions. It can only be prepared for by understanding the physics well enough to reason about perturbations.\nTotal time: approximately 12-17 minutes per student.",
+    "text": "Format\nBoth oral exams follow the same three-part structure:\n\nPart 1: Anchor Question (~4-5 minutes)\nA conceptual question, the same for every student, released early in the week of the exam. You will know exactly what this question is before you sit down.\nExample: “Walk me through transient conduction in a semi-infinite solid — what is happening physically, what are the key parameters, and what does the solution tell you?”\nThe anchor question is released in advance to reduce anxiety and reward preparation, not to make the exam easy. A strong answer demonstrates organized conceptual understanding. A weak answer — even on a question you had a week to prepare — tells me something important.\n\n\nPart 2: Report Defense (~5-7 minutes)\nThe examiner will draw from one of your submitted technical reports. You will be asked to walk through your reasoning, justify your assumptions, and explain your sanity checks.\nExpect questions like:\n\n“You wrote X on page 2 — walk me through that reasoning.”\n“You assumed Y here. What would change if that assumption didn’t hold?”\n“Your pitfall section says you initially got the boundary condition wrong. How did you catch that?”\n\nThe report you defend will be drawn from your submitted work up to that point. For the midterm, this means reports submitted through approximately Week 3, maybe 4. You will not be told in advance which report will be discussed, but obviously will know that the technical report questions are the foundation of this part of the exam.\n\n\nPart 3: Extension Question (~3-5 minutes)\nA “what if” question that modifies a parameter or removes an assumption from the problem you just discussed.\nExample: “You found the steady-state temperature distribution assuming \\(k=95\\) W/m·K. What would change if conductivity was actually 55? Would we need to provide more or less heat from the heater?”\nThis part of the exam cannot be prepared for by memorizing solutions. It can only be prepared for by understanding the physics well enough to\nTotal time: approximately 12-17 minutes per student.",
     "crumbs": [
       "Course Details",
       "Oral Exams"
@@ -274,7 +251,7 @@
     "href": "course_details/oral_exams.html#final-oral-exam-week-7-8",
     "title": "Oral Exams",
     "section": "Final Oral Exam (~Week 7-8)",
-    "text": "Final Oral Exam (~Week 7-8)\nWeight: Approximately 22% of course grade (70% of the combined 32% capstone + final oral weight)\nThe final oral is high-stakes. It interrogates your capstone report deeply and tests your ability to synthesize across the full course.\n\nStructure\n\n\n\n\n\n\n\nTime\nContent\n\n\n\n\n0-3 min\nStudent gives a 2-minute unprompted summary of their capstone system and findings\n\n\n3-10 min\nExaminer probes mechanism identification and modeling choices from capstone\n\n\n10-16 min\n“What if” questions — change a parameter, remove an assumption, add a mode\n\n\n16-20 min\nStudent reflection — what would you do differently, what are you least confident in\n\n\n\nThe final oral differs from the midterm in one important way: the last four minutes are yours. You are asked to identify the weakest part of your own work. This is not a trap — an engineer who can articulate the limitations of their own analysis is more valuable than one who cannot.\nYou may bring your NotebookLM notebook to the exam.",
+    "text": "Final Oral Exam (~Week 7-8)\nWeight: 25% of course grade\nDetails will follow.",
     "crumbs": [
       "Course Details",
       "Oral Exams"
@@ -285,7 +262,7 @@
     "href": "course_details/oral_exams.html#how-to-prepare",
     "title": "Oral Exams",
     "section": "How to Prepare",
-    "text": "How to Prepare\nThe most effective preparation is doing the work throughout the course. Students who engage genuinely with Tier 1 problems, write their own technical reports, and participate actively in peer discussions consistently find oral exams manageable. Students who do not find them very uncomfortable.\nBeyond that:\n\nPractice explaining out loud. Writing and speaking are different cognitive acts. Talk through your solutions to a roommate, a study group, or yourself.\nKnow your reports. You wrote them — you should be able to walk through any part of them without looking at the document.\nPrepare your anchor question seriously. You have a week. A well-organized, physically motivated answer to the anchor question sets a strong tone for everything that follows.\nBuild your NotebookLM. Students who have rich, well-organized notebooks use them fluently in the exam. Students who built them poorly find them unhelpful under pressure.",
+    "text": "How to Prepare\nThe most effective preparation is doing the work throughout the course. Students who patiently go through the course videos and readings while taking good notes, engage genuinely with Tier 1 problems, write detailed technical reports, and participate actively in peer discussions consistently will find the oral exams very manageable. Students who do not find them uncomfortable.\nBeyond that:\n\nPractice explaining out loud. Writing and speaking are different cognitive acts. Talk through your solutions to a roommate, a study group, or yourself.\nKnow your reports. You wrote them — you should be able to walk through any part of them without looking at the document.\nPrepare your anchor question seriously. You have several days. A well-organized, physically motivated answer to the anchor question sets a strong tone for everything that follows.\nBuild your NotebookLM. Students who have rich, well-organized notebooks use them fluently in the exam. Students who built them poorly find them unhelpful under pressure.",
     "crumbs": [
       "Course Details",
       "Oral Exams"
@@ -307,7 +284,7 @@
     "href": "course_details/peer_discussions.html",
     "title": "Peer Discussions",
     "section": "",
-    "text": "Overview\nYou will participate in 5-6 recorded peer technical discussions over the course of the semester. Each session is conducted via Zoom in rotating groups of 4-6 students, lasts 30-60 minutes, and centers on a novel problem you work through together in real time.\nPeer discussions are worth 18% of your course grade — more than the technical reports. This reflects what they actually test: the ability to reason out loud, in real time, with other engineers, about a problem you have not seen before. That is one of the most authentic engineering skills this course can develop, and one of the hardest things to fake.",
+    "text": "Overview\nYou will participate in 5-6 recorded peer technical discussions over the course of the semester. Each session is conducted via Zoom in groups of 4-6 students, lasts 30-60 minutes, and centers on a novel problem you work through together in real time. Reasoning out loud about a problem you have not seen before is one of the most authentic engineering skills we will develop in this course.",
     "crumbs": [
       "Course Details",
       "Peer Discussions"
@@ -329,7 +306,7 @@
     "href": "course_details/peer_discussions.html#format",
     "title": "Peer Discussions",
     "section": "Format",
-    "text": "Format\nGroup size: 4-6 students, rotating across sessions so you work with different peers throughout the course\nDuration: 30-60 minutes per session\nProblem: A novel problem released at the start of the session — one you have not seen before, but drawn from material already covered in the course\nRecording: Sessions are recorded via Zoom for assessment purposes. You are expected to state your name clearly at the start of the session to support accurate transcript labeling.\nWhat you are expected to do: Work through the problem together. Explain your reasoning, respond to others’ ideas, ask probing questions, catch errors, and push the group toward a physically sound solution. You are not expected to arrive at a perfect answer — you are expected to reason well.\nFinal 5 minutes: In the last 5 minutes of each session, the group should converge on a collective answer to the core question: what is the dominant heat transfer mechanism, what model would you use, and what are your key assumptions? This verbal summary will be captured in the transcript and is factored into individual assessments. No separate submission is required.",
+    "text": "Format\nGroup size: 4-6 students, rotating across sessions so you work with different peers throughout the course\nDuration: 30-60 minutes per session\nProblem: A novel problem released at the start of the session — one you have not seen before, but drawn from material already covered in the course\nRecording: Sessions are recorded via Zoom for assessment purposes. Make sure your name on Zoom is actually your name!\nWhat you are expected to do: Work through the problem together. Explain your reasoning, respond to others’ ideas, ask probing questions, catch errors, and push the group toward a physically sound solution. Your answer will be imperfect, but I’m more interested in hearing your reasoning along the way.\nFinal 5 minutes: In the last 5 minutes of each session, the group should converge on a collective answer to the core question. This verbal summary will be captured in the transcript and is factored into the assessment. No separate submission is required.",
     "crumbs": [
       "Course Details",
       "Peer Discussions"
@@ -472,7 +449,7 @@
     "href": "course_details/notebooklm.html#ai-policy",
     "title": "NotebookLM Portfolio",
     "section": "AI Policy",
-    "text": "AI Policy\nNotebookLM is indeed an AI tool, though I believe it is an example of “using AI the right way”. There are right ways to use any AI, but the trouble with LLMs, at least in an educational context, is that they are too eager to just do the work for you. “How can I factor a heat generation rate of \\(5x(1-x)\\) into my conduction equation?” gets an immediate response: “Here is the solution, and here is the maximum temperature, and here is the heat flux out each wall. Is there anything else I can help you with?” That is not serving your development as an engineer. Officially, general AI use is prohibited in this class, though I am not naive enough to think that policing it is a good use of my time.\nThere are probably wrong ways to use NotebookLM as well. As we saw in the tutorial video, you can push NotebookLM to do a little math for you. I’m not sure how far this can go… I guess you can explore, but make sure you are the one doing your homework.",
+    "text": "AI Policy\nNotebookLM is indeed an AI tool, though I believe it is an example of “using AI the right way”. There are right ways to use any AI, but the trouble with LLMs, at least in an educational context, is that they are too eager to just do the work for you. “How can I factor a heat generation rate of \\(5x(1-x)\\) into my conduction equation?” gets an immediate response: “Here is the solution, and here is the maximum temperature, and here is the heat flux out each wall. Is there anything else I can help you with?” That is not serving your development as an engineer. Officially, general AI use is prohibited in this class, though I am not naive enough to think that policing it is a good use of my time.\nThere are probably wrong ways to use NotebookLM as well. As we saw in the tutorial video, you can push NotebookLM to do a little math for you. I’m not sure how far this can go… I guess you can explore, but make sure you are the one doing your homework.\nThe best way to learn anything is to struggle through it, grappling with uncertainty, finding and correcting mistakes, checking with intuition along they way. NotebookLM will allow you to still do those things, and thus still learn, while also reducing the tedium of digging through your notes.",
     "crumbs": [
       "Course Details",
       "NotebookLM Portfolio"
@@ -483,73 +460,7 @@
     "href": "course_details/capstone.html",
     "title": "Capstone Project",
     "section": "",
-    "text": "Overview\nThe capstone is the synthesis assessment for the course. It is released approximately Week 5 and due approximately Week 7, giving you two weeks to develop your analysis while you are still encountering new material. The capstone report and the final oral exam together are worth 32% of your course grade.\nThe capstone is not a harder version of a technical report. It is a different kind of problem entirely.",
-    "crumbs": [
-      "Course Details",
-      "Capstone Project"
-    ]
-  },
-  {
-    "objectID": "course_details/capstone.html#what-makes-the-capstone-different",
-    "href": "course_details/capstone.html#what-makes-the-capstone-different",
-    "title": "Capstone Project",
-    "section": "What Makes the Capstone Different",
-    "text": "What Makes the Capstone Different\nEvery technical report in this course gives you a well-posed problem: a geometry, a set of boundary conditions, a quantity to find. The physics is already identified for you. Your job is to apply the appropriate method correctly and justify your reasoning.\nThe capstone gives you a real system and a question. You decide which heat transfer mechanisms matter. You decide what to model and what to neglect. You decide how much complexity is warranted and how to check that your model is physically reasonable. There is no single correct answer — there are better and worse justified approaches.\nThis is closer to what engineering analysis actually looks like.",
-    "crumbs": [
-      "Course Details",
-      "Capstone Project"
-    ]
-  },
-  {
-    "objectID": "course_details/capstone.html#the-prompt",
-    "href": "course_details/capstone.html#the-prompt",
-    "title": "Capstone Project",
-    "section": "The Prompt",
-    "text": "The Prompt\nYou will be given a real engineering system and asked something like:\n\n“You are an engineer asked to evaluate [system]. Characterize the dominant heat transfer mechanisms, develop an appropriate model, and provide quantitative estimates with uncertainty. Justify every assumption you make.”\n\nThe specific system will be announced when the capstone is released. It will involve multiple heat transfer modes — conduction, convection, and radiation will all be potentially relevant, and part of your task is deciding which ones matter enough to model explicitly and which ones can be reasonably neglected.",
-    "crumbs": [
-      "Course Details",
-      "Capstone Project"
-    ]
-  },
-  {
-    "objectID": "course_details/capstone.html#report-structure",
-    "href": "course_details/capstone.html#report-structure",
-    "title": "Capstone Project",
-    "section": "Report Structure",
-    "text": "Report Structure\nThe capstone uses the same technical report structure as your earlier reports, with one addition:\n\nProblem Statement & Assumptions — restate the system, identify what you are trying to characterize, list and justify every assumption\nMechanism Identification — which heat transfer modes are present? Which dominate? Why are others negligible? This section is new and central to the capstone.\nApproach & Solution Method — why this model? What did you consider and reject?\nSolution — equations numbered, units throughout\nResults & Sanity Checks — does your answer make sense? What is the uncertainty in your estimates?\nCommon Pitfall & Correction — what did you initially get wrong or nearly get wrong in your modeling approach?\nReflection — what would you do differently with more time or data? What are you least confident in?\n\nThe mechanism identification section is where most capstone analyses succeed or fail. A strong analysis identifies the dominant modes with physical justification and makes a principled argument for why others are negligible. A weak analysis models everything without discrimination, or neglects something important without justification.",
-    "crumbs": [
-      "Course Details",
-      "Capstone Project"
-    ]
-  },
-  {
-    "objectID": "course_details/capstone.html#grading",
-    "href": "course_details/capstone.html#grading",
-    "title": "Capstone Project",
-    "section": "Grading",
-    "text": "Grading\nThe capstone report is graded on the same 8-point rubric as the technical reports (physics reasoning 4 points, reflection 2 points, presentation 2 points), with additional weight given to the mechanism identification section within the physics reasoning dimension.\nThe capstone report grade is combined with the final oral exam score to produce the 32% component. The final oral exam carries more weight than the report — approximately 70/30. A strong oral exam can recover a weak report; a weak oral exam reveals the limits of a strong-looking report.",
-    "crumbs": [
-      "Course Details",
-      "Capstone Project"
-    ]
-  },
-  {
-    "objectID": "course_details/capstone.html#the-final-oral-exam",
-    "href": "course_details/capstone.html#the-final-oral-exam",
-    "title": "Capstone Project",
-    "section": "The Final Oral Exam",
-    "text": "The Final Oral Exam\nThe final oral exam interrogates your capstone directly. See Oral Exams for the full structure. In brief:\n\nYou open with a 2-minute unprompted summary of your system and findings\nThe examiner probes your mechanism identification and modeling choices\n“What if” questions modify your system — a different material, a different operating condition, an additional mode\nYou close by identifying what you are least confident in and what you would do differently\n\nThe last part is not a trap. An engineer who can articulate the limitations of their own analysis is more valuable than one who presents false certainty. The capstone is a document you should be able to defend, critique, and extend.",
-    "crumbs": [
-      "Course Details",
-      "Capstone Project"
-    ]
-  },
-  {
-    "objectID": "course_details/capstone.html#advice",
-    "href": "course_details/capstone.html#advice",
-    "title": "Capstone Project",
-    "section": "Advice",
-    "text": "Advice\nStart with the mechanisms, not the math. The most common capstone error is jumping to equations before establishing which physics dominates. Spend real time on mechanism identification before you write a single equation. Order-of-magnitude estimates of each mode’s contribution are more valuable at this stage than precise calculations.\nJustify everything. Every assumption you make is a potential oral exam question. “I neglected radiation because…” should appear in your report before the examiner asks it.\nUse your NotebookLM. You have been building a notebook for weeks. The capstone is exactly the kind of open-ended synthesis task it is designed to support. Query it for definitions, criteria, and material properties. You can bring it to the final oral exam.\nThe uncertainty estimate is real. You are working from a described system, not a controlled laboratory. Your inputs have uncertainty. Acknowledging that uncertainty — and reasoning about how it propagates through your analysis — is part of a professional engineering analysis, not a sign of weakness.",
+    "text": "Details coming soon.",
     "crumbs": [
       "Course Details",
       "Capstone Project"
@@ -560,17 +471,17 @@
     "href": "0intro.html",
     "title": "Intro",
     "section": "",
-    "text": "Warm-Up\nLet’s get started! This is part of your Week 1 content. We will introduce the three modes of heat transfer and introduce some vocabulary that will be used throughout the course.\nIn general I will try to start off each week with a few questions like these to get the gears turning. The “Recall” questions you should know, and if you don’t, revisit your notes. The “Look Ahead” questions you should not expect to know – the purpose is to prime your brain to seek the answers to those questions in the videos and readings. At the end of the week, revisit these questions.\nRecall 1. From thermodynamics: energy can be transferred via heat or work. This class is about heat!",
+    "text": "Think First\nLet’s get started! This is part of your Week 1 content. We will introduce the three modes of heat transfer and introduce some vocabulary that will be used throughout the course.\nIn general I will try to start off each week with a few questions like these to get the gears turning. The “Recall” questions you should know, and if you don’t, revisit your notes. The “Look Ahead” questions you should not expect to know – the purpose is to prime your brain to seek the answers to those questions in the videos and readings. At the end of the week, revisit these questions.\nRecall\nLook ahead",
     "crumbs": [
       "Intro"
     ]
   },
   {
-    "objectID": "0intro.html#warm-up",
-    "href": "0intro.html#warm-up",
+    "objectID": "0intro.html#think-first",
+    "href": "0intro.html#think-first",
     "title": "Intro",
     "section": "",
-    "text": "What are the different ways that heat can be transferred?\nWhat are the meanings of thermal conductivity \\(k\\) and the convective heat transfer coefficient \\(h\\)? What are their units?\nHow does the Sun heat up the Earth through the vacuum of space?",
+    "text": "From thermodynamics: What are the ways that we can change the energy of a system?\n\n\n\nWhat are the different ways that heat can be transferred?\nWhat are the meanings of thermal conductivity \\(k\\) and the convective heat transfer coefficient \\(h\\)? What are their units?\nHow does the Sun heat up the Earth through the vacuum of space?",
     "crumbs": [
       "Intro"
     ]
@@ -600,17 +511,7 @@
     "href": "0intro.html#some-vocabulary",
     "title": "Intro",
     "section": "Some vocabulary",
-    "text": "Some vocabulary\n\nadiabatic\n\nNo heat transfer. Mathematically (from Fourier’s Law), \\(dT/dx\\) at an adiabatic surface is zero.\n\ninsulator\n\nA material with low conductivity. A “perfect insulator” has \\(k=0\\), but a practical insulator like foam has \\(k\\approx 0.03\\)~W/m\\(\\cdot\\)K. Air is a good insulator (indeed, foam is mostly air) with \\(k=0.026\\)~W/m\\(\\cdot\\)K, but one must be careful to not induce natural convection (which would increase heat transfer).\n\nparameters\n\nParameters are things that can adopt different values, but that tend to be kept constant within a problem. Examples are: material properties like density \\(\\rho\\) and viscosity \\(\\mu\\), sizes like length \\(L\\) and diameter \\(D\\), and usually surface \\(T_\\text{surf}\\) or ambient \\(T_\\infty\\) temperatures. Technically all of these are described by symbols, but the values tend to stay constant within a problem. We know we are using water, we know the incoming air is at a controlled temperature, etc.\n\nvariables\n\nVariables can adopt different values within an analysis, e.g.: how much more heat transfer \\(\\dot{Q}\\) will we get if we double the incoming flow speed \\(U\\)? Both \\(\\dot{Q}\\) and \\(U\\) are variables in this problem. I might use a notation like \\(\\dot{Q}(U;\\rho,\\mu)\\), with parameters after the ;, to make clear that the value of \\(\\dot{Q}\\) technically depends on \\(\\rho\\) and \\(\\mu\\) but the primary variation we are examining is with respect to \\(U\\).\n\nthermal conductivity\n\nA material property that emerges from the empirical Fourier’s Law. SI units: (Watts)/(meter Kelvin). Note that the Kelvin here is related to a difference in temperature, and \\(\\Delta T = 1~\\text{K} = 1^\\circ\\text{C}\\). That is, no unit transformation is necessary to go between W/m\\(\\cdot\\)K and W/m\\(\\cdot^\\circ\\) C.\n\nthermal diffusivity\n\nA material property .\n\nthermal inertia",
-    "crumbs": [
-      "Intro"
-    ]
-  },
-  {
-    "objectID": "0intro.html#notational-conventions",
-    "href": "0intro.html#notational-conventions",
-    "title": "Intro",
-    "section": "Notational conventions",
-    "text": "Notational conventions\nI encourage you to adopt these conventions and be consistent with them.\nWhen writing by hand, I underline my vectors; when typed, vectors are bold and not italicized.\nIf a function is written as $",
+    "text": "Some vocabulary\n\nadiabatic\n\nNo heat transfer. Mathematically (from Fourier’s Law), \\(dT/dx\\) at an adiabatic surface is zero.\n\ninsulator\n\nA material with low conductivity. A “perfect insulator” has \\(k=0\\), but a practical insulator like foam has \\(k\\approx 0.03\\)~W/m\\(\\cdot\\)K. Air is a good insulator (indeed, foam is mostly air) with \\(k=0.026\\)~W/m\\(\\cdot\\)K, but one must be careful to not induce natural convection (which would increase heat transfer).\n\nparameters\n\nParameters are things that can adopt different values, but that tend to be kept constant within a problem. Examples are: material properties like density \\(\\rho\\) and viscosity \\(\\mu\\), sizes like length \\(L\\) and diameter \\(D\\), and usually surface \\(T_\\text{surf}\\) or ambient \\(T_\\infty\\) temperatures. Technically all of these are described by symbols, but the values tend to stay constant within a problem. We know we are using water, we know the incoming air is at a controlled temperature, etc.\n\nvariables\n\nVariables can adopt different values within an analysis, e.g.: how much more heat transfer \\(\\dot{Q}\\) will we get if we double the incoming flow speed \\(U\\)? Both \\(\\dot{Q}\\) and \\(U\\) are variables in this problem. I might use a notation like \\(\\dot{Q}(U;\\rho,\\mu)\\), with parameters after the ;, to make clear that the value of \\(\\dot{Q}\\) technically depends on \\(\\rho\\) and \\(\\mu\\) but the primary variation we are examining is with respect to \\(U\\).\n\nthermal conductivity\n\nA material property that emerges from the empirical Fourier’s Law. SI units: (Watts)/(meter Kelvin). Note that the Kelvin here is related to a difference in temperature, and \\(\\Delta T = 1~\\text{K} = 1^\\circ\\text{C}\\). That is, no unit transformation is necessary to go between W/m\\(\\cdot\\)K and W/m\\(\\cdot^\\circ\\) C.\n\nthermal diffusivity\n\nA material property defined as \\(\\alpha = k/(\\rho c_p)\\), with units m²/s. It describes how quickly a temperature disturbance propagates through a material. A high \\(\\alpha\\) means the material conducts heat readily relative to how much it stores — temperature changes spread fast.\n\nthermal inertia\n\nThe product \\(\\rho c\\) (or \\(mc\\)), with units J/m³·K (or J/K). It describes resistance to temperature change — a large thermal inertia means a lot of energy must be added or removed to shift the temperature. A cast-iron pan has high thermal inertia; a thin aluminum sheet has low thermal inertia.\n\nheat flux\n\nDenoted \\(q''\\), heat flux is the rate of heat transfer per unit area, with units W/m². It is a vector quantity pointing in the direction of heat flow. Contrast with \\(\\dot{Q}\\) (total heat transfer rate, in W), which is the flux integrated over an area: \\(\\dot{Q} = q'' A\\).\n\nconvection coefficient\n\nAlso called the heat transfer coefficient, denoted \\(h\\), with units W/m²·K. It appears in Newton’s Law of Cooling: \\(\\dot{Q} = h A (T_\\text{surface} - T_\\infty)\\). It is not a material property — it depends on the geometry, the fluid, and the flow conditions.\n\nthermal resistance\n\nDenoted \\(R\\), with units K/W. By analogy with Ohm’s Law (\\(V = IR\\)), thermal resistance relates a temperature difference to a heat transfer rate: \\(\\Delta T =  \\dot{Q}R\\).\n\nsteady state vs. transient\n\nA problem is steady state (or steady) if nothing changes with time: all \\(\\partial /\\partial t = 0\\). It is transient if something changes with time.\n\nboundary conditions and initial conditions\n\nNecessary to solve differential equations. Boundary conditions apply to spatial locations, e.g. at \\(x=0\\), \\(T=4\\). Initial conditions apply to points in time, usually \\(t=0\\).\n\nBiot number\n\nA dimensionless parameter defined as \\(Bi = hL_c/k\\), where \\(L_c\\) is a characteristic length, \\(h\\) is the convection coefficient, and \\(k\\) is the solid’s thermal conductivity.",
     "crumbs": [
       "Intro"
     ]

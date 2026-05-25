@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-acf12a64177840b8d86f2d4f01b2e9fb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-de63f62b328812d8e578a4d74e282472.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-3dc2a1da54a06cb06a3f4cdf3f0fa14f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -227,20 +227,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#what-makes-the-capstone-different" id="toc-what-makes-the-capstone-different" class="nav-link" data-scroll-target="#what-makes-the-capstone-different">What Makes the Capstone Different</a></li>
-  <li><a href="#the-prompt" id="toc-the-prompt" class="nav-link" data-scroll-target="#the-prompt">The Prompt</a></li>
-  <li><a href="#report-structure" id="toc-report-structure" class="nav-link" data-scroll-target="#report-structure">Report Structure</a></li>
-  <li><a href="#grading" id="toc-grading" class="nav-link" data-scroll-target="#grading">Grading</a></li>
-  <li><a href="#the-final-oral-exam" id="toc-the-final-oral-exam" class="nav-link" data-scroll-target="#the-final-oral-exam">The Final Oral Exam</a></li>
-  <li><a href="#advice" id="toc-advice" class="nav-link" data-scroll-target="#advice">Advice</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -264,66 +252,75 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>The capstone is the synthesis assessment for the course. It is released approximately Week 5 and due approximately Week 7, giving you two weeks to develop your analysis while you are still encountering new material. The capstone report and the final oral exam together are worth 32% of your course grade.</p>
-<p>The capstone is not a harder version of a technical report. It is a different kind of problem entirely.</p>
-</section>
-<section id="what-makes-the-capstone-different" class="level2">
-<h2 class="anchored" data-anchor-id="what-makes-the-capstone-different">What Makes the Capstone Different</h2>
-<p>Every technical report in this course gives you a well-posed problem: a geometry, a set of boundary conditions, a quantity to find. The physics is already identified for you. Your job is to apply the appropriate method correctly and justify your reasoning.</p>
-<p>The capstone gives you a real system and a question. You decide which heat transfer mechanisms matter. You decide what to model and what to neglect. You decide how much complexity is warranted and how to check that your model is physically reasonable. There is no single correct answer — there are better and worse justified approaches.</p>
-<p>This is closer to what engineering analysis actually looks like.</p>
-</section>
-<section id="the-prompt" class="level2">
-<h2 class="anchored" data-anchor-id="the-prompt">The Prompt</h2>
-<p>You will be given a real engineering system and asked something like:</p>
-<blockquote class="blockquote">
-<p><em>“You are an engineer asked to evaluate [system]. Characterize the dominant heat transfer mechanisms, develop an appropriate model, and provide quantitative estimates with uncertainty. Justify every assumption you make.”</em></p>
-</blockquote>
-<p>The specific system will be announced when the capstone is released. It will involve multiple heat transfer modes — conduction, convection, and radiation will all be potentially relevant, and part of your task is deciding which ones matter enough to model explicitly and which ones can be reasonably neglected.</p>
-</section>
-<section id="report-structure" class="level2">
-<h2 class="anchored" data-anchor-id="report-structure">Report Structure</h2>
-<p>The capstone uses the same technical report structure as your earlier reports, with one addition:</p>
-<ol type="1">
-<li><strong>Problem Statement &amp; Assumptions</strong> — restate the system, identify what you are trying to characterize, list and justify every assumption</li>
-<li><strong>Mechanism Identification</strong> — which heat transfer modes are present? Which dominate? Why are others negligible? This section is new and central to the capstone.</li>
-<li><strong>Approach &amp; Solution Method</strong> — why this model? What did you consider and reject?</li>
-<li><strong>Solution</strong> — equations numbered, units throughout</li>
-<li><strong>Results &amp; Sanity Checks</strong> — does your answer make sense? What is the uncertainty in your estimates?</li>
-<li><strong>Common Pitfall &amp; Correction</strong> — what did you initially get wrong or nearly get wrong in your modeling approach?</li>
-<li><strong>Reflection</strong> — what would you do differently with more time or data? What are you least confident in?</li>
-</ol>
-<p>The mechanism identification section is where most capstone analyses succeed or fail. A strong analysis identifies the dominant modes with physical justification and makes a principled argument for why others are negligible. A weak analysis models everything without discrimination, or neglects something important without justification.</p>
-</section>
-<section id="grading" class="level2">
-<h2 class="anchored" data-anchor-id="grading">Grading</h2>
-<p>The capstone report is graded on the same 8-point rubric as the technical reports (physics reasoning 4 points, reflection 2 points, presentation 2 points), with additional weight given to the mechanism identification section within the physics reasoning dimension.</p>
-<p>The capstone report grade is combined with the final oral exam score to produce the 32% component. The final oral exam carries more weight than the report — approximately 70/30. A strong oral exam can recover a weak report; a weak oral exam reveals the limits of a strong-looking report.</p>
-</section>
-<section id="the-final-oral-exam" class="level2">
-<h2 class="anchored" data-anchor-id="the-final-oral-exam">The Final Oral Exam</h2>
-<p>The final oral exam interrogates your capstone directly. See <a href="../course_details/oral_exams.html">Oral Exams</a> for the full structure. In brief:</p>
-<ul>
-<li>You open with a 2-minute unprompted summary of your system and findings</li>
-<li>The examiner probes your mechanism identification and modeling choices</li>
-<li>“What if” questions modify your system — a different material, a different operating condition, an additional mode</li>
-<li>You close by identifying what you are least confident in and what you would do differently</li>
-</ul>
-<p>The last part is not a trap. An engineer who can articulate the limitations of their own analysis is more valuable than one who presents false certainty. The capstone is a document you should be able to defend, critique, and extend.</p>
-</section>
-<section id="advice" class="level2">
-<h2 class="anchored" data-anchor-id="advice">Advice</h2>
-<p><strong>Start with the mechanisms, not the math.</strong> The most common capstone error is jumping to equations before establishing which physics dominates. Spend real time on mechanism identification before you write a single equation. Order-of-magnitude estimates of each mode’s contribution are more valuable at this stage than precise calculations.</p>
-<p><strong>Justify everything.</strong> Every assumption you make is a potential oral exam question. “I neglected radiation because…” should appear in your report before the examiner asks it.</p>
-<p><strong>Use your NotebookLM.</strong> You have been building a notebook for weeks. The capstone is exactly the kind of open-ended synthesis task it is designed to support. Query it for definitions, criteria, and material properties. You can bring it to the final oral exam.</p>
-<p><strong>The uncertainty estimate is real.</strong> You are working from a described system, not a controlled laboratory. Your inputs have uncertainty. Acknowledging that uncertainty — and reasoning about how it propagates through your analysis — is part of a professional engineering analysis, not a sign of weakness.</p>
+<p>Details coming soon.</p>
+<!--
+## Overview
+
+The capstone is the synthesis assessment for the course. It is released approximately Week 5 and due approximately Week 7, giving you two weeks to develop your analysis while you are still encountering new material. The capstone report and the final oral exam together are worth 32% of your course grade.
+
+The capstone is not a harder version of a technical report. It is a different kind of problem entirely.
+
+## What Makes the Capstone Different
+
+Every technical report in this course gives you a well-posed problem: a geometry, a set of boundary conditions, a quantity to find. The physics is already identified for you. Your job is to apply the appropriate method correctly and justify your reasoning.
+
+The capstone gives you a real system and a question. You decide which heat transfer mechanisms matter. You decide what to model and what to neglect. You decide how much complexity is warranted and how to check that your model is physically reasonable. There is no single correct answer — there are better and worse justified approaches.
+
+This is closer to what engineering analysis actually looks like.
+
+## The Prompt
+
+You will be given a real engineering system and asked something like:
+
+> *"You are an engineer asked to evaluate [system]. Characterize the dominant heat transfer mechanisms, develop an appropriate model, and provide quantitative estimates with uncertainty. Justify every assumption you make."*
+
+The specific system will be announced when the capstone is released. It will involve multiple heat transfer modes — conduction, convection, and radiation will all be potentially relevant, and part of your task is deciding which ones matter enough to model explicitly and which ones can be reasonably neglected.
+
+## Report Structure
+
+The capstone uses the same technical report structure as your earlier reports, with one addition:
+
+1. **Problem Statement & Assumptions** — restate the system, identify what you are trying to characterize, list and justify every assumption
+2. **Mechanism Identification** — which heat transfer modes are present? Which dominate? Why are others negligible? This section is new and central to the capstone.
+3. **Approach & Solution Method** — why this model? What did you consider and reject?
+4. **Solution** — equations numbered, units throughout
+5. **Results & Sanity Checks** — does your answer make sense? What is the uncertainty in your estimates?
+6. **Common Pitfall & Correction** — what did you initially get wrong or nearly get wrong in your modeling approach?
+7. **Reflection** — what would you do differently with more time or data? What are you least confident in?
+
+The mechanism identification section is where most capstone analyses succeed or fail. A strong analysis identifies the dominant modes with physical justification and makes a principled argument for why others are negligible. A weak analysis models everything without discrimination, or neglects something important without justification.
+
+## Grading
+
+The capstone report is graded on the same 8-point rubric as the technical reports (physics reasoning 4 points, reflection 2 points, presentation 2 points), with additional weight given to the mechanism identification section within the physics reasoning dimension.
+
+The capstone report grade is combined with the final oral exam score to produce the 32% component. The final oral exam carries more weight than the report — approximately 70/30. A strong oral exam can recover a weak report; a weak oral exam reveals the limits of a strong-looking report.
+
+## The Final Oral Exam
+
+The final oral exam interrogates your capstone directly. See [Oral Exams](oral_exams.qmd) for the full structure. In brief:
+
+- You open with a 2-minute unprompted summary of your system and findings
+- The examiner probes your mechanism identification and modeling choices
+- "What if" questions modify your system — a different material, a different operating condition, an additional mode
+- You close by identifying what you are least confident in and what you would do differently
+
+The last part is not a trap. An engineer who can articulate the limitations of their own analysis is more valuable than one who presents false certainty. The capstone is a document you should be able to defend, critique, and extend.
+
+## Advice
+
+**Start with the mechanisms, not the math.** The most common capstone error is jumping to equations before establishing which physics dominates. Spend real time on mechanism identification before you write a single equation. Order-of-magnitude estimates of each mode's contribution are more valuable at this stage than precise calculations.
+
+**Justify everything.** Every assumption you make is a potential oral exam question. "I neglected radiation because..." should appear in your report before the examiner asks it.
+
+**Use your NotebookLM.** You have been building a notebook for weeks. The capstone is exactly the kind of open-ended synthesis task it is designed to support. Query it for definitions, criteria, and material properties. You can bring it to the final oral exam.
+
+**The uncertainty estimate is real.** You are working from a described system, not a controlled laboratory. Your inputs have uncertainty. Acknowledging that uncertainty — and reasoning about how it propagates through your analysis — is part of a professional engineering analysis, not a sign of weakness.
+-->
 
 
 <!-- -->
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -791,68 +788,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Capstone Project {.unnumbered}</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Overview</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Details coming soon.</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>The capstone is the synthesis assessment for the course. It is released approximately Week 5 and due approximately Week 7, giving you two weeks to develop your analysis while you are still encountering new material. The capstone report and the final oral exam together are worth 32% of your course grade.</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>The capstone is not a harder version of a technical report. It is a different kind of problem entirely.</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## What Makes the Capstone Different</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>Every technical report in this course gives you a well-posed problem: a geometry, a set of boundary conditions, a quantity to find. The physics is already identified for you. Your job is to apply the appropriate method correctly and justify your reasoning.</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>The capstone gives you a real system and a question. You decide which heat transfer mechanisms matter. You decide what to model and what to neglect. You decide how much complexity is warranted and how to check that your model is physically reasonable. There is no single correct answer — there are better and worse justified approaches.</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>This is closer to what engineering analysis actually looks like.</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">## The Prompt</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>You will be given a real engineering system and asked something like:</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; *"You are an engineer asked to evaluate [system]. Characterize the dominant heat transfer mechanisms, develop an appropriate model, and provide quantitative estimates with uncertainty. Justify every assumption you make."*</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>The specific system will be announced when the capstone is released. It will involve multiple heat transfer modes — conduction, convection, and radiation will all be potentially relevant, and part of your task is deciding which ones matter enough to model explicitly and which ones can be reasonably neglected.</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="fu">## Report Structure</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>The capstone uses the same technical report structure as your earlier reports, with one addition:</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Problem Statement &amp; Assumptions** — restate the system, identify what you are trying to characterize, list and justify every assumption</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Mechanism Identification** — which heat transfer modes are present? Which dominate? Why are others negligible? This section is new and central to the capstone.</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Approach &amp; Solution Method** — why this model? What did you consider and reject?</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**Solution** — equations numbered, units throughout</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>**Results &amp; Sanity Checks** — does your answer make sense? What is the uncertainty in your estimates?</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>**Common Pitfall &amp; Correction** — what did you initially get wrong or nearly get wrong in your modeling approach?</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>**Reflection** — what would you do differently with more time or data? What are you least confident in?</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>The mechanism identification section is where most capstone analyses succeed or fail. A strong analysis identifies the dominant modes with physical justification and makes a principled argument for why others are negligible. A weak analysis models everything without discrimination, or neglects something important without justification.</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="fu">## Grading</span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>The capstone report is graded on the same 8-point rubric as the technical reports (physics reasoning 4 points, reflection 2 points, presentation 2 points), with additional weight given to the mechanism identification section within the physics reasoning dimension.</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>The capstone report grade is combined with the final oral exam score to produce the 32% component. The final oral exam carries more weight than the report — approximately 70/30. A strong oral exam can recover a weak report; a weak oral exam reveals the limits of a strong-looking report.</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="fu">## The Final Oral Exam</span></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>The final oral exam interrogates your capstone directly. See <span class="co">[</span><span class="ot">Oral Exams</span><span class="co">](oral_exams.qmd)</span> for the full structure. In brief:</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>You open with a 2-minute unprompted summary of your system and findings</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The examiner probes your mechanism identification and modeling choices</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"What if" questions modify your system — a different material, a different operating condition, an additional mode</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>You close by identifying what you are least confident in and what you would do differently</span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>The last part is not a trap. An engineer who can articulate the limitations of their own analysis is more valuable than one who presents false certainty. The capstone is a document you should be able to defend, critique, and extend.</span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="fu">## Advice</span></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>**Start with the mechanisms, not the math.** The most common capstone error is jumping to equations before establishing which physics dominates. Spend real time on mechanism identification before you write a single equation. Order-of-magnitude estimates of each mode's contribution are more valuable at this stage than precise calculations.</span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>**Justify everything.** Every assumption you make is a potential oral exam question. "I neglected radiation because..." should appear in your report before the examiner asks it.</span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>**Use your NotebookLM.** You have been building a notebook for weeks. The capstone is exactly the kind of open-ended synthesis task it is designed to support. Query it for definitions, criteria, and material properties. You can bring it to the final oral exam.</span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>**The uncertainty estimate is real.** You are working from a described system, not a controlled laboratory. Your inputs have uncertainty. Acknowledging that uncertainty — and reasoning about how it propagates through your analysis — is part of a professional engineering analysis, not a sign of weakness.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">## Overview</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">The capstone is the synthesis assessment for the course. It is released approximately Week 5 and due approximately Week 7, giving you two weeks to develop your analysis while you are still encountering new material. The capstone report and the final oral exam together are worth 32% of your course grade.</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">The capstone is not a harder version of a technical report. It is a different kind of problem entirely.</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">## What Makes the Capstone Different</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">Every technical report in this course gives you a well-posed problem: a geometry, a set of boundary conditions, a quantity to find. The physics is already identified for you. Your job is to apply the appropriate method correctly and justify your reasoning.</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">The capstone gives you a real system and a question. You decide which heat transfer mechanisms matter. You decide what to model and what to neglect. You decide how much complexity is warranted and how to check that your model is physically reasonable. There is no single correct answer — there are better and worse justified approaches.</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">This is closer to what engineering analysis actually looks like.</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">## The Prompt</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co">You will be given a real engineering system and asked something like:</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co">&gt; *"You are an engineer asked to evaluate [system]. Characterize the dominant heat transfer mechanisms, develop an appropriate model, and provide quantitative estimates with uncertainty. Justify every assumption you make."*</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co">The specific system will be announced when the capstone is released. It will involve multiple heat transfer modes — conduction, convection, and radiation will all be potentially relevant, and part of your task is deciding which ones matter enough to model explicitly and which ones can be reasonably neglected.</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co">## Report Structure</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co">The capstone uses the same technical report structure as your earlier reports, with one addition:</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co">1. **Problem Statement &amp; Assumptions** — restate the system, identify what you are trying to characterize, list and justify every assumption</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co">2. **Mechanism Identification** — which heat transfer modes are present? Which dominate? Why are others negligible? This section is new and central to the capstone.</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="co">3. **Approach &amp; Solution Method** — why this model? What did you consider and reject?</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="co">4. **Solution** — equations numbered, units throughout</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co">5. **Results &amp; Sanity Checks** — does your answer make sense? What is the uncertainty in your estimates?</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="co">6. **Common Pitfall &amp; Correction** — what did you initially get wrong or nearly get wrong in your modeling approach?</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co">7. **Reflection** — what would you do differently with more time or data? What are you least confident in?</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="co">The mechanism identification section is where most capstone analyses succeed or fail. A strong analysis identifies the dominant modes with physical justification and makes a principled argument for why others are negligible. A weak analysis models everything without discrimination, or neglects something important without justification.</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="co">## Grading</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="co">The capstone report is graded on the same 8-point rubric as the technical reports (physics reasoning 4 points, reflection 2 points, presentation 2 points), with additional weight given to the mechanism identification section within the physics reasoning dimension.</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="co">The capstone report grade is combined with the final oral exam score to produce the 32% component. The final oral exam carries more weight than the report — approximately 70/30. A strong oral exam can recover a weak report; a weak oral exam reveals the limits of a strong-looking report.</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="co">## The Final Oral Exam</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="co">The final oral exam interrogates your capstone directly. See [Oral Exams](oral_exams.qmd) for the full structure. In brief:</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="co">- You open with a 2-minute unprompted summary of your system and findings</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="co">- The examiner probes your mechanism identification and modeling choices</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="co">- "What if" questions modify your system — a different material, a different operating condition, an additional mode</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="co">- You close by identifying what you are least confident in and what you would do differently</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="co">The last part is not a trap. An engineer who can articulate the limitations of their own analysis is more valuable than one who presents false certainty. The capstone is a document you should be able to defend, critique, and extend.</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="co">## Advice</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="co">**Start with the mechanisms, not the math.** The most common capstone error is jumping to equations before establishing which physics dominates. Spend real time on mechanism identification before you write a single equation. Order-of-magnitude estimates of each mode's contribution are more valuable at this stage than precise calculations.</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="co">**Justify everything.** Every assumption you make is a potential oral exam question. "I neglected radiation because..." should appear in your report before the examiner asks it.</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="co">**Use your NotebookLM.** You have been building a notebook for weeks. The capstone is exactly the kind of open-ended synthesis task it is designed to support. Query it for definitions, criteria, and material properties. You can bring it to the final oral exam.</span></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="co">**The uncertainty estimate is real.** You are working from a described system, not a controlled laboratory. Your inputs have uncertainty. Acknowledging that uncertainty — and reasoning about how it propagates through your analysis — is part of a professional engineering analysis, not a sign of weakness.</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="co">--&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
