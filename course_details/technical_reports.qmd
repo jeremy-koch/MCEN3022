@@ -2,29 +2,33 @@
 
 ## Overview
 
-You will submit 5-6 technical reports over the course of the semester. These are full engineering analyses — not just solutions, but professional documents that justify every assumption, explain every modeling choice, and interrogate every result.
+Each week, one of the homework problems will be a technical report. With these we are not just looking for the correct answer, we are looking for an explanation of the logic.
 
-The reports are not graded primarily on polish. They are graded on the quality of your physical reasoning and your ability to catch and correct your own mistakes. A messy report that shows genuine reasoning scores higher than a clean report that could have been produced without understanding the problem.
 
-**Why?** Because the oral exam is where report quality truly gets assessed. You will be asked to walk through your reasoning, defend your choices, and answer follow-up questions drawn directly from what you wrote. A report you did not genuinely produce is a liability in the oral exam, not an asset.
+<!-- **Why?** Because the oral exam is where report quality truly gets assessed. You will be asked to walk through your reasoning, defend your choices, and answer follow-up questions drawn directly from what you wrote. A report you did not genuinely produce is a liability in the oral exam, not an asset. -->
 
 ## The Two-Stage Submission Process
 
-Each technical report has two submissions, both managed through Canvas.
+We will have a revision process for the technical reports, the idea being: you submit an initial draft where you work out the physics, and then get some hints with which you can check your work before submitting a final draft. After all, the point of homework is to learn the material! ...This approach encourages that attitude and avoids punishing initial misconceptions.
 
-### Stage 1: Initial Submission (Thursday, 11:59 PM)
+### Stage 1: Initial Submission (Friday, 6:00 AM)
 
-Submit a genuine attempt at the problem. This does not need to be polished — it needs to be honest. Legible work, units carried, an attempt at the key physics.
+Submit a genuine attempt at the problem alongside the [Tier 1 problems](tier1_problems.qmd). This does not need all the details of a technical report - if you don't fully rationalize your assumptions, that's fine. Don't forget those aspects for the final submission, but this first one is about checking your physics.
 
-**Grading:** Completion only. A genuine attempt earns full credit for this stage.
+**Grading:** Completion only. A genuine attempt earns full credit for this stage. Do not try to game this and submit incomplete work - you will have points deducted and will not be able to earnestly answer the reflection question in Stage 2.
 
-**What unlocks:** Submitting Stage 1 immediately unlocks the Stage 2 assignment, which includes milestone checkpoints for the problem. These checkpoints confirm whether your approach is correct and flag common errors. You do not need to wait until Sunday to access them — submit Stage 1 early in the week and you have the checkpoints immediately.
+As soon as you submit, a new assignment will open on Canvas. It's description will include some milestone checkpoints that you can use to confirm you have the right approach - e.g., "You should get a Reynolds Number of around 12000", "The outlet temperature is about 295 K", "Don't forget to use $w/2$ as the characteristic length".
 
-### Stage 2: Final Submission (Sunday, 11:59 PM)
+::: {.column-margin}
+As soon as you submit, the milestones will be revealed and the Stage 2 submission portal will open. This means you could submit your Stage 1 and Stage 2 reports on Tuesday, if you desire.
+:::
 
-A complete technical report following the structure below. This is what is graded on the full rubric.
 
-The reflection section (see below) asks you to describe specifically what you got wrong or nearly got wrong in your Stage 1 submission and how you caught and corrected it. This section requires a genuine Stage 1 attempt — it cannot be written without one.
+### Stage 2: Final Submission (Monday, 6:00 AM)
+
+Submit a complete technical report following the structure below, separate from the [Tier 1 problems](tier1_problems.qmd).
+
+**Grading:** Based on the full rubric described below. The reflection section asks you to describe specifically what you got wrong or nearly got wrong in your Stage 1 submission and how you caught and corrected it - this section requires a genuine Stage 1 attempt.
 
 ## Report Structure
 
@@ -43,7 +47,7 @@ Every technical report should follow this structure:
    Does your answer make sense? Check order of magnitude, limiting behavior, units. Compare to intuition or a simpler case. An answer that passes a sanity check earns more credit than the same answer without one.
 
 5. **Common Pitfall & Correction** (~¼ page)
-   *What assumption or approach did you initially get wrong or nearly get wrong? How did you detect the error — did units not work out, did a sanity check fail, did a limiting case give a nonsensical result? What did you do to correct it?*
+   What assumption or approach did you initially get wrong or nearly get wrong? How did you detect the error — did units not work out, did a sanity check fail, did a limiting case give a nonsensical result? What did you do to correct it?
 
    This section is one of the most important in the report. Every engineer makes wrong assumptions. The skill is catching them. A strong response to this section is better preparation for the oral exam than a perfect first attempt would have been.
 
@@ -82,13 +86,13 @@ Each final submission is graded on 8 points across three dimensions.
 
 **Total: 8 points per report**
 
-## What TAs Are Looking For
+<!-- ## What TAs Are Looking For
 
 When TAs read your report, they are asking one question above all others: *can I tell that this student understands why they did what they did?*
 
 A technically correct solution with no visible reasoning scores lower than a partially correct solution with clear physical reasoning. The oral exam is where correctness is verified — the report is where reasoning is demonstrated.
 
-TA feedback on draft submissions will focus on reasoning gaps, not on polish. If your reasoning is incomplete, you will be told specifically where and why.
+TA feedback on draft submissions will focus on reasoning gaps, not on polish. If your reasoning is incomplete, you will be told specifically where and why. -->
 
 ## Connection to Oral Exams
 

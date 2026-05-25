@@ -2,25 +2,24 @@
 
 ## Overview
 
-Tier 1 problems are practice. There are approximately 20 of them distributed across the course, covering the full range of course content. They vary in type — some are conceptual ("why is there a negative sign in Fourier's law?"), some are quantitative ("find the heat flux through this composite wall"), and some are analytical ("derive the fin efficiency for these boundary conditions").
+Tier 1 problems are practice and will make up the bulk of your homework. They vary in type — some are conceptual ("why is there a negative sign in Fourier's law?"), some are quantitative ("find the heat flux through this composite wall"), and some are analytical ("derive the fin efficiency for these boundary conditions").
 
-What they have in common: they do not require a full technical report. A clean solution with units, a clearly stated answer, and one sentence of physical interpretation is sufficient.
+They don't require a full technical report, but a neat solution with a clearly stated answer, with units, and probably a bit of narration ("Melting in about 30 minutes indeed seems realistic") is necessary.
+
 
 ## Why These Problems Exist
 
-Fluency requires repetition. You cannot reason well about transient conduction in a fin if you have never worked a conduction problem under time pressure. These problems build the background knowledge and physical intuition that make the oral exam feel natural rather than overwhelming.
+The best way to learn a topic is to struggle - you cannot read someone else's solution to learn a topic. (And ChatGPT, etc., fall into the category of "someone else".) You were not faced with uncertainty, you did not have to review your notes, you did not have to make choices about what path to take, you didn't have to be careful with the units, and you didn't have to check your work. In short, you have to do problems to learn the material.
 
-They are worth 10% of your grade and graded primarily on completion. That is not because they are unimportant — it is because the point is the doing, not the product. The oral exam is where the doing gets verified.
-
-> These problems are worth 10% and graded on completion. That is not where the value is. The value is that students who work them find the oral exam straightforward. Students who do not find it very uncomfortable. The math is designed to be obvious.
+These Tier 1 problems are opportunities to work through the material so that you can actually learn. They are worth 10% of your grade and graded primarily on completion. That is not because they are unimportant — it is because the point is the doing, not the product. 
 
 ## Submission Format
 
 Each Tier 1 problem follows the same two-stage process as the technical reports:
 
-**Stage 1 (Thursday, 11:59 PM):** Submit a genuine attempt. Legible work, units carried, answer stated. Completion earns full credit for this stage. Submitting Stage 1 unlocks the Stage 2 assignment, which includes milestone checkpoints.
+**Stage 1 (Friday, 6:00 AM):** Submit a genuine attempt. Legible work, units carried, answer stated. Completion probably earns full credit for this stage. Submitting Stage 1 unlocks the Stage 2 assignment, which includes milestone checkpoints.
 
-**Stage 2 (Sunday, 11:59 PM):** Submit a clean final version. This is lightly graded on completion and correctness — the goal is a document you could hand to a colleague and they could follow your work.
+**Stage 2 (Monday, 6:00 PM):** Submit a clean final version. This is lightly graded on correctness, and .
 
 ## What a Good Tier 1 Submission Looks Like
 
@@ -39,9 +38,3 @@ That last sentence is often the most valuable part. It is also the hardest to wr
 | Stage 2 (final) | Completion + light correctness | Clean solution, units, answer, physical interpretation |
 
 TAs will return these quickly. Feedback will be brief — a flag if something is physically wrong, otherwise a check.
-
-## A Note on AI
-
-You can use AI to generate a Tier 1 solution. The completion grade does not depend on how you produced it.
-
-What it does depend on: the oral exam. A student who worked the problems will find the oral exam's follow-up questions familiar. A student who did not will find them uncomfortable in proportion to how many problems they skipped. There is no penalty attached to this observation — it is simply how the course works.

@@ -2,17 +2,16 @@
 
 ## Overview
 
-There are two oral exams in this course: a midterm oral (~Week 4) and a final oral (~Week 7-8). Together with the capstone report, they account for 52% of your course grade.
-
-Oral exams are uncommon in undergraduate engineering programs. This page explains how they work, what is expected, and how to prepare.
+There are two oral exams in this course: a midterm oral (~Week 4) and a final oral (~Week 8). Oral exams are uncommon in undergraduate engineering programs. This page explains how they work, what is expected, and how to prepare.
 
 ## Why Oral Exams
 
-The short answer: they are the most direct window into understanding that exists in a course setting.
+The short answer: they are the most direct window into your actual understanding of the course content. A written solution can be produced without understanding the reasoning behind it, but a conversation cannot. When you are asked to explain why you made a modeling choice, what would change if a parameter shifted, or where your solution would break down — your answer comes from genuine understanding. There is no middle ground.
 
-A written solution can be produced without understanding the reasoning behind it. A conversation cannot. When you are asked to explain why you made a modeling choice, what would change if a parameter shifted, or where your solution would break down — the answer either comes from genuine understanding or it does not. There is no middle ground.
+Moreover, conversations like these are extremely authentic engineering experiences. You present a technical report in a team meeting and a colleague asks a question. You can't say "hold on, let me ask ChatGPT", you need to actually have ownership of your knowledge to have that human-to-human interaction.
 
-This is not about catching anyone out. It is about making the grade mean something. A student who earns a strong grade in this course has demonstrated, in real time, that they can reason about heat transfer. That is a credential worth having.
+This format is not about trying to make you nervous and make a mistake. Actually, you can make a mistake - staying in the discussion and recognizing your mistake is an extremely compelling demonstration of your wisdom.
+
 
 ## Format
 
@@ -20,11 +19,11 @@ Both oral exams follow the same three-part structure:
 
 ### Part 1: Anchor Question (~4-5 minutes)
 
-A conceptual question, the same for every student, released **one week before the exam**. You will know exactly what this question is before you sit down.
+A conceptual question, the same for every student, released early in the week of the exam. You will know exactly what this question is before you sit down.
 
 Example: *"Walk me through transient conduction in a semi-infinite solid — what is happening physically, what are the key parameters, and what does the solution tell you?"*
 
-The anchor question is released in advance to reduce anxiety and reward preparation, not to make the exam easy. A strong answer demonstrates organized conceptual understanding. A weak answer — even on a question you had a week to prepare — tells us something important.
+The anchor question is released in advance to reduce anxiety and reward preparation, not to make the exam easy. A strong answer demonstrates organized conceptual understanding. A weak answer — even on a question you had a week to prepare — tells me something important.
 
 ### Part 2: Report Defense (~5-7 minutes)
 
@@ -36,15 +35,15 @@ Expect questions like:
 - *"You assumed Y here. What would change if that assumption didn't hold?"*
 - *"Your pitfall section says you initially got the boundary condition wrong. How did you catch that?"*
 
-The report you defend will be drawn from your submitted work up to that point. For the midterm, this means reports submitted through approximately Week 3. You will not be told in advance which report will be discussed.
+The report you defend will be drawn from your submitted work up to that point. For the midterm, this means reports submitted through approximately Week 3, maybe 4. You will not be told in advance which report will be discussed, but obviously will know that the technical report questions are the foundation of this part of the exam.
 
 ### Part 3: Extension Question (~3-5 minutes)
 
 A "what if" question that modifies a parameter or removes an assumption from the problem you just discussed.
 
-Example: *"You found the steady-state temperature distribution assuming constant thermal conductivity. What would change if conductivity varied with temperature?"*
+Example: *"You found the steady-state temperature distribution assuming $k=95$ W/m·K. What would change if conductivity was actually 55? Would we need to provide more or less heat from the heater?"*
 
-This part of the exam cannot be prepared for by memorizing solutions. It can only be prepared for by understanding the physics well enough to reason about perturbations.
+This part of the exam cannot be prepared for by memorizing solutions. It can only be prepared for by understanding the physics well enough to 
 
 **Total time: approximately 12-17 minutes per student.**
 
@@ -80,13 +79,15 @@ The reflection is not graded. It is a commitment device — it filters for stude
 
 ## Final Oral Exam (~Week 7-8)
 
-**Weight:** Approximately 22% of course grade (70% of the combined 32% capstone + final oral weight)
+**Weight:** 25% of course grade
 
-The final oral is high-stakes. It interrogates your capstone report deeply and tests your ability to synthesize across the full course.
+Details will follow.
 
-### Structure
+<!-- The final oral is high-stakes. It interrogates your capstone report deeply and tests your ability to synthesize across the full course. -->
 
-| Time | Content |
+<!-- ### Structure -->
+
+<!-- | Time | Content |
 |---|---|
 | 0-3 min | Student gives a 2-minute unprompted summary of their capstone system and findings |
 | 3-10 min | Examiner probes mechanism identification and modeling choices from capstone |
@@ -95,17 +96,17 @@ The final oral is high-stakes. It interrogates your capstone report deeply and t
 
 The final oral differs from the midterm in one important way: the last four minutes are yours. You are asked to identify the weakest part of your own work. This is not a trap — an engineer who can articulate the limitations of their own analysis is more valuable than one who cannot.
 
-You may bring your NotebookLM notebook to the exam.
+You may bring your NotebookLM notebook to the exam. -->
 
 ## How to Prepare
 
-**The most effective preparation is doing the work throughout the course.** Students who engage genuinely with Tier 1 problems, write their own technical reports, and participate actively in peer discussions consistently find oral exams manageable. Students who do not find them very uncomfortable.
+**The most effective preparation is doing the work throughout the course.** Students who patiently go through the course videos and readings while taking good notes, engage genuinely with Tier 1 problems, write detailed technical reports, and participate actively in peer discussions consistently will find the oral exams very manageable. Students who do not find them uncomfortable.
 
 Beyond that:
 
 - **Practice explaining out loud.** Writing and speaking are different cognitive acts. Talk through your solutions to a roommate, a study group, or yourself.
 - **Know your reports.** You wrote them — you should be able to walk through any part of them without looking at the document.
-- **Prepare your anchor question seriously.** You have a week. A well-organized, physically motivated answer to the anchor question sets a strong tone for everything that follows.
+- **Prepare your anchor question seriously.** You have several days. A well-organized, physically motivated answer to the anchor question sets a strong tone for everything that follows.
 - **Build your NotebookLM.** Students who have rich, well-organized notebooks use them fluently in the exam. Students who built them poorly find them unhelpful under pressure.
 
 ## Logistics

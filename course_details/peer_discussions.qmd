@@ -2,9 +2,7 @@
 
 ## Overview
 
-You will participate in 5-6 recorded peer technical discussions over the course of the semester. Each session is conducted via Zoom in rotating groups of 4-6 students, lasts 30-60 minutes, and centers on a novel problem you work through together in real time.
-
-Peer discussions are worth 18% of your course grade — more than the technical reports. This reflects what they actually test: the ability to reason out loud, in real time, with other engineers, about a problem you have not seen before. That is one of the most authentic engineering skills this course can develop, and one of the hardest things to fake.
+You will participate in 5-6 recorded peer technical discussions over the course of the semester. Each session is conducted via Zoom in groups of 4-6 students, lasts 30-60 minutes, and centers on a novel problem you work through together in real time. Reasoning out loud about a problem you have not seen before is one of the most authentic engineering skills we will develop in this course.
 
 ## Why Peer Discussions
 
@@ -20,11 +18,11 @@ This is also excellent preparation for the oral exams. Students who participate 
 
 **Problem:** A novel problem released at the start of the session — one you have not seen before, but drawn from material already covered in the course
 
-**Recording:** Sessions are recorded via Zoom for assessment purposes. You are expected to state your name clearly at the start of the session to support accurate transcript labeling.
+**Recording:** Sessions are recorded via Zoom for assessment purposes. Make sure your name on Zoom is actually your name!
 
-**What you are expected to do:** Work through the problem together. Explain your reasoning, respond to others' ideas, ask probing questions, catch errors, and push the group toward a physically sound solution. You are not expected to arrive at a perfect answer — you are expected to reason well.
+**What you are expected to do:** Work through the problem together. Explain your reasoning, respond to others' ideas, ask probing questions, catch errors, and push the group toward a physically sound solution. Your answer will be imperfect, but I'm more interested in hearing your reasoning along the way.
 
-**Final 5 minutes:** In the last 5 minutes of each session, the group should converge on a collective answer to the core question: what is the dominant heat transfer mechanism, what model would you use, and what are your key assumptions? This verbal summary will be captured in the transcript and is factored into individual assessments. No separate submission is required.
+**Final 5 minutes:** In the last 5 minutes of each session, the group should converge on a collective answer to the core question. This verbal summary will be captured in the transcript and is factored into the assessment. No separate submission is required.
 
 ## How You Are Assessed
 

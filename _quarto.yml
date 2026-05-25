@@ -5,7 +5,7 @@ project:
 book:
   title: "MCEN3022: Heat Transfer"
   author: "Jeremy Koch"
-  date: "May 18, 2026"
+  date: "May 26, 2026"
   site-url: https://jeremy-koch.github.io/MCEN3022
   sidebar:
     logo: images/logo.png

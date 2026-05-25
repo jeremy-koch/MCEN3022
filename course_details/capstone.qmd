@@ -1,5 +1,8 @@
 # Capstone Project {.unnumbered}
 
+Details coming soon.
+
+<!--
 ## Overview
 
 The capstone is the synthesis assessment for the course. It is released approximately Week 5 and due approximately Week 7, giving you two weeks to develop your analysis while you are still encountering new material. The capstone report and the final oral exam together are worth 32% of your course grade.
@@ -62,3 +65,4 @@ The last part is not a trap. An engineer who can articulate the limitations of t
 **Use your NotebookLM.** You have been building a notebook for weeks. The capstone is exactly the kind of open-ended synthesis task it is designed to support. Query it for definitions, criteria, and material properties. You can bring it to the final oral exam.
 
 **The uncertainty estimate is real.** You are working from a described system, not a controlled laboratory. Your inputs have uncertainty. Acknowledging that uncertainty — and reasoning about how it propagates through your analysis — is part of a professional engineering analysis, not a sign of weakness.
+-->
