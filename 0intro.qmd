@@ -26,7 +26,7 @@ Look ahead
 ::: {.callout-tip}
 ## Video
 
-Start with this video. Then read this section... it will hopefully help you solidify and maybe extend your learning.
+Start with [this video link](https://canvas.colorado.edu/courses/136150/pages/three-modes-of-heat-transfer). Then read this section. By consuming the content in one medium, then reviewing in another, I hope it will solidify your learning!
 :::
 
 From thermodynamics, recall that the energy of a system is changed via heat transfer or work (on or by). The Laws of Thermodynamics say nothing about rates! Heat transfer is the study of the heat transfer [rate]{.underline}.

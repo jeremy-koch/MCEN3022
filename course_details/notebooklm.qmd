@@ -4,7 +4,7 @@
 
 NotebookLM is a free AI tool from Google that retrieves and synthesizes content from documents you upload. Unlike general AI tools like ChatGPT, it can only draw from sources you provide — it cannot generate answers from general knowledge. If the answer is not in your notes, NotebookLM cannot give it to you.
 
-You will use NotebookLM throughout this course to organize and query your lecture notes. The NotebookLM portfolio is worth X% of your course grade and is submitted at two checkpoints: Week 4 (formative feedback only) and Week 8 (graded).
+You will use NotebookLM throughout this course to organize and query your lecture notes. The NotebookLM portfolio is worth 10% of your course grade and is submitted at two checkpoints: Week 4 (formative feedback only) and Week 8 (graded).
 
 ## Why NotebookLM
 

@@ -24,7 +24,7 @@ Look Ahead
 ::: {.callout-tip}
 ## Video
 
-Start with this video, which covers Fourier's Law and the Conduction Equation. Then read the associated sections.
+Start with [this video link](https://canvas.colorado.edu/courses/136150/pages/the-conduction-equation), which covers Fourier's Law and the Conduction Equation. Then read the associated sections.
 :::
 
 We have an [empirical law]{.underline} that describes heat conduction known as Fourier's Law. Stated mathematically:
@@ -278,7 +278,7 @@ We just described two linear profiles, $T_1(x)$ and $T_2(x)$. Combined, they are
 ::: {.callout-tip}
 ## Video
 
-Start with this video, which covers the thermal resistance model.
+Start with [this video link](https://canvas.colorado.edu/courses/136150/pages/thermal-resistance), which covers the thermal resistance model.
 :::
 
 

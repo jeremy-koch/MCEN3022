@@ -1,12 +1,12 @@
 # Assessment Overview & Philosophy {.unnumbered}
 
-## Why This Course Is Designed the Way It Is
+## Motivation for this course design
 
-What do engineers actually do? They write technical documents, present their reasoning to colleagues, defend design choices under questioning, and collaborate to solve problems. These are skills — this course is organized around practicing these skills.
+What do engineers actually do? They write technical documents, present their reasoning to colleagues, defend design choices under questioning, and collaborate to solve problems. These are skills, and this course is organized around practicing these skills.
 
 - You will create technical reports that explain your reasoning.
-- You will discuss engineering problems with colleagues.
-- You will defend your analyses and activel think and respond to follow-up questions.
+- You will discuss engineering problems with colleagues in the peer discussions.
+- You will defend your analyses and actively think and respond to follow-up questions in the oral exams.
 
 ## Grade Breakdown
 
@@ -20,7 +20,7 @@ What do engineers actually do? They write technical documents, present their rea
 | [Capstone report](capstone.qmd) | 5% |
 | [Final oral exam](oral_exams.qmd) | 25% |
 
-**NotebookLM** is a modern tool for organizing and recalling your notes. It rewards good note taking and let's you access your "external brain" with context-filled prompts.
+**NotebookLM** is a modern tool for organizing and recalling your notes. It rewards good note taking and let's you access your "external brain" via context-filled prompts.
 
 **Tier 1 problems** build intuition and basic ability with the tools of heat transfer. These won't require the full detail of a technical report but will get you practice with the content.
 
@@ -28,4 +28,4 @@ What do engineers actually do? They write technical documents, present their rea
 
 **Peer discussions** exist because engineering happens in teams. Explaining your reasoning and assessing your colleagues' reasoning are extremely important skills.
 
-**Oral exams** are the most direct way to demonstrate understanding - they are not memorization, they require actual understanding. They are also, for most students, more interesting than a written exam, and indeed are probably more practically relevant than a written exam!
+**Oral exams** are the most direct way to demonstrate understanding. They are also, for most students, more interesting than a written exam, and indeed are probably more practically relevant than a written exam!
