@@ -159,7 +159,6 @@ Note that the heat generation term can be a function of location and/or time. In
 
 ### A couple quick examples
 
-... We'll do more in the next section
 
 ::: {#exm-conduction1}
 #### Steady flow, constant conductivity, no heat generation, 1D Cartesian.
@@ -555,3 +554,7 @@ $$
 ### Applying these equations
 
 We can have composite cylinders/spheres: concentric rings of different materials and different thicknesses. We can add convection on the interior and exterior (remembering that the surface area of a cylinder is $A_\text{surf}=2\pi R L$ and of a sphere is $A_\text{surf}=4\pi R^2$). We can write resistors in series, and if we know the interior and exterior temperatures, we can determine the total amount of heat transfer out of these configurations. Nice.
+
+## Homework
+
+Links added soon!

@@ -2,12 +2,12 @@
 
 ## Overview
 
-Tier 1 problems will get you some practice with the tools of heat transfer analysis and will make up the bulk of your homework. They vary in type — some are conceptual ("why is there a negative sign in Fourier's law?"), some are quantitative ("find the heat flux through this composite wall"), and some are analytical ("derive an expression for the maximum temperature"). They don't require a full technical report, but a neat solution with a clearly stated answer and with a bit of narration ("the conduction equation:", "melting in about 30 minutes indeed seems realistic") is necessary.
+Tier 1 problems will get you some practice with the tools of heat transfer analysis and will make up the bulk of your homework. They vary in type -- some are conceptual ("why is there a negative sign in Fourier's law?"), some are quantitative ("find the heat flux through this composite wall"), and some are analytical ("derive an expression for the maximum temperature"). They don't require a full technical report, but a neat solution with a clearly stated answer and with a bit of narration ("the conduction equation is...", "melting in about 30 minutes indeed seems realistic") is necessary.
 
 
 ## Why These Problems Exist
 
-The best way to learn a topic is to struggle. You cannot read someone else's solution to learn a topic. (And ChatGPT, etc., fall into the category of "someone else".) When reading a solution, you are not faced with uncertainty, you don't have to think about how the information fits together, you do not have to make choices about what path to take, you don't have to be careful with the units, and you don't have to verify the reasonableness of your answer - it's all done for you. You have to do problems yourself to learn the material! Let yourself be confused, that is how to grow! These Tier 1 problems are opportunities to do that.
+The best way to learn a topic is to struggle. You cannot read someone else's solution to learn a topic. (And LLMs like ChatGPT, fall into the category of "someone else".) When reading a solution, you are not faced with uncertainty, you don't have to think about how the information fits together, you do not have to make choices about what path to take, you don't have to be careful with the units, and you don't have to verify the reasonableness of your answer -- it's all done for you. You have to do problems yourself to learn the material! Let yourself be confused, that is how to grow! These Tier 1 problems are opportunities to do that.
 
 ## Submission Format
 
@@ -15,17 +15,17 @@ Each Tier 1 problem follows the same two-stage process as the technical reports:
 
 **Stage 1 (Friday, 6:00 AM):** Submit a genuine attempt. Legible work, units carried, answer stated. Completion probably earns full credit for this stage. Submitting Stage 1 unlocks the Stage 2 assignment, which includes milestone checkpoints.
 
-**Stage 2 (Monday, 6:00 AM):** Submit a clean final version. This is lightly graded on correctness, including mathematical analysis, stated assumptions, answers with units etc.
+**Stage 2 (Monday, 6:00 AM):** Submit a clean final version. This is lightly graded on correctness, including mathematical analysis, stated assumptions, answers with units, etc.
 
 ## What a Good Tier 1 Submission Looks Like
 
 - Work is legible and organized
-- Units appropriately used: $k=150$ W/m·K (not just 150)
+- Units appropriately used: $k=150$ W/m·K (not just $k=150$)
 - Answer is clearly stated
-- One sentence explains the physical meaning of the result: not just "Q = 245 W" but "Q = 245 W, which is consistent with the expected direction of heat flow from hot to cold"
+- One sentence explains the physical meaning of the result: not just "$Q = 245$ W" but "$Q = 245$ W, and the positive sign confirms that the heat is flowing out of the object"
 
-That last sentence is often the most valuable part. It is also the hardest to write without understanding the problem — which is precisely the point.
-
+That last sentence is often the most valuable part -- in this world with omnipresent AI, being able confidently state your answer and justify is becoming increasingly valuable.
+<!-- 
 ## Grading
 
 | Stage | Weight | Basis |
@@ -33,4 +33,4 @@ That last sentence is often the most valuable part. It is also the hardest to wr
 | Stage 1 (initial) | Completion | Genuine attempt submitted on time |
 | Stage 2 (final) | Completion + light correctness | Clean solution, units, answer, physical interpretation |
 
-TAs will return these quickly. Feedback will be brief — a flag if something is physically wrong, otherwise a check.
+TAs will return these quickly. Feedback will be brief -- a flag if something is physically wrong, otherwise a check. -->

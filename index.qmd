@@ -2,29 +2,27 @@
 
 Welcome to MCEN 3022: Heat Transfer — taught in Summer 2026 by Professor Jeremy Koch at the University of Colorado Boulder.
 
-## What you'll be able to do
+## Heat transfer is one of the most practically useful courses in mechanical engineering
 
-Heat transfer is one of the most practically useful courses in mechanical engineering. By the end of this semester, you'll be able to work through problems like:
+By the end of this semester, you'll be able to work through problems like:
 
 - *A GPU produces 800 W of waste heat and needs to stay below 80°C. If we air-cool it, how fast must the fan spin? If we water-cool it, how high must the flow rate be?*
-- *The Trans-Alaska Pipeline carries crude oil at 65°C across 800 miles of arctic tundra. The oil must stay warm enough to flow, but the heat leaking into the permafrost would cause it to thaw and destabilize the supports. How do you design the insulation to satisfy both constraints?*
+- *The Trans-Alaska Pipeline carries crude oil across 800 miles of arctic tundra. We must heat the oil to keep the viscosity low, thus reducing the pumping costs, but that extra heat might melt the permafrost, which could destabilize to pipeline supports. How should we design the insulation?*
 - *A satellite has no atmosphere to convect heat away. How do we keep the electronics from cooking?*
 
-These are not toy problems — they are the kind of analyses that show up in real engineering work, and you will be equipped to do them.
+These are the kind of analyses that show up in real engineering work. After taking this class, you will be equipped to do them.
 
-## This page is your home base
+## This page is the course "hub"
 
-**Use this website as your primary course resource.** Each chapter contains the lecture notes, derivations, interactive examples, and links to the associated videos — all in one place. The left sidebar lists everything by week; start there.
-
-[Canvas](https://canvas.colorado.edu/courses/136150) exists for submitting work and checking your grades, and technically it hosts the videos (though they are linked from here).
+**Use this website as your primary course resource.** Each chapter (Intro, Week 1, Week 2, etc. in the left toolbar) contains the lecture notes, derivations, interactive examples, and links to the associated videos. We will use [Canvas](https://canvas.colorado.edu/courses/136150) for submitting work and checking your grades, but the course content lives on this page.
 
 ## What makes this course distinctive
 
-**It's compressed.** Eight weeks covering a full semester of material. The format is designed to make that manageable: videos are tightly edited (no long pauses or repeated explanations), derivations live on this website so you can read at your own pace, and each piece of coursework feeds directly into the next.
+**It's compressed.** Eight weeks to cover a full semester of material. The course structure is designed to make that manageable: videos are tightly edited (no long pauses or repeated explanations), derivations live on this website so you can read at your own pace, and the aspects of the course feed-into each other.
 
-**It's asynchronous.** You consume the content on your own schedule, though there are weekly deadlines. This requires self-discipline — the flip side is that you control your own time.
+**It's asynchronous.** You consume the content on your own schedule, though there are weekly deadlines. This requires self-discipline, but the flip side is that you control your own time.
 
-**The exams are oral.** Rather than a written final, you'll have two oral exams: a midterm calibration point and a final capstone defense. These are conversations about engineering design — you will not be asked to grind through algebra under pressure. Students who have done the work consistently find these conversations genuinely enjoyable.
+**The exams are oral.** Rather than pencil-and-paper exams, you'll have two oral exams: a midterm and a final. These are conversations about engineering design — you will not be asked to grind through algebra under pressure. Students who have done the work consistently might find these conversations genuinely enjoyable.
 
 **You'll talk through problems with peers.** Small-group Zoom sessions where you and a few colleagues work through a problem together (over about 30 minutes). These are some of the most authentic engineering experiences you will have during your engineering education.
 
@@ -44,5 +42,5 @@ Each component sets you up for the next. See [Assessment Overview & Philosophy](
 ## Getting started
 
 1. Read through [Course Details](course_details/assessment_overview.qmd) to understand the structure
-2. Start with [Week 0: Introduction](0intro.qmd) for context before diving into the content
+2. Start with [Week 0: Introduction](0intro.qmd), then [Week 1: The Conduction Equation](1conduction.qmd)
 3. Return here each week — the chapter pages are where the videos are linked

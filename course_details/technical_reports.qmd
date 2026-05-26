@@ -2,7 +2,7 @@
 
 ## Overview
 
-Each week, one of the homework problems will be a technical report. With these we are not just looking for the correct answer, we are looking for an explanation of the logic.
+Each week, one of the homework problems will be a technical report. With these we are not just looking for the correct answer, we are looking for clear organization and an explanation of the logic.
 
 
 <!-- **Why?** Because the oral exam is where report quality truly gets assessed. You will be asked to walk through your reasoning, defend your choices, and answer follow-up questions drawn directly from what you wrote. A report you did not genuinely produce is a liability in the oral exam, not an asset. -->
@@ -13,11 +13,11 @@ We will have a revision process for the technical reports, the idea being: you s
 
 ### Stage 1: Initial Submission (Friday, 6:00 AM)
 
-Submit a genuine attempt at the problem alongside the [Tier 1 problems](tier1_problems.qmd). This does not need all the details of a technical report - if you don't fully rationalize your assumptions, that's fine. Don't forget those aspects for the final submission, but this first one is about checking your physics.
+Submit a genuine attempt at the problem alongside the [Tier 1 problems](tier1_problems.qmd). This does not need all the details of a technical report -- if you don't fully rationalize your assumptions, that's fine. Don't forget those aspects for the final submission, but this first one is about checking your physics.
 
-**Grading:** Completion only. A genuine attempt earns full credit for this stage. Do not try to game this and submit incomplete work - you will have points deducted and will not be able to earnestly answer the reflection question in Stage 2.
+**Grading:** Basically on completion. A genuine attempt earns full credit for this stage. Do not try to game this and submit incomplete work -- you will have points deducted and will not be able to earnestly answer the reflection question in Stage 2.
 
-As soon as you submit, a new assignment will open on Canvas. It's description will include some milestone checkpoints that you can use to confirm you have the right approach - e.g., "You should get a Reynolds Number of around 12000", "The outlet temperature is about 295 K", "Don't forget to use $w/2$ as the characteristic length".
+As soon as you submit, a new assignment will open on Canvas. It's description will include some milestone checkpoints that you can use to confirm you have the right approach - e.g., "You should get a Reynolds Number of around 12000", "The outlet temperature is about 295 K", "Don't forget to use $w/2$ as the characteristic length". If you have any questions, we can also schedule a 1-on-1 meeting.
 
 ::: {.column-margin}
 As soon as you submit, the milestones will be revealed and the Stage 2 submission portal will open. This means you could submit your Stage 1 and Stage 2 reports on Tuesday, if you desire.
@@ -26,32 +26,29 @@ As soon as you submit, the milestones will be revealed and the Stage 2 submissio
 
 ### Stage 2: Final Submission (Monday, 6:00 AM)
 
-Submit a complete technical report following the structure below, separate from the [Tier 1 problems](tier1_problems.qmd).
+Submit a complete technical report following the structure below. This submission will be separate from the Tier 1 problems.
 
-**Grading:** Based on the full rubric described below. The reflection section asks you to describe specifically what you got wrong or nearly got wrong in your Stage 1 submission and how you caught and corrected it - this section requires a genuine Stage 1 attempt.
+**Grading:** Based on the full rubric described below. The reflection section asks you to describe specifically what you got wrong or nearly got wrong in your Stage 1 submission and how you caught and corrected it -- this section requires a genuine Stage 1 attempt.
 
 ## Report Structure
 
 Every technical report should follow this structure:
 
-1. **Problem Statement & Assumptions** (~½ page)
-   Restate the problem in your own words. List and justify every assumption. "Steady state" is not a justification — "steady state because the problem specifies constant boundary conditions and we are not asked about transient behavior" is.
+1. **Problem Setup & Modeling Choices** (~½–1 page)
+   Restate the problem in your own words, then state and justify your modeling assumptions. Each assumption needs a physical reason, not just a label --  "$\dot{q}=0$" is not justification, but "this plastic will not generate heat, so $\dot{q}=0$" is. The goal is to make your model's scope explicit.
 
-2. **Approach & Solution Method** (~½–1 page)
-   Why this method? Explain the physical reasoning behind your modeling choices. What did you consider and reject? Why does this approach capture the important physics?
+2. **Solution**
+   Equations numbered and referenced in text. All numbers have units (not just the solution). Some narration: "Using the resistor model...". 
 
-3. **Solution**
-   Equations numbered and referenced in text. Units carried throughout every line. No orphaned equations.
+3. **Results & Sanity Checks** (~½ page)
+   Does your answer make sense? Check order of magnitude, limiting behavior, units. Compare to intuition or a simpler case. 
 
-4. **Results & Sanity Checks** (~½ page)
-   Does your answer make sense? Check order of magnitude, limiting behavior, units. Compare to intuition or a simpler case. An answer that passes a sanity check earns more credit than the same answer without one.
-
-5. **Common Pitfall & Correction** (~¼ page)
-   What assumption or approach did you initially get wrong or nearly get wrong? How did you detect the error — did units not work out, did a sanity check fail, did a limiting case give a nonsensical result? What did you do to correct it?
+4. **Common Pitfall & Correction** (~¼ page)
+   What assumption or approach did you initially get wrong or nearly get wrong? How did you detect the error -- did units not work out, did a sanity check fail, did a limiting case give a nonsensical result? What did you do to correct it?
 
    This section is one of the most important in the report. Every engineer makes wrong assumptions. The skill is catching them. A strong response to this section is better preparation for the oral exam than a perfect first attempt would have been.
 
-6. **Reflection** (~¼ page)
+5. **Reflection** (~¼ page)
    What was the hardest part of this problem? What connects to real engineering systems or other course material? What would you want to know more about?
 
 ## Grading Rubric
@@ -62,11 +59,11 @@ Each final submission is graded on 8 points across three dimensions.
 
 | Score | Description |
 |---|---|
-| 4 | Physical reasoning complete and followable throughout. All assumptions stated and justified. Sanity check attempted with genuine physical interpretation. Units carried throughout. |
-| 3 | Reasoning mostly present. Minor gaps — one assumption unjustified, sanity check cursory, or isolated unit lapse. |
+| 4 | Physical reasoning complete and followable throughout. All assumptions stated and justified. Sanity check attempted with genuine physical interpretation. Numbers have units throughout. |
+| 3 | Reasoning mostly present. Minor gaps: one assumption unjustified, sanity check is superficial, or isolated unit lapse. |
 | 2 | Reasoning partially present. Significant gap: major assumption unjustified, sanity check missing, or solution presented without connecting physical logic. |
 | 1 | Minimal reasoning. Solution may be correct but student cannot be credited with understanding why. |
-| 0 | No physical reasoning visible. Could have been copied without understanding. |
+| 0 | No physical reasoning visible. |
 
 ### Common Pitfall & Correction (2 points)
 
@@ -81,7 +78,7 @@ Each final submission is graded on 8 points across three dimensions.
 | Score | Description |
 |---|---|
 | 2 | Report follows required structure. Equations numbered and referenced in text. Writing is clear and followable throughout. |
-| 1 | Mostly organized but with missing elements — unreferenced equations, unclear section, or writing that impedes understanding in places. |
+| 1 | Mostly organized but with missing elements -- unreferenced equations, unclear section, or writing that impedes understanding in places. |
 | 0 | Missing sections, or writing that consistently impedes understanding. |
 
 **Total: 8 points per report**
@@ -90,7 +87,7 @@ Each final submission is graded on 8 points across three dimensions.
 
 When TAs read your report, they are asking one question above all others: *can I tell that this student understands why they did what they did?*
 
-A technically correct solution with no visible reasoning scores lower than a partially correct solution with clear physical reasoning. The oral exam is where correctness is verified — the report is where reasoning is demonstrated.
+A technically correct solution with no visible reasoning scores lower than a partially correct solution with clear physical reasoning. The oral exam is where correctness is verified -- the report is where reasoning is demonstrated.
 
 TA feedback on draft submissions will focus on reasoning gaps, not on polish. If your reasoning is incomplete, you will be told specifically where and why. -->
 
@@ -98,9 +95,9 @@ TA feedback on draft submissions will focus on reasoning gaps, not on polish. If
 
 Your submitted reports become the text interrogated in the oral exams. Expect questions like:
 
-- "You wrote X on page 2 — walk me through that reasoning."
-- "You assumed Y here — what would change if that assumption didn't hold?"
-- "Your sanity check gave Z — is that what you expected, and why?"
-- "You said in your pitfall section that you initially got the boundary condition wrong — how did you catch that?"
+- "You wrote X on page 2 -- walk me through that reasoning."
+- "You assumed Y here -- what would change if that assumption didn't hold?"
+- "Your sanity check gave Z -- is that what you expected, and why?"
+- "You said in your pitfall section that you initially got the boundary condition wrong -- how did you catch that?"
 
-The best preparation for these questions is writing the report yourself.
+The best preparation for these exam questions is be patient and thoughtful as you write your technical reports.

@@ -6,9 +6,9 @@ There are two oral exams in this course: a midterm oral (~Week 4) and a final or
 
 ## Why Oral Exams
 
-The short answer: they are the most direct window into your actual understanding of the course content. A written solution can be produced without understanding the reasoning behind it, but a conversation cannot. When you are asked to explain why you made a modeling choice, what would change if a parameter shifted, or where your solution would break down — your answer comes from genuine understanding. There is no middle ground.
+The short answer: they are the most direct window into your actual understanding of the course content. A written solution can be produced without understanding the reasoning behind it, but a conversation cannot. When you are asked to explain why you made a modeling choice, what would change if a parameter shifted, or where your solution would break down -- your answer comes from genuine understanding. There is no middle ground.
 
-Moreover, conversations like these are extremely authentic engineering experiences. You present a technical report in a team meeting and a colleague asks a question. You can't say "hold on, let me ask ChatGPT", you need to actually have ownership of your knowledge to have that human-to-human interaction.
+Moreover, conversations like these are extremely authentic engineering experiences. You present a technical report in a team meeting and a colleague asks a question. You can't say "hold on, let me ask ChatGPT and then figure out which part of its response is relevant", you need to actually have ownership of your knowledge to have that human-to-human interaction.
 
 This format is not about trying to make you nervous and make a mistake. Actually, you can make a mistake - staying in the discussion and recognizing your mistake is an extremely compelling demonstration of your wisdom.
 
@@ -21,9 +21,9 @@ Both oral exams follow the same three-part structure:
 
 A conceptual question, the same for every student, released early in the week of the exam. You will know exactly what this question is before you sit down.
 
-Example: *"Walk me through transient conduction in a semi-infinite solid — what is happening physically, what are the key parameters, and what does the solution tell you?"*
+Example: *"Walk me through transient conduction in a semi-infinite solid -- what is happening physically, what are the key parameters, and what does the solution tell you?"*
 
-The anchor question is released in advance to reduce anxiety and reward preparation, not to make the exam easy. A strong answer demonstrates organized conceptual understanding. A weak answer — even on a question you had a week to prepare — tells me something important.
+The anchor question is released in advance to reduce anxiety and reward preparation, not to make the exam easy. A strong answer demonstrates organized conceptual understanding. A weak answer -- even on a question you had a week to prepare -- tells me something important.
 
 ### Part 2: Report Defense (~5-7 minutes)
 
@@ -31,7 +31,7 @@ The examiner will draw from one of your submitted technical reports. You will be
 
 Expect questions like:
 
-- *"You wrote X on page 2 — walk me through that reasoning."*
+- *"You wrote X on page 2 -- walk me through that reasoning."*
 - *"You assumed Y here. What would change if that assumption didn't hold?"*
 - *"Your pitfall section says you initially got the boundary condition wrong. How did you catch that?"*
 
@@ -51,7 +51,7 @@ This part of the exam cannot be prepared for by memorizing solutions. It can onl
 
 **Weight:** 15% of course grade
 
-The midterm oral is primarily formative — it is a calibration point that tells you where you stand while there is still time to improve. A weak midterm performance is recoverable.
+The midterm oral is primarily formative -- it is a calibration point that tells you where you stand while there is still time to improve. A weak midterm performance is recoverable.
 
 You may bring your NotebookLM notebook to the exam.
 
@@ -61,13 +61,13 @@ A retake of the midterm oral is available to any student who wants one.
 
 **How it works:**
 
-- The retake score replaces the original score — for better or worse. If you do better, your grade improves. If you do worse, your grade drops. This is intentional: the retake is for students who are genuinely better prepared, not for students who are hoping for an easier question.
+- The retake score replaces the original score -- for better or worse. If you do better, your grade improves. If you do worse, your grade drops. This is intentional: the retake is for students who are genuinely better prepared, not for students who are hoping for an easier question.
 - The retake uses a different anchor question and draws from a wider report pool. It is designed to be comparable in difficulty, not easier.
 - To schedule a retake, you must first submit a short written reflection (see below).
 
 **Retake reflection (required to schedule):**
 
-Submit a paragraph — 3-5 sentences — addressing the following:
+Submit a paragraph -- 3-5 sentences -- addressing the following:
 
 1. What specific concept or question in the exam did you struggle with, and why?
 2. What have you done since the exam to address that gap?
@@ -75,7 +75,7 @@ Submit a paragraph — 3-5 sentences — addressing the following:
 
 Vague reflections ("I didn't study enough") will be returned without scheduling a retake. Specific reflections ("I couldn't explain why the Biot number assumption broke down in the composite wall problem, so I reworked problems 2 and 4 from the Tier 1 set") will be scheduled promptly.
 
-The reflection is not graded. It is a commitment device — it filters for students who have actually done additional preparation, and it gives the examiner useful information going into the retake.
+The reflection is not graded. It is a commitment device -- it filters for students who have actually done additional preparation, and it gives the examiner useful information going into the retake.
 
 ## Final Oral Exam (~Week 7-8)
 
@@ -91,10 +91,10 @@ Details will follow.
 |---|---|
 | 0-3 min | Student gives a 2-minute unprompted summary of their capstone system and findings |
 | 3-10 min | Examiner probes mechanism identification and modeling choices from capstone |
-| 10-16 min | "What if" questions — change a parameter, remove an assumption, add a mode |
-| 16-20 min | Student reflection — what would you do differently, what are you least confident in |
+| 10-16 min | "What if" questions -- change a parameter, remove an assumption, add a mode |
+| 16-20 min | Student reflection -- what would you do differently, what are you least confident in |
 
-The final oral differs from the midterm in one important way: the last four minutes are yours. You are asked to identify the weakest part of your own work. This is not a trap — an engineer who can articulate the limitations of their own analysis is more valuable than one who cannot.
+The final oral differs from the midterm in one important way: the last four minutes are yours. You are asked to identify the weakest part of your own work. This is not a trap -- an engineer who can articulate the limitations of their own analysis is more valuable than one who cannot.
 
 You may bring your NotebookLM notebook to the exam. -->
 
@@ -105,12 +105,12 @@ You may bring your NotebookLM notebook to the exam. -->
 Beyond that:
 
 - **Practice explaining out loud.** Writing and speaking are different cognitive acts. Talk through your solutions to a roommate, a study group, or yourself.
-- **Know your reports.** You wrote them — you should be able to walk through any part of them without looking at the document.
+- **Know your reports.** You wrote them -- you should be able to walk through any part of them without looking at the document.
 - **Prepare your anchor question seriously.** You have several days. A well-organized, physically motivated answer to the anchor question sets a strong tone for everything that follows.
 - **Build your NotebookLM.** Students who have rich, well-organized notebooks use them fluently in the exam. Students who built them poorly find them unhelpful under pressure.
 
 ## Logistics
 
-Exams are conducted by the instructor and TAs via Zoom. Scheduling windows will be posted in Canvas approximately two weeks before each exam period. Sign up early — late slots fill last and create unnecessary deadline pressure.
+Exams are conducted by the instructor and TAs via Zoom. Scheduling windows will be posted in Canvas approximately two weeks before each exam period. Sign up early -- late slots fill last and create unnecessary deadline pressure.
 
 Each exam is approximately 12-17 minutes. Plan for 20 minutes including brief setup and transition time.

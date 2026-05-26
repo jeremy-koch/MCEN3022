@@ -1,4 +1,4 @@
-# Intro {.unnumbered}
+# Week 0: Introduction {.unnumbered}
 
 Let's get started! This is part of your Week 1 content. We will introduce the three modes of heat transfer and introduce some vocabulary that will be used throughout the course.
 
@@ -15,10 +15,6 @@ Look ahead
 1. What are the different ways that heat can be transferred?
 2. What are the meanings of thermal conductivity $k$ and the convective heat transfer coefficient $h$? What are their units?
 3. How does the Sun heat up the Earth through the vacuum of space?
-
-
-
-
 
 
 ## The Three Modes of Heat Transfer

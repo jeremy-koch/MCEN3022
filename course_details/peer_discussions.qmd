@@ -2,7 +2,7 @@
 
 ## Overview
 
-You will participate in 5-6 recorded peer technical discussions over the course of the semester. Each session is conducted via Zoom in groups of 4-6 students, lasts 30-60 minutes, and centers on a novel problem you work through together in real time. Reasoning out loud about a problem you have not seen before is one of the most authentic engineering skills we will develop in this course.
+You will participate in 5-6 recorded peer technical discussions over the course of the semester. Each session is conducted via Zoom in groups of 4-6 students, lasts approximately 30-60 minutes (no time constraints), and centers on a novel problem you work through together in real time. Reasoning out loud about a problem you have not seen before is one of the most authentic engineering skills we will develop in this course.
 
 ## Why Peer Discussions
 
@@ -26,9 +26,11 @@ This is also excellent preparation for the oral exams. Students who participate 
 
 ## How You Are Assessed
 
-After each session, an AI language model analyzes the discussion transcript and generates an individual assessment report for each student. You receive your report within 24-48 hours of the session.
+Details added soon.
 
-### The Rubric (1-4 scale)
+<!-- After each session, an AI language model analyzes the discussion transcript and generates an individual assessment report for each student. You receive your report within 24-48 hours of the session. -->
+
+<!-- ### The Rubric (1-4 scale)
 
 | Score | Label | Description |
 |---|---|---|
@@ -79,4 +81,4 @@ Participation in the research component is optional and separate from participat
 
 You will receive more information about the research study and the consent process in Week 1.
 
-Whether or not you participate in the research, the assessment process is identical.
+Whether or not you participate in the research, the assessment process is identical. -->

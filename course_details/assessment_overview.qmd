@@ -1,10 +1,8 @@
 # Assessment Overview & Philosophy {.unnumbered}
 
-## Motivation for this course design
-
 What do engineers actually do? They write technical documents, present their reasoning to colleagues, defend design choices under questioning, and collaborate to solve problems. These are skills, and this course is organized around practicing these skills.
 
-- You will create technical reports that explain your reasoning.
+- You will create technical reports that go through engineering analyses in detail, explain your reasoning and rationalizing your results.
 - You will discuss engineering problems with colleagues in the peer discussions.
 - You will defend your analyses and actively think and respond to follow-up questions in the oral exams.
 
