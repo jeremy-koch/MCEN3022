@@ -1,37 +1,28 @@
----
-title: "Composite Plane Walls — Interactive Demo"
----
+# Composite Plane Walls -- Interactive Demo {.unnumbered}
 
-$$
-\newcommand{\Bi}{\mathrm{Bi}}
-$$
+## From $R$ to $R''$
 
-A **composite plane wall** consists of several layers in series. Under
-steady-state 1-D conduction with no heat generation, the heat flux $q''$ is
-uniform across all layers and the temperature profile is **piecewise linear**
-within each layer.
+Recall the thermal resistance analogy. For a single planar wall of area $A$, thickness $L$, and conductivity $k$:
 
-The total thermal resistance per unit area is
+$$R_\text{cond} = \frac{L}{kA} \qquad [\text{K/W}]$$
 
-$$
-R''_\text{tot} = \frac{1}{h_L} + \sum_{i=1}^{N} \frac{L_i}{k_i} + \frac{1}{h_R},
-$$
+so that $\dot{Q} = \Delta T / R_\text{cond}$.
 
-and the steady heat flux is
+It is convenient to factor out the area and work with the **thermal resistance per unit area**:
 
-$$
-q'' = \frac{T_{\infty,L} - T_{\infty,R}}{R''_\text{tot}}.
-$$
+$$R''_\text{cond} = \frac{L}{k} \qquad [\text{m}^2\text{·K/W}]$$
 
-Use the demo below to build a wall of up to four layers, set boundary
-conditions, and watch the temperature profile update instantly.
+The two are related by $R = R''/A$. Working in $R''$ keeps the formula independent of wall size -- you characterize the wall geometry and materials once, then scale to any area at the end.
 
-::: {.callout-note}
-Switch between **temperature-controlled** and **heat-flux-controlled** boundary
-conditions using the dropdown. In flux mode the left fluid temperature is
-fixed and you prescribe $q''$ directly — useful for a known heat source such
-as an electric heater or solar load on one face.
-:::
+For a wall with convection on both sides and three conduction layers in series, all resistances add:
+
+$$R''_\text{tot} = \underbrace{\frac{1}{h_L}}_{\text{left conv}} + \underbrace{\frac{L_1}{k_1} + \frac{L_2}{k_2} + \frac{L_3}{k_3}}_{\text{conduction}} + \underbrace{\frac{1}{h_R}}_{\text{right conv}}$$
+
+The steady heat flux through the wall is
+
+$$q'' = \frac{T_{\infty,L} - T_{\infty,R}}{R''_\text{tot}}$$
+
+and the total heat transfer rate for area $A$ is $\dot{Q} = q'' \cdot A$.
 
 ---
 
@@ -39,45 +30,16 @@ as an electric heater or solar load on one face.
 
 ```{ojs}
 //| echo: false
-
-viewof mode = Inputs.select(
-  ["Temperature BCs", "Heat flux BC"],
-  { label: "Boundary condition mode", value: "Temperature BCs" }
-)
-
-viewof N_layers = Inputs.range([1, 4], {
-  value: 3, step: 1, label: "Number of layers"
-})
-```
-
-```{ojs}
-//| echo: false
 // Left boundary
-viewof T_inf_L = Inputs.range([-50, 500], {
-  value: 200, step: 1, label: "T∞ left (°C)"
-})
-viewof h_L = Inputs.range([1, 5000], {
-  value: 100, step: 1, label: "h left (W/m²·K)"
-})
+viewof T_inf_L = Inputs.range([-50, 500], { value: 200, step: 1, label: "T∞,L (°C)" })
+viewof h_L     = Inputs.range([1, 5000],  { value: 100, step: 1, label: "h_L (W/m²·K)" })
 ```
 
 ```{ojs}
 //| echo: false
 // Right boundary
-viewof T_inf_R = Inputs.range([-50, 500], {
-  value: 20, step: 1, label: "T∞ right (°C)  [temperature mode only]"
-})
-viewof h_R = Inputs.range([1, 5000], {
-  value: 25, step: 1, label: "h right (W/m²·K)"
-})
-```
-
-```{ojs}
-//| echo: false
-// Imposed flux (flux mode only)
-viewof q_imposed = Inputs.range([-5000, 5000], {
-  value: 500, step: 10, label: "q″ imposed (W/m²)  [flux mode only, + = left→right]"
-})
+viewof T_inf_R = Inputs.range([-50, 500], { value: 20, step: 1, label: "T∞,R (°C)" })
+viewof h_R     = Inputs.range([1, 5000],  { value: 25, step: 1, label: "h_R (W/m²·K)" })
 ```
 
 ```{ojs}
@@ -89,97 +51,67 @@ viewof L2 = Inputs.range([0.001, 0.5], { value: 0.10,  step: 0.001, label: "Laye
 viewof k2 = Inputs.range([0.01,  400], { value: 50.0,  step: 0.1,   label: "Layer 2 k (W/m·K)" })
 viewof L3 = Inputs.range([0.001, 0.5], { value: 0.02,  step: 0.001, label: "Layer 3 thickness (m)" })
 viewof k3 = Inputs.range([0.01,  400], { value: 0.04,  step: 0.001, label: "Layer 3 k (W/m·K)" })
-viewof L4 = Inputs.range([0.001, 0.5], { value: 0.05,  step: 0.001, label: "Layer 4 thickness (m)" })
-viewof k4 = Inputs.range([0.01,  400], { value: 15.0,  step: 0.1,   label: "Layer 4 k (W/m·K)" })
 ```
 
 ```{ojs}
 //| echo: false
 
-// ── All physics in one block so every derived variable is in the same scope ───
-
-all_layers = [
-  {L: L1, k: k1},
-  {L: L2, k: k2},
-  {L: L3, k: k3},
-  {L: L4, k: k4},
-]
-
-layers = all_layers.slice(0, N_layers)
+layers = [{L: L1, k: k1}, {L: L2, k: k2}, {L: L3, k: k3}]
 
 R_conv_L = 1 / h_L
 R_conv_R = 1 / h_R
 R_cond   = layers.reduce((s, lay) => s + lay.L / lay.k, 0)
 R_tot    = R_conv_L + R_cond + R_conv_R
 
-q_flux = mode === "Temperature BCs"
-  ? (T_inf_L - T_inf_R) / R_tot
-  : q_imposed
+q_flux = (T_inf_L - T_inf_R) / R_tot
 
-// Walk temperatures left to right across interfaces
 T_surf_L = T_inf_L - q_flux * R_conv_L
 
 interface_xs = (() => {
-  let xs = [0]
-  let x = 0
-  for (let i = 0; i < layers.length; i++) {
-    x += layers[i].L
-    xs.push(x)
-  }
+  let xs = [0], x = 0
+  for (let i = 0; i < layers.length; i++) { x += layers[i].L; xs.push(x) }
   return xs
 })()
 
 interface_Ts = (() => {
-  let Ts = [T_surf_L]
-  let T = T_surf_L
-  for (let i = 0; i < layers.length; i++) {
-    T = T - q_flux * layers[i].L / layers[i].k
-    Ts.push(T)
-  }
+  let Ts = [T_surf_L], T = T_surf_L
+  for (let i = 0; i < layers.length; i++) { T -= q_flux * layers[i].L / layers[i].k; Ts.push(T) }
   return Ts
 })()
 
 x_total  = interface_xs[interface_xs.length - 1]
 T_surf_R = interface_Ts[interface_Ts.length - 1]
-T_fluid_R_actual = mode === "Temperature BCs"
-  ? T_inf_R
-  : T_surf_R + q_flux * R_conv_R
 
 x_pad = x_total * 0.10
 
-// Points for the temperature profile line including fluid anchors
 line_pts = [
-  {x: -x_pad, T: T_inf_L},
+  {x: -x_pad,          T: T_inf_L},
   ...interface_xs.map((x, i) => ({x, T: interface_Ts[i]})),
-  {x: x_total + x_pad, T: T_fluid_R_actual}
+  {x: x_total + x_pad, T: T_inf_R}
 ]
 
-wall_pts = interface_xs.map((x, i) => ({x, T: interface_Ts[i]}))
-
+wall_pts  = interface_xs.map((x, i) => ({x, T: interface_Ts[i]}))
 fluid_pts = [
-  {x: -x_pad,          T: T_inf_L,          label: "T∞,L = " + T_inf_L.toFixed(1) + "°C"},
-  {x: x_total + x_pad, T: T_fluid_R_actual,  label: "T∞,R = " + T_fluid_R_actual.toFixed(1) + "°C"},
+  {x: -x_pad,          T: T_inf_L, label: "T∞,L = " + T_inf_L.toFixed(1) + "°C"},
+  {x: x_total + x_pad, T: T_inf_R, label: "T∞,R = " + T_inf_R.toFixed(1) + "°C"},
 ]
 
-layer_colors = ["#ddeeff", "#fff5d6", "#e8f5e8", "#fde8f0"]
+layer_colors = ["#ddeeff", "#fff5d6", "#e8f5e8"]
 
 layer_rects = layers.map((lay, i) => ({
   x1: interface_xs[i],
   x2: interface_xs[i + 1],
   fill: layer_colors[i],
   label: "k = " + lay.k.toFixed(2) + " W/m·K",
-  R: (lay.L / lay.k).toFixed(4)
 }))
 
-T_min = Math.min(T_inf_L, T_fluid_R_actual, ...interface_Ts)
-T_max = Math.max(T_inf_L, T_fluid_R_actual, ...interface_Ts)
+T_min = Math.min(T_inf_L, T_inf_R, ...interface_Ts)
+T_max = Math.max(T_inf_L, T_inf_R, ...interface_Ts)
 T_span = T_max - T_min < 1 ? 10 : T_max - T_min
 ```
 
 ```{ojs}
 //| echo: false
-
-// ── Summary row ───────────────────────────────────────────────────────────────
 html`<div style="display:flex; gap:28px; flex-wrap:wrap; margin:0.4em 0 1em; font-size:0.93em; font-family:Georgia,serif;">
   <div><strong>q″ =</strong> ${q_flux.toFixed(1)} W/m²</div>
   <div><strong>R″_tot =</strong> ${R_tot.toFixed(4)} m²·K/W</div>
@@ -190,15 +122,9 @@ html`<div style="display:flex; gap:28px; flex-wrap:wrap; margin:0.4em 0 1em; fon
 
 ```{ojs}
 //| echo: false
-
-// ── Temperature profile plot ──────────────────────────────────────────────────
 Plot.plot({
-  width: 660,
-  height: 390,
-  marginLeft: 68,
-  marginBottom: 52,
-  marginRight: 24,
-  marginTop: 36,
+  width: 660, height: 390,
+  marginLeft: 68, marginBottom: 52, marginRight: 24, marginTop: 36,
   style: { fontFamily: "Georgia, serif", fontSize: "13px" },
   x: {
     label: "Position x (m) →",
@@ -209,61 +135,26 @@ Plot.plot({
     domain: [T_min - T_span * 0.18, T_max + T_span * 0.22],
   },
   marks: [
-    // layer shading
     ...layer_rects.map(r =>
       Plot.rect([r], {
         x1: "x1", x2: "x2",
         y1: T_min - T_span * 0.18,
         y2: T_max + T_span * 0.22,
-        fill: "fill",
-        stroke: "#bbb",
-        strokeWidth: 0.5,
+        fill: "fill", stroke: "#bbb", strokeWidth: 0.5,
       })
     ),
-
-    // layer k labels
     Plot.text(layer_rects, {
       x: r => (r.x1 + r.x2) / 2,
       y: T_max + T_span * 0.14,
-      text: "label",
-      fontSize: 11,
-      fill: "#555",
-      textAnchor: "middle",
+      text: "label", fontSize: 11, fill: "#555", textAnchor: "middle",
     }),
-
-    // wall-surface boundary lines
-    Plot.ruleX([0, x_total], {
-      stroke: "#999", strokeWidth: 1, strokeDasharray: "5,3"
-    }),
-
+    Plot.ruleX([0, x_total], { stroke: "#999", strokeWidth: 1, strokeDasharray: "5,3" }),
     Plot.gridY({ stroke: "#eee" }),
-
-    // temperature profile
-    Plot.line(line_pts, {
-      x: "x", y: "T",
-      stroke: "#c0392b",
-      strokeWidth: 2.5,
-    }),
-
-    // wall interface dots
-    Plot.dot(wall_pts, {
-      x: "x", y: "T",
-      r: 5, fill: "#c0392b",
-    }),
-
-    // fluid anchor circles (open)
-    Plot.dot(fluid_pts, {
-      x: "x", y: "T",
-      r: 6, fill: "white", stroke: "#c0392b", strokeWidth: 2,
-    }),
-
-    // fluid temperature labels
+    Plot.line(line_pts, { x: "x", y: "T", stroke: "#c0392b", strokeWidth: 2.5 }),
+    Plot.dot(wall_pts,  { x: "x", y: "T", r: 5, fill: "#c0392b" }),
+    Plot.dot(fluid_pts, { x: "x", y: "T", r: 6, fill: "white", stroke: "#c0392b", strokeWidth: 2 }),
     Plot.text(fluid_pts, {
-      x: "x", y: "T",
-      text: "label",
-      dy: -14,
-      fontSize: 11,
-      fill: "#c0392b",
+      x: "x", y: "T", text: "label", dy: -14, fontSize: 11, fill: "#c0392b",
       textAnchor: d => d.x < 0 ? "start" : "end",
     }),
   ]
@@ -276,59 +167,79 @@ Plot.plot({
 
 ```{ojs}
 //| echo: false
-
-// ── Resistance network SVG ────────────────────────────────────────────────────
 {
-  const boxes = []
-  boxes.push({
-    label: "1/h_L",
-    sub: R_conv_L.toFixed(4),
-    color: "#d6eaf8"
-  })
-  layers.forEach((lay, i) => {
-    boxes.push({
-      label: "L" + (i+1) + "/k" + (i+1),
-      sub: (lay.L / lay.k).toFixed(4),
-      color: layer_colors[i]
-    })
-  })
-  boxes.push({
-    label: "1/h_R",
-    sub: R_conv_R.toFixed(4),
-    color: "#d6eaf8"
-  })
+  // Resistor elements: conv_L, layer 1, layer 2, layer 3, conv_R
+  const elements = [
+    { label: "1/hₗ",   formula: "1/h_L",   value: R_conv_L, color: "#d6eaf8" },
+    { label: "L₁/k₁", formula: "L₁/k₁", value: L1/k1,    color: layer_colors[0] },
+    { label: "L₂/k₂", formula: "L₂/k₂", value: L2/k2,    color: layer_colors[1] },
+    { label: "L₃/k₃", formula: "L₃/k₃", value: L3/k3,    color: layer_colors[2] },
+    { label: "1/hᴿ",   formula: "1/h_R",   value: R_conv_R, color: "#d6eaf8" },
+  ]
 
-  const BW = 82, gap = 24, BH = 46, pad = 36
-  const total_w = boxes.length * BW + (boxes.length - 1) * gap + 2 * pad
-  const cy = 52
+  const BW = 80, gap = 18, cy = 60
+  const termPad = 44   // space for T∞ labels at each end
+  const total_w = termPad + elements.length * BW + (elements.length - 1) * gap + termPad
+  const svgH = 110
 
-  let svg = `<svg viewBox="0 0 ${total_w} ${cy + 52}" style="width:100%;max-width:660px;overflow:visible;" aria-label="Thermal resistance network">`
+  // Draw zigzag polyline for a resistor body
+  function zigzagPts(x0, y, w) {
+    const stub = 10, n = 6, amp = 8
+    const bodyW = w - 2 * stub
+    const dx = bodyW / n
+    let pts = `${x0},${y} ${x0 + stub},${y}`
+    for (let i = 0; i < n; i++) {
+      const xp = x0 + stub + (i + 0.5) * dx
+      const yp = y + (i % 2 === 0 ? -amp : amp)
+      pts += ` ${xp},${yp}`
+    }
+    pts += ` ${x0 + w - stub},${y} ${x0 + w},${y}`
+    return pts
+  }
 
-  // left wire
-  svg += `<line x1="0" y1="${cy}" x2="${pad}" y2="${cy}" stroke="#555" stroke-width="1.5"/>`
+  let svg = `<svg viewBox="0 0 ${total_w} ${svgH}" style="width:100%;max-width:700px;overflow:visible;" aria-label="Thermal resistance network">`
 
-  boxes.forEach((b, i) => {
-    const x = pad + i * (BW + gap)
-    if (i > 0) {
-      svg += `<line x1="${x}" y1="${cy}" x2="${x}" y2="${cy}" stroke="#555" stroke-width="1.5"/>`
+  // Left terminal: vertical tick + T∞,L label
+  const x0_wire = termPad
+  svg += `<line x1="${x0_wire}" y1="${cy - 10}" x2="${x0_wire}" y2="${cy + 10}" stroke="#c0392b" stroke-width="1.5"/>`
+  svg += `<text x="${x0_wire - 4}" y="${cy + 5}" text-anchor="end" font-size="13" font-family="Georgia,serif" fill="#c0392b">T∞,L</text>`
+
+  // Wire from left terminal to first resistor
+  const x_first = x0_wire
+  svg += `<line x1="${x0_wire}" y1="${cy}" x2="${x0_wire}" y2="${cy}" stroke="#555" stroke-width="1.5"/>`
+
+  elements.forEach((el, i) => {
+    const x = x0_wire + i * (BW + gap)
+
+    // Connecting wire before this element
+    if (i === 0) {
+      // already at terminal
+    } else {
       svg += `<line x1="${x - gap}" y1="${cy}" x2="${x}" y2="${cy}" stroke="#555" stroke-width="1.5"/>`
     }
-    svg += `<rect x="${x}" y="${cy - BH/2}" width="${BW}" height="${BH}" rx="4" fill="${b.color}" stroke="#aaa" stroke-width="0.8"/>`
-    svg += `<text x="${x + BW/2}" y="${cy - 8}" text-anchor="middle" font-size="12" font-family="Georgia,serif" fill="#333">${b.label}</text>`
-    svg += `<text x="${x + BW/2}" y="${cy + 8}" text-anchor="middle" font-size="11" font-family="Georgia,serif" fill="#555">${b.sub}</text>`
-    svg += `<text x="${x + BW/2}" y="${cy + 20}" text-anchor="middle" font-size="10" font-family="Georgia,serif" fill="#888">m²·K/W</text>`
+
+    // Zigzag resistor
+    svg += `<polyline points="${zigzagPts(x, cy, BW)}" fill="none" stroke="${el.color === "#d6eaf8" ? "#3498db" : "#2c3e50"}" stroke-width="2" stroke-linejoin="round"/>`
+
+    // Label above
+    svg += `<text x="${x + BW/2}" y="${cy - 20}" text-anchor="middle" font-size="12" font-family="Georgia,serif" fill="#333">${el.label}</text>`
+
+    // Value below
+    svg += `<text x="${x + BW/2}" y="${cy + 22}" text-anchor="middle" font-size="11" font-family="Georgia,serif" fill="#555">${el.value.toFixed(4)}</text>`
+    svg += `<text x="${x + BW/2}" y="${cy + 34}" text-anchor="middle" font-size="9"  font-family="Georgia,serif" fill="#888">m²·K/W</text>`
   })
 
-  // right wire
-  const x_end = pad + boxes.length * BW + (boxes.length - 1) * gap
-  svg += `<line x1="${x_end}" y1="${cy}" x2="${x_end + pad}" y2="${cy}" stroke="#555" stroke-width="1.5"/>`
+  // Wire after last element to right terminal
+  const x_last_end = x0_wire + elements.length * BW + (elements.length - 1) * gap
+  const x_r_term = x_last_end
+  svg += `<line x1="${x_last_end - 0}" y1="${cy}" x2="${x_r_term}" y2="${cy}" stroke="#555" stroke-width="1.5"/>`
 
-  // T labels at ends
-  svg += `<text x="4" y="${cy + 5}" font-size="12" font-family="Georgia,serif" fill="#c0392b">T∞,L</text>`
-  svg += `<text x="${x_end + pad - 2}" y="${cy + 5}" font-size="12" font-family="Georgia,serif" fill="#c0392b" text-anchor="end">T∞,R</text>`
+  // Right terminal
+  svg += `<line x1="${x_r_term}" y1="${cy - 10}" x2="${x_r_term}" y2="${cy + 10}" stroke="#c0392b" stroke-width="1.5"/>`
+  svg += `<text x="${x_r_term + 4}" y="${cy + 5}" text-anchor="start" font-size="13" font-family="Georgia,serif" fill="#c0392b">T∞,R</text>`
 
-  // R_tot below
-  svg += `<text x="${total_w/2}" y="${cy + 42}" text-anchor="middle" font-size="12" font-family="Georgia,serif" fill="#333">R″_tot = ${R_tot.toFixed(4)} m²·K/W</text>`
+  // R_tot summary below
+  svg += `<text x="${total_w/2}" y="${svgH - 4}" text-anchor="middle" font-size="12" font-family="Georgia,serif" fill="#333">R″_tot = ${R_tot.toFixed(4)} m²·K/W</text>`
 
   svg += `</svg>`
   return html`${svg}`
@@ -339,23 +250,26 @@ Plot.plot({
 
 ## What to look for {#sec-observations}
 
-**Observation 1 — Steepest slope = highest resistance.**
+**Observation 1 -- Steepest slope = highest resistance.**
 The temperature drops most steeply across the layer with the largest $L/k$.
 Try setting one layer to $k = 0.04$ W/m·K (typical insulation) and watch
 nearly all the temperature drop concentrate there.
 
-**Observation 2 — Convection resistance can dominate.**
+**Observation 2 -- Convection resistance can dominate.**
 Reduce $h_L$ to 5 W/m²·K (still-air natural convection). You will likely find
-$1/h_L$ dwarfs all the conduction resistances combined — a reminder that
+$1/h_L$ dwarfs all the conduction resistances combined -- a reminder that
 adding more insulation has diminishing returns when convection is the
 bottleneck.
 
-**Observation 3 — Flux mode decouples the two sides.**
-Switch to heat flux mode and set $q'' = 1000$ W/m². The right-side fluid
-temperature is no longer an input but a result determined by $R_{\text{conv},R}$.
-This models a wall with a known radiative or electrical heat source on one face.
-
-**Observation 4 — Series resistance is additive.**
+**Observation 3 -- Series resistance is additive.**
 Double any single layer thickness and $R''_\text{tot}$ increases by exactly
-$\Delta L / k$ — visible immediately in the resistance network boxes below
-the plot.
+$\Delta L / k$ -- visible immediately in the resistance network below the plot.
+
+**Observation 4 -- Fourier's Law relates the slopes.**
+Since this is a steady system, we have that the heat flux throughout is constant... i.e., within the first and second layers
+
+$$
+-k_1 \frac{dT}{dx} = -k_2 \frac{dT}{dx}
+$$
+
+If $k_1 > k_2$, which layer is going to have the larger slope magnitude?
