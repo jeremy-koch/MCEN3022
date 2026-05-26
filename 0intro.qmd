@@ -29,57 +29,50 @@ Look ahead
 Start with [this video link](https://canvas.colorado.edu/courses/136150/pages/three-modes-of-heat-transfer). Then read this section. By consuming the content in one medium, then reviewing in another, I hope it will solidify your learning!
 :::
 
-From thermodynamics, recall that the energy of a system is changed via heat transfer or work (on or by). The Laws of Thermodynamics say nothing about rates! Heat transfer is the study of the heat transfer [rate]{.underline}.
+From thermodynamics, recall that the energy of a system is changed via heat transfer (to or from an object) or work (on or by an object). This class will obviously be focusing on heat transfer. Recognize that the Laws of Thermodynamics say nothing about how to calculate heat transfer rates! That will be what we are focusing on.
 
-We give the symbol $\dot{Q}$ to the heat transfer rate, where $Q$ is the amount of heat (energy), in Joules, and the dot on top references a time derivative. 
+We give the symbol $\dot{Q}$ to the heat transfer rate, where $Q$ is the amount of heat (energy) transferred and the dot on top references a time derivative. The units of $\dot{Q}$ are Watts = Joules/second. We've got three "modes" of heat transfer to think about in this course: conduction, convection, and radiation. Here's a little preview...
 
 
 ### Conduction
 
-**Primarily associated with solids**, though fluids have a "thermal conductivity" too (convection is stronger).
+Conduction is primarily associated with solids. At the microscopic level, energy propagates through lattice vibrations — add energy to one atom and it begins jostling its neighbors, passing the disturbance along like a chain of springs. In metals, there is a second and often dominant mechanism: free electrons move rapidly through the lattice and carry thermal energy with them. This is why metals tend to be far better thermal conductors than non-metals (copper conducts heat roughly 600 times better than glass), and why good electrical conductors are almost always good thermal conductors too.
 
-$$\dot{Q}_\text{conduction} \sim k \cdot A \cdot \frac{T - T_0}{w}$$
+Both mechanisms depend sensitively on material structure: alloying, crystal defects, and temperature all affect how freely energy is transferred. We invented a material property known as the thermal conductivity $k$ that helps us catalog this behavior. The units of $k$ are W/m·K.
 
-| Symbol | Meaning | Units |
-|---|---|---|
-| $k$ | thermal conductivity (material property) | W/m·K |
-| $A$ | cross-sectional area | m² |
-| $T - T_0$ | temperature difference between surfaces separated by width $w$ | K |
-| $w$ | width (thickness) | m |
+The basic equation of conductive heat transfer is something like
 
----
+$$
+\dot{Q}_\text{conduction} =A_c k \frac{T_1-T_2}{w}
+$$
+
+though that is a bit of a simplification. As will be the case with all heat transfer modes, heat transfer will be increased by area. It will also be the case in all modes that heat transfer increases with increasing temperature difference - here maybe between two sides of an object with thickness $w$.
 
 ### Convection
 
-**Medium is a fluid** (gas or liquid), somehow correlated with speed.
+Convection is associated with fluids - gases or liquids. If a cool evening breeze passes over you on a hot day, that breeze is removing energy from you: convective heat transfer. Intuitively, we expect that the speed of the breeze will effect the heat transfer rate. That is indeed the case: we will spend a few weeks describing how to calculate $h$, the convective heat transfer coefficient, as a function of fluid speed. The units of $h$ are W/m²·K.
 
-$$\dot{Q}_\text{convection} \sim h \cdot A \cdot (T - T_0)$$
+The basic equation of convective heat transfer is
 
-| Symbol | Meaning | Units |
-|---|---|---|
-| $h$ | convective heat transfer coefficient (depends on material, size, speed, ...) | W/m²·K |
-| $A$ | surface area | m² |
-| $T$ | object temperature | K |
-| $T_0$ | fluid temperature | K |
+$$
+\dot{Q}_\text{convection} = h \cdot A_\text{surface} \cdot (T_\text{surface} - T_\infty)
+$$
 
----
+Again we see: an area dependence, and a dependence on temperature difference.
 
 ### Radiation
 
-**Does not require a medium** — transmitted by light/photons.
+Radiative heat transfer occurs any time objects of different temperatures "see" each other - you are radiating at your wall right now. In practice, it is only significant when there is a big temperature difference. The Sun transmits heat to the Earth via radiation: it produces photons, which carry energy through the vacuum of space, through Earth's atmosphere, and to your skin, where it warms you. 
 
-$$\dot{Q}_\text{radiation} \sim \varepsilon \cdot \sigma \cdot F \cdot A \cdot (T^4 - T_0^4)$$
+The basic equation of radiation is something like
 
-| Symbol | Meaning | Units |
-|---|---|---|
-| $\varepsilon$ | emissivity — how perfect is "the emitter" (material property, $0 \leq \varepsilon \leq 1$) | — |
-| $\sigma$ | Stefan-Boltzmann constant | $5.67 \times 10^{-8}$ W/m²·K⁴ |
-| $F$ | view factor — how well the objects "see" each other | — |
-| $A$ | surface area | m² |
-| $T$ | object surface temperature | K |
-| $T_0$ | surroundings temperature (e.g. $T_\text{sun}$) | K |
+$$
+\dot{Q}_\text{radiation} = \varepsilon \sigma F A \cdot (T^4 - T_0^4)
+$$
 
----
+Again, we see an area dependence, and something that looks like a dependence on temperature difference, but the temperatures are raised to the fourth power. The Sun's surface is about 5800 K, while your skin is about 300 K... that temperature term is massive!
+
+Thankfully, there is a term in this equation that is basically "how well does the Sun see you": $F$, the view factor. It is a dimensionless number between 0 and 1, and would be quite small from you to the Sun. There is another dimensionless number, the emissivity, $\varepsilon$, that is a material property that describes how good of an "emitter" you are. And this equation includes a constant, $\sigma=5.67 \times 10^{-8}$ W/m²·K⁴, the Stefan-Boltzmann constant.
 
 
 ## Course outline
@@ -90,19 +83,7 @@ To give some context for the course flow:
 - Weeks 4-6 will be about convection: boundary layers, the significance of turbulence, flow over objects (external flow), flow through objects (internal flow), and heat exchangers.
 - Weeks 7-8 will be about radiation: emissivity (a material property), the view factor, and the radiation resistance model.
 
-<!-- ## Last Time
 
-The three modes of heat transfer:
-
-1. **Conduction** — Typically for solids problems, though liquids/gases have a "thermal conductivity" too. $k$, an important material property.
-
-2. **Convection** — Fluids (gas/liquid). Characterized by $h$, a function of material, speed, geometry.
-
-3. **Radiation** — No medium required (but can pass through gas). Characterized by $\varepsilon$ (emissivity, a material property), geometry (view factor).
-
-For all three: $\dot{Q}$ increases with increasing surface area and temperature difference. (Note: radiation $\sim T^4$)
-
---- -->
 
 
 
@@ -110,20 +91,19 @@ For all three: $\dot{Q}$ increases with increasing surface area and temperature 
 
 ## Some vocabulary
 
+I expect that all students will become familiar with these terms. I will continue to add to the list.
+
 adiabatic
-: No heat transfer. Mathematically (from Fourier's Law), $dT/dx$ at an adiabatic surface is zero.
+: No heat transfer. Mathematically: at an adiabatic surface, $dT/dx=0$ (from Fourier's Law).
 
 insulator
-: A material with low conductivity. A "perfect insulator" has $k=0$, but a practical insulator like foam has $k\approx 0.03$~W/m$\cdot$K. Air is a good insulator (indeed, foam is mostly air) with $k=0.026$~W/m$\cdot$K, but one must be careful to not induce natural convection (which would increase heat transfer).
+: A material with low conductivity. A "perfect insulator" has $k=0$, but a practical insulator like foam has $k\approx 0.03$ W/m·K. 
 
-parameters
-: Parameters are things that can adopt different values, but that tend to be kept constant within a problem. Examples are: material properties like density $\rho$ and viscosity $\mu$, sizes like length $L$ and diameter $D$, and usually surface $T_\text{surf}$ or ambient $T_\infty$ temperatures. Technically all of these are described by symbols, but the values tend to stay constant within a problem. We know we are using water, we know the incoming air is at a controlled temperature, etc.
-
-variables
-: Variables can adopt different values within an analysis, e.g.: how much more heat transfer $\dot{Q}$ will we get if we double the incoming flow speed $U$? Both $\dot{Q}$ and $U$ are variables in this problem. I might use a notation like $\dot{Q}(U;\rho,\mu)$, with parameters after the ;, to make clear that the value of $\dot{Q}$ technically depends on $\rho$ and $\mu$ but the primary variation we are examining is with respect to $U$.
+parameters and variables
+: Parameters are things that can adopt different values, but that tend to be kept constant within a problem. Examples are: material properties like density $\rho$ and viscosity $\mu$, sizes like length $L$ and diameter $D$, and usually the ambient temperature $T_\infty$. Variables can adopt different values within an analysis, e.g., if we needed to determine the necessary wind speed to keep an object below a certain temperature, $U$, the wind speed, is a variable in that problem.
 
 thermal conductivity
-: A material property that emerges from the empirical Fourier's Law. SI units: (Watts)/(meter Kelvin). Note that the Kelvin here is related to a **difference** in temperature, and $\Delta T = 1~\text{K} = 1^\circ\text{C}$. That is, no unit transformation is necessary to go between W/m$\cdot$K and W/m$\cdot^\circ$ C.
+: A material property that emerges from the empirical Fourier's Law. SI units: (Watts)/(meter Kelvin). Note that the Kelvin here is related to a difference in temperature, and a $\Delta T = 1~\text{K}$ is the same as a $\Delta T = 1^\circ\text{C}$. That is, no unit transformation is necessary to go between W/m·K and W/m·°C. 
 
 thermal diffusivity
 : A material property defined as $\alpha = k/(\rho c_p)$, with units m²/s. It describes how quickly a temperature disturbance propagates through a material. A high $\alpha$ means the material conducts heat readily relative to how much it stores — temperature changes spread fast.
@@ -132,7 +112,7 @@ thermal inertia
 : The product $\rho c$ (or $mc$), with units J/m³·K (or J/K). It describes resistance to temperature change — a large thermal inertia means a lot of energy must be added or removed to shift the temperature. A cast-iron pan has high thermal inertia; a thin aluminum sheet has low thermal inertia.
 
 heat flux
-: Denoted $q''$, heat flux is the rate of heat transfer per unit area, with units W/m². It is a vector quantity pointing in the direction of heat flow. Contrast with $\dot{Q}$ (total heat transfer rate, in W), which is the flux integrated over an area: $\dot{Q} = q'' A$.
+: Denoted $q''$, heat flux is the rate of heat transfer per unit area, with units W/m². In general it is a vector quantity pointing in the direction of heat flow, though we also discuss it in one-dimensional problems. Contrast with $\dot{Q}$ (total heat transfer rate, in W), which is a scalar quantity that describes the total heat transfer into or out of a system (potentially calculated by integrating the heat flux over the entirety of the surface).
 
 convection coefficient
 : Also called the heat transfer coefficient, denoted $h$, with units W/m²·K. It appears in Newton's Law of Cooling: $\dot{Q} = h A (T_\text{surface} - T_\infty)$. It is not a material property — it depends on the geometry, the fluid, and the flow conditions.
@@ -141,19 +121,11 @@ thermal resistance
 : Denoted $R$, with units K/W. By analogy with Ohm's Law ($V = IR$), thermal resistance relates a temperature difference to a heat transfer rate: $\Delta T =  \dot{Q}R$.
 
 steady state vs. transient
-: A problem is **steady state** (or steady) if nothing changes with time: all $\partial /\partial t = 0$. It is **transient** if something changes with time.
+: A problem is steady state (or steady) if nothing changes with time: all $\partial /\partial t = 0$. It is transient if something changes with time.
 
 boundary conditions and initial conditions
-: Necessary to solve differential equations. Boundary conditions apply to spatial locations, e.g. at $x=0$, $T=4$. Initial conditions apply to points in time, usually $t=0$.
+: Necessary to solve differential equations. Boundary conditions apply to spatial locations, e.g. at $x=0$, $T=4$... that is a boundary condition. Initial conditions apply to points in time, usually $t=0$. At $t=0$, $T=50$... that is an initial condition.
 
 Biot number
-: A dimensionless parameter defined as $Bi = hL_c/k$, where $L_c$ is a characteristic length, $h$ is the convection coefficient, and $k$ is the solid's thermal conductivity.
+: A dimensionless parameter defined as $\text{Bi} = hL_c/k$, where $L_c$ is a characteristic length, $h$ is the convection coefficient, and $k$ is the solid's thermal conductivity.
 
-
-<!-- ## Notational conventions
-
-I encourage you to adopt these conventions and be consistent with them.
-
-When writing by hand, I underline my vectors; when typed, vectors are bold and not italicized.
-
-If a function is written as $ -->
