@@ -775,9 +775,9 @@ window.Quarto = {
 <section id="sec-observations" class="level2">
 <h2 class="anchored" data-anchor-id="sec-observations">What to look for</h2>
 <p><strong>Observation 1 – Steepest slope = highest resistance.</strong> The temperature drops most steeply across the layer with the largest <span class="math inline">\(L/k\)</span>. Try setting one layer to <span class="math inline">\(k = 0.04\)</span> W/m·K (typical insulation) and watch nearly all the temperature drop concentrate there.</p>
-<p><strong>Observation 2 – Convection resistance can dominate.</strong> Reduce <span class="math inline">\(h_L\)</span> to 5 W/m²·K (still-air natural convection). You will likely find <span class="math inline">\(1/h_L\)</span> dwarfs all the conduction resistances combined – a reminder that adding more insulation has diminishing returns when convection is the bottleneck.</p>
+<p><strong>Observation 2 – Convection resistance can dominate.</strong> Reduce <span class="math inline">\(h_L\)</span> to 5 W/m²·K (still-air natural convection). You will likely find <span class="math inline">\(1/h_L\)</span> is the biggest resistor (depends on the other parameters) – a reminder that adding more insulation has diminishing returns when convection is the bottleneck.</p>
 <p><strong>Observation 3 – Series resistance is additive.</strong> Double any single layer thickness and <span class="math inline">\(R''_\text{tot}\)</span> increases by exactly <span class="math inline">\(\Delta L / k\)</span> – visible immediately in the resistance network below the plot.</p>
-<p><strong>Observation 4 – Fourier’s Law relates the slopes.</strong> Since this is a steady system, we have that the heat flux throughout is constant… i.e., within the first and second layers</p>
+<p><strong>Observation 4 – Fourier’s Law relates the slopes.</strong> Since this is a steady system, we have that the heat flux throughout is constant. That is, within the first and second layers, we’ll have</p>
 <p><span class="math display">\[
 -k_1 \frac{dT}{dx} = -k_2 \frac{dT}{dx}
 \]</span></p>
@@ -1517,22 +1517,20 @@ window._ojs.runtime.interpretFromScriptTags();
 <span id="cb8-269"><a href="#cb8-269" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-270"><a href="#cb8-270" aria-hidden="true" tabindex="-1"></a>**Observation 2 -- Convection resistance can dominate.**</span>
 <span id="cb8-271"><a href="#cb8-271" aria-hidden="true" tabindex="-1"></a>Reduce $h_L$ to 5 W/m²·K (still-air natural convection). You will likely find</span>
-<span id="cb8-272"><a href="#cb8-272" aria-hidden="true" tabindex="-1"></a>$1/h_L$ dwarfs all the conduction resistances combined -- a reminder that</span>
-<span id="cb8-273"><a href="#cb8-273" aria-hidden="true" tabindex="-1"></a>adding more insulation has diminishing returns when convection is the</span>
-<span id="cb8-274"><a href="#cb8-274" aria-hidden="true" tabindex="-1"></a>bottleneck.</span>
-<span id="cb8-275"><a href="#cb8-275" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-276"><a href="#cb8-276" aria-hidden="true" tabindex="-1"></a>**Observation 3 -- Series resistance is additive.**</span>
-<span id="cb8-277"><a href="#cb8-277" aria-hidden="true" tabindex="-1"></a>Double any single layer thickness and $R''_\text{tot}$ increases by exactly</span>
-<span id="cb8-278"><a href="#cb8-278" aria-hidden="true" tabindex="-1"></a>$\Delta L / k$ -- visible immediately in the resistance network below the plot.</span>
-<span id="cb8-279"><a href="#cb8-279" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-280"><a href="#cb8-280" aria-hidden="true" tabindex="-1"></a>**Observation 4 -- Fourier's Law relates the slopes.**</span>
-<span id="cb8-281"><a href="#cb8-281" aria-hidden="true" tabindex="-1"></a>Since this is a steady system, we have that the heat flux throughout is constant... i.e., within the first and second layers</span>
-<span id="cb8-282"><a href="#cb8-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-272"><a href="#cb8-272" aria-hidden="true" tabindex="-1"></a>$1/h_L$ is the biggest resistor (depends on the other parameters) -- a reminder that adding more insulation has diminishing returns when convection is the bottleneck.</span>
+<span id="cb8-273"><a href="#cb8-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-274"><a href="#cb8-274" aria-hidden="true" tabindex="-1"></a>**Observation 3 -- Series resistance is additive.**</span>
+<span id="cb8-275"><a href="#cb8-275" aria-hidden="true" tabindex="-1"></a>Double any single layer thickness and $R''_\text{tot}$ increases by exactly</span>
+<span id="cb8-276"><a href="#cb8-276" aria-hidden="true" tabindex="-1"></a>$\Delta L / k$ -- visible immediately in the resistance network below the plot.</span>
+<span id="cb8-277"><a href="#cb8-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-278"><a href="#cb8-278" aria-hidden="true" tabindex="-1"></a>**Observation 4 -- Fourier's Law relates the slopes.**</span>
+<span id="cb8-279"><a href="#cb8-279" aria-hidden="true" tabindex="-1"></a>Since this is a steady system, we have that the heat flux throughout is constant. That is, within the first and second layers, we'll have</span>
+<span id="cb8-280"><a href="#cb8-280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-281"><a href="#cb8-281" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-282"><a href="#cb8-282" aria-hidden="true" tabindex="-1"></a>-k_1 \frac{dT}{dx} = -k_2 \frac{dT}{dx}</span>
 <span id="cb8-283"><a href="#cb8-283" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb8-284"><a href="#cb8-284" aria-hidden="true" tabindex="-1"></a>-k_1 \frac{dT}{dx} = -k_2 \frac{dT}{dx}</span>
-<span id="cb8-285"><a href="#cb8-285" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb8-286"><a href="#cb8-286" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-287"><a href="#cb8-287" aria-hidden="true" tabindex="-1"></a>If $k_1 &gt; k_2$, which layer is going to have the larger slope magnitude?</span>
+<span id="cb8-284"><a href="#cb8-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-285"><a href="#cb8-285" aria-hidden="true" tabindex="-1"></a>If $k_1 &gt; k_2$, which layer is going to have the larger slope magnitude?</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
