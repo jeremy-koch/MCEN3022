@@ -1,6 +1,5 @@
 ---
 title: "Composite Plane Walls — Interactive Demo"
-draft: true
 ---
 
 $$

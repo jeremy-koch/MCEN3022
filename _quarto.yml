@@ -13,9 +13,6 @@ book:
     search: true
     collapse-level: 1
   page-navigation: true
-  draft-mode: unlinked
-  drafts:
-    - demos/wall_demo.qmd
   chapters:
     - index.qmd
 
@@ -37,6 +34,10 @@ book:
     # - 5internal.qmd
     # - 6heatXer.qmd
     # - 7radiation.qmd
+
+    - part: "Demos"
+      chapters:
+        - demos/wall_demo.qmd
 
 bibliography: references.bib
 
