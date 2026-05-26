@@ -1,6 +1,6 @@
 # Conduction Eqn
 
-This week we are going to focus on conductivity, the dominant mode of heat transfer within solids. The basic picture in your head can be a rod where heat is being applied to one end and removed from the other. That is, heat is "flowing" through the solid. Conduction occurs in liquids and gases as well, but convection is more significant. And radiation occurs at the surfaces of all of them.
+This week we are going to focus on conductivity, the dominant mode of heat transfer within solids. The basic picture in your head can be a rod where heat is being applied to one end and removed from the other. That is, heat is "flowing" through the solid.
 
 Starting with Fourier's Law, we will derive the conductivity equation, a PDE (partial differential equation... but don't worry). This equation will allow us to solve for temperature distributions as a function of space and time, e.g.: $T(x,y,z,t)$. We use that to derive an important approach: the "thermal resistance" model for planar, cylindrical, and spherical geometries. This is a productive way of thinking about problems and will be something that we keep coming back to.
 
@@ -35,12 +35,11 @@ We have an [empirical law]{.underline} that describes heat conduction known as F
 
 $$
 \begin{align}
-q''&=-k \frac{dT}{dx}\\
-\mathbf{q}'' &= -k \boldsymbol{\nabla} T.
+\text{For one dimension: } &q''=-k \frac{dT}{dx}\\
+\text{For three dimensions: } &\mathbf{q}'' &= -k \boldsymbol{\nabla} T.
 \end{align}
 $$
 
-where the first equation is when there is one dimension to the heat flow, and the second is the more general three-dimensional version.
 
 | Symbol | Meaning | Units |
 |---|---|---|
@@ -56,7 +55,7 @@ The gradient is essentially a temperature difference as we change position, and 
 :::
 
 ### The significance of the gradient and minus sign
-The "heat flux" $\mathbf{q}''$ is basically the local heat transfer rate per area $\dot{Q}/A$ (in the continuum limit). Note that it is proportional to the gradient in temperature $\boldsymbol{\nabla}T$. Recall that the gradient of a scalar field (like temperature) tells us the direction of greatest increase. The negative sign in Fourier's Law tells us that heat flows in the direction of greatest [decrease]{.underline} in temperature. That is: heat flows from hot to cold.
+The "heat flux" $\mathbf{q}''$ is basically the local heat transfer rate per area $\dot{Q}/A$ (in the continuum limit). It is proportional to the gradient of temperature: $\boldsymbol{\nabla}T$. Recall that the gradient of a scalar field tells us the direction of greatest increase of that scalar variable. The negative sign in Fourier's Law tells us that heat flows in the direction of greatest [decrease]{.underline} in temperature. That is: heat flows from hot to cold.
 
 
 ### The thermal conductivity
@@ -80,7 +79,7 @@ Seems that $\frac{dT}{dx} < 0$, but heat flux will be positive: $q'' > 0$
 Think back to the First Law of Thermodynamics: the Conservation of Energy. We'll apply it to a section of a solid rod (the dotted rectangle below) and assume that the energy of this section can change due to: heat conduction in, heat conduction out, and heat generation within (e.g. due to chemical or nuclear reaction).
 
 ::: {.column-margin}
-We will be dealing with the Conservation of Energy, written in a few different ways, in almost every aspect of this course.
+We will be dealing with the Conservation of Energy, written in different ways, in almost every aspect of this course.
 :::
 
 ```{=html}
@@ -94,13 +93,13 @@ We will be dealing with the Conservation of Energy, written in a few different w
   </defs>
   <line x1="0" y1="25" x2="400" y2="25" stroke="black" stroke-width="2"/>
   <line x1="0" y1="95" x2="400" y2="95" stroke="black" stroke-width="2"/>
-  <rect x="175" y="28" width="50" height="64" fill="none" stroke="black" stroke-width="1.5" stroke-dasharray="4,3"/>
-  <line x1="143" y1="60" x2="174" y2="60" stroke="black" stroke-width="1.5" marker-end="url(#cond-arrow)"/>
-  <line x1="226" y1="60" x2="257" y2="60" stroke="black" stroke-width="1.5" marker-end="url(#cond-arrow)"/>
-  <foreignObject x="0" y="47" width="140" height="26">
+  <rect x="155" y="28" width="90" height="64" fill="none" stroke="black" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="113" y1="60" x2="154" y2="60" stroke="black" stroke-width="1.5" marker-end="url(#cond-arrow)"/>
+  <line x1="246" y1="60" x2="287" y2="60" stroke="black" stroke-width="1.5" marker-end="url(#cond-arrow)"/>
+  <foreignObject x="0" y="47" width="110" height="26">
     <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:right; font-size:14px; line-height:1">\(\dot{Q}_\text{conduction}(x)\)</div>
   </foreignObject>
-  <foreignObject x="260" y="47" width="140" height="26">
+  <foreignObject x="290" y="47" width="110" height="26">
     <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:left; font-size:14px; line-height:1">\(\dot{Q}_\text{conduction}(x+\Delta x)\)</div>
   </foreignObject>
   <foreignObject x="155" y="47" width="90" height="26">
@@ -119,9 +118,13 @@ $$
 
 I'll include the detailed derivation in the collapsed text below. The summary is: 
 
-- We call on Fourier's Law for the conduction terms at $x$ and $x+\Delta x$.
-- We rewrite the heat generation term as a generic $\dot{Q}_\text{generated} = V \dot{q}$. That is, $\dot{q}$ is the heat generated per volume at a certain point. 
+- We call on Fourier's Law for the conduction in at $x$ and conduction out at $x+\Delta x$.
+- We rewrite the heat generation term as a generic $\dot{Q}_\text{generated} = V \dot{q}$: $\dot{q}$ is the heat generated per volume at a certain point, and $V$ is the volume of the section. 
 - We rewrite the energy change term via the thermodynamic model that a change in energy is proportional to the associated change in temperature via the heat capacity $mc$, where $m$ is the mass and $c$ is the specific heat (at constant volume). That is: $dE = mc dT$.
+
+::: {.column-margin}
+If you want to be rigorous, we should use the integral of $\dot{q}$ over the volume, but well just assume this small segment has constant $\dot{q}$.
+:::
 
 ::: {.column-margin}
 The quantity $mc$ is sometimes called the "thermal inertia".
@@ -129,18 +132,18 @@ The quantity $mc$ is sometimes called the "thermal inertia".
 
 ::: {.callout-note collapse="true"}
 ### Click here to see the details of the derivation.
-For the conduction terms, we bring in the 1D version of Fourier's Law, making sure to include the cross-sectional area $A_\text{c}$ (remember, the heat flux $q''$ is "heat transfer per area"). For the $\dot{Q}_\text{generation}=V\dot{q}$ term, we'll also write the volume as $(\Delta x) A_c$ and the mass as $m=\rho V=\rho (\Delta x)A_c$ (where $\rho$ is the density). Then we've got
+For the conduction terms, we bring in the 1D version of Fourier's Law, making sure to include the cross-sectional area $A_\text{c}$ (remember, the heat flux $q''$ is "heat transfer per area"). For the $\dot{Q}_\text{generation}=V\dot{q}$ term, we'll write the volume as $A_c(\Delta x) $ and the mass as $m=\rho V=\rho A_c(\Delta x)$ (where $\rho$ is the density). Then we've got
 $$
-\rho (\Delta x)A_c c\frac{\partial T}{\partial t} = \left(-kA_c \frac{\partial T}{\partial x}\bigg\rvert_x \right) - \left(-kA_c \frac{\partial T}{\partial x}\bigg\rvert_{(x+\Delta x)}\right)+(\Delta x)(A_c) \dot{q}(x).
-$$
-
-Almost there! Divide through by $(\Delta x)A_c$ and swap the order of the conduction terms to leave
-
-$$
-\rho (\Delta x)A_c c\frac{\partial T}{\partial t}=\frac{k\frac{\partial T}{\partial x}(x+\Delta x)-k\frac{\partial T}{\partial x}(x)}{\Delta x} + \dot{q}
+\rho A_c(\Delta x) c\frac{\partial T}{\partial t} = \left(-kA_c \frac{\partial T}{\partial x}\bigg\rvert_x \right) - \left(-kA_c \frac{\partial T}{\partial x}\bigg\rvert_{(x+\Delta x)}\right)+A_c(\Delta x) \dot{q}(x).
 $$
 
-And then recognize that, if we take the limit as $\Delta x\rightarrow 0$, the fraction in that equation is the definition of derivative
+Almost there! Divide through by $A_c(\Delta x)$ and swap the order of the conduction terms to get the positive one first, leaving
+
+$$
+\rho c\frac{\partial T}{\partial t}=\frac{k\frac{\partial T}{\partial x}(x+\Delta x)-k\frac{\partial T}{\partial x}(x)}{\Delta x} + \dot{q}
+$$
+
+And then recognize that, if we take the limit as $\Delta x\rightarrow 0$, the fraction in that equation is the definition of derivative.
 
 :::
 
@@ -149,13 +152,13 @@ $$
 \boxed{\rho c \frac{\partial T}{\partial t} = \frac{\partial}{\partial x}\left(k \frac{\partial T}{\partial x}\right) + \dot{q}(x,t)}
 $$
 
-and, thinking back to calculus 3, it is intuitive that the full three-dimensional conduction equation will be
+and, thinking back to Calculus 3, it is intuitive that the full three-dimensional conduction equation will be
 
 $$
 \boxed{\rho c \frac{\partial T}{\partial t} = \boldsymbol{\nabla} \cdot \left(k \boldsymbol{\nabla}T\right) + \dot{q}}.
 $$
 
-Note that the heat generation term can be a function of location and/or time. In general, the conduction equation is a PDE for $T(x,y,z,t)$ (if the problem is best phrased in Cartesian coordinates) or $T(r,\theta,z,t)$ (if cylindrical). Our goal is to determine the spatial and temporal distribution of temperature.
+Note that the heat generation term can be a function of location and/or time. In general, the conduction equation is a PDE for $T(x,y,z,t)$ (if the problem is best phrased in Cartesian coordinates) or $T(r,\theta,z,t)$ (if cylindrical).
 
 ### A couple quick examples
 
@@ -169,14 +172,14 @@ $$
 \frac{d^2T}{dx^2} = 0
 $$
 
-Integrating twice will leave us with $T(x) = c_1 x + c_2$. Applying the boundary conditions:
+Integrating twice will leave us with $T(x) = c x + d$. Applying the boundary conditions:
 
 $$
 T(x) = -\left(\frac{T_0 - T_L}{L}\right)x + T_0.
 $$
 
 ::: {.callout-tip}
-You can work out the math in detail on your own if you want to check. You can also note that this equation is of the form $T(x) = c_1 x + c_2$ (i.e., it solves the differential equation) and it satisfies the two boundary conditions.
+You can work out the math in detail on your own if you want to check. You can also note that this equation is of the form $T(x) = c x + d$ (i.e., it solves the differential equation) and it satisfies the two boundary conditions.
 :::
 :::
 
@@ -191,20 +194,20 @@ You can work out the math in detail on your own if you want to check. You can al
 
 
 
-We'll assume the object starts at a known temperature $T(t=0)=T_0$. Then the Conduction Equation simplifies to
+We'll assume the object starts at a known temperature $T(t=0)=T_0$ (an initial condition). Then the Conduction Equation simplifies to
 
 $$
 \rho c \frac{dT}{dt} = \dot{q}_0
 $$
 
-Integrating once will leave us with $T(t) = \frac{\dot{q}_0}{\rho c}t + d_1$, and the unknown constant $d_1$ comes from the initial condition:
+Integrating once will leave us with $T(t) = \frac{\dot{q}_0}{\rho c}t + d$, and the unknown constant $d$ comes from the initial condition:
 
 $$
 T(t) = \frac{\dot{q}_0}{\rho c}t + T_0
 $$
 
 ::: {.callout-tip}
-Check your thermodynamics intuition: if a constant heat generation is happening, will the object heat up quicker if it is a big specific heat, or a small specific heat?
+Check your intuition: if a constant heat generation is happening, will the object change temperature quicker if it has a big specific heat, or a small specific heat?
 :::
 
 :::
@@ -246,13 +249,13 @@ This problem will motivate the thermal resistance section. Suppose we have this 
 The Conduction Equation applies to a single material: there is no way to handle the abrupt change in $k$ that occurs at $x=L_1$ using a single equation.
 :::
 
-So we will need to solve the Conduction Equation twice. Actually, it is the same solution twice (see Example 1.1 above): $T_1(x) = c_1 x + d_1$ and $T_2(x) = c_2 x + d_2$. But what are the boundary conditions? It seems we need four...
+We will need to solve the Conduction Equation twice. Actually, it is the same solution twice (see Example 1.1 above): $T_1(x) = c_1 x + d_1$ and $T_2(x) = c_2 x + d_2$. But what are the boundary conditions? $T_1(0)=T_\text{left}$ is obvious, as is $T_2(L_1+L_2)=T_\text{right}$. We need two more.
 
-$T_1(0)=T_\text{left}$ is obvious, as is $T_2(L_1+L_2)=T_\text{right}$. We need two more.
+
 
 **Physical observation #1:** If the two rectangles are in perfect contact at $x=L_1$ (more on this later), they must have the same temperature. We don't know what that temperature is, but we can say $T_1(L_1)=T_2(L_1)$.
 
-**Physical observation #2:** In order for the system to be at steady state, the amount of heat entering material 1 must be the same as the amount of heat leaving material 1 (else the rectangle 1 would be increasing in temperature). And the amount of heat entering material 2 must be the same as the amount of heat leaving material 2 (same reason). Assuming $T_\text{left}>T_\text{right}$, the heat leaving rectangle 1 must be entering rectangle 2. Framing this in terms of Fourier's Law:
+**Physical observation #2:** In order for the system to be at steady state, the amount of heat entering material 1 must be the same as the amount of heat leaving material 1 (else material 1 would be increasing in temperature). And the amount of heat entering material 2 must be the same as the amount of heat leaving material 2 (same reason). Assuming $T_\text{left}>T_\text{right}$, the heat leaving material 1 must be entering material 2. Framing this in terms of Fourier's Law:
 
 $$
 -k_1 \frac{dT_1}{dx}\bigg\rvert_{L_1} = -k_2 \frac{dT_2}{dx}\bigg\rvert_{L_1}.
@@ -266,7 +269,7 @@ The algebra is tedious... you can go through it if you like, but I'm going to sk
 
 ::: {.callout-tip}
 ## Think
-We just described two linear profiles, $T_1(x)$ and $T_2(x)$. Combined, they are continuous but are not smooth at $x=L_1$. Intuitively (i.e., don't just look at the equations): if $k_1 > k_2$, is the slope of the temperature profile larger in material 1 or 2? What does that tell you about the temperature drop through insulators vs. through conductors? Does that make sense?
+We just described two linear profiles, $T_1(x)$ and $T_2(x)$. Combined, they are continuous but are not smooth at $x=L_1$. Intuitively, and look at the Fourier's Law boundary condition: if $k_1 > k_2$, is the slope of the temperature profile larger in material 1 or 2?
 :::
 
 
@@ -359,11 +362,17 @@ $$
 
 ### "Composite" Wall
 
-This is where the resistor model becomes really valuable: thinking back to @exm-conduction3, we know the total temperature drop across the system ($\Delta T = T_\text{left}-T_\text{right}$). We can write a thermal circuit with two resistors in series:
+This is where the resistor model becomes really valuable: thinking back to @exm-conduction3, we know the total temperature drop across the system ($\Delta T_\text{total} = T_\text{left}-T_\text{right}$). We could write this as the sum of two temperature drops:
+
+$$
+\Delta T_\text{total} = (T_\text{left}-T_\text{interface})+(T_\text{interface}-T_\text{right})=T_\text{left}-T_\text{right}.
+$$
+
+It works just like a voltage drop! The total voltage drop across two resistors in series is the sum of the drop across the first resistor and the drop across the second resistor. So, continuing our metaphor, we can write a thermal circuit with two resistors in series:
 
 ![series circuit](images/series_circuit.png)
 
-and we can compute the total heat transfer through this wall easily
+and we can compute the total heat transfer through this wall algebraically -- we don't need to redo the calculus every time:
 
 $$
 \dot{Q} = \frac{\Delta T}{R_\text{total}} = \frac{T_\text{left}-T_\text{right}}{L_1/(k_1 A_1)+L_2/(k_2 A_2)}.
@@ -374,10 +383,10 @@ $$
 
 Two concepts that expand the utility of this metaphor:
 
-**Convection:** we saw in our introduction to the three modes of heat transfer that
+**Convection:** we saw in our [introduction](0intro.qmd) that
 
 $$
-\dot{Q}_\text{convection} = h A_\text{surface} (T-T_\infty) \implies \dot{Q}_\text{convection} = \frac{\Delta T}{1/(hA_\text{surface})}.
+\dot{Q}_\text{convection} = h A_\text{surface} (T_\text{surface}-T_\infty) \implies \dot{Q}_\text{convection} = \frac{\Delta T}{1/(hA_\text{surface})}.
 $$
 
 That is,
@@ -390,18 +399,18 @@ $$
 
 If two rigid materials are joined together, it is unlikely that they achieve perfect contact. Rather, there may be small air gaps owing to machining imperfections, surface roughness, etc. Air is a good insulator (low $k$), and so this "contact resistance" will inhibit heat transfer. 
 
-We can continue the Ohm's Law metaphor
+We can continue the Ohm's Law metaphor to describe this as another resistor in series, with
 $$
 \dot{Q}=\frac{\Delta T}{R_\text{contact}}
 $$
 
-but the values of contact resistance are given on a "per area" basis for the material pairings:
+over the interface. Contact resistance values are tabulated as a function of material pairings, usually given on a "per area" basis:
 
 $$
 R_\text{contact}=R''_\text{contact}/A_c.
 $$
 
-(The units of $R''$ are m²⋅K/W, so we divide by the area to get the thermal resistance in K/W.) An example: for a ceramic-ceramic interface, we might have $R''_\text{contact}=0.001$ m²⋅K/W. Contact resistance also is a function of pressure -- pushing surfaces together will squish any imperfections and roughness, decreasing the amount of contact resistance. So: make sure all your bolts are tight!
+(The units of $R''$ are m²⋅K/W, so we divide by the area to get the thermal resistance in K/W.) An example: for a ceramic-ceramic interface, we might have $R''_\text{contact}=0.001$ m²⋅K/W. Contact resistance also is a function of pressure -- pushing surfaces together will deform machining imperfections and surface roughness, decreasing the gap and the contact resistance. So: make sure all your bolts are tight!
 
 Adding contact resistance to the composite wall simply involves adding a third resistor in series.
 
@@ -409,7 +418,7 @@ Adding contact resistance to the composite wall simply involves adding a third r
 If we were to sketch the temperature profiles $T(x)$, the contact resistance would give a discontinuous jump in the temperature.
 :::
 
-It is sometimes worthwhile to add **thermal paste** to the contact locations. This fills the gap with a high thermal conductivity material instead of air, improving good heat transfer.
+It is sometimes worthwhile to add **thermal paste** to the contact locations. This fills the gap with a high thermal conductivity material instead of air, improving heat transfer.
 
 
 ## Interactive Example
@@ -420,18 +429,18 @@ I created an interactive example for a composite wall, [find it at this link](de
 
 Let's start with some intuition. Suppose we have the following cylindrical-shell geometry
 
-![concentric cylinders with heat flux](images/conc_cylinders.png)
+![](images/conc_cylinders.png)
 
-and we will assume angular and $z-$symmetry, and steady state. If it is indeed steady state, the amount of heat entering the shell must match the amount of heat leaving the shell: $\dot{Q}_\text{in} = \dot{Q}_\text{out}$. But what can we say about the heat fluxes? Is it that $q''_\text{in} = q''_\text{out}$, or $q''_\text{in} > q''_\text{out}$, or $q''_\text{in} < q''_\text{out}$.
+and we will assume $\theta-$ and $z-$symmetry, and that it is steady state. The amount of heat entering the shell must match the amount of heat leaving the shell: $\dot{Q}_\text{in} = \dot{Q}_\text{out}$. But what can we say about the heat fluxes? Is it that $q''_\text{in} = q''_\text{out}$, or $q''_\text{in} > q''_\text{out}$, or $q''_\text{in} < q''_\text{out}$.
 
 ::: {.callout-note collapse="true"}
 ### Click here to see the answer
 
 $$
-\left|q''(r_\text{in}) \cdot A_\text{in}\right| = \left|q''(r_\text{out}) \cdot A_\text{out}\right|
+q''(r_\text{in}) \cdot A_\text{in}= q''(r_\text{out}) \cdot A_\text{out}
 $$
 
-and so $q''_\text{in} > q''_\text{out}$.
+and $A_\text{in}<A_\text{out}$, so $q''_\text{in} > q''_\text{out}$.
 :::
 
 
@@ -445,7 +454,7 @@ $$
 
 But, unlike in the planar case, $q''$ changes as we proceed through the material. We can still use an Ohm's Law metaphor though!
 
-We will solve the same problem as in the planar case: steady heat conduction with known temperature at the boundaries: $T(r_\text{in})=T_\text{in}$ and $T(r_\text{out})=T_\text{out}$. I'll add the derivation inside here, and it may be useful to to look through it as this is an example of solving a differential equation in cylindrical coordinates.
+We will solve the same problem as in the planar case: steady heat conduction with known temperature at the boundaries: $T(r_\text{in})=T_\text{in}$ and $T(r_\text{out})=T_\text{out}$. I'll add the derivation below, it may be useful to to look through it as this is an example of solving a differential equation in cylindrical coordinates.
 
 ::: {.callout-note collapse="true"}
 ### Click here to see the derivation
@@ -506,7 +515,6 @@ $$
 \dot{Q} = q''(r) \cdot A(r) = k\frac{T_\text{out} - T_\text{in}}{\ln(r_\text{out}/r_\text{in})} \cdot \frac{1}{r} \cdot 2\pi r \cdot w
 $$
 
-where $w$ is the length in the $z-$direction. 
 
 :::
 
@@ -516,7 +524,7 @@ $$
 \dot{Q} = k \frac{\Delta T}{\ln(r_\text{out}/r_\text{in})} \cdot 2\pi w
 $$
 
-and bring back the Ohm's Law metaphor:
+where $w$ is the cylinder length in the $z-$direction. Bringing back the Ohm's Law metaphor
 
 $$
 \dot{Q}= \frac{\Delta T}{R_\text{cylindrical}}

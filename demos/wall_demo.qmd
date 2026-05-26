@@ -255,16 +255,14 @@ nearly all the temperature drop concentrate there.
 
 **Observation 2 -- Convection resistance can dominate.**
 Reduce $h_L$ to 5 W/m²·K (still-air natural convection). You will likely find
-$1/h_L$ dwarfs all the conduction resistances combined -- a reminder that
-adding more insulation has diminishing returns when convection is the
-bottleneck.
+$1/h_L$ is the biggest resistor (depends on the other parameters) -- a reminder that adding more insulation has diminishing returns when convection is the bottleneck.
 
 **Observation 3 -- Series resistance is additive.**
 Double any single layer thickness and $R''_\text{tot}$ increases by exactly
 $\Delta L / k$ -- visible immediately in the resistance network below the plot.
 
 **Observation 4 -- Fourier's Law relates the slopes.**
-Since this is a steady system, we have that the heat flux throughout is constant... i.e., within the first and second layers
+Since this is a steady system, we have that the heat flux throughout is constant. That is, within the first and second layers, we'll have
 
 $$
 -k_1 \frac{dT}{dx} = -k_2 \frac{dT}{dx}

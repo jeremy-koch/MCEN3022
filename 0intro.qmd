@@ -1,10 +1,10 @@
 # Week 0: Introduction {.unnumbered}
 
-Let's get started! This is part of your Week 1 content. We will introduce the three modes of heat transfer and introduce some vocabulary that will be used throughout the course.
+Let's get started! This is part of your Week 1 content. We will introduce the three modes of heat transfer and some vocabulary that will be used throughout the course. (That will probably be a living document...)
 
 ## Think First
 
-In general I will try to start off each week with a few questions like these to get the gears turning. The "Recall" questions you should know, and if you don't, revisit your notes. The "Look Ahead" questions you should not expect to know -- the purpose is to prime your brain to seek the answers to those questions in the videos and readings. At the end of the week, revisit these questions.
+In general I will try to start off each week with a few questions like these to get the gears turning. The "Recall" questions you should already know, and if you don't, revisit your notes. The "Look Ahead" questions you should not expect to know -- the purpose is to prime your brain to seek the answers to those questions in the ensuing videos and readings. At the end of the week, revisit these questions.
 
 Recall
 
@@ -25,16 +25,16 @@ Look ahead
 Start with [this video link](https://canvas.colorado.edu/courses/136150/pages/three-modes-of-heat-transfer). Then read this section. By consuming the content in one medium, then reviewing in another, I hope it will solidify your learning!
 :::
 
-From thermodynamics, recall that the energy of a system is changed via heat transfer (to or from an object) or work (on or by an object). This class will obviously be focusing on heat transfer. Recognize that the Laws of Thermodynamics say nothing about how to calculate heat transfer rates! That will be what we are focusing on.
+From thermodynamics, recall that the energy of a system is changed via heat transfer (to or from an object) or work (on or by an object). This class will obviously be focusing on heat transfer. Recognize that the Laws of Thermodynamics say nothing about how to determine the rate of heat transfer! That will be what we will be focusing on: determining the heat transfer rate.
 
 We give the symbol $\dot{Q}$ to the heat transfer rate, where $Q$ is the amount of heat (energy) transferred and the dot on top references a time derivative. The units of $\dot{Q}$ are Watts = Joules/second. We've got three "modes" of heat transfer to think about in this course: conduction, convection, and radiation. Here's a little preview...
 
 
 ### Conduction
 
-Conduction is primarily associated with solids. At the microscopic level, energy propagates through lattice vibrations — add energy to one atom and it begins jostling its neighbors, passing the disturbance along like a chain of springs. In metals, there is a second and often dominant mechanism: free electrons move rapidly through the lattice and carry thermal energy with them. This is why metals tend to be far better thermal conductors than non-metals (copper conducts heat roughly 600 times better than glass), and why good electrical conductors are almost always good thermal conductors too.
+Conduction is primarily associated with solids. At the microscopic level, energy propagates through lattice vibrations -- add energy to one atom and it begins jostling its neighbors, passing the disturbance along like a chain of springs. In metals, there is a second and often dominant mechanism: free electrons move rapidly through the lattice and carry thermal energy with them. This is why metals tend to be far better thermal conductors than non-metals (copper conducts heat roughly 600 times better than glass), and why good electrical conductors are almost always good thermal conductors too.
 
-Both mechanisms depend sensitively on material structure: alloying, crystal defects, and temperature all affect how freely energy is transferred. We invented a material property known as the thermal conductivity $k$ that helps us catalog this behavior. The units of $k$ are W/m·K.
+Both mechanisms depend on material structure: alloying, crystal defects, and temperature all affect how freely energy is transferred. We invented a material property known as the thermal conductivity $k$ that helps us catalog this behavior. The units of $k$ are W/m·K.
 
 The basic equation of conductive heat transfer is something like
 
@@ -42,11 +42,11 @@ $$
 \dot{Q}_\text{conduction} =A_c k \frac{T_1-T_2}{w}
 $$
 
-though that is a bit of a simplification. As will be the case with all heat transfer modes, heat transfer will be increased by area. It will also be the case in all modes that heat transfer increases with increasing temperature difference - here maybe between two sides of an object with thickness $w$.
+though that is a bit of a simplification. As will be the case with all heat transfer modes, heat transfer will be increased by area -- here we have $A_c$ as the cross-sectional area. It will also be the case in all modes that heat transfer increases with increasing temperature difference -- here maybe between two sides of an object with temperatures $T_1$ and $T_2$, separated by a thickness $w$.
 
 ### Convection
 
-Convection is associated with fluids - gases or liquids. If a cool evening breeze passes over you on a hot day, that breeze is removing energy from you: convective heat transfer. Intuitively, we expect that the speed of the breeze will effect the heat transfer rate. That is indeed the case: we will spend a few weeks describing how to calculate $h$, the convective heat transfer coefficient, as a function of fluid speed. The units of $h$ are W/m²·K.
+Convection is associated with fluids -- gases or liquids. If a cool evening breeze passes over you on a hot day, that breeze is removing energy from you: convective heat transfer. Intuitively, we expect that the speed of the breeze will effect the heat transfer rate, and that is indeed the case: we will spend a few weeks learning how to calculate $h$, the convective heat transfer coefficient, as a function of fluid speed. The units of $h$ are W/m²·K.
 
 The basic equation of convective heat transfer is
 
@@ -54,30 +54,30 @@ $$
 \dot{Q}_\text{convection} = h \cdot A_\text{surface} \cdot (T_\text{surface} - T_\infty)
 $$
 
-Again we see: an area dependence, and a dependence on temperature difference.
+Again we see: an area dependence, here called a surface area $A_\text{surface}$, and a dependence on temperature difference.
 
 ### Radiation
 
-Radiative heat transfer occurs any time objects of different temperatures "see" each other - you are radiating at your wall right now. In practice, it is only significant when there is a big temperature difference. The Sun transmits heat to the Earth via radiation: it produces photons, which carry energy through the vacuum of space, through Earth's atmosphere, and to your skin, where it warms you. 
+Radiative heat transfer occurs any time objects of different temperatures "see" each other -- you are probably a bit warmer than your wall right now, and so you are radiating at your wall as you read this. In practice, radiation is often negligible until there is a big temperature difference... the Sun, for example, is about 5800 K, and it is obviously sending a lot of energy our way. The mechanism: it produces photons, which carry energy through the vacuum of space, through Earth's atmosphere, and to your skin, where the photons are absorbed, and their energy warms you. 
 
 The basic equation of radiation is something like
 
 $$
-\dot{Q}_\text{radiation} = \varepsilon \sigma F A \cdot (T^4 - T_0^4)
+\dot{Q}_\text{radiation} = \varepsilon \sigma F A_\text{surface} \cdot (T_\text{surface}^4 - T_0^4)
 $$
 
 Again, we see an area dependence, and something that looks like a dependence on temperature difference, but the temperatures are raised to the fourth power. The Sun's surface is about 5800 K, while your skin is about 300 K... that temperature term is massive!
 
-Thankfully, there is a term in this equation that is basically "how well does the Sun see you": $F$, the view factor. It is a dimensionless number between 0 and 1, and would be quite small from you to the Sun. There is another dimensionless number, the emissivity, $\varepsilon$, that is a material property that describes how good of an "emitter" you are. And this equation includes a constant, $\sigma=5.67 \times 10^{-8}$ W/m²·K⁴, the Stefan-Boltzmann constant.
+Thankfully, there is a term in this equation that is basically "how well does the Sun see you": $F$, the view factor. It is a dimensionless number between 0 and 1, and would be quite small because the Sun doesn't "see you" that well. There is another dimensionless number, the emissivity, $\varepsilon$, that is a material property that describes how good of an "emitter" you are. And this equation includes a constant, $\sigma=5.67 \times 10^{-8}$ W/m²·K⁴, the Stefan-Boltzmann constant.
 
 
 ## Course outline
 
-To give some context for the course flow:
+To give some idea of the course flow:
 
-- Weeks 1-3 will be about conduction: the conduction equation, the thermal resistance model, fins (one of the most important engineering design strategies), and transient conduction.
+- Weeks 1-3 will be about conduction: the conduction equation, the thermal resistance model, enhanced heat transfer via fins, and transient conduction.
 - Weeks 4-6 will be about convection: boundary layers, the significance of turbulence, flow over objects (external flow), flow through objects (internal flow), and heat exchangers.
-- Weeks 7-8 will be about radiation: emissivity (a material property), the view factor, and the radiation resistance model.
+- Weeks 7-8 will be about radiation: the emissivity of real materials, the view factor, and the radiation resistance model.
 
 
 
@@ -87,7 +87,7 @@ To give some context for the course flow:
 
 ## Some vocabulary
 
-I expect that all students will become familiar with these terms. I will continue to add to the list.
+Students should become familiar with these terms. (I will continue to add to the list as the course progresses.)
 
 adiabatic
 : No heat transfer. Mathematically: at an adiabatic surface, $dT/dx=0$ (from Fourier's Law).
@@ -96,7 +96,7 @@ insulator
 : A material with low conductivity. A "perfect insulator" has $k=0$, but a practical insulator like foam has $k\approx 0.03$ W/m·K. 
 
 parameters and variables
-: Parameters are things that can adopt different values, but that tend to be kept constant within a problem. Examples are: material properties like density $\rho$ and viscosity $\mu$, sizes like length $L$ and diameter $D$, and usually the ambient temperature $T_\infty$. Variables can adopt different values within an analysis, e.g., if we needed to determine the necessary wind speed to keep an object below a certain temperature, $U$, the wind speed, is a variable in that problem.
+: Parameters are things that can adopt different values, but that tend to be kept constant within a problem. Examples are: material properties like density $\rho$ and viscosity $\mu$, sizes like length $L$ and diameter $D$, and usually the ambient temperature $T_\infty$. Variables can adopt different values within an analysis, e.g., if we needed to determine the necessary wind speed $U$ to keep an object below a certain temperature, $U$ is a variable in that problem.
 
 thermal conductivity
 : A material property that emerges from the empirical Fourier's Law. SI units: (Watts)/(meter Kelvin). Note that the Kelvin here is related to a difference in temperature, and a $\Delta T = 1~\text{K}$ is the same as a $\Delta T = 1^\circ\text{C}$. That is, no unit transformation is necessary to go between W/m·K and W/m·°C. 
