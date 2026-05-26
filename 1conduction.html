@@ -68,6 +68,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./demos/wall_demo.html" rel="next">
 <link href="./0intro.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -250,6 +251,23 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Conduction Eqn</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Demos</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./demos/wall_demo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Composite Plane Walls — Interactive Demo</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -738,7 +756,7 @@ Note
 </section>
 <section id="interactive-example" class="level2" data-number="1.5">
 <h2 data-number="1.5" class="anchored" data-anchor-id="interactive-example"><span class="header-section-number">1.5</span> Interactive Example</h2>
-<p>I created an interactive example for a composite wall, <a href="demos/wall_demo.qmd">find it at this link</a>.</p>
+<p>I created an interactive example for a composite wall, <a href="./demos/wall_demo.html">find it at this link</a>.</p>
 </section>
 <section id="radial-systems" class="level2" data-number="1.6">
 <h2 data-number="1.6" class="anchored" data-anchor-id="radial-systems"><span class="header-section-number">1.6</span> Radial Systems</h2>
@@ -791,7 +809,7 @@ q''=-k \frac{dT}{dr}.
 <div class="callout-body-container callout-body">
 <p>Start from the conduction equation with <span class="math inline">\(k = \text{constant}\)</span>, and we will assume steady heat transfer and no heat generation. Then we have, in cylindrical coordinates</p>
 <p><span class="math display">\[
-0=\nabla^2 T = \frac{1}{r}\frac{\partial}{\partial r}\left(r\frac{\partial T}{\partial r}\right) + \underbrace{\frac{1}{r^2}\frac{\partial^2 T}{\partial \theta^2}}_{\to 0, symmetry} + \underbrace{\frac{\partial^2 T}{\partial z^2}}_{\to 0, symmetry}
+0=\nabla^2 T = \frac{1}{r}\frac{\partial}{\partial r}\left(r\frac{\partial T}{\partial r}\right) + \underbrace{\frac{1}{r^2}\frac{\partial^2 T}{\partial \theta^2}}_{\to 0,~\text{symmetry}} + \underbrace{\frac{\partial^2 T}{\partial z^2}}_{\to 0,~\text{symmetry}}
 \]</span></p>
 <p>that is</p>
 <p><span class="math display">\[
@@ -825,7 +843,7 @@ q''(r) = -k\frac{dT}{dr} = -k \frac{T_\text{out} - T_\text{in}}{\ln(r_\text{out}
 \]</span></p>
 <p>and the total heat transfer rate is</p>
 <p><span class="math display">\[
-|\dot{Q}| = |q''(r)| \cdot A(r) = k\frac{T_\text{out} - T_\text{in}}{\ln(r_\text{out}/r_\text{in})} \cdot \frac{1}{r} \cdot 2\pi r \cdot w
+\dot{Q} = q''(r) \cdot A(r) = k\frac{T_\text{out} - T_\text{in}}{\ln(r_\text{out}/r_\text{in})} \cdot \frac{1}{r} \cdot 2\pi r \cdot w
 \]</span></p>
 <p>where <span class="math inline">\(w\)</span> is the length in the <span class="math inline">\(z-\)</span>direction.</p>
 </div>
@@ -850,9 +868,9 @@ R_\text{cylindrical}\equiv \frac{\ln(r_\text{out}/r_\text{in})}{2\pi k w}
 <p><span class="math display">\[
 0 = \frac{1}{r^2}\frac{d}{dr}\left(r^2 \frac{dT}{dr}\right)
 \]</span></p>
-<p>Solution process is the same, Fourier’s Law is <span class="math inline">\(q''=-k dT/dr\)</span>, so I’ll just skip to…</p>
+<p>Solution process is the same, Fourier’s Law is <span class="math inline">\(q''=-k(dT/dr)\)</span>, and let’s skip to…</p>
 <p><span class="math display">\[
-\dot{Q} = |q''(r)| \cdot A(r) = \left(\frac{\Delta T}{\frac{1}{r_\text{in}} - \frac{1}{r_\text{out}}}\right) \cdot \frac{k}{r^2} \cdot 4\pi r^2 = \left(\frac{\Delta T}{\frac{1}{r_\text{in}} - \frac{1}{r_\text{out}}}\right) 4\pi k
+\dot{Q} = q''(r) \cdot A(r) = \left(\frac{\Delta T}{\frac{1}{r_\text{in}} - \frac{1}{r_\text{out}}}\right) \cdot \frac{k}{r^2} \cdot 4\pi r^2 = \left(\frac{\Delta T}{\frac{1}{r_\text{in}} - \frac{1}{r_\text{out}}}\right) 4\pi k
 \]</span></p>
 <p>From which we see</p>
 <p><span class="math display">\[
@@ -1332,6 +1350,9 @@ R_\text{sphere} = \frac{\frac{1}{r_\text{in}} - \frac{1}{r_\text{out}}}{4\pi k}.
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./demos/wall_demo.html" class="pagination-link" aria-label="Composite Plane Walls — Interactive Demo">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Composite Plane Walls — Interactive Demo</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Conduction Eqn</span></span>
@@ -1788,7 +1809,7 @@ R_\text{sphere} = \frac{\frac{1}{r_\text{in}} - \frac{1}{r_\text{out}}}{4\pi k}.
 <span id="cb1-452"><a href="#cb1-452" aria-hidden="true" tabindex="-1"></a>Start from the conduction equation with $k = \text{constant}$, and we will assume steady heat transfer and no heat generation. Then we have, in cylindrical coordinates</span>
 <span id="cb1-453"><a href="#cb1-453" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-454"><a href="#cb1-454" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-455"><a href="#cb1-455" aria-hidden="true" tabindex="-1"></a>0=\nabla^2 T = \frac{1}{r}\frac{\partial}{\partial r}\left(r\frac{\partial T}{\partial r}\right) + \underbrace{\frac{1}{r^2}\frac{\partial^2 T}{\partial \theta^2}}_{\to 0, symmetry} + \underbrace{\frac{\partial^2 T}{\partial z^2}}_{\to 0, symmetry}</span>
+<span id="cb1-455"><a href="#cb1-455" aria-hidden="true" tabindex="-1"></a>0=\nabla^2 T = \frac{1}{r}\frac{\partial}{\partial r}\left(r\frac{\partial T}{\partial r}\right) + \underbrace{\frac{1}{r^2}\frac{\partial^2 T}{\partial \theta^2}}_{\to 0,~\text{symmetry}} + \underbrace{\frac{\partial^2 T}{\partial z^2}}_{\to 0,~\text{symmetry}}</span>
 <span id="cb1-456"><a href="#cb1-456" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-457"><a href="#cb1-457" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-458"><a href="#cb1-458" aria-hidden="true" tabindex="-1"></a>that is</span>
@@ -1839,7 +1860,7 @@ R_\text{sphere} = \frac{\frac{1}{r_\text{in}} - \frac{1}{r_\text{out}}}{4\pi k}.
 <span id="cb1-503"><a href="#cb1-503" aria-hidden="true" tabindex="-1"></a>and the total heat transfer rate is</span>
 <span id="cb1-504"><a href="#cb1-504" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-505"><a href="#cb1-505" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-506"><a href="#cb1-506" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span>\dot{Q}<span class="pp">|</span> = <span class="pp">|</span>q''(r)<span class="pp">|</span> \cdot A(r) = k\frac{T_\text{out} - T_\text{in}}{\ln(r_\text{out}/r_\text{in})} \cdot \frac{1}{r} \cdot 2\pi r \cdot w</span>
+<span id="cb1-506"><a href="#cb1-506" aria-hidden="true" tabindex="-1"></a>\dot{Q} = q''(r) \cdot A(r) = k\frac{T_\text{out} - T_\text{in}}{\ln(r_\text{out}/r_\text{in})} \cdot \frac{1}{r} \cdot 2\pi r \cdot w</span>
 <span id="cb1-507"><a href="#cb1-507" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-508"><a href="#cb1-508" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-509"><a href="#cb1-509" aria-hidden="true" tabindex="-1"></a>where $w$ is the length in the $z-$direction. </span>
@@ -1874,10 +1895,10 @@ R_\text{sphere} = \frac{\frac{1}{r_\text{in}} - \frac{1}{r_\text{out}}}{4\pi k}.
 <span id="cb1-538"><a href="#cb1-538" aria-hidden="true" tabindex="-1"></a>0 = \frac{1}{r^2}\frac{d}{dr}\left(r^2 \frac{dT}{dr}\right)</span>
 <span id="cb1-539"><a href="#cb1-539" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-540"><a href="#cb1-540" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-541"><a href="#cb1-541" aria-hidden="true" tabindex="-1"></a>Solution process is the same, Fourier's Law is $q''=-k dT/dr$, so I'll just skip to...</span>
+<span id="cb1-541"><a href="#cb1-541" aria-hidden="true" tabindex="-1"></a>Solution process is the same, Fourier's Law is $q''=-k(dT/dr)$, and let's skip to...</span>
 <span id="cb1-542"><a href="#cb1-542" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-543"><a href="#cb1-543" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-544"><a href="#cb1-544" aria-hidden="true" tabindex="-1"></a>\dot{Q} = |q''(r)| \cdot A(r) = \left(\frac{\Delta T}{\frac{1}{r_\text{in}} - \frac{1}{r_\text{out}}}\right) \cdot \frac{k}{r^2} \cdot 4\pi r^2 = \left(\frac{\Delta T}{\frac{1}{r_\text{in}} - \frac{1}{r_\text{out}}}\right) 4\pi k</span>
+<span id="cb1-544"><a href="#cb1-544" aria-hidden="true" tabindex="-1"></a>\dot{Q} = q''(r) \cdot A(r) = \left(\frac{\Delta T}{\frac{1}{r_\text{in}} - \frac{1}{r_\text{out}}}\right) \cdot \frac{k}{r^2} \cdot 4\pi r^2 = \left(\frac{\Delta T}{\frac{1}{r_\text{in}} - \frac{1}{r_\text{out}}}\right) 4\pi k</span>
 <span id="cb1-545"><a href="#cb1-545" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-546"><a href="#cb1-546" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-547"><a href="#cb1-547" aria-hidden="true" tabindex="-1"></a>From which we see </span>
