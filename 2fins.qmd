@@ -1,0 +1,574 @@
+# Fins
+
+This week we are going to focus on fins, a useful item in our engineering design toolkit. The idea is this: Hot surface! We need to cool it! But the fluid passing over it isn't creating a high enough $\dot{Q}$. If our electronics are producing 200 W, but we are only able to remove 100 W, we are going to cook our electronics.
+
+We could increase the flow over the object (bigger fan), change the medium of the flow (water-cooled is better than air-cooled), or put the object in a cooler room (data centers are usually very cold). We are going to focus on another approach: increasing surface area. We will do so by putting "fins" on the object -- objects with a high surface area to volume ratio, e.g. numerous 10 mm-long, 2 mm-diameter cylinders. These will wick heat from the object, and their large surface area will allow greater opportunity to deposit that heat in the fluid.
+
+We'll examine another version of conservation of energy -- this time, 1D only, though we'll include some convection out (radially) within that description. "The Fin Equation" is an ordinary differential equation for temperature as a function of position, and it will include in it considerations of: the thermal conductivity, the convection coefficient, and the size of the fin. In the case of constant cross-section fins, we can solve the Fin Equation analytically.
+
+
+
+
+
+## Think First
+
+Recall
+
+1. What is the thermal conductivity $k$? What is the convection coefficient $h$?
+2. What is the thermal resistance analogy? $\dot{Q}=\Delta T/R$, but what is $R$?
+3. Why does increasing surface area increase convective heat transfer?
+
+
+Look Ahead
+
+1. How do we decide the size and number of fins?
+2. How do material choices (copper vs. steel) affect fin performance?
+3. What do we mean by a fin being "effective" and "efficient"? Do they mean different things?
+
+## The Fin Equation
+
+::: {.callout-tip}
+### Video
+
+Start with [this video link](https://canvas.colorado.edu/courses/136150/pages/the-fin-equation), which covers the Fin Equation derivation. Then read the following.
+:::
+
+### Problem setup and solution
+
+Here is a general geometry for a single fin:
+
+```{=html}
+<svg width="530" height="185" xmlns="http://www.w3.org/2000/svg">
+  <title>Fin geometry — isometric view</title>
+  <desc>An isometric view of a cylindrical fin sticking out of a flat plane wall shown as a parallelogram. Two dashed ellipses mark a control-volume slice of width Delta x. Q_cond,in enters from the left, Q_cond,out exits to the right, and Q_conv points upward from the surface.</desc>
+  <defs>
+    <linearGradient id="fin3d-grad" x1="0" y1="58" x2="0" y2="100" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#daeaf5"/>
+      <stop offset="40%"  stop-color="#aacde8"/>
+      <stop offset="100%" stop-color="#5e8fb0"/>
+    </linearGradient>
+    <marker id="fin3d-arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 z" fill="black"/>
+    </marker>
+  </defs>
+
+  <!-- Wall: 5 line segments, right edge stops at cylinder top/bottom -->
+  <line x1="97" y1="4"   x2="47"  y2="26"  stroke="black" stroke-width="2"/>
+  <line x1="47" y1="26"  x2="47"  y2="174" stroke="black" stroke-width="2"/>
+  <line x1="47" y1="174" x2="97"  y2="152" stroke="black" stroke-width="2"/>
+  <line x1="97" y1="4"   x2="97"  y2="58"  stroke="black" stroke-width="2"/>
+  <line x1="97" y1="100" x2="97"  y2="152" stroke="black" stroke-width="2"/>
+
+  <!-- Cylinder body -->
+  <rect x="72" y="58" width="420" height="42" fill="url(#fin3d-grad)"/>
+  <line x1="72" y1="58"  x2="492" y2="58"  stroke="black" stroke-width="2"/>
+  <line x1="72" y1="100" x2="492" y2="100" stroke="black" stroke-width="2"/>
+
+  <!-- Tip ellipse -->
+  <ellipse cx="492" cy="79" rx="10" ry="21" fill="url(#fin3d-grad)" stroke="black" stroke-width="2"/>
+
+  <!-- Control volume dashed ellipses -->
+  <ellipse cx="245" cy="79" rx="10" ry="21" fill="none" stroke="black" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <ellipse cx="285" cy="79" rx="10" ry="21" fill="none" stroke="black" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+  <!-- Cylinder base: full ellipse -->
+  <ellipse cx="72" cy="79" rx="10" ry="21" fill="url(#fin3d-grad)" stroke="black" stroke-width="2"/>
+
+  <!-- Convection arrow -->
+  <line x1="265" y1="58" x2="265" y2="25" stroke="black" stroke-width="1.5" marker-end="url(#fin3d-arr)"/>
+  <foreignObject x="273" y="16" width="130" height="22">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="font-size:13px">\(\dot{Q}_\text{conv}\)</div>
+  </foreignObject>
+
+  <!-- Q_cond,in: label BEFORE arrow, arrow tip at cx of left dashed ellipse -->
+  <foreignObject x="83" y="67" width="100" height="20">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:right; font-size:13px">\(\dot{Q}_\text{cond,in}\)</div>
+  </foreignObject>
+  <line x1="206" y1="79" x2="245" y2="79" stroke="black" stroke-width="1.5" marker-end="url(#fin3d-arr)"/>
+
+  <!-- Q_cond,out: arrow base at cx of right dashed ellipse, label AFTER arrow -->
+  <line x1="285" y1="79" x2="334" y2="79" stroke="black" stroke-width="1.5" marker-end="url(#fin3d-arr)"/>
+  <foreignObject x="338" y="67" width="115" height="20">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:left; font-size:13px">\(\dot{Q}_\text{cond,out}\)</div>
+  </foreignObject>
+
+  <!-- x = 0 label at base -->
+  <line x1="72" y1="100" x2="72" y2="112" stroke="black" stroke-width="1.2"/>
+  <foreignObject x="44" y="112" width="60" height="22">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center; font-size:13px">\(x = 0\)</div>
+  </foreignObject>
+
+  <!-- x = L label at tip -->
+  <line x1="492" y1="100" x2="492" y2="112" stroke="black" stroke-width="1.2"/>
+  <foreignObject x="464" y="112" width="58" height="22">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center; font-size:13px">\(x = L\)</div>
+  </foreignObject>
+
+  <!-- Δx bracket: dashed drop lines + double-headed arrow from center -->
+  <line x1="245" y1="100" x2="245" y2="128" stroke="black" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="285" y1="100" x2="285" y2="128" stroke="black" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="265" y1="124" x2="247" y2="124" stroke="black" stroke-width="1.5" marker-end="url(#fin3d-arr)"/>
+  <line x1="265" y1="124" x2="283" y2="124" stroke="black" stroke-width="1.5" marker-end="url(#fin3d-arr)"/>
+  <foreignObject x="246" y="128" width="38" height="22">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center; font-size:13px">\(\Delta x\)</div>
+  </foreignObject>
+</svg>
+```
+
+Here, a slender cylindrical fin is attached to a hot surface at $x=0$. The fin has a known geometry: known cross-section $A_c(x)$ (defined at a position $x$, and we are allowing for the possibility that it depends on $x$) and known length $L$. At every location $x$, we know the perimeter around the fin, $P(x)$, and we'll assume we know the fin material (and thus $k$) and have looked up a value of the convection coefficient ($h$ is known). We are going to write an energy balance at an arbitrary position $x$, assuming:
+
+1. We are at steady state
+2. The fin is slender such that the temperature is uniform within each cross-section
+3. Constant/averaged value of $h$
+
+The first two points allow us to think about $T(x)$ instead of worrying about $T(x,y,z,t)$.
+
+::: {.callout-note collapse="true"}
+### Click here to see the details of the derivation.
+
+We write a conservation of energy for the $\Delta x$ segment, making use of the assumption of steadiness to say
+
+$$
+\frac{dE}{dt} = 0 = q''(x) \cdot A_c(x) - q''(x+\Delta x) \cdot A_c(x+\Delta x) - h \cdot P(x) \cdot \Delta x \cdot (T(x) - T_\infty).
+$$
+
+The terms in that equation represent: conductive heat transfer in from the left cross-section, conduction out through the right cross-section, and convection out through the outer surface.
+
+Using Fourier's Law $q'' = -k\frac{dT}{dx}$:
+
+$$
+0 = \left(-k A_c\frac{dT}{dx}\right)\bigg|_x  - \left(-k A_c\frac{dT}{dx}\right)\bigg|_{x+\Delta x} - h \cdot P(x) \cdot \Delta x \cdot (T(x) - T_\infty).
+$$
+
+Then we divide by $\Delta x$ and take the limit as $\Delta x \to 0$ (definition of derivative), leaving...
+:::
+
+The Fin Equation:
+$$
+0 = \frac{d}{dx}\left(k A_c(x) \frac{dT}{dx}\right) - h P(x) (T(x) - T_\infty)
+$$
+
+a second-order ordinary differential equation that, when solved with two boundary conditions, will give us the temperature distribution in the fin $T(x)$. From this we will be able to calculate the total heat transfer out of the fin.
+
+
+
+## The solution for uniform cross-section
+
+::: {.callout-tip}
+### Video
+
+Start with [this video link](https://canvas.colorado.edu/courses/136150/pages/fin-uniform-ac), which covers the solution process. Then read the following.
+:::
+
+### Assumptions
+
+We are going to analyze the case where the cross-section and perimeter are constants, not functions of $x$. We'll also assume that $k$ is a constant. Then the Fin Equation becomes:
+
+$$
+0 = k A_c\frac{d^2T}{dx^2} - hP(T(x) - T_\infty)
+$$
+
+and we can combine the parameters in the problem into one constant
+
+$$
+0 = \frac{d^2T}{dx^2} - \frac{hP}{k A_c}(T(x) - T_\infty).
+$$
+
+It's looking easier to deal with already... we're going to do one extra setup step.
+
+### Non-Dimensionalization
+
+It is nice to non-dimensionalize equations. Framed within the context of the fin problem: we know that $k$, $h$, $A_c$ and $P$ are relevant, and they indeed appear in that combined parameter we just arrived at. But how does $L$ factor in? Can we say without solving the equation? After non-dimensionalizing the equation, we will have greater insight. The non-dimensionalized equation is also going to be easier to solve.
+
+First we are going to define a non-dimensional temperature:
+
+$$
+\theta(x) \equiv \frac{T(x) - T_\infty}{T_b - T_\infty}.
+$$
+
+This is convenient because, when $T=T_b$, the non-dimensional $\theta =1$, and when $T=T_\infty$, the non-dimensional $\theta =0$. We should intuitively expect our solution to start at $\theta=1$ and asymptote towards $\theta=0$ as we move away from the fin base.
+
+We are also going to define a non-dimensional position:
+
+$$
+X\equiv \frac{x}{L}.
+$$
+
+Again, it's convenient: $X$ goes from $0$ to $1$.
+
+We then will reframe the differential equation as $\theta(X)$ instead of $T(x)$. Using the chain rule:
+
+$$
+\frac{dT}{dx}=\frac{dX}{dx}\frac{dT}{dX} = \frac{1}{L}\frac{dT}{dX}
+$$
+
+and
+
+$$
+\frac{d^2T}{dx^2} = \frac{d}{dx}\left(\frac{dT}{dx}\right) = \frac{dX}{dx}\frac{d}{dX}\left(\frac{1}{L}\frac{dT}{dX}\right)=\frac{1}{L^2}\frac{d^2T}{dX^2}.
+$$
+
+Then plugging-in the definition of $\theta$:
+
+$$
+\frac{d^2T}{dX^2} = \frac{d^2}{dX^2}\left((T_b-T_\infty)\theta + T_\infty\right) = (T_b-T_\infty)\frac{d^2\theta}{dX^2}.
+$$
+
+We include these results in the constant cross-section differential equation we have
+
+$$
+0= \frac{(T_b-T_\infty)}{L^2}\frac{d^2\theta}{dX^2} - \frac{hP}{k A_c}(T(x) - T_\infty)
+$$
+
+and, with some algebra, settle on a non-dimensional form of the differential equation:
+
+$$
+0= \frac{d^2\theta}{dX^2} - m^2\theta
+$$
+
+with
+
+$$
+m=\sqrt{\frac{hPL^2}{kA_c}}
+$$
+
+a dimensionless constant.
+
+As we hinted above, one boundary condition that we will use is $\theta(0)=1$. The second is a bit more controversial... we'll get into that in the next section. But let's think about what we have arrived at with this non-dimensionalization:
+
+1. We have identified a dimensionless parameter $m$ that is the single parameter in the problem. This tells us, for example, that doubling the fin length will have the same effect as increasing the convection coefficient by four. We capture the push-and-pull of the parameters in a single variable.
+2. An equation of the form $y'' - c y =0$ is a bit easier to solve than an equation of the form $y'' - cy = d$.
+
+### Boundary Conditions
+
+The problem is not well-posed until we figure out the boundary conditions. The first boundary condition is not controversial:
+
+$$
+T(x=0) = T_b \implies \theta(X=0) = 1.
+$$
+
+The second is not as obvious -- we have to make an assumption.
+
+#### Known temperature
+
+We could assume that
+
+$$
+T(L) = T_\infty \implies \theta(1) = 0.
+$$
+
+However, this presumes knowledge of the temperature at the tip. Do we know for certain that it gets all the way to $\theta = 0$ by $X = 1$? That will not be the case with a short fin, but it might be reasonable for a long fin.
+
+#### Adiabatic tip
+
+We could assume that the tip is "adiabatic":
+
+$$
+\frac{dT}{dx}\bigg\rvert_L = 0 \implies \frac{d\theta}{dX}\bigg\rvert_1 = 0
+$$
+
+Rationale: most of the energy is convected out along the length, so the amount convected out at $x = L$ is $\approx 0$.
+
+::: {.callout-tip}
+##### Think
+What would the plot of the solution look like at $X=1$? Specifically think about the slope of the curve.
+:::
+
+#### Tip heat transfer $\sim h$
+
+We could assume that the tip has convection with coefficient $h$. Then that which is conducted to the tip will be convected out:
+$$
+-k\frac{dT}{dx}\bigg\rvert_L = h(T(L) - T_\infty) \implies -\frac{k}{L}\frac{d\theta}{dX}\bigg\rvert_1 = h\theta(1).
+$$
+
+This is perhaps the most defendable boundary condition, but "is the juice worth the squeeze" (one of my favorite sayings): this boundary condition is the most difficult to implement.
+
+Given the many assumptions that have gone into this analysis, the error from using other boundary conditions is probably not a big deal!
+
+
+### Analytical Solution
+
+Let's solve
+
+$$
+0= \frac{d^2\theta}{dX^2} - m^2\theta
+$$
+
+with 
+
+$$
+m=\sqrt{\frac{hPL^2}{kA_c}}
+$$
+
+subject to boundary conditions
+
+$$
+\begin{align*}
+&\theta(0)=1\\
+&\theta(1)=0.
+\end{align*}
+$$
+
+We may be tempted to say the general solution is
+
+$$
+\theta(X) = c_1 \exp{(-mX)} + c_2 \exp{(mX)}
+$$
+
+which is totally correct, but the algebra that follows when applying the boundary conditions is going to be annoying. Instead, let's remember the definitions of $\sinh(z) \equiv (\exp(z)-\exp(-z))/2$ and $\cosh(z)\equiv (\exp(z)+\exp(-z))/2$ and write the solution as
+
+$$
+\theta(X) = d_1 \sinh(mX) + d_2 \cosh(mX).
+$$
+
+Boundary condition at $X=0$:
+
+$$
+\theta(0) = 1 = d_1 \sinh(0) + d_2 \cosh(0) \implies d_2 = 1.
+$$
+
+Boundary condition at $X=1$:
+
+$$
+0 = d_1 \sinh(m) + \cosh(m) \implies d_1 = -\frac{\cosh(m)}{\sinh(m)} = -\frac{1}{\tanh(m)}.
+$$
+
+Therefore, our solution is
+
+$$
+\theta(X) = \cosh(mX) - \frac{\sinh(mX)}{\tanh(m)}
+$$
+
+```{ojs}
+//| echo: false
+{
+  const N = 300;
+  const curves = [
+    { m: 1,  label: "m = 1",  color: "#4e79a7" },
+    { m: 5,  label: "m = 5",  color: "#f28e2b" },
+    { m: 10, label: "m = 10", color: "#e15759" },
+  ];
+
+  function th(m, X) {
+    return Math.cosh(m * X) - Math.sinh(m * X) / Math.tanh(m);
+  }
+
+  // Label anchor positions staggered so they don't overlap
+  const labelX = { 1: 0.65, 5: 0.35, 10: 0.18 };
+  const labelPts = curves.map(({ m, label, color }) => ({
+    X: labelX[m], theta: th(m, labelX[m]), label, color,
+  }));
+
+  return Plot.plot({
+    width: 520, height: 360,
+    marginLeft: 60, marginBottom: 60, marginRight: 24, marginTop: 24,
+    style: { fontFamily: "Georgia, serif", fontSize: "13px" },
+    x: { label: null, ticks: [0, 0.2, 0.4, 0.6, 0.8, 1.0], domain: [0, 1] },
+    y: { label: null, ticks: [0, 0.2, 0.4, 0.6, 0.8, 1.0], domain: [0, 1] },
+    marks: [
+      Plot.ruleX([0], { stroke: "#999" }),
+      Plot.ruleY([0], { stroke: "#999" }),
+      // One line per curve with its own color
+      ...curves.map(({ m, color }) =>
+        Plot.line(
+          Array.from({ length: N + 1 }, (_, i) => {
+            const X = i / N;
+            return { X, theta: th(m, X) };
+          }),
+          { x: "X", y: "theta", stroke: color, strokeWidth: 2 }
+        )
+      ),
+      // Direct curve labels, offset above the line
+      Plot.text(labelPts, {
+        x: "X", y: "theta", text: "label", fill: "color",
+        dy: -10, textAnchor: "middle", fontSize: 13,
+      }),
+      // Axis labels: larger, centered, rendered outside the data frame
+      Plot.text([{ X: 0.5, theta: -0.15 }], {
+        x: "X", y: "theta", text: () => "X",
+        clip: false, fontSize: 17, textAnchor: "middle",
+        fontFamily: "Georgia, serif", fontStyle: "italic",
+      }),
+      Plot.text([{ X: -0.13, theta: 0.5 }], {
+        x: "X", y: "theta", text: () => "θ",
+        clip: false, fontSize: 17, textAnchor: "middle", rotate: -90,
+        fontFamily: "Georgia, serif", fontStyle: "italic",
+      }),
+    ],
+  });
+}
+```
+
+
+### Converting back to $T(x)$
+
+We can use the definitions of $\theta$ and $X$ to convert the equation back to dimensional variables:
+
+$$
+T(x)=T_\infty + (T_b - T_\infty)\left[\cosh\!\left(\frac{mx}{L}\right)-\frac{\sinh\!\left(\frac{mx}{L}\right)}{\tanh(m)}\right].
+$$
+
+## Calculating the fin heat transfer
+
+With the temperature profile $T(x)$ known, we have at least two ways of calculating the fin heat transfer rate $\dot{Q}_f$.
+
+### Using $h$
+
+More intuitively: we might look to the basic equation for convective heat transfer $\dot{Q} = h A_\text{surf}(T-T_\infty)$ and consider how to account for a temperature that changes with position. Sounds like a job for... integration over the area:
+
+
+$$
+\dot{Q}_f = \int h (T(x)-T_\infty) dA_\text{surface}.
+$$
+
+For a cylinder (as depicted above) we would write the area as $A_\text{surface} = \pi D x$ and so $dA_\text{surface} = \pi D dx$.
+
+
+### Using $k$
+
+We also might wisely recognize that, since we have assumed steady state, the rate that heat is conducted into the fin must match the rate that heat is convected out of the fin. That is:
+
+$$
+\dot{Q}_f = -k \frac{dT}{dx}\bigg\rvert_0 A_c(0).
+$$
+
+## Fin Performance Metrics
+
+We can characterize the fin performance using two metrics.
+
+### Effectiveness
+
+The fin effectiveness, $\epsilon_f$, tells us how much better the fin is doing at removing heat than the plain surface. That is:
+
+$$
+\epsilon_f = \frac{\text{the amount of heat transfer w/ fin}}{\text{the amount without the fin}} = \frac{\dot{Q}_f}{h \cdot A_c(0)(T_b - T_\infty)}
+$$
+
+where the downstairs includes $A_c(0)$, the area of the fin base. It should be the case that $\epsilon>1$, else the fin does a worse job than the plain surface! Typically $\epsilon>2$.
+
+### Efficiency
+
+The fin efficiency, $\eta_f$, gives us a measure of our fin's performance against a perfect fin where the entirety of the fin surface is at $T_b$:
+
+$$
+\eta_f \equiv \frac{\text{the amount of heat transfer w/ fin}}{\text{the amount if the whole fin was at }T_b} = \frac{\dot{Q}_f}{h \cdot A_\text{surf} \cdot (T_b - T_\infty)}.
+$$
+
+We will have $0 < \eta_f < 1$. When $\eta_f$ is small, it means that the temperature profile in the fin has quickly dropped from $T_b$ to close to $T_\infty$, i.e. as we see in the $m=10$ case above. In such a case, the fin might be nearly as effective with half the length, meaning we may save in material costs. Moreover, a shorter fin will likely be more durable, and it may be the case that a shorter fin allows for better fluid circulation, thus increasing $h$.
+
+
+## Interactive Example
+
+I created an interactive plot of the fin solution, [find it at this link](demos/fin_demo.qmd).
+
+## Catalogs of $\eta_f$
+
+::: {.callout-tip}
+### Video
+
+This content is entirely in [this video link](https://canvas.colorado.edu/courses/136150/pages/fins-with-cataloged-info).
+:::
+
+
+
+
+
+## Arrays of Fins
+
+::: {.callout-tip}
+### Video
+
+Watch [this video link first](https://canvas.colorado.edu/courses/136150/pages/fin-arrays).
+:::
+
+### Inclusion in the resistor model
+It is common to include numerous fins on an object -- if you are going to attach one, might as well attach a few! From a practical perspective, we are interested in calculating the total amount of heat transfer from the object, and that includes the heat transfer from the $N$ fins and from the "unfinned" area of the object (the area between the fins).
+
+::: {.column-margin}
+We are assuming that $N$ fins will create $N\dot{Q}_f$ heat transfer. But adding more fins is going to hinder the flow -- the cool ambient air will not flow as freely over the fins, which will decrease the value of $h$.
+:::
+
+We can model this situation as a collection of resistors in parallel: $N$ resistors for the $N$ fins, and one more for the unfinned area.
+
+```{=html}
+<svg width="390" height="265" xmlns="http://www.w3.org/2000/svg">
+  <title>Parallel fin–base resistor network</title>
+  <desc>Five resistors in parallel. Manifolds at x=55 and x=325 (span 270px). Each path: 90px straight, 90px zigzag, 90px straight. Top four R_f, bottom R_b.</desc>
+
+  <!--
+    Manifold span: 55→325 = 270px, each third = 90px
+    Left straight:  55→145
+    Zigzag body:  145→235  (s=10px stubs, 5 half-periods × 14px, amplitude ±8)
+      Points: 145,cy  155,cy-8  169,cy+8  183,cy-8  197,cy+8  211,cy-8  225,cy+8  235,cy
+    Right straight: 235→325
+    Resistor y positions (50px spacing): 40, 90, 140, 190, 240   midpoint y=140
+  -->
+
+  <!-- Left manifold: solid above gap, dotted through implied section, solid below -->
+  <line x1="55" y1="40"  x2="55" y2="155" stroke="black" stroke-width="2"/>
+  <line x1="55" y1="155" x2="55" y2="225" stroke="black" stroke-width="2" stroke-dasharray="5,6"/>
+  <line x1="55" y1="225" x2="55" y2="240" stroke="black" stroke-width="2"/>
+  <!-- Right manifold: same pattern -->
+  <line x1="325" y1="40"  x2="325" y2="155" stroke="black" stroke-width="2"/>
+  <line x1="325" y1="155" x2="325" y2="225" stroke="black" stroke-width="2" stroke-dasharray="5,6"/>
+  <line x1="325" y1="225" x2="325" y2="240" stroke="black" stroke-width="2"/>
+
+  <!-- Left lead + T_b label at midpoint y=140 -->
+  <line x1="28" y1="140" x2="55" y2="140" stroke="black" stroke-width="2"/>
+  <foreignObject x="0" y="128" width="26" height="24">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:right; font-size:16px; font-family:serif">\(T_b\)</div>
+  </foreignObject>
+
+  <!-- Right lead + T_∞ label at midpoint y=140 -->
+  <line x1="325" y1="140" x2="362" y2="140" stroke="black" stroke-width="2"/>
+  <foreignObject x="364" y="128" width="26" height="24">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:left; font-size:16px; font-family:serif">\(T_\infty\)</div>
+  </foreignObject>
+
+  <!-- Resistor 1 — R_f, cy=40 -->
+  <polyline points="55,40 145,40 155,32 169,48 183,32 197,48 211,32 225,48 235,40 325,40"
+            fill="none" stroke="black" stroke-width="1.5"/>
+  <foreignObject x="125" y="8" width="130" height="22">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center; font-size:16px; font-family:serif">\(R_f\)</div>
+  </foreignObject>
+
+  <!-- Resistor 2 — R_f, cy=90 -->
+  <polyline points="55,90 145,90 155,82 169,98 183,82 197,98 211,82 225,98 235,90 325,90"
+            fill="none" stroke="black" stroke-width="1.5"/>
+  <foreignObject x="125" y="58" width="130" height="22">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center; font-size:16px; font-family:serif">\(R_f\)</div>
+  </foreignObject>
+
+  <!-- Resistor 3 — R_f, cy=140 -->
+  <polyline points="55,140 145,140 155,132 169,148 183,132 197,148 211,132 225,148 235,140 325,140"
+            fill="none" stroke="black" stroke-width="1.5"/>
+  <foreignObject x="125" y="108" width="130" height="22">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center; font-size:16px; font-family:serif">\(R_f\)</div>
+  </foreignObject>
+
+  <!-- Resistor 4 — R_b, cy=240 -->
+  <polyline points="55,240 145,240 155,232 169,248 183,232 197,248 211,232 225,248 235,240 325,240"
+            fill="none" stroke="black" stroke-width="1.5"/>
+  <foreignObject x="125" y="208" width="130" height="22">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center; font-size:16px; font-family:serif">\(R_b\)</div>
+  </foreignObject>
+</svg>
+```
+
+Reminder: the fin resistors are $R_f = 1/(\eta_f h A_f)$, and we'll use a convection resistor for the base $R_b = 1/(h A_b)$. Then, according to the rule for combining resistors in parallel, the total resistance of this circuit is
+
+$$
+\frac{1}{R_\text{tot}}=\frac{1}{R_f}+\frac{1}{R_f}+\frac{1}{R_f}+\dots+\frac{1}{R_b}.
+$$
+
+That is,
+
+$$
+R_\text{tot}= \frac{1}{N\eta_f h A_f + h A_b}.
+$$
+
+With this we can calculate the total heat transfer from the finned object
+
+$$
+\dot{Q} = \frac{T_b-T_\infty}{R_\text{tot}}.
+$$

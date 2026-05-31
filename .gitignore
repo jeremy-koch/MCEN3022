@@ -3,7 +3,6 @@ quarto_instructions.md
 /_book/
 /.quarto/
 CLAUDE_CODE_CONTEXT.md
-2fins.qmd
 3transient.qmd
 4convection.qmd
 5internal.qmd
@@ -12,3 +11,6 @@ CLAUDE_CODE_CONTEXT.md
 admonitions.md
 **/*.quarto_ipynb
 old_index.qmd
+*.html
+/2fins_files
+/demos/fin_demo_files
