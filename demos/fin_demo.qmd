@@ -2,10 +2,10 @@
 
 ## Setup
 
-We are looking at a single fin of uniform cross-section, attached to a hot surface at $x = 0$ and with an **adiabatic tip** at $x = L$. The temperature profile along the fin is
+We are looking at a single fin of uniform cross-section, attached to a hot surface at $x = 0$ and with an adiabatic tip at $x = L$. The temperature profile along the fin is
 
 $$
-T(x) = T_\infty + (T_b - T_\infty)\frac{\cosh\!\left(m(1 - \frac{x}{L})\right)}{\cosh(m)}
+T(x) = T_\infty + (T_b - T_\infty)\frac{\cosh\!\left(m(1 - x/L)\right)}{\cosh(m)}
 $$
 
 where
@@ -15,7 +15,7 @@ m = \sqrt{\frac{hPL^2}{kA_c}}.
 $$
 
 ::: {.callout-warning}
-I keep repeating the definition of $m$ because there are different versions of it! This is a non-dimensional version useful for constant cross-section fins.
+I keep repeating the definition of $m$ because there are different versions of it! This is the one we used in [the video](https://canvas.colorado.edu/courses/136150/pages/fin-uniform-ac).
 :::
 
 
@@ -32,14 +32,14 @@ viewof T_inf = Inputs.range([0, 100],  { value: 20,  step: 1, label: "T∞ (°C)
 ```{ojs}
 //| echo: false
 viewof h   = Inputs.range([1,   1000], { value: 25,      transform: Math.log, label: "h (W/m²·K)" })
-viewof k   = Inputs.range([0.1, 400],  { value: 200,     transform: Math.log, label: "k (W/m·K)" })
+viewof k   = Inputs.range([0.1, 400],  { value: 10,      transform: Math.log, label: "k (W/m·K)" })
 ```
 
 ```{ojs}
 //| echo: false
 viewof L   = Inputs.range([0.005, 0.5],  { value: 0.05,    transform: Math.log, label: "L (m)" })
 viewof P   = Inputs.range([0.001, 0.5],  { value: 0.01571, transform: Math.log, label: "P (m)" })
-viewof A_c = Inputs.range([1e-6,  1e-3], { value: 1.96e-5, transform: Math.log, label: "Aᶜ (m²)" })
+viewof A_c = Inputs.range([1e-6,  1e-3], { value: 1.96e-5, transform: Math.log, label: "Aᶜ (m²)", format: x => x.toExponential(2) })
 ```
 
 ```{ojs}
@@ -78,8 +78,8 @@ viewof A_c = Inputs.range([1e-6,  1e-3], { value: 1.96e-5, transform: Math.log, 
     width: 580, height: 380,
     marginLeft: 68, marginBottom: 52, marginRight: 24, marginTop: 36,
     style: { fontFamily: "Georgia, serif", fontSize: "13px" },
-    x: { label: "Position x (m) →", domain: [0, L] },
-    y: { label: "↑ Temperature (°C)", domain: [T_lo, T_hi] },
+    x: { label: "Position x (m)", labelAnchor: "center", domain: [0, L] },
+    y: { label: "Temperature (°C)", labelAnchor: "center", domain: [T_lo, T_hi] },
     marks: [
       Plot.gridY({ stroke: "#eee" }),
       Plot.ruleY([T_inf], { stroke: "#888", strokeDasharray: "6,3", strokeWidth: 1 }),
@@ -102,17 +102,20 @@ viewof A_c = Inputs.range([1e-6,  1e-3], { value: 1.96e-5, transform: Math.log, 
 
 
 
-**The shape is controlled by one number.**
-Once you start experimenting, you'll notice the curve's shape seems to depend on the parameters only through the combination $m = \sqrt{hPL^2/kA_c}$. This is exactly why we went through the non-dimensionalization exercise — we collapsed seven parameters into one. Try increasing $L$ by a factor of 4 while decreasing $h$ by a factor of 16 (so $m$ stays fixed): the profile is identical. Two very different fins, same shape.
+**The shape is controlled by one number.** Take note of how the plot looks in a given situation, then increase $L$ by a factor of 2 and decrease $h$ by a factor of 4. You should get the same curve. The curve's shape depends only on $m = \sqrt{hPL^2/kA_c}$. Instead of thinking about 7 parameters (when you include $T_b$ and $T_\infty$ as well), the non-dimensionalization process reveals we can think about 1 parameter.
 
 **Large $m$ means the fin "runs out of steam" early.**
-Push $m$ large — increase $h$, or $L$, or decrease $k$. The temperature plummets toward $T_\infty$ well before the tip, and $\eta_f$ falls. This is the physical basis for the diminishing-returns argument: past a certain length, we are adding mass and surface area that contribute almost nothing. The $\dot{Q}_f$ readout will confirm this — it levels off as $m$ grows.
+Increase $h$ or $L$, or decrease $k$, such that $m$ gets larger. You'll see that the temperature plummets toward $T_\infty$ more and more abruptly, and $\eta_f$ falls-off too.
 
 **The adiabatic-tip condition is visible.**
-No matter how extreme the parameters, the curve always arrives *flat* at $x = L$. That flatness is not a coincidence — it is the boundary condition $d\theta/dX\big|_1 = 0$ baked into the solution. (It is still physically an approximation, of course, but a good one for most fins.)
+No matter how extreme the parameters, the curve is always horizontal at $x = L$. This is baked-in to the math: we used this as one of our boundary conditions (in this solution).
 
 **Conductivity and convection are adversaries.**
-High $k$ keeps the fin nearly isothermal — the profile is nearly flat at $T \approx T_b$. High $h$ strips heat aggressively, dragging $T$ toward $T_\infty$ fast. The parameter $m$ is the score of that tug-of-war: conduction trying to supply heat from the base, convection trying to remove it along the way.
+There is a competition occurring in fins: conduction is trying to carry heat through the fin, convection is trying to take heat out of the fin. In the case where $k$ is high relative to $h$, the fin can be nearly isothermal at $T_b$. If $h$ is high relative to $k$, convection pulls heat out of the fin before it has a chance to conduct down the length, and much of the fin will be at nearly $T_\infty$. This competition is characterized by $m$.
+
+::: {.column-margin}
+We can also think of this as teamwork: we want the heat to readily conduct through the fin so that the temperature is high everywhere within the fin because that means we will get the largest amount of convective heat transfer out of the fin.
+:::
 
 **Efficiency and tip temperature are two ways to say the same thing.**
 If $T(L)$ is close to $T_\infty$, the fin is cold at the tip — the average driving force $(T - T_\infty)$ over the fin is low, so $\eta_f$ is low too. If $T(L) \approx T_b$, the fin is nearly isothermal and $\eta_f \approx 1$. Watch both numbers in the readout as you move the sliders — they always tell the same story.
