@@ -118,4 +118,4 @@ We can also think of this as teamwork: we want the heat to readily conduct throu
 :::
 
 **Efficiency and tip temperature are two ways to say the same thing.**
-If $T(L)$ is close to $T_\infty$, the fin is cold at the tip — the average driving force $(T - T_\infty)$ over the fin is low, so $\eta_f$ is low too. If $T(L) \approx T_b$, the fin is nearly isothermal and $\eta_f \approx 1$. Watch both numbers in the readout as you move the sliders — they always tell the same story.
+If $T(L)$ is close to $T_\infty$, $\eta_f$ is low. If $T(L) \approx T_b$, the fin is nearly isothermal and $\eta_f \approx 1$.
