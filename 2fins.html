@@ -1,0 +1,1935 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>2&nbsp; Fins – MCEN3022: Heat Transfer</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./demos/wall_demo.html" rel="next">
+<link href="./1conduction.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-de63f62b328812d8e578a4d74e282472.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-eef6b63566c2084eace12e2d26456199.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked slimcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./2fins.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fins</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./images/logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./images/logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">MCEN3022: Heat Transfer</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Course Details</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./course_details/assessment_overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assessment Overview &amp; Philosophy</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./course_details/tier1_problems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tier 1 Practice Problems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./course_details/technical_reports.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Technical Reports</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./course_details/oral_exams.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Oral Exams</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./course_details/peer_discussions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Peer Discussions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./course_details/notebooklm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NotebookLM Portfolio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./course_details/capstone.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Capstone Project</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./0intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 0: Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./1conduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Conduction Eqn</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2fins.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fins</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Demos</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./demos/wall_demo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Composite Plane Walls – Interactive Demo</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#think-first" id="toc-think-first" class="nav-link active" data-scroll-target="#think-first"><span class="header-section-number">2.1</span> Think First</a></li>
+  <li><a href="#the-fin-equation" id="toc-the-fin-equation" class="nav-link" data-scroll-target="#the-fin-equation"><span class="header-section-number">2.2</span> The Fin Equation</a>
+  <ul class="collapse">
+  <li><a href="#problem-setup-and-solution" id="toc-problem-setup-and-solution" class="nav-link" data-scroll-target="#problem-setup-and-solution"><span class="header-section-number">2.2.1</span> Problem setup and solution</a></li>
+  </ul></li>
+  <li><a href="#the-solution-for-uniform-cross-section" id="toc-the-solution-for-uniform-cross-section" class="nav-link" data-scroll-target="#the-solution-for-uniform-cross-section"><span class="header-section-number">2.3</span> The solution for uniform cross-section</a>
+  <ul class="collapse">
+  <li><a href="#assumptions" id="toc-assumptions" class="nav-link" data-scroll-target="#assumptions"><span class="header-section-number">2.3.1</span> Assumptions</a></li>
+  <li><a href="#non-dimensionalization" id="toc-non-dimensionalization" class="nav-link" data-scroll-target="#non-dimensionalization"><span class="header-section-number">2.3.2</span> Non-Dimensionalization</a></li>
+  <li><a href="#boundary-conditions" id="toc-boundary-conditions" class="nav-link" data-scroll-target="#boundary-conditions"><span class="header-section-number">2.3.3</span> Boundary Conditions</a></li>
+  <li><a href="#analytical-solution" id="toc-analytical-solution" class="nav-link" data-scroll-target="#analytical-solution"><span class="header-section-number">2.3.4</span> Analytical Solution</a></li>
+  <li><a href="#converting-back-to-tx" id="toc-converting-back-to-tx" class="nav-link" data-scroll-target="#converting-back-to-tx"><span class="header-section-number">2.3.5</span> Converting back to <span class="math inline">\(T(x)\)</span></a></li>
+  </ul></li>
+  <li><a href="#calculating-the-fin-heat-transfer" id="toc-calculating-the-fin-heat-transfer" class="nav-link" data-scroll-target="#calculating-the-fin-heat-transfer"><span class="header-section-number">2.4</span> Calculating the fin heat transfer</a>
+  <ul class="collapse">
+  <li><a href="#using-h" id="toc-using-h" class="nav-link" data-scroll-target="#using-h"><span class="header-section-number">2.4.1</span> Using <span class="math inline">\(h\)</span></a></li>
+  <li><a href="#using-k" id="toc-using-k" class="nav-link" data-scroll-target="#using-k"><span class="header-section-number">2.4.2</span> Using <span class="math inline">\(k\)</span></a></li>
+  </ul></li>
+  <li><a href="#fin-performance-metrics" id="toc-fin-performance-metrics" class="nav-link" data-scroll-target="#fin-performance-metrics"><span class="header-section-number">2.5</span> Fin Performance Metrics</a>
+  <ul class="collapse">
+  <li><a href="#effectiveness" id="toc-effectiveness" class="nav-link" data-scroll-target="#effectiveness"><span class="header-section-number">2.5.1</span> Effectiveness</a></li>
+  <li><a href="#efficiency" id="toc-efficiency" class="nav-link" data-scroll-target="#efficiency"><span class="header-section-number">2.5.2</span> Efficiency</a></li>
+  </ul></li>
+  <li><a href="#interactive-example" id="toc-interactive-example" class="nav-link" data-scroll-target="#interactive-example"><span class="header-section-number">2.6</span> Interactive Example</a></li>
+  <li><a href="#catalogs-of-eta_f" id="toc-catalogs-of-eta_f" class="nav-link" data-scroll-target="#catalogs-of-eta_f"><span class="header-section-number">2.7</span> Catalogs of <span class="math inline">\(\eta_f\)</span></a></li>
+  <li><a href="#arrays-of-fins" id="toc-arrays-of-fins" class="nav-link" data-scroll-target="#arrays-of-fins"><span class="header-section-number">2.8</span> Arrays of Fins</a>
+  <ul class="collapse">
+  <li><a href="#inclusion-in-the-resistor-model" id="toc-inclusion-in-the-resistor-model" class="nav-link" data-scroll-target="#inclusion-in-the-resistor-model"><span class="header-section-number">2.8.1</span> Inclusion in the resistor model</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fins</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>This week we are going to focus on fins, a useful item in our engineering design toolkit. The idea is this: Hot surface! We need to cool it! But the fluid passing over it isn’t creating a high enough <span class="math inline">\(\dot{Q}\)</span>. If our electronics are producing 200 W, but we are only able to remove 100 W, we are going to cook our electronics.</p>
+<p>We could increase the flow over the object (bigger fan), change the medium of the flow (water-cooled is better than air-cooled), or put the object in a cooler room (data centers are usually very cold). We are going to focus on another approach: increasing surface area. We will do so by putting “fins” on the object – objects with a high surface area to volume ratio, e.g.&nbsp;numerous 10 mm-long, 2 mm-diameter cylinders. These will wick heat from the object, and their large surface area will allow greater opportunity to deposit that heat in the fluid.</p>
+<p>We’ll examine another version of conservation of energy – this time, 1D only, though we’ll include some convection out (radially) within that description. “The Fin Equation” is an ordinary differential equation for temperature as a function of position, and it will include in it considerations of: the thermal conductivity, the convection coefficient, and the size of the fin. In the case of constant cross-section fins, we can solve the Fin Equation analytically.</p>
+<section id="think-first" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="think-first"><span class="header-section-number">2.1</span> Think First</h2>
+<p>Recall</p>
+<ol type="1">
+<li>What is the thermal conductivity <span class="math inline">\(k\)</span>? What is the convection coefficient <span class="math inline">\(h\)</span>?</li>
+<li>What is the thermal resistance analogy? <span class="math inline">\(\dot{Q}=\Delta T/R\)</span>, but what is <span class="math inline">\(R\)</span>?</li>
+<li>Why does increasing surface area increase convective heat transfer?</li>
+</ol>
+<p>Look Ahead</p>
+<ol type="1">
+<li>How do we decide the size and number of fins?</li>
+<li>How do material choices (copper vs.&nbsp;steel) affect fin performance?</li>
+<li>What do we mean by a fin being “effective” and “efficient”? Do they mean different things?</li>
+</ol>
+</section>
+<section id="the-fin-equation" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="the-fin-equation"><span class="header-section-number">2.2</span> The Fin Equation</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Video
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Start with <a href="https://canvas.colorado.edu/courses/136150/pages/the-fin-equation">this video link</a>, which covers the Fin Equation derivation. Then read the following.</p>
+</div>
+</div>
+<section id="problem-setup-and-solution" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="problem-setup-and-solution"><span class="header-section-number">2.2.1</span> Problem setup and solution</h3>
+<p>Here is a general geometry for a single fin:</p>
+<svg width="530" height="185" xmlns="http://www.w3.org/2000/svg">
+  <title>Fin geometry — isometric view</title>
+  <desc>An isometric view of a cylindrical fin sticking out of a flat plane wall shown as a parallelogram. Two dashed ellipses mark a control-volume slice of width Delta x. Q_cond,in enters from the left, Q_cond,out exits to the right, and Q_conv points upward from the surface.</desc>
+  <defs>
+    <lineargradient id="fin3d-grad" x1="0" y1="58" x2="0" y2="100" gradientunits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#daeaf5"></stop>
+      <stop offset="40%" stop-color="#aacde8"></stop>
+      <stop offset="100%" stop-color="#5e8fb0"></stop>
+    </lineargradient>
+    <marker id="fin3d-arr" markerwidth="8" markerheight="6" refx="8" refy="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 z" fill="black"></path>
+    </marker>
+  </defs>
+
+  <!-- Wall: 5 line segments, right edge stops at cylinder top/bottom -->
+  <line x1="97" y1="4" x2="47" y2="26" stroke="black" stroke-width="2"></line>
+  <line x1="47" y1="26" x2="47" y2="174" stroke="black" stroke-width="2"></line>
+  <line x1="47" y1="174" x2="97" y2="152" stroke="black" stroke-width="2"></line>
+  <line x1="97" y1="4" x2="97" y2="58" stroke="black" stroke-width="2"></line>
+  <line x1="97" y1="100" x2="97" y2="152" stroke="black" stroke-width="2"></line>
+
+  <!-- Cylinder body -->
+  <rect x="72" y="58" width="420" height="42" fill="url(#fin3d-grad)"></rect>
+  <line x1="72" y1="58" x2="492" y2="58" stroke="black" stroke-width="2"></line>
+  <line x1="72" y1="100" x2="492" y2="100" stroke="black" stroke-width="2"></line>
+
+  <!-- Tip ellipse -->
+  <ellipse cx="492" cy="79" rx="10" ry="21" fill="url(#fin3d-grad)" stroke="black" stroke-width="2"></ellipse>
+
+  <!-- Control volume dashed ellipses -->
+  <ellipse cx="245" cy="79" rx="10" ry="21" fill="none" stroke="black" stroke-width="1.5" stroke-dasharray="5,3"></ellipse>
+  <ellipse cx="285" cy="79" rx="10" ry="21" fill="none" stroke="black" stroke-width="1.5" stroke-dasharray="5,3"></ellipse>
+
+  <!-- Cylinder base: full ellipse -->
+  <ellipse cx="72" cy="79" rx="10" ry="21" fill="url(#fin3d-grad)" stroke="black" stroke-width="2"></ellipse>
+
+  <!-- Convection arrow -->
+  <line x1="265" y1="58" x2="265" y2="25" stroke="black" stroke-width="1.5" marker-end="url(#fin3d-arr)"></line>
+  <foreignobject x="273" y="16" width="130" height="22">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="font-size:13px">\(\dot{Q}_\text{conv}\)</div>
+  </foreignobject>
+
+  <!-- Q_cond,in: label BEFORE arrow, arrow tip at cx of left dashed ellipse -->
+  <foreignobject x="83" y="67" width="100" height="20">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:right; font-size:13px">\(\dot{Q}_\text{cond,in}\)</div>
+  </foreignobject>
+  <line x1="206" y1="79" x2="245" y2="79" stroke="black" stroke-width="1.5" marker-end="url(#fin3d-arr)"></line>
+
+  <!-- Q_cond,out: arrow base at cx of right dashed ellipse, label AFTER arrow -->
+  <line x1="285" y1="79" x2="334" y2="79" stroke="black" stroke-width="1.5" marker-end="url(#fin3d-arr)"></line>
+  <foreignobject x="338" y="67" width="115" height="20">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:left; font-size:13px">\(\dot{Q}_\text{cond,out}\)</div>
+  </foreignobject>
+
+  <!-- x = 0 label at base -->
+  <line x1="72" y1="100" x2="72" y2="112" stroke="black" stroke-width="1.2"></line>
+  <foreignobject x="44" y="112" width="60" height="22">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center; font-size:13px">\(x = 0\)</div>
+  </foreignobject>
+
+  <!-- x = L label at tip -->
+  <line x1="492" y1="100" x2="492" y2="112" stroke="black" stroke-width="1.2"></line>
+  <foreignobject x="464" y="112" width="58" height="22">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center; font-size:13px">\(x = L\)</div>
+  </foreignobject>
+
+  <!-- Δx bracket: dashed drop lines + double-headed arrow from center -->
+  <line x1="245" y1="100" x2="245" y2="128" stroke="black" stroke-width="1" stroke-dasharray="3,2"></line>
+  <line x1="285" y1="100" x2="285" y2="128" stroke="black" stroke-width="1" stroke-dasharray="3,2"></line>
+  <line x1="265" y1="124" x2="247" y2="124" stroke="black" stroke-width="1.5" marker-end="url(#fin3d-arr)"></line>
+  <line x1="265" y1="124" x2="283" y2="124" stroke="black" stroke-width="1.5" marker-end="url(#fin3d-arr)"></line>
+  <foreignobject x="246" y="128" width="38" height="22">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center; font-size:13px">\(\Delta x\)</div>
+  </foreignobject>
+</svg>
+<p>Here, a slender cylindrical fin is attached to a hot surface at <span class="math inline">\(x=0\)</span>. The fin has a known geometry: known cross-section <span class="math inline">\(A_c(x)\)</span> (defined at a position <span class="math inline">\(x\)</span>, and we are allowing for the possibility that it depends on <span class="math inline">\(x\)</span>) and known length <span class="math inline">\(L\)</span>. At every location <span class="math inline">\(x\)</span>, we know the perimeter around the fin, <span class="math inline">\(P(x)\)</span>, and we’ll assume we know the fin material (and thus <span class="math inline">\(k\)</span>) and have looked up a value of the convection coefficient (<span class="math inline">\(h\)</span> is known). We are going to write an energy balance at an arbitrary position <span class="math inline">\(x\)</span>, assuming:</p>
+<ol type="1">
+<li>We are at steady state</li>
+<li>The fin is slender such that the temperature is uniform within each cross-section</li>
+<li>Constant/averaged value of <span class="math inline">\(h\)</span></li>
+</ol>
+<p>The first two points allow us to think about <span class="math inline">\(T(x)\)</span> instead of worrying about <span class="math inline">\(T(x,y,z,t)\)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Click here to see the details of the derivation.
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>We write a conservation of energy for the <span class="math inline">\(\Delta x\)</span> segment, making use of the assumption of steadiness to say</p>
+<p><span class="math display">\[
+\frac{dE}{dt} = 0 = q''(x) \cdot A_c(x) - q''(x+\Delta x) \cdot A_c(x+\Delta x) - h \cdot P(x) \cdot \Delta x \cdot (T(x) - T_\infty).
+\]</span></p>
+<p>The terms in that equation represent: conductive heat transfer in from the left cross-section, conduction out through the right cross-section, and convection out through the outer surface.</p>
+<p>Using Fourier’s Law <span class="math inline">\(q'' = -k\frac{dT}{dx}\)</span>:</p>
+<p><span class="math display">\[
+0 = \left(-k A_c\frac{dT}{dx}\right)\bigg|_x  - \left(-k A_c\frac{dT}{dx}\right)\bigg|_{x+\Delta x} - h \cdot P(x) \cdot \Delta x \cdot (T(x) - T_\infty).
+\]</span></p>
+<p>Then we divide by <span class="math inline">\(\Delta x\)</span> and take the limit as <span class="math inline">\(\Delta x \to 0\)</span> (definition of derivative), leaving…</p>
+</div>
+</div>
+</div>
+<p>The Fin Equation: <span class="math display">\[
+0 = \frac{d}{dx}\left(k A_c(x) \frac{dT}{dx}\right) - h P(x) (T(x) - T_\infty)
+\]</span></p>
+<p>a second-order ordinary differential equation that, when solved with two boundary conditions, will give us the temperature distribution in the fin <span class="math inline">\(T(x)\)</span>. From this we will be able to calculate the total heat transfer out of the fin.</p>
+</section>
+</section>
+<section id="the-solution-for-uniform-cross-section" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="the-solution-for-uniform-cross-section"><span class="header-section-number">2.3</span> The solution for uniform cross-section</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Video
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Start with <a href="https://canvas.colorado.edu/courses/136150/pages/fin-uniform-ac">this video link</a>, which covers the solution process. Then read the following.</p>
+</div>
+</div>
+<section id="assumptions" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="assumptions"><span class="header-section-number">2.3.1</span> Assumptions</h3>
+<p>We are going to analyze the case where the cross-section and perimeter are constants, not functions of <span class="math inline">\(x\)</span>. We’ll also assume that <span class="math inline">\(k\)</span> is a constant. Then the Fin Equation becomes:</p>
+<p><span class="math display">\[
+0 = k A_c\frac{d^2T}{dx^2} - hP(T(x) - T_\infty)
+\]</span></p>
+<p>and we can combine the parameters in the problem into one constant</p>
+<p><span class="math display">\[
+0 = \frac{d^2T}{dx^2} - \frac{hP}{k A_c}(T(x) - T_\infty).
+\]</span></p>
+<p>It’s looking easier to deal with already… we’re going to do one extra setup step.</p>
+</section>
+<section id="non-dimensionalization" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="non-dimensionalization"><span class="header-section-number">2.3.2</span> Non-Dimensionalization</h3>
+<p>It is nice to non-dimensionalize equations. Framed within the context of the fin problem: we know that <span class="math inline">\(k\)</span>, <span class="math inline">\(h\)</span>, <span class="math inline">\(A_c\)</span> and <span class="math inline">\(P\)</span> are relevant, and they indeed appear in that combined parameter we just arrived at. But how does <span class="math inline">\(L\)</span> factor in? Can we say without solving the equation? After non-dimensionalizing the equation, we will have greater insight. The non-dimensionalized equation is also going to be easier to solve.</p>
+<p>First we are going to define a non-dimensional temperature:</p>
+<p><span class="math display">\[
+\theta(x) \equiv \frac{T(x) - T_\infty}{T_b - T_\infty}.
+\]</span></p>
+<p>This is convenient because, when <span class="math inline">\(T=T_b\)</span>, the non-dimensional <span class="math inline">\(\theta =1\)</span>, and when <span class="math inline">\(T=T_\infty\)</span>, the non-dimensional <span class="math inline">\(\theta =0\)</span>. We should intuitively expect our solution to start at <span class="math inline">\(\theta=1\)</span> and asymptote towards <span class="math inline">\(\theta=0\)</span> as we move away from the fin base.</p>
+<p>We are also going to define a non-dimensional position:</p>
+<p><span class="math display">\[
+X\equiv \frac{x}{L}.
+\]</span></p>
+<p>Again, it’s convenient: <span class="math inline">\(X\)</span> goes from <span class="math inline">\(0\)</span> to <span class="math inline">\(1\)</span>.</p>
+<p>We then will reframe the differential equation as <span class="math inline">\(\theta(X)\)</span> instead of <span class="math inline">\(T(x)\)</span>. Using the chain rule:</p>
+<p><span class="math display">\[
+\frac{dT}{dx}=\frac{dX}{dx}\frac{dT}{dX} = \frac{1}{L}\frac{dT}{dX}
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\frac{d^2T}{dx^2} = \frac{d}{dx}\left(\frac{dT}{dx}\right) = \frac{dX}{dx}\frac{d}{dX}\left(\frac{1}{L}\frac{dT}{dX}\right)=\frac{1}{L^2}\frac{d^2T}{dX^2}.
+\]</span></p>
+<p>Then plugging-in the definition of <span class="math inline">\(\theta\)</span>:</p>
+<p><span class="math display">\[
+\frac{d^2T}{dX^2} = \frac{d^2}{dX^2}\left((T_b-T_\infty)\theta + T_\infty\right) = (T_b-T_\infty)\frac{d^2\theta}{dX^2}.
+\]</span></p>
+<p>We include these results in the constant cross-section differential equation we have</p>
+<p><span class="math display">\[
+0= \frac{(T_b-T_\infty)}{L^2}\frac{d^2\theta}{dX^2} - \frac{hP}{k A_c}(T(x) - T_\infty)
+\]</span></p>
+<p>and, with some algebra, settle on a non-dimensional form of the differential equation:</p>
+<p><span class="math display">\[
+0= \frac{d^2\theta}{dX^2} - m^2\theta
+\]</span></p>
+<p>with</p>
+<p><span class="math display">\[
+m=\sqrt{\frac{hPL^2}{kA_c}}
+\]</span></p>
+<p>a dimensionless constant.</p>
+<p>As we hinted above, one boundary condition that we will use is <span class="math inline">\(\theta(0)=1\)</span>. The second is a bit more controversial… we’ll get into that in the next section. But let’s think about what we have arrived at with this non-dimensionalization:</p>
+<ol type="1">
+<li>We have identified a dimensionless parameter <span class="math inline">\(m\)</span> that is the single parameter in the problem. This tells us, for example, that doubling the fin length will have the same effect as increasing the convection coefficient by four. We capture the push-and-pull of the parameters in a single variable.</li>
+<li>An equation of the form <span class="math inline">\(y'' - c y =0\)</span> is a bit easier to solve than an equation of the form <span class="math inline">\(y'' - cy = d\)</span>.</li>
+</ol>
+</section>
+<section id="boundary-conditions" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="boundary-conditions"><span class="header-section-number">2.3.3</span> Boundary Conditions</h3>
+<p>The problem is not well-posed until we figure out the boundary conditions. The first boundary condition is not controversial:</p>
+<p><span class="math display">\[
+T(x=0) = T_b \implies \theta(X=0) = 1.
+\]</span></p>
+<p>The second is not as obvious – we have to make an assumption.</p>
+<section id="known-temperature" class="level4" data-number="2.3.3.1">
+<h4 data-number="2.3.3.1" class="anchored" data-anchor-id="known-temperature"><span class="header-section-number">2.3.3.1</span> Known temperature</h4>
+<p>We could assume that</p>
+<p><span class="math display">\[
+T(L) = T_\infty \implies \theta(1) = 0.
+\]</span></p>
+<p>However, this presumes knowledge of the temperature at the tip. Do we know for certain that it gets all the way to <span class="math inline">\(\theta = 0\)</span> by <span class="math inline">\(X = 1\)</span>? That will not be the case with a short fin, but it might be reasonable for a long fin.</p>
+</section>
+<section id="adiabatic-tip" class="level4" data-number="2.3.3.2">
+<h4 data-number="2.3.3.2" class="anchored" data-anchor-id="adiabatic-tip"><span class="header-section-number">2.3.3.2</span> Adiabatic tip</h4>
+<p>We could assume that the tip is “adiabatic”:</p>
+<p><span class="math display">\[
+\frac{dT}{dx}\bigg\rvert_L = 0 \implies \frac{d\theta}{dX}\bigg\rvert_1 = 0
+\]</span></p>
+<p>Rationale: most of the energy is convected out along the length, so the amount convected out at <span class="math inline">\(x = L\)</span> is <span class="math inline">\(\approx 0\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Think
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>What would the plot of the solution look like at <span class="math inline">\(X=1\)</span>? Specifically think about the slope of the curve.</p>
+</div>
+</div>
+</section>
+<section id="tip-heat-transfer-sim-h" class="level4" data-number="2.3.3.3">
+<h4 data-number="2.3.3.3" class="anchored" data-anchor-id="tip-heat-transfer-sim-h"><span class="header-section-number">2.3.3.3</span> Tip heat transfer <span class="math inline">\(\sim h\)</span></h4>
+<p>We could assume that the tip has convection with coefficient <span class="math inline">\(h\)</span>. Then that which is conducted to the tip will be convected out: <span class="math display">\[
+-k\frac{dT}{dx}\bigg\rvert_L = h(T(L) - T_\infty) \implies -\frac{k}{L}\frac{d\theta}{dX}\bigg\rvert_1 = h\theta(1).
+\]</span></p>
+<p>This is perhaps the most defendable boundary condition, but “is the juice worth the squeeze” (one of my favorite sayings): this boundary condition is the most difficult to implement.</p>
+<p>Given the many assumptions that have gone into this analysis, the error from using other boundary conditions is probably not a big deal!</p>
+</section>
+</section>
+<section id="analytical-solution" class="level3" data-number="2.3.4">
+<h3 data-number="2.3.4" class="anchored" data-anchor-id="analytical-solution"><span class="header-section-number">2.3.4</span> Analytical Solution</h3>
+<p>Let’s solve</p>
+<p><span class="math display">\[
+0= \frac{d^2\theta}{dX^2} - m^2\theta
+\]</span></p>
+<p>with</p>
+<p><span class="math display">\[
+m=\sqrt{\frac{hPL^2}{kA_c}}
+\]</span></p>
+<p>subject to boundary conditions</p>
+<p><span class="math display">\[
+\begin{align*}
+&amp;\theta(0)=1\\
+&amp;\theta(1)=0.
+\end{align*}
+\]</span></p>
+<p>We may be tempted to say the general solution is</p>
+<p><span class="math display">\[
+\theta(X) = c_1 \exp{(-mX)} + c_2 \exp{(mX)}
+\]</span></p>
+<p>which is totally correct, but the algebra that follows when applying the boundary conditions is going to be annoying. Instead, let’s remember the definitions of <span class="math inline">\(\sinh(z) \equiv (\exp(z)-\exp(-z))/2\)</span> and <span class="math inline">\(\cosh(z)\equiv (\exp(z)+\exp(-z))/2\)</span> and write the solution as</p>
+<p><span class="math display">\[
+\theta(X) = d_1 \sinh(mX) + d_2 \cosh(mX).
+\]</span></p>
+<p>Boundary condition at <span class="math inline">\(X=0\)</span>:</p>
+<p><span class="math display">\[
+\theta(0) = 1 = d_1 \sinh(0) + d_2 \cosh(0) \implies d_2 = 1.
+\]</span></p>
+<p>Boundary condition at <span class="math inline">\(X=1\)</span>:</p>
+<p><span class="math display">\[
+0 = d_1 \sinh(m) + \cosh(m) \implies d_1 = -\frac{\cosh(m)}{\sinh(m)} = -\frac{1}{\tanh(m)}.
+\]</span></p>
+<p>Therefore, our solution is</p>
+<p><span class="math display">\[
+\theta(X) = \cosh(mX) - \frac{\sinh(mX)}{\tanh(m)}
+\]</span></p>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="343" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 342;"><span id="cb1-343"><a href="#cb1-343" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> N <span class="op">=</span> <span class="dv">300</span><span class="op">;</span></span>
+<span id="cb1-345"><a href="#cb1-345" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> curves <span class="op">=</span> [</span>
+<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a>    { <span class="dt">m</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span>  <span class="dt">label</span><span class="op">:</span> <span class="st">"m = 1"</span><span class="op">,</span>  <span class="dt">color</span><span class="op">:</span> <span class="st">"#4e79a7"</span> }<span class="op">,</span></span>
+<span id="cb1-347"><a href="#cb1-347" aria-hidden="true" tabindex="-1"></a>    { <span class="dt">m</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span>  <span class="dt">label</span><span class="op">:</span> <span class="st">"m = 5"</span><span class="op">,</span>  <span class="dt">color</span><span class="op">:</span> <span class="st">"#f28e2b"</span> }<span class="op">,</span></span>
+<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a>    { <span class="dt">m</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"m = 10"</span><span class="op">,</span> <span class="dt">color</span><span class="op">:</span> <span class="st">"#e15759"</span> }<span class="op">,</span></span>
+<span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">;</span></span>
+<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span> <span class="fu">th</span>(m<span class="op">,</span> X) {</span>
+<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">cosh</span>(m <span class="op">*</span> X) <span class="op">-</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sinh</span>(m <span class="op">*</span> X) <span class="op">/</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">tanh</span>(m)<span class="op">;</span></span>
+<span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-355"><a href="#cb1-355" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Label anchor positions staggered so they don't overlap</span></span>
+<span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> labelX <span class="op">=</span> { <span class="dv">1</span><span class="op">:</span> <span class="fl">0.65</span><span class="op">,</span> <span class="dv">5</span><span class="op">:</span> <span class="fl">0.35</span><span class="op">,</span> <span class="dv">10</span><span class="op">:</span> <span class="fl">0.18</span> }<span class="op">;</span></span>
+<span id="cb1-357"><a href="#cb1-357" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> labelPts <span class="op">=</span> curves<span class="op">.</span><span class="fu">map</span>(({ m<span class="op">,</span> label<span class="op">,</span> color }) <span class="kw">=&gt;</span> ({</span>
+<span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a>    <span class="dt">X</span><span class="op">:</span> labelX[m]<span class="op">,</span> <span class="dt">theta</span><span class="op">:</span> <span class="fu">th</span>(m<span class="op">,</span> labelX[m])<span class="op">,</span> label<span class="op">,</span> color<span class="op">,</span></span>
+<span id="cb1-359"><a href="#cb1-359" aria-hidden="true" tabindex="-1"></a>  }))<span class="op">;</span></span>
+<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-361"><a href="#cb1-361" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb1-362"><a href="#cb1-362" aria-hidden="true" tabindex="-1"></a>    <span class="dt">width</span><span class="op">:</span> <span class="dv">520</span><span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">360</span><span class="op">,</span></span>
+<span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">60</span><span class="op">,</span> <span class="dt">marginBottom</span><span class="op">:</span> <span class="dv">60</span><span class="op">,</span> <span class="dt">marginRight</span><span class="op">:</span> <span class="dv">24</span><span class="op">,</span> <span class="dt">marginTop</span><span class="op">:</span> <span class="dv">24</span><span class="op">,</span></span>
+<span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a>    <span class="dt">style</span><span class="op">:</span> { <span class="dt">fontFamily</span><span class="op">:</span> <span class="st">"Georgia, serif"</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="st">"13px"</span> }<span class="op">,</span></span>
+<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> { <span class="dt">label</span><span class="op">:</span> <span class="kw">null</span><span class="op">,</span> <span class="dt">ticks</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="fl">0.2</span><span class="op">,</span> <span class="fl">0.4</span><span class="op">,</span> <span class="fl">0.6</span><span class="op">,</span> <span class="fl">0.8</span><span class="op">,</span> <span class="fl">1.0</span>]<span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">1</span>] }<span class="op">,</span></span>
+<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> { <span class="dt">label</span><span class="op">:</span> <span class="kw">null</span><span class="op">,</span> <span class="dt">ticks</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="fl">0.2</span><span class="op">,</span> <span class="fl">0.4</span><span class="op">,</span> <span class="fl">0.6</span><span class="op">,</span> <span class="fl">0.8</span><span class="op">,</span> <span class="fl">1.0</span>]<span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">1</span>] }<span class="op">,</span></span>
+<span id="cb1-367"><a href="#cb1-367" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">ruleX</span>([<span class="dv">0</span>]<span class="op">,</span> { <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#999"</span> })<span class="op">,</span></span>
+<span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>]<span class="op">,</span> { <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#999"</span> })<span class="op">,</span></span>
+<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a>      <span class="co">// One line per curve with its own color</span></span>
+<span id="cb1-371"><a href="#cb1-371" aria-hidden="true" tabindex="-1"></a>      <span class="op">...</span>curves<span class="op">.</span><span class="fu">map</span>(({ m<span class="op">,</span> color }) <span class="kw">=&gt;</span></span>
+<span id="cb1-372"><a href="#cb1-372" aria-hidden="true" tabindex="-1"></a>        Plot<span class="op">.</span><span class="fu">line</span>(</span>
+<span id="cb1-373"><a href="#cb1-373" aria-hidden="true" tabindex="-1"></a>          <span class="bu">Array</span><span class="op">.</span><span class="fu">from</span>({ <span class="dt">length</span><span class="op">:</span> N <span class="op">+</span> <span class="dv">1</span> }<span class="op">,</span> (_<span class="op">,</span> i) <span class="kw">=&gt;</span> {</span>
+<span id="cb1-374"><a href="#cb1-374" aria-hidden="true" tabindex="-1"></a>            <span class="kw">const</span> X <span class="op">=</span> i <span class="op">/</span> N<span class="op">;</span></span>
+<span id="cb1-375"><a href="#cb1-375" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> { X<span class="op">,</span> <span class="dt">theta</span><span class="op">:</span> <span class="fu">th</span>(m<span class="op">,</span> X) }<span class="op">;</span></span>
+<span id="cb1-376"><a href="#cb1-376" aria-hidden="true" tabindex="-1"></a>          })<span class="op">,</span></span>
+<span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a>          { <span class="dt">x</span><span class="op">:</span> <span class="st">"X"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"theta"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> color<span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span> }</span>
+<span id="cb1-378"><a href="#cb1-378" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a>      )<span class="op">,</span></span>
+<span id="cb1-380"><a href="#cb1-380" aria-hidden="true" tabindex="-1"></a>      <span class="co">// Direct curve labels, offset above the line</span></span>
+<span id="cb1-381"><a href="#cb1-381" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">text</span>(labelPts<span class="op">,</span> {</span>
+<span id="cb1-382"><a href="#cb1-382" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"X"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"theta"</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> <span class="st">"label"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"color"</span><span class="op">,</span></span>
+<span id="cb1-383"><a href="#cb1-383" aria-hidden="true" tabindex="-1"></a>        <span class="dt">dy</span><span class="op">:</span> <span class="op">-</span><span class="dv">10</span><span class="op">,</span> <span class="dt">textAnchor</span><span class="op">:</span> <span class="st">"middle"</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">13</span><span class="op">,</span></span>
+<span id="cb1-384"><a href="#cb1-384" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
+<span id="cb1-385"><a href="#cb1-385" aria-hidden="true" tabindex="-1"></a>      <span class="co">// Axis labels: larger, centered, rendered outside the data frame</span></span>
+<span id="cb1-386"><a href="#cb1-386" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">text</span>([{ <span class="dt">X</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">theta</span><span class="op">:</span> <span class="op">-</span><span class="fl">0.15</span> }]<span class="op">,</span> {</span>
+<span id="cb1-387"><a href="#cb1-387" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"X"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"theta"</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="st">"X"</span><span class="op">,</span></span>
+<span id="cb1-388"><a href="#cb1-388" aria-hidden="true" tabindex="-1"></a>        <span class="dt">clip</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">17</span><span class="op">,</span> <span class="dt">textAnchor</span><span class="op">:</span> <span class="st">"middle"</span><span class="op">,</span></span>
+<span id="cb1-389"><a href="#cb1-389" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fontFamily</span><span class="op">:</span> <span class="st">"Georgia, serif"</span><span class="op">,</span> <span class="dt">fontStyle</span><span class="op">:</span> <span class="st">"italic"</span><span class="op">,</span></span>
+<span id="cb1-390"><a href="#cb1-390" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
+<span id="cb1-391"><a href="#cb1-391" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">text</span>([{ <span class="dt">X</span><span class="op">:</span> <span class="op">-</span><span class="fl">0.13</span><span class="op">,</span> <span class="dt">theta</span><span class="op">:</span> <span class="fl">0.5</span> }]<span class="op">,</span> {</span>
+<span id="cb1-392"><a href="#cb1-392" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"X"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"theta"</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="st">"θ"</span><span class="op">,</span></span>
+<span id="cb1-393"><a href="#cb1-393" aria-hidden="true" tabindex="-1"></a>        <span class="dt">clip</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">17</span><span class="op">,</span> <span class="dt">textAnchor</span><span class="op">:</span> <span class="st">"middle"</span><span class="op">,</span> <span class="dt">rotate</span><span class="op">:</span> <span class="op">-</span><span class="dv">90</span><span class="op">,</span></span>
+<span id="cb1-394"><a href="#cb1-394" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fontFamily</span><span class="op">:</span> <span class="st">"Georgia, serif"</span><span class="op">,</span> <span class="dt">fontStyle</span><span class="op">:</span> <span class="st">"italic"</span><span class="op">,</span></span>
+<span id="cb1-395"><a href="#cb1-395" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
+<span id="cb1-396"><a href="#cb1-396" aria-hidden="true" tabindex="-1"></a>    ]<span class="op">,</span></span>
+<span id="cb1-397"><a href="#cb1-397" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb1-398"><a href="#cb1-398" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-1" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</section>
+<section id="converting-back-to-tx" class="level3" data-number="2.3.5">
+<h3 data-number="2.3.5" class="anchored" data-anchor-id="converting-back-to-tx"><span class="header-section-number">2.3.5</span> Converting back to <span class="math inline">\(T(x)\)</span></h3>
+<p>We can use the definitions of <span class="math inline">\(\theta\)</span> and <span class="math inline">\(X\)</span> to convert the equation back to dimensional variables:</p>
+<p><span class="math display">\[
+T(x)=T_\infty + (T_b - T_\infty)\left[\cosh\!\left(\frac{mx}{L}\right)-\frac{\sinh\!\left(\frac{mx}{L}\right)}{\tanh(m)}\right].
+\]</span></p>
+</section>
+</section>
+<section id="calculating-the-fin-heat-transfer" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="calculating-the-fin-heat-transfer"><span class="header-section-number">2.4</span> Calculating the fin heat transfer</h2>
+<p>With the temperature profile <span class="math inline">\(T(x)\)</span> known, we have at least two ways of calculating the fin heat transfer rate <span class="math inline">\(\dot{Q}_f\)</span>.</p>
+<section id="using-h" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="using-h"><span class="header-section-number">2.4.1</span> Using <span class="math inline">\(h\)</span></h3>
+<p>More intuitively: we might look to the basic equation for convective heat transfer <span class="math inline">\(\dot{Q} = h A_\text{surf}(T-T_\infty)\)</span> and consider how to account for a temperature that changes with position. Sounds like a job for… integration over the area:</p>
+<p><span class="math display">\[
+\dot{Q}_f = \int h (T(x)-T_\infty) dA_\text{surface}.
+\]</span></p>
+<p>For a cylinder (as depicted above) we would write the area as <span class="math inline">\(A_\text{surface} = \pi D x\)</span> and so <span class="math inline">\(dA_\text{surface} = \pi D dx\)</span>.</p>
+</section>
+<section id="using-k" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="using-k"><span class="header-section-number">2.4.2</span> Using <span class="math inline">\(k\)</span></h3>
+<p>We also might wisely recognize that, since we have assumed steady state, the rate that heat is conducted into the fin must match the rate that heat is convected out of the fin. That is:</p>
+<p><span class="math display">\[
+\dot{Q}_f = -k \frac{dT}{dx}\bigg\rvert_0 A_c(0).
+\]</span></p>
+</section>
+</section>
+<section id="fin-performance-metrics" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="fin-performance-metrics"><span class="header-section-number">2.5</span> Fin Performance Metrics</h2>
+<p>We can characterize the fin performance using two metrics.</p>
+<section id="effectiveness" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="effectiveness"><span class="header-section-number">2.5.1</span> Effectiveness</h3>
+<p>The fin effectiveness, <span class="math inline">\(\epsilon_f\)</span>, tells us how much better the fin is doing at removing heat than the plain surface. That is:</p>
+<p><span class="math display">\[
+\epsilon_f = \frac{\text{the amount of heat transfer w/ fin}}{\text{the amount without the fin}} = \frac{\dot{Q}_f}{h \cdot A_c(0)(T_b - T_\infty)}
+\]</span></p>
+<p>where the downstairs includes <span class="math inline">\(A_c(0)\)</span>, the area of the fin base. It should be the case that <span class="math inline">\(\epsilon&gt;1\)</span>, else the fin does a worse job than the plain surface! Typically <span class="math inline">\(\epsilon&gt;2\)</span>.</p>
+</section>
+<section id="efficiency" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="efficiency"><span class="header-section-number">2.5.2</span> Efficiency</h3>
+<p>The fin efficiency, <span class="math inline">\(\eta_f\)</span>, gives us a measure of our fin’s performance against a perfect fin where the entirety of the fin surface is at <span class="math inline">\(T_b\)</span>:</p>
+<p><span class="math display">\[
+\eta_f \equiv \frac{\text{the amount of heat transfer w/ fin}}{\text{the amount if the whole fin was at }T_b} = \frac{\dot{Q}_f}{h \cdot A_\text{surf} \cdot (T_b - T_\infty)}.
+\]</span></p>
+<p>We will have <span class="math inline">\(0 &lt; \eta_f &lt; 1\)</span>. When <span class="math inline">\(\eta_f\)</span> is small, it means that the temperature profile in the fin has quickly dropped from <span class="math inline">\(T_b\)</span> to close to <span class="math inline">\(T_\infty\)</span>, i.e.&nbsp;as we see in the <span class="math inline">\(m=10\)</span> case above. In such a case, the fin might be nearly as effective with half the length, meaning we may save in material costs. Moreover, a shorter fin will likely be more durable, and it may be the case that a shorter fin allows for better fluid circulation, thus increasing <span class="math inline">\(h\)</span>.</p>
+</section>
+</section>
+<section id="interactive-example" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="interactive-example"><span class="header-section-number">2.6</span> Interactive Example</h2>
+<p>I created an interactive plot of the fin solution, <a href="demos/fin_demo.qmd">find it at this link</a>.</p>
+</section>
+<section id="catalogs-of-eta_f" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="catalogs-of-eta_f"><span class="header-section-number">2.7</span> Catalogs of <span class="math inline">\(\eta_f\)</span></h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Video
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This content is entirely in <a href="https://canvas.colorado.edu/courses/136150/pages/fins-with-cataloged-info">this video link</a>.</p>
+</div>
+</div>
+</section>
+<section id="arrays-of-fins" class="level2 page-columns page-full" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="arrays-of-fins"><span class="header-section-number">2.8</span> Arrays of Fins</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Video
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Watch <a href="https://canvas.colorado.edu/courses/136150/pages/fin-arrays">this video link first</a>.</p>
+</div>
+</div>
+<section id="inclusion-in-the-resistor-model" class="level3 page-columns page-full" data-number="2.8.1">
+<h3 data-number="2.8.1" class="anchored" data-anchor-id="inclusion-in-the-resistor-model"><span class="header-section-number">2.8.1</span> Inclusion in the resistor model</h3>
+<p>It is common to include numerous fins on an object – if you are going to attach one, might as well attach a few! From a practical perspective, we are interested in calculating the total amount of heat transfer from the object, and that includes the heat transfer from the <span class="math inline">\(N\)</span> fins and from the “unfinned” area of the object (the area between the fins).</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>We are assuming that <span class="math inline">\(N\)</span> fins will create <span class="math inline">\(N\dot{Q}_f\)</span> heat transfer. But adding more fins is going to hinder the flow – the cool ambient air will not flow as freely over the fins, which will decrease the value of <span class="math inline">\(h\)</span>.</p>
+</div></div><p>We can model this situation as a collection of resistors in parallel: <span class="math inline">\(N\)</span> resistors for the <span class="math inline">\(N\)</span> fins, and one more for the unfinned area.</p>
+<svg width="390" height="265" xmlns="http://www.w3.org/2000/svg">
+  <title>Parallel fin–base resistor network</title>
+  <desc>Five resistors in parallel. Manifolds at x=55 and x=325 (span 270px). Each path: 90px straight, 90px zigzag, 90px straight. Top four R_f, bottom R_b.</desc>
+
+  <!--
+    Manifold span: 55→325 = 270px, each third = 90px
+    Left straight:  55→145
+    Zigzag body:  145→235  (s=10px stubs, 5 half-periods × 14px, amplitude ±8)
+      Points: 145,cy  155,cy-8  169,cy+8  183,cy-8  197,cy+8  211,cy-8  225,cy+8  235,cy
+    Right straight: 235→325
+    Resistor y positions (50px spacing): 40, 90, 140, 190, 240   midpoint y=140
+  -->
+
+  <!-- Left manifold: solid above gap, dotted through implied section, solid below -->
+  <line x1="55" y1="40" x2="55" y2="155" stroke="black" stroke-width="2"></line>
+  <line x1="55" y1="155" x2="55" y2="225" stroke="black" stroke-width="2" stroke-dasharray="5,6"></line>
+  <line x1="55" y1="225" x2="55" y2="240" stroke="black" stroke-width="2"></line>
+  <!-- Right manifold: same pattern -->
+  <line x1="325" y1="40" x2="325" y2="155" stroke="black" stroke-width="2"></line>
+  <line x1="325" y1="155" x2="325" y2="225" stroke="black" stroke-width="2" stroke-dasharray="5,6"></line>
+  <line x1="325" y1="225" x2="325" y2="240" stroke="black" stroke-width="2"></line>
+
+  <!-- Left lead + T_b label at midpoint y=140 -->
+  <line x1="28" y1="140" x2="55" y2="140" stroke="black" stroke-width="2"></line>
+  <foreignobject x="0" y="128" width="26" height="24">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:right; font-size:16px; font-family:serif">\(T_b\)</div>
+  </foreignobject>
+
+  <!-- Right lead + T_∞ label at midpoint y=140 -->
+  <line x1="325" y1="140" x2="362" y2="140" stroke="black" stroke-width="2"></line>
+  <foreignobject x="364" y="128" width="26" height="24">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:left; font-size:16px; font-family:serif">\(T_\infty\)</div>
+  </foreignobject>
+
+  <!-- Resistor 1 — R_f, cy=40 -->
+  <polyline points="55,40 145,40 155,32 169,48 183,32 197,48 211,32 225,48 235,40 325,40" fill="none" stroke="black" stroke-width="1.5"></polyline>
+  <foreignobject x="125" y="8" width="130" height="22">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center; font-size:16px; font-family:serif">\(R_f\)</div>
+  </foreignobject>
+
+  <!-- Resistor 2 — R_f, cy=90 -->
+  <polyline points="55,90 145,90 155,82 169,98 183,82 197,98 211,82 225,98 235,90 325,90" fill="none" stroke="black" stroke-width="1.5"></polyline>
+  <foreignobject x="125" y="58" width="130" height="22">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center; font-size:16px; font-family:serif">\(R_f\)</div>
+  </foreignobject>
+
+  <!-- Resistor 3 — R_f, cy=140 -->
+  <polyline points="55,140 145,140 155,132 169,148 183,132 197,148 211,132 225,148 235,140 325,140" fill="none" stroke="black" stroke-width="1.5"></polyline>
+  <foreignobject x="125" y="108" width="130" height="22">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center; font-size:16px; font-family:serif">\(R_f\)</div>
+  </foreignobject>
+
+  <!-- Resistor 4 — R_b, cy=240 -->
+  <polyline points="55,240 145,240 155,232 169,248 183,232 197,248 211,232 225,248 235,240 325,240" fill="none" stroke="black" stroke-width="1.5"></polyline>
+  <foreignobject x="125" y="208" width="130" height="22">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center; font-size:16px; font-family:serif">\(R_b\)</div>
+  </foreignobject>
+</svg>
+<p>Reminder: the fin resistors are <span class="math inline">\(R_f = 1/(\eta_f h A_f)\)</span>, and we’ll use a convection resistor for the base <span class="math inline">\(R_b = 1/(h A_b)\)</span>. Then, according to the rule for combining resistors in parallel, the total resistance of this circuit is</p>
+<p><span class="math display">\[
+\frac{1}{R_\text{tot}}=\frac{1}{R_f}+\frac{1}{R_f}+\frac{1}{R_f}+\dots+\frac{1}{R_b}.
+\]</span></p>
+<p>That is,</p>
+<p><span class="math display">\[
+R_\text{tot}= \frac{1}{N\eta_f h A_f + h A_b}.
+\]</span></p>
+<p>With this we can calculate the total heat transfer from the finned object</p>
+<p><span class="math display">\[
+\dot{Q} = \frac{T_b-T_\infty}{R_\text{tot}}.
+\]</span></p>
+
+
+<!-- -->
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IntcbiAgY29uc3QgTiA9IDMwMDtcbiAgY29uc3QgY3VydmVzID0gW1xuICAgIHsgbTogMSwgIGxhYmVsOiBcIm0gPSAxXCIsICBjb2xvcjogXCIjNGU3OWE3XCIgfSxcbiAgICB7IG06IDUsICBsYWJlbDogXCJtID0gNVwiLCAgY29sb3I6IFwiI2YyOGUyYlwiIH0sXG4gICAgeyBtOiAxMCwgbGFiZWw6IFwibSA9IDEwXCIsIGNvbG9yOiBcIiNlMTU3NTlcIiB9LFxuICBdO1xuXG4gIGZ1bmN0aW9uIHRoKG0sIFgpIHtcbiAgICByZXR1cm4gTWF0aC5jb3NoKG0gKiBYKSAtIE1hdGguc2luaChtICogWCkgLyBNYXRoLnRhbmgobSk7XG4gIH1cblxuICAvLyBMYWJlbCBhbmNob3IgcG9zaXRpb25zIHN0YWdnZXJlZCBzbyB0aGV5IGRvbid0IG92ZXJsYXBcbiAgY29uc3QgbGFiZWxYID0geyAxOiAwLjY1LCA1OiAwLjM1LCAxMDogMC4xOCB9O1xuICBjb25zdCBsYWJlbFB0cyA9IGN1cnZlcy5tYXAoKHsgbSwgbGFiZWwsIGNvbG9yIH0pID0+ICh7XG4gICAgWDogbGFiZWxYW21dLCB0aGV0YTogdGgobSwgbGFiZWxYW21dKSwgbGFiZWwsIGNvbG9yLFxuICB9KSk7XG5cbiAgcmV0dXJuIFBsb3QucGxvdCh7XG4gICAgd2lkdGg6IDUyMCwgaGVpZ2h0OiAzNjAsXG4gICAgbWFyZ2luTGVmdDogNjAsIG1hcmdpbkJvdHRvbTogNjAsIG1hcmdpblJpZ2h0OiAyNCwgbWFyZ2luVG9wOiAyNCxcbiAgICBzdHlsZTogeyBmb250RmFtaWx5OiBcIkdlb3JnaWEsIHNlcmlmXCIsIGZvbnRTaXplOiBcIjEzcHhcIiB9LFxuICAgIHg6IHsgbGFiZWw6IG51bGwsIHRpY2tzOiBbMCwgMC4yLCAwLjQsIDAuNiwgMC44LCAxLjBdLCBkb21haW46IFswLCAxXSB9LFxuICAgIHk6IHsgbGFiZWw6IG51bGwsIHRpY2tzOiBbMCwgMC4yLCAwLjQsIDAuNiwgMC44LCAxLjBdLCBkb21haW46IFswLCAxXSB9LFxuICAgIG1hcmtzOiBbXG4gICAgICBQbG90LnJ1bGVYKFswXSwgeyBzdHJva2U6IFwiIzk5OVwiIH0pLFxuICAgICAgUGxvdC5ydWxlWShbMF0sIHsgc3Ryb2tlOiBcIiM5OTlcIiB9KSxcbiAgICAgIC8vIE9uZSBsaW5lIHBlciBjdXJ2ZSB3aXRoIGl0cyBvd24gY29sb3JcbiAgICAgIC4uLmN1cnZlcy5tYXAoKHsgbSwgY29sb3IgfSkgPT5cbiAgICAgICAgUGxvdC5saW5lKFxuICAgICAgICAgIEFycmF5LmZyb20oeyBsZW5ndGg6IE4gKyAxIH0sIChfLCBpKSA9PiB7XG4gICAgICAgICAgICBjb25zdCBYID0gaSAvIE47XG4gICAgICAgICAgICByZXR1cm4geyBYLCB0aGV0YTogdGgobSwgWCkgfTtcbiAgICAgICAgICB9KSxcbiAgICAgICAgICB7IHg6IFwiWFwiLCB5OiBcInRoZXRhXCIsIHN0cm9rZTogY29sb3IsIHN0cm9rZVdpZHRoOiAyIH1cbiAgICAgICAgKVxuICAgICAgKSxcbiAgICAgIC8vIERpcmVjdCBjdXJ2ZSBsYWJlbHMsIG9mZnNldCBhYm92ZSB0aGUgbGluZVxuICAgICAgUGxvdC50ZXh0KGxhYmVsUHRzLCB7XG4gICAgICAgIHg6IFwiWFwiLCB5OiBcInRoZXRhXCIsIHRleHQ6IFwibGFiZWxcIiwgZmlsbDogXCJjb2xvclwiLFxuICAgICAgICBkeTogLTEwLCB0ZXh0QW5jaG9yOiBcIm1pZGRsZVwiLCBmb250U2l6ZTogMTMsXG4gICAgICB9KSxcbiAgICAgIC8vIEF4aXMgbGFiZWxzOiBsYXJnZXIsIGNlbnRlcmVkLCByZW5kZXJlZCBvdXRzaWRlIHRoZSBkYXRhIGZyYW1lXG4gICAgICBQbG90LnRleHQoW3sgWDogMC41LCB0aGV0YTogLTAuMTUgfV0sIHtcbiAgICAgICAgeDogXCJYXCIsIHk6IFwidGhldGFcIiwgdGV4dDogKCkgPT4gXCJYXCIsXG4gICAgICAgIGNsaXA6IGZhbHNlLCBmb250U2l6ZTogMTcsIHRleHRBbmNob3I6IFwibWlkZGxlXCIsXG4gICAgICAgIGZvbnRGYW1pbHk6IFwiR2VvcmdpYSwgc2VyaWZcIiwgZm9udFN0eWxlOiBcIml0YWxpY1wiLFxuICAgICAgfSksXG4gICAgICBQbG90LnRleHQoW3sgWDogLTAuMTMsIHRoZXRhOiAwLjUgfV0sIHtcbiAgICAgICAgeDogXCJYXCIsIHk6IFwidGhldGFcIiwgdGV4dDogKCkgPT4gXCLOuFwiLFxuICAgICAgICBjbGlwOiBmYWxzZSwgZm9udFNpemU6IDE3LCB0ZXh0QW5jaG9yOiBcIm1pZGRsZVwiLCByb3RhdGU6IC05MCxcbiAgICAgICAgZm9udEZhbWlseTogXCJHZW9yZ2lhLCBzZXJpZlwiLCBmb250U3R5bGU6IFwiaXRhbGljXCIsXG4gICAgICB9KSxcbiAgICBdLFxuICB9KTtcbn1cbiJ9XX0=
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/jeremy-koch\.github\.io\/MCEN3022");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./1conduction.html" class="pagination-link" aria-label="Conduction Eqn">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Conduction Eqn</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./demos/wall_demo.html" class="pagination-link" aria-label="Composite Plane Walls -- Interactive Demo">
+        <span class="nav-page-text">Composite Plane Walls – Interactive Demo</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Fins</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>This week we are going to focus on fins, a useful item in our engineering design toolkit. The idea is this: Hot surface! We need to cool it! But the fluid passing over it isn't creating a high enough $\dot{Q}$. If our electronics are producing 200 W, but we are only able to remove 100 W, we are going to cook our electronics.</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>We could increase the flow over the object (bigger fan), change the medium of the flow (water-cooled is better than air-cooled), or put the object in a cooler room (data centers are usually very cold). We are going to focus on another approach: increasing surface area. We will do so by putting "fins" on the object -- objects with a high surface area to volume ratio, e.g. numerous 10 mm-long, 2 mm-diameter cylinders. These will wick heat from the object, and their large surface area will allow greater opportunity to deposit that heat in the fluid.</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>We'll examine another version of conservation of energy -- this time, 1D only, though we'll include some convection out (radially) within that description. "The Fin Equation" is an ordinary differential equation for temperature as a function of position, and it will include in it considerations of: the thermal conductivity, the convection coefficient, and the size of the fin. In the case of constant cross-section fins, we can solve the Fin Equation analytically.</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## Think First</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>Recall</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>What is the thermal conductivity $k$? What is the convection coefficient $h$?</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>What is the thermal resistance analogy? $\dot{Q}=\Delta T/R$, but what is $R$?</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Why does increasing surface area increase convective heat transfer?</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>Look Ahead</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>How do we decide the size and number of fins?</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>How do material choices (copper vs. steel) affect fin performance?</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>What do we mean by a fin being "effective" and "efficient"? Do they mean different things?</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="fu">## The Fin Equation</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="fu">### Video</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>Start with <span class="co">[</span><span class="ot">this video link</span><span class="co">](https://canvas.colorado.edu/courses/136150/pages/the-fin-equation)</span>, which covers the Fin Equation derivation. Then read the following.</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="fu">### Problem setup and solution</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>Here is a general geometry for a single fin:</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;svg width="530" height="185" xmlns="http://www.w3.org/2000/svg"&gt;</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;title&gt;Fin geometry — isometric view&lt;/title&gt;</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;desc&gt;An isometric view of a cylindrical fin sticking out of a flat plane wall shown as a parallelogram. Two dashed ellipses mark a control-volume slice of width Delta x. Q_cond,in enters from the left, Q_cond,out exits to the right, and Q_conv points upward from the surface.&lt;/desc&gt;</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;defs&gt;</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;linearGradient id="fin3d-grad" x1="0" y1="58" x2="0" y2="100" gradientUnits="userSpaceOnUse"&gt;</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;stop offset="0%"   stop-color="#daeaf5"/&gt;</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;stop offset="40%"  stop-color="#aacde8"/&gt;</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;stop offset="100%" stop-color="#5e8fb0"/&gt;</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/linearGradient&gt;</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;marker id="fin3d-arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"&gt;</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;path d="M0,0 L8,3 L0,6 z" fill="black"/&gt;</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/marker&gt;</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/defs&gt;</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Wall: 5 line segments, right edge stops at cylinder top/bottom --&gt;</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="97" y1="4"   x2="47"  y2="26"  stroke="black" stroke-width="2"/&gt;</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="47" y1="26"  x2="47"  y2="174" stroke="black" stroke-width="2"/&gt;</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="47" y1="174" x2="97"  y2="152" stroke="black" stroke-width="2"/&gt;</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="97" y1="4"   x2="97"  y2="58"  stroke="black" stroke-width="2"/&gt;</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="97" y1="100" x2="97"  y2="152" stroke="black" stroke-width="2"/&gt;</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Cylinder body --&gt;</span></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;rect x="72" y="58" width="420" height="42" fill="url(#fin3d-grad)"/&gt;</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="72" y1="58"  x2="492" y2="58"  stroke="black" stroke-width="2"/&gt;</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="72" y1="100" x2="492" y2="100" stroke="black" stroke-width="2"/&gt;</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Tip ellipse --&gt;</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;ellipse cx="492" cy="79" rx="10" ry="21" fill="url(#fin3d-grad)" stroke="black" stroke-width="2"/&gt;</span></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Control volume dashed ellipses --&gt;</span></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;ellipse cx="245" cy="79" rx="10" ry="21" fill="none" stroke="black" stroke-width="1.5" stroke-dasharray="5,3"/&gt;</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;ellipse cx="285" cy="79" rx="10" ry="21" fill="none" stroke="black" stroke-width="1.5" stroke-dasharray="5,3"/&gt;</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Cylinder base: full ellipse --&gt;</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;ellipse cx="72" cy="79" rx="10" ry="21" fill="url(#fin3d-grad)" stroke="black" stroke-width="2"/&gt;</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Convection arrow --&gt;</span></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="265" y1="58" x2="265" y2="25" stroke="black" stroke-width="1.5" marker-end="url(#fin3d-arr)"/&gt;</span></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;foreignObject x="273" y="16" width="130" height="22"&gt;</span></span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;div xmlns="http://www.w3.org/1999/xhtml" style="font-size:13px"&gt;\(\dot{Q}_\text{conv}\)&lt;/div&gt;</span></span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/foreignObject&gt;</span></span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Q_cond,in: label BEFORE arrow, arrow tip at cx of left dashed ellipse --&gt;</span></span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;foreignObject x="83" y="67" width="100" height="20"&gt;</span></span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;div xmlns="http://www.w3.org/1999/xhtml" style="text-align:right; font-size:13px"&gt;\(\dot{Q}_\text{cond,in}\)&lt;/div&gt;</span></span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/foreignObject&gt;</span></span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="206" y1="79" x2="245" y2="79" stroke="black" stroke-width="1.5" marker-end="url(#fin3d-arr)"/&gt;</span></span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Q_cond,out: arrow base at cx of right dashed ellipse, label AFTER arrow --&gt;</span></span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="285" y1="79" x2="334" y2="79" stroke="black" stroke-width="1.5" marker-end="url(#fin3d-arr)"/&gt;</span></span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;foreignObject x="338" y="67" width="115" height="20"&gt;</span></span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;div xmlns="http://www.w3.org/1999/xhtml" style="text-align:left; font-size:13px"&gt;\(\dot{Q}_\text{cond,out}\)&lt;/div&gt;</span></span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/foreignObject&gt;</span></span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- x = 0 label at base --&gt;</span></span>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="72" y1="100" x2="72" y2="112" stroke="black" stroke-width="1.2"/&gt;</span></span>
+<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;foreignObject x="44" y="112" width="60" height="22"&gt;</span></span>
+<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center; font-size:13px"&gt;\(x = 0\)&lt;/div&gt;</span></span>
+<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/foreignObject&gt;</span></span>
+<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- x = L label at tip --&gt;</span></span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="492" y1="100" x2="492" y2="112" stroke="black" stroke-width="1.2"/&gt;</span></span>
+<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;foreignObject x="464" y="112" width="58" height="22"&gt;</span></span>
+<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center; font-size:13px"&gt;\(x = L\)&lt;/div&gt;</span></span>
+<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/foreignObject&gt;</span></span>
+<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Δx bracket: dashed drop lines + double-headed arrow from center --&gt;</span></span>
+<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="245" y1="100" x2="245" y2="128" stroke="black" stroke-width="1" stroke-dasharray="3,2"/&gt;</span></span>
+<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="285" y1="100" x2="285" y2="128" stroke="black" stroke-width="1" stroke-dasharray="3,2"/&gt;</span></span>
+<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="265" y1="124" x2="247" y2="124" stroke="black" stroke-width="1.5" marker-end="url(#fin3d-arr)"/&gt;</span></span>
+<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="265" y1="124" x2="283" y2="124" stroke="black" stroke-width="1.5" marker-end="url(#fin3d-arr)"/&gt;</span></span>
+<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;foreignObject x="246" y="128" width="38" height="22"&gt;</span></span>
+<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center; font-size:13px"&gt;\(\Delta x\)&lt;/div&gt;</span></span>
+<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/foreignObject&gt;</span></span>
+<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/svg&gt;</span></span>
+<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a>Here, a slender cylindrical fin is attached to a hot surface at $x=0$. The fin has a known geometry: known cross-section $A_c(x)$ (defined at a position $x$, and we are allowing for the possibility that it depends on $x$) and known length $L$. At every location $x$, we know the perimeter around the fin, $P(x)$, and we'll assume we know the fin material (and thus $k$) and have looked up a value of the convection coefficient ($h$ is known). We are going to write an energy balance at an arbitrary position $x$, assuming:</span>
+<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>We are at steady state</span>
+<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>The fin is slender such that the temperature is uniform within each cross-section</span>
+<span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Constant/averaged value of $h$</span>
+<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a>The first two points allow us to think about $T(x)$ instead of worrying about $T(x,y,z,t)$.</span>
+<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a>::: {.callout-note collapse="true"}</span>
+<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a><span class="fu">### Click here to see the details of the derivation.</span></span>
+<span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a>We write a conservation of energy for the $\Delta x$ segment, making use of the assumption of steadiness to say</span>
+<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a>\frac{dE}{dt} = 0 = q''(x) \cdot A_c(x) - q''(x+\Delta x) \cdot A_c(x+\Delta x) - h \cdot P(x) \cdot \Delta x \cdot (T(x) - T_\infty).</span>
+<span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a>The terms in that equation represent: conductive heat transfer in from the left cross-section, conduction out through the right cross-section, and convection out through the outer surface.</span>
+<span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-137"><a href="#cb2-137" aria-hidden="true" tabindex="-1"></a>Using Fourier's Law $q'' = -k\frac{dT}{dx}$:</span>
+<span id="cb2-138"><a href="#cb2-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-139"><a href="#cb2-139" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-140"><a href="#cb2-140" aria-hidden="true" tabindex="-1"></a>0 = \left(-k A_c\frac{dT}{dx}\right)\bigg|_x  - \left(-k A_c\frac{dT}{dx}\right)\bigg|_{x+\Delta x} - h \cdot P(x) \cdot \Delta x \cdot (T(x) - T_\infty).</span>
+<span id="cb2-141"><a href="#cb2-141" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-142"><a href="#cb2-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-143"><a href="#cb2-143" aria-hidden="true" tabindex="-1"></a>Then we divide by $\Delta x$ and take the limit as $\Delta x \to 0$ (definition of derivative), leaving...</span>
+<span id="cb2-144"><a href="#cb2-144" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-145"><a href="#cb2-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-146"><a href="#cb2-146" aria-hidden="true" tabindex="-1"></a>The Fin Equation:</span>
+<span id="cb2-147"><a href="#cb2-147" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-148"><a href="#cb2-148" aria-hidden="true" tabindex="-1"></a>0 = \frac{d}{dx}\left(k A_c(x) \frac{dT}{dx}\right) - h P(x) (T(x) - T_\infty)</span>
+<span id="cb2-149"><a href="#cb2-149" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-150"><a href="#cb2-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-151"><a href="#cb2-151" aria-hidden="true" tabindex="-1"></a>a second-order ordinary differential equation that, when solved with two boundary conditions, will give us the temperature distribution in the fin $T(x)$. From this we will be able to calculate the total heat transfer out of the fin.</span>
+<span id="cb2-152"><a href="#cb2-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-153"><a href="#cb2-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-154"><a href="#cb2-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-155"><a href="#cb2-155" aria-hidden="true" tabindex="-1"></a><span class="fu">## The solution for uniform cross-section</span></span>
+<span id="cb2-156"><a href="#cb2-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-157"><a href="#cb2-157" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb2-158"><a href="#cb2-158" aria-hidden="true" tabindex="-1"></a><span class="fu">### Video</span></span>
+<span id="cb2-159"><a href="#cb2-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-160"><a href="#cb2-160" aria-hidden="true" tabindex="-1"></a>Start with <span class="co">[</span><span class="ot">this video link</span><span class="co">](https://canvas.colorado.edu/courses/136150/pages/fin-uniform-ac)</span>, which covers the solution process. Then read the following.</span>
+<span id="cb2-161"><a href="#cb2-161" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-162"><a href="#cb2-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-163"><a href="#cb2-163" aria-hidden="true" tabindex="-1"></a><span class="fu">### Assumptions</span></span>
+<span id="cb2-164"><a href="#cb2-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-165"><a href="#cb2-165" aria-hidden="true" tabindex="-1"></a>We are going to analyze the case where the cross-section and perimeter are constants, not functions of $x$. We'll also assume that $k$ is a constant. Then the Fin Equation becomes:</span>
+<span id="cb2-166"><a href="#cb2-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-167"><a href="#cb2-167" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-168"><a href="#cb2-168" aria-hidden="true" tabindex="-1"></a>0 = k A_c\frac{d^2T}{dx^2} - hP(T(x) - T_\infty)</span>
+<span id="cb2-169"><a href="#cb2-169" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-170"><a href="#cb2-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-171"><a href="#cb2-171" aria-hidden="true" tabindex="-1"></a>and we can combine the parameters in the problem into one constant</span>
+<span id="cb2-172"><a href="#cb2-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-173"><a href="#cb2-173" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-174"><a href="#cb2-174" aria-hidden="true" tabindex="-1"></a>0 = \frac{d^2T}{dx^2} - \frac{hP}{k A_c}(T(x) - T_\infty).</span>
+<span id="cb2-175"><a href="#cb2-175" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-176"><a href="#cb2-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-177"><a href="#cb2-177" aria-hidden="true" tabindex="-1"></a>It's looking easier to deal with already... we're going to do one extra setup step.</span>
+<span id="cb2-178"><a href="#cb2-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-179"><a href="#cb2-179" aria-hidden="true" tabindex="-1"></a><span class="fu">### Non-Dimensionalization</span></span>
+<span id="cb2-180"><a href="#cb2-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-181"><a href="#cb2-181" aria-hidden="true" tabindex="-1"></a>It is nice to non-dimensionalize equations. Framed within the context of the fin problem: we know that $k$, $h$, $A_c$ and $P$ are relevant, and they indeed appear in that combined parameter we just arrived at. But how does $L$ factor in? Can we say without solving the equation? After non-dimensionalizing the equation, we will have greater insight. The non-dimensionalized equation is also going to be easier to solve.</span>
+<span id="cb2-182"><a href="#cb2-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-183"><a href="#cb2-183" aria-hidden="true" tabindex="-1"></a>First we are going to define a non-dimensional temperature:</span>
+<span id="cb2-184"><a href="#cb2-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-185"><a href="#cb2-185" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-186"><a href="#cb2-186" aria-hidden="true" tabindex="-1"></a>\theta(x) \equiv \frac{T(x) - T_\infty}{T_b - T_\infty}.</span>
+<span id="cb2-187"><a href="#cb2-187" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-188"><a href="#cb2-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-189"><a href="#cb2-189" aria-hidden="true" tabindex="-1"></a>This is convenient because, when $T=T_b$, the non-dimensional $\theta =1$, and when $T=T_\infty$, the non-dimensional $\theta =0$. We should intuitively expect our solution to start at $\theta=1$ and asymptote towards $\theta=0$ as we move away from the fin base.</span>
+<span id="cb2-190"><a href="#cb2-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-191"><a href="#cb2-191" aria-hidden="true" tabindex="-1"></a>We are also going to define a non-dimensional position:</span>
+<span id="cb2-192"><a href="#cb2-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-193"><a href="#cb2-193" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-194"><a href="#cb2-194" aria-hidden="true" tabindex="-1"></a>X\equiv \frac{x}{L}.</span>
+<span id="cb2-195"><a href="#cb2-195" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-196"><a href="#cb2-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-197"><a href="#cb2-197" aria-hidden="true" tabindex="-1"></a>Again, it's convenient: $X$ goes from $0$ to $1$.</span>
+<span id="cb2-198"><a href="#cb2-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-199"><a href="#cb2-199" aria-hidden="true" tabindex="-1"></a>We then will reframe the differential equation as $\theta(X)$ instead of $T(x)$. Using the chain rule:</span>
+<span id="cb2-200"><a href="#cb2-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-201"><a href="#cb2-201" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-202"><a href="#cb2-202" aria-hidden="true" tabindex="-1"></a>\frac{dT}{dx}=\frac{dX}{dx}\frac{dT}{dX} = \frac{1}{L}\frac{dT}{dX}</span>
+<span id="cb2-203"><a href="#cb2-203" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-204"><a href="#cb2-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-205"><a href="#cb2-205" aria-hidden="true" tabindex="-1"></a>and</span>
+<span id="cb2-206"><a href="#cb2-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-207"><a href="#cb2-207" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-208"><a href="#cb2-208" aria-hidden="true" tabindex="-1"></a>\frac{d^2T}{dx^2} = \frac{d}{dx}\left(\frac{dT}{dx}\right) = \frac{dX}{dx}\frac{d}{dX}\left(\frac{1}{L}\frac{dT}{dX}\right)=\frac{1}{L^2}\frac{d^2T}{dX^2}.</span>
+<span id="cb2-209"><a href="#cb2-209" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-210"><a href="#cb2-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-211"><a href="#cb2-211" aria-hidden="true" tabindex="-1"></a>Then plugging-in the definition of $\theta$:</span>
+<span id="cb2-212"><a href="#cb2-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-213"><a href="#cb2-213" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-214"><a href="#cb2-214" aria-hidden="true" tabindex="-1"></a>\frac{d^2T}{dX^2} = \frac{d^2}{dX^2}\left((T_b-T_\infty)\theta + T_\infty\right) = (T_b-T_\infty)\frac{d^2\theta}{dX^2}.</span>
+<span id="cb2-215"><a href="#cb2-215" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-216"><a href="#cb2-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-217"><a href="#cb2-217" aria-hidden="true" tabindex="-1"></a>We include these results in the constant cross-section differential equation we have</span>
+<span id="cb2-218"><a href="#cb2-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-219"><a href="#cb2-219" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-220"><a href="#cb2-220" aria-hidden="true" tabindex="-1"></a>0= \frac{(T_b-T_\infty)}{L^2}\frac{d^2\theta}{dX^2} - \frac{hP}{k A_c}(T(x) - T_\infty)</span>
+<span id="cb2-221"><a href="#cb2-221" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-222"><a href="#cb2-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-223"><a href="#cb2-223" aria-hidden="true" tabindex="-1"></a>and, with some algebra, settle on a non-dimensional form of the differential equation:</span>
+<span id="cb2-224"><a href="#cb2-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-225"><a href="#cb2-225" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-226"><a href="#cb2-226" aria-hidden="true" tabindex="-1"></a>0= \frac{d^2\theta}{dX^2} - m^2\theta</span>
+<span id="cb2-227"><a href="#cb2-227" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-228"><a href="#cb2-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-229"><a href="#cb2-229" aria-hidden="true" tabindex="-1"></a>with</span>
+<span id="cb2-230"><a href="#cb2-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-231"><a href="#cb2-231" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-232"><a href="#cb2-232" aria-hidden="true" tabindex="-1"></a>m=\sqrt{\frac{hPL^2}{kA_c}}</span>
+<span id="cb2-233"><a href="#cb2-233" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-234"><a href="#cb2-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-235"><a href="#cb2-235" aria-hidden="true" tabindex="-1"></a>a dimensionless constant.</span>
+<span id="cb2-236"><a href="#cb2-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-237"><a href="#cb2-237" aria-hidden="true" tabindex="-1"></a>As we hinted above, one boundary condition that we will use is $\theta(0)=1$. The second is a bit more controversial... we'll get into that in the next section. But let's think about what we have arrived at with this non-dimensionalization:</span>
+<span id="cb2-238"><a href="#cb2-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-239"><a href="#cb2-239" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>We have identified a dimensionless parameter $m$ that is the single parameter in the problem. This tells us, for example, that doubling the fin length will have the same effect as increasing the convection coefficient by four. We capture the push-and-pull of the parameters in a single variable.</span>
+<span id="cb2-240"><a href="#cb2-240" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>An equation of the form $y'' - c y =0$ is a bit easier to solve than an equation of the form $y'' - cy = d$.</span>
+<span id="cb2-241"><a href="#cb2-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-242"><a href="#cb2-242" aria-hidden="true" tabindex="-1"></a><span class="fu">### Boundary Conditions</span></span>
+<span id="cb2-243"><a href="#cb2-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-244"><a href="#cb2-244" aria-hidden="true" tabindex="-1"></a>The problem is not well-posed until we figure out the boundary conditions. The first boundary condition is not controversial:</span>
+<span id="cb2-245"><a href="#cb2-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-246"><a href="#cb2-246" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-247"><a href="#cb2-247" aria-hidden="true" tabindex="-1"></a>T(x=0) = T_b \implies \theta(X=0) = 1.</span>
+<span id="cb2-248"><a href="#cb2-248" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-249"><a href="#cb2-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-250"><a href="#cb2-250" aria-hidden="true" tabindex="-1"></a>The second is not as obvious -- we have to make an assumption.</span>
+<span id="cb2-251"><a href="#cb2-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-252"><a href="#cb2-252" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Known temperature</span></span>
+<span id="cb2-253"><a href="#cb2-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-254"><a href="#cb2-254" aria-hidden="true" tabindex="-1"></a>We could assume that</span>
+<span id="cb2-255"><a href="#cb2-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-256"><a href="#cb2-256" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-257"><a href="#cb2-257" aria-hidden="true" tabindex="-1"></a>T(L) = T_\infty \implies \theta(1) = 0.</span>
+<span id="cb2-258"><a href="#cb2-258" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-259"><a href="#cb2-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-260"><a href="#cb2-260" aria-hidden="true" tabindex="-1"></a>However, this presumes knowledge of the temperature at the tip. Do we know for certain that it gets all the way to $\theta = 0$ by $X = 1$? That will not be the case with a short fin, but it might be reasonable for a long fin.</span>
+<span id="cb2-261"><a href="#cb2-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-262"><a href="#cb2-262" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Adiabatic tip</span></span>
+<span id="cb2-263"><a href="#cb2-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-264"><a href="#cb2-264" aria-hidden="true" tabindex="-1"></a>We could assume that the tip is "adiabatic":</span>
+<span id="cb2-265"><a href="#cb2-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-266"><a href="#cb2-266" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-267"><a href="#cb2-267" aria-hidden="true" tabindex="-1"></a>\frac{dT}{dx}\bigg\rvert_L = 0 \implies \frac{d\theta}{dX}\bigg\rvert_1 = 0</span>
+<span id="cb2-268"><a href="#cb2-268" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-269"><a href="#cb2-269" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-270"><a href="#cb2-270" aria-hidden="true" tabindex="-1"></a>Rationale: most of the energy is convected out along the length, so the amount convected out at $x = L$ is $\approx 0$.</span>
+<span id="cb2-271"><a href="#cb2-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-272"><a href="#cb2-272" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb2-273"><a href="#cb2-273" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Think</span></span>
+<span id="cb2-274"><a href="#cb2-274" aria-hidden="true" tabindex="-1"></a>What would the plot of the solution look like at $X=1$? Specifically think about the slope of the curve.</span>
+<span id="cb2-275"><a href="#cb2-275" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-276"><a href="#cb2-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-277"><a href="#cb2-277" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Tip heat transfer $\sim h$</span></span>
+<span id="cb2-278"><a href="#cb2-278" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-279"><a href="#cb2-279" aria-hidden="true" tabindex="-1"></a>We could assume that the tip has convection with coefficient $h$. Then that which is conducted to the tip will be convected out:</span>
+<span id="cb2-280"><a href="#cb2-280" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-281"><a href="#cb2-281" aria-hidden="true" tabindex="-1"></a>-k\frac{dT}{dx}\bigg\rvert_L = h(T(L) - T_\infty) \implies -\frac{k}{L}\frac{d\theta}{dX}\bigg\rvert_1 = h\theta(1).</span>
+<span id="cb2-282"><a href="#cb2-282" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-283"><a href="#cb2-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-284"><a href="#cb2-284" aria-hidden="true" tabindex="-1"></a>This is perhaps the most defendable boundary condition, but "is the juice worth the squeeze" (one of my favorite sayings): this boundary condition is the most difficult to implement.</span>
+<span id="cb2-285"><a href="#cb2-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-286"><a href="#cb2-286" aria-hidden="true" tabindex="-1"></a>Given the many assumptions that have gone into this analysis, the error from using other boundary conditions is probably not a big deal!</span>
+<span id="cb2-287"><a href="#cb2-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-288"><a href="#cb2-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-289"><a href="#cb2-289" aria-hidden="true" tabindex="-1"></a><span class="fu">### Analytical Solution</span></span>
+<span id="cb2-290"><a href="#cb2-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-291"><a href="#cb2-291" aria-hidden="true" tabindex="-1"></a>Let's solve</span>
+<span id="cb2-292"><a href="#cb2-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-293"><a href="#cb2-293" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-294"><a href="#cb2-294" aria-hidden="true" tabindex="-1"></a>0= \frac{d^2\theta}{dX^2} - m^2\theta</span>
+<span id="cb2-295"><a href="#cb2-295" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-296"><a href="#cb2-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-297"><a href="#cb2-297" aria-hidden="true" tabindex="-1"></a>with </span>
+<span id="cb2-298"><a href="#cb2-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-299"><a href="#cb2-299" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-300"><a href="#cb2-300" aria-hidden="true" tabindex="-1"></a>m=\sqrt{\frac{hPL^2}{kA_c}}</span>
+<span id="cb2-301"><a href="#cb2-301" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-302"><a href="#cb2-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-303"><a href="#cb2-303" aria-hidden="true" tabindex="-1"></a>subject to boundary conditions</span>
+<span id="cb2-304"><a href="#cb2-304" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-305"><a href="#cb2-305" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-306"><a href="#cb2-306" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
+<span id="cb2-307"><a href="#cb2-307" aria-hidden="true" tabindex="-1"></a>&amp;\theta(0)=1<span class="sc">\\</span></span>
+<span id="cb2-308"><a href="#cb2-308" aria-hidden="true" tabindex="-1"></a>&amp;\theta(1)=0.</span>
+<span id="cb2-309"><a href="#cb2-309" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
+<span id="cb2-310"><a href="#cb2-310" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-311"><a href="#cb2-311" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-312"><a href="#cb2-312" aria-hidden="true" tabindex="-1"></a>We may be tempted to say the general solution is</span>
+<span id="cb2-313"><a href="#cb2-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-314"><a href="#cb2-314" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-315"><a href="#cb2-315" aria-hidden="true" tabindex="-1"></a>\theta(X) = c_1 \exp{(-mX)} + c_2 \exp{(mX)}</span>
+<span id="cb2-316"><a href="#cb2-316" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-317"><a href="#cb2-317" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-318"><a href="#cb2-318" aria-hidden="true" tabindex="-1"></a>which is totally correct, but the algebra that follows when applying the boundary conditions is going to be annoying. Instead, let's remember the definitions of $\sinh(z) \equiv (\exp(z)-\exp(-z))/2$ and $\cosh(z)\equiv (\exp(z)+\exp(-z))/2$ and write the solution as</span>
+<span id="cb2-319"><a href="#cb2-319" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-320"><a href="#cb2-320" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-321"><a href="#cb2-321" aria-hidden="true" tabindex="-1"></a>\theta(X) = d_1 \sinh(mX) + d_2 \cosh(mX).</span>
+<span id="cb2-322"><a href="#cb2-322" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-323"><a href="#cb2-323" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-324"><a href="#cb2-324" aria-hidden="true" tabindex="-1"></a>Boundary condition at $X=0$:</span>
+<span id="cb2-325"><a href="#cb2-325" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-326"><a href="#cb2-326" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-327"><a href="#cb2-327" aria-hidden="true" tabindex="-1"></a>\theta(0) = 1 = d_1 \sinh(0) + d_2 \cosh(0) \implies d_2 = 1.</span>
+<span id="cb2-328"><a href="#cb2-328" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-329"><a href="#cb2-329" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-330"><a href="#cb2-330" aria-hidden="true" tabindex="-1"></a>Boundary condition at $X=1$:</span>
+<span id="cb2-331"><a href="#cb2-331" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-332"><a href="#cb2-332" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-333"><a href="#cb2-333" aria-hidden="true" tabindex="-1"></a>0 = d_1 \sinh(m) + \cosh(m) \implies d_1 = -\frac{\cosh(m)}{\sinh(m)} = -\frac{1}{\tanh(m)}.</span>
+<span id="cb2-334"><a href="#cb2-334" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-335"><a href="#cb2-335" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-336"><a href="#cb2-336" aria-hidden="true" tabindex="-1"></a>Therefore, our solution is</span>
+<span id="cb2-337"><a href="#cb2-337" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-338"><a href="#cb2-338" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-339"><a href="#cb2-339" aria-hidden="true" tabindex="-1"></a>\theta(X) = \cosh(mX) - \frac{\sinh(mX)}{\tanh(m)}</span>
+<span id="cb2-340"><a href="#cb2-340" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-341"><a href="#cb2-341" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-344"><a href="#cb2-344" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb2-345"><a href="#cb2-345" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb2-346"><a href="#cb2-346" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb2-347"><a href="#cb2-347" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> N <span class="op">=</span> <span class="dv">300</span><span class="op">;</span></span>
+<span id="cb2-348"><a href="#cb2-348" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> curves <span class="op">=</span> [</span>
+<span id="cb2-349"><a href="#cb2-349" aria-hidden="true" tabindex="-1"></a>    { <span class="dt">m</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span>  <span class="dt">label</span><span class="op">:</span> <span class="st">"m = 1"</span><span class="op">,</span>  <span class="dt">color</span><span class="op">:</span> <span class="st">"#4e79a7"</span> }<span class="op">,</span></span>
+<span id="cb2-350"><a href="#cb2-350" aria-hidden="true" tabindex="-1"></a>    { <span class="dt">m</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span>  <span class="dt">label</span><span class="op">:</span> <span class="st">"m = 5"</span><span class="op">,</span>  <span class="dt">color</span><span class="op">:</span> <span class="st">"#f28e2b"</span> }<span class="op">,</span></span>
+<span id="cb2-351"><a href="#cb2-351" aria-hidden="true" tabindex="-1"></a>    { <span class="dt">m</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"m = 10"</span><span class="op">,</span> <span class="dt">color</span><span class="op">:</span> <span class="st">"#e15759"</span> }<span class="op">,</span></span>
+<span id="cb2-352"><a href="#cb2-352" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">;</span></span>
+<span id="cb2-353"><a href="#cb2-353" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-354"><a href="#cb2-354" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span> <span class="fu">th</span>(m<span class="op">,</span> X) {</span>
+<span id="cb2-355"><a href="#cb2-355" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">cosh</span>(m <span class="op">*</span> X) <span class="op">-</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sinh</span>(m <span class="op">*</span> X) <span class="op">/</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">tanh</span>(m)<span class="op">;</span></span>
+<span id="cb2-356"><a href="#cb2-356" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-357"><a href="#cb2-357" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-358"><a href="#cb2-358" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Label anchor positions staggered so they don't overlap</span></span>
+<span id="cb2-359"><a href="#cb2-359" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> labelX <span class="op">=</span> { <span class="dv">1</span><span class="op">:</span> <span class="fl">0.65</span><span class="op">,</span> <span class="dv">5</span><span class="op">:</span> <span class="fl">0.35</span><span class="op">,</span> <span class="dv">10</span><span class="op">:</span> <span class="fl">0.18</span> }<span class="op">;</span></span>
+<span id="cb2-360"><a href="#cb2-360" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> labelPts <span class="op">=</span> curves<span class="op">.</span><span class="fu">map</span>(({ m<span class="op">,</span> label<span class="op">,</span> color }) <span class="kw">=&gt;</span> ({</span>
+<span id="cb2-361"><a href="#cb2-361" aria-hidden="true" tabindex="-1"></a>    <span class="dt">X</span><span class="op">:</span> labelX[m]<span class="op">,</span> <span class="dt">theta</span><span class="op">:</span> <span class="fu">th</span>(m<span class="op">,</span> labelX[m])<span class="op">,</span> label<span class="op">,</span> color<span class="op">,</span></span>
+<span id="cb2-362"><a href="#cb2-362" aria-hidden="true" tabindex="-1"></a>  }))<span class="op">;</span></span>
+<span id="cb2-363"><a href="#cb2-363" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-364"><a href="#cb2-364" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb2-365"><a href="#cb2-365" aria-hidden="true" tabindex="-1"></a>    <span class="dt">width</span><span class="op">:</span> <span class="dv">520</span><span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">360</span><span class="op">,</span></span>
+<span id="cb2-366"><a href="#cb2-366" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">60</span><span class="op">,</span> <span class="dt">marginBottom</span><span class="op">:</span> <span class="dv">60</span><span class="op">,</span> <span class="dt">marginRight</span><span class="op">:</span> <span class="dv">24</span><span class="op">,</span> <span class="dt">marginTop</span><span class="op">:</span> <span class="dv">24</span><span class="op">,</span></span>
+<span id="cb2-367"><a href="#cb2-367" aria-hidden="true" tabindex="-1"></a>    <span class="dt">style</span><span class="op">:</span> { <span class="dt">fontFamily</span><span class="op">:</span> <span class="st">"Georgia, serif"</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="st">"13px"</span> }<span class="op">,</span></span>
+<span id="cb2-368"><a href="#cb2-368" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> { <span class="dt">label</span><span class="op">:</span> <span class="kw">null</span><span class="op">,</span> <span class="dt">ticks</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="fl">0.2</span><span class="op">,</span> <span class="fl">0.4</span><span class="op">,</span> <span class="fl">0.6</span><span class="op">,</span> <span class="fl">0.8</span><span class="op">,</span> <span class="fl">1.0</span>]<span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">1</span>] }<span class="op">,</span></span>
+<span id="cb2-369"><a href="#cb2-369" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> { <span class="dt">label</span><span class="op">:</span> <span class="kw">null</span><span class="op">,</span> <span class="dt">ticks</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="fl">0.2</span><span class="op">,</span> <span class="fl">0.4</span><span class="op">,</span> <span class="fl">0.6</span><span class="op">,</span> <span class="fl">0.8</span><span class="op">,</span> <span class="fl">1.0</span>]<span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">1</span>] }<span class="op">,</span></span>
+<span id="cb2-370"><a href="#cb2-370" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb2-371"><a href="#cb2-371" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">ruleX</span>([<span class="dv">0</span>]<span class="op">,</span> { <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#999"</span> })<span class="op">,</span></span>
+<span id="cb2-372"><a href="#cb2-372" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>]<span class="op">,</span> { <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#999"</span> })<span class="op">,</span></span>
+<span id="cb2-373"><a href="#cb2-373" aria-hidden="true" tabindex="-1"></a>      <span class="co">// One line per curve with its own color</span></span>
+<span id="cb2-374"><a href="#cb2-374" aria-hidden="true" tabindex="-1"></a>      <span class="op">...</span>curves<span class="op">.</span><span class="fu">map</span>(({ m<span class="op">,</span> color }) <span class="kw">=&gt;</span></span>
+<span id="cb2-375"><a href="#cb2-375" aria-hidden="true" tabindex="-1"></a>        Plot<span class="op">.</span><span class="fu">line</span>(</span>
+<span id="cb2-376"><a href="#cb2-376" aria-hidden="true" tabindex="-1"></a>          <span class="bu">Array</span><span class="op">.</span><span class="fu">from</span>({ <span class="dt">length</span><span class="op">:</span> N <span class="op">+</span> <span class="dv">1</span> }<span class="op">,</span> (_<span class="op">,</span> i) <span class="kw">=&gt;</span> {</span>
+<span id="cb2-377"><a href="#cb2-377" aria-hidden="true" tabindex="-1"></a>            <span class="kw">const</span> X <span class="op">=</span> i <span class="op">/</span> N<span class="op">;</span></span>
+<span id="cb2-378"><a href="#cb2-378" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> { X<span class="op">,</span> <span class="dt">theta</span><span class="op">:</span> <span class="fu">th</span>(m<span class="op">,</span> X) }<span class="op">;</span></span>
+<span id="cb2-379"><a href="#cb2-379" aria-hidden="true" tabindex="-1"></a>          })<span class="op">,</span></span>
+<span id="cb2-380"><a href="#cb2-380" aria-hidden="true" tabindex="-1"></a>          { <span class="dt">x</span><span class="op">:</span> <span class="st">"X"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"theta"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> color<span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span> }</span>
+<span id="cb2-381"><a href="#cb2-381" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb2-382"><a href="#cb2-382" aria-hidden="true" tabindex="-1"></a>      )<span class="op">,</span></span>
+<span id="cb2-383"><a href="#cb2-383" aria-hidden="true" tabindex="-1"></a>      <span class="co">// Direct curve labels, offset above the line</span></span>
+<span id="cb2-384"><a href="#cb2-384" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">text</span>(labelPts<span class="op">,</span> {</span>
+<span id="cb2-385"><a href="#cb2-385" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"X"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"theta"</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> <span class="st">"label"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"color"</span><span class="op">,</span></span>
+<span id="cb2-386"><a href="#cb2-386" aria-hidden="true" tabindex="-1"></a>        <span class="dt">dy</span><span class="op">:</span> <span class="op">-</span><span class="dv">10</span><span class="op">,</span> <span class="dt">textAnchor</span><span class="op">:</span> <span class="st">"middle"</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">13</span><span class="op">,</span></span>
+<span id="cb2-387"><a href="#cb2-387" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
+<span id="cb2-388"><a href="#cb2-388" aria-hidden="true" tabindex="-1"></a>      <span class="co">// Axis labels: larger, centered, rendered outside the data frame</span></span>
+<span id="cb2-389"><a href="#cb2-389" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">text</span>([{ <span class="dt">X</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">theta</span><span class="op">:</span> <span class="op">-</span><span class="fl">0.15</span> }]<span class="op">,</span> {</span>
+<span id="cb2-390"><a href="#cb2-390" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"X"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"theta"</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="st">"X"</span><span class="op">,</span></span>
+<span id="cb2-391"><a href="#cb2-391" aria-hidden="true" tabindex="-1"></a>        <span class="dt">clip</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">17</span><span class="op">,</span> <span class="dt">textAnchor</span><span class="op">:</span> <span class="st">"middle"</span><span class="op">,</span></span>
+<span id="cb2-392"><a href="#cb2-392" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fontFamily</span><span class="op">:</span> <span class="st">"Georgia, serif"</span><span class="op">,</span> <span class="dt">fontStyle</span><span class="op">:</span> <span class="st">"italic"</span><span class="op">,</span></span>
+<span id="cb2-393"><a href="#cb2-393" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
+<span id="cb2-394"><a href="#cb2-394" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">text</span>([{ <span class="dt">X</span><span class="op">:</span> <span class="op">-</span><span class="fl">0.13</span><span class="op">,</span> <span class="dt">theta</span><span class="op">:</span> <span class="fl">0.5</span> }]<span class="op">,</span> {</span>
+<span id="cb2-395"><a href="#cb2-395" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"X"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"theta"</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="st">"θ"</span><span class="op">,</span></span>
+<span id="cb2-396"><a href="#cb2-396" aria-hidden="true" tabindex="-1"></a>        <span class="dt">clip</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">17</span><span class="op">,</span> <span class="dt">textAnchor</span><span class="op">:</span> <span class="st">"middle"</span><span class="op">,</span> <span class="dt">rotate</span><span class="op">:</span> <span class="op">-</span><span class="dv">90</span><span class="op">,</span></span>
+<span id="cb2-397"><a href="#cb2-397" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fontFamily</span><span class="op">:</span> <span class="st">"Georgia, serif"</span><span class="op">,</span> <span class="dt">fontStyle</span><span class="op">:</span> <span class="st">"italic"</span><span class="op">,</span></span>
+<span id="cb2-398"><a href="#cb2-398" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
+<span id="cb2-399"><a href="#cb2-399" aria-hidden="true" tabindex="-1"></a>    ]<span class="op">,</span></span>
+<span id="cb2-400"><a href="#cb2-400" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb2-401"><a href="#cb2-401" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-402"><a href="#cb2-402" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-403"><a href="#cb2-403" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-404"><a href="#cb2-404" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-405"><a href="#cb2-405" aria-hidden="true" tabindex="-1"></a><span class="fu">### Converting back to $T(x)$</span></span>
+<span id="cb2-406"><a href="#cb2-406" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-407"><a href="#cb2-407" aria-hidden="true" tabindex="-1"></a>We can use the definitions of $\theta$ and $X$ to convert the equation back to dimensional variables:</span>
+<span id="cb2-408"><a href="#cb2-408" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-409"><a href="#cb2-409" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-410"><a href="#cb2-410" aria-hidden="true" tabindex="-1"></a>T(x)=T_\infty + (T_b - T_\infty)\left<span class="co">[</span><span class="ot">\cosh\!\left(\frac{mx}{L}\right)-\frac{\sinh\!\left(\frac{mx}{L}\right)}{\tanh(m)}\right</span><span class="co">]</span>.</span>
+<span id="cb2-411"><a href="#cb2-411" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-412"><a href="#cb2-412" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-413"><a href="#cb2-413" aria-hidden="true" tabindex="-1"></a><span class="fu">## Calculating the fin heat transfer</span></span>
+<span id="cb2-414"><a href="#cb2-414" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-415"><a href="#cb2-415" aria-hidden="true" tabindex="-1"></a>With the temperature profile $T(x)$ known, we have at least two ways of calculating the fin heat transfer rate $\dot{Q}_f$.</span>
+<span id="cb2-416"><a href="#cb2-416" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-417"><a href="#cb2-417" aria-hidden="true" tabindex="-1"></a><span class="fu">### Using $h$</span></span>
+<span id="cb2-418"><a href="#cb2-418" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-419"><a href="#cb2-419" aria-hidden="true" tabindex="-1"></a>More intuitively: we might look to the basic equation for convective heat transfer $\dot{Q} = h A_\text{surf}(T-T_\infty)$ and consider how to account for a temperature that changes with position. Sounds like a job for... integration over the area:</span>
+<span id="cb2-420"><a href="#cb2-420" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-421"><a href="#cb2-421" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-422"><a href="#cb2-422" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-423"><a href="#cb2-423" aria-hidden="true" tabindex="-1"></a>\dot{Q}_f = \int h (T(x)-T_\infty) dA_\text{surface}.</span>
+<span id="cb2-424"><a href="#cb2-424" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-425"><a href="#cb2-425" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-426"><a href="#cb2-426" aria-hidden="true" tabindex="-1"></a>For a cylinder (as depicted above) we would write the area as $A_\text{surface} = \pi D x$ and so $dA_\text{surface} = \pi D dx$.</span>
+<span id="cb2-427"><a href="#cb2-427" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-428"><a href="#cb2-428" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-429"><a href="#cb2-429" aria-hidden="true" tabindex="-1"></a><span class="fu">### Using $k$</span></span>
+<span id="cb2-430"><a href="#cb2-430" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-431"><a href="#cb2-431" aria-hidden="true" tabindex="-1"></a>We also might wisely recognize that, since we have assumed steady state, the rate that heat is conducted into the fin must match the rate that heat is convected out of the fin. That is:</span>
+<span id="cb2-432"><a href="#cb2-432" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-433"><a href="#cb2-433" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-434"><a href="#cb2-434" aria-hidden="true" tabindex="-1"></a>\dot{Q}_f = -k \frac{dT}{dx}\bigg\rvert_0 A_c(0).</span>
+<span id="cb2-435"><a href="#cb2-435" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-436"><a href="#cb2-436" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-437"><a href="#cb2-437" aria-hidden="true" tabindex="-1"></a><span class="fu">## Fin Performance Metrics</span></span>
+<span id="cb2-438"><a href="#cb2-438" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-439"><a href="#cb2-439" aria-hidden="true" tabindex="-1"></a>We can characterize the fin performance using two metrics.</span>
+<span id="cb2-440"><a href="#cb2-440" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-441"><a href="#cb2-441" aria-hidden="true" tabindex="-1"></a><span class="fu">### Effectiveness</span></span>
+<span id="cb2-442"><a href="#cb2-442" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-443"><a href="#cb2-443" aria-hidden="true" tabindex="-1"></a>The fin effectiveness, $\epsilon_f$, tells us how much better the fin is doing at removing heat than the plain surface. That is:</span>
+<span id="cb2-444"><a href="#cb2-444" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-445"><a href="#cb2-445" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-446"><a href="#cb2-446" aria-hidden="true" tabindex="-1"></a>\epsilon_f = \frac{\text{the amount of heat transfer w/ fin}}{\text{the amount without the fin}} = \frac{\dot{Q}_f}{h \cdot A_c(0)(T_b - T_\infty)}</span>
+<span id="cb2-447"><a href="#cb2-447" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-448"><a href="#cb2-448" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-449"><a href="#cb2-449" aria-hidden="true" tabindex="-1"></a>where the downstairs includes $A_c(0)$, the area of the fin base. It should be the case that $\epsilon&gt;1$, else the fin does a worse job than the plain surface! Typically $\epsilon&gt;2$.</span>
+<span id="cb2-450"><a href="#cb2-450" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-451"><a href="#cb2-451" aria-hidden="true" tabindex="-1"></a><span class="fu">### Efficiency</span></span>
+<span id="cb2-452"><a href="#cb2-452" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-453"><a href="#cb2-453" aria-hidden="true" tabindex="-1"></a>The fin efficiency, $\eta_f$, gives us a measure of our fin's performance against a perfect fin where the entirety of the fin surface is at $T_b$:</span>
+<span id="cb2-454"><a href="#cb2-454" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-455"><a href="#cb2-455" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-456"><a href="#cb2-456" aria-hidden="true" tabindex="-1"></a>\eta_f \equiv \frac{\text{the amount of heat transfer w/ fin}}{\text{the amount if the whole fin was at }T_b} = \frac{\dot{Q}_f}{h \cdot A_\text{surf} \cdot (T_b - T_\infty)}.</span>
+<span id="cb2-457"><a href="#cb2-457" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-458"><a href="#cb2-458" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-459"><a href="#cb2-459" aria-hidden="true" tabindex="-1"></a>We will have $0 &lt; \eta_f &lt; 1$. When $\eta_f$ is small, it means that the temperature profile in the fin has quickly dropped from $T_b$ to close to $T_\infty$, i.e. as we see in the $m=10$ case above. In such a case, the fin might be nearly as effective with half the length, meaning we may save in material costs. Moreover, a shorter fin will likely be more durable, and it may be the case that a shorter fin allows for better fluid circulation, thus increasing $h$.</span>
+<span id="cb2-460"><a href="#cb2-460" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-461"><a href="#cb2-461" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-462"><a href="#cb2-462" aria-hidden="true" tabindex="-1"></a><span class="fu">## Interactive Example</span></span>
+<span id="cb2-463"><a href="#cb2-463" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-464"><a href="#cb2-464" aria-hidden="true" tabindex="-1"></a>I created an interactive plot of the fin solution, <span class="co">[</span><span class="ot">find it at this link</span><span class="co">](demos/fin_demo.qmd)</span>.</span>
+<span id="cb2-465"><a href="#cb2-465" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-466"><a href="#cb2-466" aria-hidden="true" tabindex="-1"></a><span class="fu">## Catalogs of $\eta_f$</span></span>
+<span id="cb2-467"><a href="#cb2-467" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-468"><a href="#cb2-468" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb2-469"><a href="#cb2-469" aria-hidden="true" tabindex="-1"></a><span class="fu">### Video</span></span>
+<span id="cb2-470"><a href="#cb2-470" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-471"><a href="#cb2-471" aria-hidden="true" tabindex="-1"></a>This content is entirely in <span class="co">[</span><span class="ot">this video link</span><span class="co">](https://canvas.colorado.edu/courses/136150/pages/fins-with-cataloged-info)</span>.</span>
+<span id="cb2-472"><a href="#cb2-472" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-473"><a href="#cb2-473" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-474"><a href="#cb2-474" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-475"><a href="#cb2-475" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-476"><a href="#cb2-476" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-477"><a href="#cb2-477" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-478"><a href="#cb2-478" aria-hidden="true" tabindex="-1"></a><span class="fu">## Arrays of Fins</span></span>
+<span id="cb2-479"><a href="#cb2-479" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-480"><a href="#cb2-480" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb2-481"><a href="#cb2-481" aria-hidden="true" tabindex="-1"></a><span class="fu">### Video</span></span>
+<span id="cb2-482"><a href="#cb2-482" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-483"><a href="#cb2-483" aria-hidden="true" tabindex="-1"></a>Watch <span class="co">[</span><span class="ot">this video link first</span><span class="co">](https://canvas.colorado.edu/courses/136150/pages/fin-arrays)</span>.</span>
+<span id="cb2-484"><a href="#cb2-484" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-485"><a href="#cb2-485" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-486"><a href="#cb2-486" aria-hidden="true" tabindex="-1"></a><span class="fu">### Inclusion in the resistor model</span></span>
+<span id="cb2-487"><a href="#cb2-487" aria-hidden="true" tabindex="-1"></a>It is common to include numerous fins on an object -- if you are going to attach one, might as well attach a few! From a practical perspective, we are interested in calculating the total amount of heat transfer from the object, and that includes the heat transfer from the $N$ fins and from the "unfinned" area of the object (the area between the fins).</span>
+<span id="cb2-488"><a href="#cb2-488" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-489"><a href="#cb2-489" aria-hidden="true" tabindex="-1"></a>::: {.column-margin}</span>
+<span id="cb2-490"><a href="#cb2-490" aria-hidden="true" tabindex="-1"></a>We are assuming that $N$ fins will create $N\dot{Q}_f$ heat transfer. But adding more fins is going to hinder the flow -- the cool ambient air will not flow as freely over the fins, which will decrease the value of $h$.</span>
+<span id="cb2-491"><a href="#cb2-491" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-492"><a href="#cb2-492" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-493"><a href="#cb2-493" aria-hidden="true" tabindex="-1"></a>We can model this situation as a collection of resistors in parallel: $N$ resistors for the $N$ fins, and one more for the unfinned area.</span>
+<span id="cb2-494"><a href="#cb2-494" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-495"><a href="#cb2-495" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
+<span id="cb2-496"><a href="#cb2-496" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;svg width="390" height="265" xmlns="http://www.w3.org/2000/svg"&gt;</span></span>
+<span id="cb2-497"><a href="#cb2-497" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;title&gt;Parallel fin–base resistor network&lt;/title&gt;</span></span>
+<span id="cb2-498"><a href="#cb2-498" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;desc&gt;Five resistors in parallel. Manifolds at x=55 and x=325 (span 270px). Each path: 90px straight, 90px zigzag, 90px straight. Top four R_f, bottom R_b.&lt;/desc&gt;</span></span>
+<span id="cb2-499"><a href="#cb2-499" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-500"><a href="#cb2-500" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!--</span></span>
+<span id="cb2-501"><a href="#cb2-501" aria-hidden="true" tabindex="-1"></a><span class="in">    Manifold span: 55→325 = 270px, each third = 90px</span></span>
+<span id="cb2-502"><a href="#cb2-502" aria-hidden="true" tabindex="-1"></a><span class="in">    Left straight:  55→145</span></span>
+<span id="cb2-503"><a href="#cb2-503" aria-hidden="true" tabindex="-1"></a><span class="in">    Zigzag body:  145→235  (s=10px stubs, 5 half-periods × 14px, amplitude ±8)</span></span>
+<span id="cb2-504"><a href="#cb2-504" aria-hidden="true" tabindex="-1"></a><span class="in">      Points: 145,cy  155,cy-8  169,cy+8  183,cy-8  197,cy+8  211,cy-8  225,cy+8  235,cy</span></span>
+<span id="cb2-505"><a href="#cb2-505" aria-hidden="true" tabindex="-1"></a><span class="in">    Right straight: 235→325</span></span>
+<span id="cb2-506"><a href="#cb2-506" aria-hidden="true" tabindex="-1"></a><span class="in">    Resistor y positions (50px spacing): 40, 90, 140, 190, 240   midpoint y=140</span></span>
+<span id="cb2-507"><a href="#cb2-507" aria-hidden="true" tabindex="-1"></a><span class="in">  --&gt;</span></span>
+<span id="cb2-508"><a href="#cb2-508" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-509"><a href="#cb2-509" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Left manifold: solid above gap, dotted through implied section, solid below --&gt;</span></span>
+<span id="cb2-510"><a href="#cb2-510" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="55" y1="40"  x2="55" y2="155" stroke="black" stroke-width="2"/&gt;</span></span>
+<span id="cb2-511"><a href="#cb2-511" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="55" y1="155" x2="55" y2="225" stroke="black" stroke-width="2" stroke-dasharray="5,6"/&gt;</span></span>
+<span id="cb2-512"><a href="#cb2-512" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="55" y1="225" x2="55" y2="240" stroke="black" stroke-width="2"/&gt;</span></span>
+<span id="cb2-513"><a href="#cb2-513" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Right manifold: same pattern --&gt;</span></span>
+<span id="cb2-514"><a href="#cb2-514" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="325" y1="40"  x2="325" y2="155" stroke="black" stroke-width="2"/&gt;</span></span>
+<span id="cb2-515"><a href="#cb2-515" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="325" y1="155" x2="325" y2="225" stroke="black" stroke-width="2" stroke-dasharray="5,6"/&gt;</span></span>
+<span id="cb2-516"><a href="#cb2-516" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="325" y1="225" x2="325" y2="240" stroke="black" stroke-width="2"/&gt;</span></span>
+<span id="cb2-517"><a href="#cb2-517" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-518"><a href="#cb2-518" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Left lead + T_b label at midpoint y=140 --&gt;</span></span>
+<span id="cb2-519"><a href="#cb2-519" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="28" y1="140" x2="55" y2="140" stroke="black" stroke-width="2"/&gt;</span></span>
+<span id="cb2-520"><a href="#cb2-520" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;foreignObject x="0" y="128" width="26" height="24"&gt;</span></span>
+<span id="cb2-521"><a href="#cb2-521" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;div xmlns="http://www.w3.org/1999/xhtml" style="text-align:right; font-size:16px; font-family:serif"&gt;\(T_b\)&lt;/div&gt;</span></span>
+<span id="cb2-522"><a href="#cb2-522" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/foreignObject&gt;</span></span>
+<span id="cb2-523"><a href="#cb2-523" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-524"><a href="#cb2-524" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Right lead + T_∞ label at midpoint y=140 --&gt;</span></span>
+<span id="cb2-525"><a href="#cb2-525" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="325" y1="140" x2="362" y2="140" stroke="black" stroke-width="2"/&gt;</span></span>
+<span id="cb2-526"><a href="#cb2-526" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;foreignObject x="364" y="128" width="26" height="24"&gt;</span></span>
+<span id="cb2-527"><a href="#cb2-527" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;div xmlns="http://www.w3.org/1999/xhtml" style="text-align:left; font-size:16px; font-family:serif"&gt;\(T_\infty\)&lt;/div&gt;</span></span>
+<span id="cb2-528"><a href="#cb2-528" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/foreignObject&gt;</span></span>
+<span id="cb2-529"><a href="#cb2-529" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-530"><a href="#cb2-530" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Resistor 1 — R_f, cy=40 --&gt;</span></span>
+<span id="cb2-531"><a href="#cb2-531" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;polyline points="55,40 145,40 155,32 169,48 183,32 197,48 211,32 225,48 235,40 325,40"</span></span>
+<span id="cb2-532"><a href="#cb2-532" aria-hidden="true" tabindex="-1"></a><span class="in">            fill="none" stroke="black" stroke-width="1.5"/&gt;</span></span>
+<span id="cb2-533"><a href="#cb2-533" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;foreignObject x="125" y="8" width="130" height="22"&gt;</span></span>
+<span id="cb2-534"><a href="#cb2-534" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center; font-size:16px; font-family:serif"&gt;\(R_f\)&lt;/div&gt;</span></span>
+<span id="cb2-535"><a href="#cb2-535" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/foreignObject&gt;</span></span>
+<span id="cb2-536"><a href="#cb2-536" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-537"><a href="#cb2-537" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Resistor 2 — R_f, cy=90 --&gt;</span></span>
+<span id="cb2-538"><a href="#cb2-538" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;polyline points="55,90 145,90 155,82 169,98 183,82 197,98 211,82 225,98 235,90 325,90"</span></span>
+<span id="cb2-539"><a href="#cb2-539" aria-hidden="true" tabindex="-1"></a><span class="in">            fill="none" stroke="black" stroke-width="1.5"/&gt;</span></span>
+<span id="cb2-540"><a href="#cb2-540" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;foreignObject x="125" y="58" width="130" height="22"&gt;</span></span>
+<span id="cb2-541"><a href="#cb2-541" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center; font-size:16px; font-family:serif"&gt;\(R_f\)&lt;/div&gt;</span></span>
+<span id="cb2-542"><a href="#cb2-542" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/foreignObject&gt;</span></span>
+<span id="cb2-543"><a href="#cb2-543" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-544"><a href="#cb2-544" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Resistor 3 — R_f, cy=140 --&gt;</span></span>
+<span id="cb2-545"><a href="#cb2-545" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;polyline points="55,140 145,140 155,132 169,148 183,132 197,148 211,132 225,148 235,140 325,140"</span></span>
+<span id="cb2-546"><a href="#cb2-546" aria-hidden="true" tabindex="-1"></a><span class="in">            fill="none" stroke="black" stroke-width="1.5"/&gt;</span></span>
+<span id="cb2-547"><a href="#cb2-547" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;foreignObject x="125" y="108" width="130" height="22"&gt;</span></span>
+<span id="cb2-548"><a href="#cb2-548" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center; font-size:16px; font-family:serif"&gt;\(R_f\)&lt;/div&gt;</span></span>
+<span id="cb2-549"><a href="#cb2-549" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/foreignObject&gt;</span></span>
+<span id="cb2-550"><a href="#cb2-550" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-551"><a href="#cb2-551" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Resistor 4 — R_b, cy=240 --&gt;</span></span>
+<span id="cb2-552"><a href="#cb2-552" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;polyline points="55,240 145,240 155,232 169,248 183,232 197,248 211,232 225,248 235,240 325,240"</span></span>
+<span id="cb2-553"><a href="#cb2-553" aria-hidden="true" tabindex="-1"></a><span class="in">            fill="none" stroke="black" stroke-width="1.5"/&gt;</span></span>
+<span id="cb2-554"><a href="#cb2-554" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;foreignObject x="125" y="208" width="130" height="22"&gt;</span></span>
+<span id="cb2-555"><a href="#cb2-555" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center; font-size:16px; font-family:serif"&gt;\(R_b\)&lt;/div&gt;</span></span>
+<span id="cb2-556"><a href="#cb2-556" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/foreignObject&gt;</span></span>
+<span id="cb2-557"><a href="#cb2-557" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/svg&gt;</span></span>
+<span id="cb2-558"><a href="#cb2-558" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-559"><a href="#cb2-559" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-560"><a href="#cb2-560" aria-hidden="true" tabindex="-1"></a>Reminder: the fin resistors are $R_f = 1/(\eta_f h A_f)$, and we'll use a convection resistor for the base $R_b = 1/(h A_b)$. Then, according to the rule for combining resistors in parallel, the total resistance of this circuit is</span>
+<span id="cb2-561"><a href="#cb2-561" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-562"><a href="#cb2-562" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-563"><a href="#cb2-563" aria-hidden="true" tabindex="-1"></a>\frac{1}{R_\text{tot}}=\frac{1}{R_f}+\frac{1}{R_f}+\frac{1}{R_f}+\dots+\frac{1}{R_b}.</span>
+<span id="cb2-564"><a href="#cb2-564" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-565"><a href="#cb2-565" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-566"><a href="#cb2-566" aria-hidden="true" tabindex="-1"></a>That is,</span>
+<span id="cb2-567"><a href="#cb2-567" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-568"><a href="#cb2-568" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-569"><a href="#cb2-569" aria-hidden="true" tabindex="-1"></a>R_\text{tot}= \frac{1}{N\eta_f h A_f + h A_b}.</span>
+<span id="cb2-570"><a href="#cb2-570" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-571"><a href="#cb2-571" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-572"><a href="#cb2-572" aria-hidden="true" tabindex="-1"></a>With this we can calculate the total heat transfer from the finned object</span>
+<span id="cb2-573"><a href="#cb2-573" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-574"><a href="#cb2-574" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-575"><a href="#cb2-575" aria-hidden="true" tabindex="-1"></a>\dot{Q} = \frac{T_b-T_\infty}{R_\text{tot}}.</span>
+<span id="cb2-576"><a href="#cb2-576" aria-hidden="true" tabindex="-1"></a>$$</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
