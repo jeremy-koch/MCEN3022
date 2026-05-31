@@ -38,6 +38,7 @@ book:
     - part: "Demos"
       chapters:
         - demos/wall_demo.qmd
+        - demos/fin_demo.qmd
 
 bibliography: references.bib
 

@@ -2,9 +2,9 @@
 
 This week we are going to focus on fins, a useful item in our engineering design toolkit. The idea is this: Hot surface! We need to cool it! But the fluid passing over it isn't creating a high enough $\dot{Q}$. If our electronics are producing 200 W, but we are only able to remove 100 W, we are going to cook our electronics.
 
-We could increase the flow over the object (bigger fan), change the medium of the flow (water-cooled is better than air-cooled), or put the object in a cooler room (data centers are usually very cold). We are going to focus on another approach: increasing surface area. We will do so by putting "fins" on the object -- objects with a high surface area to volume ratio, e.g. numerous 10 mm-long, 2 mm-diameter cylinders. These will wick heat from the object, and their large surface area will allow greater opportunity to deposit that heat in the fluid.
+We could increase the flow over the object (bigger fan), change the medium of the flow (water-cooled is better than air-cooled), or put the object in a room with lower temperature (data centers are usually very cold). We are going to focus on another approach: increasing surface area. We will do so by putting "fins" on the object -- objects with a high surface area to volume ratio, e.g. numerous 10 mm-long, 2 mm-diameter cylinders. These will wick heat from the object via conduction, and their large surface area will allow greater opportunity to deposit that heat in the fluid via convection.
 
-We'll examine another version of conservation of energy -- this time, 1D only, though we'll include some convection out (radially) within that description. "The Fin Equation" is an ordinary differential equation for temperature as a function of position, and it will include in it considerations of: the thermal conductivity, the convection coefficient, and the size of the fin. In the case of constant cross-section fins, we can solve the Fin Equation analytically.
+We'll examine another version of conservation of energy -- this time, 1D only, though we'll include some convection out (radially) within that description. "The Fin Equation" is an ordinary differential equation for temperature as a function of position, and it will include in it considerations of: the thermal conductivity, the convection coefficient, and the geometry of the fin. In the case of constant cross-section fins, we can solve the Fin Equation analytically.
 
 
 
@@ -22,7 +22,7 @@ Recall
 Look Ahead
 
 1. How do we decide the size and number of fins?
-2. How do material choices (copper vs. steel) affect fin performance?
+2. How do material choices (copper vs. steel, air vs. water) affect fin performance?
 3. What do we mean by a fin being "effective" and "efficient"? Do they mean different things?
 
 ## The Fin Equation
@@ -112,10 +112,21 @@ Here is a general geometry for a single fin:
   <foreignObject x="246" y="128" width="38" height="22">
     <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center; font-size:13px">\(\Delta x\)</div>
   </foreignObject>
+
+  <!-- A_c leader lines and labels -->
+  <path d="M 240,97 Q 210,108 212,122" fill="none" stroke="black" stroke-width="1"/>
+  <foreignObject x="122" y="115" width="90" height="22">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:right; font-size:13px">\(A_c(x)\)</div>
+  </foreignObject>
+
+  <path d="M 290,97 Q 320,108 318,122" fill="none" stroke="black" stroke-width="1"/>
+  <foreignObject x="318" y="115" width="150" height="22">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:left; font-size:13px">\(A_c(x + \Delta x)\)</div>
+  </foreignObject>
 </svg>
 ```
 
-Here, a slender cylindrical fin is attached to a hot surface at $x=0$. The fin has a known geometry: known cross-section $A_c(x)$ (defined at a position $x$, and we are allowing for the possibility that it depends on $x$) and known length $L$. At every location $x$, we know the perimeter around the fin, $P(x)$, and we'll assume we know the fin material (and thus $k$) and have looked up a value of the convection coefficient ($h$ is known). We are going to write an energy balance at an arbitrary position $x$, assuming:
+Here, a slender cylindrical fin is attached to a hot surface at $x=0$. The fin has a known geometry: known cross-section $A_c(x)$ (defined at a position $x$, and we are allowing for the possibility that $A_c$ depends on $x$) and known length $L$. At every location $x$, we know the perimeter around the fin, $P(x)$, and we'll assume we know the fin material (and thus $k$) and have looked up a value of the convection coefficient (so $h$ is known). We are going to write an energy balance at an arbitrary position $x$, assuming:
 
 1. We are at steady state
 2. The fin is slender such that the temperature is uniform within each cross-section
@@ -132,7 +143,7 @@ $$
 \frac{dE}{dt} = 0 = q''(x) \cdot A_c(x) - q''(x+\Delta x) \cdot A_c(x+\Delta x) - h \cdot P(x) \cdot \Delta x \cdot (T(x) - T_\infty).
 $$
 
-The terms in that equation represent: conductive heat transfer in from the left cross-section, conduction out through the right cross-section, and convection out through the outer surface.
+The terms in that equation represent: conductive heat transfer in from the left cross-section, conduction out through the right cross-section, and convection out through the outer surface. Here we describe the surface area as the perimeter multiplied by $\Delta x$. Think about a cylinder: the area of the curved surface is $\pi D$, the perimeter of a circle, multiplied by the axial length.
 
 Using Fourier's Law $q'' = -k\frac{dT}{dx}$:
 
@@ -178,7 +189,7 @@ It's looking easier to deal with already... we're going to do one extra setup st
 
 ### Non-Dimensionalization
 
-It is nice to non-dimensionalize equations. Framed within the context of the fin problem: we know that $k$, $h$, $A_c$ and $P$ are relevant, and they indeed appear in that combined parameter we just arrived at. But how does $L$ factor in? Can we say without solving the equation? After non-dimensionalizing the equation, we will have greater insight. The non-dimensionalized equation is also going to be easier to solve.
+It is nice to non-dimensionalize equations. Framed within the context of the fin problem: we know that $k$, $h$, $A_c$ and $P$ are relevant, and they indeed appear in that combined parameter we just arrived at. But how does $L$ factor in? Can we say without solving the equation completely? Indeed, after non-dimensionalizing the equation, we will have greater insight. The non-dimensionalized equation is going to be easier to solve too!
 
 First we are going to define a non-dimensional temperature:
 
@@ -194,9 +205,7 @@ $$
 X\equiv \frac{x}{L}.
 $$
 
-Again, it's convenient: $X$ goes from $0$ to $1$.
-
-We then will reframe the differential equation as $\theta(X)$ instead of $T(x)$. Using the chain rule:
+Again, it's convenient: $X$ goes from $0$ to $1$ from fin base to tip. We then will reframe the differential equation as $\theta(X)$ instead of $T(x)$. Using the chain rule:
 
 $$
 \frac{dT}{dx}=\frac{dX}{dx}\frac{dT}{dX} = \frac{1}{L}\frac{dT}{dX}
@@ -214,13 +223,13 @@ $$
 \frac{d^2T}{dX^2} = \frac{d^2}{dX^2}\left((T_b-T_\infty)\theta + T_\infty\right) = (T_b-T_\infty)\frac{d^2\theta}{dX^2}.
 $$
 
-We include these results in the constant cross-section differential equation we have
+If we include these results in the constant cross-section differential equation we'll have
 
 $$
 0= \frac{(T_b-T_\infty)}{L^2}\frac{d^2\theta}{dX^2} - \frac{hP}{k A_c}(T(x) - T_\infty)
 $$
 
-and, with some algebra, settle on a non-dimensional form of the differential equation:
+and, with some algebra, we can settle on a non-dimensional form of the differential equation:
 
 $$
 0= \frac{d^2\theta}{dX^2} - m^2\theta
@@ -234,10 +243,10 @@ $$
 
 a dimensionless constant.
 
-As we hinted above, one boundary condition that we will use is $\theta(0)=1$. The second is a bit more controversial... we'll get into that in the next section. But let's think about what we have arrived at with this non-dimensionalization:
+As we hinted above, one boundary condition that we will use is $\theta(0)=1$ (from $T(0)=T_b$). The second is a bit more controversial... we'll get into that in the next section. But let's think about what we have arrived at with this non-dimensionalization:
 
-1. We have identified a dimensionless parameter $m$ that is the single parameter in the problem. This tells us, for example, that doubling the fin length will have the same effect as increasing the convection coefficient by four. We capture the push-and-pull of the parameters in a single variable.
-2. An equation of the form $y'' - c y =0$ is a bit easier to solve than an equation of the form $y'' - cy = d$.
+1. We have identified a dimensionless parameter $m$ that is the single parameter in the problem. Naively we might think that fully understanding fins would require us to monitor the effect of $h$ while keeping all the other parameters constant, then monitor the effect of $A_c$ while keeping all the other parameters constant, then monitor the effect of $L$, ... . It turns out that we can just think about varying one parameter $m$, and we wisely recognize that, for example, doubling the fin length will have the same effect as increasing the convection coefficient by four. We capture the push-and-pull of all the dimensional parameters in a single dimensionless parameter.
+2. An equation of the form $y'' - c y =0$ (what we have in the non-dimensional equation) is a bit easier to solve than an equation of the form $y'' - cy = d$ (which we had in the dimensional equation).
 
 ### Boundary Conditions
 
@@ -264,26 +273,26 @@ However, this presumes knowledge of the temperature at the tip. Do we know for c
 We could assume that the tip is "adiabatic":
 
 $$
-\frac{dT}{dx}\bigg\rvert_L = 0 \implies \frac{d\theta}{dX}\bigg\rvert_1 = 0
+\frac{dT}{dx}\bigg\rvert_L = 0 \implies \frac{d\theta}{dX}\bigg\rvert_1 = 0.
 $$
 
-Rationale: most of the energy is convected out along the length, so the amount convected out at $x = L$ is $\approx 0$.
+Rationale: most of the energy is convected out along the length, so the amount convected out at $x = L$ is approximately zero. That is, the tip is adiabatic.
 
 ::: {.callout-tip}
 ##### Think
-What would the plot of the solution look like at $X=1$? Specifically think about the slope of the curve.
+What would the plot of the solution look like at $X=1$ if this boundary condition applied? Specifically think about the slope of the curve.
 :::
 
 #### Tip heat transfer $\sim h$
 
-We could assume that the tip has convection with coefficient $h$. Then that which is conducted to the tip will be convected out:
+We could assume that the tip has convection with coefficient $h$. Then the heat that is conducted to the tip will be convected out of the tip:
 $$
 -k\frac{dT}{dx}\bigg\rvert_L = h(T(L) - T_\infty) \implies -\frac{k}{L}\frac{d\theta}{dX}\bigg\rvert_1 = h\theta(1).
 $$
 
-This is perhaps the most defendable boundary condition, but "is the juice worth the squeeze" (one of my favorite sayings): this boundary condition is the most difficult to implement.
+This is perhaps the most defendable boundary condition, but "is the juice worth the squeeze?" (One of my favorite sayings.) This boundary condition is the most difficult to implement.
 
-Given the many assumptions that have gone into this analysis, the error from using other boundary conditions is probably not a big deal!
+Given the many assumptions that have gone into this analysis, the error from using other boundary conditions is probably not a big deal! It is most common to assume an adiabatic tip.
 
 
 ### Analytical Solution
@@ -309,25 +318,31 @@ $$
 \end{align*}
 $$
 
-We may be tempted to say the general solution is
+(The solution for the adiabatic tip will be given in the demo below.) We may be tempted to say the general solution is
 
 $$
 \theta(X) = c_1 \exp{(-mX)} + c_2 \exp{(mX)}
 $$
 
-which is totally correct, but the algebra that follows when applying the boundary conditions is going to be annoying. Instead, let's remember the definitions of $\sinh(z) \equiv (\exp(z)-\exp(-z))/2$ and $\cosh(z)\equiv (\exp(z)+\exp(-z))/2$ and write the solution as
+which is totally correct, but the algebra that follows when applying the boundary conditions is going to be annoying. Instead, let's remember the definitions of 
+
+$$
+\sinh(z) \equiv (\exp(z)-\exp(-z))/2 \text{~and~}\cosh(z)\equiv (\exp(z)+\exp(-z))/2
+$$
+
+and write the solution as
 
 $$
 \theta(X) = d_1 \sinh(mX) + d_2 \cosh(mX).
 $$
 
-Boundary condition at $X=0$:
+Applying the boundary condition at $X=0$:
 
 $$
 \theta(0) = 1 = d_1 \sinh(0) + d_2 \cosh(0) \implies d_2 = 1.
 $$
 
-Boundary condition at $X=1$:
+Applying the boundary condition at $X=1$:
 
 $$
 0 = d_1 \sinh(m) + \cosh(m) \implies d_1 = -\frac{\cosh(m)}{\sinh(m)} = -\frac{1}{\tanh(m)}.
@@ -344,19 +359,21 @@ $$
 {
   const N = 300;
   const curves = [
-    { m: 1,  label: "m = 1",  color: "#4e79a7" },
-    { m: 5,  label: "m = 5",  color: "#f28e2b" },
-    { m: 10, label: "m = 10", color: "#e15759" },
+    { m: 1,  label: "m = 1",  color: "#4575b4" },
+    { m: 3,  label: "m = 3",  color: "#f46d43" },
+    { m: 10, label: "m = 10", color: "#a50026" },
   ];
 
   function th(m, X) {
     return Math.cosh(m * X) - Math.sinh(m * X) / Math.tanh(m);
   }
 
-  // Label anchor positions staggered so they don't overlap
-  const labelX = { 1: 0.65, 5: 0.35, 10: 0.18 };
+  // Label anchor positions: right edge of text sits adjacent to the curve
+  const labelX = { 1: 0.50, 3: 0.25, 10: 0.12 };
+  const labelOffsets = { 1: { dy: 10, dx: 0 }, 3: { dy: 35, dx: 25 }, 10: { dy: 10, dx: 0 } };
   const labelPts = curves.map(({ m, label, color }) => ({
     X: labelX[m], theta: th(m, labelX[m]), label, color,
+    ...labelOffsets[m],
   }));
 
   return Plot.plot({
@@ -379,10 +396,10 @@ $$
         )
       ),
       // Direct curve labels, offset above the line
-      Plot.text(labelPts, {
-        x: "X", y: "theta", text: "label", fill: "color",
-        dy: -10, textAnchor: "middle", fontSize: 13,
-      }),
+      ...labelPts.map(pt => Plot.text([pt], {
+        x: "X", y: "theta", text: "label", fill: pt.color,
+        dy: pt.dy, dx: pt.dx, textAnchor: "end", fontSize: 13,
+      })),
       // Axis labels: larger, centered, rendered outside the data frame
       Plot.text([{ X: 0.5, theta: -0.15 }], {
         x: "X", y: "theta", text: () => "X",
