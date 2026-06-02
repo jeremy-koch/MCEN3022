@@ -26,11 +26,10 @@ This is also excellent preparation for the oral exams. Students who participate 
 
 ## How You Are Assessed
 
-Details added soon.
 
-<!-- After each session, an AI language model analyzes the discussion transcript and generates an individual assessment report for each student. You receive your report within 24-48 hours of the session. -->
+After each session, an AI language model analyzes the discussion transcript and generates an individual assessment report for each student. You receive your report within 24-48 hours of the session. -->
 
-<!-- ### The Rubric (1-4 scale)
+### The Rubric (1-4 scale)
 
 | Score | Label | Description |
 |---|---|---|
@@ -53,9 +52,33 @@ Your individual assessment report includes:
 
 ### Transparency
 
-The full system prompt used to instruct the AI assessor is shared with you at the beginning of the course. You will know exactly what the AI is looking for, what it is instructed to reward, and what it is instructed to flag. There are no hidden criteria.
+Our first draft of the system prompt is:
 
-This is intentional. The assessment is not trying to catch you out — it is trying to accurately characterize your contribution to the group's physical reasoning.
+> You are an engineering education researcher analyzing a transcript of a student technical discussion. Your task is to evaluate each student's contribution to the group's physical reasoning — not their social participation, enthusiasm, or quantity of speech.
+>
+> For each identified speaker, provide:
+> 1. Key physics contributions: Specific moments where this student identified a governing mechanism, invoked a relevant dimensionless number or concept, proposed a simplifying assumption and justified it, or corrected a physical error. Quote the transcript directly.
+> 2. Reasoning quality: Did their contributions reflect genuine physical understanding, or were they plausible-sounding but physically vague? Be specific and critical. Vague or incorrect statements should be noted as such, even if the student expressed them confidently.
+> 3. Discussion role: Did this student drive the direction of the discussion, respond to others' ideas, ask questions that deepened the analysis, or remain peripheral? Describe the role with specific evidence from the transcript.
+> 4. Participation score: Rate each student 1-4 on this scale:
+>   1 — Peripheral: spoke rarely, contributions did not advance the physical reasoning
+>   2 — Present: engaged with the discussion but contributions were mostly social or confirmatory rather than physically substantive
+>   3 — Contributing: made at least one substantive physical contribution that the group built on
+>   4 — Leading: drove the physical reasoning of the discussion, introduced key concepts, or resolved significant confusion
+> 5. Uncertainty flags: Note any cases where speaker attribution is unclear, where you cannot determine whether a statement reflects genuine understanding or memorized phrasing, or where the transcript is too short or incomplete to support a confident rating.
+>
+> Important constraints:
+> -	Do not reward a student for speaking frequently if their contributions are physically shallow.
+> -	Do not penalize a student for speaking less if their contributions were substantive.
+> -	A student who asks a genuinely probing question ("but what happens to the Biot number if we change the geometry?") is contributing more than one who confirms what someone else said.
+> -	If a student makes a physically incorrect statement, note it. Do not soften this observation.
+>-	Your output should be useful to a skeptical human reviewer. Write as if your ratings will be checked.
+
+
+There will be an additional paragraph describing the specifics of the problem. This prompt may go through some revisions as we try to make it applicable to 10+ groups, but the spirit will remain the same.
+
+
+
 
 ### A Note on Incorrect Statements
 
@@ -65,7 +88,7 @@ The AI is instructed to note physically incorrect statements even when delivered
 
 If you believe your assessment report is inaccurate, you may contest it.
 
-**Window:** 3-5 days after receiving your report
+**Window:** one week after receiving your report
 
 **How to contest:** Submit a written response that identifies specifically which part of the assessment you disagree with and why, with reference to the transcript if possible. ("I believe my contribution at approximately 14:30 was substantive because it introduced the Biot number criterion that the group had not yet applied" is a useful contestation. "I think I deserved a higher score" is not.)
 
@@ -79,6 +102,6 @@ The peer discussion assessment system is part of an IRB-approved research study 
 
 Participation in the research component is optional and separate from participation in the course activity. You participate in the discussions and receive assessments regardless of whether you consent to research participation. Research participation means your transcript and assessment data may be used in a published study — with all identifying information removed.
 
-You will receive more information about the research study and the consent process in Week 1.
+You will receive more information about the research study and the consent process.
 
-Whether or not you participate in the research, the assessment process is identical. -->
+Whether or not you participate in the research, the assessment process is identical.
