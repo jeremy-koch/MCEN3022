@@ -2,21 +2,21 @@
 
 ## Overview
 
-You will participate in 5-6 recorded peer technical discussions over the course of the semester. Each session is conducted via Zoom in groups of 4-6 students, lasts approximately 30-60 minutes (no time constraints), and centers on a novel problem you work through together in real time. Reasoning out loud about a problem you have not seen before is one of the most authentic engineering skills we will develop in this course.
+You will participate in 5-6 recorded peer technical discussions over the course of the semester. Each session is conducted via Zoom in groups of 3-5 students, lasts approximately 30 minutes (no time constraints), and centers on a novel problem you work through together in real time. Reasoning out loud about a new problem is one of the most authentic engineering skills we will develop in this course.
 
 ## Why Peer Discussions
 
 Writing a technical report gives you time to look things up, revise your reasoning, and present a polished product. A peer discussion gives you none of that. You have to engage with the physics as it unfolds, respond to your peers' ideas, catch errors in real time, and contribute something that moves the group forward.
 
-This is also excellent preparation for the oral exams. Students who participate actively in peer discussions consistently find the oral exam format less surprising.
+<!-- This is also excellent preparation for the oral exams. Students who participate actively in peer discussions consistently find the oral exam format less surprising. -->
 
 ## Format
 
-**Group size:** 4-6 students, rotating across sessions so you work with different peers throughout the course
+**Group size:** 3-5 students, perhaps rotating across sessions so you work with different peers throughout the course
 
-**Duration:** 30-60 minutes per session
+**Duration:** approximately 30 minutes per session, but no time limit
 
-**Problem:** A novel problem released at the start of the session — one you have not seen before, but drawn from material already covered in the course
+**Problem:** A novel problem released at the start of the session -- one you have not seen before, but your notes/homework will prepare you well
 
 **Recording:** Sessions are recorded via Zoom for assessment purposes. Make sure your name on Zoom is actually your name!
 
@@ -27,7 +27,7 @@ This is also excellent preparation for the oral exams. Students who participate 
 ## How You Are Assessed
 
 
-After each session, an AI language model analyzes the discussion transcript and generates an individual assessment report for each student. You receive your report within 24-48 hours of the session. -->
+After each session, an AI language model analyzes the discussion transcript and generates an individual assessment report for each student.
 
 ### The Rubric (1-4 scale)
 
@@ -35,28 +35,37 @@ After each session, an AI language model analyzes the discussion transcript and 
 |---|---|---|
 | 4 | Leading | Drove physical reasoning; introduced key concepts; resolved confusion; asked probing questions that advanced the group |
 | 3 | Contributing | Made at least one substantive physical contribution the group built on |
-| 2 | Present | Engaged but mostly social or confirmatory — agreed with others, restated ideas, but did not add physical substance |
+| 2 | Present | Engaged but mostly social or confirmatory -- agreed with others, restated ideas, but did not add physical substance |
 | 1 | Peripheral | Spoke rarely; contributions did not advance physical reasoning |
 
-**The key principle: substance over quantity.** A single probing question that reorients the group's reasoning scores higher than ten confirmatory statements. Talking frequently is not the same as contributing substantively. The assessment is calibrated to reflect this.
+**The key principle: substance over quantity.** A single probing question that reorients the group's reasoning scores higher than numerous confirmatory statements. Talking frequently is not the same as contributing substantively. The assessment is calibrated to reflect this.
 
 ### What Your Report Contains
 
 Your individual assessment report includes:
 
 1. Your key physics contributions, with direct quotes from the transcript
-2. An evaluation of your reasoning quality — whether your contributions reflected genuine understanding or were vague and surface-level
-3. Your discussion role — driver, responder, or peripheral
+2. An evaluation of your reasoning quality -- whether your contributions reflected genuine understanding or were vague and surface-level
+3. Your discussion role -- driver, responder, or peripheral
 4. Your score (1-4)
-5. Any uncertainty flags — places where the transcript was ambiguous about attribution or intent
+5. Any uncertainty flags -- places where the transcript was ambiguous about attribution or intent
 
 ### Transparency
 
-Our first draft of the system prompt is:
+The transcripts will be assessed using a large language model (LLM). To be transparent about my goals: I see tremendous value in technical discussions like these, but they are difficult to assess, particularly during the fall and spring semesters when MCEN 3022 has 100+ students. I am experimenting to see if LLMs can meaningfully assess group discussions, as this would allow me to have technical discussions in my fall class.
+
+#### Sharing your information
+
+... We're not doing that. The transcripts are being run through a "local LLM", meaning the calculations are being done entirely on my computer -- no internet necessary.
+
+#### The system prompt
+
+This is the baseline set of instructions given to the LLM. Just to confirm there are no secret aspects to this, here is our system prompt:
 
 > You are an engineering education researcher analyzing a transcript of a student technical discussion. Your task is to evaluate each student's contribution to the group's physical reasoning — not their social participation, enthusiasm, or quantity of speech.
 >
 > For each identified speaker, provide:
+>
 > 1. Key physics contributions: Specific moments where this student identified a governing mechanism, invoked a relevant dimensionless number or concept, proposed a simplifying assumption and justified it, or corrected a physical error. Quote the transcript directly.
 > 2. Reasoning quality: Did their contributions reflect genuine physical understanding, or were they plausible-sounding but physically vague? Be specific and critical. Vague or incorrect statements should be noted as such, even if the student expressed them confidently.
 > 3. Discussion role: Did this student drive the direction of the discussion, respond to others' ideas, ask questions that deepened the analysis, or remain peripheral? Describe the role with specific evidence from the transcript.
@@ -68,6 +77,7 @@ Our first draft of the system prompt is:
 > 5. Uncertainty flags: Note any cases where speaker attribution is unclear, where you cannot determine whether a statement reflects genuine understanding or memorized phrasing, or where the transcript is too short or incomplete to support a confident rating.
 >
 > Important constraints:
+>
 > -	Do not reward a student for speaking frequently if their contributions are physically shallow.
 > -	Do not penalize a student for speaking less if their contributions were substantive.
 > -	A student who asks a genuinely probing question ("but what happens to the Biot number if we change the geometry?") is contributing more than one who confirms what someone else said.
@@ -75,14 +85,18 @@ Our first draft of the system prompt is:
 >-	Your output should be useful to a skeptical human reviewer. Write as if your ratings will be checked.
 
 
-There will be an additional paragraph describing the specifics of the problem. This prompt may go through some revisions as we try to make it applicable to 10+ groups, but the spirit will remain the same.
+There will be an additional paragraph describing the specifics of the problem, e.g. "The students should mention Fourier's Law...". 
 
+This prompt may go through some revisions as we try to make it applicable to 10+ groups, but the spirit will remain the same.
 
+#### Humans are involved
+
+The instructional team will be going through the transcripts and LLM assessments to confirm they are reasonable, and you may contest the assessments (described below).
 
 
 ### A Note on Incorrect Statements
 
-The AI is instructed to note physically incorrect statements even when delivered confidently. Getting something wrong in a discussion is not penalized heavily — reasoning through an error and correcting it can be a substantive contribution. Confidently stating something incorrect without correction is noted.
+The AI is instructed to note physically incorrect statements even when delivered confidently. Getting something wrong in a discussion is not penalized heavily -- reasoning through an error and correcting it can be a substantive contribution. Confidently stating something incorrect without correction is noted.
 
 ## The Contestation Process
 
@@ -94,14 +108,12 @@ If you believe your assessment report is inaccurate, you may contest it.
 
 **What happens:** A TA reads the transcript, your report, and your contestation, and makes a final determination. The TA's decision is final.
 
-**Why this process exists:** AI assessment is imperfect. Transcripts have attribution errors. Ambiguous statements get miscategorized. The contestation process is a real mechanism, not a formality — if your report is wrong, this is how you correct it.
+**Why this process exists:** AI assessment is imperfect. Transcripts have attribution errors. Ambiguous statements get miscategorized. The contestation process is a real mechanism, not a formality -- if your report is wrong, this is how you correct it.
 
 ## This Is Also a Research Study
 
 The peer discussion assessment system is part of an IRB-approved research study examining how well AI-generated assessments agree with human expert ratings, and how students perceive transparent AI grading.
 
-Participation in the research component is optional and separate from participation in the course activity. You participate in the discussions and receive assessments regardless of whether you consent to research participation. Research participation means your transcript and assessment data may be used in a published study — with all identifying information removed.
+Participation in the research component is optional and separate from participation in the course activity. You participate in the discussions and receive assessments regardless of whether you consent to research participation. Research participation means your transcript and assessment data may be used in a published study -- with all identifying information removed.
 
-You will receive more information about the research study and the consent process.
-
-Whether or not you participate in the research, the assessment process is identical.
+You will receive more information about the research study and the consent process. Whether or not you participate in the research, the assessment process is identical.
