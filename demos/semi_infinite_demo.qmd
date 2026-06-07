@@ -47,9 +47,9 @@ function erfcx(u) {
   const T_i_in  = Inputs.range([-20,  20], {value: -5,  step: 1,    label: "Tᵢ (°C)"});
   const alp_in  = Inputs.range([-7.5,-5.7],{value:-6.3, step: 0.05, label: "log₁₀(α)"});
   const k_in    = Inputs.range([0.1,  5.0],{value: 1.0, step: 0.1,  label: "k (W/m·K)"});
-  const Ts_in   = Inputs.range([-30,  40], {value: 15,  step: 1,    label: "Tₛ (°C)"});
-  const q0_in   = Inputs.range([0,  1000], {value:300,  step: 10,   label: "q₀″ (W/m²)"});
-  const h_in    = Inputs.range([1,   100], {value: 25,  step: 1,    label: "h (W/m²·K)"});
+  const Ts_in   = Inputs.range([-30,  40], {value: 15,  step: 1,    label: html`<em>T</em><sub>s</sub> (°C)`});
+  const q0_in   = Inputs.range([0,  1000], {value:300,  step: 10,   label: html`<em>q</em><sub>0</sub>″ (W/m²)`});
+  const h_in    = Inputs.range([1,   100], {value: 25,  step: 1,    label: html`<em>h</em> (W/m²·K)`});
   const Tinf_in = Inputs.range([-30,  40], {value: 20,  step: 1,    label: "T∞ (°C)"});
 
   // ── Plot placeholder divs ─────────────────────────────────────────────────
@@ -96,12 +96,11 @@ function erfcx(u) {
         * (erfc(eta) - Math.exp(-eta * eta) * erfcx(eta + beta));
     });
 
-    function plot(data, title) {
+    function plot(data) {
       return Plot.plot({
-        width: 210, height: 300,
-        marginLeft: 44, marginBottom: 40, marginTop: 24,
+        width: 315, height: 300,
+        marginLeft: 44, marginBottom: 40, marginTop: 10,
         style: { fontFamily: "Georgia, serif", fontSize: "11px" },
-        title,
         x: { label: "x (m) →", domain: [0, x_max], axis: "bottom" },
         y: { label: "↑ T (°C)", axis: "left" },
         color: { domain: time_labels, range: time_colors, legend: false },
@@ -114,9 +113,9 @@ function erfcx(u) {
       });
     }
 
-    p1.replaceChildren(plot(rows1, "Case I — prescribed Tₛ"));
-    p2.replaceChildren(plot(rows2, "Case II — prescribed q₀″"));
-    p3.replaceChildren(plot(rows3, "Case III — convection h"));
+    p1.replaceChildren(plot(rows1));
+    p2.replaceChildren(plot(rows2));
+    p3.replaceChildren(plot(rows3));
   }
 
   for (const inp of [T_i_in, alp_in, k_in, Ts_in, q0_in, h_in, Tinf_in])
@@ -125,7 +124,7 @@ function erfcx(u) {
 
   // ── Shared legend ─────────────────────────────────────────────────────────
   const legendEl = Plot.plot({
-    width: 660, height: 28,
+    width: 969, height: 28,
     marginTop: 0, marginBottom: 0, marginLeft: 0, marginRight: 0,
     color: { domain: ["7 days","30 days","90 days","180 days","1 year"],
              range:  ["#1f77b4","#ff7f0e","#2ca02c","#d62728","#9467bd"],
@@ -148,28 +147,28 @@ function erfcx(u) {
 
     ${legendEl}
 
-    <div style="display:grid; grid-template-columns:repeat(3,210px);
+    <div style="display:grid; grid-template-columns:repeat(3,315px);
                 gap:12px; margin-top:8px">
 
       <div>
-        <div style="font-weight:bold; font-size:0.85em; margin-bottom:4px">
-          Case I — prescribed Tₛ
+        <div style="font-weight:bold; font-size:0.75em; margin-bottom:4px">
+          Case I — prescribed <em>T</em><sub>s</sub>
         </div>
         ${Ts_in}
         ${p1}
       </div>
 
       <div>
-        <div style="font-weight:bold; font-size:0.85em; margin-bottom:4px">
-          Case II — prescribed q₀″
+        <div style="font-weight:bold; font-size:0.75em; margin-bottom:4px">
+          Case II — prescribed <em>q</em><sub>0</sub>″
         </div>
         ${q0_in}
         ${p2}
       </div>
 
       <div>
-        <div style="font-weight:bold; font-size:0.85em; margin-bottom:4px">
-          Case III — convection h
+        <div style="font-weight:bold; font-size:0.75em; margin-bottom:4px">
+          Case III — convection <em>h</em>
         </div>
         ${h_in} ${Tinf_in}
         ${p3}
@@ -203,10 +202,10 @@ A large $h$ drives Case III toward Case I — the surface is heated so efficient
 Frozen soil ($\alpha = 5 \times 10^{-7}\ \text{m}^2/\text{s}$, $T_i = -5\,^\circ\text{C}$) has its surface suddenly raised to $T_s = 15\,^\circ\text{C}$.
 How deep does the 0°C thaw front reach after 90 days?
 
-We need to determine the location where $T = 0$, so we solve for $\eta$ such that $\text{erf}(\eta) = T-T_s/(T_i - T_s)=0.75$. Can ask [Wolfram Alpha](https://www.wolframalpha.com/input?i=solve+erf%28x%29%3D0.75), and will determine $\eta=0.813$. Then the thaw depth is
+We need to determine the location where $T = 0\,^\circ\text{C}$$, so we solve for $\eta$ such that $\text{erf}(\eta) = T-T_s/(T_i - T_s)=0.75$. Can ask [Wolfram Alpha](https://www.wolframalpha.com/input?i=solve+erf%28x%29%3D0.75), and will determine $\eta=0.813$. Then the thaw depth is
 
 $$
-x = 2\sqrt{\alpha t}\cdot\eta = 2\sqrt{(5\times10^{-7}\ \text{m}^2/\text{s})\,(90\ \text{days}\times 86{,}400\ \text{s/day})}\times 0.8134 \approx \mathbf{3.21\ \text{m}}.
+x = 2\sqrt{\alpha t}\cdot\eta = 2\sqrt{(5\times10^{-7}\ \text{m}^2/\text{s})\,(90\ \text{days}\times 86{,}400\ \text{s/day})}\times 0.8134 \approx 3.21\ \text{m}.
 $$
 
 Verify this against the "90 days" curve in Case I above (with $T_s = 15\,^\circ\text{C}$, $T_i = -5\,^\circ\text{C}$): the curve should cross the dashed $T=0$ line at about $x = 3.2\ \text{m}$.
