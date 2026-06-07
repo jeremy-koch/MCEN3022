@@ -207,79 +207,19 @@ A steel sphere ($k = 50\ \text{W/m·K}$,
 $\alpha = 1.4 \times 10^{-5}\ \text{m}^2/\text{s}$) of radius
 $R = 20\ \text{mm}$ is quenched in oil at $T_\infty = 40\ \text{°C}$ with
 $h = 500\ \text{W/m}^2\text{·K}$. The initial temperature is
-$T_i = 800\ \text{°C}$. Find the center and surface temperatures after 2 minutes.
+$T_i = 800\ \text{°C}$. Find the center and surface temperatures after 1 minute.
 
-```{ojs}
-//| echo: false
+$\text{Bi} = hR/k = 500 \times 0.020 / 50 = 0.200$; $\quad \text{Fo} = \alpha t / R^2 = (1.4\times10^{-5})(60)/(0.020)^2 = 2.10$
 
-// ── Problem parameters ────────────────────────────────────────────────────────
-ex_k    = 50.0;   ex_alpha = 1.4e-5;  ex_ro   = 20e-3
-ex_h    = 500.0;  ex_Tinf  = 40.0;    ex_Ti   = 800.0;  ex_t = 120.0
-
-ex_Bi = ex_h * ex_ro / ex_k
-ex_Fo = ex_alpha * ex_t / (ex_ro * ex_ro)
-
-// Reuse helpers defined above (getRoots, coeff, thetaProfile, brentq)
-ex_roots = getRoots(ex_Bi, 50)
-ex_Cn    = ex_roots.map(coeff)
-
-function thetaAt(rStar, nTerms) {
-  const rr = ex_roots.slice(0, nTerms)
-  const cc = ex_Cn.slice(0, nTerms)
-  return thetaProfile([rStar], rr, cc, ex_Fo)[0]
-}
-
-toT = th => th * (ex_Ti - ex_Tinf) + ex_Tinf
-fmt4 = v => v.toFixed(4)
-fmt1 = v => v.toFixed(1)
-
-ex_lump       = Math.exp(-ex_Bi * ex_Fo)
-ex_c_one      = thetaAt(0.0, 1)
-ex_c_full     = thetaAt(0.0, 50)
-ex_s_one      = thetaAt(1.0, 1)
-ex_s_full     = thetaAt(1.0, 50)
-
-html`
-<p><strong>Bi = ${ex_Bi.toFixed(4)}, &nbsp; Fo = ${ex_Fo.toFixed(4)}</strong></p>
-<table style="border-collapse:collapse; font-family:Georgia,serif; font-size:0.95em; width:100%">
-  <thead>
-    <tr style="background:#f0f4f8">
-      <th style="padding:6px 12px; border:1px solid #ccc; text-align:left">Model</th>
-      <th style="padding:6px 12px; border:1px solid #ccc">θ center</th>
-      <th style="padding:6px 12px; border:1px solid #ccc">T center (°C)</th>
-      <th style="padding:6px 12px; border:1px solid #ccc">θ surface</th>
-      <th style="padding:6px 12px; border:1px solid #ccc">T surface (°C)</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="padding:6px 12px; border:1px solid #ccc">Lumped</td>
-      <td style="padding:6px 12px; border:1px solid #ccc; text-align:center">${fmt4(ex_lump)}</td>
-      <td style="padding:6px 12px; border:1px solid #ccc; text-align:center">${fmt1(toT(ex_lump))}</td>
-      <td style="padding:6px 12px; border:1px solid #ccc; text-align:center">${fmt4(ex_lump)}</td>
-      <td style="padding:6px 12px; border:1px solid #ccc; text-align:center">${fmt1(toT(ex_lump))}</td>
-    </tr>
-    <tr style="background:#fafafa">
-      <td style="padding:6px 12px; border:1px solid #ccc">One-term</td>
-      <td style="padding:6px 12px; border:1px solid #ccc; text-align:center">${fmt4(ex_c_one)}</td>
-      <td style="padding:6px 12px; border:1px solid #ccc; text-align:center">${fmt1(toT(ex_c_one))}</td>
-      <td style="padding:6px 12px; border:1px solid #ccc; text-align:center">${fmt4(ex_s_one)}</td>
-      <td style="padding:6px 12px; border:1px solid #ccc; text-align:center">${fmt1(toT(ex_s_one))}</td>
-    </tr>
-    <tr>
-      <td style="padding:6px 12px; border:1px solid #ccc">Full (N=50)</td>
-      <td style="padding:6px 12px; border:1px solid #ccc; text-align:center">${fmt4(ex_c_full)}</td>
-      <td style="padding:6px 12px; border:1px solid #ccc; text-align:center">${fmt1(toT(ex_c_full))}</td>
-      <td style="padding:6px 12px; border:1px solid #ccc; text-align:center">${fmt4(ex_s_full)}</td>
-      <td style="padding:6px 12px; border:1px solid #ccc; text-align:center">${fmt1(toT(ex_s_full))}</td>
-    </tr>
-  </tbody>
-</table>`
-```
+| Model | $\theta$ (center, $r=0$) | $T$ center (°C) | $\theta$ (surface, $r/R=1$) | $T$ surface (°C) |
+|-------|:------------------------:|:---------------:|:----------------------------:|:----------------:|
+| Lumped | 0.6571 | 539.4 | (same) | (same) |
+| One-term | 0.3180 | 281.7 | 0.2885 | 259.3 |
+| Full ($N=50$) | 0.3180 | 281.7 | 0.2885 | 259.3 |
 
 ::: {.callout-tip}
 ## Interpretation
 With $\Bi \approx 0.2$ this sphere is borderline for the lumped model — the
 surface and center temperatures differ noticeably. The one-term approximation
-matches the full series very closely because $\Fo \approx 0.21 \ge 0.2$.
+matches the full series very closely because $\Fo \approx 2.10 \gg 0.2$.
 :::

@@ -245,6 +245,13 @@ I created a demo to highlight the differences between the lumped capacitance, on
 
 A few more transient problems. I wouldn't expect you to be able to replicate the derivation of these equations, but using and understanding these equations is important. Also: being able to suggest boundary conditions is an important skill! This section will be the same problem, but with different boundary conditions -- make sure you understand what each boundary condition means.
 
+::: {.callout-tip}
+### Video
+
+Start with... (video link added soon).
+:::
+
+### The Semi-Infinite Solid
 Our geometry for all cases is a "semi-infinite solid" where, for notational simplicity, we will use $x$ as our vertical depth coordinate. 
 
 ```{=html}
