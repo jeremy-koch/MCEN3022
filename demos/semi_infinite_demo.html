@@ -576,7 +576,7 @@ window.Quarto = {
 <p>Frozen soil (<span class="math inline">\(\alpha = 5 \times 10^{-7}\ \text{m}^2/\text{s}\)</span>, <span class="math inline">\(T_i = -5\,^\circ\text{C}\)</span>) has its surface suddenly raised to <span class="math inline">\(T_s = 15\,^\circ\text{C}\)</span>. How deep does the 0°C thaw front reach after 90 days?</p>
 <p>We need to determine the location where <span class="math inline">\(T = 0\)</span>, so we solve for <span class="math inline">\(\eta\)</span> such that <span class="math inline">\(\text{erf}(\eta) = T-T_s/(T_i - T_s)=0.75\)</span>. Can ask <a href="https://www.wolframalpha.com/input?i=solve+erf%28x%29%3D0.75">Wolfram Alpha</a>, and will determine <span class="math inline">\(\eta=0.813\)</span>. Then the thaw depth is</p>
 <p><span class="math display">\[
-x = 2\sqrt{\alpha t}\cdot\eta = 2\sqrt{(5\times10^{-7}\ \tfrac{\text{m}^2}{\text{s}})\,(90\ \cancel{\text{days}}\times 86{,}400\ \tfrac{\text{s}}{\cancel{\text{day}}})}\times 0.8134 \approx \mathbf{3.21\ \text{m}}.
+x = 2\sqrt{\alpha t}\cdot\eta = 2\sqrt{(5\times10^{-7}\ \text{m}^2/\text{s})\,(90\ \text{days}\times 86{,}400\ \text{s/day})}\times 0.8134 \approx \mathbf{3.21\ \text{m}}.
 \]</span></p>
 <p>Verify this against the “90 days” curve in Case I above (with <span class="math inline">\(T_s = 15\,^\circ\text{C}\)</span>, <span class="math inline">\(T_i = -5\,^\circ\text{C}\)</span>): the curve should cross the dashed <span class="math inline">\(T=0\)</span> line at about <span class="math inline">\(x = 3.2\ \text{m}\)</span>.</p>
 
@@ -1265,7 +1265,7 @@ window._ojs.runtime.interpretFromScriptTags();
 <span id="cb3-210"><a href="#cb3-210" aria-hidden="true" tabindex="-1"></a>We need to determine the location where $T = 0$, so we solve for $\eta$ such that $\text{erf}(\eta) = T-T_s/(T_i - T_s)=0.75$. Can ask <span class="co">[</span><span class="ot">Wolfram Alpha</span><span class="co">](https://www.wolframalpha.com/input?i=solve+erf%28x%29%3D0.75)</span>, and will determine $\eta=0.813$. Then the thaw depth is</span>
 <span id="cb3-211"><a href="#cb3-211" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-212"><a href="#cb3-212" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb3-213"><a href="#cb3-213" aria-hidden="true" tabindex="-1"></a>x = 2\sqrt{\alpha t}\cdot\eta = 2\sqrt{(5\times10^{-7}\ \tfrac{\text{m}^2}{\text{s}})\,(90\ \cancel{\text{days}}\times 86{,}400\ \tfrac{\text{s}}{\cancel{\text{day}}})}\times 0.8134 \approx \mathbf{3.21\ \text{m}}.</span>
+<span id="cb3-213"><a href="#cb3-213" aria-hidden="true" tabindex="-1"></a>x = 2\sqrt{\alpha t}\cdot\eta = 2\sqrt{(5\times10^{-7}\ \text{m}^2/\text{s})\,(90\ \text{days}\times 86{,}400\ \text{s/day})}\times 0.8134 \approx \mathbf{3.21\ \text{m}}.</span>
 <span id="cb3-214"><a href="#cb3-214" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb3-215"><a href="#cb3-215" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-216"><a href="#cb3-216" aria-hidden="true" tabindex="-1"></a>Verify this against the "90 days" curve in Case I above (with $T_s = 15\,^\circ\text{C}$, $T_i = -5\,^\circ\text{C}$): the curve should cross the dashed $T=0$ line at about $x = 3.2\ \text{m}$.</span>
