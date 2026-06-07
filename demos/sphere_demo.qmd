@@ -1,6 +1,4 @@
----
-title: "Sphere Temperature Profile — Interactive Demo"
----
+# Sphere Temperature Profile — Interactive Demo {.unnumbered}
 
 $$
 \newcommand{\Bi}{\mathrm{Bi}}
@@ -8,18 +6,18 @@ $$
 $$
 
 This page lets you explore all three levels of approximation for transient
-conduction in a **sphere** side-by-side:
+conduction in a sphere:
 
-| Curve | Model | Valid when |
+| Model | Model | Valid when |
 |-------|-------|------------|
-| Lumped | $\theta^* = e^{-\Bi\,\Fo}$ (spatially uniform) | $\Bi < 0.1$ |
-| One-term | First term of Fourier series | $\Fo \ge 0.2$ |
-| Full series | Sum of many Fourier terms | Always |
+| Lumped Capacitance | $\theta^* = e^{-\Bi\,\Fo}$ (spatially uniform) | $\Bi < 0.1$ |
+| One-term Approximation | First term of Fourier series | $\Fo \ge 0.2$ |
+| Full Solution | Sum of many Fourier terms | Always |
 
 Adjust the sliders below and observe how the three curves compare.
 
 ::: {.callout-note}
-The lumped model predicts a *single* temperature for the whole sphere — it
+The lumped model predicts a single temperature for the whole sphere — it
 appears as a horizontal dotted line because it has no spatial variation.
 :::
 
@@ -158,8 +156,8 @@ Plot.plot({
   marginLeft: 65,
   marginBottom: 50,
   style: { fontFamily: "Georgia, serif", fontSize: "13px" },
-  x: { label: "r* = r / r₀  →", domain: [0, 1] },
-  y: { label: "↑  θ* = (T − T∞) / (Tᵢ − T∞)", domain: [-0.02, 1.05] },
+  x: { label: "r/R  →", domain: [0, 1], axis: "bottom" },
+  y: { label: "↑  θ", domain: [-0.02, 1.05], axis: "left" },
   color: {
     domain: ["Full series (N=50)", "One-term", "Lumped"],
     range:  ["#1f77b4",            "#ff7f0e",  "#2ca02c"],
@@ -187,30 +185,30 @@ Plot.plot({
 
 ## What to look for {#sec-observations}
 
-**Observation 1 — Lumped model breaks down at large Bi.**
-When $\Bi \ll 1$ all three curves nearly coincide: the sphere equilibrates
+**The Lumped Capacitance Model breaks down at large Bi.**
+When $\text{Bi} \ll 1$ all three curves nearly coincide: the sphere equilibrates
 internally much faster than it exchanges heat with the fluid.
-As $\Bi$ increases the surface cools faster than the core, and the lumped
+As $\text{Bi}$ increases the surface cools faster than the core, and the lumped
 model — which predicts no spatial gradient — diverges from the correct solution.
 
-**Observation 2 — One-term accuracy improves with Fo.**
-At small $\Fo$ (say 0.05) many Fourier terms contribute because the
-exponentials $e^{-\zeta_n^2 \Fo}$ have not yet decayed.
-Drag $\Fo$ above 0.2 and watch the one-term curve collapse onto the full series.
+**The One-Term Approximation accuracy improves with Fo.**
+At small $\text{Fo}$ (say 0.05) many Fourier terms contribute because the
+exponentials $e^{-\zeta_n^2 \text{Fo}}$ have not yet decayed.
+Drag $\text{Fo}$ above 0.2 and watch the one-term curve collapse onto the full series.
 
-**Observation 3 — Centre vs. surface temperature.**
-The centre ($r^* = 0$) always lags behind the surface ($r^* = 1$). The
+**Center vs. surface temperature.**
+The center ($r = 0$) always lags behind the surface ($r/R = 1$). The
 larger the Biot number, the steeper the radial gradient.
 
 ---
 
 ## A worked example {#sec-worked}
 
-**Example 2.1.** A steel sphere ($k = 50\ \text{W/m·K}$,
+A steel sphere ($k = 50\ \text{W/m·K}$,
 $\alpha = 1.4 \times 10^{-5}\ \text{m}^2/\text{s}$) of radius
-$r_o = 20\ \text{mm}$ is quenched in oil at $T_\infty = 40\ \text{°C}$ with
+$R = 20\ \text{mm}$ is quenched in oil at $T_\infty = 40\ \text{°C}$ with
 $h = 500\ \text{W/m}^2\text{·K}$. The initial temperature is
-$T_i = 800\ \text{°C}$. Find the centre and surface temperatures after 2 min.
+$T_i = 800\ \text{°C}$. Find the center and surface temperatures after 2 minutes.
 
 ```{ojs}
 //| echo: false
@@ -248,8 +246,8 @@ html`
   <thead>
     <tr style="background:#f0f4f8">
       <th style="padding:6px 12px; border:1px solid #ccc; text-align:left">Model</th>
-      <th style="padding:6px 12px; border:1px solid #ccc">θ* centre</th>
-      <th style="padding:6px 12px; border:1px solid #ccc">T centre (°C)</th>
+      <th style="padding:6px 12px; border:1px solid #ccc">θ* center</th>
+      <th style="padding:6px 12px; border:1px solid #ccc">T center (°C)</th>
       <th style="padding:6px 12px; border:1px solid #ccc">θ* surface</th>
       <th style="padding:6px 12px; border:1px solid #ccc">T surface (°C)</th>
     </tr>
@@ -283,6 +281,6 @@ html`
 ::: {.callout-tip}
 ## Interpretation
 With $\Bi \approx 0.2$ this sphere is borderline for the lumped model — the
-surface and centre temperatures differ noticeably. The one-term approximation
+surface and center temperatures differ noticeably. The one-term approximation
 matches the full series very closely because $\Fo \approx 0.21 \ge 0.2$.
 :::

@@ -1,41 +1,63 @@
----
-title: "Semi-Infinite Solid — Interactive Demo"
----
+# "Semi-Infinite Solid — Interactive Demo" {.unnumbered}
 
-A semi-infinite solid starts at uniform temperature $T_i$.
-At $t = 0$, the surface temperature is suddenly changed to $T_s$ and held there.
-The solution for this prescribed-surface-temperature case is
+A semi-infinite solid ($x \ge 0$) starts at uniform temperature $T_i$.
+At $t = 0$, something happens at the surface — the three cases differ only in *what* that something is.
+Each plot below shows temperature profiles at five time snapshots.
 
-$$
-T(x,t) = T_s + (T_i - T_s)\,\text{erf}\!\left(\frac{x}{2\sqrt{\alpha t}}\right)
-$$
-
-where $\alpha$ is the thermal diffusivity.
-Each curve below is a snapshot at a different time — watch the warming (or cooling) front march deeper into the solid.
+| Case | Surface BC | Key parameter |
+|------|-----------|---------------|
+| I    | $T(0,t) = T_s$ | prescribed temperature |
+| II   | $-k\,\partial T/\partial x\big|_0 = q_0''$ | prescribed heat flux |
+| III  | $-k\,\partial T/\partial x\big|_0 = h(T_\infty - T(0))$ | convection |
 
 ---
 
-## Interactive demo {#sec-demo}
+## Parameters {#sec-params}
+
+### Shared
+
+```{ojs}
+//| echo: false
+
+viewof T_i = Inputs.range([-20, 20], {
+  value: -5, step: 1,
+  label: "Initial temperature Tᵢ (°C)"
+})
+
+viewof alpha_exp = Inputs.range([-7.5, -5.7], {
+  value: -6.3, step: 0.05,
+  label: "log₁₀(α)  [α in m²/s]"
+})
+
+viewof k = Inputs.range([0.1, 5.0], {
+  value: 1.0, step: 0.1,
+  label: "Thermal conductivity k (W/m·K)"
+})
+```
+
+### Case-specific boundary conditions
 
 ```{ojs}
 //| echo: false
 
 viewof T_s = Inputs.range([-30, 40], {
-  value: 15,
-  step: 1,
-  label: "Surface temperature Tₛ (°C)"
+  value: 15, step: 1,
+  label: "Case I — surface temperature Tₛ (°C)"
 })
 
-viewof T_i = Inputs.range([-20, 20], {
-  value: -5,
-  step: 1,
-  label: "Initial temperature Tᵢ (°C)"
+viewof q0 = Inputs.range([0, 1000], {
+  value: 300, step: 10,
+  label: "Case II — surface heat flux q₀″ (W/m²)"
 })
 
-viewof alpha_exp = Inputs.range([-7.5, -5.7], {
-  value: -6.3,
-  step: 0.05,
-  label: "log₁₀(α)  [α in m²/s]"
+viewof h_conv = Inputs.range([1, 100], {
+  value: 25, step: 1,
+  label: "Case III — convection coefficient h (W/m²·K)"
+})
+
+viewof T_inf = Inputs.range([-30, 40], {
+  value: 20, step: 1,
+  label: "Case III — fluid temperature T∞ (°C)"
 })
 ```
 
@@ -44,17 +66,23 @@ viewof alpha_exp = Inputs.range([-7.5, -5.7], {
 
 alpha = Math.pow(10, alpha_exp)
 
-html`<p style="font-size:0.95em; margin:0.2em 0 0.8em 0;">
-  <strong>Tₛ = ${T_s} °C</strong> &nbsp;|&nbsp;
-  <strong>Tᵢ = ${T_i} °C</strong> &nbsp;|&nbsp;
-  <strong>α = ${(alpha * 1e6).toFixed(3)} × 10⁻⁶ m²/s</strong>
+html`<p style="font-size:0.9em; margin:0.2em 0 0.8em 0; color:#444">
+  α = ${(alpha * 1e6).toFixed(3)} × 10⁻⁶ m²/s &nbsp;|&nbsp;
+  k = ${k} W/m·K &nbsp;|&nbsp;
+  Tᵢ = ${T_i} °C
 </p>`
 ```
+
+---
+
+## Temperature profiles {#sec-plots}
 
 ```{ojs}
 //| echo: false
 
-// ── Error function (Abramowitz & Stegun 7.1.26, max error ~1.5 × 10⁻⁷) ───────
+// ── Special functions ──────────────────────────────────────────────────────────
+
+// erf  (Abramowitz & Stegun 7.1.26, max error ~1.5 × 10⁻⁷)
 function erf(x) {
   if (x < 0) return -erf(-x);
   const t = 1.0 / (1.0 + 0.3275911 * x);
@@ -63,87 +91,150 @@ function erf(x) {
   return 1.0 - p * Math.exp(-x * x);
 }
 
+// erfc(x) = 1 − erf(x)
+function erfc(x) { return 1 - erf(x); }
+
+// erfcx(u) = exp(u²) · erfc(u)  — numerically stable for all u ≥ 0
+// Uses direct computation for u < 5, asymptotic expansion for u ≥ 5.
+function erfcx(u) {
+  if (u < 0) return 2 * Math.exp(u * u) - erfcx(-u);
+  if (u < 5) return Math.exp(u * u) * erfc(u);
+  // Asymptotic: erfcx(u) ~ (1/√π)/u · [1 − 1/(2u²) + 3/(4u⁴) − 15/(8u⁶) + ...]
+  const t = 1 / (u * u);
+  return (1 / Math.sqrt(Math.PI)) / u
+       * (1 - t * 0.5 + t * t * 0.75 - t * t * t * 1.875 + t * t * t * t * 6.5625);
+}
+
 // ── Depth array ────────────────────────────────────────────────────────────────
-// x_max: four "penetration depths" at t = 1 year, clamped to [2, 30] m
-x_max  = Math.min(30, Math.max(2, 4 * Math.sqrt(alpha * 365 * 86400)));
-N_PTS  = 300;
-x_arr  = Array.from({length: N_PTS}, (_, i) => i / (N_PTS - 1) * x_max);
+x_max = Math.min(30, Math.max(2, 4 * Math.sqrt(alpha * 365 * 86400)));
+N_PTS = 300;
+x_arr = Array.from({length: N_PTS}, (_, i) => i / (N_PTS - 1) * x_max);
 
 // ── Time snapshots ─────────────────────────────────────────────────────────────
 times_days  = [7, 30, 90, 180, 365];
 times_s     = times_days.map(d => d * 86400);
 time_labels = ["7 days", "30 days", "90 days", "180 days", "1 year"];
+time_colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd"];
 
-// ── Row data for Observable Plot ───────────────────────────────────────────────
-rows = times_s.flatMap((t_s, j) =>
-  x_arr.map(x => ({
-    x,
-    T: T_s + (T_i - T_s) * erf(x / (2 * Math.sqrt(alpha * t_s))),
-    time: time_labels[j]
-  }))
-);
+// ── Solution formulas ──────────────────────────────────────────────────────────
+
+function T_caseI(x, t_s) {
+  const eta = x / (2 * Math.sqrt(alpha * t_s));
+  return T_s + (T_i - T_s) * erf(eta);
+}
+
+function T_caseII(x, t_s) {
+  const eta = x / (2 * Math.sqrt(alpha * t_s));
+  return T_i
+    + (2 * q0 * Math.sqrt(alpha * t_s / Math.PI) / k) * Math.exp(-eta * eta)
+    - (q0 * x / k) * erfc(eta);
+}
+
+// Numerically stable Case III using erfcx:
+// T = Tᵢ + (T∞ − Tᵢ) · [erfc(η) − exp(−η²) · erfcx(η + β)]
+// where β = h√(αt)/k
+function T_caseIII(x, t_s) {
+  const eta  = x / (2 * Math.sqrt(alpha * t_s));
+  const beta = h_conv * Math.sqrt(alpha * t_s) / k;
+  return T_i + (T_inf - T_i)
+    * (erfc(eta) - Math.exp(-eta * eta) * erfcx(eta + beta));
+}
+
+// ── Row builder ────────────────────────────────────────────────────────────────
+function makeRows(T_fn) {
+  return times_s.flatMap((t_s, j) =>
+    x_arr.map(x => ({ x, T: T_fn(x, t_s), time: time_labels[j] }))
+  );
+}
+
+rows_I   = makeRows(T_caseI);
+rows_II  = makeRows(T_caseII);
+rows_III = makeRows(T_caseIII);
 ```
 
 ```{ojs}
 //| echo: false
 
-Plot.plot({
-  width: 660,
-  height: 400,
-  marginLeft: 65,
-  marginBottom: 50,
-  style: { fontFamily: "Georgia, serif", fontSize: "13px" },
-  x: { label: "Depth x (m)  →", domain: [0, x_max] },
-  y: { label: "↑  Temperature T (°C)" },
-  color: {
-    domain: time_labels,
-    range:  ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd"],
-    legend: true
-  },
-  marks: [
-    Plot.gridX({stroke: "#ddd"}),
-    Plot.gridY({stroke: "#ddd"}),
-    Plot.ruleY([0], {stroke: "#888", strokeDasharray: "5,4", strokeWidth: 1.2}),
-    Plot.line(rows, {x: "x", y: "T", stroke: "time", strokeWidth: 2.5}),
-  ]
-})
+// ── Plot factory ───────────────────────────────────────────────────────────────
+function makePlot(rows, title) {
+  return Plot.plot({
+    width:  215,
+    height: 310,
+    marginLeft:   48,
+    marginBottom: 42,
+    marginTop:    28,
+    style: { fontFamily: "Georgia, serif", fontSize: "11px" },
+    title: title,
+    x: { label: "x (m) →", domain: [0, x_max], axis: "bottom" },
+    y: { label: "↑ T (°C)", axis: "left" },
+    color: {
+      domain: time_labels,
+      range:  time_colors,
+      legend: false
+    },
+    marks: [
+      Plot.gridX({stroke: "#e0e0e0"}),
+      Plot.gridY({stroke: "#e0e0e0"}),
+      Plot.ruleY([0], {stroke: "#999", strokeDasharray: "4,3", strokeWidth: 1}),
+      Plot.line(rows, {x: "x", y: "T", stroke: "time", strokeWidth: 2}),
+    ]
+  });
+}
+
+// ── Legend (shared) ────────────────────────────────────────────────────────────
+legend = Plot.plot({
+  width: 660, height: 30,
+  marginTop: 0, marginBottom: 0, marginLeft: 0, marginRight: 0,
+  color: { domain: time_labels, range: time_colors, legend: true },
+  marks: []
+});
+
+// ── Three-column layout ────────────────────────────────────────────────────────
+{
+  const p1 = makePlot(rows_I,   "Case I — prescribed Tₛ");
+  const p2 = makePlot(rows_II,  "Case II — prescribed q₀″");
+  const p3 = makePlot(rows_III, "Case III — convection h");
+
+  const row = document.createElement("div");
+  row.style.cssText = "display:flex; gap:12px; align-items:flex-start; flex-wrap:wrap";
+  row.append(p1, p2, p3);
+
+  const wrap = document.createElement("div");
+  wrap.append(legend, row);
+  return wrap;
+}
 ```
 
 ---
 
 ## What to look for {#sec-observations}
 
-**Observation 1 — Penetration depth scales as $\sqrt{\alpha t}$.**
-All five snapshots are the same erf curve, just scaled horizontally.
-Double $\alpha$ (or quadruple the time) and every curve stretches by $\sqrt{2}$ in depth.
-This is exactly why the similarity variable $\eta = x/(2\sqrt{\alpha t})$ works: it collapses
-all times and all materials onto one universal curve.
+**Case I — erf profile, surface pinned at Tₛ.**
+The surface is always exactly $T_s$ (the boundary condition is enforced), and far below the surface the solid is undisturbed at $T_i$.
+The transition zone stretches rightward as $\sim\sqrt{\alpha t}$ — same scaling as before.
 
-**Observation 2 — The surface and the deep interior are non-negotiable.**
-No matter what, $T(0,t) = T_s$ (boundary condition) and $T(\infty,t) = T_i$ (undisturbed interior).
-The sliders change *where* and *how fast* the transition zone moves, but not those two anchors.
+**Case II — unbounded surface temperature.**
+There is no "target" surface temperature here; instead energy is injected at a constant rate $q_0''$.
+The surface temperature grows without bound ($\sim \sqrt{t}$), which is physically unrealistic for long times — it is a warning that the semi-infinite model eventually breaks down.
+Notice that deeper in the solid the profiles look similar to Case I.
 
-**Observation 3 — The freezing front for permafrost.**
-Set $T_i < 0$ and $T_s > 0$ (the defaults do this).
-The dashed horizontal line at $T = 0\,^\circ\text{C}$ marks the boundary between frozen and thawed ground.
-The point where each curve crosses that line is the thaw depth at that time — watch it
-advance with each successive snapshot.
+**Case III — convection slows the approach.**
+Compared to Case I (same $T_i$ and $T_\infty = T_s$), the surface never quite reaches $T_\infty$ immediately; it approaches it gradually.
+A small $h$ means the convective resistance dominates: heat transfer is slow, and the solid barely warms.
+A large $h$ drives Case III toward Case I (the surface is cooled/heated so efficiently it acts like a prescribed temperature).
 
 ---
 
-## Worked example {#sec-worked}
+## Worked example — Case I thaw depth {#sec-worked}
 
-**Example.** A frozen soil layer ($\alpha = 5 \times 10^{-7}\ \text{m}^2/\text{s}$, $T_i = -5\,^\circ\text{C}$)
-has its surface suddenly raised to $T_s = 15\,^\circ\text{C}$ at the start of the warm season.
+Frozen soil ($\alpha = 5 \times 10^{-7}\ \text{m}^2/\text{s}$, $T_i = -5\,^\circ\text{C}$) has its surface suddenly raised to $T_s = 15\,^\circ\text{C}$.
 How deep does the 0°C thaw front reach after 90 days?
 
 ```{ojs}
 //| echo: false
 
-// ── Problem parameters ────────────────────────────────────────────────────────
-ex_alpha = 5e-7;   ex_Ti = -5.0;   ex_Ts = 15.0;   ex_t = 90 * 86400;
+ex_alpha = 5e-7;  ex_Ti = -5.0;  ex_Ts = 15.0;  ex_t = 90 * 86400;
 
-// ── Inverse erf via binary search ─────────────────────────────────────────────
 function erfinv(y) {
   if (y >=  1) return  Infinity;
   if (y <= -1) return -Infinity;
@@ -156,19 +247,18 @@ function erfinv(y) {
   return (lo + hi) / 2;
 }
 
-// T = 0 when erf(η) = −Tₛ / (Tᵢ − Tₛ)
-ex_target = -ex_Ts / (ex_Ti - ex_Ts);          // 0.75
-ex_eta    = erfinv(ex_target);                  // ≈ 0.813
+ex_target = -ex_Ts / (ex_Ti - ex_Ts);
+ex_eta    = erfinv(ex_target);
 ex_x_thaw = 2 * Math.sqrt(ex_alpha * ex_t) * ex_eta;
 
 html`
-<p><strong>Target:</strong> erf(η) = −Tₛ/(Tᵢ − Tₛ) = −${ex_Ts}/(${ex_Ti} − ${ex_Ts}) = ${ex_target.toFixed(4)}</p>
+<p><strong>Target:</strong> erf(η) = −Tₛ/(Tᵢ − Tₛ) = ${ex_target.toFixed(4)}</p>
 <p><strong>η = erf⁻¹(${ex_target.toFixed(4)}) ≈ ${ex_eta.toFixed(4)}</strong></p>
-<p><strong>Thaw depth = 2√(αt) · η = 2 × √(${ex_alpha.toExponential(0)} × ${ex_t.toExponential(2)}) × ${ex_eta.toFixed(3)}
-  ≈ <span style="color:#c0392b">${ex_x_thaw.toFixed(2)} m</span></strong></p>
+<p><strong>Thaw depth = 2√(αt) · η ≈
+  <span style="color:#c0392b">${ex_x_thaw.toFixed(2)} m</span></strong></p>
 <p style="font-size:0.9em; color:#555">
-  After three months the 0°C isotherm has reached about ${ex_x_thaw.toFixed(1)} m depth —
-  consistent with what you should see in the "90 days" curve in the demo above
-  when the sliders are set to Tₛ = 15°C, Tᵢ = −5°C, α = 0.5 × 10⁻⁶ m²/s.
+  After 90 days the 0°C isotherm sits at about ${ex_x_thaw.toFixed(1)} m —
+  verify this against the "90 days" curve in Case I above
+  (with sliders at Tₛ = 15°C, Tᵢ = −5°C).
 </p>`
 ```
