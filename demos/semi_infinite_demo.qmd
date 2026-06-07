@@ -1,4 +1,4 @@
-# "Semi-Infinite Solid — Interactive Demo" {.unnumbered}
+# Semi-Infinite Solid — Interactive Demo {.unnumbered}
 
 A semi-infinite solid ($x \ge 0$) starts at uniform temperature $T_i$.
 At $t = 0$, something happens at the surface — the three cases differ only in *what* that something is.
@@ -148,14 +148,13 @@ function erfcx(u) {
     ${legendEl}
 
     <div style="display:grid; grid-template-columns:repeat(3,315px);
-                gap:12px; margin-top:8px">
+                grid-template-rows: auto auto; gap:4px 12px; margin-top:8px">
 
       <div>
         <div style="font-weight:bold; font-size:0.75em; margin-bottom:4px">
           Case I — prescribed <em>T</em><sub>s</sub>
         </div>
         ${Ts_in}
-        ${p1}
       </div>
 
       <div>
@@ -163,7 +162,6 @@ function erfcx(u) {
           Case II — prescribed <em>q</em><sub>0</sub>″
         </div>
         ${q0_in}
-        ${p2}
       </div>
 
       <div>
@@ -171,8 +169,9 @@ function erfcx(u) {
           Case III — convection <em>h</em>
         </div>
         ${h_in} ${Tinf_in}
-        ${p3}
       </div>
+
+      ${p1} ${p2} ${p3}
 
     </div>
   </div>`;
@@ -202,7 +201,7 @@ A large $h$ drives Case III toward Case I — the surface is heated so efficient
 Frozen soil ($\alpha = 5 \times 10^{-7}\ \text{m}^2/\text{s}$, $T_i = -5\,^\circ\text{C}$) has its surface suddenly raised to $T_s = 15\,^\circ\text{C}$.
 How deep does the 0°C thaw front reach after 90 days?
 
-We need to determine the location where $T = 0\,^\circ\text{C}$$, so we solve for $\eta$ such that $\text{erf}(\eta) = T-T_s/(T_i - T_s)=0.75$. Can ask [Wolfram Alpha](https://www.wolframalpha.com/input?i=solve+erf%28x%29%3D0.75), and will determine $\eta=0.813$. Then the thaw depth is
+We need to determine the location where $T = 0\,^\circ\text{C}$$, so we solve for $\eta$ such that $\text{erf}(\eta) = T-T_s/(T_i - T_s)=0.75$. Can ask [Wolfram Alpha](https://www.wolframalpha.com/input?i=solve+erf%28x%29%3D0.75), and will determine $\eta=0.8134$. Then the thaw depth is
 
 $$
 x = 2\sqrt{\alpha t}\cdot\eta = 2\sqrt{(5\times10^{-7}\ \text{m}^2/\text{s})\,(90\ \text{days}\times 86{,}400\ \text{s/day})}\times 0.8134 \approx 3.21\ \text{m}.

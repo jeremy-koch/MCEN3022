@@ -6,19 +6,19 @@ $$
 $$
 
 This page lets you explore all three levels of approximation for transient
-conduction in a sphere:
+conduction in a sphere. Adjust the sliders below and observe how the three curves compare.
 
 | Model | Model | Valid when |
 |-------|-------|------------|
-| Lumped Capacitance | $\theta^* = e^{-\Bi\,\Fo}$ (spatially uniform) | $\Bi < 0.1$ |
-| One-term Approximation | First term of Fourier series | $\Fo \ge 0.2$ |
+| Lumped Capacitance | $\theta = e^{-\Bi\,\Fo}$ (spatially uniform) | $\Bi < 0.1$ |
+| One-term Approximation | First term of Fourier Series | $\Fo \ge 0.2$ |
 | Full Solution | Sum of many Fourier terms | Always |
 
-Adjust the sliders below and observe how the three curves compare.
+
 
 ::: {.callout-note}
-The lumped model predicts a single temperature for the whole sphere — it
-appears as a horizontal dotted line because it has no spatial variation.
+The Lumped Capacitance Model predicts a single temperature for the whole sphere — it
+appears as a horizontal line.
 :::
 
 ---
@@ -192,8 +192,7 @@ As $\text{Bi}$ increases the surface cools faster than the core, and the lumped
 model — which predicts no spatial gradient — diverges from the correct solution.
 
 **The One-Term Approximation accuracy improves with Fo.**
-At small $\text{Fo}$ (say 0.05) many Fourier terms contribute because the
-exponentials $e^{-\zeta_n^2 \text{Fo}}$ have not yet decayed.
+At small $\text{Fo}$ (say 0.05) many Fourier terms contribute because the $n\geq 2$ exponentials $\exp({-\zeta_n^2 \text{Fo}})$ have not yet decayed.
 Drag $\text{Fo}$ above 0.2 and watch the one-term curve collapse onto the full series.
 
 **Center vs. surface temperature.**
@@ -246,9 +245,9 @@ html`
   <thead>
     <tr style="background:#f0f4f8">
       <th style="padding:6px 12px; border:1px solid #ccc; text-align:left">Model</th>
-      <th style="padding:6px 12px; border:1px solid #ccc">θ* center</th>
+      <th style="padding:6px 12px; border:1px solid #ccc">θ center</th>
       <th style="padding:6px 12px; border:1px solid #ccc">T center (°C)</th>
-      <th style="padding:6px 12px; border:1px solid #ccc">θ* surface</th>
+      <th style="padding:6px 12px; border:1px solid #ccc">θ surface</th>
       <th style="padding:6px 12px; border:1px solid #ccc">T surface (°C)</th>
     </tr>
   </thead>
