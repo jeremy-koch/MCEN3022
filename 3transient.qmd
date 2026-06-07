@@ -1,0 +1,497 @@
+# Transient
+
+This week we are going to focus on 
+
+
+## Think First
+
+Recall
+
+
+
+Look Ahead
+
+
+
+## The Lumped Capacitance Model
+
+::: {.callout-tip}
+### Video
+
+Start with 
+:::
+
+In engineering (and elsewhere), we sometimes talk about "the limiting factor" or "the bottleneck". Some assorted examples:
+
+- There may be consumer demand for a new product, plenty of financial backing from investors, but the product is not taking off -- it's limiting factor is the manufacturing time.
+- Combustion is a chemical reaction that requires fuel, oxygen, and heat. If you spill some gasoline on the ground, there is plenty of fuel and oxygen available -- the limiting factor to the chemical reaction is heat. (Be careful though, combustion creates its own energy once it gets going!)
+- 
+
+Relevant to heat transfer: we may have a situation in which a hot object needs to be cooled by a fluid passing over it. That process involves conduction of heat through the object (i.e., getting energy from its interior to its exterior) and convection out of the object (i.e., the fluid removing energy from the object's surface). The "lumped capacitance model" assumes that the limiting factor of this process is the convection step: there is less resistance to heat moving around via conduction than there is to heat being removed by convection.
+
+### The Biot Number
+
+The previous sentence, framed in terms of the resistor model, is: $R_\text{conduction} \ll R_\text{convection}$. Working with this equation:
+
+$$
+\frac{L}{kA} \ll \frac{1}{hA} \implies \frac{hL}{k} \ll 1.
+$$ 
+
+The quantity $hL/k$ is a dimensonless number known as "The Biot Number"
+
+$$
+\text{Bi}\equiv \frac{hL_c}{k}
+$$
+
+and in general it is expressed in terms of the convective heat transfer coefficient $h$, the thermal conductivity of the solid object $k$, and a "characteristic length" $L_c$ that depends on the problem's geometry. Whenever $\text{Bi} \ll 1$, convection will be our limiting factor. In practice we say $\text{Bi} \leq 0.1$.
+
+::: {.column-margin}
+A generally applicable definition of the characteristic length is $L_c \equiv (\text{volume})/(\text{surface area})$, but often we just choose a convenient lengthscale in the problem. E.g., for a sphere, some folks will just use the sphere radius.
+:::
+
+An implication of this observation is that the temperature within an object will have time to equilibrate with itself: any initial gradients in temperature will lead to heat flow from hot to cold until the object is approximately at uniform temperature. We can then say the object has **a temperature** (rather than a temperature distribution), and can analyze how that temperature changes with time. This is the "lumped capacitance model/assumption".
+
+::: {.column-margin}
+Why "lumped capacitance"? We lump together all the bare discharging voltage (temperature) from the object
+:::
+
+
+
+### Problem analysis
+
+With the simplified representation of the problem, we can write an energy balance for the object, assuming that the energy of that system is changing only due to convection:
+
+$$
+\frac{dE}{dt}=mc\frac{dT}{dt} = -hA(T - T_\infty).
+$$
+
+We get better insight when we go through a non-dimensionalization process. If you are interested in the details, they'll be in the collapsed menu below.
+
+::: {.callout-note collapse="true"}
+### Click here to see the details of the non-dimensionalization.
+
+We'll use a definition of dimensionless $\theta$ that is slightly different from the one we used with the fins
+
+$$
+\theta \equiv \frac{T - T_\infty}{T_0 - T_\infty}
+$$
+
+and we will speculate that there is a "characteristic time" in the problem, $t_c$, and then write a dimensionless time
+
+$$
+\tau \equiv \frac{t}{t_c}.
+$$
+
+The characteristic time will  be written in terms of parameters in the problem, to-be-determined. Chain rule:
+
+$$
+\frac{d}{dt} = \frac{d\tau}{dt}]\frac{d}{d\tau} = \frac{1}{t_c}\frac{d}{d\tau}
+$$
+
+and a little bit of calculus:
+
+$$
+\frac{dT}{d\tau}=\frac{d}{d\tau}\left(T_\infty + (T_i-T_\infty)\theta\right) = (T_i-T_\infty)\frac{d\theta}{d\tau}.
+$$
+
+Plugging-in to our energy balance
+$$
+mc\frac{(T_i-T_\infty)}{t_c}\frac{dT}{d\tau} = -hA(T_\infty + ((T_i-T_\infty)\theta-T_\infty)
+$$
+
+and doing some rearranging, we land at
+
+$$
+\frac{1}{t_c}\frac{d\theta}{d\tau} = -\frac{hA}{mc} \theta.
+$$
+
+Now, we haven't defined $t_c$ yet. Notice that $\frac{d\theta}{d\tau}$ and $\theta$ are dimensionless -- that means $mc/(hA)$ must have dimensions of time. For mathematically convenience and, as we continue to grow wiser, for physical insight, we can define $t_c = mc/(hA)$ as our characteristic time.
+:::
+
+We land on a differential equation, expressed in dimensionless form:
+
+$$
+\frac{d\theta}{d\tau}=-\theta
+$$
+
+where
+
+$$
+\theta \equiv \frac{T - T_\infty}{T_0 - T_\infty}
+$$
+
+and
+
+$$
+\tau \equiv \frac{t}{t_c}\quad\text{with }t_c \equiv \frac{mc}{hA}.
+$$
+
+The differential equation is solved by recognizing the initial condition $\theta(0)=1$:
+
+$$ 
+\theta(\tau) = \exp(-\tau).
+$$ {#eq-nondimLC}
+
+Or, converted back into a dimensional equation:
+
+$$
+T(t) = T_\infty + (T_i + T_\infty)\exp\left(-\frac{hA}{mc}t\right).
+$$ {#eq-dimLC}
+
+#### Some observations
+
+1. This analysis reveals that, as long as $\text{Bi}\leq 0.1$, the cooling-off process is the same for all materials: (@eq-nondimLC), an exponential decay. Dimensionally, (@eq-dimLC) the decay is stretched/shrunk by $t_c$, and the initial and final temperature values depend on $T_i$ and $T_\infty$.
+
+2. Are the factors in the characteristic time intuitive? The definition is $t_c = mc/(hA)$, and it appears as $\sim \exp(-hAt/(mc))$. A larger value of $h$ means better cooling, and so the temperature should decrease faster. Indeed, $h$ appears upstairs in the exponential. A larger object, meaning larger mass $m$, will cool slower -- it makes sense that $m$ is downstairs. What about the other factors?
+
+3. The characteristic time is sometimes called "the time constant", and this language is used in many fields (e.g., you might recall it from your circuits class). In truth, it takes infinite time for the object to reach $T_\infty$: the decaying exponential asymptotes to $T_\infty$, but never gets there. However, it is not productive to say "it takes literally forever to cool down". Instead we reference the time constant to compare times it takes to cool things down. Develop this common language: after one time constant, the process is 63% of the way towards steady state. After two time constants, it is 86% of the way there. And we might say "it's time constant is $10\times$ as high", which means it takes $10\times$ as long to cool.
+
+
+## Transient Problems when $\text{Bi}>0.1$
+
+We don't just give up if $\text{Bi}>0.1$, though the analysis is a bit more complicated. The conduction equation can be written as 
+
+::: {.callout-tip}
+### Video
+
+Start with 
+:::
+
+
+
+### Series Solution
+
+The conduction equation can be simplified to something like
+
+$$
+\frac{\partial T}{\partial t} \alpha \frac{1}{r^2}\frac{\partial}{\partial r}\left(r^2 \frac{\partial T}{\partial r}\right)
+$$
+
+(where we are focusing on a sphere). The assumptions are mostly standard, maybe you can think them through. One is worth a bit of discussion: we are going to assume that an average $h$ is valid for the entire sphere. In truth, the "local" value of $h$, e.g. due to a turbulent wake behind the object, but we'll assume an averaged behavior is representative of the overall heat transfer, and this will allow us to focus on a single spatial coordinate: the radius.
+
+What are the initial/boundary conditions? Because the PDE is first-order in time, we need one initial condition; and because it is second order in $r$, we need two boundary conditions. They are:
+
+- We know the initial temperature distribution is uniform: $T(r,0) = T_i$.
+- We know the solution has to be physically realistic, so $T(r,t)$ is bounded. (I.e., we might see that solving the PDE leads to a term $\sim d_1/r$, which goes to infinity at $r=0$. To keep that from happening, we pick $d_1=0$.)
+- We know that the heat arriving at the surface via conduction leaves the surface due to convection: $-k\frac{\partial T}{\partial r}\bigg\rvert_R = h(T(R)-T_\infty)$.
+
+With these, the problem is solvable:
+$$
+\theta = \sum_{n=1}^{\infty} C_n \exp\!\left(-\zeta_n^2 \cdot \text{Fo}\right) \frac{\sin\!\left(\zeta_n \cdot \frac{r}{R}\right)}{\zeta_n r/R}
+$$ {#eq-seriessol}
+
+where $\text{Fo} \equiv \frac{\alpha t}{R^2}$ is known as "The Fourier Number", which can be thought of as a dimensionless time.
+
+::: {.column-margin}
+The Fourier Number is basically a measure of the progression of heat through an object: if time is large, or the thermal diffusivity is large, or the object is small, the Fourier Number is big.
+:::
+
+The "eiganvalues" of the problem, $\zeta_n$, are the solutions to the equation
+
+$$
+1 - \zeta_n \cot \zeta_n = \text{Bi}
+$$
+
+and we have coefficients
+$$C_n = \frac{4\left[\sin\zeta_n - \zeta_n\cos\zeta_n\right]}{2\zeta_n - \sin(2\zeta_n)}$$
+
+### The One-Term Approximation
+
+The eigenvalues of the problem are calculated in ascending order: $\zeta_1 < \zeta_2 < \zeta_3 < ... $. For the sphere problem, the eigenvalues are about $\pi$ apart, and that is more-or-less the case for any geometry. What does that mean for the decaying exponential term in (@eq-seriessol)? The $n=2$ term is going to be much much smaller than the $n=1$ term (assuming $\text{Fo}$ is not too close to zero).
+
+With this observation, we make the "one-term approximation": due to that decaying exponential, we neglect the $n=2$ to $\infty$ terms from the summation: only the $n=1$ substantially contributes. Then 
+
+$$
+\theta = C_1 \exp\!\left(-\zeta_1^2 \cdot \text{Fo}\right) \frac{\sin\!\left(\zeta_1 \cdot \frac{r}{R}\right)}{\zeta_1 r/R}
+$$
+
+and, after unpacking, we understand our temperature distribution $T(r,t)$. We typically say this equation is valid and useful when $\text{Bi}>0.1$ and $\text{Fo}>0.2$.
+
+#### A note on $\text{Fo}>0.2$
+
+A typical problem we'd need to solve is "find the time when...", and that time is not abrupt. Even in the case where we don't know what that time is *a priori* (ahead of time), we can make the assumption that the one-term approximation is valid, do the calculation, and then check that indeed $\text{Fo}>0.2$. In any practical problem it's going to be.
+
+
+## Interactive Example
+
+I created an demo to highlight the differences between the lumped capacitance, one-term approximation, and full solutions. [Find it at this link](demos/sphere_demo.qmd).
+
+
+
+
+## More Transient Solutions
+
+A few more transient problems. I wouldn't expect you to be able to replicate the derivation of these equations, but using and understanding these equations is important. Also: being able to suggest boundary conditions is an important skill! This section will be the same problem, but with different boundary conditions -- make sure you understand what each boundary condition means.
+
+### Semi-Infinite Solid
+
+Our geometry is something like this:
+
+```{=html}
+<svg width="285" height="278" xmlns="http://www.w3.org/2000/svg">
+  <title>Semi-infinite solid</title>
+  <desc>A semi-infinite solid extending downward from the surface at x=0. A sun is shown above the surface in the air. The x coordinate points downward into the solid.</desc>
+
+  <defs>
+    <marker id="si-arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 z" fill="black"/>
+    </marker>
+  </defs>
+
+  <!-- Air region -->
+  <rect x="15" y="5" width="240" height="90" fill="#d6eaf8"/>
+
+  <!-- Solid region -->
+  <rect x="15" y="95" width="240" height="173" fill="#d2d8cc"/>
+
+  <!-- Surface line -->
+  <line x1="15" y1="95" x2="255" y2="95" stroke="black" stroke-width="2"/>
+
+  <!-- Sun rays, center (200, 47), r_inner=24, r_outer=36 -->
+  <line x1="224" y1="47" x2="236" y2="47"   stroke="#e8a000" stroke-width="2"/>
+  <line x1="217" y1="30" x2="225" y2="22"   stroke="#e8a000" stroke-width="2"/>
+  <line x1="200" y1="23" x2="200" y2="11"   stroke="#e8a000" stroke-width="2"/>
+  <line x1="183" y1="30" x2="175" y2="22"   stroke="#e8a000" stroke-width="2"/>
+  <line x1="176" y1="47" x2="164" y2="47"   stroke="#e8a000" stroke-width="2"/>
+  <line x1="183" y1="64" x2="175" y2="72"   stroke="#e8a000" stroke-width="2"/>
+  <line x1="200" y1="71" x2="200" y2="83"   stroke="#e8a000" stroke-width="2"/>
+  <line x1="217" y1="64" x2="225" y2="72"   stroke="#e8a000" stroke-width="2"/>
+
+  <!-- Sun circle -->
+  <circle cx="200" cy="47" r="18" fill="#FFD700" stroke="#e8a000" stroke-width="1.5"/>
+
+  <!-- "air" label -->
+  <foreignObject x="20" y="18" width="50" height="22">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="font-size:13px; color:#555; font-style:italic">air</div>
+  </foreignObject>
+
+  <!-- T(0,t) = T_s label just above surface -->
+  <foreignObject x="20" y="75" width="155" height="22">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="font-size:13px">\(T(0,t) = T_s\)</div>
+  </foreignObject>
+
+  <!-- "solid" label -->
+  <foreignObject x="20" y="172" width="60" height="22">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="font-size:13px; color:#555; font-style:italic">solid</div>
+  </foreignObject>
+
+  <!-- x-axis at x=267: tick + downward arrow -->
+  <line x1="261" y1="95" x2="273" y2="95" stroke="black" stroke-width="1.5"/>
+  <line x1="267" y1="95" x2="267" y2="261" stroke="black" stroke-width="1.5" marker-end="url(#si-arr)"/>
+
+  <!-- x = 0 label, right-aligned just left of tick -->
+  <foreignObject x="200" y="82" width="58" height="22">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:right; font-size:13px">\(x = 0\)</div>
+  </foreignObject>
+
+  <!-- x label at arrow tip -->
+  <foreignObject x="271" y="255" width="20" height="22">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="font-size:14px">\(x\)</div>
+  </foreignObject>
+
+</svg>
+```
+
+and the question we might ask is: How far down does the surface heat penetrate? An important application: are we melting permafrost?
+
+The starting point for all these problems is the conduction equation, no heat generation:
+
+$$
+\frac{\partial T}{\partial t}=\alpha \frac{\partial^2 T}{\partial x^2}.
+$$
+
+For this geometry and this equation, there is a certain solution strategy that tends to work out well. I'll enclose that in the collapsed item here.
+
+::: {.callout-note collapse="true"}
+### Click here to see the details of the derivation.
+
+The idea is: as time progresses, the 
+
+
+
+
+
+**Solution idea:** Recognize that there will always be a location where $T = T^*$, and that location will move to larger values of $x$ with time. $\Rightarrow$ one variable that couples time and space variables.
+
+
+
+Try a "coupled" variable or a "similarity" variable:
+
+$$\eta = \frac{x}{2\sqrt{\alpha t}} \quad \longrightarrow \quad T(\eta)$$
+
+Note that $\eta(x,t)$ and if $\eta_1 = \eta_2$:
+
+$$\frac{x_1}{2\sqrt{\alpha t_1}} = \frac{x_2}{2\sqrt{\alpha t_2}} \quad \Rightarrow \quad x_2 = x_1 \cdot \frac{\sqrt{t_2}}{\sqrt{t_1}}$$
+
+$\therefore$ If $\theta = \theta^*$ at $(x_1, t_1)$, we expect $\theta = \theta^*$ at $(x_2, t_2)$, where $x_2 = x_1\sqrt{t_2/t_1} > x_1$ — i.e. the disturbance propagates.
+
+Let's use a $\theta$ (non-dim $T$) again:
+
+$$\theta \equiv \frac{T - T_s}{T_i - T_s} \quad \Rightarrow \quad T = T_s + (T_i - T_s)\theta$$
+
+Then $\frac{\partial T}{\partial t} = \alpha \frac{\partial^2 T}{\partial x^2}$ becomes:
+
+$$\frac{\partial \theta}{\partial t} = \alpha \frac{\partial^2 \theta}{\partial x^2}$$
+
+---
+
+## Chain Rule with $\eta$
+
+$$\frac{\partial\theta}{\partial x} = \frac{\partial\eta}{\partial x}\frac{d\theta}{d\eta} = \frac{1}{2\sqrt{\alpha t}}\frac{d\theta}{d\eta}$$
+
+$$\frac{\partial^2\theta}{\partial x^2} = \frac{\partial}{\partial x}\!\left(\frac{\partial\theta}{\partial x}\right) = \frac{1}{2\sqrt{\alpha t}}\frac{\partial\eta}{\partial x}\frac{d^2\theta}{d\eta^2} = \frac{1}{4\alpha t}\frac{d^2\theta}{d\eta^2}$$
+
+$$\frac{\partial\theta}{\partial t} = \frac{\partial\eta}{\partial t}\frac{d\theta}{d\eta} = \frac{-x}{4\sqrt{\alpha t}}\cdot\frac{1}{t}\cdot\frac{d\theta}{d\eta}$$
+
+Substituting into $\frac{\partial\theta}{\partial t} = \alpha\frac{\partial^2\theta}{\partial x^2}$:
+
+$$\frac{-x}{4\sqrt{\alpha t}\,t}\frac{d\theta}{d\eta} = \alpha\cdot\frac{1}{4\alpha t}\frac{d^2\theta}{d\eta^2}$$
+
+The $\frac{-x}{4\sqrt{\alpha t}\,t}$ factor equals $-\frac{1}{2}\eta$ (after simplification), giving:
+
+$$\boxed{-2\eta\frac{d\theta}{d\eta} = \frac{d^2\theta}{d\eta^2}}$$
+
+...an ODE! This is encouraging (1) because we have techniques for solving ODEs, and (2) because we have eliminated the explicit dependence on $x$ & $t$, suggesting the assumption of a coupled variable $\eta$ was a good one.
+
+---
+
+## Applying Boundary Conditions
+
+Must get BC to be for $\theta(\eta)$:
+
+$$\text{BC:} \quad T(0,t) = T_s \quad\to\quad \theta(0) = 0$$
+$$\quad T(\infty,t) = T_i \quad\to\quad \theta(\infty) = 1 \biggr\} \text{ same — good!}$$
+$$\quad T(x,0) = T_i \quad\to\quad \theta(\infty) = 1$$
+
+Two BC total, needed for second-order ODE.
+
+---
+
+## Solution
+
+Define $\frac{d\theta}{d\eta} = M(\eta)$, then:
+
+$$\frac{dM}{d\eta} = -2\eta M \quad \Rightarrow \quad \int\frac{dM}{M} = \int -2\eta\,d\eta$$
+
+$$\Rightarrow \quad \ln M = -\eta^2 + c_1 \quad \Rightarrow \quad M = d_1\exp(-\eta^2)$$
+
+i.e. $\frac{d\theta}{d\eta} = d_1\exp(-\eta^2)$ — has no nice antiderivative.
+
+$$\theta(\eta) = d_1\int_0^{\eta}\exp(-z^2)\,dz + d_2 \qquad (z \text{ is a dummy variable})$$
+
+**BC1:** $\theta(0) = 0 = d_1\int_0^0\cdots\,dz + d_2 \;\Rightarrow\; d_2 = 0$
+
+**BC2:** $\theta(\infty) = 1 = d_1\int_0^{\infty}\exp(-z^2)\,dz = d_1 \cdot \frac{\sqrt{\pi}}{2}$
+
+$$\Rightarrow \quad d_1 = \frac{2}{\sqrt{\pi}}$$
+
+$$\therefore \quad \boxed{\theta(\eta) = \frac{2}{\sqrt{\pi}}\int_0^{\eta}\exp(-z^2)\,dz}$$
+
+- The fact that we found this solution, which satisfies the governing equation and BCs, validates our similarity variable choice.
+- This function is common enough that it has a name, "the Error Function":
+
+$$\theta(\eta) = \text{erf}(\eta) \qquad \eta = \frac{x}{2\sqrt{\alpha t}}, \quad \theta = \frac{T - T_s}{T_i - T_s}$$
+
+---
+
+## The Error Function
+
+*Graph (top): $e^{-z^2}$ vs $z$ — a Gaussian / "Bell Curve" / "Normal Distribution" shape. Shaded area up to $\eta_1$ equals $\text{erf}(\eta_1) = \int_0^{\eta_1} e^{-z^2}\,dz$.*
+
+*Graph (bottom): $\text{erf}(\eta)$ vs $\eta$ — starts at 0, rises steeply, asymptotes to 1 by $\eta \approx 2$.*
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+:::
+
+We land on:
+
+
+
+### Case I: Known surface temperature $T_s$
+
+We'll use 
+
+$$\text{BC1:} \quad T(0,t) = T_s$$
+$$\text{BC2:} \quad T(\infty,t) = T_i$$
+$$\text{IC:} \quad T(x,0) = T_i$$
+
+
+
+### Case II: Known heat flux $q_0''$
+
+We'll use
+
+$$q_0'' = -k\frac{\partial T}{\partial x}\bigg|_0 \quad \text{or} \quad \frac{\partial T}{\partial x}\bigg|_0 = \frac{-q_0''}{k}$$
+
+The fact that $\frac{\partial T}{\partial x} \neq 0$ at $x=0$ means we have heat transfer at the surface.
+
+
+$$T(x,t) = T_i + \frac{2q_0''\sqrt{\alpha t/\pi}}{k}\exp\!\left(\frac{-x^2}{4\alpha t}\right) - \frac{q_0'' x}{k}\!\left(1 - \text{erf}\!\left(\frac{x}{2\sqrt{\alpha t}}\right)\right)$$
+
+**Beware:** Unphysical prediction at $x = 0$ (and elsewhere):
+
+$$T(0,t) = T_i + \frac{2q_0''\sqrt{\alpha t/\pi}}{k} \quad \Rightarrow \quad \text{grows without bound} \sim \sqrt{t}$$
+
+---
+
+### Case III: Convection $h$ at the surface
+
+BC becomes:
+
+$$-k\frac{\partial T}{\partial x}\bigg|_0 = h\bigl(T_\infty - T(0)\bigr)$$
+
+
+$$T(x,t) = T_i + (T_\infty - T_i)\!\left(1 - \text{erf}\!\left(\frac{x}{2\sqrt{\alpha t}}\right)\right)$$
+
+$$- (T_\infty - T_i)\exp\!\left(\frac{hx}{k} + \frac{h^2\alpha t}{k^2}\right)\!\left[1 - \text{erf}\!\left(\frac{x}{2\sqrt{\alpha t}} + \frac{h\sqrt{\alpha t}}{k}\right)\right]$$
+
+---
+
+### Case IV: Oscillatory Temperature at the Surface
+
+BC becomes:
+
+$$T(0,t) = T_i + \Delta T \sin\omega t$$
+
+
+$$T(x,t) = T_0 + \Delta T\exp\!\left(-x\sqrt{\frac{\omega}{2\alpha}}\right)\cdot\sin\!\left(\omega t - x\sqrt{\frac{\omega}{2\alpha}}\right)$$
+
+for $T_0 \equiv \frac{T_\text{max}+T_\text{min}}{2}$ and $\Delta T \equiv \frac{T_\text{max}-T_\text{min}}{2}$.
+
+
+#### Can we predict the depth that the sinusoid influences via dimensional analysis?
+
+$$\text{depth} \sim \omega^a \cdot \alpha^b \cdot \Delta T^c$$
+
+Matching dimensions (length, time, mass, temperature):
+
+$$c = 0, \quad b = \frac{1}{2}, \quad a = -\frac{1}{2}$$
+
+$$\therefore \quad \text{depth} \sim \sqrt{\frac{\alpha}{\omega}}$$
+
+
+
+## Interactive Example
+
+I created an interactive plot of these solutions to help you with your intuition, [find it at this link](demos/semi_infinite_demo.qmd).

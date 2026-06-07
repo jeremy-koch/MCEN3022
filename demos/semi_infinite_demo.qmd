@@ -1,0 +1,174 @@
+---
+title: "Semi-Infinite Solid — Interactive Demo"
+---
+
+A semi-infinite solid starts at uniform temperature $T_i$.
+At $t = 0$, the surface temperature is suddenly changed to $T_s$ and held there.
+The solution for this prescribed-surface-temperature case is
+
+$$
+T(x,t) = T_s + (T_i - T_s)\,\text{erf}\!\left(\frac{x}{2\sqrt{\alpha t}}\right)
+$$
+
+where $\alpha$ is the thermal diffusivity.
+Each curve below is a snapshot at a different time — watch the warming (or cooling) front march deeper into the solid.
+
+---
+
+## Interactive demo {#sec-demo}
+
+```{ojs}
+//| echo: false
+
+viewof T_s = Inputs.range([-30, 40], {
+  value: 15,
+  step: 1,
+  label: "Surface temperature Tₛ (°C)"
+})
+
+viewof T_i = Inputs.range([-20, 20], {
+  value: -5,
+  step: 1,
+  label: "Initial temperature Tᵢ (°C)"
+})
+
+viewof alpha_exp = Inputs.range([-7.5, -5.7], {
+  value: -6.3,
+  step: 0.05,
+  label: "log₁₀(α)  [α in m²/s]"
+})
+```
+
+```{ojs}
+//| echo: false
+
+alpha = Math.pow(10, alpha_exp)
+
+html`<p style="font-size:0.95em; margin:0.2em 0 0.8em 0;">
+  <strong>Tₛ = ${T_s} °C</strong> &nbsp;|&nbsp;
+  <strong>Tᵢ = ${T_i} °C</strong> &nbsp;|&nbsp;
+  <strong>α = ${(alpha * 1e6).toFixed(3)} × 10⁻⁶ m²/s</strong>
+</p>`
+```
+
+```{ojs}
+//| echo: false
+
+// ── Error function (Abramowitz & Stegun 7.1.26, max error ~1.5 × 10⁻⁷) ───────
+function erf(x) {
+  if (x < 0) return -erf(-x);
+  const t = 1.0 / (1.0 + 0.3275911 * x);
+  const p = t * (0.254829592 + t * (-0.284496736 + t * (1.421413741
+          + t * (-1.453152027 + t * 1.061405429))));
+  return 1.0 - p * Math.exp(-x * x);
+}
+
+// ── Depth array ────────────────────────────────────────────────────────────────
+// x_max: four "penetration depths" at t = 1 year, clamped to [2, 30] m
+x_max  = Math.min(30, Math.max(2, 4 * Math.sqrt(alpha * 365 * 86400)));
+N_PTS  = 300;
+x_arr  = Array.from({length: N_PTS}, (_, i) => i / (N_PTS - 1) * x_max);
+
+// ── Time snapshots ─────────────────────────────────────────────────────────────
+times_days  = [7, 30, 90, 180, 365];
+times_s     = times_days.map(d => d * 86400);
+time_labels = ["7 days", "30 days", "90 days", "180 days", "1 year"];
+
+// ── Row data for Observable Plot ───────────────────────────────────────────────
+rows = times_s.flatMap((t_s, j) =>
+  x_arr.map(x => ({
+    x,
+    T: T_s + (T_i - T_s) * erf(x / (2 * Math.sqrt(alpha * t_s))),
+    time: time_labels[j]
+  }))
+);
+```
+
+```{ojs}
+//| echo: false
+
+Plot.plot({
+  width: 660,
+  height: 400,
+  marginLeft: 65,
+  marginBottom: 50,
+  style: { fontFamily: "Georgia, serif", fontSize: "13px" },
+  x: { label: "Depth x (m)  →", domain: [0, x_max] },
+  y: { label: "↑  Temperature T (°C)" },
+  color: {
+    domain: time_labels,
+    range:  ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd"],
+    legend: true
+  },
+  marks: [
+    Plot.gridX({stroke: "#ddd"}),
+    Plot.gridY({stroke: "#ddd"}),
+    Plot.ruleY([0], {stroke: "#888", strokeDasharray: "5,4", strokeWidth: 1.2}),
+    Plot.line(rows, {x: "x", y: "T", stroke: "time", strokeWidth: 2.5}),
+  ]
+})
+```
+
+---
+
+## What to look for {#sec-observations}
+
+**Observation 1 — Penetration depth scales as $\sqrt{\alpha t}$.**
+All five snapshots are the same erf curve, just scaled horizontally.
+Double $\alpha$ (or quadruple the time) and every curve stretches by $\sqrt{2}$ in depth.
+This is exactly why the similarity variable $\eta = x/(2\sqrt{\alpha t})$ works: it collapses
+all times and all materials onto one universal curve.
+
+**Observation 2 — The surface and the deep interior are non-negotiable.**
+No matter what, $T(0,t) = T_s$ (boundary condition) and $T(\infty,t) = T_i$ (undisturbed interior).
+The sliders change *where* and *how fast* the transition zone moves, but not those two anchors.
+
+**Observation 3 — The freezing front for permafrost.**
+Set $T_i < 0$ and $T_s > 0$ (the defaults do this).
+The dashed horizontal line at $T = 0\,^\circ\text{C}$ marks the boundary between frozen and thawed ground.
+The point where each curve crosses that line is the thaw depth at that time — watch it
+advance with each successive snapshot.
+
+---
+
+## Worked example {#sec-worked}
+
+**Example.** A frozen soil layer ($\alpha = 5 \times 10^{-7}\ \text{m}^2/\text{s}$, $T_i = -5\,^\circ\text{C}$)
+has its surface suddenly raised to $T_s = 15\,^\circ\text{C}$ at the start of the warm season.
+How deep does the 0°C thaw front reach after 90 days?
+
+```{ojs}
+//| echo: false
+
+// ── Problem parameters ────────────────────────────────────────────────────────
+ex_alpha = 5e-7;   ex_Ti = -5.0;   ex_Ts = 15.0;   ex_t = 90 * 86400;
+
+// ── Inverse erf via binary search ─────────────────────────────────────────────
+function erfinv(y) {
+  if (y >=  1) return  Infinity;
+  if (y <= -1) return -Infinity;
+  if (y <   0) return -erfinv(-y);
+  let lo = 0, hi = 6;
+  for (let i = 0; i < 60; i++) {
+    const mid = (lo + hi) / 2;
+    (erf(mid) < y) ? (lo = mid) : (hi = mid);
+  }
+  return (lo + hi) / 2;
+}
+
+// T = 0 when erf(η) = −Tₛ / (Tᵢ − Tₛ)
+ex_target = -ex_Ts / (ex_Ti - ex_Ts);          // 0.75
+ex_eta    = erfinv(ex_target);                  // ≈ 0.813
+ex_x_thaw = 2 * Math.sqrt(ex_alpha * ex_t) * ex_eta;
+
+html`
+<p><strong>Target:</strong> erf(η) = −Tₛ/(Tᵢ − Tₛ) = −${ex_Ts}/(${ex_Ti} − ${ex_Ts}) = ${ex_target.toFixed(4)}</p>
+<p><strong>η = erf⁻¹(${ex_target.toFixed(4)}) ≈ ${ex_eta.toFixed(4)}</strong></p>
+<p><strong>Thaw depth = 2√(αt) · η = 2 × √(${ex_alpha.toExponential(0)} × ${ex_t.toExponential(2)}) × ${ex_eta.toFixed(3)}
+  ≈ <span style="color:#c0392b">${ex_x_thaw.toFixed(2)} m</span></strong></p>
+<p style="font-size:0.9em; color:#555">
+  After three months the 0°C isotherm has reached about ${ex_x_thaw.toFixed(1)} m depth —
+  consistent with what you should see in the "90 days" curve in the demo above
+  when the sliders are set to Tₛ = 15°C, Tᵢ = −5°C, α = 0.5 × 10⁻⁶ m²/s.
+</p>`
+```
