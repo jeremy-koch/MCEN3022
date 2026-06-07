@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; Semi-Infinite Solid — Interactive Demo – MCEN3022: Heat Transfer</title>
+<title>“Semi-Infinite Solid — Interactive Demo” – MCEN3022: Heat Transfer</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -152,7 +152,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../demos/wall_demo.html">Demos</a></li><li class="breadcrumb-item"><a href="../demos/semi_infinite_demo.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Semi-Infinite Solid — Interactive Demo</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../demos/wall_demo.html">Demos</a></li><li class="breadcrumb-item"><a href="../demos/semi_infinite_demo.html">“Semi-Infinite Solid — Interactive Demo”</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -288,13 +288,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../demos/sphere_demo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Sphere Temperature Profile — Interactive Demo</span></span></a>
+ <span class="menu-text">Sphere Temperature Profile — Interactive Demo</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../demos/semi_infinite_demo.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Semi-Infinite Solid — Interactive Demo</span></span></a>
+ <span class="menu-text">“Semi-Infinite Solid — Interactive Demo”</span></a>
   </div>
 </li>
       </ul>
@@ -309,18 +309,23 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-demo" id="toc-sec-demo" class="nav-link active" data-scroll-target="#sec-demo"><span class="header-section-number">5.1</span> Interactive demo</a></li>
-  <li><a href="#sec-observations" id="toc-sec-observations" class="nav-link" data-scroll-target="#sec-observations"><span class="header-section-number">5.2</span> What to look for</a></li>
-  <li><a href="#sec-worked" id="toc-sec-worked" class="nav-link" data-scroll-target="#sec-worked"><span class="header-section-number">5.3</span> Worked example</a></li>
+  <li><a href="#sec-params" id="toc-sec-params" class="nav-link active" data-scroll-target="#sec-params">Parameters</a>
+  <ul class="collapse">
+  <li><a href="#shared" id="toc-shared" class="nav-link" data-scroll-target="#shared">Shared</a></li>
+  <li><a href="#case-specific-boundary-conditions" id="toc-case-specific-boundary-conditions" class="nav-link" data-scroll-target="#case-specific-boundary-conditions">Case-specific boundary conditions</a></li>
+  </ul></li>
+  <li><a href="#sec-plots" id="toc-sec-plots" class="nav-link" data-scroll-target="#sec-plots">Temperature profiles</a></li>
+  <li><a href="#sec-observations" id="toc-sec-observations" class="nav-link" data-scroll-target="#sec-observations">What to look for</a></li>
+  <li><a href="#sec-worked" id="toc-sec-worked" class="nav-link" data-scroll-target="#sec-worked">Worked example — Case I thaw depth</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../demos/wall_demo.html">Demos</a></li><li class="breadcrumb-item"><a href="../demos/semi_infinite_demo.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Semi-Infinite Solid — Interactive Demo</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../demos/wall_demo.html">Demos</a></li><li class="breadcrumb-item"><a href="../demos/semi_infinite_demo.html">“Semi-Infinite Solid — Interactive Demo”</a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Semi-Infinite Solid — Interactive Demo</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title">“Semi-Infinite Solid — Interactive Demo”</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
 </div>
 
 
@@ -337,34 +342,60 @@ window.Quarto = {
 </header>
 
 
-<p>A semi-infinite solid starts at uniform temperature <span class="math inline">\(T_i\)</span>. At <span class="math inline">\(t = 0\)</span>, the surface temperature is suddenly changed to <span class="math inline">\(T_s\)</span> and held there. The solution for this prescribed-surface-temperature case is</p>
-<p><span class="math display">\[
-T(x,t) = T_s + (T_i - T_s)\,\text{erf}\!\left(\frac{x}{2\sqrt{\alpha t}}\right)
-\]</span></p>
-<p>where <span class="math inline">\(\alpha\)</span> is the thermal diffusivity. Each curve below is a snapshot at a different time — watch the warming (or cooling) front march deeper into the solid.</p>
+<p>A semi-infinite solid (<span class="math inline">\(x \ge 0\)</span>) starts at uniform temperature <span class="math inline">\(T_i\)</span>. At <span class="math inline">\(t = 0\)</span>, something happens at the surface — the three cases differ only in <em>what</em> that something is. Each plot below shows temperature profiles at five time snapshots.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 34%">
+<col style="width: 46%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Case</th>
+<th>Surface BC</th>
+<th>Key parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>I</td>
+<td><span class="math inline">\(T(0,t) = T_s\)</span></td>
+<td>prescribed temperature</td>
+</tr>
+<tr class="even">
+<td>II</td>
+<td><span class="math inline">\(-k\,\partial T/\partial x\big|_0 = q_0''\)</span></td>
+<td>prescribed heat flux</td>
+</tr>
+<tr class="odd">
+<td>III</td>
+<td><span class="math inline">\(-k\,\partial T/\partial x\big|_0 = h(T_\infty - T(0))\)</span></td>
+<td>convection</td>
+</tr>
+</tbody>
+</table>
 <hr>
-<section id="sec-demo" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="sec-demo"><span class="header-section-number">5.1</span> Interactive demo</h2>
+<section id="sec-params" class="level2">
+<h2 class="anchored" data-anchor-id="sec-params">Parameters</h2>
+<section id="shared" class="level3">
+<h3 class="anchored" data-anchor-id="shared">Shared</h3>
 <div class="cell">
 <details class="code-fold hidden">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="23" data-source-offset="-1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 22;"><span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>viewof T_s <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="op">-</span><span class="dv">30</span><span class="op">,</span> <span class="dv">40</span>]<span class="op">,</span> {</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="dv">15</span><span class="op">,</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Surface temperature Tₛ (°C)"</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>viewof T_i <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="op">-</span><span class="dv">20</span><span class="op">,</span> <span class="dv">20</span>]<span class="op">,</span> {</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="op">-</span><span class="dv">5</span><span class="op">,</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Initial temperature Tᵢ (°C)"</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>viewof alpha_exp <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="op">-</span><span class="fl">7.5</span><span class="op">,</span> <span class="op">-</span><span class="fl">5.7</span>]<span class="op">,</span> {</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="op">-</span><span class="fl">6.3</span><span class="op">,</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  <span class="dt">step</span><span class="op">:</span> <span class="fl">0.05</span><span class="op">,</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"log₁₀(α)  [α in m²/s]"</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="22" data-source-offset="-1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 21;"><span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>viewof T_i <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="op">-</span><span class="dv">20</span><span class="op">,</span> <span class="dv">20</span>]<span class="op">,</span> {</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="op">-</span><span class="dv">5</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Initial temperature Tᵢ (°C)"</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>viewof alpha_exp <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="op">-</span><span class="fl">7.5</span><span class="op">,</span> <span class="op">-</span><span class="fl">5.7</span>]<span class="op">,</span> {</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="op">-</span><span class="fl">6.3</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.05</span><span class="op">,</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"log₁₀(α)  [α in m²/s]"</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>viewof k <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.1</span><span class="op">,</span> <span class="fl">5.0</span>]<span class="op">,</span> {</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="fl">1.0</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Thermal conductivity k (W/m·K)"</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -388,16 +419,31 @@ T(x,t) = T_s + (T_i - T_s)\,\text{erf}\!\left(\frac{x}{2\sqrt{\alpha t}}\right)
 </div>
 </div>
 </div>
+</section>
+<section id="case-specific-boundary-conditions" class="level3">
+<h3 class="anchored" data-anchor-id="case-specific-boundary-conditions">Case-specific boundary conditions</h3>
 <div class="cell">
 <details class="code-fold hidden">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="45" data-source-offset="-1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 44;"><span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">pow</span>(<span class="dv">10</span><span class="op">,</span> alpha_exp)</span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;p style="font-size:0.95em; margin:0.2em 0 0.8em 0;"&gt;</span></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;strong&gt;Tₛ = </span><span class="sc">${</span>T_s<span class="sc">}</span><span class="vs"> °C&lt;/strong&gt; &amp;nbsp;|&amp;nbsp;</span></span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;strong&gt;Tᵢ = </span><span class="sc">${</span>T_i<span class="sc">}</span><span class="vs"> °C&lt;/strong&gt; &amp;nbsp;|&amp;nbsp;</span></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;strong&gt;α = </span><span class="sc">${</span>(alpha <span class="op">*</span> <span class="fl">1e6</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> × 10⁻⁶ m²/s&lt;/strong&gt;</span></span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/p&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="43" data-source-offset="-1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 42;"><span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>viewof T_s <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="op">-</span><span class="dv">30</span><span class="op">,</span> <span class="dv">40</span>]<span class="op">,</span> {</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="dv">15</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Case I — surface temperature Tₛ (°C)"</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>viewof q0 <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">1000</span>]<span class="op">,</span> {</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="dv">300</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Case II — surface heat flux q₀″ (W/m²)"</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>viewof h_conv <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">1</span><span class="op">,</span> <span class="dv">100</span>]<span class="op">,</span> {</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="dv">25</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Case III — convection coefficient h (W/m²·K)"</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>viewof T_inf <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="op">-</span><span class="dv">30</span><span class="op">,</span> <span class="dv">40</span>]<span class="op">,</span> {</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="dv">20</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Case III — fluid temperature T∞ (°C)"</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -408,7 +454,21 @@ T(x,t) = T_s + (T_i - T_s)\,\text{erf}\!\left(\frac{x}{2\sqrt{\alpha t}}\right)
 </div>
 <div class="cell-output cell-output-display">
 <div>
-<div id="ojs-cell-2-2" data-nodetype="expression">
+<div id="ojs-cell-2-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-4" data-nodetype="declaration">
 
 </div>
 </div>
@@ -417,33 +477,13 @@ T(x,t) = T_s + (T_i - T_s)\,\text{erf}\!\left(\frac{x}{2\sqrt{\alpha t}}\right)
 <div class="cell">
 <details class="code-fold hidden">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="58" data-source-offset="-82"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 57;"><span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">erf</span>(x) {</span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (x <span class="op">&lt;</span> <span class="dv">0</span>) <span class="cf">return</span> <span class="op">-</span><span class="fu">erf</span>(<span class="op">-</span>x)<span class="op">;</span></span>
-<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> t <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> (<span class="fl">1.0</span> <span class="op">+</span> <span class="fl">0.3275911</span> <span class="op">*</span> x)<span class="op">;</span></span>
-<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> p <span class="op">=</span> t <span class="op">*</span> (<span class="fl">0.254829592</span> <span class="op">+</span> t <span class="op">*</span> (<span class="op">-</span><span class="fl">0.284496736</span> <span class="op">+</span> t <span class="op">*</span> (<span class="fl">1.421413741</span></span>
-<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>          <span class="op">+</span> t <span class="op">*</span> (<span class="op">-</span><span class="fl">1.453152027</span> <span class="op">+</span> t <span class="op">*</span> <span class="fl">1.061405429</span>))))<span class="op">;</span></span>
-<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fl">1.0</span> <span class="op">-</span> p <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span>x <span class="op">*</span> x)<span class="op">;</span></span>
-<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a><span class="co">// ── Depth array ────────────────────────────────────────────────────────────────</span></span>
-<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a><span class="co">// x_max: four "penetration depths" at t = 1 year, clamped to [2, 30] m</span></span>
-<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>x_max  <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(<span class="dv">30</span><span class="op">,</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="dv">2</span><span class="op">,</span> <span class="dv">4</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(alpha <span class="op">*</span> <span class="dv">365</span> <span class="op">*</span> <span class="dv">86400</span>)))<span class="op">;</span></span>
-<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>N_PTS  <span class="op">=</span> <span class="dv">300</span><span class="op">;</span></span>
-<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>x_arr  <span class="op">=</span> <span class="bu">Array</span><span class="op">.</span><span class="fu">from</span>({<span class="dt">length</span><span class="op">:</span> N_PTS}<span class="op">,</span> (_<span class="op">,</span> i) <span class="kw">=&gt;</span> i <span class="op">/</span> (N_PTS <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> x_max)<span class="op">;</span></span>
-<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a><span class="co">// ── Time snapshots ─────────────────────────────────────────────────────────────</span></span>
-<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>times_days  <span class="op">=</span> [<span class="dv">7</span><span class="op">,</span> <span class="dv">30</span><span class="op">,</span> <span class="dv">90</span><span class="op">,</span> <span class="dv">180</span><span class="op">,</span> <span class="dv">365</span>]<span class="op">;</span></span>
-<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>times_s     <span class="op">=</span> times_days<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d <span class="op">*</span> <span class="dv">86400</span>)<span class="op">;</span></span>
-<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>time_labels <span class="op">=</span> [<span class="st">"7 days"</span><span class="op">,</span> <span class="st">"30 days"</span><span class="op">,</span> <span class="st">"90 days"</span><span class="op">,</span> <span class="st">"180 days"</span><span class="op">,</span> <span class="st">"1 year"</span>]<span class="op">;</span></span>
-<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a><span class="co">// ── Row data for Observable Plot ───────────────────────────────────────────────</span></span>
-<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> times_s<span class="op">.</span><span class="fu">flatMap</span>((t_s<span class="op">,</span> j) <span class="kw">=&gt;</span></span>
-<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>  x_arr<span class="op">.</span><span class="fu">map</span>(x <span class="kw">=&gt;</span> ({</span>
-<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>    x<span class="op">,</span></span>
-<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>    <span class="dt">T</span><span class="op">:</span> T_s <span class="op">+</span> (T_i <span class="op">-</span> T_s) <span class="op">*</span> <span class="fu">erf</span>(x <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(alpha <span class="op">*</span> t_s)))<span class="op">,</span></span>
-<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>    <span class="dt">time</span><span class="op">:</span> time_labels[j]</span>
-<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>  }))</span>
-<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="67" data-source-offset="-1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 66;"><span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">pow</span>(<span class="dv">10</span><span class="op">,</span> alpha_exp)</span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;p style="font-size:0.9em; margin:0.2em 0 0.8em 0; color:#444"&gt;</span></span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a><span class="vs">  α = </span><span class="sc">${</span>(alpha <span class="op">*</span> <span class="fl">1e6</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> × 10⁻⁶ m²/s &amp;nbsp;|&amp;nbsp;</span></span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a><span class="vs">  k = </span><span class="sc">${</span>k<span class="sc">}</span><span class="vs"> W/m·K &amp;nbsp;|&amp;nbsp;</span></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a><span class="vs">  Tᵢ = </span><span class="sc">${</span>T_i<span class="sc">}</span><span class="vs"> °C</span></span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/p&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -454,129 +494,258 @@ T(x,t) = T_s + (T_i - T_s)\,\text{erf}\!\left(\frac{x}{2\sqrt{\alpha t}}\right)
 </div>
 <div class="cell-output cell-output-display">
 <div>
-<div id="ojs-cell-3-2" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-3-3" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-3-4" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-3-5" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-3-6" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-3-7" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-3-8" data-nodetype="declaration">
+<div id="ojs-cell-3-2" data-nodetype="expression">
 
 </div>
 </div>
 </div>
 </div>
+<hr>
+</section>
+</section>
+<section id="sec-plots" class="level2">
+<h2 class="anchored" data-anchor-id="sec-plots">Temperature profiles</h2>
 <div class="cell">
 <details class="code-fold hidden">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="88" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 87;"><span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
-<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="dv">660</span><span class="op">,</span></span>
-<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">400</span><span class="op">,</span></span>
-<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">65</span><span class="op">,</span></span>
-<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginBottom</span><span class="op">:</span> <span class="dv">50</span><span class="op">,</span></span>
-<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> { <span class="dt">fontFamily</span><span class="op">:</span> <span class="st">"Georgia, serif"</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="st">"13px"</span> }<span class="op">,</span></span>
-<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> { <span class="dt">label</span><span class="op">:</span> <span class="st">"Depth x (m)  →"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> x_max] }<span class="op">,</span></span>
-<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> { <span class="dt">label</span><span class="op">:</span> <span class="st">"↑  Temperature T (°C)"</span> }<span class="op">,</span></span>
-<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
-<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a>    <span class="dt">domain</span><span class="op">:</span> time_labels<span class="op">,</span></span>
-<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a>    <span class="dt">range</span><span class="op">:</span>  [<span class="st">"#1f77b4"</span><span class="op">,</span> <span class="st">"#ff7f0e"</span><span class="op">,</span> <span class="st">"#2ca02c"</span><span class="op">,</span> <span class="st">"#d62728"</span><span class="op">,</span> <span class="st">"#9467bd"</span>]<span class="op">,</span></span>
-<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a>    <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
-<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
-<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">gridX</span>({<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#ddd"</span>})<span class="op">,</span></span>
-<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">gridY</span>({<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#ddd"</span>})<span class="op">,</span></span>
-<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#888"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"5,4"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.2</span>})<span class="op">,</span></span>
-<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(rows<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"T"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"time"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">2.5</span>})<span class="op">,</span></span>
-<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a>  ]</span>
-<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="86" data-source-offset="-145"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 85;"><span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">erf</span>(x) {</span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (x <span class="op">&lt;</span> <span class="dv">0</span>) <span class="cf">return</span> <span class="op">-</span><span class="fu">erf</span>(<span class="op">-</span>x)<span class="op">;</span></span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> t <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> (<span class="fl">1.0</span> <span class="op">+</span> <span class="fl">0.3275911</span> <span class="op">*</span> x)<span class="op">;</span></span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> p <span class="op">=</span> t <span class="op">*</span> (<span class="fl">0.254829592</span> <span class="op">+</span> t <span class="op">*</span> (<span class="op">-</span><span class="fl">0.284496736</span> <span class="op">+</span> t <span class="op">*</span> (<span class="fl">1.421413741</span></span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a>          <span class="op">+</span> t <span class="op">*</span> (<span class="op">-</span><span class="fl">1.453152027</span> <span class="op">+</span> t <span class="op">*</span> <span class="fl">1.061405429</span>))))<span class="op">;</span></span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fl">1.0</span> <span class="op">-</span> p <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span>x <span class="op">*</span> x)<span class="op">;</span></span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a><span class="co">// erfc(x) = 1 − erf(x)</span></span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">erfc</span>(x) { <span class="cf">return</span> <span class="dv">1</span> <span class="op">-</span> <span class="fu">erf</span>(x)<span class="op">;</span> }</span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a><span class="co">// erfcx(u) = exp(u²) · erfc(u)  — numerically stable for all u ≥ 0</span></span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a><span class="co">// Uses direct computation for u &lt; 5, asymptotic expansion for u ≥ 5.</span></span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">erfcx</span>(u) {</span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (u <span class="op">&lt;</span> <span class="dv">0</span>) <span class="cf">return</span> <span class="dv">2</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(u <span class="op">*</span> u) <span class="op">-</span> <span class="fu">erfcx</span>(<span class="op">-</span>u)<span class="op">;</span></span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (u <span class="op">&lt;</span> <span class="dv">5</span>) <span class="cf">return</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(u <span class="op">*</span> u) <span class="op">*</span> <span class="fu">erfc</span>(u)<span class="op">;</span></span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Asymptotic: erfcx(u) ~ (1/√π)/u · [1 − 1/(2u²) + 3/(4u⁴) − 15/(8u⁶) + ...]</span></span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> t <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> (u <span class="op">*</span> u)<span class="op">;</span></span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> (<span class="dv">1</span> <span class="op">/</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span>)) <span class="op">/</span> u</span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a>       <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> t <span class="op">*</span> <span class="fl">0.5</span> <span class="op">+</span> t <span class="op">*</span> t <span class="op">*</span> <span class="fl">0.75</span> <span class="op">-</span> t <span class="op">*</span> t <span class="op">*</span> t <span class="op">*</span> <span class="fl">1.875</span> <span class="op">+</span> t <span class="op">*</span> t <span class="op">*</span> t <span class="op">*</span> t <span class="op">*</span> <span class="fl">6.5625</span>)<span class="op">;</span></span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a><span class="co">// ── Depth array ────────────────────────────────────────────────────────────────</span></span>
+<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a>x_max <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(<span class="dv">30</span><span class="op">,</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="dv">2</span><span class="op">,</span> <span class="dv">4</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(alpha <span class="op">*</span> <span class="dv">365</span> <span class="op">*</span> <span class="dv">86400</span>)))<span class="op">;</span></span>
+<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a>N_PTS <span class="op">=</span> <span class="dv">300</span><span class="op">;</span></span>
+<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a>x_arr <span class="op">=</span> <span class="bu">Array</span><span class="op">.</span><span class="fu">from</span>({<span class="dt">length</span><span class="op">:</span> N_PTS}<span class="op">,</span> (_<span class="op">,</span> i) <span class="kw">=&gt;</span> i <span class="op">/</span> (N_PTS <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> x_max)<span class="op">;</span></span>
+<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a><span class="co">// ── Time snapshots ─────────────────────────────────────────────────────────────</span></span>
+<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a>times_days  <span class="op">=</span> [<span class="dv">7</span><span class="op">,</span> <span class="dv">30</span><span class="op">,</span> <span class="dv">90</span><span class="op">,</span> <span class="dv">180</span><span class="op">,</span> <span class="dv">365</span>]<span class="op">;</span></span>
+<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a>times_s     <span class="op">=</span> times_days<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d <span class="op">*</span> <span class="dv">86400</span>)<span class="op">;</span></span>
+<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a>time_labels <span class="op">=</span> [<span class="st">"7 days"</span><span class="op">,</span> <span class="st">"30 days"</span><span class="op">,</span> <span class="st">"90 days"</span><span class="op">,</span> <span class="st">"180 days"</span><span class="op">,</span> <span class="st">"1 year"</span>]<span class="op">;</span></span>
+<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a>time_colors <span class="op">=</span> [<span class="st">"#1f77b4"</span><span class="op">,</span> <span class="st">"#ff7f0e"</span><span class="op">,</span> <span class="st">"#2ca02c"</span><span class="op">,</span> <span class="st">"#d62728"</span><span class="op">,</span> <span class="st">"#9467bd"</span>]<span class="op">;</span></span>
+<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a><span class="co">// ── Solution formulas ──────────────────────────────────────────────────────────</span></span>
+<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">T_caseI</span>(x<span class="op">,</span> t_s) {</span>
+<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> eta <span class="op">=</span> x <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(alpha <span class="op">*</span> t_s))<span class="op">;</span></span>
+<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> T_s <span class="op">+</span> (T_i <span class="op">-</span> T_s) <span class="op">*</span> <span class="fu">erf</span>(eta)<span class="op">;</span></span>
+<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">T_caseII</span>(x<span class="op">,</span> t_s) {</span>
+<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> eta <span class="op">=</span> x <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(alpha <span class="op">*</span> t_s))<span class="op">;</span></span>
+<span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> T_i</span>
+<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> (<span class="dv">2</span> <span class="op">*</span> q0 <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(alpha <span class="op">*</span> t_s <span class="op">/</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span>) <span class="op">/</span> k) <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span>eta <span class="op">*</span> eta)</span>
+<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span> (q0 <span class="op">*</span> x <span class="op">/</span> k) <span class="op">*</span> <span class="fu">erfc</span>(eta)<span class="op">;</span></span>
+<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a><span class="co">// Numerically stable Case III using erfcx:</span></span>
+<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a><span class="co">// T = Tᵢ + (T∞ − Tᵢ) · [erfc(η) − exp(−η²) · erfcx(η + β)]</span></span>
+<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a><span class="co">// where β = h√(αt)/k</span></span>
+<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">T_caseIII</span>(x<span class="op">,</span> t_s) {</span>
+<span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> eta  <span class="op">=</span> x <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(alpha <span class="op">*</span> t_s))<span class="op">;</span></span>
+<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> beta <span class="op">=</span> h_conv <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(alpha <span class="op">*</span> t_s) <span class="op">/</span> k<span class="op">;</span></span>
+<span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> T_i <span class="op">+</span> (T_inf <span class="op">-</span> T_i)</span>
+<span id="cb4-140"><a href="#cb4-140" aria-hidden="true" tabindex="-1"></a>    <span class="op">*</span> (<span class="fu">erfc</span>(eta) <span class="op">-</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span>eta <span class="op">*</span> eta) <span class="op">*</span> <span class="fu">erfcx</span>(eta <span class="op">+</span> beta))<span class="op">;</span></span>
+<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-143"><a href="#cb4-143" aria-hidden="true" tabindex="-1"></a><span class="co">// ── Row builder ────────────────────────────────────────────────────────────────</span></span>
+<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">makeRows</span>(T_fn) {</span>
+<span id="cb4-145"><a href="#cb4-145" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> times_s<span class="op">.</span><span class="fu">flatMap</span>((t_s<span class="op">,</span> j) <span class="kw">=&gt;</span></span>
+<span id="cb4-146"><a href="#cb4-146" aria-hidden="true" tabindex="-1"></a>    x_arr<span class="op">.</span><span class="fu">map</span>(x <span class="kw">=&gt;</span> ({ x<span class="op">,</span> <span class="dt">T</span><span class="op">:</span> <span class="fu">T_fn</span>(x<span class="op">,</span> t_s)<span class="op">,</span> <span class="dt">time</span><span class="op">:</span> time_labels[j] }))</span>
+<span id="cb4-147"><a href="#cb4-147" aria-hidden="true" tabindex="-1"></a>  )<span class="op">;</span></span>
+<span id="cb4-148"><a href="#cb4-148" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-149"><a href="#cb4-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-150"><a href="#cb4-150" aria-hidden="true" tabindex="-1"></a>rows_I   <span class="op">=</span> <span class="fu">makeRows</span>(T_caseI)<span class="op">;</span></span>
+<span id="cb4-151"><a href="#cb4-151" aria-hidden="true" tabindex="-1"></a>rows_II  <span class="op">=</span> <span class="fu">makeRows</span>(T_caseII)<span class="op">;</span></span>
+<span id="cb4-152"><a href="#cb4-152" aria-hidden="true" tabindex="-1"></a>rows_III <span class="op">=</span> <span class="fu">makeRows</span>(T_caseIII)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="ojs-cell-4" data-nodetype="expression">
+<div>
+<div id="ojs-cell-4-1" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<hr>
-</section>
-<section id="sec-observations" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="sec-observations"><span class="header-section-number">5.2</span> What to look for</h2>
-<p><strong>Observation 1 — Penetration depth scales as <span class="math inline">\(\sqrt{\alpha t}\)</span>.</strong> All five snapshots are the same erf curve, just scaled horizontally. Double <span class="math inline">\(\alpha\)</span> (or quadruple the time) and every curve stretches by <span class="math inline">\(\sqrt{2}\)</span> in depth. This is exactly why the similarity variable <span class="math inline">\(\eta = x/(2\sqrt{\alpha t})\)</span> works: it collapses all times and all materials onto one universal curve.</p>
-<p><strong>Observation 2 — The surface and the deep interior are non-negotiable.</strong> No matter what, <span class="math inline">\(T(0,t) = T_s\)</span> (boundary condition) and <span class="math inline">\(T(\infty,t) = T_i\)</span> (undisturbed interior). The sliders change <em>where</em> and <em>how fast</em> the transition zone moves, but not those two anchors.</p>
-<p><strong>Observation 3 — The freezing front for permafrost.</strong> Set <span class="math inline">\(T_i &lt; 0\)</span> and <span class="math inline">\(T_s &gt; 0\)</span> (the defaults do this). The dashed horizontal line at <span class="math inline">\(T = 0\,^\circ\text{C}\)</span> marks the boundary between frozen and thawed ground. The point where each curve crosses that line is the thaw depth at that time — watch it advance with each successive snapshot.</p>
-<hr>
-</section>
-<section id="sec-worked" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="sec-worked"><span class="header-section-number">5.3</span> Worked example</h2>
-<p><strong>Example.</strong> A frozen soil layer (<span class="math inline">\(\alpha = 5 \times 10^{-7}\ \text{m}^2/\text{s}\)</span>, <span class="math inline">\(T_i = -5\,^\circ\text{C}\)</span>) has its surface suddenly raised to <span class="math inline">\(T_s = 15\,^\circ\text{C}\)</span> at the start of the warm season. How deep does the 0°C thaw front reach after 90 days?</p>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-7" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-8" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-9" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-10" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-11" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-12" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-13" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-14" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-15" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-16" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-17" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
 <div class="cell">
 <details class="code-fold hidden">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb5" data-startfrom="144" data-source-offset="-83"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 143;"><span id="cb5-144"><a href="#cb5-144" aria-hidden="true" tabindex="-1"></a>ex_alpha <span class="op">=</span> <span class="fl">5e-7</span><span class="op">;</span>   ex_Ti <span class="op">=</span> <span class="op">-</span><span class="fl">5.0</span><span class="op">;</span>   ex_Ts <span class="op">=</span> <span class="fl">15.0</span><span class="op">;</span>   ex_t <span class="op">=</span> <span class="dv">90</span> <span class="op">*</span> <span class="dv">86400</span><span class="op">;</span></span>
-<span id="cb5-145"><a href="#cb5-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-146"><a href="#cb5-146" aria-hidden="true" tabindex="-1"></a><span class="co">// ── Inverse erf via binary search ─────────────────────────────────────────────</span></span>
-<span id="cb5-147"><a href="#cb5-147" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">erfinv</span>(y) {</span>
-<span id="cb5-148"><a href="#cb5-148" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (y <span class="op">&gt;=</span>  <span class="dv">1</span>) <span class="cf">return</span>  <span class="kw">Infinity</span><span class="op">;</span></span>
-<span id="cb5-149"><a href="#cb5-149" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (y <span class="op">&lt;=</span> <span class="op">-</span><span class="dv">1</span>) <span class="cf">return</span> <span class="op">-</span><span class="kw">Infinity</span><span class="op">;</span></span>
-<span id="cb5-150"><a href="#cb5-150" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (y <span class="op">&lt;</span>   <span class="dv">0</span>) <span class="cf">return</span> <span class="op">-</span><span class="fu">erfinv</span>(<span class="op">-</span>y)<span class="op">;</span></span>
-<span id="cb5-151"><a href="#cb5-151" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> lo <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> hi <span class="op">=</span> <span class="dv">6</span><span class="op">;</span></span>
-<span id="cb5-152"><a href="#cb5-152" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">60</span><span class="op">;</span> i<span class="op">++</span>) {</span>
-<span id="cb5-153"><a href="#cb5-153" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> mid <span class="op">=</span> (lo <span class="op">+</span> hi) <span class="op">/</span> <span class="dv">2</span><span class="op">;</span></span>
-<span id="cb5-154"><a href="#cb5-154" aria-hidden="true" tabindex="-1"></a>    (<span class="fu">erf</span>(mid) <span class="op">&lt;</span> y) <span class="op">?</span> (lo <span class="op">=</span> mid) <span class="op">:</span> (hi <span class="op">=</span> mid)<span class="op">;</span></span>
-<span id="cb5-155"><a href="#cb5-155" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> (lo <span class="op">+</span> hi) <span class="op">/</span> <span class="dv">2</span><span class="op">;</span></span>
-<span id="cb5-157"><a href="#cb5-157" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-159"><a href="#cb5-159" aria-hidden="true" tabindex="-1"></a><span class="co">// T = 0 when erf(η) = −Tₛ / (Tᵢ − Tₛ)</span></span>
-<span id="cb5-160"><a href="#cb5-160" aria-hidden="true" tabindex="-1"></a>ex_target <span class="op">=</span> <span class="op">-</span>ex_Ts <span class="op">/</span> (ex_Ti <span class="op">-</span> ex_Ts)<span class="op">;</span>          <span class="co">// 0.75</span></span>
-<span id="cb5-161"><a href="#cb5-161" aria-hidden="true" tabindex="-1"></a>ex_eta    <span class="op">=</span> <span class="fu">erfinv</span>(ex_target)<span class="op">;</span>                  <span class="co">// ≈ 0.813</span></span>
-<span id="cb5-162"><a href="#cb5-162" aria-hidden="true" tabindex="-1"></a>ex_x_thaw <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(ex_alpha <span class="op">*</span> ex_t) <span class="op">*</span> ex_eta<span class="op">;</span></span>
-<span id="cb5-163"><a href="#cb5-163" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-164"><a href="#cb5-164" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`</span></span>
-<span id="cb5-165"><a href="#cb5-165" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;p&gt;&lt;strong&gt;Target:&lt;/strong&gt; erf(η) = −Tₛ/(Tᵢ − Tₛ) = −</span><span class="sc">${</span>ex_Ts<span class="sc">}</span><span class="vs">/(</span><span class="sc">${</span>ex_Ti<span class="sc">}</span><span class="vs"> − </span><span class="sc">${</span>ex_Ts<span class="sc">}</span><span class="vs">) = </span><span class="sc">${</span>ex_target<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">4</span>)<span class="sc">}</span><span class="vs">&lt;/p&gt;</span></span>
-<span id="cb5-166"><a href="#cb5-166" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;p&gt;&lt;strong&gt;η = erf⁻¹(</span><span class="sc">${</span>ex_target<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">4</span>)<span class="sc">}</span><span class="vs">) ≈ </span><span class="sc">${</span>ex_eta<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">4</span>)<span class="sc">}</span><span class="vs">&lt;/strong&gt;&lt;/p&gt;</span></span>
-<span id="cb5-167"><a href="#cb5-167" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;p&gt;&lt;strong&gt;Thaw depth = 2√(αt) · η = 2 × √(</span><span class="sc">${</span>ex_alpha<span class="op">.</span><span class="fu">toExponential</span>(<span class="dv">0</span>)<span class="sc">}</span><span class="vs"> × </span><span class="sc">${</span>ex_t<span class="op">.</span><span class="fu">toExponential</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">) × </span><span class="sc">${</span>ex_eta<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span></span>
-<span id="cb5-168"><a href="#cb5-168" aria-hidden="true" tabindex="-1"></a><span class="vs">  ≈ &lt;span style="color:#c0392b"&gt;</span><span class="sc">${</span>ex_x_thaw<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> m&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;</span></span>
-<span id="cb5-169"><a href="#cb5-169" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;p style="font-size:0.9em; color:#555"&gt;</span></span>
-<span id="cb5-170"><a href="#cb5-170" aria-hidden="true" tabindex="-1"></a><span class="vs">  After three months the 0°C isotherm has reached about </span><span class="sc">${</span>ex_x_thaw<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> m depth —</span></span>
-<span id="cb5-171"><a href="#cb5-171" aria-hidden="true" tabindex="-1"></a><span class="vs">  consistent with what you should see in the "90 days" curve in the demo above</span></span>
-<span id="cb5-172"><a href="#cb5-172" aria-hidden="true" tabindex="-1"></a><span class="vs">  when the sliders are set to Tₛ = 15°C, Tᵢ = −5°C, α = 0.5 × 10⁻⁶ m²/s.</span></span>
-<span id="cb5-173"><a href="#cb5-173" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/p&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb5" data-startfrom="159" data-source-offset="-84"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 158;"><span id="cb5-159"><a href="#cb5-159" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">makePlot</span>(rows<span class="op">,</span> title) {</span>
+<span id="cb5-160"><a href="#cb5-160" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb5-161"><a href="#cb5-161" aria-hidden="true" tabindex="-1"></a>    <span class="dt">width</span><span class="op">:</span>  <span class="dv">215</span><span class="op">,</span></span>
+<span id="cb5-162"><a href="#cb5-162" aria-hidden="true" tabindex="-1"></a>    <span class="dt">height</span><span class="op">:</span> <span class="dv">310</span><span class="op">,</span></span>
+<span id="cb5-163"><a href="#cb5-163" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginLeft</span><span class="op">:</span>   <span class="dv">48</span><span class="op">,</span></span>
+<span id="cb5-164"><a href="#cb5-164" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginBottom</span><span class="op">:</span> <span class="dv">42</span><span class="op">,</span></span>
+<span id="cb5-165"><a href="#cb5-165" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginTop</span><span class="op">:</span>    <span class="dv">28</span><span class="op">,</span></span>
+<span id="cb5-166"><a href="#cb5-166" aria-hidden="true" tabindex="-1"></a>    <span class="dt">style</span><span class="op">:</span> { <span class="dt">fontFamily</span><span class="op">:</span> <span class="st">"Georgia, serif"</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="st">"11px"</span> }<span class="op">,</span></span>
+<span id="cb5-167"><a href="#cb5-167" aria-hidden="true" tabindex="-1"></a>    <span class="dt">title</span><span class="op">:</span> title<span class="op">,</span></span>
+<span id="cb5-168"><a href="#cb5-168" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> { <span class="dt">label</span><span class="op">:</span> <span class="st">"x (m) →"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> x_max]<span class="op">,</span> <span class="dt">axis</span><span class="op">:</span> <span class="st">"bottom"</span> }<span class="op">,</span></span>
+<span id="cb5-169"><a href="#cb5-169" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> { <span class="dt">label</span><span class="op">:</span> <span class="st">"↑ T (°C)"</span><span class="op">,</span> <span class="dt">axis</span><span class="op">:</span> <span class="st">"left"</span> }<span class="op">,</span></span>
+<span id="cb5-170"><a href="#cb5-170" aria-hidden="true" tabindex="-1"></a>    <span class="dt">color</span><span class="op">:</span> {</span>
+<span id="cb5-171"><a href="#cb5-171" aria-hidden="true" tabindex="-1"></a>      <span class="dt">domain</span><span class="op">:</span> time_labels<span class="op">,</span></span>
+<span id="cb5-172"><a href="#cb5-172" aria-hidden="true" tabindex="-1"></a>      <span class="dt">range</span><span class="op">:</span>  time_colors<span class="op">,</span></span>
+<span id="cb5-173"><a href="#cb5-173" aria-hidden="true" tabindex="-1"></a>      <span class="dt">legend</span><span class="op">:</span> <span class="kw">false</span></span>
+<span id="cb5-174"><a href="#cb5-174" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb5-175"><a href="#cb5-175" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb5-176"><a href="#cb5-176" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">gridX</span>({<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#e0e0e0"</span>})<span class="op">,</span></span>
+<span id="cb5-177"><a href="#cb5-177" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">gridY</span>({<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#e0e0e0"</span>})<span class="op">,</span></span>
+<span id="cb5-178"><a href="#cb5-178" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#999"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"4,3"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">1</span>})<span class="op">,</span></span>
+<span id="cb5-179"><a href="#cb5-179" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">line</span>(rows<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"T"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"time"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span>})<span class="op">,</span></span>
+<span id="cb5-180"><a href="#cb5-180" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb5-181"><a href="#cb5-181" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb5-182"><a href="#cb5-182" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-183"><a href="#cb5-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-184"><a href="#cb5-184" aria-hidden="true" tabindex="-1"></a><span class="co">// ── Legend (shared) ────────────────────────────────────────────────────────────</span></span>
+<span id="cb5-185"><a href="#cb5-185" aria-hidden="true" tabindex="-1"></a>legend <span class="op">=</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb5-186"><a href="#cb5-186" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="dv">660</span><span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">30</span><span class="op">,</span></span>
+<span id="cb5-187"><a href="#cb5-187" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginTop</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">marginBottom</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">marginRight</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb5-188"><a href="#cb5-188" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> { <span class="dt">domain</span><span class="op">:</span> time_labels<span class="op">,</span> <span class="dt">range</span><span class="op">:</span> time_colors<span class="op">,</span> <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span> }<span class="op">,</span></span>
+<span id="cb5-189"><a href="#cb5-189" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> []</span>
+<span id="cb5-190"><a href="#cb5-190" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb5-191"><a href="#cb5-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-192"><a href="#cb5-192" aria-hidden="true" tabindex="-1"></a><span class="co">// ── Three-column layout ────────────────────────────────────────────────────────</span></span>
+<span id="cb5-193"><a href="#cb5-193" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb5-194"><a href="#cb5-194" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> p1 <span class="op">=</span> <span class="fu">makePlot</span>(rows_I<span class="op">,</span>   <span class="st">"Case I — prescribed Tₛ"</span>)<span class="op">;</span></span>
+<span id="cb5-195"><a href="#cb5-195" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> p2 <span class="op">=</span> <span class="fu">makePlot</span>(rows_II<span class="op">,</span>  <span class="st">"Case II — prescribed q₀″"</span>)<span class="op">;</span></span>
+<span id="cb5-196"><a href="#cb5-196" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> p3 <span class="op">=</span> <span class="fu">makePlot</span>(rows_III<span class="op">,</span> <span class="st">"Case III — convection h"</span>)<span class="op">;</span></span>
+<span id="cb5-197"><a href="#cb5-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-198"><a href="#cb5-198" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> row <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">"div"</span>)<span class="op">;</span></span>
+<span id="cb5-199"><a href="#cb5-199" aria-hidden="true" tabindex="-1"></a>  row<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">cssText</span> <span class="op">=</span> <span class="st">"display:flex; gap:12px; align-items:flex-start; flex-wrap:wrap"</span><span class="op">;</span></span>
+<span id="cb5-200"><a href="#cb5-200" aria-hidden="true" tabindex="-1"></a>  row<span class="op">.</span><span class="fu">append</span>(p1<span class="op">,</span> p2<span class="op">,</span> p3)<span class="op">;</span></span>
+<span id="cb5-201"><a href="#cb5-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-202"><a href="#cb5-202" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> wrap <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">"div"</span>)<span class="op">;</span></span>
+<span id="cb5-203"><a href="#cb5-203" aria-hidden="true" tabindex="-1"></a>  wrap<span class="op">.</span><span class="fu">append</span>(legend<span class="op">,</span> row)<span class="op">;</span></span>
+<span id="cb5-204"><a href="#cb5-204" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> wrap<span class="op">;</span></span>
+<span id="cb5-205"><a href="#cb5-205" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -594,49 +763,115 @@ T(x,t) = T_s + (T_i - T_s)\,\text{erf}\!\left(\frac{x}{2\sqrt{\alpha t}}\right)
 </div>
 <div class="cell-output cell-output-display">
 <div>
-<div id="ojs-cell-5-3" data-nodetype="declaration">
+<div id="ojs-cell-5-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="sec-observations" class="level2">
+<h2 class="anchored" data-anchor-id="sec-observations">What to look for</h2>
+<p><strong>Case I — erf profile, surface pinned at Tₛ.</strong> The surface is always exactly <span class="math inline">\(T_s\)</span> (the boundary condition is enforced), and far below the surface the solid is undisturbed at <span class="math inline">\(T_i\)</span>. The transition zone stretches rightward as <span class="math inline">\(\sim\sqrt{\alpha t}\)</span> — same scaling as before.</p>
+<p><strong>Case II — unbounded surface temperature.</strong> There is no “target” surface temperature here; instead energy is injected at a constant rate <span class="math inline">\(q_0''\)</span>. The surface temperature grows without bound (<span class="math inline">\(\sim \sqrt{t}\)</span>), which is physically unrealistic for long times — it is a warning that the semi-infinite model eventually breaks down. Notice that deeper in the solid the profiles look similar to Case I.</p>
+<p><strong>Case III — convection slows the approach.</strong> Compared to Case I (same <span class="math inline">\(T_i\)</span> and <span class="math inline">\(T_\infty = T_s\)</span>), the surface never quite reaches <span class="math inline">\(T_\infty\)</span> immediately; it approaches it gradually. A small <span class="math inline">\(h\)</span> means the convective resistance dominates: heat transfer is slow, and the solid barely warms. A large <span class="math inline">\(h\)</span> drives Case III toward Case I (the surface is cooled/heated so efficiently it acts like a prescribed temperature).</p>
+<hr>
+</section>
+<section id="sec-worked" class="level2">
+<h2 class="anchored" data-anchor-id="sec-worked">Worked example — Case I thaw depth</h2>
+<p>Frozen soil (<span class="math inline">\(\alpha = 5 \times 10^{-7}\ \text{m}^2/\text{s}\)</span>, <span class="math inline">\(T_i = -5\,^\circ\text{C}\)</span>) has its surface suddenly raised to <span class="math inline">\(T_s = 15\,^\circ\text{C}\)</span>. How deep does the 0°C thaw front reach after 90 days?</p>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb6" data-startfrom="236" data-source-offset="-1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 235;"><span id="cb6-236"><a href="#cb6-236" aria-hidden="true" tabindex="-1"></a>ex_alpha <span class="op">=</span> <span class="fl">5e-7</span><span class="op">;</span>  ex_Ti <span class="op">=</span> <span class="op">-</span><span class="fl">5.0</span><span class="op">;</span>  ex_Ts <span class="op">=</span> <span class="fl">15.0</span><span class="op">;</span>  ex_t <span class="op">=</span> <span class="dv">90</span> <span class="op">*</span> <span class="dv">86400</span><span class="op">;</span></span>
+<span id="cb6-237"><a href="#cb6-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-238"><a href="#cb6-238" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">erfinv</span>(y) {</span>
+<span id="cb6-239"><a href="#cb6-239" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (y <span class="op">&gt;=</span>  <span class="dv">1</span>) <span class="cf">return</span>  <span class="kw">Infinity</span><span class="op">;</span></span>
+<span id="cb6-240"><a href="#cb6-240" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (y <span class="op">&lt;=</span> <span class="op">-</span><span class="dv">1</span>) <span class="cf">return</span> <span class="op">-</span><span class="kw">Infinity</span><span class="op">;</span></span>
+<span id="cb6-241"><a href="#cb6-241" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (y <span class="op">&lt;</span>   <span class="dv">0</span>) <span class="cf">return</span> <span class="op">-</span><span class="fu">erfinv</span>(<span class="op">-</span>y)<span class="op">;</span></span>
+<span id="cb6-242"><a href="#cb6-242" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> lo <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> hi <span class="op">=</span> <span class="dv">6</span><span class="op">;</span></span>
+<span id="cb6-243"><a href="#cb6-243" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">60</span><span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb6-244"><a href="#cb6-244" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> mid <span class="op">=</span> (lo <span class="op">+</span> hi) <span class="op">/</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb6-245"><a href="#cb6-245" aria-hidden="true" tabindex="-1"></a>    (<span class="fu">erf</span>(mid) <span class="op">&lt;</span> y) <span class="op">?</span> (lo <span class="op">=</span> mid) <span class="op">:</span> (hi <span class="op">=</span> mid)<span class="op">;</span></span>
+<span id="cb6-246"><a href="#cb6-246" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-247"><a href="#cb6-247" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> (lo <span class="op">+</span> hi) <span class="op">/</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb6-248"><a href="#cb6-248" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-249"><a href="#cb6-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-250"><a href="#cb6-250" aria-hidden="true" tabindex="-1"></a>ex_target <span class="op">=</span> <span class="op">-</span>ex_Ts <span class="op">/</span> (ex_Ti <span class="op">-</span> ex_Ts)<span class="op">;</span></span>
+<span id="cb6-251"><a href="#cb6-251" aria-hidden="true" tabindex="-1"></a>ex_eta    <span class="op">=</span> <span class="fu">erfinv</span>(ex_target)<span class="op">;</span></span>
+<span id="cb6-252"><a href="#cb6-252" aria-hidden="true" tabindex="-1"></a>ex_x_thaw <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(ex_alpha <span class="op">*</span> ex_t) <span class="op">*</span> ex_eta<span class="op">;</span></span>
+<span id="cb6-253"><a href="#cb6-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-254"><a href="#cb6-254" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`</span></span>
+<span id="cb6-255"><a href="#cb6-255" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;p&gt;&lt;strong&gt;Target:&lt;/strong&gt; erf(η) = −Tₛ/(Tᵢ − Tₛ) = </span><span class="sc">${</span>ex_target<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">4</span>)<span class="sc">}</span><span class="vs">&lt;/p&gt;</span></span>
+<span id="cb6-256"><a href="#cb6-256" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;p&gt;&lt;strong&gt;η = erf⁻¹(</span><span class="sc">${</span>ex_target<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">4</span>)<span class="sc">}</span><span class="vs">) ≈ </span><span class="sc">${</span>ex_eta<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">4</span>)<span class="sc">}</span><span class="vs">&lt;/strong&gt;&lt;/p&gt;</span></span>
+<span id="cb6-257"><a href="#cb6-257" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;p&gt;&lt;strong&gt;Thaw depth = 2√(αt) · η ≈</span></span>
+<span id="cb6-258"><a href="#cb6-258" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;span style="color:#c0392b"&gt;</span><span class="sc">${</span>ex_x_thaw<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> m&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;</span></span>
+<span id="cb6-259"><a href="#cb6-259" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;p style="font-size:0.9em; color:#555"&gt;</span></span>
+<span id="cb6-260"><a href="#cb6-260" aria-hidden="true" tabindex="-1"></a><span class="vs">  After 90 days the 0°C isotherm sits at about </span><span class="sc">${</span>ex_x_thaw<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> m —</span></span>
+<span id="cb6-261"><a href="#cb6-261" aria-hidden="true" tabindex="-1"></a><span class="vs">  verify this against the "90 days" curve in Case I above</span></span>
+<span id="cb6-262"><a href="#cb6-262" aria-hidden="true" tabindex="-1"></a><span class="vs">  (with sliders at Tₛ = 15°C, Tᵢ = −5°C).</span></span>
+<span id="cb6-263"><a href="#cb6-263" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/p&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-6-1" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
-<div id="ojs-cell-5-4" data-nodetype="declaration">
+<div id="ojs-cell-6-2" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
-<div id="ojs-cell-5-5" data-nodetype="declaration">
+<div id="ojs-cell-6-3" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
-<div id="ojs-cell-5-6" data-nodetype="declaration">
+<div id="ojs-cell-6-4" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
-<div id="ojs-cell-5-7" data-nodetype="declaration">
+<div id="ojs-cell-6-5" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
-<div id="ojs-cell-5-8" data-nodetype="declaration">
+<div id="ojs-cell-6-6" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
-<div id="ojs-cell-5-9" data-nodetype="expression">
+<div id="ojs-cell-6-7" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-6-8" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-6-9" data-nodetype="expression">
 
 </div>
 </div>
@@ -650,7 +885,7 @@ T(x,t) = T_s + (T_i - T_s)\,\text{erf}\!\left(\frac{x}{2\sqrt{\alpha t}}\right)
 
 </main> <!-- /main -->
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ilxudmlld29mIFRfcyA9IElucHV0cy5yYW5nZShbLTMwLCA0MF0sIHtcbiAgdmFsdWU6IDE1LFxuICBzdGVwOiAxLFxuICBsYWJlbDogXCJTdXJmYWNlIHRlbXBlcmF0dXJlIFTigpsgKMKwQylcIlxufSlcblxudmlld29mIFRfaSA9IElucHV0cy5yYW5nZShbLTIwLCAyMF0sIHtcbiAgdmFsdWU6IC01LFxuICBzdGVwOiAxLFxuICBsYWJlbDogXCJJbml0aWFsIHRlbXBlcmF0dXJlIFThtaIgKMKwQylcIlxufSlcblxudmlld29mIGFscGhhX2V4cCA9IElucHV0cy5yYW5nZShbLTcuNSwgLTUuN10sIHtcbiAgdmFsdWU6IC02LjMsXG4gIHN0ZXA6IDAuMDUsXG4gIGxhYmVsOiBcImxvZ+KCgeKCgCjOsSkgIFvOsSBpbiBtwrIvc11cIlxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxuYWxwaGEgPSBNYXRoLnBvdygxMCwgYWxwaGFfZXhwKVxuXG5odG1sYDxwIHN0eWxlPVwiZm9udC1zaXplOjAuOTVlbTsgbWFyZ2luOjAuMmVtIDAgMC44ZW0gMDtcIj5cbiAgPHN0cm9uZz5U4oKbID0gJHtUX3N9IMKwQzwvc3Ryb25nPiAmbmJzcDt8Jm5ic3A7XG4gIDxzdHJvbmc+VOG1oiA9ICR7VF9pfSDCsEM8L3N0cm9uZz4gJm5ic3A7fCZuYnNwO1xuICA8c3Ryb25nPs6xID0gJHsoYWxwaGEgKiAxZTYpLnRvRml4ZWQoMyl9IMOXIDEw4oG74oG2IG3Csi9zPC9zdHJvbmc+XG48L3A+YFxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0zIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiXG4vLyDilIDilIAgRXJyb3IgZnVuY3Rpb24gKEFicmFtb3dpdHogJiBTdGVndW4gNy4xLjI2LCBtYXggZXJyb3IgfjEuNSDDlyAxMOKBu+KBtykg4pSA4pSA4pSA4pSA4pSA4pSA4pSAXG5mdW5jdGlvbiBlcmYoeCkge1xuICBpZiAoeCA8IDApIHJldHVybiAtZXJmKC14KTtcbiAgY29uc3QgdCA9IDEuMCAvICgxLjAgKyAwLjMyNzU5MTEgKiB4KTtcbiAgY29uc3QgcCA9IHQgKiAoMC4yNTQ4Mjk1OTIgKyB0ICogKC0wLjI4NDQ5NjczNiArIHQgKiAoMS40MjE0MTM3NDFcbiAgICAgICAgICArIHQgKiAoLTEuNDUzMTUyMDI3ICsgdCAqIDEuMDYxNDA1NDI5KSkpKTtcbiAgcmV0dXJuIDEuMCAtIHAgKiBNYXRoLmV4cCgteCAqIHgpO1xufVxuXG4vLyDilIDilIAgRGVwdGggYXJyYXkg4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSAXG4vLyB4X21heDogZm91ciBcInBlbmV0cmF0aW9uIGRlcHRoc1wiIGF0IHQgPSAxIHllYXIsIGNsYW1wZWQgdG8gWzIsIDMwXSBtXG54X21heCAgPSBNYXRoLm1pbigzMCwgTWF0aC5tYXgoMiwgNCAqIE1hdGguc3FydChhbHBoYSAqIDM2NSAqIDg2NDAwKSkpO1xuTl9QVFMgID0gMzAwO1xueF9hcnIgID0gQXJyYXkuZnJvbSh7bGVuZ3RoOiBOX1BUU30sIChfLCBpKSA9PiBpIC8gKE5fUFRTIC0gMSkgKiB4X21heCk7XG5cbi8vIOKUgOKUgCBUaW1lIHNuYXBzaG90cyDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIBcbnRpbWVzX2RheXMgID0gWzcsIDMwLCA5MCwgMTgwLCAzNjVdO1xudGltZXNfcyAgICAgPSB0aW1lc19kYXlzLm1hcChkID0+IGQgKiA4NjQwMCk7XG50aW1lX2xhYmVscyA9IFtcIjcgZGF5c1wiLCBcIjMwIGRheXNcIiwgXCI5MCBkYXlzXCIsIFwiMTgwIGRheXNcIiwgXCIxIHllYXJcIl07XG5cbi8vIOKUgOKUgCBSb3cgZGF0YSBmb3IgT2JzZXJ2YWJsZSBQbG90IOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgFxucm93cyA9IHRpbWVzX3MuZmxhdE1hcCgodF9zLCBqKSA9PlxuICB4X2Fyci5tYXAoeCA9PiAoe1xuICAgIHgsXG4gICAgVDogVF9zICsgKFRfaSAtIFRfcykgKiBlcmYoeCAvICgyICogTWF0aC5zcXJ0KGFscGhhICogdF9zKSkpLFxuICAgIHRpbWU6IHRpbWVfbGFiZWxzW2pdXG4gIH0pKVxuKTtcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxuUGxvdC5wbG90KHtcbiAgd2lkdGg6IDY2MCxcbiAgaGVpZ2h0OiA0MDAsXG4gIG1hcmdpbkxlZnQ6IDY1LFxuICBtYXJnaW5Cb3R0b206IDUwLFxuICBzdHlsZTogeyBmb250RmFtaWx5OiBcIkdlb3JnaWEsIHNlcmlmXCIsIGZvbnRTaXplOiBcIjEzcHhcIiB9LFxuICB4OiB7IGxhYmVsOiBcIkRlcHRoIHggKG0pICDihpJcIiwgZG9tYWluOiBbMCwgeF9tYXhdIH0sXG4gIHk6IHsgbGFiZWw6IFwi4oaRICBUZW1wZXJhdHVyZSBUICjCsEMpXCIgfSxcbiAgY29sb3I6IHtcbiAgICBkb21haW46IHRpbWVfbGFiZWxzLFxuICAgIHJhbmdlOiAgW1wiIzFmNzdiNFwiLCBcIiNmZjdmMGVcIiwgXCIjMmNhMDJjXCIsIFwiI2Q2MjcyOFwiLCBcIiM5NDY3YmRcIl0sXG4gICAgbGVnZW5kOiB0cnVlXG4gIH0sXG4gIG1hcmtzOiBbXG4gICAgUGxvdC5ncmlkWCh7c3Ryb2tlOiBcIiNkZGRcIn0pLFxuICAgIFBsb3QuZ3JpZFkoe3N0cm9rZTogXCIjZGRkXCJ9KSxcbiAgICBQbG90LnJ1bGVZKFswXSwge3N0cm9rZTogXCIjODg4XCIsIHN0cm9rZURhc2hhcnJheTogXCI1LDRcIiwgc3Ryb2tlV2lkdGg6IDEuMn0pLFxuICAgIFBsb3QubGluZShyb3dzLCB7eDogXCJ4XCIsIHk6IFwiVFwiLCBzdHJva2U6IFwidGltZVwiLCBzdHJva2VXaWR0aDogMi41fSksXG4gIF1cbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTUiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJcbi8vIOKUgOKUgCBQcm9ibGVtIHBhcmFtZXRlcnMg4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSAXG5leF9hbHBoYSA9IDVlLTc7ICAgZXhfVGkgPSAtNS4wOyAgIGV4X1RzID0gMTUuMDsgICBleF90ID0gOTAgKiA4NjQwMDtcblxuLy8g4pSA4pSAIEludmVyc2UgZXJmIHZpYSBiaW5hcnkgc2VhcmNoIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgFxuZnVuY3Rpb24gZXJmaW52KHkpIHtcbiAgaWYgKHkgPj0gIDEpIHJldHVybiAgSW5maW5pdHk7XG4gIGlmICh5IDw9IC0xKSByZXR1cm4gLUluZmluaXR5O1xuICBpZiAoeSA8ICAgMCkgcmV0dXJuIC1lcmZpbnYoLXkpO1xuICBsZXQgbG8gPSAwLCBoaSA9IDY7XG4gIGZvciAobGV0IGkgPSAwOyBpIDwgNjA7IGkrKykge1xuICAgIGNvbnN0IG1pZCA9IChsbyArIGhpKSAvIDI7XG4gICAgKGVyZihtaWQpIDwgeSkgPyAobG8gPSBtaWQpIDogKGhpID0gbWlkKTtcbiAgfVxuICByZXR1cm4gKGxvICsgaGkpIC8gMjtcbn1cblxuLy8gVCA9IDAgd2hlbiBlcmYozrcpID0g4oiSVOKCmyAvIChU4bWiIOKIkiBU4oKbKVxuZXhfdGFyZ2V0ID0gLWV4X1RzIC8gKGV4X1RpIC0gZXhfVHMpOyAgICAgICAgICAvLyAwLjc1XG5leF9ldGEgICAgPSBlcmZpbnYoZXhfdGFyZ2V0KTsgICAgICAgICAgICAgICAgICAvLyDiiYggMC44MTNcbmV4X3hfdGhhdyA9IDIgKiBNYXRoLnNxcnQoZXhfYWxwaGEgKiBleF90KSAqIGV4X2V0YTtcblxuaHRtbGBcbjxwPjxzdHJvbmc+VGFyZ2V0Ojwvc3Ryb25nPiBlcmYozrcpID0g4oiSVOKCmy8oVOG1oiDiiJIgVOKCmykgPSDiiJIke2V4X1RzfS8oJHtleF9UaX0g4oiSICR7ZXhfVHN9KSA9ICR7ZXhfdGFyZ2V0LnRvRml4ZWQoNCl9PC9wPlxuPHA+PHN0cm9uZz7OtyA9IGVyZuKBu8K5KCR7ZXhfdGFyZ2V0LnRvRml4ZWQoNCl9KSDiiYggJHtleF9ldGEudG9GaXhlZCg0KX08L3N0cm9uZz48L3A+XG48cD48c3Ryb25nPlRoYXcgZGVwdGggPSAy4oiaKM6xdCkgwrcgzrcgPSAyIMOXIOKImigke2V4X2FscGhhLnRvRXhwb25lbnRpYWwoMCl9IMOXICR7ZXhfdC50b0V4cG9uZW50aWFsKDIpfSkgw5cgJHtleF9ldGEudG9GaXhlZCgzKX1cbiAg4omIIDxzcGFuIHN0eWxlPVwiY29sb3I6I2MwMzkyYlwiPiR7ZXhfeF90aGF3LnRvRml4ZWQoMil9IG08L3NwYW4+PC9zdHJvbmc+PC9wPlxuPHAgc3R5bGU9XCJmb250LXNpemU6MC45ZW07IGNvbG9yOiM1NTVcIj5cbiAgQWZ0ZXIgdGhyZWUgbW9udGhzIHRoZSAwwrBDIGlzb3RoZXJtIGhhcyByZWFjaGVkIGFib3V0ICR7ZXhfeF90aGF3LnRvRml4ZWQoMSl9IG0gZGVwdGgg4oCUXG4gIGNvbnNpc3RlbnQgd2l0aCB3aGF0IHlvdSBzaG91bGQgc2VlIGluIHRoZSBcIjkwIGRheXNcIiBjdXJ2ZSBpbiB0aGUgZGVtbyBhYm92ZVxuICB3aGVuIHRoZSBzbGlkZXJzIGFyZSBzZXQgdG8gVOKCmyA9IDE1wrBDLCBU4bWiID0g4oiSNcKwQywgzrEgPSAwLjUgw5cgMTDigbvigbYgbcKyL3MuXG48L3A+YFxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdUX3MnKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnVF9pJykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ2FscGhhX2V4cCcpIn1dfQ==
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ilxudmlld29mIFRfaSA9IElucHV0cy5yYW5nZShbLTIwLCAyMF0sIHtcbiAgdmFsdWU6IC01LCBzdGVwOiAxLFxuICBsYWJlbDogXCJJbml0aWFsIHRlbXBlcmF0dXJlIFThtaIgKMKwQylcIlxufSlcblxudmlld29mIGFscGhhX2V4cCA9IElucHV0cy5yYW5nZShbLTcuNSwgLTUuN10sIHtcbiAgdmFsdWU6IC02LjMsIHN0ZXA6IDAuMDUsXG4gIGxhYmVsOiBcImxvZ+KCgeKCgCjOsSkgIFvOsSBpbiBtwrIvc11cIlxufSlcblxudmlld29mIGsgPSBJbnB1dHMucmFuZ2UoWzAuMSwgNS4wXSwge1xuICB2YWx1ZTogMS4wLCBzdGVwOiAwLjEsXG4gIGxhYmVsOiBcIlRoZXJtYWwgY29uZHVjdGl2aXR5IGsgKFcvbcK3SylcIlxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ilxudmlld29mIFRfcyA9IElucHV0cy5yYW5nZShbLTMwLCA0MF0sIHtcbiAgdmFsdWU6IDE1LCBzdGVwOiAxLFxuICBsYWJlbDogXCJDYXNlIEkg4oCUIHN1cmZhY2UgdGVtcGVyYXR1cmUgVOKCmyAowrBDKVwiXG59KVxuXG52aWV3b2YgcTAgPSBJbnB1dHMucmFuZ2UoWzAsIDEwMDBdLCB7XG4gIHZhbHVlOiAzMDAsIHN0ZXA6IDEwLFxuICBsYWJlbDogXCJDYXNlIElJIOKAlCBzdXJmYWNlIGhlYXQgZmx1eCBx4oKA4oCzIChXL23CsilcIlxufSlcblxudmlld29mIGhfY29udiA9IElucHV0cy5yYW5nZShbMSwgMTAwXSwge1xuICB2YWx1ZTogMjUsIHN0ZXA6IDEsXG4gIGxhYmVsOiBcIkNhc2UgSUlJIOKAlCBjb252ZWN0aW9uIGNvZWZmaWNpZW50IGggKFcvbcKywrdLKVwiXG59KVxuXG52aWV3b2YgVF9pbmYgPSBJbnB1dHMucmFuZ2UoWy0zMCwgNDBdLCB7XG4gIHZhbHVlOiAyMCwgc3RlcDogMSxcbiAgbGFiZWw6IFwiQ2FzZSBJSUkg4oCUIGZsdWlkIHRlbXBlcmF0dXJlIFTiiJ4gKMKwQylcIlxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxuYWxwaGEgPSBNYXRoLnBvdygxMCwgYWxwaGFfZXhwKVxuXG5odG1sYDxwIHN0eWxlPVwiZm9udC1zaXplOjAuOWVtOyBtYXJnaW46MC4yZW0gMCAwLjhlbSAwOyBjb2xvcjojNDQ0XCI+XG4gIM6xID0gJHsoYWxwaGEgKiAxZTYpLnRvRml4ZWQoMyl9IMOXIDEw4oG74oG2IG3Csi9zICZuYnNwO3wmbmJzcDtcbiAgayA9ICR7a30gVy9twrdLICZuYnNwO3wmbmJzcDtcbiAgVOG1oiA9ICR7VF9pfSDCsENcbjwvcD5gXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTQiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJcbi8vIOKUgOKUgCBTcGVjaWFsIGZ1bmN0aW9ucyDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIBcblxuLy8gZXJmICAoQWJyYW1vd2l0eiAmIFN0ZWd1biA3LjEuMjYsIG1heCBlcnJvciB+MS41IMOXIDEw4oG74oG3KVxuZnVuY3Rpb24gZXJmKHgpIHtcbiAgaWYgKHggPCAwKSByZXR1cm4gLWVyZigteCk7XG4gIGNvbnN0IHQgPSAxLjAgLyAoMS4wICsgMC4zMjc1OTExICogeCk7XG4gIGNvbnN0IHAgPSB0ICogKDAuMjU0ODI5NTkyICsgdCAqICgtMC4yODQ0OTY3MzYgKyB0ICogKDEuNDIxNDEzNzQxXG4gICAgICAgICAgKyB0ICogKC0xLjQ1MzE1MjAyNyArIHQgKiAxLjA2MTQwNTQyOSkpKSk7XG4gIHJldHVybiAxLjAgLSBwICogTWF0aC5leHAoLXggKiB4KTtcbn1cblxuLy8gZXJmYyh4KSA9IDEg4oiSIGVyZih4KVxuZnVuY3Rpb24gZXJmYyh4KSB7IHJldHVybiAxIC0gZXJmKHgpOyB9XG5cbi8vIGVyZmN4KHUpID0gZXhwKHXCsikgwrcgZXJmYyh1KSAg4oCUIG51bWVyaWNhbGx5IHN0YWJsZSBmb3IgYWxsIHUg4omlIDBcbi8vIFVzZXMgZGlyZWN0IGNvbXB1dGF0aW9uIGZvciB1IDwgNSwgYXN5bXB0b3RpYyBleHBhbnNpb24gZm9yIHUg4omlIDUuXG5mdW5jdGlvbiBlcmZjeCh1KSB7XG4gIGlmICh1IDwgMCkgcmV0dXJuIDIgKiBNYXRoLmV4cCh1ICogdSkgLSBlcmZjeCgtdSk7XG4gIGlmICh1IDwgNSkgcmV0dXJuIE1hdGguZXhwKHUgKiB1KSAqIGVyZmModSk7XG4gIC8vIEFzeW1wdG90aWM6IGVyZmN4KHUpIH4gKDEv4oiaz4ApL3UgwrcgWzEg4oiSIDEvKDJ1wrIpICsgMy8oNHXigbQpIOKIkiAxNS8oOHXigbYpICsgLi4uXVxuICBjb25zdCB0ID0gMSAvICh1ICogdSk7XG4gIHJldHVybiAoMSAvIE1hdGguc3FydChNYXRoLlBJKSkgLyB1XG4gICAgICAgKiAoMSAtIHQgKiAwLjUgKyB0ICogdCAqIDAuNzUgLSB0ICogdCAqIHQgKiAxLjg3NSArIHQgKiB0ICogdCAqIHQgKiA2LjU2MjUpO1xufVxuXG4vLyDilIDilIAgRGVwdGggYXJyYXkg4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSAXG54X21heCA9IE1hdGgubWluKDMwLCBNYXRoLm1heCgyLCA0ICogTWF0aC5zcXJ0KGFscGhhICogMzY1ICogODY0MDApKSk7XG5OX1BUUyA9IDMwMDtcbnhfYXJyID0gQXJyYXkuZnJvbSh7bGVuZ3RoOiBOX1BUU30sIChfLCBpKSA9PiBpIC8gKE5fUFRTIC0gMSkgKiB4X21heCk7XG5cbi8vIOKUgOKUgCBUaW1lIHNuYXBzaG90cyDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIBcbnRpbWVzX2RheXMgID0gWzcsIDMwLCA5MCwgMTgwLCAzNjVdO1xudGltZXNfcyAgICAgPSB0aW1lc19kYXlzLm1hcChkID0+IGQgKiA4NjQwMCk7XG50aW1lX2xhYmVscyA9IFtcIjcgZGF5c1wiLCBcIjMwIGRheXNcIiwgXCI5MCBkYXlzXCIsIFwiMTgwIGRheXNcIiwgXCIxIHllYXJcIl07XG50aW1lX2NvbG9ycyA9IFtcIiMxZjc3YjRcIiwgXCIjZmY3ZjBlXCIsIFwiIzJjYTAyY1wiLCBcIiNkNjI3MjhcIiwgXCIjOTQ2N2JkXCJdO1xuXG4vLyDilIDilIAgU29sdXRpb24gZm9ybXVsYXMg4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSAXG5cbmZ1bmN0aW9uIFRfY2FzZUkoeCwgdF9zKSB7XG4gIGNvbnN0IGV0YSA9IHggLyAoMiAqIE1hdGguc3FydChhbHBoYSAqIHRfcykpO1xuICByZXR1cm4gVF9zICsgKFRfaSAtIFRfcykgKiBlcmYoZXRhKTtcbn1cblxuZnVuY3Rpb24gVF9jYXNlSUkoeCwgdF9zKSB7XG4gIGNvbnN0IGV0YSA9IHggLyAoMiAqIE1hdGguc3FydChhbHBoYSAqIHRfcykpO1xuICByZXR1cm4gVF9pXG4gICAgKyAoMiAqIHEwICogTWF0aC5zcXJ0KGFscGhhICogdF9zIC8gTWF0aC5QSSkgLyBrKSAqIE1hdGguZXhwKC1ldGEgKiBldGEpXG4gICAgLSAocTAgKiB4IC8gaykgKiBlcmZjKGV0YSk7XG59XG5cbi8vIE51bWVyaWNhbGx5IHN0YWJsZSBDYXNlIElJSSB1c2luZyBlcmZjeDpcbi8vIFQgPSBU4bWiICsgKFTiiJ4g4oiSIFThtaIpIMK3IFtlcmZjKM63KSDiiJIgZXhwKOKIks63wrIpIMK3IGVyZmN4KM63ICsgzrIpXVxuLy8gd2hlcmUgzrIgPSBo4oiaKM6xdCkva1xuZnVuY3Rpb24gVF9jYXNlSUlJKHgsIHRfcykge1xuICBjb25zdCBldGEgID0geCAvICgyICogTWF0aC5zcXJ0KGFscGhhICogdF9zKSk7XG4gIGNvbnN0IGJldGEgPSBoX2NvbnYgKiBNYXRoLnNxcnQoYWxwaGEgKiB0X3MpIC8gaztcbiAgcmV0dXJuIFRfaSArIChUX2luZiAtIFRfaSlcbiAgICAqIChlcmZjKGV0YSkgLSBNYXRoLmV4cCgtZXRhICogZXRhKSAqIGVyZmN4KGV0YSArIGJldGEpKTtcbn1cblxuLy8g4pSA4pSAIFJvdyBidWlsZGVyIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgFxuZnVuY3Rpb24gbWFrZVJvd3MoVF9mbikge1xuICByZXR1cm4gdGltZXNfcy5mbGF0TWFwKCh0X3MsIGopID0+XG4gICAgeF9hcnIubWFwKHggPT4gKHsgeCwgVDogVF9mbih4LCB0X3MpLCB0aW1lOiB0aW1lX2xhYmVsc1tqXSB9KSlcbiAgKTtcbn1cblxucm93c19JICAgPSBtYWtlUm93cyhUX2Nhc2VJKTtcbnJvd3NfSUkgID0gbWFrZVJvd3MoVF9jYXNlSUkpO1xucm93c19JSUkgPSBtYWtlUm93cyhUX2Nhc2VJSUkpO1xuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC01IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiXG4vLyDilIDilIAgUGxvdCBmYWN0b3J5IOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgFxuZnVuY3Rpb24gbWFrZVBsb3Qocm93cywgdGl0bGUpIHtcbiAgcmV0dXJuIFBsb3QucGxvdCh7XG4gICAgd2lkdGg6ICAyMTUsXG4gICAgaGVpZ2h0OiAzMTAsXG4gICAgbWFyZ2luTGVmdDogICA0OCxcbiAgICBtYXJnaW5Cb3R0b206IDQyLFxuICAgIG1hcmdpblRvcDogICAgMjgsXG4gICAgc3R5bGU6IHsgZm9udEZhbWlseTogXCJHZW9yZ2lhLCBzZXJpZlwiLCBmb250U2l6ZTogXCIxMXB4XCIgfSxcbiAgICB0aXRsZTogdGl0bGUsXG4gICAgeDogeyBsYWJlbDogXCJ4IChtKSDihpJcIiwgZG9tYWluOiBbMCwgeF9tYXhdLCBheGlzOiBcImJvdHRvbVwiIH0sXG4gICAgeTogeyBsYWJlbDogXCLihpEgVCAowrBDKVwiLCBheGlzOiBcImxlZnRcIiB9LFxuICAgIGNvbG9yOiB7XG4gICAgICBkb21haW46IHRpbWVfbGFiZWxzLFxuICAgICAgcmFuZ2U6ICB0aW1lX2NvbG9ycyxcbiAgICAgIGxlZ2VuZDogZmFsc2VcbiAgICB9LFxuICAgIG1hcmtzOiBbXG4gICAgICBQbG90LmdyaWRYKHtzdHJva2U6IFwiI2UwZTBlMFwifSksXG4gICAgICBQbG90LmdyaWRZKHtzdHJva2U6IFwiI2UwZTBlMFwifSksXG4gICAgICBQbG90LnJ1bGVZKFswXSwge3N0cm9rZTogXCIjOTk5XCIsIHN0cm9rZURhc2hhcnJheTogXCI0LDNcIiwgc3Ryb2tlV2lkdGg6IDF9KSxcbiAgICAgIFBsb3QubGluZShyb3dzLCB7eDogXCJ4XCIsIHk6IFwiVFwiLCBzdHJva2U6IFwidGltZVwiLCBzdHJva2VXaWR0aDogMn0pLFxuICAgIF1cbiAgfSk7XG59XG5cbi8vIOKUgOKUgCBMZWdlbmQgKHNoYXJlZCkg4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSAXG5sZWdlbmQgPSBQbG90LnBsb3Qoe1xuICB3aWR0aDogNjYwLCBoZWlnaHQ6IDMwLFxuICBtYXJnaW5Ub3A6IDAsIG1hcmdpbkJvdHRvbTogMCwgbWFyZ2luTGVmdDogMCwgbWFyZ2luUmlnaHQ6IDAsXG4gIGNvbG9yOiB7IGRvbWFpbjogdGltZV9sYWJlbHMsIHJhbmdlOiB0aW1lX2NvbG9ycywgbGVnZW5kOiB0cnVlIH0sXG4gIG1hcmtzOiBbXVxufSk7XG5cbi8vIOKUgOKUgCBUaHJlZS1jb2x1bW4gbGF5b3V0IOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgFxue1xuICBjb25zdCBwMSA9IG1ha2VQbG90KHJvd3NfSSwgICBcIkNhc2UgSSDigJQgcHJlc2NyaWJlZCBU4oKbXCIpO1xuICBjb25zdCBwMiA9IG1ha2VQbG90KHJvd3NfSUksICBcIkNhc2UgSUkg4oCUIHByZXNjcmliZWQgceKCgOKAs1wiKTtcbiAgY29uc3QgcDMgPSBtYWtlUGxvdChyb3dzX0lJSSwgXCJDYXNlIElJSSDigJQgY29udmVjdGlvbiBoXCIpO1xuXG4gIGNvbnN0IHJvdyA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIik7XG4gIHJvdy5zdHlsZS5jc3NUZXh0ID0gXCJkaXNwbGF5OmZsZXg7IGdhcDoxMnB4OyBhbGlnbi1pdGVtczpmbGV4LXN0YXJ0OyBmbGV4LXdyYXA6d3JhcFwiO1xuICByb3cuYXBwZW5kKHAxLCBwMiwgcDMpO1xuXG4gIGNvbnN0IHdyYXAgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KFwiZGl2XCIpO1xuICB3cmFwLmFwcGVuZChsZWdlbmQsIHJvdyk7XG4gIHJldHVybiB3cmFwO1xufVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC02IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiXG5leF9hbHBoYSA9IDVlLTc7ICBleF9UaSA9IC01LjA7ICBleF9UcyA9IDE1LjA7ICBleF90ID0gOTAgKiA4NjQwMDtcblxuZnVuY3Rpb24gZXJmaW52KHkpIHtcbiAgaWYgKHkgPj0gIDEpIHJldHVybiAgSW5maW5pdHk7XG4gIGlmICh5IDw9IC0xKSByZXR1cm4gLUluZmluaXR5O1xuICBpZiAoeSA8ICAgMCkgcmV0dXJuIC1lcmZpbnYoLXkpO1xuICBsZXQgbG8gPSAwLCBoaSA9IDY7XG4gIGZvciAobGV0IGkgPSAwOyBpIDwgNjA7IGkrKykge1xuICAgIGNvbnN0IG1pZCA9IChsbyArIGhpKSAvIDI7XG4gICAgKGVyZihtaWQpIDwgeSkgPyAobG8gPSBtaWQpIDogKGhpID0gbWlkKTtcbiAgfVxuICByZXR1cm4gKGxvICsgaGkpIC8gMjtcbn1cblxuZXhfdGFyZ2V0ID0gLWV4X1RzIC8gKGV4X1RpIC0gZXhfVHMpO1xuZXhfZXRhICAgID0gZXJmaW52KGV4X3RhcmdldCk7XG5leF94X3RoYXcgPSAyICogTWF0aC5zcXJ0KGV4X2FscGhhICogZXhfdCkgKiBleF9ldGE7XG5cbmh0bWxgXG48cD48c3Ryb25nPlRhcmdldDo8L3N0cm9uZz4gZXJmKM63KSA9IOKIklTigpsvKFThtaIg4oiSIFTigpspID0gJHtleF90YXJnZXQudG9GaXhlZCg0KX08L3A+XG48cD48c3Ryb25nPs63ID0gZXJm4oG7wrkoJHtleF90YXJnZXQudG9GaXhlZCg0KX0pIOKJiCAke2V4X2V0YS50b0ZpeGVkKDQpfTwvc3Ryb25nPjwvcD5cbjxwPjxzdHJvbmc+VGhhdyBkZXB0aCA9IDLiiJoozrF0KSDCtyDOtyDiiYhcbiAgPHNwYW4gc3R5bGU9XCJjb2xvcjojYzAzOTJiXCI+JHtleF94X3RoYXcudG9GaXhlZCgyKX0gbTwvc3Bhbj48L3N0cm9uZz48L3A+XG48cCBzdHlsZT1cImZvbnQtc2l6ZTowLjllbTsgY29sb3I6IzU1NVwiPlxuICBBZnRlciA5MCBkYXlzIHRoZSAwwrBDIGlzb3RoZXJtIHNpdHMgYXQgYWJvdXQgJHtleF94X3RoYXcudG9GaXhlZCgxKX0gbSDigJRcbiAgdmVyaWZ5IHRoaXMgYWdhaW5zdCB0aGUgXCI5MCBkYXlzXCIgY3VydmUgaW4gQ2FzZSBJIGFib3ZlXG4gICh3aXRoIHNsaWRlcnMgYXQgVOKCmyA9IDE1wrBDLCBU4bWiID0g4oiSNcKwQykuXG48L3A+YFxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdUX2knKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnYWxwaGFfZXhwJykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ2snKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnVF9zJykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ3EwJykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ2hfY29udicpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdUX2luZicpIn1dfQ==
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
@@ -1114,186 +1349,276 @@ window._ojs.runtime.interpretFromScriptTags();
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../demos/sphere_demo.html" class="pagination-link" aria-label="Sphere Temperature Profile — Interactive Demo">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Sphere Temperature Profile — Interactive Demo</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Sphere Temperature Profile — Interactive Demo</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Semi-Infinite Solid — Interactive Demo"</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>A semi-infinite solid starts at uniform temperature $T_i$.</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>At $t = 0$, the surface temperature is suddenly changed to $T_s$ and held there.</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>The solution for this prescribed-surface-temperature case is</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>T(x,t) = T_s + (T_i - T_s)\,\text{erf}<span class="sc">\!</span>\left(\frac{x}{2\sqrt{\alpha t}}\right)</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>where $\alpha$ is the thermal diffusivity.</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>Each curve below is a snapshot at a different time — watch the warming (or cooling) front march deeper into the solid.</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="fu">## Interactive demo {#sec-demo}</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>viewof T_s <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="op">-</span><span class="dv">30</span><span class="op">,</span> <span class="dv">40</span>]<span class="op">,</span> {</span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="dv">15</span><span class="op">,</span></span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Surface temperature Tₛ (°C)"</span></span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>viewof T_i <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="op">-</span><span class="dv">20</span><span class="op">,</span> <span class="dv">20</span>]<span class="op">,</span> {</span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="op">-</span><span class="dv">5</span><span class="op">,</span></span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>  <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Initial temperature Tᵢ (°C)"</span></span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>viewof alpha_exp <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="op">-</span><span class="fl">7.5</span><span class="op">,</span> <span class="op">-</span><span class="fl">5.7</span>]<span class="op">,</span> {</span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="op">-</span><span class="fl">6.3</span><span class="op">,</span></span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>  <span class="dt">step</span><span class="op">:</span> <span class="fl">0.05</span><span class="op">,</span></span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"log₁₀(α)  [α in m²/s]"</span></span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
-<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
-<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">pow</span>(<span class="dv">10</span><span class="op">,</span> alpha_exp)</span>
-<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;p style="font-size:0.95em; margin:0.2em 0 0.8em 0;"&gt;</span></span>
-<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;strong&gt;Tₛ = </span><span class="sc">${</span>T_s<span class="sc">}</span><span class="vs"> °C&lt;/strong&gt; &amp;nbsp;|&amp;nbsp;</span></span>
-<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;strong&gt;Tᵢ = </span><span class="sc">${</span>T_i<span class="sc">}</span><span class="vs"> °C&lt;/strong&gt; &amp;nbsp;|&amp;nbsp;</span></span>
-<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;strong&gt;α = </span><span class="sc">${</span>(alpha <span class="op">*</span> <span class="fl">1e6</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> × 10⁻⁶ m²/s&lt;/strong&gt;</span></span>
-<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/p&gt;`</span></span>
-<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
-<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
-<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a><span class="co">// ── Error function (Abramowitz &amp; Stegun 7.1.26, max error ~1.5 × 10⁻⁷) ───────</span></span>
-<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">erf</span>(x) {</span>
-<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (x <span class="op">&lt;</span> <span class="dv">0</span>) <span class="cf">return</span> <span class="op">-</span><span class="fu">erf</span>(<span class="op">-</span>x)<span class="op">;</span></span>
-<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> t <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> (<span class="fl">1.0</span> <span class="op">+</span> <span class="fl">0.3275911</span> <span class="op">*</span> x)<span class="op">;</span></span>
-<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> p <span class="op">=</span> t <span class="op">*</span> (<span class="fl">0.254829592</span> <span class="op">+</span> t <span class="op">*</span> (<span class="op">-</span><span class="fl">0.284496736</span> <span class="op">+</span> t <span class="op">*</span> (<span class="fl">1.421413741</span></span>
-<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a>          <span class="op">+</span> t <span class="op">*</span> (<span class="op">-</span><span class="fl">1.453152027</span> <span class="op">+</span> t <span class="op">*</span> <span class="fl">1.061405429</span>))))<span class="op">;</span></span>
-<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fl">1.0</span> <span class="op">-</span> p <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span>x <span class="op">*</span> x)<span class="op">;</span></span>
-<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a><span class="co">// ── Depth array ────────────────────────────────────────────────────────────────</span></span>
-<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a><span class="co">// x_max: four "penetration depths" at t = 1 year, clamped to [2, 30] m</span></span>
-<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a>x_max  <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(<span class="dv">30</span><span class="op">,</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="dv">2</span><span class="op">,</span> <span class="dv">4</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(alpha <span class="op">*</span> <span class="dv">365</span> <span class="op">*</span> <span class="dv">86400</span>)))<span class="op">;</span></span>
-<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a>N_PTS  <span class="op">=</span> <span class="dv">300</span><span class="op">;</span></span>
-<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a>x_arr  <span class="op">=</span> <span class="bu">Array</span><span class="op">.</span><span class="fu">from</span>({<span class="dt">length</span><span class="op">:</span> N_PTS}<span class="op">,</span> (_<span class="op">,</span> i) <span class="kw">=&gt;</span> i <span class="op">/</span> (N_PTS <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> x_max)<span class="op">;</span></span>
-<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a><span class="co">// ── Time snapshots ─────────────────────────────────────────────────────────────</span></span>
-<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a>times_days  <span class="op">=</span> [<span class="dv">7</span><span class="op">,</span> <span class="dv">30</span><span class="op">,</span> <span class="dv">90</span><span class="op">,</span> <span class="dv">180</span><span class="op">,</span> <span class="dv">365</span>]<span class="op">;</span></span>
-<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a>times_s     <span class="op">=</span> times_days<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d <span class="op">*</span> <span class="dv">86400</span>)<span class="op">;</span></span>
-<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a>time_labels <span class="op">=</span> [<span class="st">"7 days"</span><span class="op">,</span> <span class="st">"30 days"</span><span class="op">,</span> <span class="st">"90 days"</span><span class="op">,</span> <span class="st">"180 days"</span><span class="op">,</span> <span class="st">"1 year"</span>]<span class="op">;</span></span>
-<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a><span class="co">// ── Row data for Observable Plot ───────────────────────────────────────────────</span></span>
-<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> times_s<span class="op">.</span><span class="fu">flatMap</span>((t_s<span class="op">,</span> j) <span class="kw">=&gt;</span></span>
-<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a>  x_arr<span class="op">.</span><span class="fu">map</span>(x <span class="kw">=&gt;</span> ({</span>
-<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a>    x<span class="op">,</span></span>
-<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a>    <span class="dt">T</span><span class="op">:</span> T_s <span class="op">+</span> (T_i <span class="op">-</span> T_s) <span class="op">*</span> <span class="fu">erf</span>(x <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(alpha <span class="op">*</span> t_s)))<span class="op">,</span></span>
-<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a>    <span class="dt">time</span><span class="op">:</span> time_labels[j]</span>
-<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a>  }))</span>
-<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a>)<span class="op">;</span></span>
-<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
-<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
-<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-98"><a href="#cb6-98" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
-<span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="dv">660</span><span class="op">,</span></span>
-<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">400</span><span class="op">,</span></span>
-<span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">65</span><span class="op">,</span></span>
-<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginBottom</span><span class="op">:</span> <span class="dv">50</span><span class="op">,</span></span>
-<span id="cb6-103"><a href="#cb6-103" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> { <span class="dt">fontFamily</span><span class="op">:</span> <span class="st">"Georgia, serif"</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="st">"13px"</span> }<span class="op">,</span></span>
-<span id="cb6-104"><a href="#cb6-104" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> { <span class="dt">label</span><span class="op">:</span> <span class="st">"Depth x (m)  →"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> x_max] }<span class="op">,</span></span>
-<span id="cb6-105"><a href="#cb6-105" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> { <span class="dt">label</span><span class="op">:</span> <span class="st">"↑  Temperature T (°C)"</span> }<span class="op">,</span></span>
-<span id="cb6-106"><a href="#cb6-106" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
-<span id="cb6-107"><a href="#cb6-107" aria-hidden="true" tabindex="-1"></a>    <span class="dt">domain</span><span class="op">:</span> time_labels<span class="op">,</span></span>
-<span id="cb6-108"><a href="#cb6-108" aria-hidden="true" tabindex="-1"></a>    <span class="dt">range</span><span class="op">:</span>  [<span class="st">"#1f77b4"</span><span class="op">,</span> <span class="st">"#ff7f0e"</span><span class="op">,</span> <span class="st">"#2ca02c"</span><span class="op">,</span> <span class="st">"#d62728"</span><span class="op">,</span> <span class="st">"#9467bd"</span>]<span class="op">,</span></span>
-<span id="cb6-109"><a href="#cb6-109" aria-hidden="true" tabindex="-1"></a>    <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
-<span id="cb6-110"><a href="#cb6-110" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb6-111"><a href="#cb6-111" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
-<span id="cb6-112"><a href="#cb6-112" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">gridX</span>({<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#ddd"</span>})<span class="op">,</span></span>
-<span id="cb6-113"><a href="#cb6-113" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">gridY</span>({<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#ddd"</span>})<span class="op">,</span></span>
-<span id="cb6-114"><a href="#cb6-114" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#888"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"5,4"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.2</span>})<span class="op">,</span></span>
-<span id="cb6-115"><a href="#cb6-115" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(rows<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"T"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"time"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">2.5</span>})<span class="op">,</span></span>
-<span id="cb6-116"><a href="#cb6-116" aria-hidden="true" tabindex="-1"></a>  ]</span>
-<span id="cb6-117"><a href="#cb6-117" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb6-118"><a href="#cb6-118" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb6-119"><a href="#cb6-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-120"><a href="#cb6-120" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb6-121"><a href="#cb6-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-122"><a href="#cb6-122" aria-hidden="true" tabindex="-1"></a><span class="fu">## What to look for {#sec-observations}</span></span>
-<span id="cb6-123"><a href="#cb6-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-124"><a href="#cb6-124" aria-hidden="true" tabindex="-1"></a>**Observation 1 — Penetration depth scales as $\sqrt{\alpha t}$.**</span>
-<span id="cb6-125"><a href="#cb6-125" aria-hidden="true" tabindex="-1"></a>All five snapshots are the same erf curve, just scaled horizontally.</span>
-<span id="cb6-126"><a href="#cb6-126" aria-hidden="true" tabindex="-1"></a>Double $\alpha$ (or quadruple the time) and every curve stretches by $\sqrt{2}$ in depth.</span>
-<span id="cb6-127"><a href="#cb6-127" aria-hidden="true" tabindex="-1"></a>This is exactly why the similarity variable $\eta = x/(2\sqrt{\alpha t})$ works: it collapses</span>
-<span id="cb6-128"><a href="#cb6-128" aria-hidden="true" tabindex="-1"></a>all times and all materials onto one universal curve.</span>
-<span id="cb6-129"><a href="#cb6-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-130"><a href="#cb6-130" aria-hidden="true" tabindex="-1"></a>**Observation 2 — The surface and the deep interior are non-negotiable.**</span>
-<span id="cb6-131"><a href="#cb6-131" aria-hidden="true" tabindex="-1"></a>No matter what, $T(0,t) = T_s$ (boundary condition) and $T(\infty,t) = T_i$ (undisturbed interior).</span>
-<span id="cb6-132"><a href="#cb6-132" aria-hidden="true" tabindex="-1"></a>The sliders change *where* and *how fast* the transition zone moves, but not those two anchors.</span>
-<span id="cb6-133"><a href="#cb6-133" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-134"><a href="#cb6-134" aria-hidden="true" tabindex="-1"></a>**Observation 3 — The freezing front for permafrost.**</span>
-<span id="cb6-135"><a href="#cb6-135" aria-hidden="true" tabindex="-1"></a>Set $T_i &lt; 0$ and $T_s &gt; 0$ (the defaults do this).</span>
-<span id="cb6-136"><a href="#cb6-136" aria-hidden="true" tabindex="-1"></a>The dashed horizontal line at $T = 0\,^\circ\text{C}$ marks the boundary between frozen and thawed ground.</span>
-<span id="cb6-137"><a href="#cb6-137" aria-hidden="true" tabindex="-1"></a>The point where each curve crosses that line is the thaw depth at that time — watch it</span>
-<span id="cb6-138"><a href="#cb6-138" aria-hidden="true" tabindex="-1"></a>advance with each successive snapshot.</span>
-<span id="cb6-139"><a href="#cb6-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-140"><a href="#cb6-140" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb6-141"><a href="#cb6-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-142"><a href="#cb6-142" aria-hidden="true" tabindex="-1"></a><span class="fu">## Worked example {#sec-worked}</span></span>
-<span id="cb6-143"><a href="#cb6-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-144"><a href="#cb6-144" aria-hidden="true" tabindex="-1"></a>**Example.** A frozen soil layer ($\alpha = 5 \times 10^{-7}\ \text{m}^2/\text{s}$, $T_i = -5\,^\circ\text{C}$)</span>
-<span id="cb6-145"><a href="#cb6-145" aria-hidden="true" tabindex="-1"></a>has its surface suddenly raised to $T_s = 15\,^\circ\text{C}$ at the start of the warm season.</span>
-<span id="cb6-146"><a href="#cb6-146" aria-hidden="true" tabindex="-1"></a>How deep does the 0°C thaw front reach after 90 days?</span>
-<span id="cb6-147"><a href="#cb6-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-150"><a href="#cb6-150" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
-<span id="cb6-151"><a href="#cb6-151" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
-<span id="cb6-152"><a href="#cb6-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-153"><a href="#cb6-153" aria-hidden="true" tabindex="-1"></a><span class="co">// ── Problem parameters ────────────────────────────────────────────────────────</span></span>
-<span id="cb6-154"><a href="#cb6-154" aria-hidden="true" tabindex="-1"></a>ex_alpha <span class="op">=</span> <span class="fl">5e-7</span><span class="op">;</span>   ex_Ti <span class="op">=</span> <span class="op">-</span><span class="fl">5.0</span><span class="op">;</span>   ex_Ts <span class="op">=</span> <span class="fl">15.0</span><span class="op">;</span>   ex_t <span class="op">=</span> <span class="dv">90</span> <span class="op">*</span> <span class="dv">86400</span><span class="op">;</span></span>
-<span id="cb6-155"><a href="#cb6-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-156"><a href="#cb6-156" aria-hidden="true" tabindex="-1"></a><span class="co">// ── Inverse erf via binary search ─────────────────────────────────────────────</span></span>
-<span id="cb6-157"><a href="#cb6-157" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">erfinv</span>(y) {</span>
-<span id="cb6-158"><a href="#cb6-158" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (y <span class="op">&gt;=</span>  <span class="dv">1</span>) <span class="cf">return</span>  <span class="kw">Infinity</span><span class="op">;</span></span>
-<span id="cb6-159"><a href="#cb6-159" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (y <span class="op">&lt;=</span> <span class="op">-</span><span class="dv">1</span>) <span class="cf">return</span> <span class="op">-</span><span class="kw">Infinity</span><span class="op">;</span></span>
-<span id="cb6-160"><a href="#cb6-160" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (y <span class="op">&lt;</span>   <span class="dv">0</span>) <span class="cf">return</span> <span class="op">-</span><span class="fu">erfinv</span>(<span class="op">-</span>y)<span class="op">;</span></span>
-<span id="cb6-161"><a href="#cb6-161" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> lo <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> hi <span class="op">=</span> <span class="dv">6</span><span class="op">;</span></span>
-<span id="cb6-162"><a href="#cb6-162" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">60</span><span class="op">;</span> i<span class="op">++</span>) {</span>
-<span id="cb6-163"><a href="#cb6-163" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> mid <span class="op">=</span> (lo <span class="op">+</span> hi) <span class="op">/</span> <span class="dv">2</span><span class="op">;</span></span>
-<span id="cb6-164"><a href="#cb6-164" aria-hidden="true" tabindex="-1"></a>    (<span class="fu">erf</span>(mid) <span class="op">&lt;</span> y) <span class="op">?</span> (lo <span class="op">=</span> mid) <span class="op">:</span> (hi <span class="op">=</span> mid)<span class="op">;</span></span>
-<span id="cb6-165"><a href="#cb6-165" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb6-166"><a href="#cb6-166" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> (lo <span class="op">+</span> hi) <span class="op">/</span> <span class="dv">2</span><span class="op">;</span></span>
-<span id="cb6-167"><a href="#cb6-167" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb6-168"><a href="#cb6-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-169"><a href="#cb6-169" aria-hidden="true" tabindex="-1"></a><span class="co">// T = 0 when erf(η) = −Tₛ / (Tᵢ − Tₛ)</span></span>
-<span id="cb6-170"><a href="#cb6-170" aria-hidden="true" tabindex="-1"></a>ex_target <span class="op">=</span> <span class="op">-</span>ex_Ts <span class="op">/</span> (ex_Ti <span class="op">-</span> ex_Ts)<span class="op">;</span>          <span class="co">// 0.75</span></span>
-<span id="cb6-171"><a href="#cb6-171" aria-hidden="true" tabindex="-1"></a>ex_eta    <span class="op">=</span> <span class="fu">erfinv</span>(ex_target)<span class="op">;</span>                  <span class="co">// ≈ 0.813</span></span>
-<span id="cb6-172"><a href="#cb6-172" aria-hidden="true" tabindex="-1"></a>ex_x_thaw <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(ex_alpha <span class="op">*</span> ex_t) <span class="op">*</span> ex_eta<span class="op">;</span></span>
-<span id="cb6-173"><a href="#cb6-173" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-174"><a href="#cb6-174" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`</span></span>
-<span id="cb6-175"><a href="#cb6-175" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;p&gt;&lt;strong&gt;Target:&lt;/strong&gt; erf(η) = −Tₛ/(Tᵢ − Tₛ) = −</span><span class="sc">${</span>ex_Ts<span class="sc">}</span><span class="vs">/(</span><span class="sc">${</span>ex_Ti<span class="sc">}</span><span class="vs"> − </span><span class="sc">${</span>ex_Ts<span class="sc">}</span><span class="vs">) = </span><span class="sc">${</span>ex_target<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">4</span>)<span class="sc">}</span><span class="vs">&lt;/p&gt;</span></span>
-<span id="cb6-176"><a href="#cb6-176" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;p&gt;&lt;strong&gt;η = erf⁻¹(</span><span class="sc">${</span>ex_target<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">4</span>)<span class="sc">}</span><span class="vs">) ≈ </span><span class="sc">${</span>ex_eta<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">4</span>)<span class="sc">}</span><span class="vs">&lt;/strong&gt;&lt;/p&gt;</span></span>
-<span id="cb6-177"><a href="#cb6-177" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;p&gt;&lt;strong&gt;Thaw depth = 2√(αt) · η = 2 × √(</span><span class="sc">${</span>ex_alpha<span class="op">.</span><span class="fu">toExponential</span>(<span class="dv">0</span>)<span class="sc">}</span><span class="vs"> × </span><span class="sc">${</span>ex_t<span class="op">.</span><span class="fu">toExponential</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">) × </span><span class="sc">${</span>ex_eta<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span></span>
-<span id="cb6-178"><a href="#cb6-178" aria-hidden="true" tabindex="-1"></a><span class="vs">  ≈ &lt;span style="color:#c0392b"&gt;</span><span class="sc">${</span>ex_x_thaw<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> m&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;</span></span>
-<span id="cb6-179"><a href="#cb6-179" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;p style="font-size:0.9em; color:#555"&gt;</span></span>
-<span id="cb6-180"><a href="#cb6-180" aria-hidden="true" tabindex="-1"></a><span class="vs">  After three months the 0°C isotherm has reached about </span><span class="sc">${</span>ex_x_thaw<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> m depth —</span></span>
-<span id="cb6-181"><a href="#cb6-181" aria-hidden="true" tabindex="-1"></a><span class="vs">  consistent with what you should see in the "90 days" curve in the demo above</span></span>
-<span id="cb6-182"><a href="#cb6-182" aria-hidden="true" tabindex="-1"></a><span class="vs">  when the sliders are set to Tₛ = 15°C, Tᵢ = −5°C, α = 0.5 × 10⁻⁶ m²/s.</span></span>
-<span id="cb6-183"><a href="#cb6-183" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/p&gt;`</span></span>
-<span id="cb6-184"><a href="#cb6-184" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># "Semi-Infinite Solid — Interactive Demo" {.unnumbered}</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>A semi-infinite solid ($x \ge 0$) starts at uniform temperature $T_i$.</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>At $t = 0$, something happens at the surface — the three cases differ only in *what* that something is.</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>Each plot below shows temperature profiles at five time snapshots.</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Case <span class="pp">|</span> Surface BC <span class="pp">|</span> Key parameter <span class="pp">|</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|-----------|---------------|</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> I    <span class="pp">|</span> $T(0,t) = T_s$ <span class="pp">|</span> prescribed temperature <span class="pp">|</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> II   <span class="pp">|</span> $-k\,\partial T/\partial x\big<span class="pp">|</span>_0 = q_0''$ <span class="pp">|</span> prescribed heat flux <span class="pp">|</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> III  <span class="pp">|</span> $-k\,\partial T/\partial x\big<span class="pp">|</span>_0 = h(T_\infty - T(0))$ <span class="pp">|</span> convection <span class="pp">|</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## Parameters {#sec-params}</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="fu">### Shared</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>viewof T_i <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="op">-</span><span class="dv">20</span><span class="op">,</span> <span class="dv">20</span>]<span class="op">,</span> {</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="op">-</span><span class="dv">5</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Initial temperature Tᵢ (°C)"</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>viewof alpha_exp <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="op">-</span><span class="fl">7.5</span><span class="op">,</span> <span class="op">-</span><span class="fl">5.7</span>]<span class="op">,</span> {</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="op">-</span><span class="fl">6.3</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.05</span><span class="op">,</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"log₁₀(α)  [α in m²/s]"</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>viewof k <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.1</span><span class="op">,</span> <span class="fl">5.0</span>]<span class="op">,</span> {</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="fl">1.0</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Thermal conductivity k (W/m·K)"</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="fu">### Case-specific boundary conditions</span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>viewof T_s <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="op">-</span><span class="dv">30</span><span class="op">,</span> <span class="dv">40</span>]<span class="op">,</span> {</span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="dv">15</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Case I — surface temperature Tₛ (°C)"</span></span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>viewof q0 <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">1000</span>]<span class="op">,</span> {</span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="dv">300</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span></span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Case II — surface heat flux q₀″ (W/m²)"</span></span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>viewof h_conv <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">1</span><span class="op">,</span> <span class="dv">100</span>]<span class="op">,</span> {</span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="dv">25</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Case III — convection coefficient h (W/m²·K)"</span></span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>viewof T_inf <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="op">-</span><span class="dv">30</span><span class="op">,</span> <span class="dv">40</span>]<span class="op">,</span> {</span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="dv">20</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Case III — fluid temperature T∞ (°C)"</span></span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">pow</span>(<span class="dv">10</span><span class="op">,</span> alpha_exp)</span>
+<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;p style="font-size:0.9em; margin:0.2em 0 0.8em 0; color:#444"&gt;</span></span>
+<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a><span class="vs">  α = </span><span class="sc">${</span>(alpha <span class="op">*</span> <span class="fl">1e6</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> × 10⁻⁶ m²/s &amp;nbsp;|&amp;nbsp;</span></span>
+<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a><span class="vs">  k = </span><span class="sc">${</span>k<span class="sc">}</span><span class="vs"> W/m·K &amp;nbsp;|&amp;nbsp;</span></span>
+<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a><span class="vs">  Tᵢ = </span><span class="sc">${</span>T_i<span class="sc">}</span><span class="vs"> °C</span></span>
+<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/p&gt;`</span></span>
+<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a><span class="fu">## Temperature profiles {#sec-plots}</span></span>
+<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a><span class="co">// ── Special functions ──────────────────────────────────────────────────────────</span></span>
+<span id="cb7-92"><a href="#cb7-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-93"><a href="#cb7-93" aria-hidden="true" tabindex="-1"></a><span class="co">// erf  (Abramowitz &amp; Stegun 7.1.26, max error ~1.5 × 10⁻⁷)</span></span>
+<span id="cb7-94"><a href="#cb7-94" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">erf</span>(x) {</span>
+<span id="cb7-95"><a href="#cb7-95" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (x <span class="op">&lt;</span> <span class="dv">0</span>) <span class="cf">return</span> <span class="op">-</span><span class="fu">erf</span>(<span class="op">-</span>x)<span class="op">;</span></span>
+<span id="cb7-96"><a href="#cb7-96" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> t <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> (<span class="fl">1.0</span> <span class="op">+</span> <span class="fl">0.3275911</span> <span class="op">*</span> x)<span class="op">;</span></span>
+<span id="cb7-97"><a href="#cb7-97" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> p <span class="op">=</span> t <span class="op">*</span> (<span class="fl">0.254829592</span> <span class="op">+</span> t <span class="op">*</span> (<span class="op">-</span><span class="fl">0.284496736</span> <span class="op">+</span> t <span class="op">*</span> (<span class="fl">1.421413741</span></span>
+<span id="cb7-98"><a href="#cb7-98" aria-hidden="true" tabindex="-1"></a>          <span class="op">+</span> t <span class="op">*</span> (<span class="op">-</span><span class="fl">1.453152027</span> <span class="op">+</span> t <span class="op">*</span> <span class="fl">1.061405429</span>))))<span class="op">;</span></span>
+<span id="cb7-99"><a href="#cb7-99" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fl">1.0</span> <span class="op">-</span> p <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span>x <span class="op">*</span> x)<span class="op">;</span></span>
+<span id="cb7-100"><a href="#cb7-100" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-101"><a href="#cb7-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-102"><a href="#cb7-102" aria-hidden="true" tabindex="-1"></a><span class="co">// erfc(x) = 1 − erf(x)</span></span>
+<span id="cb7-103"><a href="#cb7-103" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">erfc</span>(x) { <span class="cf">return</span> <span class="dv">1</span> <span class="op">-</span> <span class="fu">erf</span>(x)<span class="op">;</span> }</span>
+<span id="cb7-104"><a href="#cb7-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-105"><a href="#cb7-105" aria-hidden="true" tabindex="-1"></a><span class="co">// erfcx(u) = exp(u²) · erfc(u)  — numerically stable for all u ≥ 0</span></span>
+<span id="cb7-106"><a href="#cb7-106" aria-hidden="true" tabindex="-1"></a><span class="co">// Uses direct computation for u &lt; 5, asymptotic expansion for u ≥ 5.</span></span>
+<span id="cb7-107"><a href="#cb7-107" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">erfcx</span>(u) {</span>
+<span id="cb7-108"><a href="#cb7-108" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (u <span class="op">&lt;</span> <span class="dv">0</span>) <span class="cf">return</span> <span class="dv">2</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(u <span class="op">*</span> u) <span class="op">-</span> <span class="fu">erfcx</span>(<span class="op">-</span>u)<span class="op">;</span></span>
+<span id="cb7-109"><a href="#cb7-109" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (u <span class="op">&lt;</span> <span class="dv">5</span>) <span class="cf">return</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(u <span class="op">*</span> u) <span class="op">*</span> <span class="fu">erfc</span>(u)<span class="op">;</span></span>
+<span id="cb7-110"><a href="#cb7-110" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Asymptotic: erfcx(u) ~ (1/√π)/u · [1 − 1/(2u²) + 3/(4u⁴) − 15/(8u⁶) + ...]</span></span>
+<span id="cb7-111"><a href="#cb7-111" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> t <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> (u <span class="op">*</span> u)<span class="op">;</span></span>
+<span id="cb7-112"><a href="#cb7-112" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> (<span class="dv">1</span> <span class="op">/</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span>)) <span class="op">/</span> u</span>
+<span id="cb7-113"><a href="#cb7-113" aria-hidden="true" tabindex="-1"></a>       <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> t <span class="op">*</span> <span class="fl">0.5</span> <span class="op">+</span> t <span class="op">*</span> t <span class="op">*</span> <span class="fl">0.75</span> <span class="op">-</span> t <span class="op">*</span> t <span class="op">*</span> t <span class="op">*</span> <span class="fl">1.875</span> <span class="op">+</span> t <span class="op">*</span> t <span class="op">*</span> t <span class="op">*</span> t <span class="op">*</span> <span class="fl">6.5625</span>)<span class="op">;</span></span>
+<span id="cb7-114"><a href="#cb7-114" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-115"><a href="#cb7-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-116"><a href="#cb7-116" aria-hidden="true" tabindex="-1"></a><span class="co">// ── Depth array ────────────────────────────────────────────────────────────────</span></span>
+<span id="cb7-117"><a href="#cb7-117" aria-hidden="true" tabindex="-1"></a>x_max <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(<span class="dv">30</span><span class="op">,</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="dv">2</span><span class="op">,</span> <span class="dv">4</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(alpha <span class="op">*</span> <span class="dv">365</span> <span class="op">*</span> <span class="dv">86400</span>)))<span class="op">;</span></span>
+<span id="cb7-118"><a href="#cb7-118" aria-hidden="true" tabindex="-1"></a>N_PTS <span class="op">=</span> <span class="dv">300</span><span class="op">;</span></span>
+<span id="cb7-119"><a href="#cb7-119" aria-hidden="true" tabindex="-1"></a>x_arr <span class="op">=</span> <span class="bu">Array</span><span class="op">.</span><span class="fu">from</span>({<span class="dt">length</span><span class="op">:</span> N_PTS}<span class="op">,</span> (_<span class="op">,</span> i) <span class="kw">=&gt;</span> i <span class="op">/</span> (N_PTS <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> x_max)<span class="op">;</span></span>
+<span id="cb7-120"><a href="#cb7-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-121"><a href="#cb7-121" aria-hidden="true" tabindex="-1"></a><span class="co">// ── Time snapshots ─────────────────────────────────────────────────────────────</span></span>
+<span id="cb7-122"><a href="#cb7-122" aria-hidden="true" tabindex="-1"></a>times_days  <span class="op">=</span> [<span class="dv">7</span><span class="op">,</span> <span class="dv">30</span><span class="op">,</span> <span class="dv">90</span><span class="op">,</span> <span class="dv">180</span><span class="op">,</span> <span class="dv">365</span>]<span class="op">;</span></span>
+<span id="cb7-123"><a href="#cb7-123" aria-hidden="true" tabindex="-1"></a>times_s     <span class="op">=</span> times_days<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d <span class="op">*</span> <span class="dv">86400</span>)<span class="op">;</span></span>
+<span id="cb7-124"><a href="#cb7-124" aria-hidden="true" tabindex="-1"></a>time_labels <span class="op">=</span> [<span class="st">"7 days"</span><span class="op">,</span> <span class="st">"30 days"</span><span class="op">,</span> <span class="st">"90 days"</span><span class="op">,</span> <span class="st">"180 days"</span><span class="op">,</span> <span class="st">"1 year"</span>]<span class="op">;</span></span>
+<span id="cb7-125"><a href="#cb7-125" aria-hidden="true" tabindex="-1"></a>time_colors <span class="op">=</span> [<span class="st">"#1f77b4"</span><span class="op">,</span> <span class="st">"#ff7f0e"</span><span class="op">,</span> <span class="st">"#2ca02c"</span><span class="op">,</span> <span class="st">"#d62728"</span><span class="op">,</span> <span class="st">"#9467bd"</span>]<span class="op">;</span></span>
+<span id="cb7-126"><a href="#cb7-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-127"><a href="#cb7-127" aria-hidden="true" tabindex="-1"></a><span class="co">// ── Solution formulas ──────────────────────────────────────────────────────────</span></span>
+<span id="cb7-128"><a href="#cb7-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-129"><a href="#cb7-129" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">T_caseI</span>(x<span class="op">,</span> t_s) {</span>
+<span id="cb7-130"><a href="#cb7-130" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> eta <span class="op">=</span> x <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(alpha <span class="op">*</span> t_s))<span class="op">;</span></span>
+<span id="cb7-131"><a href="#cb7-131" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> T_s <span class="op">+</span> (T_i <span class="op">-</span> T_s) <span class="op">*</span> <span class="fu">erf</span>(eta)<span class="op">;</span></span>
+<span id="cb7-132"><a href="#cb7-132" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-133"><a href="#cb7-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-134"><a href="#cb7-134" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">T_caseII</span>(x<span class="op">,</span> t_s) {</span>
+<span id="cb7-135"><a href="#cb7-135" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> eta <span class="op">=</span> x <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(alpha <span class="op">*</span> t_s))<span class="op">;</span></span>
+<span id="cb7-136"><a href="#cb7-136" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> T_i</span>
+<span id="cb7-137"><a href="#cb7-137" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> (<span class="dv">2</span> <span class="op">*</span> q0 <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(alpha <span class="op">*</span> t_s <span class="op">/</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span>) <span class="op">/</span> k) <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span>eta <span class="op">*</span> eta)</span>
+<span id="cb7-138"><a href="#cb7-138" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span> (q0 <span class="op">*</span> x <span class="op">/</span> k) <span class="op">*</span> <span class="fu">erfc</span>(eta)<span class="op">;</span></span>
+<span id="cb7-139"><a href="#cb7-139" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-140"><a href="#cb7-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-141"><a href="#cb7-141" aria-hidden="true" tabindex="-1"></a><span class="co">// Numerically stable Case III using erfcx:</span></span>
+<span id="cb7-142"><a href="#cb7-142" aria-hidden="true" tabindex="-1"></a><span class="co">// T = Tᵢ + (T∞ − Tᵢ) · [erfc(η) − exp(−η²) · erfcx(η + β)]</span></span>
+<span id="cb7-143"><a href="#cb7-143" aria-hidden="true" tabindex="-1"></a><span class="co">// where β = h√(αt)/k</span></span>
+<span id="cb7-144"><a href="#cb7-144" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">T_caseIII</span>(x<span class="op">,</span> t_s) {</span>
+<span id="cb7-145"><a href="#cb7-145" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> eta  <span class="op">=</span> x <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(alpha <span class="op">*</span> t_s))<span class="op">;</span></span>
+<span id="cb7-146"><a href="#cb7-146" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> beta <span class="op">=</span> h_conv <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(alpha <span class="op">*</span> t_s) <span class="op">/</span> k<span class="op">;</span></span>
+<span id="cb7-147"><a href="#cb7-147" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> T_i <span class="op">+</span> (T_inf <span class="op">-</span> T_i)</span>
+<span id="cb7-148"><a href="#cb7-148" aria-hidden="true" tabindex="-1"></a>    <span class="op">*</span> (<span class="fu">erfc</span>(eta) <span class="op">-</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span>eta <span class="op">*</span> eta) <span class="op">*</span> <span class="fu">erfcx</span>(eta <span class="op">+</span> beta))<span class="op">;</span></span>
+<span id="cb7-149"><a href="#cb7-149" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-150"><a href="#cb7-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-151"><a href="#cb7-151" aria-hidden="true" tabindex="-1"></a><span class="co">// ── Row builder ────────────────────────────────────────────────────────────────</span></span>
+<span id="cb7-152"><a href="#cb7-152" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">makeRows</span>(T_fn) {</span>
+<span id="cb7-153"><a href="#cb7-153" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> times_s<span class="op">.</span><span class="fu">flatMap</span>((t_s<span class="op">,</span> j) <span class="kw">=&gt;</span></span>
+<span id="cb7-154"><a href="#cb7-154" aria-hidden="true" tabindex="-1"></a>    x_arr<span class="op">.</span><span class="fu">map</span>(x <span class="kw">=&gt;</span> ({ x<span class="op">,</span> <span class="dt">T</span><span class="op">:</span> <span class="fu">T_fn</span>(x<span class="op">,</span> t_s)<span class="op">,</span> <span class="dt">time</span><span class="op">:</span> time_labels[j] }))</span>
+<span id="cb7-155"><a href="#cb7-155" aria-hidden="true" tabindex="-1"></a>  )<span class="op">;</span></span>
+<span id="cb7-156"><a href="#cb7-156" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-157"><a href="#cb7-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-158"><a href="#cb7-158" aria-hidden="true" tabindex="-1"></a>rows_I   <span class="op">=</span> <span class="fu">makeRows</span>(T_caseI)<span class="op">;</span></span>
+<span id="cb7-159"><a href="#cb7-159" aria-hidden="true" tabindex="-1"></a>rows_II  <span class="op">=</span> <span class="fu">makeRows</span>(T_caseII)<span class="op">;</span></span>
+<span id="cb7-160"><a href="#cb7-160" aria-hidden="true" tabindex="-1"></a>rows_III <span class="op">=</span> <span class="fu">makeRows</span>(T_caseIII)<span class="op">;</span></span>
+<span id="cb7-161"><a href="#cb7-161" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-162"><a href="#cb7-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-165"><a href="#cb7-165" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb7-166"><a href="#cb7-166" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb7-167"><a href="#cb7-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-168"><a href="#cb7-168" aria-hidden="true" tabindex="-1"></a><span class="co">// ── Plot factory ───────────────────────────────────────────────────────────────</span></span>
+<span id="cb7-169"><a href="#cb7-169" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">makePlot</span>(rows<span class="op">,</span> title) {</span>
+<span id="cb7-170"><a href="#cb7-170" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb7-171"><a href="#cb7-171" aria-hidden="true" tabindex="-1"></a>    <span class="dt">width</span><span class="op">:</span>  <span class="dv">215</span><span class="op">,</span></span>
+<span id="cb7-172"><a href="#cb7-172" aria-hidden="true" tabindex="-1"></a>    <span class="dt">height</span><span class="op">:</span> <span class="dv">310</span><span class="op">,</span></span>
+<span id="cb7-173"><a href="#cb7-173" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginLeft</span><span class="op">:</span>   <span class="dv">48</span><span class="op">,</span></span>
+<span id="cb7-174"><a href="#cb7-174" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginBottom</span><span class="op">:</span> <span class="dv">42</span><span class="op">,</span></span>
+<span id="cb7-175"><a href="#cb7-175" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginTop</span><span class="op">:</span>    <span class="dv">28</span><span class="op">,</span></span>
+<span id="cb7-176"><a href="#cb7-176" aria-hidden="true" tabindex="-1"></a>    <span class="dt">style</span><span class="op">:</span> { <span class="dt">fontFamily</span><span class="op">:</span> <span class="st">"Georgia, serif"</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="st">"11px"</span> }<span class="op">,</span></span>
+<span id="cb7-177"><a href="#cb7-177" aria-hidden="true" tabindex="-1"></a>    <span class="dt">title</span><span class="op">:</span> title<span class="op">,</span></span>
+<span id="cb7-178"><a href="#cb7-178" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> { <span class="dt">label</span><span class="op">:</span> <span class="st">"x (m) →"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> x_max]<span class="op">,</span> <span class="dt">axis</span><span class="op">:</span> <span class="st">"bottom"</span> }<span class="op">,</span></span>
+<span id="cb7-179"><a href="#cb7-179" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> { <span class="dt">label</span><span class="op">:</span> <span class="st">"↑ T (°C)"</span><span class="op">,</span> <span class="dt">axis</span><span class="op">:</span> <span class="st">"left"</span> }<span class="op">,</span></span>
+<span id="cb7-180"><a href="#cb7-180" aria-hidden="true" tabindex="-1"></a>    <span class="dt">color</span><span class="op">:</span> {</span>
+<span id="cb7-181"><a href="#cb7-181" aria-hidden="true" tabindex="-1"></a>      <span class="dt">domain</span><span class="op">:</span> time_labels<span class="op">,</span></span>
+<span id="cb7-182"><a href="#cb7-182" aria-hidden="true" tabindex="-1"></a>      <span class="dt">range</span><span class="op">:</span>  time_colors<span class="op">,</span></span>
+<span id="cb7-183"><a href="#cb7-183" aria-hidden="true" tabindex="-1"></a>      <span class="dt">legend</span><span class="op">:</span> <span class="kw">false</span></span>
+<span id="cb7-184"><a href="#cb7-184" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb7-185"><a href="#cb7-185" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb7-186"><a href="#cb7-186" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">gridX</span>({<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#e0e0e0"</span>})<span class="op">,</span></span>
+<span id="cb7-187"><a href="#cb7-187" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">gridY</span>({<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#e0e0e0"</span>})<span class="op">,</span></span>
+<span id="cb7-188"><a href="#cb7-188" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#999"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"4,3"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">1</span>})<span class="op">,</span></span>
+<span id="cb7-189"><a href="#cb7-189" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">line</span>(rows<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"T"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"time"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span>})<span class="op">,</span></span>
+<span id="cb7-190"><a href="#cb7-190" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb7-191"><a href="#cb7-191" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb7-192"><a href="#cb7-192" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-193"><a href="#cb7-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-194"><a href="#cb7-194" aria-hidden="true" tabindex="-1"></a><span class="co">// ── Legend (shared) ────────────────────────────────────────────────────────────</span></span>
+<span id="cb7-195"><a href="#cb7-195" aria-hidden="true" tabindex="-1"></a>legend <span class="op">=</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb7-196"><a href="#cb7-196" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="dv">660</span><span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">30</span><span class="op">,</span></span>
+<span id="cb7-197"><a href="#cb7-197" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginTop</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">marginBottom</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">marginRight</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb7-198"><a href="#cb7-198" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> { <span class="dt">domain</span><span class="op">:</span> time_labels<span class="op">,</span> <span class="dt">range</span><span class="op">:</span> time_colors<span class="op">,</span> <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span> }<span class="op">,</span></span>
+<span id="cb7-199"><a href="#cb7-199" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> []</span>
+<span id="cb7-200"><a href="#cb7-200" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb7-201"><a href="#cb7-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-202"><a href="#cb7-202" aria-hidden="true" tabindex="-1"></a><span class="co">// ── Three-column layout ────────────────────────────────────────────────────────</span></span>
+<span id="cb7-203"><a href="#cb7-203" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb7-204"><a href="#cb7-204" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> p1 <span class="op">=</span> <span class="fu">makePlot</span>(rows_I<span class="op">,</span>   <span class="st">"Case I — prescribed Tₛ"</span>)<span class="op">;</span></span>
+<span id="cb7-205"><a href="#cb7-205" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> p2 <span class="op">=</span> <span class="fu">makePlot</span>(rows_II<span class="op">,</span>  <span class="st">"Case II — prescribed q₀″"</span>)<span class="op">;</span></span>
+<span id="cb7-206"><a href="#cb7-206" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> p3 <span class="op">=</span> <span class="fu">makePlot</span>(rows_III<span class="op">,</span> <span class="st">"Case III — convection h"</span>)<span class="op">;</span></span>
+<span id="cb7-207"><a href="#cb7-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-208"><a href="#cb7-208" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> row <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">"div"</span>)<span class="op">;</span></span>
+<span id="cb7-209"><a href="#cb7-209" aria-hidden="true" tabindex="-1"></a>  row<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">cssText</span> <span class="op">=</span> <span class="st">"display:flex; gap:12px; align-items:flex-start; flex-wrap:wrap"</span><span class="op">;</span></span>
+<span id="cb7-210"><a href="#cb7-210" aria-hidden="true" tabindex="-1"></a>  row<span class="op">.</span><span class="fu">append</span>(p1<span class="op">,</span> p2<span class="op">,</span> p3)<span class="op">;</span></span>
+<span id="cb7-211"><a href="#cb7-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-212"><a href="#cb7-212" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> wrap <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">"div"</span>)<span class="op">;</span></span>
+<span id="cb7-213"><a href="#cb7-213" aria-hidden="true" tabindex="-1"></a>  wrap<span class="op">.</span><span class="fu">append</span>(legend<span class="op">,</span> row)<span class="op">;</span></span>
+<span id="cb7-214"><a href="#cb7-214" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> wrap<span class="op">;</span></span>
+<span id="cb7-215"><a href="#cb7-215" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-216"><a href="#cb7-216" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-217"><a href="#cb7-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-218"><a href="#cb7-218" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb7-219"><a href="#cb7-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-220"><a href="#cb7-220" aria-hidden="true" tabindex="-1"></a><span class="fu">## What to look for {#sec-observations}</span></span>
+<span id="cb7-221"><a href="#cb7-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-222"><a href="#cb7-222" aria-hidden="true" tabindex="-1"></a>**Case I — erf profile, surface pinned at Tₛ.**</span>
+<span id="cb7-223"><a href="#cb7-223" aria-hidden="true" tabindex="-1"></a>The surface is always exactly $T_s$ (the boundary condition is enforced), and far below the surface the solid is undisturbed at $T_i$.</span>
+<span id="cb7-224"><a href="#cb7-224" aria-hidden="true" tabindex="-1"></a>The transition zone stretches rightward as $\sim\sqrt{\alpha t}$ — same scaling as before.</span>
+<span id="cb7-225"><a href="#cb7-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-226"><a href="#cb7-226" aria-hidden="true" tabindex="-1"></a>**Case II — unbounded surface temperature.**</span>
+<span id="cb7-227"><a href="#cb7-227" aria-hidden="true" tabindex="-1"></a>There is no "target" surface temperature here; instead energy is injected at a constant rate $q_0''$.</span>
+<span id="cb7-228"><a href="#cb7-228" aria-hidden="true" tabindex="-1"></a>The surface temperature grows without bound ($\sim \sqrt{t}$), which is physically unrealistic for long times — it is a warning that the semi-infinite model eventually breaks down.</span>
+<span id="cb7-229"><a href="#cb7-229" aria-hidden="true" tabindex="-1"></a>Notice that deeper in the solid the profiles look similar to Case I.</span>
+<span id="cb7-230"><a href="#cb7-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-231"><a href="#cb7-231" aria-hidden="true" tabindex="-1"></a>**Case III — convection slows the approach.**</span>
+<span id="cb7-232"><a href="#cb7-232" aria-hidden="true" tabindex="-1"></a>Compared to Case I (same $T_i$ and $T_\infty = T_s$), the surface never quite reaches $T_\infty$ immediately; it approaches it gradually.</span>
+<span id="cb7-233"><a href="#cb7-233" aria-hidden="true" tabindex="-1"></a>A small $h$ means the convective resistance dominates: heat transfer is slow, and the solid barely warms.</span>
+<span id="cb7-234"><a href="#cb7-234" aria-hidden="true" tabindex="-1"></a>A large $h$ drives Case III toward Case I (the surface is cooled/heated so efficiently it acts like a prescribed temperature).</span>
+<span id="cb7-235"><a href="#cb7-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-236"><a href="#cb7-236" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb7-237"><a href="#cb7-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-238"><a href="#cb7-238" aria-hidden="true" tabindex="-1"></a><span class="fu">## Worked example — Case I thaw depth {#sec-worked}</span></span>
+<span id="cb7-239"><a href="#cb7-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-240"><a href="#cb7-240" aria-hidden="true" tabindex="-1"></a>Frozen soil ($\alpha = 5 \times 10^{-7}\ \text{m}^2/\text{s}$, $T_i = -5\,^\circ\text{C}$) has its surface suddenly raised to $T_s = 15\,^\circ\text{C}$.</span>
+<span id="cb7-241"><a href="#cb7-241" aria-hidden="true" tabindex="-1"></a>How deep does the 0°C thaw front reach after 90 days?</span>
+<span id="cb7-242"><a href="#cb7-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-245"><a href="#cb7-245" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb7-246"><a href="#cb7-246" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb7-247"><a href="#cb7-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-248"><a href="#cb7-248" aria-hidden="true" tabindex="-1"></a>ex_alpha <span class="op">=</span> <span class="fl">5e-7</span><span class="op">;</span>  ex_Ti <span class="op">=</span> <span class="op">-</span><span class="fl">5.0</span><span class="op">;</span>  ex_Ts <span class="op">=</span> <span class="fl">15.0</span><span class="op">;</span>  ex_t <span class="op">=</span> <span class="dv">90</span> <span class="op">*</span> <span class="dv">86400</span><span class="op">;</span></span>
+<span id="cb7-249"><a href="#cb7-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-250"><a href="#cb7-250" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">erfinv</span>(y) {</span>
+<span id="cb7-251"><a href="#cb7-251" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (y <span class="op">&gt;=</span>  <span class="dv">1</span>) <span class="cf">return</span>  <span class="kw">Infinity</span><span class="op">;</span></span>
+<span id="cb7-252"><a href="#cb7-252" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (y <span class="op">&lt;=</span> <span class="op">-</span><span class="dv">1</span>) <span class="cf">return</span> <span class="op">-</span><span class="kw">Infinity</span><span class="op">;</span></span>
+<span id="cb7-253"><a href="#cb7-253" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (y <span class="op">&lt;</span>   <span class="dv">0</span>) <span class="cf">return</span> <span class="op">-</span><span class="fu">erfinv</span>(<span class="op">-</span>y)<span class="op">;</span></span>
+<span id="cb7-254"><a href="#cb7-254" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> lo <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> hi <span class="op">=</span> <span class="dv">6</span><span class="op">;</span></span>
+<span id="cb7-255"><a href="#cb7-255" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">60</span><span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb7-256"><a href="#cb7-256" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> mid <span class="op">=</span> (lo <span class="op">+</span> hi) <span class="op">/</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb7-257"><a href="#cb7-257" aria-hidden="true" tabindex="-1"></a>    (<span class="fu">erf</span>(mid) <span class="op">&lt;</span> y) <span class="op">?</span> (lo <span class="op">=</span> mid) <span class="op">:</span> (hi <span class="op">=</span> mid)<span class="op">;</span></span>
+<span id="cb7-258"><a href="#cb7-258" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-259"><a href="#cb7-259" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> (lo <span class="op">+</span> hi) <span class="op">/</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb7-260"><a href="#cb7-260" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-261"><a href="#cb7-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-262"><a href="#cb7-262" aria-hidden="true" tabindex="-1"></a>ex_target <span class="op">=</span> <span class="op">-</span>ex_Ts <span class="op">/</span> (ex_Ti <span class="op">-</span> ex_Ts)<span class="op">;</span></span>
+<span id="cb7-263"><a href="#cb7-263" aria-hidden="true" tabindex="-1"></a>ex_eta    <span class="op">=</span> <span class="fu">erfinv</span>(ex_target)<span class="op">;</span></span>
+<span id="cb7-264"><a href="#cb7-264" aria-hidden="true" tabindex="-1"></a>ex_x_thaw <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(ex_alpha <span class="op">*</span> ex_t) <span class="op">*</span> ex_eta<span class="op">;</span></span>
+<span id="cb7-265"><a href="#cb7-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-266"><a href="#cb7-266" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`</span></span>
+<span id="cb7-267"><a href="#cb7-267" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;p&gt;&lt;strong&gt;Target:&lt;/strong&gt; erf(η) = −Tₛ/(Tᵢ − Tₛ) = </span><span class="sc">${</span>ex_target<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">4</span>)<span class="sc">}</span><span class="vs">&lt;/p&gt;</span></span>
+<span id="cb7-268"><a href="#cb7-268" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;p&gt;&lt;strong&gt;η = erf⁻¹(</span><span class="sc">${</span>ex_target<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">4</span>)<span class="sc">}</span><span class="vs">) ≈ </span><span class="sc">${</span>ex_eta<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">4</span>)<span class="sc">}</span><span class="vs">&lt;/strong&gt;&lt;/p&gt;</span></span>
+<span id="cb7-269"><a href="#cb7-269" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;p&gt;&lt;strong&gt;Thaw depth = 2√(αt) · η ≈</span></span>
+<span id="cb7-270"><a href="#cb7-270" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;span style="color:#c0392b"&gt;</span><span class="sc">${</span>ex_x_thaw<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> m&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;</span></span>
+<span id="cb7-271"><a href="#cb7-271" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;p style="font-size:0.9em; color:#555"&gt;</span></span>
+<span id="cb7-272"><a href="#cb7-272" aria-hidden="true" tabindex="-1"></a><span class="vs">  After 90 days the 0°C isotherm sits at about </span><span class="sc">${</span>ex_x_thaw<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> m —</span></span>
+<span id="cb7-273"><a href="#cb7-273" aria-hidden="true" tabindex="-1"></a><span class="vs">  verify this against the "90 days" curve in Case I above</span></span>
+<span id="cb7-274"><a href="#cb7-274" aria-hidden="true" tabindex="-1"></a><span class="vs">  (with sliders at Tₛ = 15°C, Tᵢ = −5°C).</span></span>
+<span id="cb7-275"><a href="#cb7-275" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/p&gt;`</span></span>
+<span id="cb7-276"><a href="#cb7-276" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
