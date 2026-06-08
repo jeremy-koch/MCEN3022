@@ -248,7 +248,7 @@ A few more transient problems. I wouldn't expect you to be able to replicate the
 ::: {.callout-tip}
 ### Video
 
-Start with... (video link added soon).
+Start with [the video](https://canvas.colorado.edu/courses/136150/pages/semi-infinite-solid).
 :::
 
 ### The Semi-Infinite Solid
