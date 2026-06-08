@@ -572,7 +572,9 @@ $$
 
 we see that, if we are being rigorous, there is a $\partial k/\partial x$ term. This is a nightmare! Thermal conductivity is a function of temperature: beryllium, for example, has a thermal conductivity of 161 W/m·K at 400 K and a value of 126 W/m·K at 600 K... a decrease of about 20%. We could write $k$ as a function of $T$ somehow, e.g. by fitting data to a polynomial, but we've still got to solve a nonlinear PDE!
 
-To avoid issues like this, we typically assume material properties are constants, evaluated at one reasonable average temperature: if the hot boundary in a conduction problem is at 600 K, and the cold boundary is at 200 K, we look up the value of thermal conductivity at 400 K.
+To avoid issues like this, we typically assume material properties are constants, evaluated at ONE reasonable average temperature: if the hot boundary in a conduction problem is at 600 K, and the cold boundary is at 200 K, we look up the value of thermal conductivity at 400 K. That is THE thermal conductivity of the problem.
+
+In cases where we don't know the average, we can: make a guess for the average temperature, compute the solution, compute the average of that solution, and check to see if our guess was reasonably close. It probably will be fine -- a 5% difference in thermal conductivity is not the biggest source of error in our analyses.
 
 ### Where to get material properties?
 
