@@ -329,6 +329,11 @@ window.Quarto = {
   <li><a href="#case-iv-oscillatory-temperature-at-the-surface" id="toc-case-iv-oscillatory-temperature-at-the-surface" class="nav-link" data-scroll-target="#case-iv-oscillatory-temperature-at-the-surface"><span class="header-section-number">3.5.5</span> Case IV: Oscillatory Temperature at the Surface</a></li>
   </ul></li>
   <li><a href="#interactive-example-1" id="toc-interactive-example-1" class="nav-link" data-scroll-target="#interactive-example-1"><span class="header-section-number">3.6</span> Interactive Example</a></li>
+  <li><a href="#looking-up-material-properties" id="toc-looking-up-material-properties" class="nav-link" data-scroll-target="#looking-up-material-properties"><span class="header-section-number">3.7</span> Looking up material properties</a>
+  <ul class="collapse">
+  <li><a href="#material-properties-are-sensitive-to-temperature" id="toc-material-properties-are-sensitive-to-temperature" class="nav-link" data-scroll-target="#material-properties-are-sensitive-to-temperature"><span class="header-section-number">3.7.1</span> Material properties are sensitive to temperature</a></li>
+  <li><a href="#where-to-get-material-properties" id="toc-where-to-get-material-properties" class="nav-link" data-scroll-target="#where-to-get-material-properties"><span class="header-section-number">3.7.2</span> Where to get material properties?</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -833,10 +838,63 @@ Tip
 <section id="interactive-example-1" class="level2" data-number="3.6">
 <h2 data-number="3.6" class="anchored" data-anchor-id="interactive-example-1"><span class="header-section-number">3.6</span> Interactive Example</h2>
 <p>I created an interactive plot of these solutions to help you with your intuition, <a href="./demos/semi_infinite_demo.html">find it at this link</a>.</p>
+</section>
+<section id="looking-up-material-properties" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="looking-up-material-properties"><span class="header-section-number">3.7</span> Looking up material properties</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Video
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Here’s <a href="https://canvas.colorado.edu/courses/136150/pages/looking-up-material-properties">the video link</a>.</p>
+</div>
+</div>
+<section id="material-properties-are-sensitive-to-temperature" class="level3" data-number="3.7.1">
+<h3 data-number="3.7.1" class="anchored" data-anchor-id="material-properties-are-sensitive-to-temperature"><span class="header-section-number">3.7.1</span> Material properties are sensitive to temperature</h3>
+<p>Let’s look back at the 1D conduction equation for a moment</p>
+<p><span class="math display">\[
+\rho c \frac{\partial T}{\partial t} = \frac{\partial}{\partial x}( k \frac{\partial T}{\partial x}) +\dot{q}.
+\]</span></p>
+<p>Using the product rule to expand the spatial-variation term</p>
+<p><span class="math display">\[
+\rho c \frac{\partial T}{\partial t} = \frac{\partial k}{\partial x}\frac{\partial T}{\partial x}+k\frac{\partial^2 T}{\partial x^2} +\dot{q}
+\]</span></p>
+<p>we see that, if we are being rigorous, there is a <span class="math inline">\(\partial k/\partial x\)</span> term. This is a nightmare! Thermal conductivity is a function of temperature: beryllium, for example, has a thermal conductivity of 161 W/m·K at 400 K and a value of 126 W/m·K at 600 K… a decrease of about 20%. We could write <span class="math inline">\(k\)</span> as a function of <span class="math inline">\(T\)</span> somehow, e.g.&nbsp;by fitting data to a polynomial, but we’ve still got to solve a nonlinear PDE!</p>
+<p>To avoid issues like this, we typically assume material properties are constants, evaluated at one reasonable average temperature: if the hot boundary in a conduction problem is at 600 K, and the cold boundary is at 200 K, we look up the value of thermal conductivity at 400 K.</p>
+</section>
+<section id="where-to-get-material-properties" class="level3" data-number="3.7.2">
+<h3 data-number="3.7.2" class="anchored" data-anchor-id="where-to-get-material-properties"><span class="header-section-number">3.7.2</span> Where to get material properties?</h3>
+<p>A partial list of options:</p>
+<ul>
+<li>Heat transfer texbooks usually have appendices with tables of values.</li>
+<li>Websites like <a href="https://www.wolframalpha.com/input?i=thermal+conductivity+of+copper+at+447+K">Wolfram Alpha</a> have access to databases of material property values.</li>
+<li>There are programming tools like <a href="https://coolprop.org">CoolProp</a> and <a href="https://github.com/jaktk/SolidProps">SolidProp</a>, which are particularly interesting if your analyses are being done in programming.</li>
+<li>Some companies produce data sheets, and researchers sometimes publish data sheets. NIST has a lot of information.</li>
+</ul>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It is good practice to cite the source of your data, but even if you do, it is still your responsibility if the value is wrong! This is particularly relevant in the age of AI: LLMs will give you property values, equations, etc., but there is always a chance the AI has misinterpreted a data set or hallucinated results. If something breaks because you got a bad material property from an LLM, you can blame the LLM if you want, but your company is going to blame you!</p>
+<p>Verify values with multiple sources, or at least do a sanity check: e.g., metals have thermal conductivities of about 10 W/m·K to about 400 W/m·K (for the best conductors). If you are using a thermal conductivity of 0.012 W/m·K or 12000 W/m·K, alarm bells should be going off in your head!</p>
+</div>
+</div>
 
 
 <!-- -->
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -1847,7 +1905,48 @@ Tip
 <span id="cb1-542"><a href="#cb1-542" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-543"><a href="#cb1-543" aria-hidden="true" tabindex="-1"></a><span class="fu">## Interactive Example</span></span>
 <span id="cb1-544"><a href="#cb1-544" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-545"><a href="#cb1-545" aria-hidden="true" tabindex="-1"></a>I created an interactive plot of these solutions to help you with your intuition, <span class="co">[</span><span class="ot">find it at this link</span><span class="co">](demos/semi_infinite_demo.qmd)</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-545"><a href="#cb1-545" aria-hidden="true" tabindex="-1"></a>I created an interactive plot of these solutions to help you with your intuition, <span class="co">[</span><span class="ot">find it at this link</span><span class="co">](demos/semi_infinite_demo.qmd)</span>.</span>
+<span id="cb1-546"><a href="#cb1-546" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-547"><a href="#cb1-547" aria-hidden="true" tabindex="-1"></a><span class="fu">## Looking up material properties</span></span>
+<span id="cb1-548"><a href="#cb1-548" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-549"><a href="#cb1-549" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb1-550"><a href="#cb1-550" aria-hidden="true" tabindex="-1"></a><span class="fu">### Video</span></span>
+<span id="cb1-551"><a href="#cb1-551" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-552"><a href="#cb1-552" aria-hidden="true" tabindex="-1"></a>Here's <span class="co">[</span><span class="ot">the video link</span><span class="co">](https://canvas.colorado.edu/courses/136150/pages/looking-up-material-properties)</span>.</span>
+<span id="cb1-553"><a href="#cb1-553" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-554"><a href="#cb1-554" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-555"><a href="#cb1-555" aria-hidden="true" tabindex="-1"></a><span class="fu">### Material properties are sensitive to temperature</span></span>
+<span id="cb1-556"><a href="#cb1-556" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-557"><a href="#cb1-557" aria-hidden="true" tabindex="-1"></a>Let's look back at the 1D conduction equation for a moment</span>
+<span id="cb1-558"><a href="#cb1-558" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-559"><a href="#cb1-559" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-560"><a href="#cb1-560" aria-hidden="true" tabindex="-1"></a>\rho c \frac{\partial T}{\partial t} = \frac{\partial}{\partial x}( k \frac{\partial T}{\partial x}) +\dot{q}.</span>
+<span id="cb1-561"><a href="#cb1-561" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-562"><a href="#cb1-562" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-563"><a href="#cb1-563" aria-hidden="true" tabindex="-1"></a>Using the product rule to expand the spatial-variation term</span>
+<span id="cb1-564"><a href="#cb1-564" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-565"><a href="#cb1-565" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-566"><a href="#cb1-566" aria-hidden="true" tabindex="-1"></a>\rho c \frac{\partial T}{\partial t} = \frac{\partial k}{\partial x}\frac{\partial T}{\partial x}+k\frac{\partial^2 T}{\partial x^2} +\dot{q}</span>
+<span id="cb1-567"><a href="#cb1-567" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-568"><a href="#cb1-568" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-569"><a href="#cb1-569" aria-hidden="true" tabindex="-1"></a>we see that, if we are being rigorous, there is a $\partial k/\partial x$ term. This is a nightmare! Thermal conductivity is a function of temperature: beryllium, for example, has a thermal conductivity of 161 W/m·K at 400 K and a value of 126 W/m·K at 600 K... a decrease of about 20%. We could write $k$ as a function of $T$ somehow, e.g. by fitting data to a polynomial, but we've still got to solve a nonlinear PDE!</span>
+<span id="cb1-570"><a href="#cb1-570" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-571"><a href="#cb1-571" aria-hidden="true" tabindex="-1"></a>To avoid issues like this, we typically assume material properties are constants, evaluated at one reasonable average temperature: if the hot boundary in a conduction problem is at 600 K, and the cold boundary is at 200 K, we look up the value of thermal conductivity at 400 K.</span>
+<span id="cb1-572"><a href="#cb1-572" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-573"><a href="#cb1-573" aria-hidden="true" tabindex="-1"></a><span class="fu">### Where to get material properties?</span></span>
+<span id="cb1-574"><a href="#cb1-574" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-575"><a href="#cb1-575" aria-hidden="true" tabindex="-1"></a>A partial list of options:</span>
+<span id="cb1-576"><a href="#cb1-576" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-577"><a href="#cb1-577" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Heat transfer texbooks usually have appendices with tables of values.</span>
+<span id="cb1-578"><a href="#cb1-578" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Websites like <span class="co">[</span><span class="ot">Wolfram Alpha</span><span class="co">](https://www.wolframalpha.com/input?i=thermal+conductivity+of+copper+at+447+K)</span> have access to databases of material property values.</span>
+<span id="cb1-579"><a href="#cb1-579" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>There are programming tools like <span class="co">[</span><span class="ot">CoolProp</span><span class="co">](https://coolprop.org)</span> and <span class="co">[</span><span class="ot">SolidProp</span><span class="co">](https://github.com/jaktk/SolidProps)</span>, which are particularly interesting if your analyses are being done in programming.</span>
+<span id="cb1-580"><a href="#cb1-580" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Some companies produce data sheets, and researchers sometimes publish data sheets. NIST has a lot of information.</span>
+<span id="cb1-581"><a href="#cb1-581" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-582"><a href="#cb1-582" aria-hidden="true" tabindex="-1"></a>::: {.callout-warning}</span>
+<span id="cb1-583"><a href="#cb1-583" aria-hidden="true" tabindex="-1"></a>It is good practice to cite the source of your data, but even if you do, it is still your responsibility if the value is wrong! This is particularly relevant in the age of AI: LLMs will give you property values, equations, etc., but there is always a chance the AI has misinterpreted a data set or hallucinated results. If something breaks because you got a bad material property from an LLM, you can blame the LLM if you want, but your company is going to blame you!</span>
+<span id="cb1-584"><a href="#cb1-584" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-585"><a href="#cb1-585" aria-hidden="true" tabindex="-1"></a>Verify values with multiple sources, or at least do a sanity check: e.g., metals have thermal conductivities of about 10 W/m·K to about 400 W/m·K (for the best conductors). If you are using a thermal conductivity of 0.012 W/m·K or 12000 W/m·K, alarm bells should be going off in your head!</span>
+<span id="cb1-586"><a href="#cb1-586" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

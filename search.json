@@ -735,6 +735,16 @@
     ]
   },
   {
+    "objectID": "3transient.html#looking-up-material-properties",
+    "href": "3transient.html#looking-up-material-properties",
+    "title": "3  Transient",
+    "section": "3.7 Looking up material properties",
+    "text": "3.7 Looking up material properties\n\n\n\n\n\n\nTipVideo\n\n\n\nHere’s the video link.\n\n\n\n3.7.1 Material properties are sensitive to temperature\nLet’s look back at the 1D conduction equation for a moment\n\\[\n\\rho c \\frac{\\partial T}{\\partial t} = \\frac{\\partial}{\\partial x}( k \\frac{\\partial T}{\\partial x}) +\\dot{q}.\n\\]\nUsing the product rule to expand the spatial-variation term\n\\[\n\\rho c \\frac{\\partial T}{\\partial t} = \\frac{\\partial k}{\\partial x}\\frac{\\partial T}{\\partial x}+k\\frac{\\partial^2 T}{\\partial x^2} +\\dot{q}\n\\]\nwe see that, if we are being rigorous, there is a \\(\\partial k/\\partial x\\) term. This is a nightmare! Thermal conductivity is a function of temperature: beryllium, for example, has a thermal conductivity of 161 W/m·K at 400 K and a value of 126 W/m·K at 600 K… a decrease of about 20%. We could write \\(k\\) as a function of \\(T\\) somehow, e.g. by fitting data to a polynomial, but we’ve still got to solve a nonlinear PDE!\nTo avoid issues like this, we typically assume material properties are constants, evaluated at one reasonable average temperature: if the hot boundary in a conduction problem is at 600 K, and the cold boundary is at 200 K, we look up the value of thermal conductivity at 400 K.\n\n\n3.7.2 Where to get material properties?\nA partial list of options:\n\nHeat transfer texbooks usually have appendices with tables of values.\nWebsites like Wolfram Alpha have access to databases of material property values.\nThere are programming tools like CoolProp and SolidProp, which are particularly interesting if your analyses are being done in programming.\nSome companies produce data sheets, and researchers sometimes publish data sheets. NIST has a lot of information.\n\n\n\n\n\n\n\nWarning\n\n\n\nIt is good practice to cite the source of your data, but even if you do, it is still your responsibility if the value is wrong! This is particularly relevant in the age of AI: LLMs will give you property values, equations, etc., but there is always a chance the AI has misinterpreted a data set or hallucinated results. If something breaks because you got a bad material property from an LLM, you can blame the LLM if you want, but your company is going to blame you!\nVerify values with multiple sources, or at least do a sanity check: e.g., metals have thermal conductivities of about 10 W/m·K to about 400 W/m·K (for the best conductors). If you are using a thermal conductivity of 0.012 W/m·K or 12000 W/m·K, alarm bells should be going off in your head!",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Transient</span>"
+    ]
+  },
+  {
     "objectID": "demos/wall_demo.html",
     "href": "demos/wall_demo.html",
     "title": "Composite Plane Walls – Interactive Demo",
