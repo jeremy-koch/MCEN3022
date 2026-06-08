@@ -543,3 +543,44 @@ $$\therefore \quad \text{depth} \sim \sqrt{\frac{\alpha}{\omega}}$$
 ## Interactive Example
 
 I created an interactive plot of these solutions to help you with your intuition, [find it at this link](demos/semi_infinite_demo.qmd).
+
+## Looking up material properties
+
+::: {.callout-tip}
+### Video
+
+Here's [the video link](https://canvas.colorado.edu/courses/136150/pages/looking-up-material-properties).
+:::
+
+### Material properties are sensitive to temperature
+
+Let's look back at the 1D conduction equation for a moment
+
+$$
+\rho c \frac{\partial T}{\partial t} = \frac{\partial}{\partial x}( k \frac{\partial T}{\partial x}) +\dot{q}.
+$$
+
+Using the product rule to expand the spatial-variation term
+
+$$
+\rho c \frac{\partial T}{\partial t} = \frac{\partial k}{\partial x}\frac{\partial T}{\partial x}+k\frac{\partial^2 T}{\partial x^2} +\dot{q}
+$$
+
+we see that, if we are being rigorous, there is a $\partial k/\partial x$ term. This is a nightmare! Thermal conductivity is a function of temperature: beryllium, for example, has a thermal conductivity of 161 W/m·K at 400 K and a value of 126 W/m·K at 600 K... a decrease of about 20%. We could write $k$ as a function of $T$ somehow, e.g. by fitting data to a polynomial, but we've still got to solve a nonlinear PDE!
+
+To avoid issues like this, we typically assume material properties are constants, evaluated at one reasonable average temperature: if the hot boundary in a conduction problem is at 600 K, and the cold boundary is at 200 K, we look up the value of thermal conductivity at 400 K.
+
+### Where to get material properties?
+
+A partial list of options:
+
+- Heat transfer texbooks usually have appendices with tables of values.
+- Websites like [Wolfram Alpha](https://www.wolframalpha.com/input?i=thermal+conductivity+of+copper+at+447+K) have access to databases of material property values.
+- There are programming tools like [CoolProp](https://coolprop.org) and [SolidProp](https://github.com/jaktk/SolidProps), which are particularly interesting if your analyses are being done in programming.
+- Some companies produce data sheets, and researchers sometimes publish data sheets. NIST has a lot of information.
+
+::: {.callout-warning}
+It is good practice to cite the source of your data, but even if you do, it is still your responsibility if the value is wrong! This is particularly relevant in the age of AI: LLMs will give you property values, equations, etc., but there is always a chance the AI has misinterpreted a data set or hallucinated results. If something breaks because you got a bad material property from an LLM, you can blame the LLM if you want, but your company is going to blame you!
+
+Verify values with multiple sources, or at least do a sanity check: e.g., metals have thermal conductivities of about 10 W/m·K to about 400 W/m·K (for the best conductors). If you are using a thermal conductivity of 0.012 W/m·K or 12000 W/m·K, alarm bells should be going off in your head!
+:::
