@@ -826,11 +826,15 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Can we predict the depth that the sinusoid influences via dimensional analysis?</p>
-<p><span class="math display">\[\text{depth} \sim \omega^a \cdot \alpha^b \cdot \Delta T^c\]</span></p>
-<p>Matching dimensions (length, time, mass, temperature):</p>
-<p><span class="math display">\[c = 0, \quad b = \frac{1}{2}, \quad a = -\frac{1}{2}\]</span></p>
-<p><span class="math display">\[\therefore \quad \text{depth} \sim \sqrt{\frac{\alpha}{\omega}}\]</span></p>
+<p>Can we predict the depth that the sinusoid influences via dimensional analysis? We would expect that the depth is going to be a function of the parameters in the problem: the oscillation frequency <span class="math inline">\(\omega\)</span>, the diffusivity <span class="math inline">\(\alpha\)</span>, and the amplitude <span class="math inline">\(\Delta T\)</span>. That is, we can write</p>
+<p><span class="math display">\[
+\text{depth} \sim \omega^a \cdot \alpha^b \cdot \Delta T^c
+\]</span></p>
+<p>where powers <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, and <span class="math inline">\(c\)</span> will be identified in order to make the equation dimensionally consistent. Depth has dimensions of length; frequency has dimensions of 1/time; diffusivity has dimensions of (length)^2/time, and temperature amplitude has dimensions of… temperature. We thus recognize that <span class="math inline">\(c=0\)</span> – depth does not involve temperature; dividing <span class="math inline">\(\alpha\)</span> by <span class="math inline">\(\omega\)</span> gives a quantity with dimensions of (length)^2; and so</p>
+<p><span class="math display">\[
+\text{depth} \sim \sqrt{\frac{\alpha}{\omega}}
+\]</span></p>
+<p>is a dimensionally consistent equation. The meaning: there will be a “wave” of heat that propagates into the soil when the surface is warm, but it is followed by a “wave” of coldness. These cancel each other out before either makes it deep into the soil, so there is a depth where the soil temperature is basically a constant – it doesn’t even know the surface is changing temperature. The equation tells us that depth will increase with thermal diffusivity, which makes sense: the thermal diffusivity is basically how readily temperature changes propagate through a material. That depth will decrease with increasing frequency: basically the hot and cold waves are produced closer together and cancel out earlier.</p>
 </div>
 </div>
 </section>
@@ -1887,66 +1891,70 @@ Warning
 <span id="cb1-524"><a href="#cb1-524" aria-hidden="true" tabindex="-1"></a>for $T_0 \equiv \frac{T_\text{max}+T_\text{min}}{2}$ and $\Delta T \equiv \frac{T_\text{max}-T_\text{min}}{2}$.</span>
 <span id="cb1-525"><a href="#cb1-525" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-526"><a href="#cb1-526" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
-<span id="cb1-527"><a href="#cb1-527" aria-hidden="true" tabindex="-1"></a>Can we predict the depth that the sinusoid influences via dimensional analysis?</span>
+<span id="cb1-527"><a href="#cb1-527" aria-hidden="true" tabindex="-1"></a>Can we predict the depth that the sinusoid influences via dimensional analysis? We would expect that the depth is going to be a function of the parameters in the problem: the oscillation frequency $\omega$, the diffusivity $\alpha$, and the amplitude $\Delta T$. That is, we can write </span>
 <span id="cb1-528"><a href="#cb1-528" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-529"><a href="#cb1-529" aria-hidden="true" tabindex="-1"></a>$$\text{depth} \sim \omega^a \cdot \alpha^b \cdot \Delta T^c$$</span>
-<span id="cb1-530"><a href="#cb1-530" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-531"><a href="#cb1-531" aria-hidden="true" tabindex="-1"></a>Matching dimensions (length, time, mass, temperature):</span>
+<span id="cb1-529"><a href="#cb1-529" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-530"><a href="#cb1-530" aria-hidden="true" tabindex="-1"></a>\text{depth} \sim \omega^a \cdot \alpha^b \cdot \Delta T^c</span>
+<span id="cb1-531"><a href="#cb1-531" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-532"><a href="#cb1-532" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-533"><a href="#cb1-533" aria-hidden="true" tabindex="-1"></a>$$c = 0, \quad b = \frac{1}{2}, \quad a = -\frac{1}{2}$$</span>
+<span id="cb1-533"><a href="#cb1-533" aria-hidden="true" tabindex="-1"></a>where powers $a$, $b$, and $c$ will be identified in order to make the equation dimensionally consistent. Depth has dimensions of length; frequency has dimensions of 1/time; diffusivity has dimensions of (length)^2/time, and temperature amplitude has dimensions of... temperature. We thus recognize that $c=0$ -- depth does not involve temperature; dividing $\alpha$ by $\omega$ gives a quantity with dimensions of (length)^2; and so</span>
 <span id="cb1-534"><a href="#cb1-534" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-535"><a href="#cb1-535" aria-hidden="true" tabindex="-1"></a>$$\therefore \quad \text{depth} \sim \sqrt{\frac{\alpha}{\omega}}$$</span>
-<span id="cb1-536"><a href="#cb1-536" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-537"><a href="#cb1-537" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-538"><a href="#cb1-538" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-539"><a href="#cb1-539" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-535"><a href="#cb1-535" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-536"><a href="#cb1-536" aria-hidden="true" tabindex="-1"></a>\text{depth} \sim \sqrt{\frac{\alpha}{\omega}}</span>
+<span id="cb1-537"><a href="#cb1-537" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-538"><a href="#cb1-538" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-539"><a href="#cb1-539" aria-hidden="true" tabindex="-1"></a>is a dimensionally consistent equation. The meaning: there will be a "wave" of heat that propagates into the soil when the surface is warm, but it is followed by a "wave" of coldness. These cancel each other out before either makes it deep into the soil, so there is a depth where the soil temperature is basically a constant -- it doesn't even know the surface is changing temperature. The equation tells us that depth will increase with thermal diffusivity, which makes sense: the thermal diffusivity is basically how readily temperature changes propagate through a material. That depth will decrease with increasing frequency: basically the hot and cold waves are produced closer together and cancel out earlier.</span>
 <span id="cb1-540"><a href="#cb1-540" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-541"><a href="#cb1-541" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-542"><a href="#cb1-542" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-543"><a href="#cb1-543" aria-hidden="true" tabindex="-1"></a><span class="fu">## Interactive Example</span></span>
+<span id="cb1-542"><a href="#cb1-542" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-543"><a href="#cb1-543" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-544"><a href="#cb1-544" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-545"><a href="#cb1-545" aria-hidden="true" tabindex="-1"></a>I created an interactive plot of these solutions to help you with your intuition, <span class="co">[</span><span class="ot">find it at this link</span><span class="co">](demos/semi_infinite_demo.qmd)</span>.</span>
+<span id="cb1-545"><a href="#cb1-545" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-546"><a href="#cb1-546" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-547"><a href="#cb1-547" aria-hidden="true" tabindex="-1"></a><span class="fu">## Looking up material properties</span></span>
+<span id="cb1-547"><a href="#cb1-547" aria-hidden="true" tabindex="-1"></a><span class="fu">## Interactive Example</span></span>
 <span id="cb1-548"><a href="#cb1-548" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-549"><a href="#cb1-549" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
-<span id="cb1-550"><a href="#cb1-550" aria-hidden="true" tabindex="-1"></a><span class="fu">### Video</span></span>
-<span id="cb1-551"><a href="#cb1-551" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-552"><a href="#cb1-552" aria-hidden="true" tabindex="-1"></a>Here's <span class="co">[</span><span class="ot">the video link</span><span class="co">](https://canvas.colorado.edu/courses/136150/pages/looking-up-material-properties)</span>.</span>
-<span id="cb1-553"><a href="#cb1-553" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-554"><a href="#cb1-554" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-555"><a href="#cb1-555" aria-hidden="true" tabindex="-1"></a><span class="fu">### Material properties are sensitive to temperature</span></span>
-<span id="cb1-556"><a href="#cb1-556" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-557"><a href="#cb1-557" aria-hidden="true" tabindex="-1"></a>Let's look back at the 1D conduction equation for a moment</span>
+<span id="cb1-549"><a href="#cb1-549" aria-hidden="true" tabindex="-1"></a>I created an interactive plot of these solutions to help you with your intuition, <span class="co">[</span><span class="ot">find it at this link</span><span class="co">](demos/semi_infinite_demo.qmd)</span>.</span>
+<span id="cb1-550"><a href="#cb1-550" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-551"><a href="#cb1-551" aria-hidden="true" tabindex="-1"></a><span class="fu">## Looking up material properties</span></span>
+<span id="cb1-552"><a href="#cb1-552" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-553"><a href="#cb1-553" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb1-554"><a href="#cb1-554" aria-hidden="true" tabindex="-1"></a><span class="fu">### Video</span></span>
+<span id="cb1-555"><a href="#cb1-555" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-556"><a href="#cb1-556" aria-hidden="true" tabindex="-1"></a>Here's <span class="co">[</span><span class="ot">the video link</span><span class="co">](https://canvas.colorado.edu/courses/136150/pages/looking-up-material-properties)</span>.</span>
+<span id="cb1-557"><a href="#cb1-557" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-558"><a href="#cb1-558" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-559"><a href="#cb1-559" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-560"><a href="#cb1-560" aria-hidden="true" tabindex="-1"></a>\rho c \frac{\partial T}{\partial t} = \frac{\partial}{\partial x}( k \frac{\partial T}{\partial x}) +\dot{q}.</span>
-<span id="cb1-561"><a href="#cb1-561" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-559"><a href="#cb1-559" aria-hidden="true" tabindex="-1"></a><span class="fu">### Material properties are sensitive to temperature</span></span>
+<span id="cb1-560"><a href="#cb1-560" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-561"><a href="#cb1-561" aria-hidden="true" tabindex="-1"></a>Let's look back at the 1D conduction equation for a moment</span>
 <span id="cb1-562"><a href="#cb1-562" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-563"><a href="#cb1-563" aria-hidden="true" tabindex="-1"></a>Using the product rule to expand the spatial-variation term</span>
-<span id="cb1-564"><a href="#cb1-564" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-563"><a href="#cb1-563" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-564"><a href="#cb1-564" aria-hidden="true" tabindex="-1"></a>\rho c \frac{\partial T}{\partial t} = \frac{\partial}{\partial x}( k \frac{\partial T}{\partial x}) +\dot{q}.</span>
 <span id="cb1-565"><a href="#cb1-565" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-566"><a href="#cb1-566" aria-hidden="true" tabindex="-1"></a>\rho c \frac{\partial T}{\partial t} = \frac{\partial k}{\partial x}\frac{\partial T}{\partial x}+k\frac{\partial^2 T}{\partial x^2} +\dot{q}</span>
-<span id="cb1-567"><a href="#cb1-567" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-566"><a href="#cb1-566" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-567"><a href="#cb1-567" aria-hidden="true" tabindex="-1"></a>Using the product rule to expand the spatial-variation term</span>
 <span id="cb1-568"><a href="#cb1-568" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-569"><a href="#cb1-569" aria-hidden="true" tabindex="-1"></a>we see that, if we are being rigorous, there is a $\partial k/\partial x$ term. This is a nightmare! Thermal conductivity is a function of temperature: beryllium, for example, has a thermal conductivity of 161 W/m·K at 400 K and a value of 126 W/m·K at 600 K... a decrease of about 20%. We could write $k$ as a function of $T$ somehow, e.g. by fitting data to a polynomial, but we've still got to solve a nonlinear PDE!</span>
-<span id="cb1-570"><a href="#cb1-570" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-571"><a href="#cb1-571" aria-hidden="true" tabindex="-1"></a>To avoid issues like this, we typically assume material properties are constants, evaluated at one reasonable average temperature: if the hot boundary in a conduction problem is at 600 K, and the cold boundary is at 200 K, we look up the value of thermal conductivity at 400 K.</span>
+<span id="cb1-569"><a href="#cb1-569" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-570"><a href="#cb1-570" aria-hidden="true" tabindex="-1"></a>\rho c \frac{\partial T}{\partial t} = \frac{\partial k}{\partial x}\frac{\partial T}{\partial x}+k\frac{\partial^2 T}{\partial x^2} +\dot{q}</span>
+<span id="cb1-571"><a href="#cb1-571" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-572"><a href="#cb1-572" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-573"><a href="#cb1-573" aria-hidden="true" tabindex="-1"></a><span class="fu">### Where to get material properties?</span></span>
+<span id="cb1-573"><a href="#cb1-573" aria-hidden="true" tabindex="-1"></a>we see that, if we are being rigorous, there is a $\partial k/\partial x$ term. This is a nightmare! Thermal conductivity is a function of temperature: beryllium, for example, has a thermal conductivity of 161 W/m·K at 400 K and a value of 126 W/m·K at 600 K... a decrease of about 20%. We could write $k$ as a function of $T$ somehow, e.g. by fitting data to a polynomial, but we've still got to solve a nonlinear PDE!</span>
 <span id="cb1-574"><a href="#cb1-574" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-575"><a href="#cb1-575" aria-hidden="true" tabindex="-1"></a>A partial list of options:</span>
+<span id="cb1-575"><a href="#cb1-575" aria-hidden="true" tabindex="-1"></a>To avoid issues like this, we typically assume material properties are constants, evaluated at one reasonable average temperature: if the hot boundary in a conduction problem is at 600 K, and the cold boundary is at 200 K, we look up the value of thermal conductivity at 400 K.</span>
 <span id="cb1-576"><a href="#cb1-576" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-577"><a href="#cb1-577" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Heat transfer texbooks usually have appendices with tables of values.</span>
-<span id="cb1-578"><a href="#cb1-578" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Websites like <span class="co">[</span><span class="ot">Wolfram Alpha</span><span class="co">](https://www.wolframalpha.com/input?i=thermal+conductivity+of+copper+at+447+K)</span> have access to databases of material property values.</span>
-<span id="cb1-579"><a href="#cb1-579" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>There are programming tools like <span class="co">[</span><span class="ot">CoolProp</span><span class="co">](https://coolprop.org)</span> and <span class="co">[</span><span class="ot">SolidProp</span><span class="co">](https://github.com/jaktk/SolidProps)</span>, which are particularly interesting if your analyses are being done in programming.</span>
-<span id="cb1-580"><a href="#cb1-580" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Some companies produce data sheets, and researchers sometimes publish data sheets. NIST has a lot of information.</span>
-<span id="cb1-581"><a href="#cb1-581" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-582"><a href="#cb1-582" aria-hidden="true" tabindex="-1"></a>::: {.callout-warning}</span>
-<span id="cb1-583"><a href="#cb1-583" aria-hidden="true" tabindex="-1"></a>It is good practice to cite the source of your data, but even if you do, it is still your responsibility if the value is wrong! This is particularly relevant in the age of AI: LLMs will give you property values, equations, etc., but there is always a chance the AI has misinterpreted a data set or hallucinated results. If something breaks because you got a bad material property from an LLM, you can blame the LLM if you want, but your company is going to blame you!</span>
-<span id="cb1-584"><a href="#cb1-584" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-585"><a href="#cb1-585" aria-hidden="true" tabindex="-1"></a>Verify values with multiple sources, or at least do a sanity check: e.g., metals have thermal conductivities of about 10 W/m·K to about 400 W/m·K (for the best conductors). If you are using a thermal conductivity of 0.012 W/m·K or 12000 W/m·K, alarm bells should be going off in your head!</span>
-<span id="cb1-586"><a href="#cb1-586" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-577"><a href="#cb1-577" aria-hidden="true" tabindex="-1"></a><span class="fu">### Where to get material properties?</span></span>
+<span id="cb1-578"><a href="#cb1-578" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-579"><a href="#cb1-579" aria-hidden="true" tabindex="-1"></a>A partial list of options:</span>
+<span id="cb1-580"><a href="#cb1-580" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-581"><a href="#cb1-581" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Heat transfer texbooks usually have appendices with tables of values.</span>
+<span id="cb1-582"><a href="#cb1-582" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Websites like <span class="co">[</span><span class="ot">Wolfram Alpha</span><span class="co">](https://www.wolframalpha.com/input?i=thermal+conductivity+of+copper+at+447+K)</span> have access to databases of material property values.</span>
+<span id="cb1-583"><a href="#cb1-583" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>There are programming tools like <span class="co">[</span><span class="ot">CoolProp</span><span class="co">](https://coolprop.org)</span> and <span class="co">[</span><span class="ot">SolidProp</span><span class="co">](https://github.com/jaktk/SolidProps)</span>, which are particularly interesting if your analyses are being done in programming.</span>
+<span id="cb1-584"><a href="#cb1-584" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Some companies produce data sheets, and researchers sometimes publish data sheets. NIST has a lot of information.</span>
+<span id="cb1-585"><a href="#cb1-585" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-586"><a href="#cb1-586" aria-hidden="true" tabindex="-1"></a>::: {.callout-warning}</span>
+<span id="cb1-587"><a href="#cb1-587" aria-hidden="true" tabindex="-1"></a>It is good practice to cite the source of your data, but even if you do, it is still your responsibility if the value is wrong! This is particularly relevant in the age of AI: LLMs will give you property values, equations, etc., but there is always a chance the AI has misinterpreted a data set or hallucinated results. If something breaks because you got a bad material property from an LLM, you can blame the LLM if you want, but your company is going to blame you!</span>
+<span id="cb1-588"><a href="#cb1-588" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-589"><a href="#cb1-589" aria-hidden="true" tabindex="-1"></a>Verify values with multiple sources, or at least do a sanity check: e.g., metals have thermal conductivities of about 10 W/m·K to about 400 W/m·K (for the best conductors). If you are using a thermal conductivity of 0.012 W/m·K or 12000 W/m·K, alarm bells should be going off in your head!</span>
+<span id="cb1-590"><a href="#cb1-590" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
