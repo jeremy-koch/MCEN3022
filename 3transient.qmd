@@ -524,15 +524,19 @@ $$
 for $T_0 \equiv \frac{T_\text{max}+T_\text{min}}{2}$ and $\Delta T \equiv \frac{T_\text{max}-T_\text{min}}{2}$.
 
 ::: {.callout-tip}
-Can we predict the depth that the sinusoid influences via dimensional analysis?
+Can we predict the depth that the sinusoid influences via dimensional analysis? We would expect that the depth is going to be a function of the parameters in the problem: the oscillation frequency $\omega$, the diffusivity $\alpha$, and the amplitude $\Delta T$. That is, we can write 
 
-$$\text{depth} \sim \omega^a \cdot \alpha^b \cdot \Delta T^c$$
+$$
+\text{depth} \sim \omega^a \cdot \alpha^b \cdot \Delta T^c
+$$
 
-Matching dimensions (length, time, mass, temperature):
+where powers $a$, $b$, and $c$ will be identified in order to make the equation dimensionally consistent. Depth has dimensions of length; frequency has dimensions of 1/time; diffusivity has dimensions of (length)^2/time, and temperature amplitude has dimensions of... temperature. We thus recognize that $c=0$ -- depth does not involve temperature; dividing $\alpha$ by $\omega$ gives a quantity with dimensions of (length)^2; and so
 
-$$c = 0, \quad b = \frac{1}{2}, \quad a = -\frac{1}{2}$$
+$$
+\text{depth} \sim \sqrt{\frac{\alpha}{\omega}}
+$$
 
-$$\therefore \quad \text{depth} \sim \sqrt{\frac{\alpha}{\omega}}$$
+is a dimensionally consistent equation. The meaning: there will be a "wave" of heat that propagates into the soil when the surface is warm, but it is followed by a "wave" of coldness. These cancel each other out before either makes it deep into the soil, so there is a depth where the soil temperature is basically a constant -- it doesn't even know the surface is changing temperature. The equation tells us that depth will increase with thermal diffusivity, which makes sense: the thermal diffusivity is basically how readily temperature changes propagate through a material. That depth will decrease with increasing frequency: basically the hot and cold waves are produced closer together and cancel out earlier.
 
 
 :::
