@@ -2,7 +2,7 @@
 
 ## Overview
 
-You will participate in 5-6 recorded peer technical discussions over the course of the summer. Each session is conducted via Zoom in groups of 3-5 students, lasts approximately 30 minutes (no time constraints), and centers on a novel problem you work through together in real time. Reasoning out loud about a new problem is one of the most authentic engineering skills we will develop in this course.
+You will participate in 5-6 recorded peer technical discussions over the course of the summer. Each session is conducted via Zoom in groups of 3-5 students, lasts approximately 30 minutes (no time constraints), and centers on a novel problem you work through together in real time. Reasoning out loud about a new problem is one of the most authentic engineering skills we will develop in this course. 
 
 Writing a technical report gives you time to look things up, revise your reasoning, and present a polished product. A peer discussion gives you none of that. You have to engage with the physics as it unfolds, respond to your peers' ideas, catch errors in real time, and contribute something that moves the group forward.
 
@@ -20,7 +20,7 @@ Writing a technical report gives you time to look things up, revise your reasoni
 
 **What you are expected to do:** Work through the problem together. Explain your reasoning, respond to others' ideas, ask probing questions, catch errors, and push the group toward a physically sound solution. Your answer will be imperfect, but I'm more interested in hearing your reasoning along the way.
 
-**Final 5 minutes:** In the last 5 minutes of each session, the group should converge on a collective answer to the core question. This verbal summary will be captured in the transcript and is factored into the assessment. No separate submission is required.
+**Final 5 minutes:** 
 
 ## How You Are Assessed
 
@@ -49,11 +49,12 @@ Your individual assessment report includes:
 
 ### Transparency
 
-The transcripts will be assessed using a large language model (LLM). To be transparent about my goals: I see tremendous value in technical discussions like these, but they are difficult to assess, particularly during the fall and spring semesters when MCEN 3022 has 100+ students. I am experimenting to see if LLMs can meaningfully assess group discussions, as this would allow me to have technical discussions in my fall class.
+The transcripts will be assessed using a large language model (LLM). To be transparent about my goals: I see tremendous value in technical discussions like these, but they are difficult to assess, particularly during the fall and spring semesters when MCEN 3022 has 100+ students. I am experimenting to see if LLMs can meaningfully assess group discussions, as this would allow me to have technical discussions in my fall class. If the AI does ridiculous things, I can manage it when I am teaching one class with 50 students... in the fall I might be teaching 250 students.
 
 #### Sharing your information
 
-... We're not doing that. The transcripts are being run through a "local LLM", meaning the calculations are being done entirely on my computer -- no internet necessary.
+... We're not doing that. The transcripts are being run through a "local LLM", meaning the calculations are being done entirely on my computer -- no internet necessary. If you are curious...
+
 
 #### The system prompt
 
@@ -89,19 +90,14 @@ There will be an additional paragraph describing the specifics of the problem, e
 The instructional team will be going through the transcripts and LLM assessments to confirm they are reasonable, and you may contest the assessments (described below).
 
 
-### A Note on Incorrect Statements
-
-The AI is instructed to note physically incorrect statements even when delivered confidently. Getting something wrong in a discussion is not penalized heavily -- reasoning through an error and correcting it can be a substantive contribution. Confidently stating something incorrect without correction is noted.
 
 ## How Discussion Scores Translate to Grades
 
 ### The cumulative average
 
-Your discussion grade is based on your **cumulative average score** across all sessions, not any single discussion. Your target is an average of **3.0 or above**, which earns full credit for this component.
+Your discussion grade is based on your **cumulative average score** across all sessions, not any single discussion. Your target is an average of **3.0 or above**, which earns full credit for this component. This means one difficult discussion will not sink you. It also means a strong performance early gives you flexibility later -- a 4 in session 1 and a 2 in session 2 leaves you at exactly 3.0 after two sessions, you are good.
 
-This means one difficult discussion will not sink you. It also means a strong performance early gives you genuine flexibility later -- a 4 in session 1 and a 2 in session 2 leaves you at exactly 3.0 after two sessions. That flexibility is intentional.
-
-### If your average falls below 3.0
+### If your score is below 3.0
 
 If your cumulative average is below 3.0, you may submit a **follow-up assignment** for any session where you scored a 1 or 2. A successful follow-up brings that session's score up to a 3.
 
@@ -120,7 +116,7 @@ If you have been scoring 3s and 4s consistently, you may find yourself with some
 
 Rather than driving the technical reasoning yourself, try asking questions that draw out quieter group members. Build on someone else's idea rather than introducing your own. See if you can help the group get unstuck rather than solving it for them.
 
-This is not asking you to disengage or perform below your ability -- it is asking you to engage *differently*. In a real engineering team, knowing when to lead and when to develop others is a distinct and valuable skill. The rubric explicitly rewards probing questions and contributions that the group builds on, so this kind of facilitative role can still earn a 3 or 4. And creating space for a peer who struggled in an earlier discussion to step up is, frankly, the more generous thing to do.
+This is not asking you to disengage or perform below your ability, it is asking you to engage *differently*. In a real engineering team, knowing when to lead and when to develop others is a distinct and valuable skill. The rubric explicitly rewards probing questions and contributions that the group builds on, so this kind of facilitative role can still earn a 3 or 4.
 
 ## The Contestation Process
 
@@ -128,11 +124,11 @@ If you believe your assessment report is inaccurate, you may contest it.
 
 **Window:** one week after receiving your report
 
-**How to contest:** Submit a written response that identifies specifically which part of the assessment you disagree with and why, with reference to the transcript if possible. ("I believe my contribution at approximately 14:30 was substantive because it introduced the Biot number criterion that the group had not yet applied" is a useful contestation. "I think I deserved a higher score" is not.)
+**How to contest:** Submit a written response that identifies specifically which part of the assessment you disagree with and why, with reference to the transcript if possible. ("I introduced the Biot number criterion that the group had not yet applied" is a useful contestation. "I think I deserved a higher score" is not.)
 
-**What happens:** A TA reads the transcript, your report, and your contestation, and makes a final determination. The TA's decision is final.
+**What happens:** A TA reads the transcript, your report, and your contestation, and makes a final determination.
 
-**Why this process exists:** AI assessment is imperfect. Transcripts have attribution errors. Ambiguous statements get miscategorized. The contestation process is a real mechanism, not a formality -- if your report is wrong, this is how you correct it.
+**Why this process exists:** AI assessment is imperfect, transcripts have attribution errors, and ambiguous statements get miscategorized.
 
 ## This Is Also a Research Study
 
@@ -141,3 +137,5 @@ The peer discussion assessment system is part of an IRB-approved research study 
 Participation in the research component is optional and separate from participation in the course activity. You participate in the discussions and receive assessments regardless of whether you consent to research participation. Research participation means your transcript and assessment data may be used in a published study -- with all identifying information removed.
 
 You will receive more information about the research study and the consent process. Whether or not you participate in the research, the assessment process is identical.
+
+
