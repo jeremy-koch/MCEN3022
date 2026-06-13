@@ -1,0 +1,231 @@
+# Flat Plate — Interactive Demo {.unnumbered}
+
+A uniform flow ($U_\infty$, $T_\infty$) approaches a flat plate of length $L$ held at a fixed surface temperature. Starting from the leading edge, friction sets up a velocity boundary layer — and similarly a thermal boundary layer develops, governing how effectively heat leaves the surface.
+
+The local convective coefficient $h(x)$ is *not* uniform along the plate. It drops through the laminar region as the boundary layer thickens (increasing thermal resistance), then *jumps* abruptly at the laminar-to-turbulent transition, and drops more slowly thereafter. The demo below makes this visible.
+
+---
+
+## Interactive demo {#sec-demo}
+
+```{ojs}
+//| echo: false
+
+{
+  // ── Fluid presets (properties at ~25°C, 1 atm) ──────────────────────────────
+  const fluids = {
+    "Air":   { k: 0.02551, nu: 1.562e-5, Pr: 0.7296 },
+    "Water": { k: 0.6065,  nu: 8.91e-7,  Pr: 6.14   },
+  };
+
+  // ── Inputs ───────────────────────────────────────────────────────────────────
+  const fluid_in = Inputs.select(Object.keys(fluids), { label: "Fluid (25 °C)" });
+  const U_in     = Inputs.range([0.5, 20],    { value: 5,    step: 0.5,  label: "U∞ (m/s)" });
+  const L_in     = Inputs.range([0.1, 3.0],   { value: 1.0,  step: 0.1,  label: "L (m)" });
+  const Rec_in   = Inputs.range([1e5, 5e5],   { value: 5e5,  step: 5e4,
+                                                 label: html`Re<sub>c</sub> (transition)` });
+
+  // ── Plot placeholder divs ────────────────────────────────────────────────────
+  const pBL = document.createElement("div");
+  const ph  = document.createElement("div");
+
+  // ── Render ───────────────────────────────────────────────────────────────────
+  function render() {
+    const { k, nu, Pr } = fluids[fluid_in.value];
+    const U   = U_in.value;
+    const L   = L_in.value;
+    const Rec = Rec_in.value;
+    const xc  = Rec * nu / U;          // x-location of transition
+    const Re_L = U * L / nu;
+
+    // Sample points — skip x=0 (singularity in h)
+    const N  = 500;
+    const xs = Array.from({length: N}, (_, i) => (i + 1) / N * L);
+
+    // ── Boundary layer data ───────────────────────────────────────────────────
+    // δ_lam  = 5x / √Re_x
+    // δ_turb = 0.37x / Re_x^0.2   (assumes BL turbulent from leading edge —
+    //          a simplification; real transition has a virtual-origin correction)
+    // δ_T    ≈ δ · Pr^(-1/3)
+    const blRows = xs.map(x => {
+      const Re_x  = U * x / nu;
+      const lam   = Re_x <= Rec;
+      const delta = lam
+        ? 5 * x / Math.sqrt(Re_x)
+        : 0.37 * x / Math.pow(Re_x, 0.2);
+      return {
+        x,
+        delta:   delta * 1000,
+        delta_T: delta * Math.pow(Pr, -1/3) * 1000,
+        regime:  lam ? "lam" : "turb",
+      };
+    });
+
+    const lamBL  = blRows.filter(r => r.regime === "lam");
+    const turbBL = blRows.filter(r => r.regime === "turb");
+
+    // ── h(x) data ─────────────────────────────────────────────────────────────
+    const hRows = xs.map(x => {
+      const Re_x = U * x / nu;
+      const lam  = Re_x <= Rec;
+      const Nu_x = lam
+        ? 0.332 * Math.pow(Re_x, 0.5) * Math.pow(Pr, 1/3)
+        : 0.0296 * Math.pow(Re_x, 0.8) * Math.pow(Pr, 1/3);
+      return { x, h: Nu_x * k / x, regime: lam ? "lam" : "turb" };
+    });
+
+    const lamH  = hRows.filter(r => r.regime === "lam");
+    const turbH = hRows.filter(r => r.regime === "turb");
+
+    // ── Average h (mixed correlation) ─────────────────────────────────────────
+    // If transition occurs on the plate: integrate laminar [0,xc] + turbulent [xc,L]
+    // h̄ = (k/L) · Pr^(1/3) · [0.664·Re_c^0.5 + 0.037·(Re_L^0.8 − Re_c^0.8)]
+    // If fully laminar: h̄ = (k/L) · 0.664 · Re_L^0.5 · Pr^(1/3)
+    const A = (xc < L)
+      ? 0.664 * Math.pow(Rec, 0.5) + 0.037 * (Math.pow(Re_L, 0.8) - Math.pow(Rec, 0.8))
+      : 0.664 * Math.pow(Re_L, 0.5);
+    const h_avg = (k / L) * A * Math.pow(Pr, 1/3);
+
+    // ── Plot bounds ───────────────────────────────────────────────────────────
+    const maxDelta = Math.max(...blRows.map(r => r.delta)) * 1.5;
+    const maxH     = Math.max(...hRows.map(r => r.h))     * 1.15;
+    const xcMark   = xc < L ? [xc] : [];
+
+    // ── Boundary layer plot ───────────────────────────────────────────────────
+    const plotBL = Plot.plot({
+      width: 680, height: 190,
+      marginLeft: 52, marginBottom: 36, marginTop: 16,
+      style: { fontFamily: "Georgia, serif", fontSize: "11px" },
+      x: { label: "x (m) →", domain: [0, L] },
+      y: { label: "↑ δ (mm)", domain: [0, maxDelta] },
+      marks: [
+        Plot.gridX({ stroke: "#e0e0e0" }),
+        Plot.gridY({ stroke: "#e0e0e0" }),
+        // Laminar — filled momentum BL
+        Plot.areaY(lamBL, { x: "x", y: "delta", fill: "#4e79a7", fillOpacity: 0.20 }),
+        Plot.line(lamBL,  { x: "x", y: "delta", stroke: "#4e79a7", strokeWidth: 2 }),
+        // Turbulent — filled momentum BL
+        Plot.areaY(turbBL, { x: "x", y: "delta", fill: "#f28e2b", fillOpacity: 0.20 }),
+        Plot.line(turbBL,  { x: "x", y: "delta", stroke: "#f28e2b", strokeWidth: 2 }),
+        // Thermal BL (dashed overlay)
+        Plot.line(lamBL,  { x: "x", y: "delta_T", stroke: "#4e79a7", strokeDasharray: "5,3", strokeWidth: 1.5 }),
+        Plot.line(turbBL, { x: "x", y: "delta_T", stroke: "#f28e2b", strokeDasharray: "5,3", strokeWidth: 1.5 }),
+        // Plate
+        Plot.ruleY([0], { stroke: "#333", strokeWidth: 3 }),
+        // Transition line
+        Plot.ruleX(xcMark, { stroke: "#e15759", strokeWidth: 1.5, strokeDasharray: "6,3" }),
+      ]
+    });
+
+    // ── h(x) plot ─────────────────────────────────────────────────────────────
+    const ploth = Plot.plot({
+      width: 680, height: 250,
+      marginLeft: 62, marginBottom: 36, marginTop: 10,
+      style: { fontFamily: "Georgia, serif", fontSize: "11px" },
+      x: { label: "x (m) →", domain: [0, L] },
+      y: { label: "↑ h (W/m²·K)", domain: [0, maxH] },
+      marks: [
+        Plot.gridX({ stroke: "#e0e0e0" }),
+        Plot.gridY({ stroke: "#e0e0e0" }),
+        // Laminar h(x)
+        Plot.line(lamH,  { x: "x", y: "h", stroke: "#4e79a7", strokeWidth: 2 }),
+        // Turbulent h(x)
+        Plot.line(turbH, { x: "x", y: "h", stroke: "#f28e2b", strokeWidth: 2 }),
+        // h̄ (average)
+        Plot.ruleY([h_avg], { stroke: "#59a14f", strokeWidth: 2, strokeDasharray: "5,3" }),
+        // Transition
+        Plot.ruleX(xcMark, { stroke: "#e15759", strokeWidth: 1.5, strokeDasharray: "6,3" }),
+        // h̄ label
+        Plot.text([{ x: L * 0.02, h: h_avg }], {
+          x: "x", y: "h",
+          text: d => `h̄ = ${h_avg.toFixed(1)} W/m²·K`,
+          dy: -8, textAnchor: "start",
+          fill: "#59a14f", fontSize: 11, fontFamily: "Georgia, serif",
+        }),
+      ]
+    });
+
+    pBL.replaceChildren(plotBL);
+    ph.replaceChildren(ploth);
+  }
+
+  for (const inp of [fluid_in, U_in, L_in, Rec_in])
+    inp.addEventListener("input", render);
+  render();
+
+  // ── Legend ───────────────────────────────────────────────────────────────────
+  const sw = (color, dash) => {
+    const s = document.createElement("span");
+    s.style.cssText = `display:inline-block;width:22px;height:0;border-top:3px ${dash ? "dashed" : "solid"} ${color};vertical-align:middle;margin:0 4px 0 12px`;
+    return s;
+  };
+  const lbl = t => { const s = document.createElement("span"); s.textContent = t; return s; };
+  const leg = document.createElement("div");
+  leg.style.cssText = "font-size:11px;font-family:Georgia,serif;margin:6px 0 10px;display:flex;align-items:center;flex-wrap:wrap;gap:2px";
+  leg.append(sw("#4e79a7"), lbl("Laminar δ"), sw("#4e79a7",true), lbl("Laminar δ_T"),
+             sw("#f28e2b"), lbl("Turbulent δ"), sw("#f28e2b",true), lbl("Turbulent δ_T"),
+             sw("#59a14f",true), lbl("h̄"),
+             sw("#e15759",true), lbl("Transition (Re_c)"));
+
+  return html`<div style="font-family:Georgia,serif">
+    <div style="display:flex;gap:24px;flex-wrap:wrap;margin-bottom:14px">
+      ${fluid_in} ${U_in} ${L_in} ${Rec_in}
+    </div>
+    <div style="font-size:0.75em;font-weight:bold;color:#666;
+                text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px">
+      Boundary layer thickness
+    </div>
+    ${pBL}
+    ${leg}
+    <div style="font-size:0.75em;font-weight:bold;color:#666;
+                text-transform:uppercase;letter-spacing:.05em;margin:4px 0 2px">
+      Local convective coefficient h(x)
+    </div>
+    ${ph}
+  </div>`;
+}
+```
+
+---
+
+## What to look for {#sec-observations}
+
+**h drops in the laminar region.**
+From the leading edge, $h(x) \propto x^{-1/2}$: the boundary layer grows and its growing thermal resistance reduces how quickly heat can leave the surface. This is counterintuitive at first — moving further along the plate makes heat transfer *worse*, locally.
+
+**h jumps at the transition.**
+At $x_c = \text{Re}_c \cdot \nu / U_\infty$, the boundary layer goes turbulent. Turbulent mixing is dramatically more effective at transporting heat perpendicular to the plate, so $h$ spikes. Drag on the plate increases too — the same turbulent mixing that improves heat transfer also increases skin friction.
+
+**h drops more slowly in the turbulent region.**
+Beyond transition, $h(x) \propto x^{-1/5}$: still dropping, but much more gently. The turbulent BL thickens faster but compensates with stronger radial mixing.
+
+**Move the sliders and watch:**
+- *Increase $U_\infty$:* $x_c$ shifts left (transition moves upstream), turbulent region grows, $\bar{h}$ rises substantially.
+- *Switch to water:* $\bar{h}$ jumps dramatically. Water's high $k$ and $c_p$ make it a far better convective coolant than air.
+- *Decrease $\text{Re}_c$:* simulates a rougher plate or higher free-stream turbulence, which triggers earlier transition. Turbulent $h$ dominates more of the plate, raising $\bar{h}$.
+
+**The thermal boundary layer** (dashed) is thinner than the velocity BL when $\text{Pr} > 1$ (air, $\text{Pr}\approx 0.73$) and much thinner for water ($\text{Pr}\approx 6$). A thinner thermal BL means a steeper temperature gradient at the wall — and higher $h$.
+
+---
+
+## Worked example {#sec-worked}
+
+Air at $T_\infty = 20\,^\circ\text{C}$, $U_\infty = 8$ m/s flows over a plate $L = 0.5$ m. Find $\bar{h}$.
+
+**Air properties (25°C):** $k = 0.02551$ W/m·K, $\nu = 1.562 \times 10^{-5}$ m²/s, $\text{Pr} = 0.730$.
+
+**Step 1 — Check whether transition occurs on the plate.**
+
+$$\text{Re}_L = \frac{U_\infty L}{\nu} = \frac{8 \times 0.5}{1.562 \times 10^{-5}} = 2.56 \times 10^5 < \text{Re}_c = 5 \times 10^5$$
+
+Fully laminar — no transition. Use the laminar average correlation:
+
+$$\overline{\text{Nu}}_L = 0.664\,\text{Re}_L^{1/2}\,\text{Pr}^{1/3} = 0.664 \times (2.56\times10^5)^{1/2} \times (0.730)^{1/3} = 302$$
+
+**Step 2 — Recover $\bar{h}$.**
+
+$$\bar{h} = \frac{k}{L}\,\overline{\text{Nu}}_L = \frac{0.02551}{0.5} \times 302 \approx 15.4\;\text{W/m}^2\text{K}$$
+
+Check this against the demo (set $U_\infty = 8$, $L = 0.5$, Fluid = Air): $\bar{h}$ should read about 15 W/m²·K.
+
+Now try $U_\infty = 20$ m/s with the same plate: transition occurs around $x_c = 0.39$ m, and $\bar{h}$ roughly doubles. That's the payoff of turbulence.
