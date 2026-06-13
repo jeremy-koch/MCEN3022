@@ -2,66 +2,70 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://jeremy-koch.github.io/MCEN3022/index.html</loc>
-    <lastmod>2026-06-10T16:20:56.155Z</lastmod>
+    <lastmod>2026-06-13T05:43:32.961Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN3022/course_details/assessment_overview.html</loc>
-    <lastmod>2026-06-10T16:20:56.149Z</lastmod>
+    <lastmod>2026-06-13T05:43:32.954Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN3022/course_details/tier1_problems.html</loc>
-    <lastmod>2026-06-10T16:20:56.150Z</lastmod>
+    <lastmod>2026-06-13T05:43:32.955Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN3022/course_details/technical_reports.html</loc>
-    <lastmod>2026-06-10T16:20:56.150Z</lastmod>
+    <lastmod>2026-06-13T05:43:32.955Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN3022/course_details/oral_exams.html</loc>
-    <lastmod>2026-06-10T16:20:56.150Z</lastmod>
+    <lastmod>2026-06-13T05:43:32.955Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN3022/course_details/peer_discussions.html</loc>
-    <lastmod>2026-06-10T16:20:56.150Z</lastmod>
+    <lastmod>2026-06-13T05:43:32.955Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN3022/course_details/notebooklm.html</loc>
-    <lastmod>2026-06-10T16:20:56.150Z</lastmod>
+    <lastmod>2026-06-13T05:43:32.955Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN3022/course_details/capstone.html</loc>
-    <lastmod>2026-06-10T16:20:56.150Z</lastmod>
+    <lastmod>2026-06-13T05:43:32.955Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN3022/0intro.html</loc>
-    <lastmod>2026-06-10T16:20:56.149Z</lastmod>
+    <lastmod>2026-06-13T05:43:32.954Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN3022/1conduction.html</loc>
-    <lastmod>2026-06-10T16:20:56.149Z</lastmod>
+    <lastmod>2026-06-13T05:43:32.954Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN3022/2fins.html</loc>
-    <lastmod>2026-06-10T16:20:56.149Z</lastmod>
+    <lastmod>2026-06-13T05:43:32.954Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN3022/3transient.html</loc>
-    <lastmod>2026-06-10T16:20:56.149Z</lastmod>
+    <lastmod>2026-06-13T05:43:32.954Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN3022/demos/wall_demo.html</loc>
-    <lastmod>2026-06-10T16:20:56.151Z</lastmod>
+    <lastmod>2026-06-13T05:43:32.956Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN3022/demos/fin_demo.html</loc>
-    <lastmod>2026-06-10T16:20:56.151Z</lastmod>
+    <lastmod>2026-06-13T05:43:32.956Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN3022/demos/sphere_demo.html</loc>
-    <lastmod>2026-06-10T16:20:56.151Z</lastmod>
+    <lastmod>2026-06-13T05:43:32.956Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN3022/demos/semi_infinite_demo.html</loc>
-    <lastmod>2026-06-10T16:20:56.151Z</lastmod>
+    <lastmod>2026-06-13T05:43:32.956Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jeremy-koch.github.io/MCEN3022/demos/flat_plate_demo.html</loc>
+    <lastmod>2026-06-13T05:43:32.956Z</lastmod>
   </url>
 </urlset>
