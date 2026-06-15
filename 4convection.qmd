@@ -5,6 +5,7 @@ We're going to dig deeper into convection, and this week will be "external conve
 ::: {.callout-note}
 In this chapter we will use a lot of "Nusselt Number correlations", which I have retrieved from Incropera, DeWitt, Bergman, and Lavine "Fundamentals of Heat and Mass Transfer", the sixth edition published in 2007. The first edition was written by just Incropera and Dewitt, in 1974 -- this text is often informally referenced by those two names: "From Incropera and Dewitt...".
 
+:::
 ## Think First
 
 Recall
@@ -20,7 +21,7 @@ Look Ahead
 ::: {.callout-tip}
 ### Video
 
-Start with...
+Start with [this linked video](https://canvas.colorado.edu/courses/136150/pages/intro-to-convection), an introduction to convection.
 :::
 
 ### Circumventing the boundary layer details
@@ -108,7 +109,7 @@ The geometry is: a uniform flow with speed $U_\infty$, temperature $T_\infty$, a
 ::: {.callout-tip}
 ### Video
 
-Start with...
+Start with [this linked video](https://canvas.colorado.edu/courses/136150/pages/flat-plate-heat-transfer) on the flat-plate geometry.
 :::
 
 ### Boundary layer thickness
@@ -291,6 +292,14 @@ $$\therefore \quad \overline{h}_5 > \overline{h}_6 > \overline{h}_1$$ -->
 
 ## External Flow — The Cylinder
 
+::: {.callout-tip}
+### Video
+
+Start with [this linked video](https://canvas.colorado.edu/courses/136150/pages/flow-over-cylinder) on heat transfer over cylinders.
+:::
+
+### Flow over blunt objects
+
 For flow over blunt objects, flow separation and wakes complicate the description of heat transfer. It is very interesting to think about the local $h$ or $\text{Nu}$, as a function of position, but practically we use averaged values of $\overline{h}$ and $\overline{\text{Nu}}$ in our calculations.
 
 ::: {.callout-tip}
@@ -383,47 +392,33 @@ At $T = T_f = 35°C$: $\theta = \frac{35-23}{75-23}$, solve for $t$.
 
 ## Flow Over Banks of Tubes
 
-How about a more practical geometry? One of the most important applications of heat transfer is the heat exchanger (covered in detail later). And one of the most common designs is the "shell-and-tube" heat exchanger. With this, 
+### Video
 
-One design: **shell-and-tube**
+Start with [this linked video](https://canvas.colorado.edu/courses/136150/pages/arrays-of-tubes) on the heat transfer over banks of tubes.
+:::
 
-*Diagram: Cross-section of a shell-and-tube heat exchanger. Red horizontal tubes carry hot flow from right to left. Blue dots indicate cold flow passing around the tubes from bottom inlet to top outlet.*
 
-*Photo: 3D rendering of a shell-and-tube heat exchanger showing the cylindrical shell, tube bundle, and end caps.*
 
----
+### Nusselt Number Correlation for Tube Banks
 
-## Heat Transfer Intuition — Banks of Tubes
+How about a more practical geometry? One of the most important applications of heat transfer is the heat exchanger (covered in detail later). And one of the most common designs is the "shell-and-tube" heat exchanger. With this device, a collection of pipes are enclosed in a shell. If we want to cool the contents of those pipes, we pass a cold fluid through the shell (and vice-versa). We talk about the "number of passes": the cold fluid will pass around part of every pipe, say the last 20% of the length, and then be redirected around a barrier such that the cold fluid can pass over the pipes again, and then around another barrier for another pass, and so one. We'll model this situation as flow passing over a collection of cylinders, and (at least for now) we'll make the assumption that the pipes are at a constant temperature.
 
-**1) Would it be better for heat transfer for the tubes to have a "staggered" or "aligned" arrangement?**
+::: {.column-margin}
+It is very common to see a shell-and-tube heat exchanger as a condenser in the Rankine Cycle, responsible for turning steam into a liquid. Remember that, during a phase change, water maintains a constant temperature -- it is not at all unreasonable to assume that $T_\text{s}$ (the pipe surface temperature) is a constant in this application.
+:::
 
-*Diagram (left): Staggered arrangement — red circles offset row to row, with blue flow path shown weaving between tubes.*
+Our hope is to find a $\overline{\text{Nu}}_D$ that describes the an entire array.
 
-*Diagram (right): Aligned arrangement — red circles in a regular grid, flow paths straight through.*
+A correlation for $N_L \geq 20$, $1000 \leq \text{Re}_{D,\max} \leq 2\times10^6$, $0.7 \leq \text{Pr} \leq 500$):
 
-The staggered configuration will lead to greater mixing $\Rightarrow$ better heat transfer.
+$$
+\overline{\text{Nu}}_D = C_1\,\text{Re}_{D,\max}^m\cdot\text{Pr}^{0.36}\cdot\left(\frac{\text{Pr}}{\text{Pr}_s}\right)^{1/4}
+$$
 
-**2) Will there be a difference in "local" $\overline{h}$ row-to-row?**
+::: {.column-margin}
+Properties evaluated at $T_\text{avg} = \frac{T_\text{in}+T_\text{out}}{2}$ except for $\text{Pr}_s$, evaluated at the surface temperature.
+:::
 
-There will be an increase in mixing/turbulence as we progress through the array $\Rightarrow$ higher $\overline{h}$.
-
-**3) What about a difference in $\Delta T \equiv T_\text{tube} - T_\text{fluid}$?**
-
-Decrease as the external flow warms up due to earlier heat transfer.
-
-*Graph: $\Delta T_N$ (red, decreasing) and $\overline{h}_N$ (black, increasing) vs row number $N_L$ from 1 to 10. The two effects compete.*
-
----
-
-## Nusselt Number Correlation for Tube Banks
-
-Most interested in $\overline{\text{Nu}}_D$ for an entire array.
-
-One correlation (for $N_L \geq 20$, $1000 \leq \text{Re}_{D,\max} \leq 2\times10^6$, $0.7 \leq \text{Pr} \leq 500$):
-
-$$\overline{\text{Nu}}_D = C_1\,\text{Re}_{D,\max}^m\cdot\text{Pr}^{0.36}\cdot\left(\frac{\text{Pr}}{\text{Pr}_s}\right)^{1/4}$$
-
-Properties evaluated at $T_\text{avg} = \frac{T_\text{in}+T_\text{out}}{2}$.
 
 Re based on the highest flow rate $V_\text{max}$:
 
@@ -439,9 +434,9 @@ Re based on the highest flow rate $V_\text{max}$:
 
 ## Table 7.5 — Constants for Tube Bank Correlation
 
-*(Reproduced from Incropera & DeWitt, Table 7.5)*
+Reproduced from Incropera & DeWitt, Table 7.5
 
-$$\overline{\text{Nu}}_D = C_1\,\text{Re}_{D,\max}^m\,\text{Pr}^{0.36}\left(\frac{\text{Pr}}{\text{Pr}_s}\right)^{1/4} \quad \text{for } N_L\geq20,\; 0.7\leq\text{Pr}\leq500,\; 10\leq\text{Re}_{D,\max}\leq2\times10^6$$
+
 
 | Configuration | $\text{Re}_{D,\max}$ | $C_1$ | $m$ |
 |---|---|---|---|
@@ -465,7 +460,7 @@ For $N_L < 20$: $\overline{\text{Nu}}_D\big|_{N_L<20} = C_2\,\overline{\text{Nu}
 
 ---
 
-## Total Heat Transfer — Log-Mean Temperature Difference
+### The Log-Mean Temperature Difference
 
 When it comes to predicting total heat transfer, it is **not** the case that:
 
@@ -488,3 +483,9 @@ $$\frac{T_s - T_o}{T_s - T_i} \approx \exp\!\left(\frac{-\pi D N \overline{h}}{\
 Then:
 
 $$\boxed{\dot{Q} = N\overline{h}\,\pi DL\cdot\Delta T_{lm}} \qquad \text{(Bank of }N\text{ tubes)}$$
+
+
+## Interactive Demo -- LMTD
+
+I created an interactive demo to explore the log-mean temperature difference [Find it at this link](demos/LMTD_demo.qmd).
+

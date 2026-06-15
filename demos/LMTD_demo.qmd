@@ -1,0 +1,305 @@
+# Log-Mean Temperature Difference — Interactive Demo {.unnumbered}
+
+When a fluid flows through a heat exchanger, the temperature difference between the hot and cold streams changes along the length. The local driving force for heat transfer is the local $\Delta T$, so we can't just use the inlet or outlet difference as the "effective" average — we need the **log-mean temperature difference**:
+
+$$\Delta T_{lm} = \frac{\Delta T_1 - \Delta T_2}{\ln(\Delta T_1/\Delta T_2)}$$
+
+where $\Delta T_1$ and $\Delta T_2$ are the temperature differences at the two ends of the exchanger (hot-inlet end and hot-outlet end, respectively).
+
+The temperature *profiles* along the exchanger are exponential — not linear — determined by the heat capacity rates $C = \dot{m}c_p$ of each stream. Given the four terminal temperatures, those profiles are fully determined, and that's what the demo plots.
+
+---
+
+## Interactive demo {#sec-demo}
+
+```{ojs}
+//| echo: false
+
+{
+  // ── Profile helper ───────────────────────────────────────────────────────────
+  // f(ξ, R): exponential interpolation from 0 to 1 over ξ ∈ [0,1].
+  // R = ln(ΔT₁/ΔT₂). R=0 → linear (constant ΔT, balanced capacity rates).
+  function fpro(xi, R) {
+    if (Math.abs(R) < 1e-8) return xi;
+    return (1 - Math.exp(-R * xi)) / (1 - Math.exp(-R));
+  }
+
+  // ── Inputs ───────────────────────────────────────────────────────────────────
+  const flow_in  = Inputs.select(["Counter flow", "Parallel flow"],
+                                  { label: "Flow arrangement", value: "Counter flow" });
+
+  const Thin_in  = Inputs.range([20, 200], { value: 90, step: 1,
+                                             label: html`T<sub>h,in</sub> (°C)` });
+  const Thout_in = Inputs.range([10, 195], { value: 60, step: 1,
+                                             label: html`T<sub>h,out</sub> (°C)` });
+  const Tcin_in  = Inputs.range([5,  150], { value: 20, step: 1,
+                                             label: html`T<sub>c,in</sub> (°C)` });
+  const Tcout_in = Inputs.range([5,  155], { value: 55, step: 1,
+                                             label: html`T<sub>c,out</sub> (°C)` });
+
+  // ── Isothermal checkboxes ────────────────────────────────────────────────────
+  function makeCheck(lbl) {
+    const wrap = document.createElement("label");
+    wrap.style.cssText = "display:block;font-family:Georgia,serif;font-size:11px;" +
+                         "color:#666;margin-top:6px;cursor:pointer;user-select:none";
+    const cb = document.createElement("input");
+    cb.type = "checkbox";
+    cb.style.cssText = "margin-right:5px;cursor:pointer";
+    wrap.append(cb, lbl);
+    return wrap;
+  }
+  const hIsoCb = makeCheck("Isothermal  (T₀ᵤₜ = Tᵢⁿ)");
+  const cIsoCb = makeCheck("Isothermal  (T₀ᵤₜ = Tᵢⁿ)");
+
+  // ── Plot placeholder ─────────────────────────────────────────────────────────
+  const pPlot = document.createElement("div");
+  const pInfo = document.createElement("div");
+
+  // ── Render ───────────────────────────────────────────────────────────────────
+  function render() {
+    const isCounter = flow_in.value === "Counter flow";
+    const Thin  = Thin_in.value;
+    const Thout = hIsoCb.querySelector("input").checked ? Thin  : Thout_in.value;
+    const Tcin  = Tcin_in.value;
+    const Tcout = cIsoCb.querySelector("input").checked ? Tcin  : Tcout_in.value;
+
+    // Dim/lock disabled sliders
+    for (const [el, iso] of [[Thout_in, hIsoCb], [Tcout_in, cIsoCb]]) {
+      const on = iso.querySelector("input").checked;
+      el.style.opacity       = on ? "0.35" : "1";
+      el.style.pointerEvents = on ? "none"  : "";
+    }
+
+    // Cold temperature at ξ=0 (hot-inlet end) and ξ=1 (hot-outlet end)
+    // Counter flow: cold exits at ξ=0, enters at ξ=1
+    // Parallel flow: cold enters at ξ=0, exits at ξ=1
+    const [Tc0, Tc1] = isCounter ? [Tcout, Tcin] : [Tcin, Tcout];
+
+    const DT1 = Thin  - Tc0;   // ΔT at hot-inlet end
+    const DT2 = Thout - Tc1;   // ΔT at hot-outlet end
+    const valid = DT1 > 0.1 && DT2 > 0.1;
+
+    const q_h = Thin  - Thout;   // hot-side temperature drop
+    const q_c = Tc0   - Tc1;     // cold-side temperature change at ξ (+ means drops)
+    const R   = (valid && Math.abs(DT1 - DT2) > 0.05) ? Math.log(DT1 / DT2) : 0;
+
+    // LMTD (L'Hôpital when R→0)
+    const DT_lm    = Math.abs(R) < 1e-8 ? DT1 : (DT1 - DT2) / Math.log(DT1 / DT2);
+    const DT_arith = (DT1 + DT2) / 2;
+
+    // Profile rows
+    const N = 300;
+    const xs = Array.from({length: N}, (_, i) => i / (N - 1));
+    const rows = xs.map(xi => ({
+      xi,
+      Th: Thin - q_h * fpro(xi, R),
+      Tc: Tc0  - q_c * fpro(xi, R),
+    }));
+
+    const allT = rows.flatMap(r => [r.Th, r.Tc]);
+    const Tlo  = Math.min(...allT) - 8;
+    const Thi  = Math.max(...allT) + 8;
+
+    // Arrow mid-points
+    const Th_mid = Thin - q_h * fpro(0.5, R);
+    const Tc_mid = Tc0  - q_c * fpro(0.5, R);
+
+    const plot = Plot.plot({
+      width: 680, height: 320,
+      marginLeft: 52, marginBottom: 42, marginTop: 24, marginRight: 24,
+      style: { fontFamily: "Georgia, serif", fontSize: "11px" },
+      x: { label: "← hot inlet · · · · · hot outlet →", domain: [0, 1],
+           tickFormat: d => ["0","¼","½","¾","1"][Math.round(d * 4)] },
+      y: { label: "↑ T (°C)", domain: [Tlo, Thi] },
+      marks: valid ? [
+        Plot.gridX({ stroke: "#e0e0e0" }),
+        Plot.gridY({ stroke: "#e0e0e0" }),
+
+        // Temperature profiles
+        Plot.line(rows, { x: "xi", y: "Th", stroke: "#c0392b", strokeWidth: 2.5 }),
+        Plot.line(rows, { x: "xi", y: "Tc", stroke: "#2471a3", strokeWidth: 2.5 }),
+
+        // Flow-direction arrows (mid-line)
+        Plot.arrow([{ x1: 0.38, y1: Th_mid, x2: 0.52, y2: Th_mid }],
+          { x1:"x1", y1:"y1", x2:"x2", y2:"y2",
+            stroke: "#c0392b", strokeWidth: 1.2, headLength: 8, headAngle: 35 }),
+        isCounter
+          ? Plot.arrow([{ x1: 0.52, y1: Tc_mid, x2: 0.38, y2: Tc_mid }],
+              { x1:"x1", y1:"y1", x2:"x2", y2:"y2",
+                stroke: "#2471a3", strokeWidth: 1.2, headLength: 8, headAngle: 35 })
+          : Plot.arrow([{ x1: 0.38, y1: Tc_mid, x2: 0.52, y2: Tc_mid }],
+              { x1:"x1", y1:"y1", x2:"x2", y2:"y2",
+                stroke: "#2471a3", strokeWidth: 1.2, headLength: 8, headAngle: 35 }),
+
+        // ΔT vertical brackets at each end
+        Plot.link(
+          [{ x1:0, y1:Thin,  x2:0, y2:Tc0  },
+           { x1:1, y1:Thout, x2:1, y2:Tc1  }],
+          { x1:"x1", y1:"y1", x2:"x2", y2:"y2",
+            stroke: "#27ae60", strokeWidth: 2, strokeDasharray: "4,2" }
+        ),
+
+        // ΔT labels between the lines at each end
+        Plot.text([
+          { xi: 0.04, T: (Thin  + Tc0)/2, lbl: `ΔT₁ = ${DT1.toFixed(1)} °C` },
+          { xi: 0.96, T: (Thout + Tc1)/2, lbl: `ΔT₂ = ${DT2.toFixed(1)} °C` },
+        ], {
+          x: "xi", y: "T", text: "lbl",
+          textAnchor: d => d.xi < 0.5 ? "start" : "end",
+          fill: "#27ae60", fontSize: 10, fontFamily: "Georgia, serif",
+        }),
+
+        // Stream endpoint labels (small, near line ends)
+        Plot.text([
+          { xi: 0.01, T: Thin,  lbl: "Hot in",   col: "#c0392b", anc: "start" },
+          { xi: 0.99, T: Thout, lbl: "Hot out",  col: "#c0392b", anc: "end"   },
+          { xi: isCounter ? 0.99 : 0.01,
+            T:  isCounter ? Tc1  : Tc0,
+            lbl: "Cold in",  col: "#2471a3", anc: isCounter ? "end" : "start" },
+          { xi: isCounter ? 0.01 : 0.99,
+            T:  isCounter ? Tc0  : Tc1,
+            lbl: "Cold out", col: "#2471a3", anc: isCounter ? "start" : "end" },
+        ], {
+          x: "xi", y: "T", text: "lbl",
+          textAnchor: d => d.anc,
+          fill: d => d.col, dy: -9,
+          fontSize: 10, fontFamily: "Georgia, serif",
+        }),
+
+      ] : [
+        Plot.text([{ xi: 0.5, T: 50 }], {
+          x: "xi", y: "T",
+          text: () => "⚠  Invalid — hot must exceed cold at both ends",
+          fill: "#e15759", fontSize: 12,
+        }),
+      ]
+    });
+
+    // Summary panel
+    const fmt1 = v => v.toFixed(1);
+    const pct  = valid
+      ? ((DT_arith - DT_lm) / DT_lm * 100).toFixed(1)
+      : "—";
+    pInfo.innerHTML = valid ? `
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;
+                  margin-top:10px;font-family:Georgia,serif;font-size:12px">
+        <div style="text-align:center;padding:8px 4px;background:#f0f9f0;
+                    border:1.5px solid #27ae60;border-radius:5px">
+          <div style="color:#27ae60;font-weight:bold;margin-bottom:3px">ΔT₁</div>
+          <div style="font-size:15px">${fmt1(DT1)} °C</div>
+        </div>
+        <div style="text-align:center;padding:8px 4px;background:#f0f9f0;
+                    border:1.5px solid #27ae60;border-radius:5px">
+          <div style="color:#27ae60;font-weight:bold;margin-bottom:3px">ΔT₂</div>
+          <div style="font-size:15px">${fmt1(DT2)} °C</div>
+        </div>
+        <div style="text-align:center;padding:8px 4px;background:#e8f5e8;
+                    border:2px solid #1e8449;border-radius:5px">
+          <div style="color:#1e8449;font-weight:bold;margin-bottom:3px">ΔT<sub>lm</sub></div>
+          <div style="font-size:18px;font-weight:bold">${fmt1(DT_lm)} °C</div>
+        </div>
+        <div style="text-align:center;padding:8px 4px;background:#f5f5f5;
+                    border:1px solid #ccc;border-radius:5px">
+          <div style="color:#999;font-weight:bold;margin-bottom:3px">Arith. mean</div>
+          <div style="font-size:15px;color:#999">${fmt1(DT_arith)} °C</div>
+          <div style="font-size:9px;color:#bbb;margin-top:2px">
+            +${pct}% vs ΔT<sub>lm</sub>
+          </div>
+        </div>
+      </div>` : "";
+
+    pPlot.replaceChildren(plot);
+  }
+
+  for (const inp of [flow_in, Thin_in, Thout_in, Tcin_in, Tcout_in])
+    inp.addEventListener("input", render);
+  hIsoCb.addEventListener("change", render);
+  cIsoCb.addEventListener("change", render);
+  render();
+
+  // ── Legend ───────────────────────────────────────────────────────────────────
+  const sw = (c) => {
+    const s = document.createElement("span");
+    s.style.cssText = `display:inline-block;width:22px;height:0;border-top:3px solid ${c};` +
+                      `vertical-align:middle;margin:0 5px 0 12px`;
+    return s;
+  };
+  const t = txt => { const s = document.createElement("span"); s.textContent = txt; return s; };
+  const leg = document.createElement("div");
+  leg.style.cssText = "font-size:11px;font-family:Georgia,serif;margin:8px 0 4px;" +
+                      "display:flex;align-items:center;flex-wrap:wrap;gap:3px";
+  leg.append(sw("#c0392b"), t("Hot stream (→)"),
+             sw("#2471a3"), t("Cold stream (→ parallel / ← counter)"),
+             sw("#27ae60"), t("ΔT₁, ΔT₂"));
+
+  return html`<div style="font-family:Georgia,serif">
+
+    <div style="margin-bottom:14px">${flow_in}</div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px">
+      <div style="padding:10px 12px;border:1px solid #f0c0b0;border-radius:6px;
+                  background:#fdf8f7">
+        <div style="font-size:0.72em;font-weight:bold;color:#c0392b;
+                    text-transform:uppercase;letter-spacing:.05em;margin-bottom:7px">
+          Hot stream
+        </div>
+        ${Thin_in} ${Thout_in} ${hIsoCb}
+      </div>
+      <div style="padding:10px 12px;border:1px solid #a0c0e0;border-radius:6px;
+                  background:#f7fafd">
+        <div style="font-size:0.72em;font-weight:bold;color:#2471a3;
+                    text-transform:uppercase;letter-spacing:.05em;margin-bottom:7px">
+          Cold stream
+        </div>
+        ${Tcin_in} ${Tcout_in} ${cIsoCb}
+      </div>
+    </div>
+
+    ${pPlot}
+    ${leg}
+    ${pInfo}
+  </div>`;
+}
+```
+
+---
+
+## What to look for {#sec-observations}
+
+**Counter flow outperforms parallel flow — with the same terminal temperatures.**
+Switch between the two arrangements with the defaults: $T_h$: 90 → 60 °C, $T_c$: 20 → 55 °C. The arithmetic mean $\Delta T$ is the same for both (it only depends on the four terminal values). But $\Delta T_{lm}$ is notably higher for counter flow. That gap is the engineering motivation for counter-flow designs: same heat exchanged, smaller required area — or equivalently, better fluid temperatures for the same hardware.
+
+The visual explanation is on the plot: parallel flow forces both $\Delta T_1$ and $\Delta T_2$ to be skewed (one large, one tiny), while counter flow keeps them more balanced. The log-mean penalizes large imbalance.
+
+**The isothermal stream.** Check "Isothermal" on the hot side and observe: the red line flattens, and the cold stream curves exponentially toward it. This is the tube-bank situation from @sec-external-flow-tube-bank: the tube surface is at constant $T_s$, and the external flow heats up as it passes through — following exactly $T_c(\xi) = T_s - (T_s - T_{c,\text{in}})\,e^{-R\xi}$.
+
+::: {.callout-note}
+An isothermal stream doesn't have to mean phase change (condensation, evaporation). It also approximates any stream with a very large capacity rate $C = \dot{m}c_p$: if enough fluid is flowing, its temperature barely shifts, and it looks flat on the plot. Check "Isothermal" on one side, then imagine it as the limit of sliding that side's outlet temperature back toward its inlet.
+:::
+
+**Arithmetic mean always overestimates.** The summary panel shows the arithmetic mean alongside $\Delta T_{lm}$. The arithmetic mean is always $\geq \Delta T_{lm}$ (by the AM–GM inequality applied to the exponential profile). Using it in $\dot{Q} = \overline{h}A\,\Delta T$ would overestimate the heat transfer rate. The correction matters most when $\Delta T_1 / \Delta T_2$ is far from 1 — as in the parallel-flow default, where it is off by roughly 50%.
+
+**When $\Delta T_1 = \Delta T_2$**, $\Delta T_{lm} = \Delta T_1$ exactly (L'Hôpital's rule on the $0/0$ form). The profiles become straight lines and the arithmetic mean is correct. This happens in counter flow when the two streams have equal capacity rates — a balanced, perfectly efficient exchanger.
+
+---
+
+## Worked example — tube bank as isothermal hot surface {#sec-worked}
+
+Return to the tube bank from the chapter. Air at $T_i = 15\,^\circ$C passes through a bank of tubes held at $T_s = 70\,^\circ$C. The outlet temperature predicted by the correlation is $T_o = 35\,^\circ$C. Find $\Delta T_{lm}$ and the total heat transfer.
+
+**Step 1 — Identify the temperature differences.**
+The hot surface is isothermal at $T_s = 70\,^\circ$C, so:
+
+$$\Delta T_1 = T_s - T_i = 70 - 15 = 55\,^\circ\text{C}, \qquad \Delta T_2 = T_s - T_o = 70 - 35 = 35\,^\circ\text{C}$$
+
+**Step 2 — Apply the log-mean formula.**
+
+$$\Delta T_{lm} = \frac{55 - 35}{\ln(55/35)} = \frac{20}{\ln 1.571} = \frac{20}{0.452} = 44.3\,^\circ\text{C}$$
+
+Check against the demo: set Hot isothermal at 70°C, $T_{c,\text{in}} = 15$°C, $T_{c,\text{out}} = 35$°C. The summary should read $\Delta T_{lm} \approx 44.3\,^\circ$C.
+
+The arithmetic mean would give $(55 + 35)/2 = 45\,^\circ$C — only about 1.6% high here because $\Delta T_1/\Delta T_2 = 1.57$ is close to 1. At larger ratios, the error grows fast.
+
+**Step 3 — Total heat transfer** (with $N = 80$ tubes, $D = 0.025$ m, $L = 1$ m, $\overline{h} = 95$ W/m²·K):
+
+$$\dot{Q} = N\,\overline{h}\,\pi D L\,\Delta T_{lm} = 80 \times 95 \times \pi \times 0.025 \times 1 \times 44.3 \approx 26.5\;\text{kW}$$

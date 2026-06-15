@@ -42,6 +42,7 @@ book:
         - demos/sphere_demo.qmd
         - demos/semi_infinite_demo.qmd
         - demos/flat_plate_demo.qmd
+        - demos/LMTD_demo.qmd
 
 bibliography: references.bib
 
