@@ -749,7 +749,7 @@
     "href": "4convection.html",
     "title": "4  External Convection",
     "section": "",
-    "text": "4.1 Think First\nWe’re going to dig deeper into convection, and this week will be “external convection” – fluid passing over an object.\nRecall\nLook Ahead",
+    "text": "4.1 Think First\nWe’re going to dig deeper into convection, specifically “external convection” – fluids passing over objects. We’ve hinted at the physics already, e.g.: convection is enhanced by increasing the flow rate, and water is a more effective heat transfer medium than air due to its thermal capacity. After this chapter, we’ll be able to quantitatively explain why via calculations of \\(h\\).\nFluid flow is complex and we won’t be solving for temperature distributions like we did with conduction. Instead we’ll focus mostly on overall heat transfer rates as described by an averaged value of the convection coefficient, \\(\\overline{h}\\). Engineers have collected experimental data and come up with a best-fit equation to describe it – we will obtain \\(\\overline{h}\\) from these “correlations”.\nRecall\nLook Ahead",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>External Convection</span>"
     ]

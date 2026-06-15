@@ -384,7 +384,8 @@ window.Quarto = {
 </header>
 
 
-<p>We’re going to dig deeper into convection, and this week will be “external convection” – fluid passing over an object.</p>
+<p>We’re going to dig deeper into convection, specifically “external convection” – fluids passing over objects. We’ve hinted at the physics already, e.g.: convection is enhanced by increasing the flow rate, and water is a more effective heat transfer medium than air due to its thermal capacity. After this chapter, we’ll be able to quantitatively explain why via calculations of <span class="math inline">\(h\)</span>.</p>
+<p>Fluid flow is complex and we won’t be solving for temperature distributions like we did with conduction. Instead we’ll focus mostly on overall heat transfer rates as described by an averaged value of the convection coefficient, <span class="math inline">\(\overline{h}\)</span>. Engineers have collected experimental data and come up with a best-fit equation to describe it – we will obtain <span class="math inline">\(\overline{h}\)</span> from these “correlations”.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -395,7 +396,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In this chapter we will use a lot of “Nusselt Number correlations”, which I have retrieved from Incropera, DeWitt, Bergman, and Lavine “Fundamentals of Heat and Mass Transfer”, the sixth edition published in 2007. The first edition of this textbook was written by just Incropera and DeWitt, in 1974. It is very common to refer to this text as “Incropera and DeWitt”, as in: “this table comes from Incropera and DeWitt”.</p>
+<p>I have retrieved a lot of these correlations from Incropera, DeWitt, Bergman, and Lavine “Fundamentals of Heat and Mass Transfer”, the sixth edition published in 2007. The first edition of this textbook was written by just Incropera and DeWitt, in 1974. It is very common to refer to their textbook as just “Incropera and DeWitt”, as in: “this table comes from Incropera and DeWitt”.</p>
 </div>
 </div>
 <section id="think-first" class="level2" data-number="4.1">
@@ -1524,616 +1525,618 @@ V_\text{max} = \frac{S_T}{2(S_D-D)}V_\infty.
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># External Convection</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>We're going to dig deeper into convection, and this week will be "external convection" -- fluid passing over an object.</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>We're going to dig deeper into convection, specifically "external convection" -- fluids passing over objects. We've hinted at the physics already, e.g.: convection is enhanced by increasing the flow rate, and water is a more effective heat transfer medium than air due to its thermal capacity. After this chapter, we'll be able to quantitatively explain why via calculations of $h$.</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>In this chapter we will use a lot of "Nusselt Number correlations", which I have retrieved from Incropera, DeWitt, Bergman, and Lavine "Fundamentals of Heat and Mass Transfer", the sixth edition published in 2007. The first edition of this textbook was written by just Incropera and DeWitt, in 1974. It is very common to refer to this text as "Incropera and DeWitt", as in: "this table comes from Incropera and DeWitt".</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Think First</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>Fluid flow is complex and we won't be solving for temperature distributions like we did with conduction. Instead we'll focus mostly on overall heat transfer rates as described by an averaged value of the convection coefficient, $\overline{h}$. Engineers have collected experimental data and come up with a best-fit equation to describe it -- we will obtain $\overline{h}$ from these "correlations".</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>I have retrieved a lot of these correlations from Incropera, DeWitt, Bergman, and Lavine "Fundamentals of Heat and Mass Transfer", the sixth edition published in 2007. The first edition of this textbook was written by just Incropera and DeWitt, in 1974. It is very common to refer to their textbook as just "Incropera and DeWitt", as in: "this table comes from Incropera and DeWitt".</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>Recall</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Think First</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>We've been computing convection with $\dot{Q} = hA(T_s - T_\infty)$. Before reading further: what physical factors do you expect $h$ to depend on? (Think about what changes if you blow faster, use a different fluid, or change the object's size.)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>From our resistor analogy: what is the thermal resistance for convection? What happens to that resistance as $h$ increases?</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>From fluid mechanics: what is the Reynolds number $\text{Re} = \rho U L / \mu$, and what does a large Reynolds number indicate about a flow?</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>Look Ahead</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>Recall</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>We've been computing convection with $\dot{Q} = hA(T_s - T_\infty)$. Before reading further: what physical factors do you expect $h$ to depend on? (Think about what changes if you blow faster, use a different fluid, or change the object's size.)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>From our resistor analogy: what is the thermal resistance for convection? What happens to that resistance as $h$ increases?</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>From fluid mechanics: what is the Reynolds number $\text{Re} = \rho U L / \mu$, and what does a large Reynolds number indicate about a flow?</span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>If you blow air across a flat plate, do you expect the local heat transfer to be the same everywhere along the plate, or to vary with position? What might cause it to change?</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Turbulent flow is more chaotic and well-mixed than laminar flow. How do you expect the laminar-to-turbulent transition in the boundary layer to affect the "local" heat transfer coefficient?</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>A cold fluid at temperature $T_\text{in}$ passes over a series of hot cylinders, say 40 of them. If you tried to compute the total amount of heat transfer as $\dot{Q} = \overline{h} A_\text{cylinder} (T_\text{cylinder} - T_\text{in})$, would that be an overestimate or underestimate, and why?</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="fu">## What is $h$?</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>Look Ahead</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>If you blow air across a flat plate, do you expect the local heat transfer to be the same everywhere along the plate, or to vary with position? What might cause it to change?</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Turbulent flow is more chaotic and well-mixed than laminar flow. How do you expect the laminar-to-turbulent transition in the boundary layer to affect the "local" heat transfer coefficient?</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>A cold fluid at temperature $T_\text{in}$ passes over a series of hot cylinders, say 40 of them. If you tried to compute the total amount of heat transfer as $\dot{Q} = \overline{h} A_\text{cylinder} (T_\text{cylinder} - T_\text{in})$, would that be an overestimate or underestimate, and why?</span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="fu">### Video</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>Start with <span class="co">[</span><span class="ot">this linked video</span><span class="co">](https://canvas.colorado.edu/courses/136150/pages/intro-to-convection)</span>, an introduction to convection.</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="fu">### Circumventing the boundary layer details</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="fu">## What is $h$?</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="fu">### Video</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>Start with <span class="co">[</span><span class="ot">this linked video</span><span class="co">](https://canvas.colorado.edu/courses/136150/pages/intro-to-convection)</span>, an introduction to convection.</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>We've been using $h$ in the context of</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="fu">### Circumventing the boundary layer details</span></span>
 <span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>\dot{Q} = h A_\text{surface}(T_\text{surface}-T_\infty).</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>$$ {#eq-convection}</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>Flow phenomena are included within $h$, and that should make us nervous! Can you tell me the velocity profile for turbulent flow around a sphere? Somehow that is factored-in to $h$!</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>We've been using $h$ in the context of</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>\dot{Q} = h A_\text{surface}(T_\text{surface}-T_\infty).</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>$$ {#eq-convection}</span>
 <span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>There is good news: $h$ is a quantity we invented to summarize the effects of flow properties, including material properties like density and viscosity. Even as we dig deeper into convection, we maintain the definition given in @eq-convection, including the use of $\Delta T = T_\text{surface}-T_\infty$. It is much simpler to just think about the surface temperature and ambient temperature than it is to deal with the detailed temperature distribution spanning those values! This is the power of $h$... it allows us to do that.</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>Flow phenomena are included within $h$, and that should make us nervous! Can you tell me the velocity profile for turbulent flow around a sphere? Somehow that is factored-in to $h$!</span>
 <span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>::: {.column-margin}</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>We will have to use a modified $\Delta T$ for heat exchangers, but the spirit is the same: to focus on inlet/outlet conditions and gloss-over the nuances of the profiles.</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="fu">### Local and average $h$</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>There is good news: $h$ is a quantity we invented to summarize the effects of flow properties, including material properties like density and viscosity. Even as we dig deeper into convection, we maintain the definition given in @eq-convection, including the use of $\Delta T = T_\text{surface}-T_\infty$. It is much simpler to just think about the surface temperature and ambient temperature than it is to deal with the detailed temperature distribution spanning those values! This is the power of $h$... it allows us to do that.</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>::: {.column-margin}</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>We will have to use a modified $\Delta T$ for heat exchangers, but the spirit is the same: to focus on inlet/outlet conditions and gloss-over the nuances of the profiles.</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>We've been a bit sloppy in our discussion of the convective heat transfer coefficient, saying for example that $h=22$ W/m²·K for flow over an object. More rigorously, $h$ can be described as a "local value", as in the value at a particular position on the surface; or as an "averaged value", as in an effective/averaged value over an entire surface. Technically we have been talking about an averaged value $\overline{h}$ up to this point in the course, which would be defined as </span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="fu">### Local and average $h$</span></span>
 <span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>\overline{h}=\frac{1}{A_\text{surface}}\int h(\mathbf{x})dS</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>We've been a bit sloppy in our discussion of the convective heat transfer coefficient, saying for example that $h=22$ W/m²·K for flow over an object. More rigorously, $h$ can be described as a "local value", as in the value at a particular position on the surface; or as an "averaged value", as in an effective/averaged value over an entire surface. Technically we have been talking about an averaged value $\overline{h}$ up to this point in the course, which would be defined as </span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>and this is what we'd use in an overall heat transfer calculation</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>\overline{h}=\frac{1}{A_\text{surface}}\int h(\mathbf{x})dS</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>\dot{Q}= \overline{h} {A_\text{surface}} \Delta T. </span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>and this is what we'd use in an overall heat transfer calculation</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>We will talk a bit about the local $h$, but when it comes to solving typical heat transfer problems, we will be jumping straight to values of $\overline{h}$ that have been cataloged by our ancestors.</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>\dot{Q}= \overline{h} {A_\text{surface}} \Delta T. </span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="fu">### An experimentalist's approach</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>We will talk a bit about the local $h$, but when it comes to solving typical heat transfer problems, we will be jumping straight to values of $\overline{h}$ that have been cataloged by our ancestors.</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>The convection coefficient can be determined analytically: figure out the temperature profile in the fluid, evaluate the heat flux at the surface, and rearrange</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="fu">### An experimentalist's approach</span></span>
 <span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>q'' = -k_f \frac{\partial T}{\partial y}\bigg\rvert_\text{surface} = h(T_\text{surface}-T_\infty)</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>The convection coefficient can be determined analytically: figure out the temperature profile in the fluid, evaluate the heat flux at the surface, and rearrange</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>to find</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>q'' = -k_f \frac{\partial T}{\partial y}\bigg\rvert_\text{surface} = h(T_\text{surface}-T_\infty)</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>h = \frac{-k_f \frac{\partial T}{\partial y}\bigg\rvert_\text{surface}}{T_\text{surface}-T_\infty}.</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>to find</span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>Rather than solve the coupled nonlinear partial differential equations necessary to determine the heat flux at each point on the surface, we might instead think about how to determine the relationship between $h$ and the problem parameters using dimensional analysis. We should expect that $h$ depends on:</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>h = \frac{-k_f \frac{\partial T}{\partial y}\bigg\rvert_\text{surface}}{T_\text{surface}-T_\infty}.</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The incoming flow velocity, $U_\infty$. This sets how much cool fluid is passing over the object, and also is related to boundary layers, flow separation, and turbulence.</span>
-<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Also relevant to boundary layers, etc., is the fluid viscosity, $\mu$.</span>
-<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The specific heat, $c_p$, which is how much energy it takes to heat up a kilogram of fluid by one Kelvin. If it takes more energy to change the temperature of the fluid, it is going to do a better job at removing heat from the object.</span>
-<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Tied to that is the density: how many kilograms are passing by?</span>
-<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The thermal conductivity of the fluid, $k_f$, is also relevant. Convection is ostensibly moving energy downstream, but it depends on the rate at which we can conduct energy perpendicular to the flow, away from the surface.</span>
-<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Position or length is relevant, too. The distance from the leading edge, $L$, has an effect on the flow profile.</span>
-<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>That is, we should have $h(U_\infty,\mu,c_p,\rho, k_f, L)$. </span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>Rather than solve the coupled nonlinear partial differential equations necessary to determine the heat flux at each point on the surface, we might instead think about how to determine the relationship between $h$ and the problem parameters using dimensional analysis. We should expect that $h$ depends on:</span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The incoming flow velocity, $U_\infty$. This sets how much cool fluid is passing over the object, and also is related to boundary layers, flow separation, and turbulence.</span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Also relevant to boundary layers, etc., is the fluid viscosity, $\mu$.</span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The specific heat, $c_p$, which is how much energy it takes to heat up a kilogram of fluid by one Kelvin. If it takes more energy to change the temperature of the fluid, it is going to do a better job at removing heat from the object.</span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Tied to that is the density: how many kilograms are passing by?</span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The thermal conductivity of the fluid, $k_f$, is also relevant. Convection is ostensibly moving energy downstream, but it depends on the rate at which we can conduct energy perpendicular to the flow, away from the surface.</span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Position or length is relevant, too. The distance from the leading edge, $L$, has an effect on the flow profile.</span>
 <span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
-<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>Recall the Buckingham-$\Pi$ Theorem: A problem with $n$ parameters/variables, described by $r$ fundamental dimensions, is governed by at most $n-r$ dimensionless parameters.</span>
-<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>So: 7 parameters, and 4 dimensions are necessary to quantify them: mass, length, time, and temperature. Thus we should expect 3 dimensionless groups. They are:</span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>That is, we should have $h(U_\infty,\mu,c_p,\rho, k_f, L)$. </span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>Recall the Buckingham-$\Pi$ Theorem: A problem with $n$ parameters/variables, described by $r$ fundamental dimensions, is governed by at most $n-r$ dimensionless parameters.</span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>\text{The Reynolds Number:  }\text{Re}_L\equiv \frac{\rho U_\infty L}{\mu}</span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>So: 7 parameters, and 4 dimensions are necessary to quantify them: mass, length, time, and temperature. Thus we should expect 3 dimensionless groups. They are:</span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>\text{The Reynolds Number:  }\text{Re}_L\equiv \frac{\rho U_\infty L}{\mu}</span>
 <span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a>\text{The Nusselt Number:  }\text{Nu}_L\equiv \frac{h L}{k_f}</span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a>\text{The Nusselt Number:  }\text{Nu}_L\equiv \frac{h L}{k_f}</span>
 <span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a>\text{The Prandtl Number:  }\text{Pr}\equiv \frac{\nu}{\alpha} = \frac{\mu/\rho}{k_f/(\rho c_p)} = \frac{\mu c_p}{k_f}.</span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>The Nusselt Number is essentially a dimensionless $h$, and we will spend this week and next calculating values for it via "Nusselt Number correlations". Buckingham-$\Pi$ tells us that it is a function of two things: the Reynolds Number and the Prandtl Number.</span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a>\text{The Prandtl Number:  }\text{Pr}\equiv \frac{\nu}{\alpha} = \frac{\mu/\rho}{k_f/(\rho c_p)} = \frac{\mu c_p}{k_f}.</span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>A few notes:</span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>The Nusselt Number is essentially a dimensionless $h$, and we will spend this week and next calculating values for it via "Nusselt Number correlations". Buckingham-$\Pi$ tells us that it is a function of two things: the Reynolds Number and the Prandtl Number.</span>
 <span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The Reynolds and Nusselt Numbers often include a subscript to denote what characteristic length is being used in the definition, e.g. for a flat plate with length $L$, we would use $\text{Re}_L = \rho U_\infty L/\mu$; for a cylinder with diameter $D$, we would use $\text{Re}_D = \rho U_\infty D/\mu$.</span>
-<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The Nusselt Number looks exactly like the Biot Number: $hL/k$. The difference is that the Nusselt Number uses the thermal conductivity of the fluid, the Biot Number uses the thermal conductivity of the solid.</span>
-<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>We might seek an averaged $\overline{h}$, in which case we'd use an averaged $\overline{\text{Nu}}$. This is more directly useful in determining the overall heat transfer: $\dot{Q}=\overline{h} A \Delta T$.</span>
-<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The Prandtl Number is a material property that can be looked up just like the thermal conductivity. Its value can be highly dependent on temperature: for water at 5°C, $\text{Pr}=11.2$; at 95°C, $\text{Pr}=1.9$. We still will treat it as a constant.</span>
-<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a>A quick example of a Nusselt Number correlation: for flow over a cylinder we might use</span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a>A few notes:</span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The Reynolds and Nusselt Numbers often include a subscript to denote what characteristic length is being used in the definition, e.g. for a flat plate with length $L$, we would use $\text{Re}_L = \rho U_\infty L/\mu$; for a cylinder with diameter $D$, we would use $\text{Re}_D = \rho U_\infty D/\mu$.</span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The Nusselt Number looks exactly like the Biot Number: $hL/k$. The difference is that the Nusselt Number uses the thermal conductivity of the fluid, the Biot Number uses the thermal conductivity of the solid.</span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>We might seek an averaged $\overline{h}$, in which case we'd use an averaged $\overline{\text{Nu}}$. This is more directly useful in determining the overall heat transfer: $\dot{Q}=\overline{h} A \Delta T$.</span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The Prandtl Number is a material property that can be looked up just like the thermal conductivity. Its value can be highly dependent on temperature: for water at 5°C, $\text{Pr}=11.2$; at 95°C, $\text{Pr}=1.9$. We still will treat it as a constant.</span>
 <span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a>\overline{\text{Nu}}_D = 0.3 + \frac{0.62\,\text{Re}_D^{1/2}\,\text{Pr}^{1/3}}{\left<span class="co">[</span><span class="ot">1+(0.4/\text{Pr})^{2/3}\right</span><span class="co">]</span>^{1/4}}\left<span class="co">[</span><span class="ot">1+\left(\frac{\text{Re}_D}{282000}\right)^{5/8}\right</span><span class="co">]</span>^{4/5}</span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a>A quick example of a Nusselt Number correlation: for flow over a cylinder we might use</span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a>Then...</span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a>\overline{\text{Nu}}_D = 0.3 + \frac{0.62\,\text{Re}_D^{1/2}\,\text{Pr}^{1/3}}{\left<span class="co">[</span><span class="ot">1+(0.4/\text{Pr})^{2/3}\right</span><span class="co">]</span>^{1/4}}\left<span class="co">[</span><span class="ot">1+\left(\frac{\text{Re}_D}{282000}\right)^{5/8}\right</span><span class="co">]</span>^{4/5}</span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a><span class="fu">### The Algorithm for Solving Convection Problems</span></span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a>Then...</span>
 <span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Identify your model geometry and look up the relevant Nusselt Number correlation. </span>
-<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Retrieve all necessary fluid properties. It is common to use "the film temperature" as the reference temperature: $T_\text{film} \equiv (T_\infty + T_\text{surface})/2$. Often there is a parameter with a subscript $s$, as in @eq-sphere-corr -- this parameter is to be evaluated at the surface temperature. (Sometimes the correlations are defined based on another reference temperature -- just be on the lookout!)</span>
-<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Calculate the relevant Reynolds Number and use it, along with the Prandtl Number, in the Nusselt Number correlation. You will get a value, e.g. $\overline{\text{Nu}}_D = 11.2$.</span>
-<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Unpack the Nusselt Number correlation: $\overline{\text{Nu}}_L \equiv \overline{h}L/k$ means $\overline{h} = (k/L) \overline{\text{Nu}}_L$.</span>
-<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Use $\overline{h}$ in the convective cooling law: $\dot{Q} = \overline{h}A_\text{surface}(T_\text{surface}-T_\infty)$.</span>
-<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a><span class="fu">## The Flat Plate</span></span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a><span class="fu">### The Algorithm for Solving Convection Problems</span></span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Identify your model geometry and look up the relevant Nusselt Number correlation. </span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Retrieve all necessary fluid properties. It is common to use "the film temperature" as the reference temperature: $T_\text{film} \equiv (T_\infty + T_\text{surface})/2$. Often there is a parameter with a subscript $s$, as in @eq-sphere-corr -- this parameter is to be evaluated at the surface temperature. (Sometimes the correlations are defined based on another reference temperature -- just be on the lookout!)</span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Calculate the relevant Reynolds Number and use it, along with the Prandtl Number, in the Nusselt Number correlation. You will get a value, e.g. $\overline{\text{Nu}}_D = 11.2$.</span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Unpack the Nusselt Number correlation: $\overline{\text{Nu}}_L \equiv \overline{h}L/k$ means $\overline{h} = (k/L) \overline{\text{Nu}}_L$.</span>
+<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Use $\overline{h}$ in the convective cooling law: $\dot{Q} = \overline{h}A_\text{surface}(T_\text{surface}-T_\infty)$.</span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
-<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a><span class="fu">### Video</span></span>
-<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a>Start with <span class="co">[</span><span class="ot">this linked video</span><span class="co">](https://canvas.colorado.edu/courses/136150/pages/flat-plate-heat-transfer)</span> on the flat-plate geometry.</span>
-<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a><span class="fu">### The geometry</span></span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a><span class="fu">## The Flat Plate</span></span>
+<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a><span class="fu">### Video</span></span>
+<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a>Start with <span class="co">[</span><span class="ot">this linked video</span><span class="co">](https://canvas.colorado.edu/courses/136150/pages/flat-plate-heat-transfer)</span> on the flat-plate geometry.</span>
+<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a>A uniform horizontal flow with speed $U_\infty$ and temperature $T_\infty$ approaches a horizontal flat plate. Due to friction at the plate, a boundary layer structure will form, with an associated velocity distribution that spans from zero (due to the no-slip condition) up to $U_\infty$ far from the plate. We will similarly have a "thermal" boundary layer, where the temperature distribution spans from a surface value $T_s$ to $T_\infty$ far from the plate. (At least that is the case for an "isothermal" plate. We also will consider the situation when $q''_s$ is a constant, and there will be a boundary layer structure there too.)</span>
+<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a><span class="fu">### The geometry</span></span>
 <span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a><span class="fu">### The momentum boundary layer thickness</span></span>
+<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a>A uniform horizontal flow with speed $U_\infty$ and temperature $T_\infty$ approaches a horizontal flat plate. Due to friction at the plate, a boundary layer structure will form, with an associated velocity distribution that spans from zero (due to the no-slip condition) up to $U_\infty$ far from the plate. We will similarly have a "thermal" boundary layer, where the temperature distribution spans from a surface value $T_s$ to $T_\infty$ far from the plate. (At least that is the case for an "isothermal" plate. We also will consider the situation when $q''_s$ is a constant, and there will be a boundary layer structure there too.)</span>
 <span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a>We know convection is going to remove heat from an object, so somehow the velocity profile affects the temperature profile...</span>
+<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a><span class="fu">### The momentum boundary layer thickness</span></span>
 <span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a>You may recall from fluid mechanics that we can use dimensional analysis to determine the dependence of the boundary layer thickness, $\delta$, on the problem parameters. A reminder: we have a no-slip condition at the plate's surface that sets up a competition between "advection", the flow going downstream characterized by $U_\infty$, and viscous diffusion, the friction between neighboring parcels traveling at different speeds characterized by $\nu\equiv \mu/\rho$. The boundary layer grows as we move further from the leading edge, distance given by $L$, and so we should expect $\delta(L,U_\infty,\nu)$. Check the dimensions of this scaling equation:</span>
+<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a>We know convection is going to remove heat from an object, so somehow the velocity profile affects the temperature profile...</span>
 <span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a>\delta \sim \sqrt{\frac{\nu L}{U_\infty}}.</span>
+<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a>You may recall from fluid mechanics that we can use dimensional analysis to determine the dependence of the boundary layer thickness, $\delta$, on the problem parameters. A reminder: we have a no-slip condition at the plate's surface that sets up a competition between "advection", the flow going downstream characterized by $U_\infty$, and viscous diffusion, the friction between neighboring parcels traveling at different speeds characterized by $\nu\equiv \mu/\rho$. The boundary layer grows as we move further from the leading edge, distance given by $L$, and so we should expect $\delta(L,U_\infty,\nu)$. Check the dimensions of this scaling equation:</span>
+<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a>The physics described here makes sense: the boundary layer grows with $L$, and will grow more rapidly if it is a more diffusive material. If the flow is faster, there will be less time to diffuse before reaching a distance $L$... the thickness should decrease with increasing $U_\infty$. All good. This relation can be rearranged to:</span>
+<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a>\delta \sim \sqrt{\frac{\nu L}{U_\infty}}.</span>
+<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a>\frac{\delta}{L} \sim \sqrt{\frac{\nu }{U_\infty L}} = \sqrt{\frac{1}{\text{Re}_L}}.</span>
+<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a>The physics described here makes sense: the boundary layer grows with $L$, and will grow more rapidly if it is a more diffusive material. If the flow is faster, there will be less time to diffuse before reaching a distance $L$... the thickness should decrease with increasing $U_\infty$. All good. This relation can be rearranged to:</span>
+<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a><span class="fu">### The thermal boundary layer thickness</span></span>
+<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a>\frac{\delta}{L} \sim \sqrt{\frac{\nu }{U_\infty L}} = \sqrt{\frac{1}{\text{Re}_L}}.</span>
+<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a>We have a similar competition for the thermal boundary layer, thickness $\delta_T$: now it's a thermal diffusivity, $\alpha$, competing with advection. The diffusivities have the same dimensions, (length)²/(time), and so we expect the same dimensional relationship between the parameters:</span>
+<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a><span class="fu">### The thermal boundary layer thickness</span></span>
 <span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a>\delta_T \sim \sqrt{\frac{\alpha L}{U_\infty}}</span>
+<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a>We have a similar competition for the thermal boundary layer, thickness $\delta_T$: now it's a thermal diffusivity, $\alpha$, competing with advection. The diffusivities have the same dimensions, (length)²/(time), and so we expect the same dimensional relationship between the parameters:</span>
+<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a>or </span>
+<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a>\delta_T \sim \sqrt{\frac{\alpha L}{U_\infty}}</span>
+<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a>\frac{\delta_T}{L} \sim \sqrt{\frac{\alpha }{U_\infty L}} = \sqrt{\frac{\alpha}{\nu}\frac{\nu }{U_\infty L}} = \sqrt{\frac{1}{\text{Pr}\cdot\text{Re}_L}}.</span>
+<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a>or </span>
+<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a>Observe:</span>
+<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a>\frac{\delta_T}{L} \sim \sqrt{\frac{\alpha }{U_\infty L}} = \sqrt{\frac{\alpha}{\nu}\frac{\nu }{U_\infty L}} = \sqrt{\frac{1}{\text{Pr}\cdot\text{Re}_L}}.</span>
+<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a>\frac{\delta_T}{\delta} = 1/\sqrt{\text{Pr}}.</span>
+<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a>Observe:</span>
+<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a>So the Prandtl Number tells us the ratio between the momentum and thermal boundary layer thicknesses.</span>
+<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a>\frac{\delta_T}{\delta} = 1/\sqrt{\text{Pr}}.</span>
+<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span></span>
-<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a><span class="al">###</span><span class="co"> Boundary layer equations</span></span>
-<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a><span class="co">If we scale the </span></span>
+<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a>So the Prandtl Number tells us the ratio between the momentum and thermal boundary layer thicknesses.</span>
+<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span></span>
+<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a><span class="al">###</span><span class="co"> Boundary layer equations</span></span>
 <span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a><span class="co">The non-dimensionalized (fluid) boundary layer equation is:</span></span>
+<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a><span class="co">If we scale the </span></span>
 <span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a><span class="co">$$</span></span>
-<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a><span class="co">\frac{\partial u}{\partial t}+u \frac{\partial u}{\partial x}+v\frac{\partial u}{\partial y} = \frac{1}{\text{Re}}\frac{\partial^2 u}{\partial y^2}</span></span>
+<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a><span class="co">The non-dimensionalized (fluid) boundary layer equation is:</span></span>
+<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a><span class="co">$$</span></span>
-<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a><span class="co">and the thermal boundary layer equation is:</span></span>
+<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a><span class="co">\frac{\partial u}{\partial t}+u \frac{\partial u}{\partial x}+v\frac{\partial u}{\partial y} = \frac{1}{\text{Re}}\frac{\partial^2 u}{\partial y^2}</span></span>
+<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a><span class="co">$$</span></span>
 <span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a><span class="co">and the thermal boundary layer equation is:</span></span>
 <span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a><span class="co"> (The first of these equations comes from conservation of momentum, the second from conservation of energy.) Notice that these equations have exactly the same form, with the same boundary conditions. The only difference: a coefficient of $1/\text{Re}$ in one, and $1/(\text{Re}\cdot\text{Pr})$ in the other. --&gt;</span></span>
+<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a><span class="fu">### Numerical solutions</span></span>
+<span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a><span class="co"> (The first of these equations comes from conservation of momentum, the second from conservation of energy.) Notice that these equations have exactly the same form, with the same boundary conditions. The only difference: a coefficient of $1/\text{Re}$ in one, and $1/(\text{Re}\cdot\text{Pr})$ in the other. --&gt;</span></span>
+<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a>After non-dimensionalizing the equations (in a way that includes $\delta$ and $\delta_T$), we can arrive at: the conservation of $x$-momentum:</span>
+<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a><span class="fu">### Numerical solutions</span></span>
 <span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a>\frac{\partial u}{\partial t}+u \frac{\partial u}{\partial x}+v\frac{\partial u}{\partial y} = \frac{1}{\text{Re}}\frac{\partial^2 u}{\partial y^2}</span>
+<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a>After non-dimensionalizing the equations (in a way that includes $\delta$ and $\delta_T$), we can arrive at: the conservation of $x$-momentum:</span>
+<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a>and the conservation of energy</span>
+<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a>\frac{\partial u}{\partial t}+u \frac{\partial u}{\partial x}+v\frac{\partial u}{\partial y} = \frac{1}{\text{Re}}\frac{\partial^2 u}{\partial y^2}</span>
+<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a>\frac{\partial \theta}{\partial t}+u \frac{\partial \theta}{\partial x}+v\frac{\partial \theta}{\partial y} = \frac{1}{\text{Re}\cdot\text{Pr}}\frac{\partial^2\theta}{\partial y^2}.</span>
+<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a>and the conservation of energy</span>
+<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a>with $u(0)=0$, $u(\infty)=1$ and $\theta(0)=0$, $\theta(\infty)=1$. These equations are not solvable analytically, but we can solve them numerically. (If you took MCEN 3030 with me, you solved the first one in a different form, after plugging-in conservation of mass.) So we can determine a numerical value for the velocity gradient at the surface, which is related to the viscous drag, and can determine a numerical value for the temperature gradient at the surface, which is related to the heat flux into the fluid.</span>
-<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span></span>
-<span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a><span class="co">Thinking back to fluid mechanics and Newton's Law of Viscosity, we can relate the shear stress at the surface $\tau_\text{surface}$ to the viscosity $\mu$ and velocity gradient at the surface:</span></span>
-<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a><span class="co">$$</span></span>
-<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a><span class="co">\tau_\text{surface} = \mu\frac{\partial u}{\partial y}\bigg|_0 \approx \mu\frac{U_\infty - 0}{\delta}.</span></span>
+<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a>\frac{\partial \theta}{\partial t}+u \frac{\partial \theta}{\partial x}+v\frac{\partial \theta}{\partial y} = \frac{1}{\text{Re}\cdot\text{Pr}}\frac{\partial^2\theta}{\partial y^2}.</span>
+<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a>with $u(0)=0$, $u(\infty)=1$ and $\theta(0)=0$, $\theta(\infty)=1$. These equations are not solvable analytically, but we can solve them numerically. (If you took MCEN 3030 with me, you solved the first one in a different form, after plugging-in conservation of mass.) So we can determine a numerical value for the velocity gradient at the surface, which is related to the viscous drag, and can determine a numerical value for the temperature gradient at the surface, which is related to the heat flux into the fluid.</span>
+<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span></span>
+<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a><span class="co">Thinking back to fluid mechanics and Newton's Law of Viscosity, we can relate the shear stress at the surface $\tau_\text{surface}$ to the viscosity $\mu$ and velocity gradient at the surface:</span></span>
 <span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a><span class="co">$$</span></span>
-<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a><span class="co">Here, we also gave an order-of-magnitude estimate of the value, based on the fact that: over the boundary layer thickness $\delta$, we will see a change in velocity of $U_\infty-0$.</span></span>
+<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a><span class="co">\tau_\text{surface} = \mu\frac{\partial u}{\partial y}\bigg|_0 \approx \mu\frac{U_\infty - 0}{\delta}.</span></span>
+<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a><span class="co">$$</span></span>
 <span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a><span class="co">We can do something similar with convection, using Newton's Law of Cooling:</span></span>
+<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a><span class="co">Here, we also gave an order-of-magnitude estimate of the value, based on the fact that: over the boundary layer thickness $\delta$, we will see a change in velocity of $U_\infty-0$.</span></span>
 <span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a><span class="co">$$</span></span>
-<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a><span class="co">h(T_\text{surface}-T_\infty) = -k_f\frac{\partial T}{\partial y}\bigg|_0 \approx k_f\frac{T_\infty - T_\text{surf}}{\delta_T}.</span></span>
+<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a><span class="co">We can do something similar with convection, using Newton's Law of Cooling:</span></span>
+<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a><span class="co">$$</span></span>
-<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a><span class="co">Using $\delta = L\sqrt{1/\text{Re}_L}$ and $\delta_T = L\sqrt{1/(\text{Pr}\cdot\text{Re}_L)}$, we can write</span></span>
+<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a><span class="co">h(T_\text{surface}-T_\infty) = -k_f\frac{\partial T}{\partial y}\bigg|_0 \approx k_f\frac{T_\infty - T_\text{surf}}{\delta_T}.</span></span>
+<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a><span class="co">$$</span></span>
 <span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a><span class="co">$$</span></span>
-<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a><span class="co">\tau_\text{surface} = \mu\frac{U_\infty}{L}\sqrt{\text{Re}} \qquad\text{and}\qquad \frac{h}{k_f} = \frac{\sqrt{\text{Re}\cdot\text{Pr</span><span class="re">}}}</span><span class="co">{L}.</span></span>
+<span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a><span class="co">Using $\delta = L\sqrt{1/\text{Re}_L}$ and $\delta_T = L\sqrt{1/(\text{Pr}\cdot\text{Re}_L)}$, we can write</span></span>
+<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a><span class="co">$$</span></span>
-<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a><span class="co">From the friction coefficient $C_f \equiv \frac{\tau_\text{surf}}{\frac{1}{2}\rho U_\infty^2}$ (non-dimensional, used to determine drag on wall):</span></span>
+<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a><span class="co">\tau_\text{surface} = \mu\frac{U_\infty}{L}\sqrt{\text{Re}} \qquad\text{and}\qquad \frac{h}{k_f} = \frac{\sqrt{\text{Re}\cdot\text{Pr</span><span class="re">}}}</span><span class="co">{L}.</span></span>
+<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a><span class="co">$$</span></span>
 <span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a><span class="co">$$C_f = \frac{2}{\sqrt{\text{Re}_L}}$$</span></span>
+<span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a><span class="co">From the friction coefficient $C_f \equiv \frac{\tau_\text{surf}}{\frac{1}{2}\rho U_\infty^2}$ (non-dimensional, used to determine drag on wall):</span></span>
 <span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a><span class="co">$$\text{Nu}_L \equiv \frac{hL}{k_f} = \sqrt{\text{Re}_L \cdot \text{Pr}}$$</span></span>
+<span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a><span class="co">$$C_f = \frac{2}{\sqrt{\text{Re}_L}}$$</span></span>
 <span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a><span class="co">Therefore $\text{Nu} = \frac{C_f}{2}\text{Re}\cdot\sqrt{\text{Pr}}$, where $C_f$ is well-documented from numerical calculations.</span></span>
-<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a><span class="co"> --&gt;</span></span>
-<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a><span class="fu">### Flat Plate Correlations</span></span>
+<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a><span class="co">$$\text{Nu}_L \equiv \frac{hL}{k_f} = \sqrt{\text{Re}_L \cdot \text{Pr}}$$</span></span>
+<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a><span class="co">Therefore $\text{Nu} = \frac{C_f}{2}\text{Re}\cdot\sqrt{\text{Pr}}$, where $C_f$ is well-documented from numerical calculations.</span></span>
+<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a><span class="co"> --&gt;</span></span>
+<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a>::: {.column-margin}</span>
-<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a>A result from fluid mechanics that we calculate numerically: we define the dimensionless coefficient of friction as </span>
-<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a>C_f(x) \equiv \frac{\tau_\text{surface}(x)}{\frac{1}{2}\rho U_\infty^2}</span>
+<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a><span class="fu">### Flat Plate Correlations</span></span>
+<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a>::: {.column-margin}</span>
+<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a>A result from fluid mechanics that we calculate numerically: we define the dimensionless coefficient of friction as </span>
+<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a>and, after numerically determining the velocity profile in the boundary layer, we can determine the shear stress at the surface and can write it in terms of $C_f$ and $\text{Re}_x$:</span>
+<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a>C_f(x) \equiv \frac{\tau_\text{surface}(x)}{\frac{1}{2}\rho U_\infty^2}</span>
+<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a>C_f(x) = 0.664\text{Re}_x^{-1/2}.</span>
+<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a>and, after numerically determining the velocity profile in the boundary layer, we can determine the shear stress at the surface and can write it in terms of $C_f$ and $\text{Re}_x$:</span>
+<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a>This is the value of the coefficient of friction at a particular $x$-value -- in order to get the total drag for $x=0$ to $x=L$, we'd need to do an integration.</span>
-<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a>After solving for $T(y)$ in the boundary layer, we can determine the heat flux at the surface and can relate that to the local Nusselt Number: </span>
+<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a>C_f(x) = 0.664\text{Re}_x^{-1/2}.</span>
+<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a>This is the value of the coefficient of friction at a particular $x$-value -- in order to get the total drag for $x=0$ to $x=L$, we'd need to do an integration.</span>
+<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a>\text{Nu}_x = 0.332\,\text{Re}_x^{1/2}\cdot\text{Pr}^{1/3}</span>
+<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a>After solving for $T(y)$ in the boundary layer, we can determine the heat flux at the surface and can relate that to the local Nusselt Number: </span>
+<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a>where $\text{Re}_x \equiv \rho U_\infty x/\mu$. To emphasize: this is a local Nusselt Number at a particular $x$-location. Evaluating it gives us just the Nusselt Number at a particular value of $x$. To determine the convection up to this point, we need to integrate. </span>
+<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a>\text{Nu}_x = 0.332\,\text{Re}_x^{1/2}\cdot\text{Pr}^{1/3}</span>
+<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a>The correlation changes whenever the flow transitions to turbulence: </span>
-<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a>\text{Nu}_x = 0.0296\,\text{Re}_x^{4/5}\cdot\text{Pr}^{1/3}</span>
+<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a>where $\text{Re}_x \equiv \rho U_\infty x/\mu$. To emphasize: this is a local Nusselt Number at a particular $x$-location. Evaluating it gives us just the Nusselt Number at a particular value of $x$. To determine the convection up to this point, we need to integrate. </span>
+<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a>The correlation changes whenever the flow transitions to turbulence: </span>
 <span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a>and the critical Reynolds Number (where we transition to turbulence) is typically taken to be $\text{Re}_\text{crit}\approx 5\times 10^5$. (See the interactive example link below.) Both of these correlations are for constant surface temperature and Prandtl Numbers between 0.6 and 60. For a constant heat flux boundary condition:</span>
+<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a>\text{Nu}_x = 0.0296\,\text{Re}_x^{4/5}\cdot\text{Pr}^{1/3}</span>
+<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a>::: {.column-margin}</span>
-<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a>The critical Reynolds Number depends on geometry: for the flat plate, it is $\text{Re}_{L,\text{crit}}\approx 5\times 10^5$, for pipe flow, it is $\text{Re}_{D,\text{crit}}\approx 2300$.</span>
-<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a>\text{Nu}_x = 0.453\,\text{Re}_x^{1/2}\cdot\text{Pr}^{1/3}</span>
+<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a>and the critical Reynolds Number (where we transition to turbulence) is typically taken to be $\text{Re}_\text{crit}\approx 5\times 10^5$. (See the interactive example link below.) Both of these correlations are for constant surface temperature and Prandtl Numbers between 0.6 and 60. For a constant heat flux boundary condition:</span>
+<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a>::: {.column-margin}</span>
+<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a>The critical Reynolds Number depends on geometry: for the flat plate, it is $\text{Re}_{L,\text{crit}}\approx 5\times 10^5$, for pipe flow, it is $\text{Re}_{D,\text{crit}}\approx 2300$.</span>
+<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a>for laminar flow, and</span>
+<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a>\text{Nu}_x = 0.453\,\text{Re}_x^{1/2}\cdot\text{Pr}^{1/3}</span>
+<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a>\text{Nu}_x = 0.0296\,\text{Re}_x^{4/5}\cdot\text{Pr}^{1/3}</span>
+<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a>for laminar flow, and</span>
+<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a>for turbulent flow.</span>
+<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a>\text{Nu}_x = 0.0296\,\text{Re}_x^{4/5}\cdot\text{Pr}^{1/3}</span>
+<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a><span class="fu">## Interactive Example</span></span>
+<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a>for turbulent flow.</span>
 <span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a>I created a demo that shows the dependence of $h$ on material parameters, speed, and length, highlighting the transition to turbulence. <span class="co">[</span><span class="ot">Find it at this link</span><span class="co">](demos/flat_plate_demo.qmd)</span>. This also includes a worked example that spans the transition to turbulence.</span>
+<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a><span class="fu">## Interactive Example</span></span>
 <span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a>I created a demo that shows the dependence of $h$ on material parameters, speed, and length, highlighting the transition to turbulence. <span class="co">[</span><span class="ot">Find it at this link</span><span class="co">](demos/flat_plate_demo.qmd)</span>. This also includes a worked example that spans the transition to turbulence.</span>
 <span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ## Worked Example — Heated Resistors on a Flat Plate</span></span>
+<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a><span class="co">Suppose we have a surface being heated </span></span>
+<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ## Worked Example — Heated Resistors on a Flat Plate</span></span>
 <span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a><span class="co">*Diagram: Flow $U_\infty = 60$ m/s, $T_\infty = 25°C$ over a plate covered with resistors each 5 cm long, $T_s = 230°C$, $w = 1$ m.*</span></span>
+<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a><span class="co">Suppose we have a surface being heated </span></span>
 <span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a><span class="co">**Q:** Amount of energy needed to keep $T_s = \text{const}$? Which heater requires the most energy?</span></span>
+<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a><span class="co">*Diagram: Flow $U_\infty = 60$ m/s, $T_\infty = 25°C$ over a plate covered with resistors each 5 cm long, $T_s = 230°C$, $w = 1$ m.*</span></span>
 <span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a><span class="co">**1.** Flat plate boundary layer model — involves Nu, Re, Pr. Fluid properties: $k$, $\nu$ (itself a material property).</span></span>
+<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a><span class="co">**Q:** Amount of energy needed to keep $T_s = \text{const}$? Which heater requires the most energy?</span></span>
 <span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a><span class="co">**2.** Properties evaluated at $T_\text{ref} = \frac{T_\infty + T_s}{2}$:</span></span>
-<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a><span class="co">$$k = 0.0337 \;\text{W/m·K}, \quad \text{Pr} = 0.690, \quad \nu = 26.4\times10^{-6}\;\text{m}^2/\text{s}$$</span></span>
-<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a><span class="co">**3.** Calculate Re:</span></span>
-<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a><span class="co">$$\text{Re}_x = \frac{U_\infty x}{\nu} = \frac{60\;\text{m/s}}{26.4\times10^{-6}\;\text{m}^2/\text{s}} x = 2.27\times10^6\, x \quad (x\text{ in m})$$</span></span>
-<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a><span class="co">$$\text{Re}_\text{crit,x} = 5\times10^5 = 2.27\times10^6\,x_\text{crit} \;\Rightarrow\; x_\text{crit} = 0.22\;\text{m}$$</span></span>
+<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a><span class="co">**1.** Flat plate boundary layer model — involves Nu, Re, Pr. Fluid properties: $k$, $\nu$ (itself a material property).</span></span>
+<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a><span class="co">**2.** Properties evaluated at $T_\text{ref} = \frac{T_\infty + T_s}{2}$:</span></span>
+<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a><span class="co">$$k = 0.0337 \;\text{W/m·K}, \quad \text{Pr} = 0.690, \quad \nu = 26.4\times10^{-6}\;\text{m}^2/\text{s}$$</span></span>
+<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a><span class="co">**3.** Calculate Re:</span></span>
+<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a><span class="co">$$\text{Re}_x = \frac{U_\infty x}{\nu} = \frac{60\;\text{m/s}}{26.4\times10^{-6}\;\text{m}^2/\text{s}} x = 2.27\times10^6\, x \quad (x\text{ in m})$$</span></span>
 <span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a><span class="co">**Predict:** Most power supply goes to the first resistor (leading edge), fifth resistor (includes $x_\text{crit}$), and sixth resistor (first fully turbulent).</span></span>
+<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a><span class="co">$$\text{Re}_\text{crit,x} = 5\times10^5 = 2.27\times10^6\,x_\text{crit} \;\Rightarrow\; x_\text{crit} = 0.22\;\text{m}$$</span></span>
 <span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a><span class="co">**4.** Use local correlations:</span></span>
-<span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a><span class="co">$$\text{laminar:} \quad \text{Nu}_x = 0.332\,\text{Re}^{1/2}\cdot\text{Pr}^{1/3}$$</span></span>
-<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a><span class="co">$$\text{turbulent:} \quad \text{Nu}_x = 0.0296\,\text{Re}_x^{4/5}\cdot\text{Pr}^{1/3}$$</span></span>
-<span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a><span class="co">$$\overline{h}(x) = \frac{1}{L_\text{crit}}\int_0^{L_\text{crit}} h_\text{lam}(x)\,dx + \frac{1}{x-L_\text{crit}}\int_{L_\text{crit}}^{x} h_\text{turb}(x)\,dx$$</span></span>
+<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a><span class="co">**Predict:** Most power supply goes to the first resistor (leading edge), fifth resistor (includes $x_\text{crit}$), and sixth resistor (first fully turbulent).</span></span>
+<span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a><span class="co">**4.** Use local correlations:</span></span>
+<span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a><span class="co">$$\text{laminar:} \quad \text{Nu}_x = 0.332\,\text{Re}^{1/2}\cdot\text{Pr}^{1/3}$$</span></span>
+<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a><span class="co">$$\text{turbulent:} \quad \text{Nu}_x = 0.0296\,\text{Re}_x^{4/5}\cdot\text{Pr}^{1/3}$$</span></span>
 <span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a><span class="co">For the **first resistor** ($x_1 = 5$ cm), end of resistor 1:</span></span>
+<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a><span class="co">$$\overline{h}(x) = \frac{1}{L_\text{crit}}\int_0^{L_\text{crit}} h_\text{lam}(x)\,dx + \frac{1}{x-L_\text{crit}}\int_{L_\text{crit}}^{x} h_\text{turb}(x)\,dx$$</span></span>
 <span id="cb1-329"><a href="#cb1-329" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a><span class="co">$$\overline{h}(x_1) = \frac{1}{x_1}\int_0^{x_1} 0.332\left(\frac{U_\infty x}{\nu}\right)^{1/2}\!\text{Pr}^{1/3}\cdot\frac{k}{x}\,dx = \frac{k}{x_1}\cdot 0.664\cdot\text{Re}_{x_1}^{1/2}\cdot\text{Pr}^{1/3}$$</span></span>
+<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a><span class="co">For the **first resistor** ($x_1 = 5$ cm), end of resistor 1:</span></span>
 <span id="cb1-331"><a href="#cb1-331" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-332"><a href="#cb1-332" aria-hidden="true" tabindex="-1"></a><span class="co">$$= \frac{0.0337}{0.05}\cdot(0.664)\cdot\sqrt{\frac{60\cdot(0.05)}{26.4\times10^{-6</span><span class="re">}}}</span><span class="co">\cdot(0.690)^{1/3} = 133\;\text{W/m}^2\text{K}$$</span></span>
+<span id="cb1-332"><a href="#cb1-332" aria-hidden="true" tabindex="-1"></a><span class="co">$$\overline{h}(x_1) = \frac{1}{x_1}\int_0^{x_1} 0.332\left(\frac{U_\infty x}{\nu}\right)^{1/2}\!\text{Pr}^{1/3}\cdot\frac{k}{x}\,dx = \frac{k}{x_1}\cdot 0.664\cdot\text{Re}_{x_1}^{1/2}\cdot\text{Pr}^{1/3}$$</span></span>
 <span id="cb1-333"><a href="#cb1-333" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a><span class="co">For the **fifth resistor** (spans $x_4$ to $x_\text{crit}$ laminar, $x_\text{crit}$ to $x_5$ turbulent):</span></span>
+<span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a><span class="co">$$= \frac{0.0337}{0.05}\cdot(0.664)\cdot\sqrt{\frac{60\cdot(0.05)}{26.4\times10^{-6</span><span class="re">}}}</span><span class="co">\cdot(0.690)^{1/3} = 133\;\text{W/m}^2\text{K}$$</span></span>
 <span id="cb1-335"><a href="#cb1-335" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-336"><a href="#cb1-336" aria-hidden="true" tabindex="-1"></a><span class="co">$$\overline{h}_5 = \frac{k}{x_\text{crit}-x_4}\left[0.664\,\text{Re}_{x_\text{crit}}^{1/2}\cdot\text{Pr}^{1/3} - 0.664\,\text{Re}_{x_4}^{1/2}\cdot\text{Pr}^{1/3}\right]$$</span></span>
+<span id="cb1-336"><a href="#cb1-336" aria-hidden="true" tabindex="-1"></a><span class="co">For the **fifth resistor** (spans $x_4$ to $x_\text{crit}$ laminar, $x_\text{crit}$ to $x_5$ turbulent):</span></span>
 <span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a><span class="co">$$+ \frac{1}{x_5 - x_\text{crit}}\int_{x_\text{crit}}^{x_5}0.0296\,\text{Re}_x^{4/5}\cdot\text{Pr}^{1/3}\cdot\frac{k}{x}\,dx$$</span></span>
+<span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a><span class="co">$$\overline{h}_5 = \frac{k}{x_\text{crit}-x_4}\left[0.664\,\text{Re}_{x_\text{crit}}^{1/2}\cdot\text{Pr}^{1/3} - 0.664\,\text{Re}_{x_4}^{1/2}\cdot\text{Pr}^{1/3}\right]$$</span></span>
 <span id="cb1-339"><a href="#cb1-339" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a><span class="co">$$= \frac{0.0337}{0.05}\!\left[(0.664)\sqrt{5\times10^5}\cdot(0.690)^{1/3} - (0.664)\sqrt{\frac{60\cdot(0.20)}{26.4\times10^{-6</span><span class="re">}}}</span><span class="co">\,(0.690)^{1/3}\right] = 13.0\;\text{W/m}^2\text{K}$$</span></span>
+<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a><span class="co">$$+ \frac{1}{x_5 - x_\text{crit}}\int_{x_\text{crit}}^{x_5}0.0296\,\text{Re}_x^{4/5}\cdot\text{Pr}^{1/3}\cdot\frac{k}{x}\,dx$$</span></span>
 <span id="cb1-341"><a href="#cb1-341" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a><span class="co">(laminar portion only; turbulent integral adds $143\;\text{W/m}^2\text{K}$)</span></span>
+<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a><span class="co">$$= \frac{0.0337}{0.05}\!\left[(0.664)\sqrt{5\times10^5}\cdot(0.690)^{1/3} - (0.664)\sqrt{\frac{60\cdot(0.20)}{26.4\times10^{-6</span><span class="re">}}}</span><span class="co">\,(0.690)^{1/3}\right] = 13.0\;\text{W/m}^2\text{K}$$</span></span>
 <span id="cb1-343"><a href="#cb1-343" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a><span class="co">$\Rightarrow$ for fifth resistor, $\overline{h}_5 = 156\;\text{W/m}^2\text{K}$, this is bigger than $\overline{h}_1 = 133\;\text{W/m}^2\text{K}$.</span></span>
+<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a><span class="co">(laminar portion only; turbulent integral adds $143\;\text{W/m}^2\text{K}$)</span></span>
 <span id="cb1-345"><a href="#cb1-345" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a><span class="co">For the **sixth resistor** (fully turbulent, $x_5$ to $x_6 = 0.30$ m):</span></span>
+<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a><span class="co">$\Rightarrow$ for fifth resistor, $\overline{h}_5 = 156\;\text{W/m}^2\text{K}$, this is bigger than $\overline{h}_1 = 133\;\text{W/m}^2\text{K}$.</span></span>
 <span id="cb1-347"><a href="#cb1-347" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a><span class="co">$$\overline{h}_6 = \frac{0.0337}{0.05}\cdot(0.0296)(0.690)^{1/3}\left(\frac{60}{26.4\times10^{-6}}\right)^{4/5}\cdot\int_{0.25}^{0.30} x^{-1/5}\,dx = 138\;\text{W/m}^2\text{K}$$</span></span>
+<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a><span class="co">For the **sixth resistor** (fully turbulent, $x_5$ to $x_6 = 0.30$ m):</span></span>
 <span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a><span class="co">$$\therefore \quad \overline{h}_5 &gt; \overline{h}_6 &gt; \overline{h}_1$$ --&gt;</span></span>
+<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a><span class="co">$$\overline{h}_6 = \frac{0.0337}{0.05}\cdot(0.0296)(0.690)^{1/3}\left(\frac{60}{26.4\times10^{-6}}\right)^{4/5}\cdot\int_{0.25}^{0.30} x^{-1/5}\,dx = 138\;\text{W/m}^2\text{K}$$</span></span>
 <span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a><span class="fu">## External Flow — The Cylinder</span></span>
+<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a><span class="co">$$\therefore \quad \overline{h}_5 &gt; \overline{h}_6 &gt; \overline{h}_1$$ --&gt;</span></span>
+<span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-355"><a href="#cb1-355" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
-<span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a><span class="fu">### Video</span></span>
-<span id="cb1-357"><a href="#cb1-357" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a>Start with <span class="co">[</span><span class="ot">this linked video</span><span class="co">](https://canvas.colorado.edu/courses/136150/pages/flow-over-cylinder)</span> on heat transfer over cylinders.</span>
-<span id="cb1-359"><a href="#cb1-359" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-361"><a href="#cb1-361" aria-hidden="true" tabindex="-1"></a><span class="fu">### Flow over blunt objects</span></span>
+<span id="cb1-355"><a href="#cb1-355" aria-hidden="true" tabindex="-1"></a><span class="fu">## External Flow — The Cylinder</span></span>
+<span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-357"><a href="#cb1-357" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a><span class="fu">### Video</span></span>
+<span id="cb1-359"><a href="#cb1-359" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a>Start with <span class="co">[</span><span class="ot">this linked video</span><span class="co">](https://canvas.colorado.edu/courses/136150/pages/flow-over-cylinder)</span> on heat transfer over cylinders.</span>
+<span id="cb1-361"><a href="#cb1-361" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-362"><a href="#cb1-362" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a>For flow over blunt objects, flow separation and wakes complicate the description of heat transfer. It is very interesting to think about the local $h$ or $\text{Nu}$ as a function of position on a surface, but practically we use averaged values of $\overline{h}$ and $\overline{\text{Nu}}$ in our calculations.</span>
+<span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a><span class="fu">### Flow over blunt objects</span></span>
 <span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
-<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a>There are often several options for the correlations. The choice is often: use a complicated expression, and it applies to a wider range of Reynolds Number; or use a simpler expression, but it applies to a narrower range. If you are certain your design falls within a narrow $\text{Re}$ range, it is likely fine to stick with the simpler expression.</span>
-<span id="cb1-367"><a href="#cb1-367" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a>From Incropera and DeWitt, a simple correlation is:</span>
+<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a>For flow over blunt objects, flow separation and wakes complicate the description of heat transfer. It is very interesting to think about the local $h$ or $\text{Nu}$ as a function of position on a surface, but practically we use averaged values of $\overline{h}$ and $\overline{\text{Nu}}$ in our calculations.</span>
+<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-367"><a href="#cb1-367" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a>There are often several options for the correlations. The choice is often: use a complicated expression, and it applies to a wider range of Reynolds Number; or use a simpler expression, but it applies to a narrower range. If you are certain your design falls within a narrow $\text{Re}$ range, it is likely fine to stick with the simpler expression.</span>
+<span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-371"><a href="#cb1-371" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-372"><a href="#cb1-372" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-373"><a href="#cb1-373" aria-hidden="true" tabindex="-1"></a>\overline{\text{Nu}}_D \equiv \frac{\overline{h}D}{k} = C\,\text{Re}_D^m\,\text{Pr}^{1/3} \qquad \text{for Pr}\geq 0.7</span>
+<span id="cb1-372"><a href="#cb1-372" aria-hidden="true" tabindex="-1"></a>From Incropera and DeWitt, a simple correlation is:</span>
+<span id="cb1-373"><a href="#cb1-373" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-374"><a href="#cb1-374" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-375"><a href="#cb1-375" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-376"><a href="#cb1-376" aria-hidden="true" tabindex="-1"></a>where the values of $C$ and $m$ depend on the Reynolds Number:</span>
+<span id="cb1-375"><a href="#cb1-375" aria-hidden="true" tabindex="-1"></a>\overline{\text{Nu}}_D \equiv \frac{\overline{h}D}{k} = C\,\text{Re}_D^m\,\text{Pr}^{1/3} \qquad \text{for Pr}\geq 0.7</span>
+<span id="cb1-376"><a href="#cb1-376" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-378"><a href="#cb1-378" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $\text{Re}_D$ <span class="pp">|</span> $C$ <span class="pp">|</span> $m$ <span class="pp">|</span></span>
-<span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
-<span id="cb1-380"><a href="#cb1-380" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0.4–4 <span class="pp">|</span> 0.989 <span class="pp">|</span> 0.330 <span class="pp">|</span></span>
-<span id="cb1-381"><a href="#cb1-381" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 4–40 <span class="pp">|</span> 0.911 <span class="pp">|</span> 0.385 <span class="pp">|</span></span>
-<span id="cb1-382"><a href="#cb1-382" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 40–4000 <span class="pp">|</span> 0.683 <span class="pp">|</span> 0.466 <span class="pp">|</span></span>
-<span id="cb1-383"><a href="#cb1-383" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 4000–40000 <span class="pp">|</span> 0.193 <span class="pp">|</span> 0.618 <span class="pp">|</span></span>
-<span id="cb1-384"><a href="#cb1-384" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 40000–400000 <span class="pp">|</span> 0.027 <span class="pp">|</span> 0.805 <span class="pp">|</span></span>
-<span id="cb1-385"><a href="#cb1-385" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-386"><a href="#cb1-386" aria-hidden="true" tabindex="-1"></a>(All properties evaluated at $T_\text{film} = \frac{T_s + T_\infty}{2}$.)</span>
+<span id="cb1-378"><a href="#cb1-378" aria-hidden="true" tabindex="-1"></a>where the values of $C$ and $m$ depend on the Reynolds Number:</span>
+<span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-380"><a href="#cb1-380" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $\text{Re}_D$ <span class="pp">|</span> $C$ <span class="pp">|</span> $m$ <span class="pp">|</span></span>
+<span id="cb1-381"><a href="#cb1-381" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
+<span id="cb1-382"><a href="#cb1-382" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0.4–4 <span class="pp">|</span> 0.989 <span class="pp">|</span> 0.330 <span class="pp">|</span></span>
+<span id="cb1-383"><a href="#cb1-383" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 4–40 <span class="pp">|</span> 0.911 <span class="pp">|</span> 0.385 <span class="pp">|</span></span>
+<span id="cb1-384"><a href="#cb1-384" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 40–4000 <span class="pp">|</span> 0.683 <span class="pp">|</span> 0.466 <span class="pp">|</span></span>
+<span id="cb1-385"><a href="#cb1-385" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 4000–40000 <span class="pp">|</span> 0.193 <span class="pp">|</span> 0.618 <span class="pp">|</span></span>
+<span id="cb1-386"><a href="#cb1-386" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 40000–400000 <span class="pp">|</span> 0.027 <span class="pp">|</span> 0.805 <span class="pp">|</span></span>
 <span id="cb1-387"><a href="#cb1-387" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-388"><a href="#cb1-388" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-388"><a href="#cb1-388" aria-hidden="true" tabindex="-1"></a>(All properties evaluated at $T_\text{film} = \frac{T_s + T_\infty}{2}$.)</span>
 <span id="cb1-389"><a href="#cb1-389" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-390"><a href="#cb1-390" aria-hidden="true" tabindex="-1"></a>A slight improvement in accuracy is achieved with this modification:</span>
+<span id="cb1-390"><a href="#cb1-390" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-391"><a href="#cb1-391" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-392"><a href="#cb1-392" aria-hidden="true" tabindex="-1"></a>$$\overline{\text{Nu}}_D = C\cdot\text{Re}_D^m\cdot\text{Pr}^n\cdot\left(\frac{\text{Pr}}{\text{Pr}_s}\right)^{1/4} \qquad \text{(Pr}_s\text{ evaluated at }T_s\text{)}$$</span>
+<span id="cb1-392"><a href="#cb1-392" aria-hidden="true" tabindex="-1"></a>A slight improvement in accuracy is achieved with this modification:</span>
 <span id="cb1-393"><a href="#cb1-393" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-394"><a href="#cb1-394" aria-hidden="true" tabindex="-1"></a>with $C$ and $m$ from above, and</span>
+<span id="cb1-394"><a href="#cb1-394" aria-hidden="true" tabindex="-1"></a>$$\overline{\text{Nu}}_D = C\cdot\text{Re}_D^m\cdot\text{Pr}^n\cdot\left(\frac{\text{Pr}}{\text{Pr}_s}\right)^{1/4} \qquad \text{(Pr}_s\text{ evaluated at }T_s\text{)}$$</span>
 <span id="cb1-395"><a href="#cb1-395" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-396"><a href="#cb1-396" aria-hidden="true" tabindex="-1"></a>$$n = \begin{cases}0.36 &amp; \text{if Pr}&gt;10 <span class="sc">\\</span> 0.37 &amp; \text{if Pr}\leq10\end{cases}$$</span>
+<span id="cb1-396"><a href="#cb1-396" aria-hidden="true" tabindex="-1"></a>with $C$ and $m$ from above, and</span>
 <span id="cb1-397"><a href="#cb1-397" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-398"><a href="#cb1-398" aria-hidden="true" tabindex="-1"></a>Or, more complicated but valid for all $\text{Re}_D$ (cylinder):</span>
+<span id="cb1-398"><a href="#cb1-398" aria-hidden="true" tabindex="-1"></a>$$n = \begin{cases}0.36 &amp; \text{if Pr}&gt;10 <span class="sc">\\</span> 0.37 &amp; \text{if Pr}\leq10\end{cases}$$</span>
 <span id="cb1-399"><a href="#cb1-399" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-400"><a href="#cb1-400" aria-hidden="true" tabindex="-1"></a>$$\overline{\text{Nu}}_D = 0.3 + \frac{0.62\,\text{Re}_D^{1/2}\,\text{Pr}^{1/3}}{\left<span class="co">[</span><span class="ot">1+(0.4/\text{Pr})^{2/3}\right</span><span class="co">]</span>^{1/4}}\left<span class="co">[</span><span class="ot">1+\left(\frac{\text{Re}_D}{282000}\right)^{5/8}\right</span><span class="co">]</span>^{4/5}$$</span>
+<span id="cb1-400"><a href="#cb1-400" aria-hidden="true" tabindex="-1"></a>Or, more complicated but valid for all $\text{Re}_D$ (cylinder):</span>
 <span id="cb1-401"><a href="#cb1-401" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-402"><a href="#cb1-402" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-403"><a href="#cb1-403" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
-<span id="cb1-404"><a href="#cb1-404" aria-hidden="true" tabindex="-1"></a>In the limit that $\text{Re}_D \to 0$ ("creeping flow"):</span>
-<span id="cb1-405"><a href="#cb1-405" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-406"><a href="#cb1-406" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-407"><a href="#cb1-407" aria-hidden="true" tabindex="-1"></a>\overline{\text{Nu}}_D = 0.3 = \frac{\overline{h}D}{k}</span>
+<span id="cb1-402"><a href="#cb1-402" aria-hidden="true" tabindex="-1"></a>$$\overline{\text{Nu}}_D = 0.3 + \frac{0.62\,\text{Re}_D^{1/2}\,\text{Pr}^{1/3}}{\left<span class="co">[</span><span class="ot">1+(0.4/\text{Pr})^{2/3}\right</span><span class="co">]</span>^{1/4}}\left<span class="co">[</span><span class="ot">1+\left(\frac{\text{Re}_D}{282000}\right)^{5/8}\right</span><span class="co">]</span>^{4/5}$$</span>
+<span id="cb1-403"><a href="#cb1-403" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-404"><a href="#cb1-404" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-405"><a href="#cb1-405" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb1-406"><a href="#cb1-406" aria-hidden="true" tabindex="-1"></a>In the limit that $\text{Re}_D \to 0$ ("creeping flow"):</span>
+<span id="cb1-407"><a href="#cb1-407" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-408"><a href="#cb1-408" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-409"><a href="#cb1-409" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-410"><a href="#cb1-410" aria-hidden="true" tabindex="-1"></a>That is: $\overline{h}$ increases for smaller objects.</span>
-<span id="cb1-411"><a href="#cb1-411" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-412"><a href="#cb1-412" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-413"><a href="#cb1-413" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-409"><a href="#cb1-409" aria-hidden="true" tabindex="-1"></a>\overline{\text{Nu}}_D = 0.3 = \frac{\overline{h}D}{k}</span>
+<span id="cb1-410"><a href="#cb1-410" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-411"><a href="#cb1-411" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-412"><a href="#cb1-412" aria-hidden="true" tabindex="-1"></a>That is: $\overline{h}$ increases for smaller objects.</span>
+<span id="cb1-413"><a href="#cb1-413" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-414"><a href="#cb1-414" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-415"><a href="#cb1-415" aria-hidden="true" tabindex="-1"></a><span class="fu">## External Flow — The Sphere</span></span>
+<span id="cb1-415"><a href="#cb1-415" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-416"><a href="#cb1-416" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-417"><a href="#cb1-417" aria-hidden="true" tabindex="-1"></a>The same physics applies to the sphere as well. The correlation is:</span>
+<span id="cb1-417"><a href="#cb1-417" aria-hidden="true" tabindex="-1"></a><span class="fu">## External Flow — The Sphere</span></span>
 <span id="cb1-418"><a href="#cb1-418" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-419"><a href="#cb1-419" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-420"><a href="#cb1-420" aria-hidden="true" tabindex="-1"></a>\overline{\text{Nu}}_D = 2 + \left(0.4\,\text{Re}_D^{1/2} + 0.06\,\text{Re}_D^{2/3}\right)\text{Pr}^{0.4}\cdot\left(\frac{\mu}{\mu_s}\right)^{1/4}</span>
-<span id="cb1-421"><a href="#cb1-421" aria-hidden="true" tabindex="-1"></a>$$ {#eq-sphere-corr}</span>
-<span id="cb1-422"><a href="#cb1-422" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-423"><a href="#cb1-423" aria-hidden="true" tabindex="-1"></a>**All properties evaluated at** $T_\infty$(!) except $\mu_s$ which is evaluated at the surface temperature.</span>
+<span id="cb1-419"><a href="#cb1-419" aria-hidden="true" tabindex="-1"></a>The same physics applies to the sphere as well. The correlation is:</span>
+<span id="cb1-420"><a href="#cb1-420" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-421"><a href="#cb1-421" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-422"><a href="#cb1-422" aria-hidden="true" tabindex="-1"></a>\overline{\text{Nu}}_D = 2 + \left(0.4\,\text{Re}_D^{1/2} + 0.06\,\text{Re}_D^{2/3}\right)\text{Pr}^{0.4}\cdot\left(\frac{\mu}{\mu_s}\right)^{1/4}</span>
+<span id="cb1-423"><a href="#cb1-423" aria-hidden="true" tabindex="-1"></a>$$ {#eq-sphere-corr}</span>
 <span id="cb1-424"><a href="#cb1-424" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-425"><a href="#cb1-425" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-425"><a href="#cb1-425" aria-hidden="true" tabindex="-1"></a>**All properties evaluated at** $T_\infty$(!) except $\mu_s$ which is evaluated at the surface temperature.</span>
 <span id="cb1-426"><a href="#cb1-426" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-427"><a href="#cb1-427" aria-hidden="true" tabindex="-1"></a><span class="fu">### Worked Example — Copper Sphere Cooling</span></span>
+<span id="cb1-427"><a href="#cb1-427" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-428"><a href="#cb1-428" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-429"><a href="#cb1-429" aria-hidden="true" tabindex="-1"></a>A copper sphere with diameter 10 mm begins at 75°C and is to be cooled to 35°C by air. The air has speed 10 m/s and temperature 23°C.</span>
+<span id="cb1-429"><a href="#cb1-429" aria-hidden="true" tabindex="-1"></a><span class="fu">### Worked Example — Copper Sphere Cooling</span></span>
 <span id="cb1-430"><a href="#cb1-430" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-431"><a href="#cb1-431" aria-hidden="true" tabindex="-1"></a>We look up the properties of copper at 55°C: $k = 399$ W/m·K, $c = 388$ J/kg·K, $\rho = 8933$ kg/m³.</span>
+<span id="cb1-431"><a href="#cb1-431" aria-hidden="true" tabindex="-1"></a>A copper sphere with diameter 10 mm begins at 75°C and is to be cooled to 35°C by air. The air has speed 10 m/s and temperature 23°C.</span>
 <span id="cb1-432"><a href="#cb1-432" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-433"><a href="#cb1-433" aria-hidden="true" tabindex="-1"></a>For the sphere correlation, @eq-sphere-corr, most of the fluid properties are evaluated at $T_\infty$: $\mu = 182.6\times 10^{-7}$ Pa·s, $\rho = 1.17$ kg/m³, $\text{Pr} = 0.708$, and $k = 0.0251$ W/m·K. We also need the fluid viscosity evaluated at the surface temperature, and we use an average 55°C: $\mu_s = 197.8\times10^{-7}$ Pa·s.</span>
+<span id="cb1-433"><a href="#cb1-433" aria-hidden="true" tabindex="-1"></a>We look up the properties of copper at 55°C: $k = 399$ W/m·K, $c = 388$ J/kg·K, $\rho = 8933$ kg/m³.</span>
 <span id="cb1-434"><a href="#cb1-434" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-435"><a href="#cb1-435" aria-hidden="true" tabindex="-1"></a>Start with calculating the Reynolds Number:</span>
+<span id="cb1-435"><a href="#cb1-435" aria-hidden="true" tabindex="-1"></a>For the sphere correlation, @eq-sphere-corr, most of the fluid properties are evaluated at $T_\infty$: $\mu = 182.6\times 10^{-7}$ Pa·s, $\rho = 1.17$ kg/m³, $\text{Pr} = 0.708$, and $k = 0.0251$ W/m·K. We also need the fluid viscosity evaluated at the surface temperature, and we use an average 55°C: $\mu_s = 197.8\times10^{-7}$ Pa·s.</span>
 <span id="cb1-436"><a href="#cb1-436" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-437"><a href="#cb1-437" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-438"><a href="#cb1-438" aria-hidden="true" tabindex="-1"></a>\text{Re}_D = \frac{\rho U_\infty D}{\mu} = 6440</span>
+<span id="cb1-437"><a href="#cb1-437" aria-hidden="true" tabindex="-1"></a>Start with calculating the Reynolds Number:</span>
+<span id="cb1-438"><a href="#cb1-438" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-439"><a href="#cb1-439" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-440"><a href="#cb1-440" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-441"><a href="#cb1-441" aria-hidden="true" tabindex="-1"></a>Then use the correlation from above to get</span>
+<span id="cb1-440"><a href="#cb1-440" aria-hidden="true" tabindex="-1"></a>\text{Re}_D = \frac{\rho U_\infty D}{\mu} = 6440</span>
+<span id="cb1-441"><a href="#cb1-441" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-442"><a href="#cb1-442" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-443"><a href="#cb1-443" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-444"><a href="#cb1-444" aria-hidden="true" tabindex="-1"></a>\overline{\text{Nu}}_D = 47.1 = \frac{\overline{h}D}{k_f} \quad \Rightarrow \quad \overline{h} = 118\;\text{W/m}^2\text{K}</span>
+<span id="cb1-443"><a href="#cb1-443" aria-hidden="true" tabindex="-1"></a>Then use the correlation from above to get</span>
+<span id="cb1-444"><a href="#cb1-444" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-445"><a href="#cb1-445" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-446"><a href="#cb1-446" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-447"><a href="#cb1-447" aria-hidden="true" tabindex="-1"></a>Check Bi:</span>
+<span id="cb1-446"><a href="#cb1-446" aria-hidden="true" tabindex="-1"></a>\overline{\text{Nu}}_D = 47.1 = \frac{\overline{h}D}{k_f} \quad \Rightarrow \quad \overline{h} = 118\;\text{W/m}^2\text{K}</span>
+<span id="cb1-447"><a href="#cb1-447" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-448"><a href="#cb1-448" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-449"><a href="#cb1-449" aria-hidden="true" tabindex="-1"></a>$$\text{Bi} = \frac{\overline{h}\cdot D/2}{k_\text{copper}} = 0.0015 &lt; 0.1 \quad \Rightarrow \quad \text{LC model is good}$$</span>
+<span id="cb1-449"><a href="#cb1-449" aria-hidden="true" tabindex="-1"></a>Check Bi:</span>
 <span id="cb1-450"><a href="#cb1-450" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-451"><a href="#cb1-451" aria-hidden="true" tabindex="-1"></a>Apply lumped capacitance:</span>
+<span id="cb1-451"><a href="#cb1-451" aria-hidden="true" tabindex="-1"></a>$$\text{Bi} = \frac{\overline{h}\cdot D/2}{k_\text{copper}} = 0.0015 &lt; 0.1 \quad \Rightarrow \quad \text{LC model is good}$$</span>
 <span id="cb1-452"><a href="#cb1-452" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-453"><a href="#cb1-453" aria-hidden="true" tabindex="-1"></a>$$\theta = \frac{T - T_\infty}{T_i - T_\infty} = \exp<span class="sc">\!</span>\left(\frac{-t}{t_c}\right), \qquad t_c \equiv \frac{mc}{\overline{h}A_\text{surf}}$$</span>
+<span id="cb1-453"><a href="#cb1-453" aria-hidden="true" tabindex="-1"></a>Apply lumped capacitance:</span>
 <span id="cb1-454"><a href="#cb1-454" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-455"><a href="#cb1-455" aria-hidden="true" tabindex="-1"></a>At $T = T_f = 35°C$, $\theta = \frac{35-23}{75-23}=0.231$, which means $t/t_c = 1.466$. With</span>
+<span id="cb1-455"><a href="#cb1-455" aria-hidden="true" tabindex="-1"></a>$$\theta = \frac{T - T_\infty}{T_i - T_\infty} = \exp<span class="sc">\!</span>\left(\frac{-t}{t_c}\right), \qquad t_c \equiv \frac{mc}{\overline{h}A_\text{surf}}$$</span>
 <span id="cb1-456"><a href="#cb1-456" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-457"><a href="#cb1-457" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-458"><a href="#cb1-458" aria-hidden="true" tabindex="-1"></a>m = \rho \frac{\pi D^3}{6} = 8933\times\frac{\pi(0.01)^3}{6} = 4.68\times 10^{-3}\text{ kg}</span>
+<span id="cb1-457"><a href="#cb1-457" aria-hidden="true" tabindex="-1"></a>At $T = T_f = 35°C$, $\theta = \frac{35-23}{75-23}=0.231$, which means $t/t_c = 1.466$. With</span>
+<span id="cb1-458"><a href="#cb1-458" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-459"><a href="#cb1-459" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-460"><a href="#cb1-460" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-461"><a href="#cb1-461" aria-hidden="true" tabindex="-1"></a>and</span>
+<span id="cb1-460"><a href="#cb1-460" aria-hidden="true" tabindex="-1"></a>m = \rho \frac{\pi D^3}{6} = 8933\times\frac{\pi(0.01)^3}{6} = 4.68\times 10^{-3}\text{ kg}</span>
+<span id="cb1-461"><a href="#cb1-461" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-462"><a href="#cb1-462" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-463"><a href="#cb1-463" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-464"><a href="#cb1-464" aria-hidden="true" tabindex="-1"></a>A_\text{surf} = \pi D^2 = 3.14\times10^{-4}\text{ m}^2</span>
+<span id="cb1-463"><a href="#cb1-463" aria-hidden="true" tabindex="-1"></a>and</span>
+<span id="cb1-464"><a href="#cb1-464" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-465"><a href="#cb1-465" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-466"><a href="#cb1-466" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-466"><a href="#cb1-466" aria-hidden="true" tabindex="-1"></a>A_\text{surf} = \pi D^2 = 3.14\times10^{-4}\text{ m}^2</span>
 <span id="cb1-467"><a href="#cb1-467" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-468"><a href="#cb1-468" aria-hidden="true" tabindex="-1"></a>t_c = \frac{mc}{\bar h A_s} = \frac{4.68\times10^{-3}\times388}{118\times3.14\times10^{-4}} = \frac{1.816}{0.0371} = 48.9\text{ s}</span>
+<span id="cb1-468"><a href="#cb1-468" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-469"><a href="#cb1-469" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-470"><a href="#cb1-470" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-471"><a href="#cb1-471" aria-hidden="true" tabindex="-1"></a>and so $t=71.7$ s.</span>
+<span id="cb1-470"><a href="#cb1-470" aria-hidden="true" tabindex="-1"></a>t_c = \frac{mc}{\bar h A_s} = \frac{4.68\times10^{-3}\times388}{118\times3.14\times10^{-4}} = \frac{1.816}{0.0371} = 48.9\text{ s}</span>
+<span id="cb1-471"><a href="#cb1-471" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-472"><a href="#cb1-472" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-473"><a href="#cb1-473" aria-hidden="true" tabindex="-1"></a><span class="fu">## Flow Over Banks of Tubes</span></span>
+<span id="cb1-473"><a href="#cb1-473" aria-hidden="true" tabindex="-1"></a>and so $t=71.7$ s.</span>
 <span id="cb1-474"><a href="#cb1-474" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-475"><a href="#cb1-475" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
-<span id="cb1-476"><a href="#cb1-476" aria-hidden="true" tabindex="-1"></a><span class="fu">### Video</span></span>
-<span id="cb1-477"><a href="#cb1-477" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-478"><a href="#cb1-478" aria-hidden="true" tabindex="-1"></a>Start with <span class="co">[</span><span class="ot">this linked video</span><span class="co">](https://canvas.colorado.edu/courses/136150/pages/arrays-of-tubes)</span> on the heat transfer over banks of tubes.</span>
-<span id="cb1-479"><a href="#cb1-479" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-480"><a href="#cb1-480" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-481"><a href="#cb1-481" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-475"><a href="#cb1-475" aria-hidden="true" tabindex="-1"></a><span class="fu">## Flow Over Banks of Tubes</span></span>
+<span id="cb1-476"><a href="#cb1-476" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-477"><a href="#cb1-477" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb1-478"><a href="#cb1-478" aria-hidden="true" tabindex="-1"></a><span class="fu">### Video</span></span>
+<span id="cb1-479"><a href="#cb1-479" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-480"><a href="#cb1-480" aria-hidden="true" tabindex="-1"></a>Start with <span class="co">[</span><span class="ot">this linked video</span><span class="co">](https://canvas.colorado.edu/courses/136150/pages/arrays-of-tubes)</span> on the heat transfer over banks of tubes.</span>
+<span id="cb1-481"><a href="#cb1-481" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-482"><a href="#cb1-482" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-483"><a href="#cb1-483" aria-hidden="true" tabindex="-1"></a><span class="fu">### Nusselt Number Correlation for Tube Banks</span></span>
+<span id="cb1-483"><a href="#cb1-483" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-484"><a href="#cb1-484" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-485"><a href="#cb1-485" aria-hidden="true" tabindex="-1"></a>How about a more practical geometry? One of the most important applications of heat transfer is the heat exchanger (covered in detail later), and one of the most common designs is the shell-and-tube. With this type of device, we basically pump cold fluid over a collection of hot pipes -- sounds similar to the flow over the cylinder description from above, but in this case we can't say that every cylinder is experiencing a flow with $U_\infty$ and $T_\infty$... it is much more complicated.</span>
+<span id="cb1-485"><a href="#cb1-485" aria-hidden="true" tabindex="-1"></a><span class="fu">### Nusselt Number Correlation for Tube Banks</span></span>
 <span id="cb1-486"><a href="#cb1-486" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-487"><a href="#cb1-487" aria-hidden="true" tabindex="-1"></a>::: {.column-margin}</span>
-<span id="cb1-488"><a href="#cb1-488" aria-hidden="true" tabindex="-1"></a>It is very common to see a shell-and-tube heat exchanger as a condenser in the Rankine Cycle, responsible for turning steam into a liquid. Remember that, during a phase change, water maintains a constant temperature -- it is not at all unreasonable to assume that $T_\text{s}$ (the pipe surface temperature) is a constant in this application.</span>
-<span id="cb1-489"><a href="#cb1-489" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-490"><a href="#cb1-490" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-491"><a href="#cb1-491" aria-hidden="true" tabindex="-1"></a>Our hope is to find a $\overline{\text{Nu}}_D$ that describes the entire array, and here's one that is deceptively simple:</span>
+<span id="cb1-487"><a href="#cb1-487" aria-hidden="true" tabindex="-1"></a>How about a more practical geometry? One of the most important applications of heat transfer is the heat exchanger (covered in detail later), and one of the most common designs is the shell-and-tube. With this type of device, we basically pump cold fluid over a collection of hot pipes -- sounds similar to the flow over the cylinder description from above, but in this case we can't say that every cylinder is experiencing a flow with $U_\infty$ and $T_\infty$... it is much more complicated.</span>
+<span id="cb1-488"><a href="#cb1-488" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-489"><a href="#cb1-489" aria-hidden="true" tabindex="-1"></a>::: {.column-margin}</span>
+<span id="cb1-490"><a href="#cb1-490" aria-hidden="true" tabindex="-1"></a>It is very common to see a shell-and-tube heat exchanger as a condenser in the Rankine Cycle, responsible for turning steam into a liquid. Remember that, during a phase change, water maintains a constant temperature -- it is not at all unreasonable to assume that $T_\text{s}$ (the pipe surface temperature) is a constant in this application.</span>
+<span id="cb1-491"><a href="#cb1-491" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-492"><a href="#cb1-492" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-493"><a href="#cb1-493" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-494"><a href="#cb1-494" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-495"><a href="#cb1-495" aria-hidden="true" tabindex="-1"></a>\overline{\text{Nu}}_D = C_1\,\text{Re}_{D,\max}^m\cdot\text{Pr}^{0.36}\cdot\left(\frac{\text{Pr}}{\text{Pr}_s}\right)^{1/4}</span>
+<span id="cb1-493"><a href="#cb1-493" aria-hidden="true" tabindex="-1"></a>Our hope is to find a $\overline{\text{Nu}}_D$ that describes the entire array, and here's one that is deceptively simple:</span>
+<span id="cb1-494"><a href="#cb1-494" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-495"><a href="#cb1-495" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-496"><a href="#cb1-496" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-497"><a href="#cb1-497" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-498"><a href="#cb1-498" aria-hidden="true" tabindex="-1"></a>::: {.column-margin}</span>
-<span id="cb1-499"><a href="#cb1-499" aria-hidden="true" tabindex="-1"></a>Properties evaluated at $T_\text{avg} = \frac{T_\text{in}+T_\text{out}}{2}$ except for $\text{Pr}_s$, evaluated at the surface temperature. But how do we know $T_\text{out}$? More on that soon...</span>
-<span id="cb1-500"><a href="#cb1-500" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-501"><a href="#cb1-501" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-502"><a href="#cb1-502" aria-hidden="true" tabindex="-1"></a>This applies to situations in which:</span>
-<span id="cb1-503"><a href="#cb1-503" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>the number of rows of cylinders $N_L \geq 20$</span>
-<span id="cb1-504"><a href="#cb1-504" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>the Reynolds Number (see definition below) is $1000 \leq \text{Re}_{D,\max} \leq 2\times10^6$</span>
-<span id="cb1-505"><a href="#cb1-505" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>and the Prandtl Number is $0.7 \leq \text{Pr} \leq 500$.</span>
-<span id="cb1-506"><a href="#cb1-506" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-507"><a href="#cb1-507" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ![Aligned tube bank geometry, showing longitudinal pitch $S_L$, transverse pitch $S_T$, tube diameter $D$, and minimum flow area $A_1$.](images/tube_bank_aligned.svg){width=70%} --&gt;</span></span>
+<span id="cb1-497"><a href="#cb1-497" aria-hidden="true" tabindex="-1"></a>\overline{\text{Nu}}_D = C_1\,\text{Re}_{D,\max}^m\cdot\text{Pr}^{0.36}\cdot\left(\frac{\text{Pr}}{\text{Pr}_s}\right)^{1/4}</span>
+<span id="cb1-498"><a href="#cb1-498" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-499"><a href="#cb1-499" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-500"><a href="#cb1-500" aria-hidden="true" tabindex="-1"></a>::: {.column-margin}</span>
+<span id="cb1-501"><a href="#cb1-501" aria-hidden="true" tabindex="-1"></a>Properties evaluated at $T_\text{avg} = \frac{T_\text{in}+T_\text{out}}{2}$ except for $\text{Pr}_s$, evaluated at the surface temperature. But how do we know $T_\text{out}$? More on that soon...</span>
+<span id="cb1-502"><a href="#cb1-502" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-503"><a href="#cb1-503" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-504"><a href="#cb1-504" aria-hidden="true" tabindex="-1"></a>This applies to situations in which:</span>
+<span id="cb1-505"><a href="#cb1-505" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>the number of rows of cylinders $N_L \geq 20$</span>
+<span id="cb1-506"><a href="#cb1-506" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>the Reynolds Number (see definition below) is $1000 \leq \text{Re}_{D,\max} \leq 2\times10^6$</span>
+<span id="cb1-507"><a href="#cb1-507" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>and the Prandtl Number is $0.7 \leq \text{Pr} \leq 500$.</span>
 <span id="cb1-508"><a href="#cb1-508" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-509"><a href="#cb1-509" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-510"><a href="#cb1-510" aria-hidden="true" tabindex="-1"></a>The cylinders are said to be "aligned" when the second row is directly behind the first row, from the perspective of the incoming flow. That is, the incoming flow can't "see" the second row. The cylinders are "staggered" if the second row is offset from the first.</span>
+<span id="cb1-509"><a href="#cb1-509" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ![Aligned tube bank geometry, showing longitudinal pitch $S_L$, transverse pitch $S_T$, tube diameter $D$, and minimum flow area $A_1$.](images/tube_bank_aligned.svg){width=70%} --&gt;</span></span>
+<span id="cb1-510"><a href="#cb1-510" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-511"><a href="#cb1-511" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-512"><a href="#cb1-512" aria-hidden="true" tabindex="-1"></a>We'll need to define a few geometric parameters. From the perspective of the incoming flow...</span>
-<span id="cb1-513"><a href="#cb1-513" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$S_T$ is the left-to-right distance between the cylinders in the first row (center to center)</span>
-<span id="cb1-514"><a href="#cb1-514" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$N_T$ is the number of cylinders in the first row</span>
-<span id="cb1-515"><a href="#cb1-515" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$S_L$ is the distance between the first and second row (distance from the line connecting the first row centers to the line connecting the second row centers)</span>
-<span id="cb1-516"><a href="#cb1-516" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$N_L$ is the number of rows</span>
-<span id="cb1-517"><a href="#cb1-517" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>and of course $D$ is the cylinder diameter.</span>
-<span id="cb1-518"><a href="#cb1-518" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-519"><a href="#cb1-519" aria-hidden="true" tabindex="-1"></a>The Reynolds Number is based on the highest flow rate $V_\text{max}$. In the aligned case:</span>
+<span id="cb1-512"><a href="#cb1-512" aria-hidden="true" tabindex="-1"></a>The cylinders are said to be "aligned" when the second row is directly behind the first row, from the perspective of the incoming flow. That is, the incoming flow can't "see" the second row. The cylinders are "staggered" if the second row is offset from the first.</span>
+<span id="cb1-513"><a href="#cb1-513" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-514"><a href="#cb1-514" aria-hidden="true" tabindex="-1"></a>We'll need to define a few geometric parameters. From the perspective of the incoming flow...</span>
+<span id="cb1-515"><a href="#cb1-515" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$S_T$ is the left-to-right distance between the cylinders in the first row (center to center)</span>
+<span id="cb1-516"><a href="#cb1-516" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$N_T$ is the number of cylinders in the first row</span>
+<span id="cb1-517"><a href="#cb1-517" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$S_L$ is the distance between the first and second row (distance from the line connecting the first row centers to the line connecting the second row centers)</span>
+<span id="cb1-518"><a href="#cb1-518" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$N_L$ is the number of rows</span>
+<span id="cb1-519"><a href="#cb1-519" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>and of course $D$ is the cylinder diameter.</span>
 <span id="cb1-520"><a href="#cb1-520" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-521"><a href="#cb1-521" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-522"><a href="#cb1-522" aria-hidden="true" tabindex="-1"></a>V_\text{max} = \frac{S_T}{S_T - D}V_\infty.</span>
+<span id="cb1-521"><a href="#cb1-521" aria-hidden="true" tabindex="-1"></a>The Reynolds Number is based on the highest flow rate $V_\text{max}$. In the aligned case:</span>
+<span id="cb1-522"><a href="#cb1-522" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-523"><a href="#cb1-523" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-524"><a href="#cb1-524" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-525"><a href="#cb1-525" aria-hidden="true" tabindex="-1"></a>In the staggered case: if</span>
+<span id="cb1-524"><a href="#cb1-524" aria-hidden="true" tabindex="-1"></a>V_\text{max} = \frac{S_T}{S_T - D}V_\infty.</span>
+<span id="cb1-525"><a href="#cb1-525" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-526"><a href="#cb1-526" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-527"><a href="#cb1-527" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-528"><a href="#cb1-528" aria-hidden="true" tabindex="-1"></a>S_D \equiv \left<span class="co">[</span><span class="ot">S_L^2 + \left(\frac{S_T}{2}\right)^2\right</span><span class="co">]</span>^{1/2} &lt; \frac{S_T+D}{2}</span>
+<span id="cb1-527"><a href="#cb1-527" aria-hidden="true" tabindex="-1"></a>In the staggered case: if</span>
+<span id="cb1-528"><a href="#cb1-528" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-529"><a href="#cb1-529" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-530"><a href="#cb1-530" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-531"><a href="#cb1-531" aria-hidden="true" tabindex="-1"></a>then </span>
+<span id="cb1-530"><a href="#cb1-530" aria-hidden="true" tabindex="-1"></a>S_D \equiv \left<span class="co">[</span><span class="ot">S_L^2 + \left(\frac{S_T}{2}\right)^2\right</span><span class="co">]</span>^{1/2} &lt; \frac{S_T+D}{2}</span>
+<span id="cb1-531"><a href="#cb1-531" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-532"><a href="#cb1-532" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-533"><a href="#cb1-533" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-534"><a href="#cb1-534" aria-hidden="true" tabindex="-1"></a>V_\text{max} = \frac{S_T}{2(S_D-D)}V_\infty.</span>
+<span id="cb1-533"><a href="#cb1-533" aria-hidden="true" tabindex="-1"></a>then </span>
+<span id="cb1-534"><a href="#cb1-534" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-535"><a href="#cb1-535" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-536"><a href="#cb1-536" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-537"><a href="#cb1-537" aria-hidden="true" tabindex="-1"></a>Else, we use the same expression as the aligned case. Then</span>
+<span id="cb1-536"><a href="#cb1-536" aria-hidden="true" tabindex="-1"></a>V_\text{max} = \frac{S_T}{2(S_D-D)}V_\infty.</span>
+<span id="cb1-537"><a href="#cb1-537" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-538"><a href="#cb1-538" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-539"><a href="#cb1-539" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-540"><a href="#cb1-540" aria-hidden="true" tabindex="-1"></a>\text{Re}_{D,\text{max}}\equiv \frac{\rho V_\text{max}D}{\mu}.</span>
+<span id="cb1-539"><a href="#cb1-539" aria-hidden="true" tabindex="-1"></a>Else, we use the same expression as the aligned case. Then</span>
+<span id="cb1-540"><a href="#cb1-540" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-541"><a href="#cb1-541" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-542"><a href="#cb1-542" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-543"><a href="#cb1-543" aria-hidden="true" tabindex="-1"></a>With all of that defined, here is a table reproduced from Incropera and DeWitt (Table 7.5):</span>
+<span id="cb1-542"><a href="#cb1-542" aria-hidden="true" tabindex="-1"></a>\text{Re}_{D,\text{max}}\equiv \frac{\rho V_\text{max}D}{\mu}.</span>
+<span id="cb1-543"><a href="#cb1-543" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-544"><a href="#cb1-544" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-545"><a href="#cb1-545" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-545"><a href="#cb1-545" aria-hidden="true" tabindex="-1"></a>With all of that defined, here is a table reproduced from Incropera and DeWitt (Table 7.5):</span>
 <span id="cb1-546"><a href="#cb1-546" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-547"><a href="#cb1-547" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Configuration <span class="pp">|</span> $\text{Re}_{D,\max}$ <span class="pp">|</span> $C_1$ <span class="pp">|</span> $m$ <span class="pp">|</span></span>
-<span id="cb1-548"><a href="#cb1-548" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|</span></span>
-<span id="cb1-549"><a href="#cb1-549" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Aligned <span class="pp">|</span> $10$–$10^2$ <span class="pp">|</span> 0.80 <span class="pp">|</span> 0.40 <span class="pp">|</span></span>
-<span id="cb1-550"><a href="#cb1-550" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Staggered <span class="pp">|</span> $10$–$10^2$ <span class="pp">|</span> 0.90 <span class="pp">|</span> 0.40 <span class="pp">|</span></span>
-<span id="cb1-551"><a href="#cb1-551" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Aligned / Staggered <span class="pp">|</span> $10^2$–$10^3$ <span class="pp">|</span> Approximate as a single (isolated) cylinder <span class="pp">|</span> <span class="pp">|</span></span>
-<span id="cb1-552"><a href="#cb1-552" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Aligned $(S_T/S_L &gt; 0.7)$ <span class="pp">|</span> $10^3$–$2\times10^5$ <span class="pp">|</span> 0.27 <span class="pp">|</span> 0.63 <span class="pp">|</span></span>
-<span id="cb1-553"><a href="#cb1-553" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Staggered $(S_T/S_L &lt; 2)$ <span class="pp">|</span> $10^3$–$2\times10^5$ <span class="pp">|</span> $0.35(S_T/S_L)^{1/5}$ <span class="pp">|</span> 0.60 <span class="pp">|</span></span>
-<span id="cb1-554"><a href="#cb1-554" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Staggered $(S_T/S_L &gt; 2)$ <span class="pp">|</span> $10^3$–$2\times10^5$ <span class="pp">|</span> 0.40 <span class="pp">|</span> 0.60 <span class="pp">|</span></span>
-<span id="cb1-555"><a href="#cb1-555" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Aligned <span class="pp">|</span> $2\times10^5$–$2\times10^6$ <span class="pp">|</span> 0.021 <span class="pp">|</span> 0.84 <span class="pp">|</span></span>
-<span id="cb1-556"><a href="#cb1-556" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Staggered <span class="pp">|</span> $2\times10^5$–$2\times10^6$ <span class="pp">|</span> 0.022 <span class="pp">|</span> 0.84 <span class="pp">|</span></span>
-<span id="cb1-557"><a href="#cb1-557" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-558"><a href="#cb1-558" aria-hidden="true" tabindex="-1"></a><span class="fu">### Correction factor for few rows</span></span>
+<span id="cb1-547"><a href="#cb1-547" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-548"><a href="#cb1-548" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-549"><a href="#cb1-549" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Configuration <span class="pp">|</span> $\text{Re}_{D,\max}$ <span class="pp">|</span> $C_1$ <span class="pp">|</span> $m$ <span class="pp">|</span></span>
+<span id="cb1-550"><a href="#cb1-550" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|</span></span>
+<span id="cb1-551"><a href="#cb1-551" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Aligned <span class="pp">|</span> $10$–$10^2$ <span class="pp">|</span> 0.80 <span class="pp">|</span> 0.40 <span class="pp">|</span></span>
+<span id="cb1-552"><a href="#cb1-552" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Staggered <span class="pp">|</span> $10$–$10^2$ <span class="pp">|</span> 0.90 <span class="pp">|</span> 0.40 <span class="pp">|</span></span>
+<span id="cb1-553"><a href="#cb1-553" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Aligned / Staggered <span class="pp">|</span> $10^2$–$10^3$ <span class="pp">|</span> Approximate as a single (isolated) cylinder <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb1-554"><a href="#cb1-554" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Aligned $(S_T/S_L &gt; 0.7)$ <span class="pp">|</span> $10^3$–$2\times10^5$ <span class="pp">|</span> 0.27 <span class="pp">|</span> 0.63 <span class="pp">|</span></span>
+<span id="cb1-555"><a href="#cb1-555" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Staggered $(S_T/S_L &lt; 2)$ <span class="pp">|</span> $10^3$–$2\times10^5$ <span class="pp">|</span> $0.35(S_T/S_L)^{1/5}$ <span class="pp">|</span> 0.60 <span class="pp">|</span></span>
+<span id="cb1-556"><a href="#cb1-556" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Staggered $(S_T/S_L &gt; 2)$ <span class="pp">|</span> $10^3$–$2\times10^5$ <span class="pp">|</span> 0.40 <span class="pp">|</span> 0.60 <span class="pp">|</span></span>
+<span id="cb1-557"><a href="#cb1-557" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Aligned <span class="pp">|</span> $2\times10^5$–$2\times10^6$ <span class="pp">|</span> 0.021 <span class="pp">|</span> 0.84 <span class="pp">|</span></span>
+<span id="cb1-558"><a href="#cb1-558" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Staggered <span class="pp">|</span> $2\times10^5$–$2\times10^6$ <span class="pp">|</span> 0.022 <span class="pp">|</span> 0.84 <span class="pp">|</span></span>
 <span id="cb1-559"><a href="#cb1-559" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-560"><a href="#cb1-560" aria-hidden="true" tabindex="-1"></a>For $N_L &lt; 20$ we use the same expression as above, with a correction factor:</span>
+<span id="cb1-560"><a href="#cb1-560" aria-hidden="true" tabindex="-1"></a><span class="fu">### Correction factor for few rows</span></span>
 <span id="cb1-561"><a href="#cb1-561" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-562"><a href="#cb1-562" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-563"><a href="#cb1-563" aria-hidden="true" tabindex="-1"></a>\overline{\text{Nu}}_D = C_2\,C_1\,\text{Re}_{D,\max}^m\cdot\text{Pr}^{0.36}\cdot\left(\frac{\text{Pr}}{\text{Pr}_s}\right)^{1/4}.</span>
+<span id="cb1-562"><a href="#cb1-562" aria-hidden="true" tabindex="-1"></a>For $N_L &lt; 20$ we use the same expression as above, with a correction factor:</span>
+<span id="cb1-563"><a href="#cb1-563" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-564"><a href="#cb1-564" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-565"><a href="#cb1-565" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-566"><a href="#cb1-566" aria-hidden="true" tabindex="-1"></a>Values of $C_2$:</span>
+<span id="cb1-565"><a href="#cb1-565" aria-hidden="true" tabindex="-1"></a>\overline{\text{Nu}}_D = C_2\,C_1\,\text{Re}_{D,\max}^m\cdot\text{Pr}^{0.36}\cdot\left(\frac{\text{Pr}}{\text{Pr}_s}\right)^{1/4}.</span>
+<span id="cb1-566"><a href="#cb1-566" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-567"><a href="#cb1-567" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-568"><a href="#cb1-568" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $N_L$ <span class="pp">|</span> 1 <span class="pp">|</span> 2 <span class="pp">|</span> 3 <span class="pp">|</span> 4 <span class="pp">|</span> 5 <span class="pp">|</span> 7 <span class="pp">|</span> 10 <span class="pp">|</span> 13 <span class="pp">|</span> 16 <span class="pp">|</span></span>
-<span id="cb1-569"><a href="#cb1-569" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|---|---|---|---|---|---|</span></span>
-<span id="cb1-570"><a href="#cb1-570" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Aligned <span class="pp">|</span> 0.70 <span class="pp">|</span> 0.80 <span class="pp">|</span> 0.86 <span class="pp">|</span> 0.90 <span class="pp">|</span> 0.92 <span class="pp">|</span> 0.95 <span class="pp">|</span> 0.97 <span class="pp">|</span> 0.98 <span class="pp">|</span> 0.99 <span class="pp">|</span></span>
-<span id="cb1-571"><a href="#cb1-571" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Staggered <span class="pp">|</span> 0.64 <span class="pp">|</span> 0.76 <span class="pp">|</span> 0.84 <span class="pp">|</span> 0.89 <span class="pp">|</span> 0.92 <span class="pp">|</span> 0.95 <span class="pp">|</span> 0.97 <span class="pp">|</span> 0.98 <span class="pp">|</span> 0.99 <span class="pp">|</span></span>
-<span id="cb1-572"><a href="#cb1-572" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-573"><a href="#cb1-573" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-568"><a href="#cb1-568" aria-hidden="true" tabindex="-1"></a>Values of $C_2$:</span>
+<span id="cb1-569"><a href="#cb1-569" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-570"><a href="#cb1-570" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $N_L$ <span class="pp">|</span> 1 <span class="pp">|</span> 2 <span class="pp">|</span> 3 <span class="pp">|</span> 4 <span class="pp">|</span> 5 <span class="pp">|</span> 7 <span class="pp">|</span> 10 <span class="pp">|</span> 13 <span class="pp">|</span> 16 <span class="pp">|</span></span>
+<span id="cb1-571"><a href="#cb1-571" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|---|---|---|---|---|---|</span></span>
+<span id="cb1-572"><a href="#cb1-572" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Aligned <span class="pp">|</span> 0.70 <span class="pp">|</span> 0.80 <span class="pp">|</span> 0.86 <span class="pp">|</span> 0.90 <span class="pp">|</span> 0.92 <span class="pp">|</span> 0.95 <span class="pp">|</span> 0.97 <span class="pp">|</span> 0.98 <span class="pp">|</span> 0.99 <span class="pp">|</span></span>
+<span id="cb1-573"><a href="#cb1-573" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Staggered <span class="pp">|</span> 0.64 <span class="pp">|</span> 0.76 <span class="pp">|</span> 0.84 <span class="pp">|</span> 0.89 <span class="pp">|</span> 0.92 <span class="pp">|</span> 0.95 <span class="pp">|</span> 0.97 <span class="pp">|</span> 0.98 <span class="pp">|</span> 0.99 <span class="pp">|</span></span>
 <span id="cb1-574"><a href="#cb1-574" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-575"><a href="#cb1-575" aria-hidden="true" tabindex="-1"></a><span class="fu">### The Log-Mean Temperature Difference</span></span>
+<span id="cb1-575"><a href="#cb1-575" aria-hidden="true" tabindex="-1"></a>---</span>
 <span id="cb1-576"><a href="#cb1-576" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-577"><a href="#cb1-577" aria-hidden="true" tabindex="-1"></a>When it comes to predicting total heat transfer, it is **not** the case that $\dot{Q}$ simply scales with $N$ and $\Delta T=T_\text{surf}-T_\infty$. Instead, use the log-mean temperature difference:</span>
+<span id="cb1-577"><a href="#cb1-577" aria-hidden="true" tabindex="-1"></a><span class="fu">### The Log-Mean Temperature Difference</span></span>
 <span id="cb1-578"><a href="#cb1-578" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-579"><a href="#cb1-579" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-580"><a href="#cb1-580" aria-hidden="true" tabindex="-1"></a>\Delta T_{lm} = \frac{(T_s - T_\text{in}) - (T_s - T_\text{out})}{\ln<span class="sc">\!</span>\left(\frac{T_s - T_\text{in}}{T_s - T_\text{out}}\right)}</span>
+<span id="cb1-579"><a href="#cb1-579" aria-hidden="true" tabindex="-1"></a>When it comes to predicting total heat transfer, it is **not** the case that $\dot{Q}$ simply scales with $N$ and $\Delta T=T_\text{surf}-T_\infty$. Instead, use the log-mean temperature difference:</span>
+<span id="cb1-580"><a href="#cb1-580" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-581"><a href="#cb1-581" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-582"><a href="#cb1-582" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-583"><a href="#cb1-583" aria-hidden="true" tabindex="-1"></a>... a better representation of the average local $\Delta T$. The external flow's inlet temperature is $T_\text{in}$ and the outlet temperature is $T_\text{out}$. Of course, we don't know what the outlet temperature is, exactly! Knowing that requires us to know how much heat transfer has occurred, and that is the whole problem!</span>
+<span id="cb1-582"><a href="#cb1-582" aria-hidden="true" tabindex="-1"></a>\Delta T_{lm} = \frac{(T_s - T_\text{in}) - (T_s - T_\text{out})}{\ln<span class="sc">\!</span>\left(\frac{T_s - T_\text{in}}{T_s - T_\text{out}}\right)}</span>
+<span id="cb1-583"><a href="#cb1-583" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-584"><a href="#cb1-584" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-585"><a href="#cb1-585" aria-hidden="true" tabindex="-1"></a>::: {.column-margin}</span>
-<span id="cb1-586"><a href="#cb1-586" aria-hidden="true" tabindex="-1"></a>The numerator of $\Delta T_{lm}$ can indeed be simplified to $T_\text{out}-T_\text{in}$. But we will use the log-mean temperature difference later, and more generally it has a "two differences" structure -- so we write it in terms of two differences here.</span>
-<span id="cb1-587"><a href="#cb1-587" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-588"><a href="#cb1-588" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-589"><a href="#cb1-589" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-590"><a href="#cb1-590" aria-hidden="true" tabindex="-1"></a>We have a way of estimating $T_\text{out}$ though:</span>
+<span id="cb1-585"><a href="#cb1-585" aria-hidden="true" tabindex="-1"></a>... a better representation of the average local $\Delta T$. The external flow's inlet temperature is $T_\text{in}$ and the outlet temperature is $T_\text{out}$. Of course, we don't know what the outlet temperature is, exactly! Knowing that requires us to know how much heat transfer has occurred, and that is the whole problem!</span>
+<span id="cb1-586"><a href="#cb1-586" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-587"><a href="#cb1-587" aria-hidden="true" tabindex="-1"></a>::: {.column-margin}</span>
+<span id="cb1-588"><a href="#cb1-588" aria-hidden="true" tabindex="-1"></a>The numerator of $\Delta T_{lm}$ can indeed be simplified to $T_\text{out}-T_\text{in}$. But we will use the log-mean temperature difference later, and more generally it has a "two differences" structure -- so we write it in terms of two differences here.</span>
+<span id="cb1-589"><a href="#cb1-589" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-590"><a href="#cb1-590" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-591"><a href="#cb1-591" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-592"><a href="#cb1-592" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-593"><a href="#cb1-593" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-594"><a href="#cb1-594" aria-hidden="true" tabindex="-1"></a>\frac{T_s - T_\text{out}}{T_s - T_\text{in}} \approx \exp<span class="sc">\!</span>\left(\frac{-\pi D N \overline{h}}{\rho V_\infty N_T S_T c_p}\right)</span>
+<span id="cb1-592"><a href="#cb1-592" aria-hidden="true" tabindex="-1"></a>We have a way of estimating $T_\text{out}$ though:</span>
+<span id="cb1-593"><a href="#cb1-593" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-594"><a href="#cb1-594" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-595"><a href="#cb1-595" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-596"><a href="#cb1-596" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-597"><a href="#cb1-597" aria-hidden="true" tabindex="-1"></a>where $N=N_T\cdot N_L$ is the total number of tubes.</span>
+<span id="cb1-596"><a href="#cb1-596" aria-hidden="true" tabindex="-1"></a>\frac{T_s - T_\text{out}}{T_s - T_\text{in}} \approx \exp<span class="sc">\!</span>\left(\frac{-\pi D N \overline{h}}{\rho V_\infty N_T S_T c_p}\right)</span>
+<span id="cb1-597"><a href="#cb1-597" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-598"><a href="#cb1-598" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-599"><a href="#cb1-599" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-599"><a href="#cb1-599" aria-hidden="true" tabindex="-1"></a>where $N=N_T\cdot N_L$ is the total number of tubes.</span>
 <span id="cb1-600"><a href="#cb1-600" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-601"><a href="#cb1-601" aria-hidden="true" tabindex="-1"></a><span class="fu">### Calculating the heat transfer</span></span>
+<span id="cb1-601"><a href="#cb1-601" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-602"><a href="#cb1-602" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-603"><a href="#cb1-603" aria-hidden="true" tabindex="-1"></a>We finally arrive at an expression for the total amount of heat transfer over the bank of tubes:</span>
+<span id="cb1-603"><a href="#cb1-603" aria-hidden="true" tabindex="-1"></a><span class="fu">### Calculating the heat transfer</span></span>
 <span id="cb1-604"><a href="#cb1-604" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-605"><a href="#cb1-605" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-606"><a href="#cb1-606" aria-hidden="true" tabindex="-1"></a>\dot{Q} = N\overline{h}\,\pi DL\cdot\Delta T_{lm}</span>
+<span id="cb1-605"><a href="#cb1-605" aria-hidden="true" tabindex="-1"></a>We finally arrive at an expression for the total amount of heat transfer over the bank of tubes:</span>
+<span id="cb1-606"><a href="#cb1-606" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-607"><a href="#cb1-607" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-608"><a href="#cb1-608" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-609"><a href="#cb1-609" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-610"><a href="#cb1-610" aria-hidden="true" tabindex="-1"></a><span class="fu">## Interactive Demo -- LMTD</span></span>
+<span id="cb1-608"><a href="#cb1-608" aria-hidden="true" tabindex="-1"></a>\dot{Q} = N\overline{h}\,\pi DL\cdot\Delta T_{lm}</span>
+<span id="cb1-609"><a href="#cb1-609" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-610"><a href="#cb1-610" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-611"><a href="#cb1-611" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-612"><a href="#cb1-612" aria-hidden="true" tabindex="-1"></a>I created an interactive demo to explore the log-mean temperature difference. <span class="co">[</span><span class="ot">Find it at this link</span><span class="co">](demos/LMTD_demo.qmd)</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-612"><a href="#cb1-612" aria-hidden="true" tabindex="-1"></a><span class="fu">## Interactive Demo -- LMTD</span></span>
+<span id="cb1-613"><a href="#cb1-613" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-614"><a href="#cb1-614" aria-hidden="true" tabindex="-1"></a>I created an interactive demo to explore the log-mean temperature difference. <span class="co">[</span><span class="ot">Find it at this link</span><span class="co">](demos/LMTD_demo.qmd)</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
