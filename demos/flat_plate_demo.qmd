@@ -2,7 +2,7 @@
 
 A uniform flow ($U_\infty$, $T_\infty$) approaches a flat plate of length $L$ held at a fixed surface temperature. A velocity boundary layer grows from the leading edge, and a thermal boundary layer develops alongside it, governing how effectively heat leaves the surface.
 
-The local coefficient $h(x)$ is not uniform. It *drops* through the laminar region as the boundary layer thickens, then *jumps* abruptly at the laminar-to-turbulent transition, and drops more slowly thereafter.
+The local coefficient $h(x)$ is not uniform. It *drops* through the laminar region as the boundary layer thickens, then *rises sharply* through the transition zone, and drops more slowly thereafter in the turbulent region.
 
 ---
 
@@ -26,7 +26,8 @@ The local coefficient $h(x)$ is not uniform. It *drops* through the laminar regi
                                                  step: 0.001, label: "k_f (W/m·K)" });
   const lognu_in = Inputs.range([-7.5, -3.5], { value: presets.Air.lognu,
                                                  step: 0.05,
-                                                 label: html`log<sub>10</sub>(ν / m²s⁻¹)` });
+                                                 label: "ν (m²/s)",
+                                                 format: v => Math.pow(10, v).toExponential(2) });
   const Pr_in    = Inputs.range([0.005, 10],  { value: presets.Air.Pr,
                                                  step: 0.005, label: "Pr" });
 
@@ -98,10 +99,10 @@ The local coefficient $h(x)$ is not uniform. It *drops* through the laminar regi
     const N  = 500;
     const xs = Array.from({length: N}, (_, i) => (i + 1) / N * L);
 
-    // Sigmoid blend across the transition zone. Width ~15% of Re_c gives a
-    // visually plausible smear without distorting the laminar or turbulent
-    // portions. This is purely graphical — no attempt to model the physics.
-    const W = REC * 0.15;
+    // Sigmoid blend across the transition zone. Width is schematic —
+    // ~5% of Re_c represents a moderately clean flow; real transition width
+    // depends on freestream turbulence, roughness, and pressure gradient.
+    const W = REC * 0.05;
     const sigma = Re_x => 1 / (1 + Math.exp(-(Re_x - REC) / W));
 
     // ── Boundary layer thickness ──────────────────────────────────────────
@@ -181,15 +182,15 @@ The local coefficient $h(x)$ is not uniform. It *drops* through the laminar regi
         Plot.gridY({ stroke: "#e0e0e0" }),
         Plot.line(hRows, { x: "x", y: "h", stroke: "#444", strokeWidth: 2 }),
         Plot.ruleX(xcMark, { stroke: "#e15759", strokeWidth: 1.5, strokeDasharray: "6,3" }),
-        // h̄ — filled circle at x = L, with label
-        Plot.dot([{ x: L, h: h_avg }], {
-          x: "x", y: "h",
-          r: 6, fill: "#59a14f", stroke: "white", strokeWidth: 1.5,
+        // h̄ — short horizontal segment at x = L (evoking the overline notation)
+        Plot.link([{ x1: L * 0.93, y1: h_avg, x2: L, y2: h_avg }], {
+          x1: "x1", y1: "y1", x2: "x2", y2: "y2",
+          stroke: "#59a14f", strokeWidth: 2.5,
         }),
-        Plot.text([{ x: L, h: h_avg }], {
+        Plot.text([{ x: L * 0.92, h: h_avg }], {
           x: "x", y: "h",
           text: () => `h̄ = ${h_avg.toFixed(1)} W/m²·K`,
-          dx: -10, dy: -10, textAnchor: "end",
+          dx: -6, textAnchor: "end",
           fill: "#59a14f", fontSize: 11, fontFamily: "Georgia, serif",
         }),
       ]
@@ -225,7 +226,7 @@ The local coefficient $h(x)$ is not uniform. It *drops* through the laminar regi
     sw("#4e79a7"), t("Laminar δ"),   sw("#4e79a7", true), t("Laminar δ_T"),
     sw("#f28e2b"), t("Turbulent δ"), sw("#f28e2b", true), t("Turbulent δ_T"),
     sw("#e15759", true), t("Re_c = 5×10⁵ (center of transition)"),
-    dot("#59a14f"), t("h̄"),
+    sw("#59a14f"), t("h̄"),
   );
 
   return html`<div style="font-family:Georgia,serif">
@@ -272,9 +273,11 @@ The local coefficient $h(x)$ is not uniform. It *drops* through the laminar regi
 
 ## What to look for {#sec-observations}
 
+**Notice the axis units.** The $x$-axis is in meters, but the $y$-axis in the boundary layer plot is in *millimeters* — boundary layers are very thin! A plate a meter long might have a laminar BL only a few millimeters thick at its trailing edge.
+
 **h drops through the laminar region** — as $x^{-1/2}$. The boundary layer thickens away from the leading edge, the temperature gradient at the wall decreases, and so does the local heat flux for a fixed $\Delta T$. This is counterintuitive at first: moving further along the plate makes heat transfer *worse*, locally.
 
-**h jumps at the transition.** At $x_c = \text{Re}_c \cdot \nu / U_\infty$, the boundary layer goes turbulent. Turbulent mixing transports heat perpendicular to the plate far more effectively, so $h$ spikes. (Drag increases too — the same mixing that improves heat transfer also raises skin friction.)
+**h rises sharply through the transition zone.** As the boundary layer goes turbulent near $x_c = \text{Re}_c \cdot \nu / U_\infty$, turbulent mixing transports heat perpendicular to the plate far more effectively, and $h$ rises rapidly. (Drag increases too — the same mixing that improves heat transfer also raises skin friction.) The smooth S-curve in the demo is schematic: real transition width depends on freestream turbulence intensity, surface roughness, and pressure gradient — it can be very sharp in a clean wind tunnel or spread over 30–40% of $x_c$ in a noisy environment.
 
 **h drops more slowly in the turbulent region** — as $x^{-1/5}$. The turbulent BL still thickens, but the radial mixing partially compensates.
 

@@ -3,7 +3,6 @@ quarto_instructions.md
 /_book/
 /.quarto/
 CLAUDE_CODE_CONTEXT.md
-4convection.qmd
 5internal.qmd
 6heatXer.qmd
 7radiation.qmd
