@@ -354,7 +354,7 @@ $$
 \overline{\text{Nu}}_D = 2 + \left(0.4\,\text{Re}_D^{1/2} + 0.06\,\text{Re}_D^{2/3}\right)\text{Pr}^{0.4}\cdot\left(\frac{\mu}{\mu_s}\right)^{1/4}
 $$ {#eq-sphere-corr}
 
-All properties evaluated at $T_\infty$ except $\mu_s$ (at surface).
+All properties evaluated at $T_\infty$ except $\mu_s$ (evaluated at the surface temperature).
 
 
 
@@ -462,27 +462,37 @@ For $N_L < 20$: $\overline{\text{Nu}}_D\big|_{N_L<20} = C_2\,\overline{\text{Nu}
 
 ### The Log-Mean Temperature Difference
 
-When it comes to predicting total heat transfer, it is **not** the case that:
+When it comes to predicting total heat transfer, it is **not** the case that $\dot{Q}$ simply scales with $N$ and $\Delta T=T_\text{surf}-T_\infty$.
 
-$$\dot{Q} \neq N\overline{h}\cdot\pi DL\cdot(T_\text{surf}-T_\infty) \quad \text{(crossed out — this overestimates } \dot{Q}\text{)}$$
 
-Because $\dot{Q}$ can't simply scale with $N$ and $T_\text{surf}-T_\infty$: the fluid warms up as it passes through the bank.
+
 
 Instead, use the **log-mean temperature difference**:
 
-$$\boxed{\Delta T_{lm} = \frac{(T_s - T_i) - (T_s - T_o)}{\ln\!\left(\frac{T_s - T_i}{T_s - T_o}\right)}} \quad = \text{"log-mean temperature difference"}$$
+$$
+\Delta T_{lm} = \frac{(T_s - T_i) - (T_s - T_o)}{\ln\!\left(\frac{T_s - T_i}{T_s - T_o}\right)}
+$$
 
-a better representation of the average local $\Delta T$, where $T_i$ = inlet temperature, $T_o$ = outlet temperature of external flow.
+... a better representation of the average local $\Delta T$. The external flow's inlet temperature is $T_i$, the outlet temperature is $T_o$. Of course, we don't know what the outlet temperature is, exactly! Knowing that requires us to know how much heat transfer has occured... and that is the whole problem!
 
-Find $T_o$ from:
+We have a way of estimating it though: 
 
-$$\frac{T_s - T_o}{T_s - T_i} \approx \exp\!\left(\frac{-\pi D N \overline{h}}{\rho V N_T S_T c_p}\right)$$
 
-(Here $N_T$ = number of tubes per row, $V$ = free-stream velocity.)
+$$
+\frac{T_s - T_o}{T_s - T_i} \approx \exp\!\left(\frac{-\pi D N \overline{h}}{\rho V N_T S_T c_p}\right)
+$$
 
-Then:
+where $N_T$ is number of tubes per row and $V$ is the free-stream velocity.
 
-$$\boxed{\dot{Q} = N\overline{h}\,\pi DL\cdot\Delta T_{lm}} \qquad \text{(Bank of }N\text{ tubes)}$$
+
+
+### Calculating the heat transfer
+
+We finally arrive at an expression for the total amount of heat transfer over the bank of tubes:
+
+$$
+\dot{Q} = N\overline{h}\,\pi DL\cdot\Delta T_{lm}
+$$
 
 
 ## Interactive Demo -- LMTD
