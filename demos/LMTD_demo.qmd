@@ -10,6 +10,10 @@ The temperature *profiles* along the exchanger are exponential — not linear �
 
 ---
 
+::: {.callout-note}
+**Where this fits right now.** In the tube bank section, the hot side is a surface held at constant temperature $T_s$ — that's the default here. The demo also includes counter- and parallel-flow arrangements, which are heat exchanger concepts coming in a few weeks; they're here so this demo stays useful then. For now, just use "Constant $T_s$ (tube bank)".
+:::
+
 ## Interactive demo {#sec-demo}
 
 ```{ojs}
@@ -25,8 +29,8 @@ The temperature *profiles* along the exchanger are exponential — not linear �
   }
 
   // ── Inputs ───────────────────────────────────────────────────────────────────
-  const flow_in  = Inputs.select(["Counter flow", "Parallel flow"],
-                                  { label: "Flow arrangement", value: "Counter flow" });
+  const flow_in  = Inputs.select(["Constant Tₛ (tube bank)", "Counter flow", "Parallel flow"],
+                                  { label: "Flow arrangement", value: "Constant Tₛ (tube bank)" });
 
   const Thin_in  = Inputs.range([20, 200], { value: 90, step: 1,
                                              label: html`T<sub>h,in</sub> (°C)` });
@@ -54,12 +58,20 @@ The temperature *profiles* along the exchanger are exponential — not linear �
   // ── Plot placeholder ─────────────────────────────────────────────────────────
   const pPlot = document.createElement("div");
   const pInfo = document.createElement("div");
+  const hotPanelLabel = document.createElement("div");
+  hotPanelLabel.style.cssText = "font-size:0.72em;font-weight:bold;color:#c0392b;" +
+                                 "text-transform:uppercase;letter-spacing:.05em;margin-bottom:7px";
 
   // ── Render ───────────────────────────────────────────────────────────────────
   function render() {
-    const isCounter = flow_in.value === "Counter flow";
+    const isConstantTs = flow_in.value === "Constant Tₛ (tube bank)";
+    const isCounter    = flow_in.value === "Counter flow";
+
+    hotPanelLabel.textContent = isConstantTs ? "Tube surface (Tₛ = const.)" : "Hot stream";
+
     const Thin  = Thin_in.value;
-    const Thout = hIsoCb.querySelector("input").checked ? Thin  : Thout_in.value;
+    const hIsoChecked = isConstantTs || hIsoCb.querySelector("input").checked;
+    const Thout = hIsoChecked ? Thin : Thout_in.value;
     const Tcin  = Tcin_in.value;
     const Tcout = cIsoCb.querySelector("input").checked ? Tcin  : Tcout_in.value;
 
@@ -68,6 +80,16 @@ The temperature *profiles* along the exchanger are exponential — not linear �
       const on = iso.querySelector("input").checked;
       el.style.opacity       = on ? "0.35" : "1";
       el.style.pointerEvents = on ? "none"  : "";
+    }
+    if (isConstantTs) {
+      Thout_in.style.opacity                    = "0.35";
+      Thout_in.style.pointerEvents              = "none";
+      hIsoCb.querySelector("input").checked     = true;
+      hIsoCb.style.opacity                      = "0.4";
+      hIsoCb.style.pointerEvents                = "none";
+    } else {
+      hIsoCb.style.opacity       = "1";
+      hIsoCb.style.pointerEvents = "";
     }
 
     // Cold temperature at ξ=0 (hot-inlet end) and ξ=1 (hot-outlet end)
@@ -151,14 +173,14 @@ The temperature *profiles* along the exchanger are exponential — not linear �
 
         // Stream endpoint labels (small, near line ends)
         Plot.text([
-          { xi: 0.01, T: Thin,  lbl: "Hot in",   col: "#c0392b", anc: "start" },
-          { xi: 0.99, T: Thout, lbl: "Hot out",  col: "#c0392b", anc: "end"   },
+          { xi: 0.01, T: Thin,  lbl: isConstantTs ? "Tₛ" : "Hot in",   col: "#c0392b", anc: "start" },
+          { xi: 0.99, T: Thout, lbl: isConstantTs ? "Tₛ" : "Hot out",  col: "#c0392b", anc: "end"   },
           { xi: isCounter ? 0.99 : 0.01,
             T:  isCounter ? Tc1  : Tc0,
-            lbl: "Cold in",  col: "#2471a3", anc: isCounter ? "end" : "start" },
+            lbl: isConstantTs ? "Tᵢ (inlet)"  : "Cold in",  col: "#2471a3", anc: isCounter ? "end" : "start" },
           { xi: isCounter ? 0.01 : 0.99,
             T:  isCounter ? Tc0  : Tc1,
-            lbl: "Cold out", col: "#2471a3", anc: isCounter ? "start" : "end" },
+            lbl: isConstantTs ? "T₀ (outlet)" : "Cold out", col: "#2471a3", anc: isCounter ? "start" : "end" },
         ], {
           x: "xi", y: "T", text: "lbl",
           textAnchor: d => d.anc,
@@ -239,10 +261,7 @@ The temperature *profiles* along the exchanger are exponential — not linear �
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px">
       <div style="padding:10px 12px;border:1px solid #f0c0b0;border-radius:6px;
                   background:#fdf8f7">
-        <div style="font-size:0.72em;font-weight:bold;color:#c0392b;
-                    text-transform:uppercase;letter-spacing:.05em;margin-bottom:7px">
-          Hot stream
-        </div>
+        ${hotPanelLabel}
         ${Thin_in} ${Thout_in} ${hIsoCb}
       </div>
       <div style="padding:10px 12px;border:1px solid #a0c0e0;border-radius:6px;
@@ -266,18 +285,15 @@ The temperature *profiles* along the exchanger are exponential — not linear �
 
 ## What to look for {#sec-observations}
 
-**Counter flow outperforms parallel flow — with the same terminal temperatures.**
-Switch between the two arrangements with the defaults: $T_h$: 90 → 60 °C, $T_c$: 20 → 55 °C. The arithmetic mean $\Delta T$ is the same for both (it only depends on the four terminal values). But $\Delta T_{lm}$ is notably higher for counter flow. That gap is the engineering motivation for counter-flow designs: same heat exchanged, smaller required area — or equivalently, better fluid temperatures for the same hardware.
-
-The visual explanation is on the plot: parallel flow forces both $\Delta T_1$ and $\Delta T_2$ to be skewed (one large, one tiny), while counter flow keeps them more balanced. The log-mean penalizes large imbalance.
-
-**The isothermal stream.** Check "Isothermal" on the hot side and observe: the red line flattens, and the cold stream curves exponentially toward it. This is the tube-bank situation from @sec-external-flow-tube-bank: the tube surface is at constant $T_s$, and the external flow heats up as it passes through — following exactly $T_c(\xi) = T_s - (T_s - T_{c,\text{in}})\,e^{-R\xi}$.
+**The tube bank: constant $T_s$.** The default view shows exactly the setup from the chapter — the tube surface is at constant $T_s$ (flat red line), and the external flow heats up exponentially from $T_i$ to $T_0$. Try setting $T_s = 70\,^\circ$C, $T_{c,\text{in}} = 15\,^\circ$C, $T_{c,\text{out}} = 35\,^\circ$C to match the worked example below and confirm $\Delta T_{lm} \approx 44.3\,^\circ$C.
 
 ::: {.callout-note}
-An isothermal stream doesn't have to mean phase change (condensation, evaporation). It also approximates any stream with a very large capacity rate $C = \dot{m}c_p$: if enough fluid is flowing, its temperature barely shifts, and it looks flat on the plot. Check "Isothermal" on one side, then imagine it as the limit of sliding that side's outlet temperature back toward its inlet.
+A constant-temperature surface doesn't require phase change (condensation, evaporation). It also approximates any stream with a very large heat capacity rate $C = \dot{m}c_p$: if enough fluid is flowing, its temperature barely shifts and it looks flat on the plot.
 :::
 
-**Arithmetic mean always overestimates.** The summary panel shows the arithmetic mean alongside $\Delta T_{lm}$. The arithmetic mean is always $\geq \Delta T_{lm}$ (by the AM–GM inequality applied to the exponential profile). Using it in $\dot{Q} = \overline{h}A\,\Delta T$ would overestimate the heat transfer rate. The correction matters most when $\Delta T_1 / \Delta T_2$ is far from 1 — as in the parallel-flow default, where it is off by roughly 50%.
+**Arithmetic mean always overestimates.** The summary panel shows the arithmetic mean alongside $\Delta T_{lm}$. The arithmetic mean is always $\geq \Delta T_{lm}$ (by the AM–GM inequality applied to the exponential profile). Using it in $\dot{Q} = \overline{h}A\,\Delta T$ would overestimate the heat transfer rate. The correction matters most when $\Delta T_1 / \Delta T_2$ is far from 1.
+
+**Counter flow outperforms parallel flow — with the same terminal temperatures.** *(Coming in a few weeks, but worth a peek now.)* Switch to "Counter flow" or "Parallel flow" with $T_h$: 90 → 60 °C, $T_c$: 20 → 55 °C. The arithmetic mean $\Delta T$ is the same for both — it only depends on the four terminal values. But $\Delta T_{lm}$ is notably higher for counter flow, because counter flow keeps $\Delta T_1$ and $\Delta T_2$ more balanced; the log-mean penalizes large imbalance. That gap is the engineering motivation for counter-flow designs: same heat exchanged, smaller required area.
 
 **When $\Delta T_1 = \Delta T_2$**, $\Delta T_{lm} = \Delta T_1$ exactly (L'Hôpital's rule on the $0/0$ form). The profiles become straight lines and the arithmetic mean is correct. This happens in counter flow when the two streams have equal capacity rates — a balanced, perfectly efficient exchanger.
 
@@ -296,7 +312,7 @@ $$\Delta T_1 = T_s - T_i = 70 - 15 = 55\,^\circ\text{C}, \qquad \Delta T_2 = T_s
 
 $$\Delta T_{lm} = \frac{55 - 35}{\ln(55/35)} = \frac{20}{\ln 1.571} = \frac{20}{0.452} = 44.3\,^\circ\text{C}$$
 
-Check against the demo: set Hot isothermal at 70°C, $T_{c,\text{in}} = 15$°C, $T_{c,\text{out}} = 35$°C. The summary should read $\Delta T_{lm} \approx 44.3\,^\circ$C.
+Check against the demo: in the default "Constant $T_s$" mode, set $T_{h,\text{in}} = 70$°C, $T_{c,\text{in}} = 15$°C, $T_{c,\text{out}} = 35$°C. The summary should read $\Delta T_{lm} \approx 44.3\,^\circ$C.
 
 The arithmetic mean would give $(55 + 35)/2 = 45\,^\circ$C — only about 1.6% high here because $\Delta T_1/\Delta T_2 = 1.57$ is close to 1. At larger ratios, the error grows fast.
 

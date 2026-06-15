@@ -291,35 +291,61 @@ The local coefficient $h(x)$ is not uniform. It *drops* through the laminar regi
 
 ## Worked example — mixed boundary layer {#sec-worked}
 
-Air at $T_\infty = 25\,^\circ\text{C}$, $U_\infty = 10$ m/s flows over a plate $L = 2$ m long. Find $\bar{h}$.
+Air at $T_\infty = 25\,^\circ\text{C}$, $U_\infty = 10$ m/s flows over a plate $L = 2$ m long, $w = 1$ m wide, held at $T_s = 75\,^\circ\text{C}$. Find the total heat transfer rate $\dot{Q}$.
 
 **Properties** (25°C, matching the demo defaults):
 $$k_f = 0.02551\;\text{W/m·K}, \quad \nu = 1.562\times10^{-5}\;\text{m}^2/\text{s}, \quad \text{Pr} = 0.730$$
 
-**Step 1 — Check whether transition occurs on the plate.**
+**Step 1 — Set up the integral.**
 
-$$\text{Re}_L = \frac{U_\infty L}{\nu} = \frac{10 \times 2}{1.562\times10^{-5}} = 1.28\times10^6 > \text{Re}_c = 5\times10^5 \quad \checkmark \text{ mixed}$$
+The local heat flux at position $x$ is $q''(x) = h(x)(T_s - T_\infty)$, so the total heat transfer rate is
 
-Transition location:
+$$\dot{Q} = w\int_0^L q''(x)\,dx = w(T_s-T_\infty)\int_0^L h(x)\,dx.$$
 
-$$x_c = \frac{\text{Re}_c \cdot \nu}{U_\infty} = \frac{5\times10^5 \times 1.562\times10^{-5}}{10} = 0.78\;\text{m}$$
+Since the surface temperature is uniform, $(T_s - T_\infty)$ comes outside the integral — but $h(x)$ does not, because it varies with position. We can define the average coefficient as
 
-So the first 78% of the plate is laminar, the rest is turbulent.
+$$\bar{h} \equiv \frac{1}{L}\int_0^L h(x)\,dx \qquad \Rightarrow \qquad \dot{Q} = \bar{h}\,wL\,(T_s-T_\infty).$$
 
-**Step 2 — Apply the mixed average correlation.**
+So finding $\dot{Q}$ reduces to evaluating that integral.
 
-Integrating the local laminar correlation over $[0, x_c]$ and the turbulent one over $[x_c, L]$:
+**Step 2 — Check for transition; split the integrand.**
 
-$$\overline{h} = \frac{k_f}{L}\left[0.664\,\text{Re}_c^{1/2} + 0.037\!\left(\text{Re}_L^{4/5} - \text{Re}_c^{4/5}\right)\right]\text{Pr}^{1/3}$$
+$$\text{Re}_L = \frac{U_\infty L}{\nu} = \frac{10\times2}{1.562\times10^{-5}} = 1.28\times10^6 > \text{Re}_c = 5\times10^5 \quad \checkmark\;\text{mixed}$$
 
-Plugging in:
+Transition occurs at $x_c = \text{Re}_c\,\nu/U_\infty = 0.78$ m, so the integral splits:
 
-$$= \frac{0.02551}{2}\!\left[0.664\sqrt{5\times10^5} + 0.037\!\left((1.28\times10^6)^{0.8} - (5\times10^5)^{0.8}\right)\right](0.730)^{1/3}$$
+$$\int_0^L h(x)\,dx = \underbrace{\int_0^{x_c} h_\text{lam}(x)\,dx}_{\text{laminar portion}} + \underbrace{\int_{x_c}^L h_\text{turb}(x)\,dx}_{\text{turbulent portion}}$$
 
-$$= 0.01276\!\left[\underbrace{0.664\times707}_{469} + 0.037\!\underbrace{\left(76{,}850 - 36{,}200\right)}_{40{,}650}\right]\times 0.900$$
+**Step 3 — Write $h(x)$ explicitly in each region.**
 
-$$= 0.01276\times\left[469 + 1504\right]\times 0.900 = 0.01276\times1973\times0.900$$
+Unpacking $h(x) = \text{Nu}_x \cdot k_f/x$ with the local correlations:
+
+$$h_\text{lam}(x) = \frac{k_f}{x}\cdot 0.332\,\text{Re}_x^{1/2}\,\text{Pr}^{1/3} = 0.332\,k_f\,\text{Pr}^{1/3}\!\left(\frac{U_\infty}{\nu}\right)^{\!1/2} x^{-1/2}$$
+
+$$h_\text{turb}(x) = \frac{k_f}{x}\cdot 0.0296\,\text{Re}_x^{4/5}\,\text{Pr}^{1/3} = 0.0296\,k_f\,\text{Pr}^{1/3}\!\left(\frac{U_\infty}{\nu}\right)^{\!4/5} x^{-1/5}$$
+
+The integrands are power laws — $x^{-1/2}$ in the laminar zone and $x^{-1/5}$ in the turbulent zone — which is exactly the $h(x)$ shape plotted in the demo.
+
+**Step 4 — Evaluate the integrals.**
+
+$$\int_0^{x_c}\! h_\text{lam}\,dx = 0.332\,k_f\,\text{Pr}^{1/3}\!\left(\frac{U_\infty}{\nu}\right)^{\!1/2}\!\int_0^{x_c} x^{-1/2}\,dx = 0.332\,k_f\,\text{Pr}^{1/3}\!\left(\frac{U_\infty}{\nu}\right)^{\!1/2}\cdot 2x_c^{1/2}$$
+
+$$= 0.664\,k_f\,\text{Pr}^{1/3}\,\text{Re}_{x_c}^{1/2}$$
+
+$$\int_{x_c}^{L}\! h_\text{turb}\,dx = 0.0296\,k_f\,\text{Pr}^{1/3}\!\left(\frac{U_\infty}{\nu}\right)^{\!4/5}\!\int_{x_c}^{L} x^{-1/5}\,dx = 0.0296\,k_f\,\text{Pr}^{1/3}\!\left(\frac{U_\infty}{\nu}\right)^{\!4/5}\cdot\frac{5}{4}\!\left(L^{4/5}-x_c^{4/5}\right)$$
+
+$$= 0.037\,k_f\,\text{Pr}^{1/3}\!\left(\text{Re}_L^{4/5} - \text{Re}_{x_c}^{4/5}\right)$$
+
+**Step 5 — Combine and compute $\bar{h}$.**
+
+$$\bar{h} = \frac{k_f\,\text{Pr}^{1/3}}{L}\!\left[0.664\,\text{Re}_{x_c}^{1/2} + 0.037\!\left(\text{Re}_L^{4/5} - \text{Re}_{x_c}^{4/5}\right)\right]$$
+
+$$= \frac{0.02551\times0.900}{2}\!\left[\underbrace{0.664\times707}_{469} + 0.037\underbrace{\left(76{,}850 - 36{,}200\right)}_{40{,}650}\right] = 0.01148\times\left[469+1504\right]$$
 
 $$\boxed{\bar{h} \approx 22.6\;\text{W/m}^2\text{K}}$$
 
-Set $U_\infty = 10$, $L = 2$ in the demo (Air preset) and confirm the green dot reads approximately 22.6. Now compare to a fully laminar plate of the same length: set $U_\infty = 3$ m/s (so $\text{Re}_L = 3.84\times10^5 < 5\times10^5$). The laminar-only $\bar{h}$ drops to roughly 8 W/m²·K — nearly a factor of three lower, despite the fully turbulent plate running at more than three times the speed.
+**Step 6 — Total heat transfer rate.**
+
+$$\dot{Q} = \bar{h}\,wL\,(T_s-T_\infty) = 22.6\times(1\times2)\times(75-25) = \boxed{2260\;\text{W}}$$
+
+Set $U_\infty = 10$, $L = 2$ in the demo (Air preset) and confirm the green dot reads approximately 22.6. Now compare to a fully laminar plate: set $U_\infty = 3$ m/s ($\text{Re}_L = 3.84\times10^5 < 5\times10^5$, no transition). The laminar-only $\bar{h}$ drops to roughly 8 W/m²·K — for the same $\Delta T$ and plate area that would reduce the heat transfer rate from 2.26 kW to only 0.8 kW.
