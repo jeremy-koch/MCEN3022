@@ -640,22 +640,35 @@ window.Quarto = {
 </section>
 <section id="sec-worked" class="level2">
 <h2 class="anchored" data-anchor-id="sec-worked">Worked example — mixed boundary layer</h2>
-<p>Air at <span class="math inline">\(T_\infty = 25\,^\circ\text{C}\)</span>, <span class="math inline">\(U_\infty = 10\)</span> m/s flows over a plate <span class="math inline">\(L = 2\)</span> m long. Find <span class="math inline">\(\bar{h}\)</span>.</p>
+<p>Air at <span class="math inline">\(T_\infty = 25\,^\circ\text{C}\)</span>, <span class="math inline">\(U_\infty = 10\)</span> m/s flows over a plate <span class="math inline">\(L = 2\)</span> m long, <span class="math inline">\(w = 1\)</span> m wide, held at <span class="math inline">\(T_s = 75\,^\circ\text{C}\)</span>. Find the total heat transfer rate <span class="math inline">\(\dot{Q}\)</span>.</p>
 <p><strong>Properties</strong> (25°C, matching the demo defaults): <span class="math display">\[k_f = 0.02551\;\text{W/m·K}, \quad \nu = 1.562\times10^{-5}\;\text{m}^2/\text{s}, \quad \text{Pr} = 0.730\]</span></p>
-<p><strong>Step 1 — Check whether transition occurs on the plate.</strong></p>
-<p><span class="math display">\[\text{Re}_L = \frac{U_\infty L}{\nu} = \frac{10 \times 2}{1.562\times10^{-5}} = 1.28\times10^6 &gt; \text{Re}_c = 5\times10^5 \quad \checkmark \text{ mixed}\]</span></p>
-<p>Transition location:</p>
-<p><span class="math display">\[x_c = \frac{\text{Re}_c \cdot \nu}{U_\infty} = \frac{5\times10^5 \times 1.562\times10^{-5}}{10} = 0.78\;\text{m}\]</span></p>
-<p>So the first 78% of the plate is laminar, the rest is turbulent.</p>
-<p><strong>Step 2 — Apply the mixed average correlation.</strong></p>
-<p>Integrating the local laminar correlation over <span class="math inline">\([0, x_c]\)</span> and the turbulent one over <span class="math inline">\([x_c, L]\)</span>:</p>
-<p><span class="math display">\[\overline{h} = \frac{k_f}{L}\left[0.664\,\text{Re}_c^{1/2} + 0.037\!\left(\text{Re}_L^{4/5} - \text{Re}_c^{4/5}\right)\right]\text{Pr}^{1/3}\]</span></p>
-<p>Plugging in:</p>
-<p><span class="math display">\[= \frac{0.02551}{2}\!\left[0.664\sqrt{5\times10^5} + 0.037\!\left((1.28\times10^6)^{0.8} - (5\times10^5)^{0.8}\right)\right](0.730)^{1/3}\]</span></p>
-<p><span class="math display">\[= 0.01276\!\left[\underbrace{0.664\times707}_{469} + 0.037\!\underbrace{\left(76{,}850 - 36{,}200\right)}_{40{,}650}\right]\times 0.900\]</span></p>
-<p><span class="math display">\[= 0.01276\times\left[469 + 1504\right]\times 0.900 = 0.01276\times1973\times0.900\]</span></p>
+<p><strong>Step 1 — Set up the integral.</strong></p>
+<p>The local heat flux at position <span class="math inline">\(x\)</span> is <span class="math inline">\(q''(x) = h(x)(T_s - T_\infty)\)</span>, so the total heat transfer rate is</p>
+<p><span class="math display">\[\dot{Q} = w\int_0^L q''(x)\,dx = w(T_s-T_\infty)\int_0^L h(x)\,dx.\]</span></p>
+<p>Since the surface temperature is uniform, <span class="math inline">\((T_s - T_\infty)\)</span> comes outside the integral — but <span class="math inline">\(h(x)\)</span> does not, because it varies with position. We can define the average coefficient as</p>
+<p><span class="math display">\[\bar{h} \equiv \frac{1}{L}\int_0^L h(x)\,dx \qquad \Rightarrow \qquad \dot{Q} = \bar{h}\,wL\,(T_s-T_\infty).\]</span></p>
+<p>So finding <span class="math inline">\(\dot{Q}\)</span> reduces to evaluating that integral.</p>
+<p><strong>Step 2 — Check for transition; split the integrand.</strong></p>
+<p><span class="math display">\[\text{Re}_L = \frac{U_\infty L}{\nu} = \frac{10\times2}{1.562\times10^{-5}} = 1.28\times10^6 &gt; \text{Re}_c = 5\times10^5 \quad \checkmark\;\text{mixed}\]</span></p>
+<p>Transition occurs at <span class="math inline">\(x_c = \text{Re}_c\,\nu/U_\infty = 0.78\)</span> m, so the integral splits:</p>
+<p><span class="math display">\[\int_0^L h(x)\,dx = \underbrace{\int_0^{x_c} h_\text{lam}(x)\,dx}_{\text{laminar portion}} + \underbrace{\int_{x_c}^L h_\text{turb}(x)\,dx}_{\text{turbulent portion}}\]</span></p>
+<p><strong>Step 3 — Write <span class="math inline">\(h(x)\)</span> explicitly in each region.</strong></p>
+<p>Unpacking <span class="math inline">\(h(x) = \text{Nu}_x \cdot k_f/x\)</span> with the local correlations:</p>
+<p><span class="math display">\[h_\text{lam}(x) = \frac{k_f}{x}\cdot 0.332\,\text{Re}_x^{1/2}\,\text{Pr}^{1/3} = 0.332\,k_f\,\text{Pr}^{1/3}\!\left(\frac{U_\infty}{\nu}\right)^{\!1/2} x^{-1/2}\]</span></p>
+<p><span class="math display">\[h_\text{turb}(x) = \frac{k_f}{x}\cdot 0.0296\,\text{Re}_x^{4/5}\,\text{Pr}^{1/3} = 0.0296\,k_f\,\text{Pr}^{1/3}\!\left(\frac{U_\infty}{\nu}\right)^{\!4/5} x^{-1/5}\]</span></p>
+<p>The integrands are power laws — <span class="math inline">\(x^{-1/2}\)</span> in the laminar zone and <span class="math inline">\(x^{-1/5}\)</span> in the turbulent zone — which is exactly the <span class="math inline">\(h(x)\)</span> shape plotted in the demo.</p>
+<p><strong>Step 4 — Evaluate the integrals.</strong></p>
+<p><span class="math display">\[\int_0^{x_c}\! h_\text{lam}\,dx = 0.332\,k_f\,\text{Pr}^{1/3}\!\left(\frac{U_\infty}{\nu}\right)^{\!1/2}\!\int_0^{x_c} x^{-1/2}\,dx = 0.332\,k_f\,\text{Pr}^{1/3}\!\left(\frac{U_\infty}{\nu}\right)^{\!1/2}\cdot 2x_c^{1/2}\]</span></p>
+<p><span class="math display">\[= 0.664\,k_f\,\text{Pr}^{1/3}\,\text{Re}_{x_c}^{1/2}\]</span></p>
+<p><span class="math display">\[\int_{x_c}^{L}\! h_\text{turb}\,dx = 0.0296\,k_f\,\text{Pr}^{1/3}\!\left(\frac{U_\infty}{\nu}\right)^{\!4/5}\!\int_{x_c}^{L} x^{-1/5}\,dx = 0.0296\,k_f\,\text{Pr}^{1/3}\!\left(\frac{U_\infty}{\nu}\right)^{\!4/5}\cdot\frac{5}{4}\!\left(L^{4/5}-x_c^{4/5}\right)\]</span></p>
+<p><span class="math display">\[= 0.037\,k_f\,\text{Pr}^{1/3}\!\left(\text{Re}_L^{4/5} - \text{Re}_{x_c}^{4/5}\right)\]</span></p>
+<p><strong>Step 5 — Combine and compute <span class="math inline">\(\bar{h}\)</span>.</strong></p>
+<p><span class="math display">\[\bar{h} = \frac{k_f\,\text{Pr}^{1/3}}{L}\!\left[0.664\,\text{Re}_{x_c}^{1/2} + 0.037\!\left(\text{Re}_L^{4/5} - \text{Re}_{x_c}^{4/5}\right)\right]\]</span></p>
+<p><span class="math display">\[= \frac{0.02551\times0.900}{2}\!\left[\underbrace{0.664\times707}_{469} + 0.037\underbrace{\left(76{,}850 - 36{,}200\right)}_{40{,}650}\right] = 0.01148\times\left[469+1504\right]\]</span></p>
 <p><span class="math display">\[\boxed{\bar{h} \approx 22.6\;\text{W/m}^2\text{K}}\]</span></p>
-<p>Set <span class="math inline">\(U_\infty = 10\)</span>, <span class="math inline">\(L = 2\)</span> in the demo (Air preset) and confirm the green dot reads approximately 22.6. Now compare to a fully laminar plate of the same length: set <span class="math inline">\(U_\infty = 3\)</span> m/s (so <span class="math inline">\(\text{Re}_L = 3.84\times10^5 &lt; 5\times10^5\)</span>). The laminar-only <span class="math inline">\(\bar{h}\)</span> drops to roughly 8 W/m²·K — nearly a factor of three lower, despite the fully turbulent plate running at more than three times the speed.</p>
+<p><strong>Step 6 — Total heat transfer rate.</strong></p>
+<p><span class="math display">\[\dot{Q} = \bar{h}\,wL\,(T_s-T_\infty) = 22.6\times(1\times2)\times(75-25) = \boxed{2260\;\text{W}}\]</span></p>
+<p>Set <span class="math inline">\(U_\infty = 10\)</span>, <span class="math inline">\(L = 2\)</span> in the demo (Air preset) and confirm the green dot reads approximately 22.6. Now compare to a fully laminar plate: set <span class="math inline">\(U_\infty = 3\)</span> m/s (<span class="math inline">\(\text{Re}_L = 3.84\times10^5 &lt; 5\times10^5\)</span>, no transition). The laminar-only <span class="math inline">\(\bar{h}\)</span> drops to roughly 8 W/m²·K — for the same <span class="math inline">\(\Delta T\)</span> and plate area that would reduce the heat transfer rate from 2.26 kW to only 0.8 kW.</p>
 
 
 <!-- -->
@@ -1430,38 +1443,64 @@ window._ojs.runtime.interpretFromScriptTags();
 <span id="cb2-293"><a href="#cb2-293" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-294"><a href="#cb2-294" aria-hidden="true" tabindex="-1"></a><span class="fu">## Worked example — mixed boundary layer {#sec-worked}</span></span>
 <span id="cb2-295"><a href="#cb2-295" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-296"><a href="#cb2-296" aria-hidden="true" tabindex="-1"></a>Air at $T_\infty = 25\,^\circ\text{C}$, $U_\infty = 10$ m/s flows over a plate $L = 2$ m long. Find $\bar{h}$.</span>
+<span id="cb2-296"><a href="#cb2-296" aria-hidden="true" tabindex="-1"></a>Air at $T_\infty = 25\,^\circ\text{C}$, $U_\infty = 10$ m/s flows over a plate $L = 2$ m long, $w = 1$ m wide, held at $T_s = 75\,^\circ\text{C}$. Find the total heat transfer rate $\dot{Q}$.</span>
 <span id="cb2-297"><a href="#cb2-297" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-298"><a href="#cb2-298" aria-hidden="true" tabindex="-1"></a>**Properties** (25°C, matching the demo defaults):</span>
 <span id="cb2-299"><a href="#cb2-299" aria-hidden="true" tabindex="-1"></a>$$k_f = 0.02551\;\text{W/m·K}, \quad \nu = 1.562\times10^{-5}\;\text{m}^2/\text{s}, \quad \text{Pr} = 0.730$$</span>
 <span id="cb2-300"><a href="#cb2-300" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-301"><a href="#cb2-301" aria-hidden="true" tabindex="-1"></a>**Step 1 — Check whether transition occurs on the plate.**</span>
+<span id="cb2-301"><a href="#cb2-301" aria-hidden="true" tabindex="-1"></a>**Step 1 — Set up the integral.**</span>
 <span id="cb2-302"><a href="#cb2-302" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-303"><a href="#cb2-303" aria-hidden="true" tabindex="-1"></a>$$\text{Re}_L = \frac{U_\infty L}{\nu} = \frac{10 \times 2}{1.562\times10^{-5}} = 1.28\times10^6 &gt; \text{Re}_c = 5\times10^5 \quad \checkmark \text{ mixed}$$</span>
+<span id="cb2-303"><a href="#cb2-303" aria-hidden="true" tabindex="-1"></a>The local heat flux at position $x$ is $q''(x) = h(x)(T_s - T_\infty)$, so the total heat transfer rate is</span>
 <span id="cb2-304"><a href="#cb2-304" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-305"><a href="#cb2-305" aria-hidden="true" tabindex="-1"></a>Transition location:</span>
+<span id="cb2-305"><a href="#cb2-305" aria-hidden="true" tabindex="-1"></a>$$\dot{Q} = w\int_0^L q''(x)\,dx = w(T_s-T_\infty)\int_0^L h(x)\,dx.$$</span>
 <span id="cb2-306"><a href="#cb2-306" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-307"><a href="#cb2-307" aria-hidden="true" tabindex="-1"></a>$$x_c = \frac{\text{Re}_c \cdot \nu}{U_\infty} = \frac{5\times10^5 \times 1.562\times10^{-5}}{10} = 0.78\;\text{m}$$</span>
+<span id="cb2-307"><a href="#cb2-307" aria-hidden="true" tabindex="-1"></a>Since the surface temperature is uniform, $(T_s - T_\infty)$ comes outside the integral — but $h(x)$ does not, because it varies with position. We can define the average coefficient as</span>
 <span id="cb2-308"><a href="#cb2-308" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-309"><a href="#cb2-309" aria-hidden="true" tabindex="-1"></a>So the first 78% of the plate is laminar, the rest is turbulent.</span>
+<span id="cb2-309"><a href="#cb2-309" aria-hidden="true" tabindex="-1"></a>$$\bar{h} \equiv \frac{1}{L}\int_0^L h(x)\,dx \qquad \Rightarrow \qquad \dot{Q} = \bar{h}\,wL\,(T_s-T_\infty).$$</span>
 <span id="cb2-310"><a href="#cb2-310" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-311"><a href="#cb2-311" aria-hidden="true" tabindex="-1"></a>**Step 2 — Apply the mixed average correlation.**</span>
+<span id="cb2-311"><a href="#cb2-311" aria-hidden="true" tabindex="-1"></a>So finding $\dot{Q}$ reduces to evaluating that integral.</span>
 <span id="cb2-312"><a href="#cb2-312" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-313"><a href="#cb2-313" aria-hidden="true" tabindex="-1"></a>Integrating the local laminar correlation over $<span class="co">[</span><span class="ot">0, x_c</span><span class="co">]</span>$ and the turbulent one over $<span class="co">[</span><span class="ot">x_c, L</span><span class="co">]</span>$:</span>
+<span id="cb2-313"><a href="#cb2-313" aria-hidden="true" tabindex="-1"></a>**Step 2 — Check for transition; split the integrand.**</span>
 <span id="cb2-314"><a href="#cb2-314" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-315"><a href="#cb2-315" aria-hidden="true" tabindex="-1"></a>$$\overline{h} = \frac{k_f}{L}\left<span class="co">[</span><span class="ot">0.664\,\text{Re}_c^{1/2} + 0.037\!\left(\text{Re}_L^{4/5} - \text{Re}_c^{4/5}\right)\right</span><span class="co">]</span>\text{Pr}^{1/3}$$</span>
+<span id="cb2-315"><a href="#cb2-315" aria-hidden="true" tabindex="-1"></a>$$\text{Re}_L = \frac{U_\infty L}{\nu} = \frac{10\times2}{1.562\times10^{-5}} = 1.28\times10^6 &gt; \text{Re}_c = 5\times10^5 \quad \checkmark\;\text{mixed}$$</span>
 <span id="cb2-316"><a href="#cb2-316" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-317"><a href="#cb2-317" aria-hidden="true" tabindex="-1"></a>Plugging in:</span>
+<span id="cb2-317"><a href="#cb2-317" aria-hidden="true" tabindex="-1"></a>Transition occurs at $x_c = \text{Re}_c\,\nu/U_\infty = 0.78$ m, so the integral splits:</span>
 <span id="cb2-318"><a href="#cb2-318" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-319"><a href="#cb2-319" aria-hidden="true" tabindex="-1"></a>$$= \frac{0.02551}{2}<span class="sc">\!</span>\left<span class="co">[</span><span class="ot">0.664\sqrt{5\times10^5} + 0.037\!\left((1.28\times10^6)^{0.8} - (5\times10^5)^{0.8}\right)\right</span><span class="co">](0.730)</span>^{1/3}$$</span>
+<span id="cb2-319"><a href="#cb2-319" aria-hidden="true" tabindex="-1"></a>$$\int_0^L h(x)\,dx = \underbrace{\int_0^{x_c} h_\text{lam}(x)\,dx}_{\text{laminar portion}} + \underbrace{\int_{x_c}^L h_\text{turb}(x)\,dx}_{\text{turbulent portion}}$$</span>
 <span id="cb2-320"><a href="#cb2-320" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-321"><a href="#cb2-321" aria-hidden="true" tabindex="-1"></a>$$= 0.01276<span class="sc">\!</span>\left<span class="co">[</span><span class="ot">\underbrace{0.664\times707}_{469} + 0.037\!\underbrace{\left(76{,}850 - 36{,}200\right)}_{40{,}650}\right</span><span class="co">]</span>\times 0.900$$</span>
+<span id="cb2-321"><a href="#cb2-321" aria-hidden="true" tabindex="-1"></a>**Step 3 — Write $h(x)$ explicitly in each region.**</span>
 <span id="cb2-322"><a href="#cb2-322" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-323"><a href="#cb2-323" aria-hidden="true" tabindex="-1"></a>$$= 0.01276\times\left<span class="co">[</span><span class="ot">469 + 1504\right</span><span class="co">]</span>\times 0.900 = 0.01276\times1973\times0.900$$</span>
+<span id="cb2-323"><a href="#cb2-323" aria-hidden="true" tabindex="-1"></a>Unpacking $h(x) = \text{Nu}_x \cdot k_f/x$ with the local correlations:</span>
 <span id="cb2-324"><a href="#cb2-324" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-325"><a href="#cb2-325" aria-hidden="true" tabindex="-1"></a>$$\boxed{\bar{h} \approx 22.6\;\text{W/m}^2\text{K}}$$</span>
+<span id="cb2-325"><a href="#cb2-325" aria-hidden="true" tabindex="-1"></a>$$h_\text{lam}(x) = \frac{k_f}{x}\cdot 0.332\,\text{Re}_x^{1/2}\,\text{Pr}^{1/3} = 0.332\,k_f\,\text{Pr}^{1/3}\!\left(\frac{U_\infty}{\nu}\right)^{<span class="sc">\!</span>1/2} x^{-1/2}$$</span>
 <span id="cb2-326"><a href="#cb2-326" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-327"><a href="#cb2-327" aria-hidden="true" tabindex="-1"></a>Set $U_\infty = 10$, $L = 2$ in the demo (Air preset) and confirm the green dot reads approximately 22.6. Now compare to a fully laminar plate of the same length: set $U_\infty = 3$ m/s (so $\text{Re}_L = 3.84\times10^5 &lt; 5\times10^5$). The laminar-only $\bar{h}$ drops to roughly 8 W/m²·K — nearly a factor of three lower, despite the fully turbulent plate running at more than three times the speed.</span>
+<span id="cb2-327"><a href="#cb2-327" aria-hidden="true" tabindex="-1"></a>$$h_\text{turb}(x) = \frac{k_f}{x}\cdot 0.0296\,\text{Re}_x^{4/5}\,\text{Pr}^{1/3} = 0.0296\,k_f\,\text{Pr}^{1/3}\!\left(\frac{U_\infty}{\nu}\right)^{<span class="sc">\!</span>4/5} x^{-1/5}$$</span>
+<span id="cb2-328"><a href="#cb2-328" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-329"><a href="#cb2-329" aria-hidden="true" tabindex="-1"></a>The integrands are power laws — $x^{-1/2}$ in the laminar zone and $x^{-1/5}$ in the turbulent zone — which is exactly the $h(x)$ shape plotted in the demo.</span>
+<span id="cb2-330"><a href="#cb2-330" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-331"><a href="#cb2-331" aria-hidden="true" tabindex="-1"></a>**Step 4 — Evaluate the integrals.**</span>
+<span id="cb2-332"><a href="#cb2-332" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-333"><a href="#cb2-333" aria-hidden="true" tabindex="-1"></a>$$\int_0^{x_c}<span class="sc">\!</span> h_\text{lam}\,dx = 0.332\,k_f\,\text{Pr}^{1/3}<span class="sc">\!</span>\left(\frac{U_\infty}{\nu}\right)^{<span class="sc">\!</span>1/2}<span class="sc">\!</span>\int_0^{x_c} x^{-1/2}\,dx = 0.332\,k_f\,\text{Pr}^{1/3}<span class="sc">\!</span>\left(\frac{U_\infty}{\nu}\right)^{<span class="sc">\!</span>1/2}\cdot 2x_c^{1/2}$$</span>
+<span id="cb2-334"><a href="#cb2-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-335"><a href="#cb2-335" aria-hidden="true" tabindex="-1"></a>$$= 0.664\,k_f\,\text{Pr}^{1/3}\,\text{Re}_{x_c}^{1/2}$$</span>
+<span id="cb2-336"><a href="#cb2-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-337"><a href="#cb2-337" aria-hidden="true" tabindex="-1"></a>$$\int_{x_c}^{L}<span class="sc">\!</span> h_\text{turb}\,dx = 0.0296\,k_f\,\text{Pr}^{1/3}<span class="sc">\!</span>\left(\frac{U_\infty}{\nu}\right)^{<span class="sc">\!</span>4/5}<span class="sc">\!</span>\int_{x_c}^{L} x^{-1/5}\,dx = 0.0296\,k_f\,\text{Pr}^{1/3}<span class="sc">\!</span>\left(\frac{U_\infty}{\nu}\right)^{<span class="sc">\!</span>4/5}\cdot\frac{5}{4}<span class="sc">\!</span>\left(L^{4/5}-x_c^{4/5}\right)$$</span>
+<span id="cb2-338"><a href="#cb2-338" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-339"><a href="#cb2-339" aria-hidden="true" tabindex="-1"></a>$$= 0.037\,k_f\,\text{Pr}^{1/3}<span class="sc">\!</span>\left(\text{Re}_L^{4/5} - \text{Re}_{x_c}^{4/5}\right)$$</span>
+<span id="cb2-340"><a href="#cb2-340" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-341"><a href="#cb2-341" aria-hidden="true" tabindex="-1"></a>**Step 5 — Combine and compute $\bar{h}$.**</span>
+<span id="cb2-342"><a href="#cb2-342" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-343"><a href="#cb2-343" aria-hidden="true" tabindex="-1"></a>$$\bar{h} = \frac{k_f\,\text{Pr}^{1/3}}{L}<span class="sc">\!</span>\left<span class="co">[</span><span class="ot">0.664\,\text{Re}_{x_c}^{1/2} + 0.037\!\left(\text{Re}_L^{4/5} - \text{Re}_{x_c}^{4/5}\right)\right</span><span class="co">]</span>$$</span>
+<span id="cb2-344"><a href="#cb2-344" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-345"><a href="#cb2-345" aria-hidden="true" tabindex="-1"></a>$$= \frac{0.02551\times0.900}{2}<span class="sc">\!</span>\left<span class="co">[</span><span class="ot">\underbrace{0.664\times707}_{469} + 0.037\underbrace{\left(76{,}850 - 36{,}200\right)}_{40{,}650}\right</span><span class="co">]</span> = 0.01148\times\left<span class="co">[</span><span class="ot">469+1504\right</span><span class="co">]</span>$$</span>
+<span id="cb2-346"><a href="#cb2-346" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-347"><a href="#cb2-347" aria-hidden="true" tabindex="-1"></a>$$\boxed{\bar{h} \approx 22.6\;\text{W/m}^2\text{K}}$$</span>
+<span id="cb2-348"><a href="#cb2-348" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-349"><a href="#cb2-349" aria-hidden="true" tabindex="-1"></a>**Step 6 — Total heat transfer rate.**</span>
+<span id="cb2-350"><a href="#cb2-350" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-351"><a href="#cb2-351" aria-hidden="true" tabindex="-1"></a>$$\dot{Q} = \bar{h}\,wL\,(T_s-T_\infty) = 22.6\times(1\times2)\times(75-25) = \boxed{2260\;\text{W}}$$</span>
+<span id="cb2-352"><a href="#cb2-352" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-353"><a href="#cb2-353" aria-hidden="true" tabindex="-1"></a>Set $U_\infty = 10$, $L = 2$ in the demo (Air preset) and confirm the green dot reads approximately 22.6. Now compare to a fully laminar plate: set $U_\infty = 3$ m/s ($\text{Re}_L = 3.84\times10^5 &lt; 5\times10^5$, no transition). The laminar-only $\bar{h}$ drops to roughly 8 W/m²·K — for the same $\Delta T$ and plate area that would reduce the heat transfer rate from 2.26 kW to only 0.8 kW.</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
