@@ -6,11 +6,11 @@ $$\Delta T_{lm} = \frac{\Delta T_1 - \Delta T_2}{\ln(\Delta T_1/\Delta T_2)}$$
 
 where $\Delta T_1$ and $\Delta T_2$ are the temperature differences at the two ends of the exchanger (hot-inlet end and hot-outlet end, respectively).
 
-The temperature profiles along the exchanger are exponential -- not linear -- determined by the heat capacity rates $C = \dot{m}c_p$ of each stream. Given the four terminal temperatures, those profiles are fully determined, and that's what the demo plots.
+The temperature profiles along the exchanger are exponential (not linear) determined by the heat capacity rates $C = \dot{m}c_p$ of each stream. Given the four terminal temperatures, those profiles are fully determined -- that's what the demo plots.
 
 
 ::: {.callout-note}
-Where this fits right now: In the tube bank section, the hot side is a surface held at constant temperature $T_s$ — that's the default here. The demo also includes counter- and parallel-flow arrangements, which are heat exchanger concepts coming in a few weeks; they're here so this demo stays useful then. For now, just use "Constant $T_s$ (tube bank)".
+Where this fits right now: In the bank of tubes section of Chapter 4, the hot side is a surface held at constant temperature $T_s$. This is the default setting here, but the demo also includes counter- and parallel-flow arrangements, which are heat exchanger concepts coming in a few weeks. For now, just use "Constant $T_s$ (tube bank)".
 :::
 
 ## Interactive demo {#sec-demo}
@@ -288,14 +288,14 @@ Where this fits right now: In the tube bank section, the hot side is a surface h
 **The tube bank: constant $T_s$.** The default view shows exactly the setup from the chapter — the tube surface is at constant $T_s$ (flat red line), and the external flow heats up exponentially from $T_\text{in}$ to $T_\text{out}$. Try setting $T_s = 70\,^\circ$C, $T_\text{in} = 15\,^\circ$C, $T_\text{out} = 41\,^\circ$C to match the worked example below and confirm $\Delta T_{lm} \approx 40.6\,^\circ$C.
 
 ::: {.callout-note}
-A constant-temperature surface doesn't require phase change (condensation, evaporation). It also approximates any stream with a very large heat capacity rate $C = \dot{m}c_p$: if enough fluid is flowing, its temperature barely shifts and it looks flat on the plot.
+A constant-temperature surface can occur during a phase change, and it also approximates any stream with a very large heat capacity rate $C = \dot{m}c_p$: if enough fluid is flowing, its temperature barely shifts and it looks flat on the plot.
 :::
 
-**Arithmetic mean always overestimates.** The summary panel shows the arithmetic mean alongside $\Delta T_{lm}$. The arithmetic mean is always $\geq \Delta T_{lm}$ (by the AM–GM inequality applied to the exponential profile). Using it in $\dot{Q} = \overline{h}A\,\Delta T$ would overestimate the heat transfer rate. The correction matters most when $\Delta T_1 / \Delta T_2$ is far from 1.
+**Arithmetic mean always overestimates.** The summary panel shows the arithmetic mean alongside $\Delta T_{lm}$. The arithmetic mean is always greater than or equal to $\Delta T_{lm}$. Using it in $\dot{Q} = \overline{h}A\,\Delta T$ would overestimate the heat transfer rate. The correction matters most when $\Delta T_1 / \Delta T_2$ is far from 1.
 
-**Counter flow outperforms parallel flow — with the same terminal temperatures.** *(Coming in a few weeks, but worth a peek now.)* Switch to "Counter flow" or "Parallel flow" with $T_h$: 90 → 60 °C, $T_c$: 20 → 55 °C. The arithmetic mean $\Delta T$ is the same for both — it only depends on the four terminal values. But $\Delta T_{lm}$ is notably higher for counter flow, because counter flow keeps $\Delta T_1$ and $\Delta T_2$ more balanced; the log-mean penalizes large imbalance. That gap is the engineering motivation for counter-flow designs: same heat exchanged, smaller required area.
+**Counter flow outperforms parallel flow — with the same terminal temperatures.** *(Coming in a few weeks, but worth a peek now.)* Switch to "Counter flow" or "Parallel flow" with $T_h$: 90 → 60 °C, $T_c$: 20 → 55 °C. The arithmetic mean $\Delta T$ is the same for both — it only depends on the four terminal values. But $\Delta T_{lm}$ is notably higher for counter flow, because counter flow keeps $\Delta T_1$ and $\Delta T_2$ more balanced; the log-mean penalizes large imbalance. That gap is the engineering motivation for counter-flow designs.
 
-**When $\Delta T_1 = \Delta T_2$**, $\Delta T_{lm} = \Delta T_1$ exactly (L'Hôpital's rule on the $0/0$ form). The profiles become straight lines and the arithmetic mean is correct. This happens in counter flow when the two streams have equal capacity rates — a balanced, perfectly efficient exchanger.
+**When $\Delta T_1 = \Delta T_2$**, $\Delta T_{lm} = \Delta T_1$ exactly. (To show this, remember L'Hôpital's Rule.) The profiles become straight lines and the arithmetic mean is correct. This happens in counter flow when the two streams have equal capacity rates — a balanced, perfectly efficient exchanger.
 
 ---
 
@@ -303,31 +303,31 @@ A constant-temperature surface doesn't require phase change (condensation, evapo
 
 A bank of $N_T = 4$ tubes wide and $N_L = 20$ rows deep ($N = 80$ total) is arranged in an aligned square pitch: $D = 0.025$ m, $S_T = S_L = 0.050$ m, tube length $L = 1$ m. Air approaches at $V_\infty = 4$ m/s and $T_\text{in} = 15\,^\circ$C; the tubes are held at $T_s = 70\,^\circ$C. Find $\overline{h}$, the outlet temperature, $\Delta T_{lm}$, and the total heat transfer.
 
-**Step 0 — Find $\overline{h}$ from the tube bank correlation.**
+**Step 1 — Find $\overline{h}$ from the tube bank correlation.**
 
-We need properties at $T_\text{avg} = (T_\text{in} + T_\text{out})/2$, but we don't know $T_\text{out}$ yet. We'll guess $T_\text{out} \approx 40\,^\circ$C, putting $T_\text{avg} \approx 27\,^\circ$C $\approx 300$ K, and check afterward. Air properties at 300 K (Table A.4): $k = 0.0263\;\text{W/m·K}$, $\nu = 15.9\times10^{-6}\;\text{m}^2\text{/s}$, $\rho = 1.16\;\text{kg/m}^3$, $c_p = 1007\;\text{J/kg·K}$, $\text{Pr} = 0.707$. At $T_s = 70\,^\circ$C: $\text{Pr}_s = 0.701$.
+We need properties at $T_\text{avg} = (T_\text{in} + T_\text{out})/2$, but we don't know $T_\text{out}$ yet. We'll guess $T_\text{out} \approx 40\,^\circ$C, putting $T_\text{avg} \approx 27\,^\circ$C $\approx 300$ K, and check afterward. Air properties at 300 K (from Wolfram Alpha): $k = 0.0264\;\text{W/m·K}$, $\nu = 15.7\times 10^{-6}\;\text{m}^2\text{/s}$, $\rho = 1.18\;\text{kg/m}^3$, $c_p = 1005\;\text{J/kg·K}$, $\text{Pr} = 0.707$. At $T_s = 70\,^\circ$C: $\text{Pr}_s = 0.702$.
 
 Maximum velocity through the narrowest cross-section between tubes:
 
 $$V_\text{max} = \frac{S_T}{S_T - D}\,V_\infty = \frac{0.050}{0.050 - 0.025}\times 4 = 8\;\text{m/s}$$
 
-$$\text{Re}_{D,\max} = \frac{V_\text{max}\,D}{\nu} = \frac{8\times 0.025}{15.9\times10^{-6}} = 12{,}600$$
+$$\text{Re}_{D,\max} = \frac{V_\text{max}\,D}{\nu} = \frac{8\times 0.025}{15.7\times10^{-6}} = 12{,}700$$
 
-This falls in the range $10^3$–$2\times10^5$ for an aligned bank with $S_T/S_L = 1.0 > 0.7$, so from the table: $C_1 = 0.27$, $m = 0.63$. Since $N_L = 20$, no correction factor is needed ($C_2 = 1$). The Prandtl ratio $(0.707/0.701)^{1/4} \approx 1.00$ — essentially no effect for air — so:
+This falls in the range $10^3$–$2\times10^5$ for an aligned bank with $S_T/S_L = 1.0 > 0.7$, so from the table: $C_1 = 0.27$, $m = 0.63$. Since $N_L = 20$, no correction factor is needed ($C_2 = 1$). The Prandtl ratio $(0.707/0.702)^{1/4} \approx 1.00$ — essentially no effect for air — so:
 
-$$\overline{\text{Nu}}_D = 0.27\times 12600^{0.63}\times 0.707^{0.36} = 0.27\times 383\times 0.883 \approx 91.3$$
+$$\overline{\text{Nu}}_D = 0.27\times 12700^{0.63}\times 0.707^{0.36} = 0.27\times 385\times 0.883 \approx 92.0$$
 
-$$\overline{h} = \frac{k}{D}\,\overline{\text{Nu}}_D = \frac{0.0263}{0.025}\times 91.3 \approx 96\;\text{W/m}^2\text{K}$$
+$$\overline{h} = \frac{k}{D}\,\overline{\text{Nu}}_D = \frac{0.0264}{0.025}\times 92.0 \approx 97\;\text{W/m}^2\text{K}$$
 
-**Step 1 — Estimate the outlet temperature.**
+**Step 2 — Estimate the outlet temperature.**
 
-$$\frac{T_s - T_\text{out}}{T_s - T_\text{in}} = \exp\!\left(\frac{-\pi D N\,\overline{h}}{\rho\,V_\infty\,N_T\,S_T\,c_p}\right) = \exp\!\left(\frac{-\pi\times 0.025\times 80\times 96}{1.16\times 4\times 4\times 0.050\times 1007}\right) = \exp(-0.645) = 0.525$$
+$$\frac{T_s - T_\text{out}}{T_s - T_\text{in}} = \exp\!\left(\frac{-\pi D N\,\overline{h}}{\rho\,V_\infty\,N_T\,S_T\,c_p}\right) = \exp\!\left(\frac{-\pi\times 0.025\times 80\times 97}{1.18\times 4\times 4\times 0.050\times 1005}\right) = \exp(-0.642) = 0.526$$
 
-$$T_\text{out} = 70 - 0.525\times(70-15) = 70 - 28.9 \approx 41\,^\circ\text{C}$$
+$$T_\text{out} = 70 - 0.526\times(70-15) = 70 - 28.9 \approx 41\,^\circ\text{C}$$
 
 $T_\text{avg} = (15 + 41)/2 = 28\,^\circ\text{C} \approx 300$ K — consistent with our property choice. ✓
 
-**Step 2 — Apply the log-mean formula.**
+**Step 3 — Apply the log-mean formula.**
 
 $$\Delta T_1 = T_s - T_\text{in} = 70 - 15 = 55\,^\circ\text{C}, \qquad \Delta T_2 = T_s - T_\text{out} = 70 - 41 = 29\,^\circ\text{C}$$
 
@@ -337,6 +337,6 @@ Check against the demo: in the default "Constant $T_s$" mode, set $T_s = 70\,^\c
 
 The arithmetic mean gives $(55 + 29)/2 = 42\,^\circ$C — about 3% above $\Delta T_{lm}$ here. Not catastrophic, but the error grows quickly as $\Delta T_1/\Delta T_2$ moves away from 1.
 
-**Step 3 — Total heat transfer:**
+**Step 4 — Total heat transfer:**
 
-$$\dot{Q} = N\,\overline{h}\,\pi D L\,\Delta T_{lm} = 80\times 96\times\pi\times 0.025\times 1\times 40.6 \approx 24.4\;\text{kW}$$
+$$\dot{Q} = N\,\overline{h}\,\pi D L\,\Delta T_{lm} = 80\times 97\times\pi\times 0.025\times 1\times 40.6 \approx 24.7\;\text{kW}$$

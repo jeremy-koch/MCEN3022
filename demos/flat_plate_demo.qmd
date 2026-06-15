@@ -348,4 +348,4 @@ $$\boxed{\bar{h} \approx 22.6\;\text{W/m}^2\text{K}}$$
 
 $$\dot{Q} = \bar{h}\,wL\,(T_s-T_\infty) = 22.6\times(1\times2)\times(75-25) = \boxed{2260\;\text{W}}$$
 
-Set $U_\infty = 10$, $L = 2$ in the demo (Air preset) and confirm the green dot reads approximately 22.6. Now compare to a fully laminar plate: set $U_\infty = 3$ m/s ($\text{Re}_L = 3.84\times10^5 < 5\times10^5$, no transition). The laminar-only $\bar{h}$ drops to roughly 8 W/m²·K — for the same $\Delta T$ and plate area that would reduce the heat transfer rate from 2.26 kW to only 0.8 kW.
+Set $U_\infty = 10$, $L = 2$ in the demo (Air preset) and confirm the average convection coefficient reads approximately 22.6. Now compare to a fully laminar plate: set $U_\infty = 3$ m/s ($\text{Re}_L = 3.84\times10^5 < 5\times10^5$, no transition). The laminar-only $\bar{h}$ drops to roughly 8 W/m²·K — for the same $\Delta T$ and plate area that would reduce the heat transfer rate from 2.26 kW to only 0.8 kW.
