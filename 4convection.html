@@ -358,6 +358,7 @@ window.Quarto = {
   <li><a href="#table-7.5-constants-for-tube-bank-correlation" id="toc-table-7.5-constants-for-tube-bank-correlation" class="nav-link" data-scroll-target="#table-7.5-constants-for-tube-bank-correlation"><span class="header-section-number">4.8</span> Table 7.5 — Constants for Tube Bank Correlation</a>
   <ul class="collapse">
   <li><a href="#the-log-mean-temperature-difference" id="toc-the-log-mean-temperature-difference" class="nav-link" data-scroll-target="#the-log-mean-temperature-difference"><span class="header-section-number">4.8.1</span> The Log-Mean Temperature Difference</a></li>
+  <li><a href="#calculating-the-heat-transfer" id="toc-calculating-the-heat-transfer" class="nav-link" data-scroll-target="#calculating-the-heat-transfer"><span class="header-section-number">4.8.2</span> Calculating the heat transfer</a></li>
   </ul></li>
   <li><a href="#interactive-demo-lmtd" id="toc-interactive-demo-lmtd" class="nav-link" data-scroll-target="#interactive-demo-lmtd"><span class="header-section-number">4.9</span> Interactive Demo – LMTD</a></li>
   </ul>
@@ -749,7 +750,7 @@ Tip
 <p><span id="eq-sphere-corr"><span class="math display">\[
 \overline{\text{Nu}}_D = 2 + \left(0.4\,\text{Re}_D^{1/2} + 0.06\,\text{Re}_D^{2/3}\right)\text{Pr}^{0.4}\cdot\left(\frac{\mu}{\mu_s}\right)^{1/4}
 \tag{4.2}\]</span></span></p>
-<p>All properties evaluated at <span class="math inline">\(T_\infty\)</span> except <span class="math inline">\(\mu_s\)</span> (at surface).</p>
+<p>All properties evaluated at <span class="math inline">\(T_\infty\)</span> except <span class="math inline">\(\mu_s\)</span> (evaluated at the surface temperature).</p>
 <section id="worked-example-copper-sphere-cooling" class="level3" data-number="4.6.1">
 <h3 data-number="4.6.1" class="anchored" data-anchor-id="worked-example-copper-sphere-cooling"><span class="header-section-number">4.6.1</span> Worked Example — Copper Sphere Cooling</h3>
 <p>A copper sphere with diameter 10 mm begins at 75°C and is to be cooled to 35°C by air. The air has speed 10 m/s and temperature 23°C.</p>
@@ -927,17 +928,24 @@ Tip
 <hr>
 <section id="the-log-mean-temperature-difference" class="level3" data-number="4.8.1">
 <h3 data-number="4.8.1" class="anchored" data-anchor-id="the-log-mean-temperature-difference"><span class="header-section-number">4.8.1</span> The Log-Mean Temperature Difference</h3>
-<p>When it comes to predicting total heat transfer, it is <strong>not</strong> the case that:</p>
-<p><span class="math display">\[\dot{Q} \neq N\overline{h}\cdot\pi DL\cdot(T_\text{surf}-T_\infty) \quad \text{(crossed out — this overestimates } \dot{Q}\text{)}\]</span></p>
-<p>Because <span class="math inline">\(\dot{Q}\)</span> can’t simply scale with <span class="math inline">\(N\)</span> and <span class="math inline">\(T_\text{surf}-T_\infty\)</span>: the fluid warms up as it passes through the bank.</p>
+<p>When it comes to predicting total heat transfer, it is <strong>not</strong> the case that <span class="math inline">\(\dot{Q}\)</span> simply scales with <span class="math inline">\(N\)</span> and <span class="math inline">\(\Delta T=T_\text{surf}-T_\infty\)</span>.</p>
 <p>Instead, use the <strong>log-mean temperature difference</strong>:</p>
-<p><span class="math display">\[\boxed{\Delta T_{lm} = \frac{(T_s - T_i) - (T_s - T_o)}{\ln\!\left(\frac{T_s - T_i}{T_s - T_o}\right)}} \quad = \text{"log-mean temperature difference"}\]</span></p>
-<p>a better representation of the average local <span class="math inline">\(\Delta T\)</span>, where <span class="math inline">\(T_i\)</span> = inlet temperature, <span class="math inline">\(T_o\)</span> = outlet temperature of external flow.</p>
-<p>Find <span class="math inline">\(T_o\)</span> from:</p>
-<p><span class="math display">\[\frac{T_s - T_o}{T_s - T_i} \approx \exp\!\left(\frac{-\pi D N \overline{h}}{\rho V N_T S_T c_p}\right)\]</span></p>
-<p>(Here <span class="math inline">\(N_T\)</span> = number of tubes per row, <span class="math inline">\(V\)</span> = free-stream velocity.)</p>
-<p>Then:</p>
-<p><span class="math display">\[\boxed{\dot{Q} = N\overline{h}\,\pi DL\cdot\Delta T_{lm}} \qquad \text{(Bank of }N\text{ tubes)}\]</span></p>
+<p><span class="math display">\[
+\Delta T_{lm} = \frac{(T_s - T_i) - (T_s - T_o)}{\ln\!\left(\frac{T_s - T_i}{T_s - T_o}\right)}
+\]</span></p>
+<p>… a better representation of the average local <span class="math inline">\(\Delta T\)</span>. The external flow’s inlet temperature is <span class="math inline">\(T_i\)</span>, the outlet temperature is <span class="math inline">\(T_o\)</span>. Of course, we don’t know what the outlet temperature is, exactly! Knowing that requires us to know how much heat transfer has occured… and that is the whole problem!</p>
+<p>We have a way of estimating it though:</p>
+<p><span class="math display">\[
+\frac{T_s - T_o}{T_s - T_i} \approx \exp\!\left(\frac{-\pi D N \overline{h}}{\rho V N_T S_T c_p}\right)
+\]</span></p>
+<p>where <span class="math inline">\(N_T\)</span> is number of tubes per row and <span class="math inline">\(V\)</span> is the free-stream velocity.</p>
+</section>
+<section id="calculating-the-heat-transfer" class="level3" data-number="4.8.2">
+<h3 data-number="4.8.2" class="anchored" data-anchor-id="calculating-the-heat-transfer"><span class="header-section-number">4.8.2</span> Calculating the heat transfer</h3>
+<p>We finally arrive at an expression for the total amount of heat transfer over the bank of tubes:</p>
+<p><span class="math display">\[
+\dot{Q} = N\overline{h}\,\pi DL\cdot\Delta T_{lm}
+\]</span></p>
 </section>
 </section>
 <section id="interactive-demo-lmtd" class="level2" data-number="4.9">
@@ -1769,7 +1777,7 @@ Tip
 <span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a>\overline{\text{Nu}}_D = 2 + \left(0.4\,\text{Re}_D^{1/2} + 0.06\,\text{Re}_D^{2/3}\right)\text{Pr}^{0.4}\cdot\left(\frac{\mu}{\mu_s}\right)^{1/4}</span>
 <span id="cb1-355"><a href="#cb1-355" aria-hidden="true" tabindex="-1"></a>$$ {#eq-sphere-corr}</span>
 <span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-357"><a href="#cb1-357" aria-hidden="true" tabindex="-1"></a>All properties evaluated at $T_\infty$ except $\mu_s$ (at surface).</span>
+<span id="cb1-357"><a href="#cb1-357" aria-hidden="true" tabindex="-1"></a>All properties evaluated at $T_\infty$ except $\mu_s$ (evaluated at the surface temperature).</span>
 <span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-359"><a href="#cb1-359" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a></span>
@@ -1877,32 +1885,42 @@ Tip
 <span id="cb1-462"><a href="#cb1-462" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-463"><a href="#cb1-463" aria-hidden="true" tabindex="-1"></a><span class="fu">### The Log-Mean Temperature Difference</span></span>
 <span id="cb1-464"><a href="#cb1-464" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-465"><a href="#cb1-465" aria-hidden="true" tabindex="-1"></a>When it comes to predicting total heat transfer, it is **not** the case that:</span>
+<span id="cb1-465"><a href="#cb1-465" aria-hidden="true" tabindex="-1"></a>When it comes to predicting total heat transfer, it is **not** the case that $\dot{Q}$ simply scales with $N$ and $\Delta T=T_\text{surf}-T_\infty$.</span>
 <span id="cb1-466"><a href="#cb1-466" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-467"><a href="#cb1-467" aria-hidden="true" tabindex="-1"></a>$$\dot{Q} \neq N\overline{h}\cdot\pi DL\cdot(T_\text{surf}-T_\infty) \quad \text{(crossed out — this overestimates } \dot{Q}\text{)}$$</span>
+<span id="cb1-467"><a href="#cb1-467" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-468"><a href="#cb1-468" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-469"><a href="#cb1-469" aria-hidden="true" tabindex="-1"></a>Because $\dot{Q}$ can't simply scale with $N$ and $T_\text{surf}-T_\infty$: the fluid warms up as it passes through the bank.</span>
-<span id="cb1-470"><a href="#cb1-470" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-471"><a href="#cb1-471" aria-hidden="true" tabindex="-1"></a>Instead, use the **log-mean temperature difference**:</span>
-<span id="cb1-472"><a href="#cb1-472" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-473"><a href="#cb1-473" aria-hidden="true" tabindex="-1"></a>$$\boxed{\Delta T_{lm} = \frac{(T_s - T_i) - (T_s - T_o)}{\ln<span class="sc">\!</span>\left(\frac{T_s - T_i}{T_s - T_o}\right)}} \quad = \text{"log-mean temperature difference"}$$</span>
-<span id="cb1-474"><a href="#cb1-474" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-475"><a href="#cb1-475" aria-hidden="true" tabindex="-1"></a>a better representation of the average local $\Delta T$, where $T_i$ = inlet temperature, $T_o$ = outlet temperature of external flow.</span>
-<span id="cb1-476"><a href="#cb1-476" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-477"><a href="#cb1-477" aria-hidden="true" tabindex="-1"></a>Find $T_o$ from:</span>
-<span id="cb1-478"><a href="#cb1-478" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-479"><a href="#cb1-479" aria-hidden="true" tabindex="-1"></a>$$\frac{T_s - T_o}{T_s - T_i} \approx \exp<span class="sc">\!</span>\left(\frac{-\pi D N \overline{h}}{\rho V N_T S_T c_p}\right)$$</span>
+<span id="cb1-469"><a href="#cb1-469" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-470"><a href="#cb1-470" aria-hidden="true" tabindex="-1"></a>Instead, use the **log-mean temperature difference**:</span>
+<span id="cb1-471"><a href="#cb1-471" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-472"><a href="#cb1-472" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-473"><a href="#cb1-473" aria-hidden="true" tabindex="-1"></a>\Delta T_{lm} = \frac{(T_s - T_i) - (T_s - T_o)}{\ln<span class="sc">\!</span>\left(\frac{T_s - T_i}{T_s - T_o}\right)}</span>
+<span id="cb1-474"><a href="#cb1-474" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-475"><a href="#cb1-475" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-476"><a href="#cb1-476" aria-hidden="true" tabindex="-1"></a>... a better representation of the average local $\Delta T$. The external flow's inlet temperature is $T_i$, the outlet temperature is $T_o$. Of course, we don't know what the outlet temperature is, exactly! Knowing that requires us to know how much heat transfer has occured... and that is the whole problem!</span>
+<span id="cb1-477"><a href="#cb1-477" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-478"><a href="#cb1-478" aria-hidden="true" tabindex="-1"></a>We have a way of estimating it though: </span>
+<span id="cb1-479"><a href="#cb1-479" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-480"><a href="#cb1-480" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-481"><a href="#cb1-481" aria-hidden="true" tabindex="-1"></a>(Here $N_T$ = number of tubes per row, $V$ = free-stream velocity.)</span>
-<span id="cb1-482"><a href="#cb1-482" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-483"><a href="#cb1-483" aria-hidden="true" tabindex="-1"></a>Then:</span>
+<span id="cb1-481"><a href="#cb1-481" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-482"><a href="#cb1-482" aria-hidden="true" tabindex="-1"></a>\frac{T_s - T_o}{T_s - T_i} \approx \exp<span class="sc">\!</span>\left(\frac{-\pi D N \overline{h}}{\rho V N_T S_T c_p}\right)</span>
+<span id="cb1-483"><a href="#cb1-483" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-484"><a href="#cb1-484" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-485"><a href="#cb1-485" aria-hidden="true" tabindex="-1"></a>$$\boxed{\dot{Q} = N\overline{h}\,\pi DL\cdot\Delta T_{lm}} \qquad \text{(Bank of }N\text{ tubes)}$$</span>
+<span id="cb1-485"><a href="#cb1-485" aria-hidden="true" tabindex="-1"></a>where $N_T$ is number of tubes per row and $V$ is the free-stream velocity.</span>
 <span id="cb1-486"><a href="#cb1-486" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-487"><a href="#cb1-487" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-488"><a href="#cb1-488" aria-hidden="true" tabindex="-1"></a><span class="fu">## Interactive Demo -- LMTD</span></span>
-<span id="cb1-489"><a href="#cb1-489" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-490"><a href="#cb1-490" aria-hidden="true" tabindex="-1"></a>I created an interactive demo to explore the log-mean temperature difference <span class="co">[</span><span class="ot">Find it at this link</span><span class="co">](demos/LMTD_demo.qmd)</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-488"><a href="#cb1-488" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-489"><a href="#cb1-489" aria-hidden="true" tabindex="-1"></a><span class="fu">### Calculating the heat transfer</span></span>
+<span id="cb1-490"><a href="#cb1-490" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-491"><a href="#cb1-491" aria-hidden="true" tabindex="-1"></a>We finally arrive at an expression for the total amount of heat transfer over the bank of tubes:</span>
+<span id="cb1-492"><a href="#cb1-492" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-493"><a href="#cb1-493" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-494"><a href="#cb1-494" aria-hidden="true" tabindex="-1"></a>\dot{Q} = N\overline{h}\,\pi DL\cdot\Delta T_{lm}</span>
+<span id="cb1-495"><a href="#cb1-495" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-496"><a href="#cb1-496" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-497"><a href="#cb1-497" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-498"><a href="#cb1-498" aria-hidden="true" tabindex="-1"></a><span class="fu">## Interactive Demo -- LMTD</span></span>
+<span id="cb1-499"><a href="#cb1-499" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-500"><a href="#cb1-500" aria-hidden="true" tabindex="-1"></a>I created an interactive demo to explore the log-mean temperature difference <span class="co">[</span><span class="ot">Find it at this link</span><span class="co">](demos/LMTD_demo.qmd)</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
