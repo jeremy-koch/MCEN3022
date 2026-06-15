@@ -358,7 +358,7 @@ window.Quarto = {
 <p>When a fluid flows through a heat exchanger, the temperature difference between the hot and cold streams changes along the length. The local driving force for heat transfer is the local <span class="math inline">\(\Delta T\)</span>, so we can’t just use the inlet or outlet difference as the “effective” average — we need the <strong>log-mean temperature difference</strong>:</p>
 <p><span class="math display">\[\Delta T_{lm} = \frac{\Delta T_1 - \Delta T_2}{\ln(\Delta T_1/\Delta T_2)}\]</span></p>
 <p>where <span class="math inline">\(\Delta T_1\)</span> and <span class="math inline">\(\Delta T_2\)</span> are the temperature differences at the two ends of the exchanger (hot-inlet end and hot-outlet end, respectively).</p>
-<p>The temperature profiles along the exchanger are exponential – not linear – determined by the heat capacity rates <span class="math inline">\(C = \dot{m}c_p\)</span> of each stream. Given the four terminal temperatures, those profiles are fully determined, and that’s what the demo plots.</p>
+<p>The temperature profiles along the exchanger are exponential (not linear) determined by the heat capacity rates <span class="math inline">\(C = \dot{m}c_p\)</span> of each stream. Given the four terminal temperatures, those profiles are fully determined – that’s what the demo plots.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -369,7 +369,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Where this fits right now: In the tube bank section, the hot side is a surface held at constant temperature <span class="math inline">\(T_s\)</span> — that’s the default here. The demo also includes counter- and parallel-flow arrangements, which are heat exchanger concepts coming in a few weeks; they’re here so this demo stays useful then. For now, just use “Constant <span class="math inline">\(T_s\)</span> (tube bank)”.</p>
+<p>Where this fits right now: In the bank of tubes section of Chapter 4, the hot side is a surface held at constant temperature <span class="math inline">\(T_s\)</span>. This is the default setting here, but the demo also includes counter- and parallel-flow arrangements, which are heat exchanger concepts coming in a few weeks. For now, just use “Constant <span class="math inline">\(T_s\)</span> (tube bank)”.</p>
 </div>
 </div>
 <section id="sec-demo" class="level2">
@@ -660,36 +660,36 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A constant-temperature surface doesn’t require phase change (condensation, evaporation). It also approximates any stream with a very large heat capacity rate <span class="math inline">\(C = \dot{m}c_p\)</span>: if enough fluid is flowing, its temperature barely shifts and it looks flat on the plot.</p>
+<p>A constant-temperature surface can occur during a phase change, and it also approximates any stream with a very large heat capacity rate <span class="math inline">\(C = \dot{m}c_p\)</span>: if enough fluid is flowing, its temperature barely shifts and it looks flat on the plot.</p>
 </div>
 </div>
-<p><strong>Arithmetic mean always overestimates.</strong> The summary panel shows the arithmetic mean alongside <span class="math inline">\(\Delta T_{lm}\)</span>. The arithmetic mean is always <span class="math inline">\(\geq \Delta T_{lm}\)</span> (by the AM–GM inequality applied to the exponential profile). Using it in <span class="math inline">\(\dot{Q} = \overline{h}A\,\Delta T\)</span> would overestimate the heat transfer rate. The correction matters most when <span class="math inline">\(\Delta T_1 / \Delta T_2\)</span> is far from 1.</p>
-<p><strong>Counter flow outperforms parallel flow — with the same terminal temperatures.</strong> <em>(Coming in a few weeks, but worth a peek now.)</em> Switch to “Counter flow” or “Parallel flow” with <span class="math inline">\(T_h\)</span>: 90 → 60 °C, <span class="math inline">\(T_c\)</span>: 20 → 55 °C. The arithmetic mean <span class="math inline">\(\Delta T\)</span> is the same for both — it only depends on the four terminal values. But <span class="math inline">\(\Delta T_{lm}\)</span> is notably higher for counter flow, because counter flow keeps <span class="math inline">\(\Delta T_1\)</span> and <span class="math inline">\(\Delta T_2\)</span> more balanced; the log-mean penalizes large imbalance. That gap is the engineering motivation for counter-flow designs: same heat exchanged, smaller required area.</p>
-<p><strong>When <span class="math inline">\(\Delta T_1 = \Delta T_2\)</span></strong>, <span class="math inline">\(\Delta T_{lm} = \Delta T_1\)</span> exactly (L’Hôpital’s rule on the <span class="math inline">\(0/0\)</span> form). The profiles become straight lines and the arithmetic mean is correct. This happens in counter flow when the two streams have equal capacity rates — a balanced, perfectly efficient exchanger.</p>
+<p><strong>Arithmetic mean always overestimates.</strong> The summary panel shows the arithmetic mean alongside <span class="math inline">\(\Delta T_{lm}\)</span>. The arithmetic mean is always greater than or equal to <span class="math inline">\(\Delta T_{lm}\)</span>. Using it in <span class="math inline">\(\dot{Q} = \overline{h}A\,\Delta T\)</span> would overestimate the heat transfer rate. The correction matters most when <span class="math inline">\(\Delta T_1 / \Delta T_2\)</span> is far from 1.</p>
+<p><strong>Counter flow outperforms parallel flow — with the same terminal temperatures.</strong> <em>(Coming in a few weeks, but worth a peek now.)</em> Switch to “Counter flow” or “Parallel flow” with <span class="math inline">\(T_h\)</span>: 90 → 60 °C, <span class="math inline">\(T_c\)</span>: 20 → 55 °C. The arithmetic mean <span class="math inline">\(\Delta T\)</span> is the same for both — it only depends on the four terminal values. But <span class="math inline">\(\Delta T_{lm}\)</span> is notably higher for counter flow, because counter flow keeps <span class="math inline">\(\Delta T_1\)</span> and <span class="math inline">\(\Delta T_2\)</span> more balanced; the log-mean penalizes large imbalance. That gap is the engineering motivation for counter-flow designs.</p>
+<p><strong>When <span class="math inline">\(\Delta T_1 = \Delta T_2\)</span></strong>, <span class="math inline">\(\Delta T_{lm} = \Delta T_1\)</span> exactly. (To show this, remember L’Hôpital’s Rule.) The profiles become straight lines and the arithmetic mean is correct. This happens in counter flow when the two streams have equal capacity rates — a balanced, perfectly efficient exchanger.</p>
 <hr>
 </section>
 <section id="sec-worked" class="level2">
 <h2 class="anchored" data-anchor-id="sec-worked">Worked example — tube bank as isothermal hot surface</h2>
 <p>A bank of <span class="math inline">\(N_T = 4\)</span> tubes wide and <span class="math inline">\(N_L = 20\)</span> rows deep (<span class="math inline">\(N = 80\)</span> total) is arranged in an aligned square pitch: <span class="math inline">\(D = 0.025\)</span> m, <span class="math inline">\(S_T = S_L = 0.050\)</span> m, tube length <span class="math inline">\(L = 1\)</span> m. Air approaches at <span class="math inline">\(V_\infty = 4\)</span> m/s and <span class="math inline">\(T_\text{in} = 15\,^\circ\)</span>C; the tubes are held at <span class="math inline">\(T_s = 70\,^\circ\)</span>C. Find <span class="math inline">\(\overline{h}\)</span>, the outlet temperature, <span class="math inline">\(\Delta T_{lm}\)</span>, and the total heat transfer.</p>
-<p><strong>Step 0 — Find <span class="math inline">\(\overline{h}\)</span> from the tube bank correlation.</strong></p>
-<p>We need properties at <span class="math inline">\(T_\text{avg} = (T_\text{in} + T_\text{out})/2\)</span>, but we don’t know <span class="math inline">\(T_\text{out}\)</span> yet. We’ll guess <span class="math inline">\(T_\text{out} \approx 40\,^\circ\)</span>C, putting <span class="math inline">\(T_\text{avg} \approx 27\,^\circ\)</span>C <span class="math inline">\(\approx 300\)</span> K, and check afterward. Air properties at 300 K (Table A.4): <span class="math inline">\(k = 0.0263\;\text{W/m·K}\)</span>, <span class="math inline">\(\nu = 15.9\times10^{-6}\;\text{m}^2\text{/s}\)</span>, <span class="math inline">\(\rho = 1.16\;\text{kg/m}^3\)</span>, <span class="math inline">\(c_p = 1007\;\text{J/kg·K}\)</span>, <span class="math inline">\(\text{Pr} = 0.707\)</span>. At <span class="math inline">\(T_s = 70\,^\circ\)</span>C: <span class="math inline">\(\text{Pr}_s = 0.701\)</span>.</p>
+<p><strong>Step 1 — Find <span class="math inline">\(\overline{h}\)</span> from the tube bank correlation.</strong></p>
+<p>We need properties at <span class="math inline">\(T_\text{avg} = (T_\text{in} + T_\text{out})/2\)</span>, but we don’t know <span class="math inline">\(T_\text{out}\)</span> yet. We’ll guess <span class="math inline">\(T_\text{out} \approx 40\,^\circ\)</span>C, putting <span class="math inline">\(T_\text{avg} \approx 27\,^\circ\)</span>C <span class="math inline">\(\approx 300\)</span> K, and check afterward. Air properties at 300 K (from Wolfram Alpha): <span class="math inline">\(k = 0.0264\;\text{W/m·K}\)</span>, <span class="math inline">\(\nu = 15.7\times 10^{-6}\;\text{m}^2\text{/s}\)</span>, <span class="math inline">\(\rho = 1.18\;\text{kg/m}^3\)</span>, <span class="math inline">\(c_p = 1005\;\text{J/kg·K}\)</span>, <span class="math inline">\(\text{Pr} = 0.707\)</span>. At <span class="math inline">\(T_s = 70\,^\circ\)</span>C: <span class="math inline">\(\text{Pr}_s = 0.702\)</span>.</p>
 <p>Maximum velocity through the narrowest cross-section between tubes:</p>
 <p><span class="math display">\[V_\text{max} = \frac{S_T}{S_T - D}\,V_\infty = \frac{0.050}{0.050 - 0.025}\times 4 = 8\;\text{m/s}\]</span></p>
-<p><span class="math display">\[\text{Re}_{D,\max} = \frac{V_\text{max}\,D}{\nu} = \frac{8\times 0.025}{15.9\times10^{-6}} = 12{,}600\]</span></p>
-<p>This falls in the range <span class="math inline">\(10^3\)</span>–<span class="math inline">\(2\times10^5\)</span> for an aligned bank with <span class="math inline">\(S_T/S_L = 1.0 &gt; 0.7\)</span>, so from the table: <span class="math inline">\(C_1 = 0.27\)</span>, <span class="math inline">\(m = 0.63\)</span>. Since <span class="math inline">\(N_L = 20\)</span>, no correction factor is needed (<span class="math inline">\(C_2 = 1\)</span>). The Prandtl ratio <span class="math inline">\((0.707/0.701)^{1/4} \approx 1.00\)</span> — essentially no effect for air — so:</p>
-<p><span class="math display">\[\overline{\text{Nu}}_D = 0.27\times 12600^{0.63}\times 0.707^{0.36} = 0.27\times 383\times 0.883 \approx 91.3\]</span></p>
-<p><span class="math display">\[\overline{h} = \frac{k}{D}\,\overline{\text{Nu}}_D = \frac{0.0263}{0.025}\times 91.3 \approx 96\;\text{W/m}^2\text{K}\]</span></p>
-<p><strong>Step 1 — Estimate the outlet temperature.</strong></p>
-<p><span class="math display">\[\frac{T_s - T_\text{out}}{T_s - T_\text{in}} = \exp\!\left(\frac{-\pi D N\,\overline{h}}{\rho\,V_\infty\,N_T\,S_T\,c_p}\right) = \exp\!\left(\frac{-\pi\times 0.025\times 80\times 96}{1.16\times 4\times 4\times 0.050\times 1007}\right) = \exp(-0.645) = 0.525\]</span></p>
-<p><span class="math display">\[T_\text{out} = 70 - 0.525\times(70-15) = 70 - 28.9 \approx 41\,^\circ\text{C}\]</span></p>
+<p><span class="math display">\[\text{Re}_{D,\max} = \frac{V_\text{max}\,D}{\nu} = \frac{8\times 0.025}{15.7\times10^{-6}} = 12{,}700\]</span></p>
+<p>This falls in the range <span class="math inline">\(10^3\)</span>–<span class="math inline">\(2\times10^5\)</span> for an aligned bank with <span class="math inline">\(S_T/S_L = 1.0 &gt; 0.7\)</span>, so from the table: <span class="math inline">\(C_1 = 0.27\)</span>, <span class="math inline">\(m = 0.63\)</span>. Since <span class="math inline">\(N_L = 20\)</span>, no correction factor is needed (<span class="math inline">\(C_2 = 1\)</span>). The Prandtl ratio <span class="math inline">\((0.707/0.702)^{1/4} \approx 1.00\)</span> — essentially no effect for air — so:</p>
+<p><span class="math display">\[\overline{\text{Nu}}_D = 0.27\times 12700^{0.63}\times 0.707^{0.36} = 0.27\times 385\times 0.883 \approx 92.0\]</span></p>
+<p><span class="math display">\[\overline{h} = \frac{k}{D}\,\overline{\text{Nu}}_D = \frac{0.0264}{0.025}\times 92.0 \approx 97\;\text{W/m}^2\text{K}\]</span></p>
+<p><strong>Step 2 — Estimate the outlet temperature.</strong></p>
+<p><span class="math display">\[\frac{T_s - T_\text{out}}{T_s - T_\text{in}} = \exp\!\left(\frac{-\pi D N\,\overline{h}}{\rho\,V_\infty\,N_T\,S_T\,c_p}\right) = \exp\!\left(\frac{-\pi\times 0.025\times 80\times 97}{1.18\times 4\times 4\times 0.050\times 1005}\right) = \exp(-0.642) = 0.526\]</span></p>
+<p><span class="math display">\[T_\text{out} = 70 - 0.526\times(70-15) = 70 - 28.9 \approx 41\,^\circ\text{C}\]</span></p>
 <p><span class="math inline">\(T_\text{avg} = (15 + 41)/2 = 28\,^\circ\text{C} \approx 300\)</span> K — consistent with our property choice. ✓</p>
-<p><strong>Step 2 — Apply the log-mean formula.</strong></p>
+<p><strong>Step 3 — Apply the log-mean formula.</strong></p>
 <p><span class="math display">\[\Delta T_1 = T_s - T_\text{in} = 70 - 15 = 55\,^\circ\text{C}, \qquad \Delta T_2 = T_s - T_\text{out} = 70 - 41 = 29\,^\circ\text{C}\]</span></p>
 <p><span class="math display">\[\Delta T_{lm} = \frac{55 - 29}{\ln(55/29)} = \frac{26}{\ln 1.897} = \frac{26}{0.640} = 40.6\,^\circ\text{C}\]</span></p>
 <p>Check against the demo: in the default “Constant <span class="math inline">\(T_s\)</span>” mode, set <span class="math inline">\(T_s = 70\,^\circ\)</span>C, <span class="math inline">\(T_\text{in} = 15\,^\circ\)</span>C, <span class="math inline">\(T_\text{out} = 41\,^\circ\)</span>C. The summary should read <span class="math inline">\(\Delta T_{lm} \approx 40.6\,^\circ\)</span>C.</p>
 <p>The arithmetic mean gives <span class="math inline">\((55 + 29)/2 = 42\,^\circ\)</span>C — about 3% above <span class="math inline">\(\Delta T_{lm}\)</span> here. Not catastrophic, but the error grows quickly as <span class="math inline">\(\Delta T_1/\Delta T_2\)</span> moves away from 1.</p>
-<p><strong>Step 3 — Total heat transfer:</strong></p>
-<p><span class="math display">\[\dot{Q} = N\,\overline{h}\,\pi D L\,\Delta T_{lm} = 80\times 96\times\pi\times 0.025\times 1\times 40.6 \approx 24.4\;\text{kW}\]</span></p>
+<p><strong>Step 4 — Total heat transfer:</strong></p>
+<p><span class="math display">\[\dot{Q} = N\,\overline{h}\,\pi D L\,\Delta T_{lm} = 80\times 97\times\pi\times 0.025\times 1\times 40.6 \approx 24.7\;\text{kW}\]</span></p>
 
 
 <!-- -->
@@ -1176,11 +1176,11 @@ window._ojs.runtime.interpretFromScriptTags();
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>where $\Delta T_1$ and $\Delta T_2$ are the temperature differences at the two ends of the exchanger (hot-inlet end and hot-outlet end, respectively).</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>The temperature profiles along the exchanger are exponential -- not linear -- determined by the heat capacity rates $C = \dot{m}c_p$ of each stream. Given the four terminal temperatures, those profiles are fully determined, and that's what the demo plots.</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>The temperature profiles along the exchanger are exponential (not linear) determined by the heat capacity rates $C = \dot{m}c_p$ of each stream. Given the four terminal temperatures, those profiles are fully determined -- that's what the demo plots.</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>Where this fits right now: In the tube bank section, the hot side is a surface held at constant temperature $T_s$ — that's the default here. The demo also includes counter- and parallel-flow arrangements, which are heat exchanger concepts coming in a few weeks; they're here so this demo stays useful then. For now, just use "Constant $T_s$ (tube bank)".</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>Where this fits right now: In the bank of tubes section of Chapter 4, the hot side is a surface held at constant temperature $T_s$. This is the default setting here, but the demo also includes counter- and parallel-flow arrangements, which are heat exchanger concepts coming in a few weeks. For now, just use "Constant $T_s$ (tube bank)".</span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="fu">## Interactive demo {#sec-demo}</span></span>
@@ -1458,14 +1458,14 @@ window._ojs.runtime.interpretFromScriptTags();
 <span id="cb2-290"><a href="#cb2-290" aria-hidden="true" tabindex="-1"></a>**The tube bank: constant $T_s$.** The default view shows exactly the setup from the chapter — the tube surface is at constant $T_s$ (flat red line), and the external flow heats up exponentially from $T_\text{in}$ to $T_\text{out}$. Try setting $T_s = 70\,^\circ$C, $T_\text{in} = 15\,^\circ$C, $T_\text{out} = 41\,^\circ$C to match the worked example below and confirm $\Delta T_{lm} \approx 40.6\,^\circ$C.</span>
 <span id="cb2-291"><a href="#cb2-291" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-292"><a href="#cb2-292" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
-<span id="cb2-293"><a href="#cb2-293" aria-hidden="true" tabindex="-1"></a>A constant-temperature surface doesn't require phase change (condensation, evaporation). It also approximates any stream with a very large heat capacity rate $C = \dot{m}c_p$: if enough fluid is flowing, its temperature barely shifts and it looks flat on the plot.</span>
+<span id="cb2-293"><a href="#cb2-293" aria-hidden="true" tabindex="-1"></a>A constant-temperature surface can occur during a phase change, and it also approximates any stream with a very large heat capacity rate $C = \dot{m}c_p$: if enough fluid is flowing, its temperature barely shifts and it looks flat on the plot.</span>
 <span id="cb2-294"><a href="#cb2-294" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb2-295"><a href="#cb2-295" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-296"><a href="#cb2-296" aria-hidden="true" tabindex="-1"></a>**Arithmetic mean always overestimates.** The summary panel shows the arithmetic mean alongside $\Delta T_{lm}$. The arithmetic mean is always $\geq \Delta T_{lm}$ (by the AM–GM inequality applied to the exponential profile). Using it in $\dot{Q} = \overline{h}A\,\Delta T$ would overestimate the heat transfer rate. The correction matters most when $\Delta T_1 / \Delta T_2$ is far from 1.</span>
+<span id="cb2-296"><a href="#cb2-296" aria-hidden="true" tabindex="-1"></a>**Arithmetic mean always overestimates.** The summary panel shows the arithmetic mean alongside $\Delta T_{lm}$. The arithmetic mean is always greater than or equal to $\Delta T_{lm}$. Using it in $\dot{Q} = \overline{h}A\,\Delta T$ would overestimate the heat transfer rate. The correction matters most when $\Delta T_1 / \Delta T_2$ is far from 1.</span>
 <span id="cb2-297"><a href="#cb2-297" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-298"><a href="#cb2-298" aria-hidden="true" tabindex="-1"></a>**Counter flow outperforms parallel flow — with the same terminal temperatures.** *(Coming in a few weeks, but worth a peek now.)* Switch to "Counter flow" or "Parallel flow" with $T_h$: 90 → 60 °C, $T_c$: 20 → 55 °C. The arithmetic mean $\Delta T$ is the same for both — it only depends on the four terminal values. But $\Delta T_{lm}$ is notably higher for counter flow, because counter flow keeps $\Delta T_1$ and $\Delta T_2$ more balanced; the log-mean penalizes large imbalance. That gap is the engineering motivation for counter-flow designs: same heat exchanged, smaller required area.</span>
+<span id="cb2-298"><a href="#cb2-298" aria-hidden="true" tabindex="-1"></a>**Counter flow outperforms parallel flow — with the same terminal temperatures.** *(Coming in a few weeks, but worth a peek now.)* Switch to "Counter flow" or "Parallel flow" with $T_h$: 90 → 60 °C, $T_c$: 20 → 55 °C. The arithmetic mean $\Delta T$ is the same for both — it only depends on the four terminal values. But $\Delta T_{lm}$ is notably higher for counter flow, because counter flow keeps $\Delta T_1$ and $\Delta T_2$ more balanced; the log-mean penalizes large imbalance. That gap is the engineering motivation for counter-flow designs.</span>
 <span id="cb2-299"><a href="#cb2-299" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-300"><a href="#cb2-300" aria-hidden="true" tabindex="-1"></a>**When $\Delta T_1 = \Delta T_2$**, $\Delta T_{lm} = \Delta T_1$ exactly (L'Hôpital's rule on the $0/0$ form). The profiles become straight lines and the arithmetic mean is correct. This happens in counter flow when the two streams have equal capacity rates — a balanced, perfectly efficient exchanger.</span>
+<span id="cb2-300"><a href="#cb2-300" aria-hidden="true" tabindex="-1"></a>**When $\Delta T_1 = \Delta T_2$**, $\Delta T_{lm} = \Delta T_1$ exactly. (To show this, remember L'Hôpital's Rule.) The profiles become straight lines and the arithmetic mean is correct. This happens in counter flow when the two streams have equal capacity rates — a balanced, perfectly efficient exchanger.</span>
 <span id="cb2-301"><a href="#cb2-301" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-302"><a href="#cb2-302" aria-hidden="true" tabindex="-1"></a>---</span>
 <span id="cb2-303"><a href="#cb2-303" aria-hidden="true" tabindex="-1"></a></span>
@@ -1473,31 +1473,31 @@ window._ojs.runtime.interpretFromScriptTags();
 <span id="cb2-305"><a href="#cb2-305" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-306"><a href="#cb2-306" aria-hidden="true" tabindex="-1"></a>A bank of $N_T = 4$ tubes wide and $N_L = 20$ rows deep ($N = 80$ total) is arranged in an aligned square pitch: $D = 0.025$ m, $S_T = S_L = 0.050$ m, tube length $L = 1$ m. Air approaches at $V_\infty = 4$ m/s and $T_\text{in} = 15\,^\circ$C; the tubes are held at $T_s = 70\,^\circ$C. Find $\overline{h}$, the outlet temperature, $\Delta T_{lm}$, and the total heat transfer.</span>
 <span id="cb2-307"><a href="#cb2-307" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-308"><a href="#cb2-308" aria-hidden="true" tabindex="-1"></a>**Step 0 — Find $\overline{h}$ from the tube bank correlation.**</span>
+<span id="cb2-308"><a href="#cb2-308" aria-hidden="true" tabindex="-1"></a>**Step 1 — Find $\overline{h}$ from the tube bank correlation.**</span>
 <span id="cb2-309"><a href="#cb2-309" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-310"><a href="#cb2-310" aria-hidden="true" tabindex="-1"></a>We need properties at $T_\text{avg} = (T_\text{in} + T_\text{out})/2$, but we don't know $T_\text{out}$ yet. We'll guess $T_\text{out} \approx 40\,^\circ$C, putting $T_\text{avg} \approx 27\,^\circ$C $\approx 300$ K, and check afterward. Air properties at 300 K (Table A.4): $k = 0.0263\;\text{W/m·K}$, $\nu = 15.9\times10^{-6}\;\text{m}^2\text{/s}$, $\rho = 1.16\;\text{kg/m}^3$, $c_p = 1007\;\text{J/kg·K}$, $\text{Pr} = 0.707$. At $T_s = 70\,^\circ$C: $\text{Pr}_s = 0.701$.</span>
+<span id="cb2-310"><a href="#cb2-310" aria-hidden="true" tabindex="-1"></a>We need properties at $T_\text{avg} = (T_\text{in} + T_\text{out})/2$, but we don't know $T_\text{out}$ yet. We'll guess $T_\text{out} \approx 40\,^\circ$C, putting $T_\text{avg} \approx 27\,^\circ$C $\approx 300$ K, and check afterward. Air properties at 300 K (from Wolfram Alpha): $k = 0.0264\;\text{W/m·K}$, $\nu = 15.7\times 10^{-6}\;\text{m}^2\text{/s}$, $\rho = 1.18\;\text{kg/m}^3$, $c_p = 1005\;\text{J/kg·K}$, $\text{Pr} = 0.707$. At $T_s = 70\,^\circ$C: $\text{Pr}_s = 0.702$.</span>
 <span id="cb2-311"><a href="#cb2-311" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-312"><a href="#cb2-312" aria-hidden="true" tabindex="-1"></a>Maximum velocity through the narrowest cross-section between tubes:</span>
 <span id="cb2-313"><a href="#cb2-313" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-314"><a href="#cb2-314" aria-hidden="true" tabindex="-1"></a>$$V_\text{max} = \frac{S_T}{S_T - D}\,V_\infty = \frac{0.050}{0.050 - 0.025}\times 4 = 8\;\text{m/s}$$</span>
 <span id="cb2-315"><a href="#cb2-315" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-316"><a href="#cb2-316" aria-hidden="true" tabindex="-1"></a>$$\text{Re}_{D,\max} = \frac{V_\text{max}\,D}{\nu} = \frac{8\times 0.025}{15.9\times10^{-6}} = 12{,}600$$</span>
+<span id="cb2-316"><a href="#cb2-316" aria-hidden="true" tabindex="-1"></a>$$\text{Re}_{D,\max} = \frac{V_\text{max}\,D}{\nu} = \frac{8\times 0.025}{15.7\times10^{-6}} = 12{,}700$$</span>
 <span id="cb2-317"><a href="#cb2-317" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-318"><a href="#cb2-318" aria-hidden="true" tabindex="-1"></a>This falls in the range $10^3$–$2\times10^5$ for an aligned bank with $S_T/S_L = 1.0 &gt; 0.7$, so from the table: $C_1 = 0.27$, $m = 0.63$. Since $N_L = 20$, no correction factor is needed ($C_2 = 1$). The Prandtl ratio $(0.707/0.701)^{1/4} \approx 1.00$ — essentially no effect for air — so:</span>
+<span id="cb2-318"><a href="#cb2-318" aria-hidden="true" tabindex="-1"></a>This falls in the range $10^3$–$2\times10^5$ for an aligned bank with $S_T/S_L = 1.0 &gt; 0.7$, so from the table: $C_1 = 0.27$, $m = 0.63$. Since $N_L = 20$, no correction factor is needed ($C_2 = 1$). The Prandtl ratio $(0.707/0.702)^{1/4} \approx 1.00$ — essentially no effect for air — so:</span>
 <span id="cb2-319"><a href="#cb2-319" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-320"><a href="#cb2-320" aria-hidden="true" tabindex="-1"></a>$$\overline{\text{Nu}}_D = 0.27\times 12600^{0.63}\times 0.707^{0.36} = 0.27\times 383\times 0.883 \approx 91.3$$</span>
+<span id="cb2-320"><a href="#cb2-320" aria-hidden="true" tabindex="-1"></a>$$\overline{\text{Nu}}_D = 0.27\times 12700^{0.63}\times 0.707^{0.36} = 0.27\times 385\times 0.883 \approx 92.0$$</span>
 <span id="cb2-321"><a href="#cb2-321" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-322"><a href="#cb2-322" aria-hidden="true" tabindex="-1"></a>$$\overline{h} = \frac{k}{D}\,\overline{\text{Nu}}_D = \frac{0.0263}{0.025}\times 91.3 \approx 96\;\text{W/m}^2\text{K}$$</span>
+<span id="cb2-322"><a href="#cb2-322" aria-hidden="true" tabindex="-1"></a>$$\overline{h} = \frac{k}{D}\,\overline{\text{Nu}}_D = \frac{0.0264}{0.025}\times 92.0 \approx 97\;\text{W/m}^2\text{K}$$</span>
 <span id="cb2-323"><a href="#cb2-323" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-324"><a href="#cb2-324" aria-hidden="true" tabindex="-1"></a>**Step 1 — Estimate the outlet temperature.**</span>
+<span id="cb2-324"><a href="#cb2-324" aria-hidden="true" tabindex="-1"></a>**Step 2 — Estimate the outlet temperature.**</span>
 <span id="cb2-325"><a href="#cb2-325" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-326"><a href="#cb2-326" aria-hidden="true" tabindex="-1"></a>$$\frac{T_s - T_\text{out}}{T_s - T_\text{in}} = \exp<span class="sc">\!</span>\left(\frac{-\pi D N\,\overline{h}}{\rho\,V_\infty\,N_T\,S_T\,c_p}\right) = \exp<span class="sc">\!</span>\left(\frac{-\pi\times 0.025\times 80\times 96}{1.16\times 4\times 4\times 0.050\times 1007}\right) = \exp(-0.645) = 0.525$$</span>
+<span id="cb2-326"><a href="#cb2-326" aria-hidden="true" tabindex="-1"></a>$$\frac{T_s - T_\text{out}}{T_s - T_\text{in}} = \exp<span class="sc">\!</span>\left(\frac{-\pi D N\,\overline{h}}{\rho\,V_\infty\,N_T\,S_T\,c_p}\right) = \exp<span class="sc">\!</span>\left(\frac{-\pi\times 0.025\times 80\times 97}{1.18\times 4\times 4\times 0.050\times 1005}\right) = \exp(-0.642) = 0.526$$</span>
 <span id="cb2-327"><a href="#cb2-327" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-328"><a href="#cb2-328" aria-hidden="true" tabindex="-1"></a>$$T_\text{out} = 70 - 0.525\times(70-15) = 70 - 28.9 \approx 41\,^\circ\text{C}$$</span>
+<span id="cb2-328"><a href="#cb2-328" aria-hidden="true" tabindex="-1"></a>$$T_\text{out} = 70 - 0.526\times(70-15) = 70 - 28.9 \approx 41\,^\circ\text{C}$$</span>
 <span id="cb2-329"><a href="#cb2-329" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-330"><a href="#cb2-330" aria-hidden="true" tabindex="-1"></a>$T_\text{avg} = (15 + 41)/2 = 28\,^\circ\text{C} \approx 300$ K — consistent with our property choice. ✓</span>
 <span id="cb2-331"><a href="#cb2-331" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-332"><a href="#cb2-332" aria-hidden="true" tabindex="-1"></a>**Step 2 — Apply the log-mean formula.**</span>
+<span id="cb2-332"><a href="#cb2-332" aria-hidden="true" tabindex="-1"></a>**Step 3 — Apply the log-mean formula.**</span>
 <span id="cb2-333"><a href="#cb2-333" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-334"><a href="#cb2-334" aria-hidden="true" tabindex="-1"></a>$$\Delta T_1 = T_s - T_\text{in} = 70 - 15 = 55\,^\circ\text{C}, \qquad \Delta T_2 = T_s - T_\text{out} = 70 - 41 = 29\,^\circ\text{C}$$</span>
 <span id="cb2-335"><a href="#cb2-335" aria-hidden="true" tabindex="-1"></a></span>
@@ -1507,9 +1507,9 @@ window._ojs.runtime.interpretFromScriptTags();
 <span id="cb2-339"><a href="#cb2-339" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-340"><a href="#cb2-340" aria-hidden="true" tabindex="-1"></a>The arithmetic mean gives $(55 + 29)/2 = 42\,^\circ$C — about 3% above $\Delta T_{lm}$ here. Not catastrophic, but the error grows quickly as $\Delta T_1/\Delta T_2$ moves away from 1.</span>
 <span id="cb2-341"><a href="#cb2-341" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-342"><a href="#cb2-342" aria-hidden="true" tabindex="-1"></a>**Step 3 — Total heat transfer:**</span>
+<span id="cb2-342"><a href="#cb2-342" aria-hidden="true" tabindex="-1"></a>**Step 4 — Total heat transfer:**</span>
 <span id="cb2-343"><a href="#cb2-343" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-344"><a href="#cb2-344" aria-hidden="true" tabindex="-1"></a>$$\dot{Q} = N\,\overline{h}\,\pi D L\,\Delta T_{lm} = 80\times 96\times\pi\times 0.025\times 1\times 40.6 \approx 24.4\;\text{kW}$$</span>
+<span id="cb2-344"><a href="#cb2-344" aria-hidden="true" tabindex="-1"></a>$$\dot{Q} = N\,\overline{h}\,\pi D L\,\Delta T_{lm} = 80\times 97\times\pi\times 0.025\times 1\times 40.6 \approx 24.7\;\text{kW}$$</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
