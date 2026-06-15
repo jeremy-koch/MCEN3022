@@ -6,12 +6,11 @@ $$\Delta T_{lm} = \frac{\Delta T_1 - \Delta T_2}{\ln(\Delta T_1/\Delta T_2)}$$
 
 where $\Delta T_1$ and $\Delta T_2$ are the temperature differences at the two ends of the exchanger (hot-inlet end and hot-outlet end, respectively).
 
-The temperature *profiles* along the exchanger are exponential — not linear — determined by the heat capacity rates $C = \dot{m}c_p$ of each stream. Given the four terminal temperatures, those profiles are fully determined, and that's what the demo plots.
+The temperature profiles along the exchanger are exponential -- not linear -- determined by the heat capacity rates $C = \dot{m}c_p$ of each stream. Given the four terminal temperatures, those profiles are fully determined, and that's what the demo plots.
 
----
 
 ::: {.callout-note}
-**Where this fits right now.** In the tube bank section, the hot side is a surface held at constant temperature $T_s$ — that's the default here. The demo also includes counter- and parallel-flow arrangements, which are heat exchanger concepts coming in a few weeks; they're here so this demo stays useful then. For now, just use "Constant $T_s$ (tube bank)".
+Where this fits right now: In the tube bank section, the hot side is a surface held at constant temperature $T_s$ — that's the default here. The demo also includes counter- and parallel-flow arrangements, which are heat exchanger concepts coming in a few weeks; they're here so this demo stays useful then. For now, just use "Constant $T_s$ (tube bank)".
 :::
 
 ## Interactive demo {#sec-demo}
@@ -121,6 +120,7 @@ The temperature *profiles* along the exchanger are exponential — not linear �
     const allT = rows.flatMap(r => [r.Th, r.Tc]);
     const Tlo  = Math.min(...allT) - 8;
     const Thi  = Math.max(...allT) + 8;
+    const arrowOff = (Thi - Tlo) * 0.05;   // float arrows above/below the profile lines
 
     // Arrow mid-points
     const Th_mid = Thin - q_h * fpro(0.5, R);
@@ -141,17 +141,17 @@ The temperature *profiles* along the exchanger are exponential — not linear �
         Plot.line(rows, { x: "xi", y: "Th", stroke: "#c0392b", strokeWidth: 2.5 }),
         Plot.line(rows, { x: "xi", y: "Tc", stroke: "#2471a3", strokeWidth: 2.5 }),
 
-        // Flow-direction arrows (mid-line)
-        Plot.arrow([{ x1: 0.38, y1: Th_mid, x2: 0.52, y2: Th_mid }],
+        // Flow-direction arrows (floated above/below the profile lines)
+        Plot.arrow([{ x1: 0.38, y1: Th_mid + arrowOff, x2: 0.52, y2: Th_mid + arrowOff }],
           { x1:"x1", y1:"y1", x2:"x2", y2:"y2",
-            stroke: "#c0392b", strokeWidth: 1.2, headLength: 8, headAngle: 35 }),
+            stroke: "#c0392b", strokeWidth: 2, headLength: 14, headAngle: 40 }),
         isCounter
-          ? Plot.arrow([{ x1: 0.52, y1: Tc_mid, x2: 0.38, y2: Tc_mid }],
+          ? Plot.arrow([{ x1: 0.52, y1: Tc_mid - arrowOff, x2: 0.38, y2: Tc_mid - arrowOff }],
               { x1:"x1", y1:"y1", x2:"x2", y2:"y2",
-                stroke: "#2471a3", strokeWidth: 1.2, headLength: 8, headAngle: 35 })
-          : Plot.arrow([{ x1: 0.38, y1: Tc_mid, x2: 0.52, y2: Tc_mid }],
+                stroke: "#2471a3", strokeWidth: 2, headLength: 14, headAngle: 40 })
+          : Plot.arrow([{ x1: 0.38, y1: Tc_mid - arrowOff, x2: 0.52, y2: Tc_mid - arrowOff }],
               { x1:"x1", y1:"y1", x2:"x2", y2:"y2",
-                stroke: "#2471a3", strokeWidth: 1.2, headLength: 8, headAngle: 35 }),
+                stroke: "#2471a3", strokeWidth: 2, headLength: 14, headAngle: 40 }),
 
         // ΔT vertical brackets at each end
         Plot.link(
@@ -171,20 +171,20 @@ The temperature *profiles* along the exchanger are exponential — not linear �
           fill: "#27ae60", fontSize: 10, fontFamily: "Georgia, serif",
         }),
 
-        // Stream endpoint labels (small, near line ends)
+        // Stream endpoint labels (small, near line ends — pushed inward to clear the ΔT brackets)
         Plot.text([
-          { xi: 0.01, T: Thin,  lbl: isConstantTs ? "Tₛ" : "Hot in",   col: "#c0392b", anc: "start" },
-          { xi: 0.99, T: Thout, lbl: isConstantTs ? "Tₛ" : "Hot out",  col: "#c0392b", anc: "end"   },
-          { xi: isCounter ? 0.99 : 0.01,
+          { xi: 0.06, T: Thin,  lbl: isConstantTs ? "Tₛ"    : "Hot in",   col: "#c0392b", anc: "start" },
+          { xi: 0.94, T: Thout, lbl: isConstantTs ? "Tₛ"    : "Hot out",  col: "#c0392b", anc: "end"   },
+          { xi: isCounter ? 0.94 : 0.06,
             T:  isCounter ? Tc1  : Tc0,
-            lbl: isConstantTs ? "Tᵢ (inlet)"  : "Cold in",  col: "#2471a3", anc: isCounter ? "end" : "start" },
-          { xi: isCounter ? 0.01 : 0.99,
+            lbl: isConstantTs ? "T_in"  : "Cold in",  col: "#2471a3", anc: isCounter ? "end" : "start" },
+          { xi: isCounter ? 0.06 : 0.94,
             T:  isCounter ? Tc0  : Tc1,
-            lbl: isConstantTs ? "T₀ (outlet)" : "Cold out", col: "#2471a3", anc: isCounter ? "start" : "end" },
+            lbl: isConstantTs ? "T_out" : "Cold out", col: "#2471a3", anc: isCounter ? "start" : "end" },
         ], {
           x: "xi", y: "T", text: "lbl",
           textAnchor: d => d.anc,
-          fill: d => d.col, dy: -9,
+          fill: d => d.col, dy: -11,
           fontSize: 10, fontFamily: "Georgia, serif",
         }),
 
@@ -285,7 +285,7 @@ The temperature *profiles* along the exchanger are exponential — not linear �
 
 ## What to look for {#sec-observations}
 
-**The tube bank: constant $T_s$.** The default view shows exactly the setup from the chapter — the tube surface is at constant $T_s$ (flat red line), and the external flow heats up exponentially from $T_i$ to $T_0$. Try setting $T_s = 70\,^\circ$C, $T_{c,\text{in}} = 15\,^\circ$C, $T_{c,\text{out}} = 35\,^\circ$C to match the worked example below and confirm $\Delta T_{lm} \approx 44.3\,^\circ$C.
+**The tube bank: constant $T_s$.** The default view shows exactly the setup from the chapter — the tube surface is at constant $T_s$ (flat red line), and the external flow heats up exponentially from $T_\text{in}$ to $T_\text{out}$. Try setting $T_s = 70\,^\circ$C, $T_\text{in} = 15\,^\circ$C, $T_\text{out} = 41\,^\circ$C to match the worked example below and confirm $\Delta T_{lm} \approx 40.6\,^\circ$C.
 
 ::: {.callout-note}
 A constant-temperature surface doesn't require phase change (condensation, evaporation). It also approximates any stream with a very large heat capacity rate $C = \dot{m}c_p$: if enough fluid is flowing, its temperature barely shifts and it looks flat on the plot.
@@ -301,21 +301,42 @@ A constant-temperature surface doesn't require phase change (condensation, evapo
 
 ## Worked example — tube bank as isothermal hot surface {#sec-worked}
 
-Return to the tube bank from the chapter. Air at $T_i = 15\,^\circ$C passes through a bank of tubes held at $T_s = 70\,^\circ$C. The outlet temperature predicted by the correlation is $T_o = 35\,^\circ$C. Find $\Delta T_{lm}$ and the total heat transfer.
+A bank of $N_T = 4$ tubes wide and $N_L = 20$ rows deep ($N = 80$ total) is arranged in an aligned square pitch: $D = 0.025$ m, $S_T = S_L = 0.050$ m, tube length $L = 1$ m. Air approaches at $V_\infty = 4$ m/s and $T_\text{in} = 15\,^\circ$C; the tubes are held at $T_s = 70\,^\circ$C. Find $\overline{h}$, the outlet temperature, $\Delta T_{lm}$, and the total heat transfer.
 
-**Step 1 — Identify the temperature differences.**
-The hot surface is isothermal at $T_s = 70\,^\circ$C, so:
+**Step 0 — Find $\overline{h}$ from the tube bank correlation.**
 
-$$\Delta T_1 = T_s - T_i = 70 - 15 = 55\,^\circ\text{C}, \qquad \Delta T_2 = T_s - T_o = 70 - 35 = 35\,^\circ\text{C}$$
+We need properties at $T_\text{avg} = (T_\text{in} + T_\text{out})/2$, but we don't know $T_\text{out}$ yet. We'll guess $T_\text{out} \approx 40\,^\circ$C, putting $T_\text{avg} \approx 27\,^\circ$C $\approx 300$ K, and check afterward. Air properties at 300 K (Table A.4): $k = 0.0263\;\text{W/m·K}$, $\nu = 15.9\times10^{-6}\;\text{m}^2\text{/s}$, $\rho = 1.16\;\text{kg/m}^3$, $c_p = 1007\;\text{J/kg·K}$, $\text{Pr} = 0.707$. At $T_s = 70\,^\circ$C: $\text{Pr}_s = 0.701$.
+
+Maximum velocity through the narrowest cross-section between tubes:
+
+$$V_\text{max} = \frac{S_T}{S_T - D}\,V_\infty = \frac{0.050}{0.050 - 0.025}\times 4 = 8\;\text{m/s}$$
+
+$$\text{Re}_{D,\max} = \frac{V_\text{max}\,D}{\nu} = \frac{8\times 0.025}{15.9\times10^{-6}} = 12{,}600$$
+
+This falls in the range $10^3$–$2\times10^5$ for an aligned bank with $S_T/S_L = 1.0 > 0.7$, so from the table: $C_1 = 0.27$, $m = 0.63$. Since $N_L = 20$, no correction factor is needed ($C_2 = 1$). The Prandtl ratio $(0.707/0.701)^{1/4} \approx 1.00$ — essentially no effect for air — so:
+
+$$\overline{\text{Nu}}_D = 0.27\times 12600^{0.63}\times 0.707^{0.36} = 0.27\times 383\times 0.883 \approx 91.3$$
+
+$$\overline{h} = \frac{k}{D}\,\overline{\text{Nu}}_D = \frac{0.0263}{0.025}\times 91.3 \approx 96\;\text{W/m}^2\text{K}$$
+
+**Step 1 — Estimate the outlet temperature.**
+
+$$\frac{T_s - T_\text{out}}{T_s - T_\text{in}} = \exp\!\left(\frac{-\pi D N\,\overline{h}}{\rho\,V_\infty\,N_T\,S_T\,c_p}\right) = \exp\!\left(\frac{-\pi\times 0.025\times 80\times 96}{1.16\times 4\times 4\times 0.050\times 1007}\right) = \exp(-0.645) = 0.525$$
+
+$$T_\text{out} = 70 - 0.525\times(70-15) = 70 - 28.9 \approx 41\,^\circ\text{C}$$
+
+$T_\text{avg} = (15 + 41)/2 = 28\,^\circ\text{C} \approx 300$ K — consistent with our property choice. ✓
 
 **Step 2 — Apply the log-mean formula.**
 
-$$\Delta T_{lm} = \frac{55 - 35}{\ln(55/35)} = \frac{20}{\ln 1.571} = \frac{20}{0.452} = 44.3\,^\circ\text{C}$$
+$$\Delta T_1 = T_s - T_\text{in} = 70 - 15 = 55\,^\circ\text{C}, \qquad \Delta T_2 = T_s - T_\text{out} = 70 - 41 = 29\,^\circ\text{C}$$
 
-Check against the demo: in the default "Constant $T_s$" mode, set $T_{h,\text{in}} = 70$°C, $T_{c,\text{in}} = 15$°C, $T_{c,\text{out}} = 35$°C. The summary should read $\Delta T_{lm} \approx 44.3\,^\circ$C.
+$$\Delta T_{lm} = \frac{55 - 29}{\ln(55/29)} = \frac{26}{\ln 1.897} = \frac{26}{0.640} = 40.6\,^\circ\text{C}$$
 
-The arithmetic mean would give $(55 + 35)/2 = 45\,^\circ$C — only about 1.6% high here because $\Delta T_1/\Delta T_2 = 1.57$ is close to 1. At larger ratios, the error grows fast.
+Check against the demo: in the default "Constant $T_s$" mode, set $T_s = 70\,^\circ$C, $T_\text{in} = 15\,^\circ$C, $T_\text{out} = 41\,^\circ$C. The summary should read $\Delta T_{lm} \approx 40.6\,^\circ$C.
 
-**Step 3 — Total heat transfer** (with $N = 80$ tubes, $D = 0.025$ m, $L = 1$ m, $\overline{h} = 95$ W/m²·K):
+The arithmetic mean gives $(55 + 29)/2 = 42\,^\circ$C — about 3% above $\Delta T_{lm}$ here. Not catastrophic, but the error grows quickly as $\Delta T_1/\Delta T_2$ moves away from 1.
 
-$$\dot{Q} = N\,\overline{h}\,\pi D L\,\Delta T_{lm} = 80 \times 95 \times \pi \times 0.025 \times 1 \times 44.3 \approx 26.5\;\text{kW}$$
+**Step 3 — Total heat transfer:**
+
+$$\dot{Q} = N\,\overline{h}\,\pi D L\,\Delta T_{lm} = 80\times 96\times\pi\times 0.025\times 1\times 40.6 \approx 24.4\;\text{kW}$$

@@ -18,7 +18,7 @@ Look Ahead
 
 1. If you blow air across a flat plate, do you expect the local heat transfer to be the same everywhere along the plate, or to vary with position? What might cause it to change?
 2. Turbulent flow is more chaotic and well-mixed than laminar flow. How do you expect the laminar-to-turbulent transition in the boundary layer to affect the "local" heat transfer coefficient?
-3. A cold fluid at temperature $T_i$ passes over a series of hot cylinders, say 40 of them. If you tried to compute the total amount of heat transfer as $\dot{Q} = \overline{h} A_\text{cylinder} (T_\text{cylinder} - T_i)$, would that be an overestimate or underestimate, and why?
+3. A cold fluid at temperature $T_\text{in}$ passes over a series of hot cylinders, say 40 of them. If you tried to compute the total amount of heat transfer as $\dot{Q} = \overline{h} A_\text{cylinder} (T_\text{cylinder} - T_\text{in})$, would that be an overestimate or underestimate, and why?
 
 ## What is $h$?
 
@@ -577,21 +577,21 @@ Values of $C_2$:
 When it comes to predicting total heat transfer, it is **not** the case that $\dot{Q}$ simply scales with $N$ and $\Delta T=T_\text{surf}-T_\infty$. Instead, use the log-mean temperature difference:
 
 $$
-\Delta T_{lm} = \frac{(T_s - T_i) - (T_s - T_o)}{\ln\!\left(\frac{T_s - T_i}{T_s - T_o}\right)}
+\Delta T_{lm} = \frac{(T_s - T_\text{in}) - (T_s - T_\text{out})}{\ln\!\left(\frac{T_s - T_\text{in}}{T_s - T_\text{out}}\right)}
 $$
 
-... a better representation of the average local $\Delta T$. The external flow's inlet temperature is $T_i$ and the outlet temperature is $T_o$. Of course, we don't know what the outlet temperature is, exactly! Knowing that requires us to know how much heat transfer has occurred, and that is the whole problem!
+... a better representation of the average local $\Delta T$. The external flow's inlet temperature is $T_\text{in}$ and the outlet temperature is $T_\text{out}$. Of course, we don't know what the outlet temperature is, exactly! Knowing that requires us to know how much heat transfer has occurred, and that is the whole problem!
 
 ::: {.column-margin}
-The numerator of $\Delta T_{lm}$ can indeed be simplified to $T_o-T_i$. But we will use the log-mean temperature difference later, and more generally it has a "two differences" structure -- so we write it in terms of two differences here.
+The numerator of $\Delta T_{lm}$ can indeed be simplified to $T_\text{out}-T_\text{in}$. But we will use the log-mean temperature difference later, and more generally it has a "two differences" structure -- so we write it in terms of two differences here.
 :::
 
 
-We have a way of estimating $T_o$ though: 
+We have a way of estimating $T_\text{out}$ though:
 
 
 $$
-\frac{T_s - T_o}{T_s - T_i} \approx \exp\!\left(\frac{-\pi D N \overline{h}}{\rho V_\infty N_T S_T c_p}\right)
+\frac{T_s - T_\text{out}}{T_s - T_\text{in}} \approx \exp\!\left(\frac{-\pi D N \overline{h}}{\rho V_\infty N_T S_T c_p}\right)
 $$
 
 where $N=N_T\cdot N_L$ is the total number of tubes.
