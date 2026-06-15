@@ -410,7 +410,7 @@ Note
 <ol type="1">
 <li>If you blow air across a flat plate, do you expect the local heat transfer to be the same everywhere along the plate, or to vary with position? What might cause it to change?</li>
 <li>Turbulent flow is more chaotic and well-mixed than laminar flow. How do you expect the laminar-to-turbulent transition in the boundary layer to affect the “local” heat transfer coefficient?</li>
-<li>A cold fluid at temperature <span class="math inline">\(T_i\)</span> passes over a series of hot cylinders, say 40 of them. If you tried to compute the total amount of heat transfer as <span class="math inline">\(\dot{Q} = \overline{h} A_\text{cylinder} (T_\text{cylinder} - T_i)\)</span>, would that be an overestimate or underestimate, and why?</li>
+<li>A cold fluid at temperature <span class="math inline">\(T_\text{in}\)</span> passes over a series of hot cylinders, say 40 of them. If you tried to compute the total amount of heat transfer as <span class="math inline">\(\dot{Q} = \overline{h} A_\text{cylinder} (T_\text{cylinder} - T_\text{in})\)</span>, would that be an overestimate or underestimate, and why?</li>
 </ol>
 </section>
 <section id="what-is-h" class="level2 page-columns page-full" data-number="4.2">
@@ -1029,15 +1029,15 @@ V_\text{max} = \frac{S_T}{2(S_D-D)}V_\infty.
 <h3 data-number="4.7.3" class="anchored" data-anchor-id="the-log-mean-temperature-difference"><span class="header-section-number">4.7.3</span> The Log-Mean Temperature Difference</h3>
 <p>When it comes to predicting total heat transfer, it is <strong>not</strong> the case that <span class="math inline">\(\dot{Q}\)</span> simply scales with <span class="math inline">\(N\)</span> and <span class="math inline">\(\Delta T=T_\text{surf}-T_\infty\)</span>. Instead, use the log-mean temperature difference:</p>
 <p><span class="math display">\[
-\Delta T_{lm} = \frac{(T_s - T_i) - (T_s - T_o)}{\ln\!\left(\frac{T_s - T_i}{T_s - T_o}\right)}
+\Delta T_{lm} = \frac{(T_s - T_\text{in}) - (T_s - T_\text{out})}{\ln\!\left(\frac{T_s - T_\text{in}}{T_s - T_\text{out}}\right)}
 \]</span></p>
-<p>… a better representation of the average local <span class="math inline">\(\Delta T\)</span>. The external flow’s inlet temperature is <span class="math inline">\(T_i\)</span> and the outlet temperature is <span class="math inline">\(T_o\)</span>. Of course, we don’t know what the outlet temperature is, exactly! Knowing that requires us to know how much heat transfer has occurred, and that is the whole problem!</p>
+<p>… a better representation of the average local <span class="math inline">\(\Delta T\)</span>. The external flow’s inlet temperature is <span class="math inline">\(T_\text{in}\)</span> and the outlet temperature is <span class="math inline">\(T_\text{out}\)</span>. Of course, we don’t know what the outlet temperature is, exactly! Knowing that requires us to know how much heat transfer has occurred, and that is the whole problem!</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
-<p>The numerator of <span class="math inline">\(\Delta T_{lm}\)</span> can indeed be simplified to <span class="math inline">\(T_o-T_i\)</span>. But we will use the log-mean temperature difference later, and more generally it has a “two differences” structure – so we write it in terms of two differences here.</p>
-</div></div><p>We have a way of estimating <span class="math inline">\(T_o\)</span> though:</p>
+<p>The numerator of <span class="math inline">\(\Delta T_{lm}\)</span> can indeed be simplified to <span class="math inline">\(T_\text{out}-T_\text{in}\)</span>. But we will use the log-mean temperature difference later, and more generally it has a “two differences” structure – so we write it in terms of two differences here.</p>
+</div></div><p>We have a way of estimating <span class="math inline">\(T_\text{out}\)</span> though:</p>
 <p><span class="math display">\[
-\frac{T_s - T_o}{T_s - T_i} \approx \exp\!\left(\frac{-\pi D N \overline{h}}{\rho V_\infty N_T S_T c_p}\right)
+\frac{T_s - T_\text{out}}{T_s - T_\text{in}} \approx \exp\!\left(\frac{-\pi D N \overline{h}}{\rho V_\infty N_T S_T c_p}\right)
 \]</span></p>
 <p>where <span class="math inline">\(N=N_T\cdot N_L\)</span> is the total number of tubes.</p>
 </section>
@@ -1542,7 +1542,7 @@ V_\text{max} = \frac{S_T}{2(S_D-D)}V_\infty.
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>If you blow air across a flat plate, do you expect the local heat transfer to be the same everywhere along the plate, or to vary with position? What might cause it to change?</span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Turbulent flow is more chaotic and well-mixed than laminar flow. How do you expect the laminar-to-turbulent transition in the boundary layer to affect the "local" heat transfer coefficient?</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>A cold fluid at temperature $T_i$ passes over a series of hot cylinders, say 40 of them. If you tried to compute the total amount of heat transfer as $\dot{Q} = \overline{h} A_\text{cylinder} (T_\text{cylinder} - T_i)$, would that be an overestimate or underestimate, and why?</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>A cold fluid at temperature $T_\text{in}$ passes over a series of hot cylinders, say 40 of them. If you tried to compute the total amount of heat transfer as $\dot{Q} = \overline{h} A_\text{cylinder} (T_\text{cylinder} - T_\text{in})$, would that be an overestimate or underestimate, and why?</span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="fu">## What is $h$?</span></span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
@@ -2101,21 +2101,21 @@ V_\text{max} = \frac{S_T}{2(S_D-D)}V_\infty.
 <span id="cb1-577"><a href="#cb1-577" aria-hidden="true" tabindex="-1"></a>When it comes to predicting total heat transfer, it is **not** the case that $\dot{Q}$ simply scales with $N$ and $\Delta T=T_\text{surf}-T_\infty$. Instead, use the log-mean temperature difference:</span>
 <span id="cb1-578"><a href="#cb1-578" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-579"><a href="#cb1-579" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-580"><a href="#cb1-580" aria-hidden="true" tabindex="-1"></a>\Delta T_{lm} = \frac{(T_s - T_i) - (T_s - T_o)}{\ln<span class="sc">\!</span>\left(\frac{T_s - T_i}{T_s - T_o}\right)}</span>
+<span id="cb1-580"><a href="#cb1-580" aria-hidden="true" tabindex="-1"></a>\Delta T_{lm} = \frac{(T_s - T_\text{in}) - (T_s - T_\text{out})}{\ln<span class="sc">\!</span>\left(\frac{T_s - T_\text{in}}{T_s - T_\text{out}}\right)}</span>
 <span id="cb1-581"><a href="#cb1-581" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-582"><a href="#cb1-582" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-583"><a href="#cb1-583" aria-hidden="true" tabindex="-1"></a>... a better representation of the average local $\Delta T$. The external flow's inlet temperature is $T_i$ and the outlet temperature is $T_o$. Of course, we don't know what the outlet temperature is, exactly! Knowing that requires us to know how much heat transfer has occurred, and that is the whole problem!</span>
+<span id="cb1-583"><a href="#cb1-583" aria-hidden="true" tabindex="-1"></a>... a better representation of the average local $\Delta T$. The external flow's inlet temperature is $T_\text{in}$ and the outlet temperature is $T_\text{out}$. Of course, we don't know what the outlet temperature is, exactly! Knowing that requires us to know how much heat transfer has occurred, and that is the whole problem!</span>
 <span id="cb1-584"><a href="#cb1-584" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-585"><a href="#cb1-585" aria-hidden="true" tabindex="-1"></a>::: {.column-margin}</span>
-<span id="cb1-586"><a href="#cb1-586" aria-hidden="true" tabindex="-1"></a>The numerator of $\Delta T_{lm}$ can indeed be simplified to $T_o-T_i$. But we will use the log-mean temperature difference later, and more generally it has a "two differences" structure -- so we write it in terms of two differences here.</span>
+<span id="cb1-586"><a href="#cb1-586" aria-hidden="true" tabindex="-1"></a>The numerator of $\Delta T_{lm}$ can indeed be simplified to $T_\text{out}-T_\text{in}$. But we will use the log-mean temperature difference later, and more generally it has a "two differences" structure -- so we write it in terms of two differences here.</span>
 <span id="cb1-587"><a href="#cb1-587" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-588"><a href="#cb1-588" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-589"><a href="#cb1-589" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-590"><a href="#cb1-590" aria-hidden="true" tabindex="-1"></a>We have a way of estimating $T_o$ though: </span>
+<span id="cb1-590"><a href="#cb1-590" aria-hidden="true" tabindex="-1"></a>We have a way of estimating $T_\text{out}$ though:</span>
 <span id="cb1-591"><a href="#cb1-591" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-592"><a href="#cb1-592" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-593"><a href="#cb1-593" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-594"><a href="#cb1-594" aria-hidden="true" tabindex="-1"></a>\frac{T_s - T_o}{T_s - T_i} \approx \exp<span class="sc">\!</span>\left(\frac{-\pi D N \overline{h}}{\rho V_\infty N_T S_T c_p}\right)</span>
+<span id="cb1-594"><a href="#cb1-594" aria-hidden="true" tabindex="-1"></a>\frac{T_s - T_\text{out}}{T_s - T_\text{in}} \approx \exp<span class="sc">\!</span>\left(\frac{-\pi D N \overline{h}}{\rho V_\infty N_T S_T c_p}\right)</span>
 <span id="cb1-595"><a href="#cb1-595" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-596"><a href="#cb1-596" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-597"><a href="#cb1-597" aria-hidden="true" tabindex="-1"></a>where $N=N_T\cdot N_L$ is the total number of tubes.</span>
