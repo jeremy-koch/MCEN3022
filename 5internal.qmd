@@ -1,6 +1,30 @@
 # Internal Convection
 
-Under construction
+Now we turn to "internal convection" — fluids flowing inside channels, ducts, and pipes. This is the geometry that shows up in coolant flowing through a heat exchanger, water running through a solar collector, and air being pushed through a ventilation duct. 
+
+We've just finished external convection, where we typically had an obvious $\Delta T=T_s-T_\infty$. Internal convection is going to complicate that picture a bit -- once a fluid is confined inside a pipe, the temperature of the fluid itself is changing along the way, so there is no single $T_\infty$ to use in our convective heat transfer equation.
+
+The thermodynamics you already know will re-enter the picture here: $\dot{Q} = \dot{m}c_p\Delta T$ describes how much the bulk temperature rises. But thermodynamics glosses over a lot of physics, and we'll spend the first part of this chapter being more careful. After that, the approach mirrors what we did for external convection: look up a Nusselt Number correlation, extract $h$, and compute the heat transfer. The new wrinkle is that $h$ will let us track how the mean fluid temperature evolves along the pipe — not just at the outlet.
+
+::: {.callout-note}
+Correlations in this chapter are again drawn from Incropera, DeWitt, Bergman, and Lavine "Fundamentals of Heat and Mass Transfer", sixth edition (2007).
+:::
+
+
+
+## Think First
+
+Recall
+
+1. From thermodynamics: we write $\dot{Q} = \dot{m}c_p\Delta T$ for heat added to a flow. What does $\Delta T$ mean here -- is it a temperature at a point, or some kind of average? And what assumptions are hiding inside that equation?
+2. From fluid mechanics: for flow inside a pipe, what does the velocity profile look like? What is the Reynolds Number for pipe flow, and what is the critical value for the transition to turbulence?
+3. From the last chapter: how did we define $h$, and what temperatures did we use in the expression $q'' = h(T_s - T_?)$? What will we use instead of $T_\infty$ here?
+
+Look Ahead
+
+1. A fluid entering a heated pipe starts cold and heats up as it travels. Near the inlet, how do you expect the local heat transfer coefficient $h$ to compare to its value far downstream? Will $h$ vary with position at all? Increase/decrease indefinitely? Asymptote?
+2. There are two common boundary conditions for a heated pipe: constant wall temperature $T_s$, and constant heat flux $q''_s$. In one of these cases, the mean temperature of the flow will increase linearly, in the other it will increase but as an exponential decay. Which is which?
+3. Think about a very viscous fluid like oil ($\text{Pr} \approx 100$) versus air ($\text{Pr} \approx 0.7$) flowing through the same heated pipe at the same Reynolds Number. Which fluid do you expect to take longer (more pipe length) to reach a "fully developed" state, and why?
 
 
 
@@ -16,16 +40,14 @@ $$ {#eq-thermo}
 
 But what have we ignored here?
 
-1. How can we just say how much heat flows into a system? We can burn a fuel+air mixture with known heat content, but there will be some thermal resistance/inefficiencies that means not all of it makes it into the working medium. And its a convection process... doesn't $h$ depend on speed? Can we really adjust $\dot{Q}$ and $\dot{m}$ independently?
+1. How can we just say how much heat flows into a system? We can burn a fuel+air mixture with known heat content, but there will be some thermal resistance/inefficiencies that means not all of it makes it into the working medium. And it's a convection process... doesn't $h$ depend on speed? Can we really adjust $\dot{Q}$ and $\dot{m}$ independently?
 2. Is it true that the entire cross-section of the flow changes temperature at the same time? We talked about the thermal boundary layer last chapter, which is probably relevant. But if there is indeed a temperature distribution for a given cross-section, what are the values of $T_1$ and $T_2$ in $\Delta T=T_2-T_1$?
 
 To understand the nuances of the process, we need to be much more careful than we were in thermodynamics!
 
 ### Mean flow
 
-Let's start with the temperature distribution question: We are not going to simply assume uniform flow, 
-
-Considering a cross-section located at axial position $x$, we define the mean velocity $u_m$ as
+Let's start with the temperature distribution question: we are not going to simply assume uniform flow, we are going to allow for variation in speed and temperature within a cross-section located at axial position $x$. (We will continue to assume constant properties, though.) Define the mean velocity $u_m$ as
 
 $$
 u_m(x) = \frac{1}{\rho A_c}\int \rho\, u(r,x)\,dA_c.
@@ -34,7 +56,7 @@ $$
 Then, if our goal is to use a framework like that in @eq-thermo, we need to come up with a temperature that gives the average enthalpy at $x$. That is: we want a mean temperature $T_m$ that describes the average enthalpy, and we get it via:
 
 ::: {.column-margin}
-In thermodynamics we use $h$ for enthalpy... in heat transfer we use $h$ for convection coefficient. So we jump immediately to the model that change enthalpy is $c_p \Delta T$.
+In thermodynamics we use $h$ for enthalpy... in heat transfer we use $h$ for convection coefficient. So we jump immediately to the model that the change in enthalpy is $c_p \Delta T$.
 :::
 
 $$
@@ -42,20 +64,26 @@ $$
 $$
 
 where $u$ and $T$ are functions of position within the cross-section, e.g. for a circular pipe: $u(r,\theta)$.
-<!-- $$
-T_m(x) = \frac{2}{u_m R^2}\int_0^R u(r;x)\,T(r;x)\,r\,dr
-$$ -->
+
+::: {.callout-tip}
+### For a cylindrical pipe...
+
+$$
+T_m(x) = \frac{2}{u_m R^2}\int_0^R u(r;x)\,T(r;x)\,r\,dr.
+$$ 
+:::
+
 
 
 ## Heat transfer in pipes
 
-Recall the goal of $h$: it groups together the boundary layer and fluid properties such that we can write the total heat transfer as a product of $h$, the surface area, and a temperature difference between two known temperatures (e.g. $T_\text{s}-T_\infty$). In pipe flow, there is no $T_\infty$... instead we use $T_m$ and write
+Recall the goal of $h$: it groups together the boundary layer and fluid properties such that we can write the total heat transfer as a product of $h$, the surface area, and a temperature difference between two known temperatures (e.g. $T_\text{s}-T_\infty$). In pipe flow, there is no $T_\infty$... instead we try to use $T_m$ and write
 
 $$
 q'' = h(T_s - T_m)
 $$
 
-and, since $T_m$ is definitely going to depend on $x$, $q''$ will depend on $x$. So... it is a fairly simple description for the heat flux, assuming we can make it work. Hopefully $h$ isn't going to depend on $x$ or anything like that -- it will turn into a complicated analysis if so, mandating an integral instead of a simply $hA\Delta T$.
+and, since $T_m$ is definitely going to depend on $x$, $q''$ will depend on $x$. So... it is a fairly simple description for the heat flux, assuming we can make it work. Hopefully $h$ isn't going to depend on $x$ or anything like that -- it will turn into a complicated analysis if so, mandating an integral instead of a simple $hA\Delta T$.
 
 ### Fully developed flow
 
@@ -67,83 +95,65 @@ $$
 \frac{\partial}{\partial x}\left[\frac{T_s(x) - T(r,x)}{T_s(x) - T_m(x)}\right]_\text{fd} = 0.
 $$
 
-The fact that the partial derivative with respect is equal to zero tells us the fraction from above does not depend on $x$, but it will depend on $r$. We can write 
+The fact that the partial derivative with respect to $x$ is equal to zero tells us the fraction from above does not depend on $x$, but it will depend on $r$. 
+For mathematical clarity, let's give a symbol to the fraction above (when it is fully developed):
 
 $$
-\frac{\partial}{\partial r}\left[\frac{T_s(x) - T(r,x)}{T_s(x) - T_m(x)}\right]_\text{fd} = \left(\frac{1}{T_s(x) - T_m(x)}\right)\left(-\frac{\partial T}{\partial r}).
+M(r) \equiv \left[\frac{T_s(x) - T(r,x)}{T_s(x) - T_m(x)}\right]_\text{fd}.
+$$
+
+Then we can write
+
+$$
+\frac{\partial M}{\partial r}=\left(\frac{1}{T_s(x) - T_m(x)}\right)\left(-\frac{\partial T}{\partial r}\right).
 $$
 
 OK, why should we care about this mathematical observation? Watch this: bring in Fourier's Law at the pipe wall, and set it equal to our desired form $h(T_s-T_m)$:
 
 $$
-q_s'' = k_f\frac{\partial T}{\partial r} = h(T_s - T_m).
+q_s'' = k_f\frac{\partial T}{\partial r} = h(T_s(x) - T_m(x)).
 $$
 
-From above:
+From above we can substitute-in 
 
-$$q_s'' = k_f\left(-M'(r)\cdot(T_s - T_m)\right) = h(T_s - T_m)$$
+$$
+q_s'' = -k_f M'(r)\cdot(T_s(x) - T_m(x)) = h(T_s(x) - T_m(x))
+$$
 
-$$\therefore \quad h = -M'(r)\cdot k_f \quad \Rightarrow \quad h \text{ is not a function of }x$$
+and can cancel the $\Delta T$ to conclude
+$$
+h = -k_f M'(r)\quad h \text{ is not a function of }x.
+$$
 
-It turns out:
+Really interesting! It turns out that, even though $T_s$ and $T_m$ are functions of $x$, $h$ is not! Once we know the flow speed, geometry, and fluid, $h$ will be constant for fully developed flow. 
 
-$$\text{Nu}_D = \frac{hD}{k} = \begin{cases}3.66 & \text{laminar flow with }T_s = \text{const} \\ 4.36 & \text{laminar flow with }q_s'' = \text{const}\end{cases}$$
+Correlations are summarized below.
 
+<!-- $$\text{Nu}_D = \frac{hD}{k} = \begin{cases}3.66 & \text{laminar flow with }T_s = \text{const} \\ 4.36 & \text{laminar flow with }q_s'' = \text{const}\end{cases}$$
 
+ -->
 
 
 ### Entrance Region
 
-We will not be limiting ourselves to cases where the flow is fully developed. A fluid entering a heated section of pipe will experience an "entrance region" where the flow is developing. The distance to being fully developed is given by
+However, we will not be limiting ourselves to cases where the flow is fully developed. A fluid entering a heated section of pipe will experience an "entrance region" where the flow is developing. The axial distance to being fully developed (in a velocity sense) is given by
 
 $$
-\frac{x_{fd}}{D} \approx \begin{cases}0.05\,\text{Re}_D & \text{for a flow that will be laminar} \\ 10 & \text{for turbulent}\end{cases}
+\frac{L_{fd}}{D} \approx \begin{cases}0.05\,\text{Re}_D & \text{for a flow that will be laminar} \\ 10 & \text{for turbulent}\end{cases}
 $$
 
 where $\text{Re}_D = \rho u_m D/\mu$ is the Reynolds Number and $\text{Re}_{D,\text{crit}} \approx 2300$.
 
-Recalling flat plate: $\frac{\delta}{\delta_T} \sim \sqrt{\text{Pr}}$
-
-**Thermal entrance length:**
-
-$$\frac{x_{fd}}{D} \approx \begin{cases}0.05\,\text{Re}_D\cdot\text{Pr} & \text{laminar} \\ 10 & \text{turbulent}\end{cases}$$
+For the thermal entrance length:
 
 
+$$
+\frac{x_{fd}}{D} \approx \begin{cases}0.05\,\text{Re}_D\cdot\text{Pr} & \text{laminar} \\ 10 & \text{turbulent}\end{cases}
+$$
 
-## Temperature Variation Along the Pipe
-
-### 1. $T_s = \text{constant}$
-
-*Diagram: Control volume of width $dx$ in the pipe.*
-
-Energy balance: thermodynamics = heat transfer:
-
-$$d\dot{Q} = \dot{m}\,c_p\,dT_m = h\cdot P\cdot dx\cdot(T_s - T_m)$$
-
-where $P$ is the perimeter.
-
-Rearranging:
-
-$$\int\frac{dT_m}{T_s - T_m} = \int\frac{hP}{\dot{m}c_p}\,dx$$
-
-$$-\ln(T_s - T_m)\bigg|_{T_{m,i}}^{T_m(x)} = \frac{hP}{\dot{m}c_p}\,x$$
-
-$$\ln\left[\frac{T_s - T_m(x)}{T_s - T_{m,i}}\right] = -\frac{hP}{\dot{m}c_p}\,x$$
-
-$$\boxed{\frac{T_s - T_m(x)}{T_s - T_{m,i}} = \exp\!\left(\frac{-hP}{\dot{m}c_p}\,x\right)}$$
-
-### 2. $q_s'' = \text{constant}$
-
-Energy balance:
-
-$$\dot{m}\,c_p\,dT_m = q_s''\cdot P\cdot dx$$
-
-Rearranging:
-
-$$\int dT_m = \int\frac{q_s''\cdot P}{\dot{m}\,c_p}\,dx$$
-
-$$\boxed{T_m(x) = \frac{q_s''\,P}{\dot{m}\,c_p}\,x + T_{m,i}}$$
-
+::: {.column-margin}
+Recall with the flat plate geometry that the boundary layer thickness scales with $1/\sqrt{\text{Re}_x}$ and the thermal boundary layer thickness scales with $1/\sqrt{\text{Pr}\text{Re}_x}$. The form of the thermal entrance length is not surprising!
+:::
 
 
 ## Pipe flow correlations for different shapes and turbulence
@@ -207,7 +217,7 @@ $$
 
 For flows with non-circular cross sections, we use the "hydraulic diameter" in the Nusselt Number:
 
-$$D_\text{h}\equiv \frac{4A_c}{P}$$
+$$D_\text{H}\equiv \frac{4A_c}{P}$$
 
 We also represent the friction factor in an analogous way: for circular laminar pipe flow it is $f=64/\text{Re}_D$, and we update the coefficient "64" according to the hydraulic diameter:
 
@@ -285,4 +295,64 @@ Turbulent, $\text{Re}_D>2300$:
 
   where $f$ is the friction factor from the Moody diagram.
 
+
+
+
+
+
+## Temperature Variation Along the Pipe
+
+How much pipe needs to be heated in order to reach a given operating temperature? Now that we have $h$, we can answer this question.
+
+### Known surface temperature $T_s$
+
+### 1. $T_s = \text{constant}$
+
+Write an energy balance relating thermodynamics and heat transfer
+
+$$
+d\dot{Q} = \dot{m}\,c_p\,dT_m = h\cdot P\cdot dx\cdot(T_s - T_m)
+$$
+
+where $P$ is the perimeter. Rearranging and integrating
+
+$$
+\int\frac{dT_m}{T_s - T_m} = \int\frac{hP}{\dot{m}c_p}\,dx
+$$
+
+$$
+-\ln(T_s - T_m)\bigg|_{T_{m,i}}^{T_m(x)} = \frac{hP}{\dot{m}c_p}\,x
+$$
+
+$$
+\ln\left[\frac{T_s - T_m(x)}{T_s - T_{m,i}}\right] = -\frac{hP}{\dot{m}c_p}\,x
+$$
+
+we are left with
+
+$$
+\frac{T_s - T_m(x)}{T_s - T_{m,i}} = \exp\!\left(\frac{-hP}{\dot{m}c_p}\,x\right).
+$$
+
+### Known heat flux $q''_s$
+
+Again, write an energy balance:
+
+$$
+\dot{m}\,c_p\,dT_m = q_s''\cdot P\cdot dx.
+$$
+
+Rearrange and integrate
+
+$$
+\int dT_m = \int\frac{q_s''\cdot P}{\dot{m}\,c_p}\,dx
+$$
+
+leaving
+
+$$
+T_m(x) = \frac{q_s''\,P}{\dot{m}\,c_p}\,x + T_{m,i}.
+$$
+
+Notice that this does not require $h$!
 
