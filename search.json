@@ -251,7 +251,7 @@
     "href": "course_details/oral_exams.html#logistics",
     "title": "Oral Exams",
     "section": "Logistics",
-    "text": "Logistics\nExams are conducted by the instructor and TAs via Zoom. Scheduling windows will be posted in Canvas approximately two weeks before each exam period. Sign up early – late slots fill last and create unnecessary deadline pressure.\nEach exam is approximately 12-17 minutes. Plan for 20 minutes including brief setup and transition time.",
+    "text": "Logistics\nExams are conducted by the instructor and TAs via Zoom. Scheduling windows will be posted in Canvas approximately one weeks before each exam period.\nEach exam is approximately 12-17 minutes. Plan for 20 minutes including brief setup and transition time.",
     "crumbs": [
       "Course Details",
       "Oral Exams"
@@ -832,6 +832,66 @@
     "text": "4.8 Interactive Demo – LMTD\nI created an interactive demo to explore the log-mean temperature difference. Find it at this link.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>External Convection</span>"
+    ]
+  },
+  {
+    "objectID": "5internal.html",
+    "href": "5internal.html",
+    "title": "5  Internal Convection",
+    "section": "",
+    "text": "5.1 Thermodynamics\nA typical problem in thermodynamics is: we have a known \\(\\dot{Q}\\) added to a flow, how much does the temperature change? The answer is\n\\[\n\\dot{Q} = \\dot{m} c_p \\Delta T.\n\\tag{5.1}\\]\nBut what have we ignored here?\nTo understand the nuances of the process, we need to be much more careful than we were in thermodynamics!",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Internal Convection</span>"
+    ]
+  },
+  {
+    "objectID": "5internal.html#thermodynamics",
+    "href": "5internal.html#thermodynamics",
+    "title": "5  Internal Convection",
+    "section": "",
+    "text": "How can we just say how much heat flows into a system? We can burn a fuel+air mixture with known heat content, but there will be some thermal resistance/inefficiencies that means not all of it makes it into the working medium. And its a convection process… doesn’t \\(h\\) depend on speed? Can we really adjust \\(\\dot{Q}\\) and \\(\\dot{m}\\) independently?\nIs it true that the entire cross-section of the flow changes temperature at the same time? We talked about the thermal boundary layer last chapter, which is probably relevant. But if there is indeed a temperature distribution for a given cross-section, what are the values of \\(T_1\\) and \\(T_2\\) in \\(\\Delta T=T_2-T_1\\)?\n\n\n\n5.1.1 Mean flow\nLet’s start with the temperature distribution question: We are not going to simply assume uniform flow,\nConsidering a cross-section located at axial position \\(x\\), we define the mean velocity \\(u_m\\) as\n\\[\nu_m(x) = \\frac{1}{\\rho A_c}\\int \\rho\\, u(r,x)\\,dA_c.\n\\]\nThen, if our goal is to use a framework like that in Equation 5.1, we need to come up with a temperature that gives the average enthalpy at \\(x\\). That is: we want a mean temperature \\(T_m\\) that describes the average enthalpy, and we get it via:\n\n\nIn thermodynamics we use \\(h\\) for enthalpy… in heat transfer we use \\(h\\) for convection coefficient. So we jump immediately to the model that change enthalpy is \\(c_p \\Delta T\\).\n\\[\n\\dot{m} c_p T_m = \\int \\rho\\, u\\, c_p\\, T\\,dA_c\n\\]\nwhere \\(u\\) and \\(T\\) are functions of position within the cross-section, e.g. for a circular pipe: \\(u(r,\\theta)\\).",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Internal Convection</span>"
+    ]
+  },
+  {
+    "objectID": "5internal.html#heat-transfer-in-pipes",
+    "href": "5internal.html#heat-transfer-in-pipes",
+    "title": "5  Internal Convection",
+    "section": "5.2 Heat transfer in pipes",
+    "text": "5.2 Heat transfer in pipes\nRecall the goal of \\(h\\): it groups together the boundary layer and fluid properties such that we can write the total heat transfer as a product of \\(h\\), the surface area, and a temperature difference between two known temperatures (e.g. \\(T_\\text{s}-T_\\infty\\)). In pipe flow, there is no \\(T_\\infty\\)… instead we use \\(T_m\\) and write\n\\[\nq'' = h(T_s - T_m)\n\\]\nand, since \\(T_m\\) is definitely going to depend on \\(x\\), \\(q''\\) will depend on \\(x\\). So… it is a fairly simple description for the heat flux, assuming we can make it work.\nA few considerations follow.\n\n5.2.1 Steady state\nWhat is a practical definition for “steady” and “transient” when heat is being added to a flow? A given parcel of fluid is going to be increasing in temperature as it moves through a heated section of pipe.\n\n\n5.2.2 Entrance Region\nFor flow entering a heated section of pipe, there will be an “entrance region” where\n\\[\\frac{x_{fd}}{D} \\approx \\begin{cases}0.05\\,\\text{Re}_D & \\text{for a flow that will be laminar} \\\\ 10 & \\text{for turbulent}\\end{cases}\\]\n\\[\\text{Re}_D = \\frac{\\rho u_m D}{\\mu}, \\qquad \\text{Re}_{D,\\text{crit}} \\approx 2300\\]\nRecalling flat plate: \\(\\frac{\\delta}{\\delta_T} \\sim \\sqrt{\\text{Pr}}\\)\nThermal entrance length:\n\\[\\frac{x_{fd}}{D} \\approx \\begin{cases}0.05\\,\\text{Re}_D\\cdot\\text{Pr} & \\text{laminar} \\\\ 10 & \\text{turbulent}\\end{cases}\\]",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Internal Convection</span>"
+    ]
+  },
+  {
+    "objectID": "5internal.html#fully-developed-thermally",
+    "href": "5internal.html#fully-developed-thermally",
+    "title": "5  Internal Convection",
+    "section": "5.3 Fully Developed (Thermally)",
+    "text": "5.3 Fully Developed (Thermally)\nMathematically we define fully developed as:\n\\[\\frac{\\partial}{\\partial x}\\left[\\frac{T_s(x) - T(r,x)}{T_s(x) - T_m(x)}\\right]_{fd} = 0\\]\n\nThe temperature profile can continue to evolve even after “fully developed,” but…\nWhen fully developed, every \\(r\\)-location experiences the same \\(T\\) change as \\(T_m\\) \\(\\to\\) shape of profile consistent.\nWhen fully developed, the fraction from above does not depend on \\(x\\). Call it \\(M(r)\\):\n\n\\[\\frac{\\partial}{\\partial x}\\bigl[M(r)\\bigr] = 0\\]\nThen:\n\\[\\frac{\\partial}{\\partial r}\\bigl[M(r)\\bigr] = M'(r) = \\frac{1}{T_s(x)-T_m(x)}\\cdot\\left(-\\frac{\\partial T}{\\partial r}\\right)\\]\nFourier’s Law at the pipe wall: \\(q_s'' = k_f\\frac{\\partial T}{\\partial r} = h(T_s - T_m)\\)\nFrom above:\n\\[q_s'' = k_f\\left(-M'(r)\\cdot(T_s - T_m)\\right) = h(T_s - T_m)\\]\n\\[\\therefore \\quad h = -M'(r)\\cdot k_f \\quad \\Rightarrow \\quad h \\text{ is not a function of }x\\]\nIt turns out:\n\\[\\text{Nu}_D = \\frac{hD}{k} = \\begin{cases}3.66 & \\text{laminar flow with }T_s = \\text{const} \\\\ 4.36 & \\text{laminar flow with }q_s'' = \\text{const}\\end{cases}\\]\n(More correlations in document on Canvas, e.g. for turbulent flow)",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Internal Convection</span>"
+    ]
+  },
+  {
+    "objectID": "5internal.html#temperature-variation-along-the-pipe",
+    "href": "5internal.html#temperature-variation-along-the-pipe",
+    "title": "5  Internal Convection",
+    "section": "5.4 Temperature Variation Along the Pipe",
+    "text": "5.4 Temperature Variation Along the Pipe\n\n5.4.1 1. \\(T_s = \\text{constant}\\)\nDiagram: Control volume of width \\(dx\\) in the pipe.\nEnergy balance: thermodynamics = heat transfer:\n\\[d\\dot{Q} = \\dot{m}\\,c_p\\,dT_m = h\\cdot P\\cdot dx\\cdot(T_s - T_m)\\]\nwhere \\(P\\) is the perimeter.\nRearranging:\n\\[\\int\\frac{dT_m}{T_s - T_m} = \\int\\frac{hP}{\\dot{m}c_p}\\,dx\\]\n\\[-\\ln(T_s - T_m)\\bigg|_{T_{m,i}}^{T_m(x)} = \\frac{hP}{\\dot{m}c_p}\\,x\\]\n\\[\\ln\\left[\\frac{T_s - T_m(x)}{T_s - T_{m,i}}\\right] = -\\frac{hP}{\\dot{m}c_p}\\,x\\]\n\\[\\boxed{\\frac{T_s - T_m(x)}{T_s - T_{m,i}} = \\exp\\!\\left(\\frac{-hP}{\\dot{m}c_p}\\,x\\right)}\\]\n\n\n5.4.2 2. \\(q_s'' = \\text{constant}\\)\nEnergy balance:\n\\[\\dot{m}\\,c_p\\,dT_m = q_s''\\cdot P\\cdot dx\\]\nRearranging:\n\\[\\int dT_m = \\int\\frac{q_s''\\cdot P}{\\dot{m}\\,c_p}\\,dx\\]\n\\[\\boxed{T_m(x) = \\frac{q_s''\\,P}{\\dot{m}\\,c_p}\\,x + T_{m,i}}\\]",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Internal Convection</span>"
+    ]
+  },
+  {
+    "objectID": "5internal.html#pipe-flow-correlations-for-different-shapes-and-turbulence",
+    "href": "5internal.html#pipe-flow-correlations-for-different-shapes-and-turbulence",
+    "title": "5  Internal Convection",
+    "section": "5.5 Pipe flow correlations for different shapes and turbulence",
+    "text": "5.5 Pipe flow correlations for different shapes and turbulence\n\n5.5.1 Entrance Lengths\nHydrodynamic:\n\\[\n\\frac{L_\\text{fd}}{D}=\n\\begin{cases}\n  0.05\\,\\text{Re}_D & \\text{if fully developed flow will be laminar, } \\text{Re}_D&lt;2300 \\\\\n  10 & \\text{if fully developed flow will be turbulent}\n\\end{cases}\n\\]\nThermal:\n\\[\n\\frac{L_\\text{fd}}{D}=\n\\begin{cases}\n  0.05\\,\\text{Re}_D\\,\\text{Pr} & \\text{if fully developed flow will be laminar, } \\text{Re}_D&lt;2300 \\\\\n  10 & \\text{if fully developed flow will be turbulent}\n\\end{cases}\n\\]\n\n\n5.5.2 Entrance Region Correlations\nLaminar:\n\nIf the flow is hydrodynamically fully developed, but not thermally:\n\\[\\overline{\\text{Nu}}_D=3.66+\\frac{0.0668(D/L)\\,\\text{Re}_D\\,\\text{Pr}}{1+0.04\\left[(D/L)\\,\\text{Re}_D\\,\\text{Pr}\\right]^{2/3}}\\]\nThis correlation is also typically used for fluids where \\(\\text{Pr}\\geq 5\\), as the viscous diffusion in such a case is at least \\(5\\times\\) more rapid than the thermal diffusion, and so, hydrodynamically, it develops quickly.\nFor a “combined entry length” that is developing both hydrodynamically and thermally:\n\\[\\overline{\\text{Nu}}_D=1.86\\left(\\frac{\\text{Re}_D\\,\\text{Pr}}{L/D}\\right)^{1/3}\\left(\\frac{\\mu}{\\mu_\\text{S}}\\right)^{0.14}\\]\nThis is used for \\(\\text{Pr}&lt;5\\).\n\nTechnically both of these correlations are for \\(T_\\text{S}=\\text{constant}\\). The book does not provide a correlation for the case where \\(q''_\\text{S}=\\text{constant}\\), instead providing a plot for the local Nusselt Number. We might notice that the 3.66 factor in the first correlation is precisely the Nusselt Number for fully developed flow with \\(T_\\text{S}=\\text{constant}\\). A reasonable approximation, then, might be to replace this factor with 4.36, the Nusselt Number for fully developed flow with \\(q''_\\text{S}=\\text{constant}\\).\nTurbulent: Typically we assume it is the same as for fully developed flow (given below).\n\n\n5.5.3 Fully Developed Correlations\n\n5.5.3.1 Laminar\n\\(\\text{Re}_D&lt;2300\\)\n\\[\n\\begin{aligned}\n\\text{Nu}_D\\equiv \\frac{hD}{k}&=3.66\\qquad \\text{for } T_\\text{s}=\\text{constant}\\\\\n&=4.36\\qquad \\text{for } q''_\\text{s}=\\text{constant}\n\\end{aligned}\n\\]\n\n5.5.3.1.1 The effect of cross section\nFor flows with non-circular cross sections, we use the “hydraulic diameter” in the Nusselt Number:\n\\[D_\\text{h}\\equiv \\frac{4A_c}{P}\\]\nWe also represent the friction factor in an analogous way: for circular laminar pipe flow it is \\(f=64/\\text{Re}_D\\), and we update the coefficient “64” according to the hydraulic diameter:\n\n\n\n\n\n\n\n\n\n\nCross Section\n\\(b/a\\)\n\\(\\text{Nu}_{D_\\text{h}}\\) (uniform \\(T_\\text{S}\\))\n\\(\\text{Nu}_{D_\\text{h}}\\) (uniform \\(q''_\\text{s}\\))\n\\(f\\,\\text{Re}_{D_\\text{h}}\\)\n\n\n\n\ncircle\n–\n3.66\n4.36\n64\n\n\nsquare\n1.0\n2.98\n3.61\n57\n\n\nrectangle\n1.43\n3.08\n3.73\n59\n\n\nrectangle\n2.0\n3.39\n4.12\n62\n\n\nrectangle\n3.0\n3.96\n4.79\n69\n\n\nrectangle\n4.0\n4.44\n5.33\n73\n\n\nrectangle\n8.0\n5.60\n6.49\n82\n\n\nrectangle\n\\(\\infty\\)\n7.54\n8.23\n96\n\n\nrectangle, insulated below\n\\(\\infty\\)\n4.86\n5.39\n96\n\n\ntriangle\n–\n2.49\n3.11\n53\n\n\n\n\n\n5.5.3.1.2 Annulus\nIn the following, the diameter used in the Nu correlation is \\(D_\\text{H}=D_\\text{o}-D_\\text{i}\\).\nFor flow through an annulus, with one surface insulated and the other at constant temperature:\n\n\n\n\\(D_i/D_o\\)\n\\(\\text{Nu}_i\\)\n\\(\\text{Nu}_o\\)\n\n\n\n\n0\n–\n3.66\n\n\n0.05\n17.46\n4.06\n\n\n0.10\n11.56\n4.11\n\n\n0.25\n7.37\n4.23\n\n\n0.50\n5.74\n4.43\n\n\n0.999\n4.86\n4.86\n\n\n\nFor uniform heat flux at both surfaces, a more complicated correlation is developed with\n\\[\n\\begin{aligned}\n\\text{Nu}_i&=\\frac{\\text{Nu}_{ii}}{1-(q''_o/q''_i)\\,\\theta^*_i}\\\\\n\\text{Nu}_o&=\\frac{\\text{Nu}_{oo}}{1-(q''_i/q''_o)\\,\\theta^*_o}\n\\end{aligned}\n\\]\n\n\n\n\n\n\n\n\n\n\n\\(D_i/D_o\\)\n\\(\\text{Nu}_{ii}\\)\n\\(\\text{Nu}_{oo}\\)\n\\(\\theta^*_i\\)\n\\(\\theta^*_o\\)\n\n\n\n\n0\n–\n4.364\n\\(\\infty\\)\n0\n\n\n0.05\n17.81\n4.792\n2.18\n0.0294\n\n\n0.10\n11.91\n4.834\n1.383\n0.0562\n\n\n0.20\n8.499\n4.833\n0.905\n0.1041\n\n\n0.40\n6.583\n4.979\n0.603\n0.1823\n\n\n0.60\n5.912\n5.099\n0.473\n0.2455\n\n\n0.80\n5.58\n5.24\n0.401\n0.299\n\n\n0.999\n5.385\n5.385\n0.346\n0.346\n\n\n\nNote: \\(q''_i\\) and \\(q''_o\\) may be positive or negative. In the above, we call both positive when they are flowing into the annulus.\nExample of using this chart: Suppose the outside of the annulus is insulated. Then \\(q''_o=0\\). For a concentric tube heat exchanger, especially in the counterflow configuration, it is reasonable to claim \\(q''_i=\\text{constant} = \\dot{Q}/A\\) (we might determine this from thermodynamics… the heat needed to change a fluid’s temperature by a known amount). Then, from the geometry \\(D_i/D_o\\), we can read off all necessary values to determine \\(\\text{Nu}_i\\), and from there, \\(h_i\\).\n\n\n\n5.5.3.2 Turbulent flow\nTurbulent, \\(\\text{Re}_D&gt;2300\\):\n\nFor small temperature differences:\n\\[\\text{Nu}_D=0.023\\,\\text{Re}^{4/5}_D\\,\\text{Pr}^n\\]\nwhere \\(n=0.4\\) for heating (\\(T_\\text{s}&gt;T_\\text{m}\\)) and \\(n=0.3\\) for cooling. Applicable for both uniform surface temperature and uniform heat flux.\nFor large temperature differences:\n\\[\\text{Nu}_D=0.027\\,\\text{Re}^{4/5}_D\\,\\text{Pr}^{1/3}\\left(\\frac{\\mu}{\\mu_\\text{s}}\\right)^{0.14}\\]\nwhere \\(\\mu_\\text{s}\\) is evaluated at the surface temperature. Applicable for both uniform surface temperature and uniform heat flux.\nImproved correlation, but more complicated to use:\n\\[\\text{Nu}_D=\\frac{(f/8)(\\text{Re}_D-1000)\\,\\text{Pr}}{1+12.7(f/8)^{1/2}(\\text{Pr}^{2/3}-1)}\\]\nwhere \\(f\\) is the friction factor from the Moody diagram.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Internal Convection</span>"
     ]
   },
   {
