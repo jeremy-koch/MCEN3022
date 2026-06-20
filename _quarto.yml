@@ -31,7 +31,7 @@ book:
     - 2fins.qmd
     - 3transient.qmd
     - 4convection.qmd
-    # - 5internal.qmd
+    - 5internal.qmd
     # - 6heatXer.qmd
     # - 7radiation.qmd
 
