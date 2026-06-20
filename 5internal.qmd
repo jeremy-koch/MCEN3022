@@ -1,6 +1,6 @@
 # Internal Convection
 
-
+Under construction
 
 
 
@@ -55,49 +55,29 @@ $$
 q'' = h(T_s - T_m)
 $$
 
-and, since $T_m$ is definitely going to depend on $x$, $q''$ will depend on $x$. So... it is a fairly simple description for the heat flux, assuming we can make it work.
+and, since $T_m$ is definitely going to depend on $x$, $q''$ will depend on $x$. So... it is a fairly simple description for the heat flux, assuming we can make it work. Hopefully $h$ isn't going to depend on $x$ or anything like that -- it will turn into a complicated analysis if so, mandating an integral instead of a simply $hA\Delta T$.
 
-A few considerations follow.
-
-### Steady state
+### Fully developed flow
 
 What is a practical definition for "steady" and "transient" when heat is being added to a flow? A given parcel of fluid is going to be increasing in temperature as it moves through a heated section of pipe.
 
+We will say that a flow is "fully developed" when the relative shape of the temperature profile is unchanging with axial position: if every radial location is increasing in temperature at 2 K/m, the mean temperature is also changing at 2 K/m. Mathematically:
 
+$$
+\frac{\partial}{\partial x}\left[\frac{T_s(x) - T(r,x)}{T_s(x) - T_m(x)}\right]_\text{fd} = 0.
+$$
 
-### Entrance Region
+The fact that the partial derivative with respect is equal to zero tells us the fraction from above does not depend on $x$, but it will depend on $r$. We can write 
 
-For flow entering a heated section of pipe, there will be an "entrance region" where
+$$
+\frac{\partial}{\partial r}\left[\frac{T_s(x) - T(r,x)}{T_s(x) - T_m(x)}\right]_\text{fd} = \left(\frac{1}{T_s(x) - T_m(x)}\right)\left(-\frac{\partial T}{\partial r}).
+$$
 
-$$\frac{x_{fd}}{D} \approx \begin{cases}0.05\,\text{Re}_D & \text{for a flow that will be laminar} \\ 10 & \text{for turbulent}\end{cases}$$
+OK, why should we care about this mathematical observation? Watch this: bring in Fourier's Law at the pipe wall, and set it equal to our desired form $h(T_s-T_m)$:
 
-$$\text{Re}_D = \frac{\rho u_m D}{\mu}, \qquad \text{Re}_{D,\text{crit}} \approx 2300$$
-
-Recalling flat plate: $\frac{\delta}{\delta_T} \sim \sqrt{\text{Pr}}$
-
-**Thermal entrance length:**
-
-$$\frac{x_{fd}}{D} \approx \begin{cases}0.05\,\text{Re}_D\cdot\text{Pr} & \text{laminar} \\ 10 & \text{turbulent}\end{cases}$$
-
----
-
-## Fully Developed (Thermally)
-
-Mathematically we define fully developed as:
-
-$$\frac{\partial}{\partial x}\left[\frac{T_s(x) - T(r,x)}{T_s(x) - T_m(x)}\right]_{fd} = 0$$
-
-- The temperature profile can continue to evolve even after "fully developed," but…
-- When fully developed, every $r$-location experiences the same $T$ change as $T_m$ $\to$ shape of profile consistent.
-- When fully developed, the fraction from above does not depend on $x$. Call it $M(r)$:
-
-$$\frac{\partial}{\partial x}\bigl[M(r)\bigr] = 0$$
-
-Then:
-
-$$\frac{\partial}{\partial r}\bigl[M(r)\bigr] = M'(r) = \frac{1}{T_s(x)-T_m(x)}\cdot\left(-\frac{\partial T}{\partial r}\right)$$
-
-**Fourier's Law** at the pipe wall: $q_s'' = k_f\frac{\partial T}{\partial r} = h(T_s - T_m)$
+$$
+q_s'' = k_f\frac{\partial T}{\partial r} = h(T_s - T_m).
+$$
 
 From above:
 
@@ -109,7 +89,24 @@ It turns out:
 
 $$\text{Nu}_D = \frac{hD}{k} = \begin{cases}3.66 & \text{laminar flow with }T_s = \text{const} \\ 4.36 & \text{laminar flow with }q_s'' = \text{const}\end{cases}$$
 
-(More correlations in document on Canvas, e.g. for turbulent flow)
+
+
+
+### Entrance Region
+
+We will not be limiting ourselves to cases where the flow is fully developed. A fluid entering a heated section of pipe will experience an "entrance region" where the flow is developing. The distance to being fully developed is given by
+
+$$
+\frac{x_{fd}}{D} \approx \begin{cases}0.05\,\text{Re}_D & \text{for a flow that will be laminar} \\ 10 & \text{for turbulent}\end{cases}
+$$
+
+where $\text{Re}_D = \rho u_m D/\mu$ is the Reynolds Number and $\text{Re}_{D,\text{crit}} \approx 2300$.
+
+Recalling flat plate: $\frac{\delta}{\delta_T} \sim \sqrt{\text{Pr}}$
+
+**Thermal entrance length:**
+
+$$\frac{x_{fd}}{D} \approx \begin{cases}0.05\,\text{Re}_D\cdot\text{Pr} & \text{laminar} \\ 10 & \text{turbulent}\end{cases}$$
 
 
 
