@@ -112,7 +112,7 @@ For the thermal entrance length:
 
 
 $$
-\frac{x_{fd}}{D} \approx \begin{cases}0.05\,\text{Re}_D\cdot\text{Pr} & \text{laminar} \\ 10 & \text{turbulent}\end{cases}
+\frac{L_{fd}}{D} \approx \begin{cases}0.05\,\text{Re}_D\cdot\text{Pr} & \text{laminar} \\ 10 & \text{turbulent}\end{cases}
 $$
 
 ::: {.column-margin}
