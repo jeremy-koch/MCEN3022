@@ -27,7 +27,11 @@ Look Ahead
 3. Think about a very viscous fluid like oil ($\text{Pr} \approx 100$) versus air ($\text{Pr} \approx 0.7$) flowing through the same heated pipe at the same Reynolds Number. Which fluid do you expect to take longer (more pipe length) to reach a "fully developed" state, and why?
 
 
+::: {.callout-tip}
+## Video
 
+Start with [this linked video](https://canvas.colorado.edu/courses/136150/pages/pipe-flow) which introduces some important pipe flow physics. The correlations for $\text{Nu}$ are summarized below. Same story as with external flow: we plug in material properties and might need to do a Reynolds Number calculation, then we can extract $h$. 
+:::
 
 
 ## Thermodynamics
@@ -159,6 +163,8 @@ Recall with the flat plate geometry that the boundary layer thickness scales wit
 
 
 ## Pipe flow correlations for different shapes and turbulence
+
+We again collect $h$ values in Nusselt Number correlations. We learned that $h$ does not depend on position, but it does depend on the Reynolds Number and whether the flow is fully developed.
 
 ### Entrance Lengths
 
@@ -304,7 +310,14 @@ Turbulent, $\text{Re}_D>2300$:
 
 ## Temperature Variation Along the Pipe
 
+
 How much pipe needs to be heated in order to reach a given operating temperature? Now that we have $h$, we can answer this question.
+
+::: {.callout-tip}
+### Video
+
+The content here is pretty similar to [this linked video](https://canvas.colorado.edu/courses/136150/pages/pipe-flow-temperature-variation).
+:::
 
 ### Known surface temperature $T_s$
 
