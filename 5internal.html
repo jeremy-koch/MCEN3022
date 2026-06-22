@@ -339,8 +339,8 @@ window.Quarto = {
   </ul></li>
   <li><a href="#heat-transfer-in-pipes" id="toc-heat-transfer-in-pipes" class="nav-link" data-scroll-target="#heat-transfer-in-pipes"><span class="header-section-number">5.3</span> Heat transfer in pipes</a>
   <ul class="collapse">
-  <li><a href="#fully-developed-flow" id="toc-fully-developed-flow" class="nav-link" data-scroll-target="#fully-developed-flow"><span class="header-section-number">5.3.1</span> Fully developed flow</a></li>
-  <li><a href="#entrance-region" id="toc-entrance-region" class="nav-link" data-scroll-target="#entrance-region"><span class="header-section-number">5.3.2</span> Entrance Region</a></li>
+  <li><a href="#entrance-region" id="toc-entrance-region" class="nav-link" data-scroll-target="#entrance-region"><span class="header-section-number">5.3.1</span> Entrance Region</a></li>
+  <li><a href="#fully-developed-flow" id="toc-fully-developed-flow" class="nav-link" data-scroll-target="#fully-developed-flow"><span class="header-section-number">5.3.2</span> Fully developed flow</a></li>
   </ul></li>
   <li><a href="#pipe-flow-correlations-for-different-shapes-and-turbulence" id="toc-pipe-flow-correlations-for-different-shapes-and-turbulence" class="nav-link" data-scroll-target="#pipe-flow-correlations-for-different-shapes-and-turbulence"><span class="header-section-number">5.4</span> Pipe flow correlations for different shapes and turbulence</a>
   <ul class="collapse">
@@ -474,9 +474,38 @@ T_m(x) = \frac{2}{u_m R^2}\int_0^R u(r;x)\,T(r;x)\,r\,dr.
 q'' = h(T_s - T_m)
 \]</span></p>
 <p>and, since <span class="math inline">\(T_m\)</span> is definitely going to depend on <span class="math inline">\(x\)</span>, <span class="math inline">\(q''\)</span> will depend on <span class="math inline">\(x\)</span>. So… it is a fairly simple description for the heat flux, assuming we can make it work. Hopefully <span class="math inline">\(h\)</span> isn’t going to depend on <span class="math inline">\(x\)</span> or anything like that – it will turn into a complicated analysis if so, mandating an integral instead of a simple <span class="math inline">\(hA\Delta T\)</span>.</p>
-<section id="fully-developed-flow" class="level3" data-number="5.3.1">
-<h3 data-number="5.3.1" class="anchored" data-anchor-id="fully-developed-flow"><span class="header-section-number">5.3.1</span> Fully developed flow</h3>
-<p>What is a practical definition for “steady” and “transient” when heat is being added to a flow? A given parcel of fluid is going to be increasing in temperature as it moves through a heated section of pipe.</p>
+<section id="entrance-region" class="level3 page-columns page-full" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="entrance-region"><span class="header-section-number">5.3.1</span> Entrance Region</h3>
+<p>A fluid entering a heated section of pipe will experience an “entrance region” where thermal and possibly hydrodynamic boundary layers are developing. The axial distance to being fully developed (in a velocity sense) is given by</p>
+<p><span class="math display">\[
+\frac{L_{fd}}{D} \approx \begin{cases}0.05\,\text{Re}_D &amp; \text{for a flow that will be laminar} \\ 10 &amp; \text{for turbulent}\end{cases}
+\]</span></p>
+<p>where <span class="math inline">\(\text{Re}_D = \rho u_m D/\mu\)</span> is the Reynolds Number and <span class="math inline">\(\text{Re}_{D,\text{crit}} \approx 2300\)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The above uses the Reynolds Number based on diameter – the entrance length depends on whether the flow is destined to be laminar or turbulent.</p>
+</div>
+</div>
+<p>For the thermal entrance length:</p>
+<p><span class="math display">\[
+\frac{x_{fd}}{D} \approx \begin{cases}0.05\,\text{Re}_D\cdot\text{Pr} &amp; \text{laminar} \\ 10 &amp; \text{turbulent}\end{cases}
+\]</span></p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Recall with the flat plate geometry that the boundary layer thickness scales with <span class="math inline">\(1/\sqrt{\text{Re}_x}\)</span> and the thermal boundary layer thickness scales with <span class="math inline">\(1/\sqrt{\text{Pr}\text{Re}_x}\)</span>. The form of the thermal entrance length is not surprising!</p>
+</div></div></section>
+<section id="fully-developed-flow" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="fully-developed-flow"><span class="header-section-number">5.3.2</span> Fully developed flow</h3>
+<p>After the entrance length, the flow is “fully developed”.</p>
+<p>What does this mean? Is it “steady”? No – heat is being added still, the temperature is changing. So… is there any mathematical benefit to assuming the flow is fully developed?</p>
 <p>We will say that a flow is “fully developed” when the relative shape of the temperature profile is unchanging with axial position: if every radial location is increasing in temperature at 2 K/m, the mean temperature is also changing at 2 K/m. Mathematically:</p>
 <p><span class="math display">\[
 \frac{\partial}{\partial x}\left[\frac{T_s(x) - T(r,x)}{T_s(x) - T_m(x)}\right]_\text{fd} = 0.
@@ -506,27 +535,13 @@ h = -k_f M'(r)\quad h \text{ is not a function of }x.
 
  -->
 </section>
-<section id="entrance-region" class="level3 page-columns page-full" data-number="5.3.2">
-<h3 data-number="5.3.2" class="anchored" data-anchor-id="entrance-region"><span class="header-section-number">5.3.2</span> Entrance Region</h3>
-<p>However, we will not be limiting ourselves to cases where the flow is fully developed. A fluid entering a heated section of pipe will experience an “entrance region” where the flow is developing. The axial distance to being fully developed (in a velocity sense) is given by</p>
-<p><span class="math display">\[
-\frac{L_{fd}}{D} \approx \begin{cases}0.05\,\text{Re}_D &amp; \text{for a flow that will be laminar} \\ 10 &amp; \text{for turbulent}\end{cases}
-\]</span></p>
-<p>where <span class="math inline">\(\text{Re}_D = \rho u_m D/\mu\)</span> is the Reynolds Number and <span class="math inline">\(\text{Re}_{D,\text{crit}} \approx 2300\)</span>.</p>
-<p>For the thermal entrance length:</p>
-<p><span class="math display">\[
-\frac{x_{fd}}{D} \approx \begin{cases}0.05\,\text{Re}_D\cdot\text{Pr} &amp; \text{laminar} \\ 10 &amp; \text{turbulent}\end{cases}
-\]</span></p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>Recall with the flat plate geometry that the boundary layer thickness scales with <span class="math inline">\(1/\sqrt{\text{Re}_x}\)</span> and the thermal boundary layer thickness scales with <span class="math inline">\(1/\sqrt{\text{Pr}\text{Re}_x}\)</span>. The form of the thermal entrance length is not surprising!</p>
-</div></div></section>
 </section>
 <section id="pipe-flow-correlations-for-different-shapes-and-turbulence" class="level2" data-number="5.4">
 <h2 data-number="5.4" class="anchored" data-anchor-id="pipe-flow-correlations-for-different-shapes-and-turbulence"><span class="header-section-number">5.4</span> Pipe flow correlations for different shapes and turbulence</h2>
 <p>We again collect <span class="math inline">\(h\)</span> values in Nusselt Number correlations. We learned that <span class="math inline">\(h\)</span> does not depend on position, but it does depend on the Reynolds Number and whether the flow is fully developed.</p>
 <section id="entrance-lengths" class="level3" data-number="5.4.1">
 <h3 data-number="5.4.1" class="anchored" data-anchor-id="entrance-lengths"><span class="header-section-number">5.4.1</span> Entrance Lengths</h3>
+<p>Reminder of the above</p>
 <p>Hydrodynamic:</p>
 <p><span class="math display">\[
 \frac{L_\text{fd}}{D}=
@@ -1433,285 +1448,298 @@ T_m(x) = \frac{q_s''\,P}{\dot{m}\,c_p}\,x + T_{m,i}.
 <span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>and, since $T_m$ is definitely going to depend on $x$, $q''$ will depend on $x$. So... it is a fairly simple description for the heat flux, assuming we can make it work. Hopefully $h$ isn't going to depend on $x$ or anything like that -- it will turn into a complicated analysis if so, mandating an integral instead of a simple $hA\Delta T$.</span>
 <span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="fu">### Fully developed flow</span></span>
-<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>What is a practical definition for "steady" and "transient" when heat is being added to a flow? A given parcel of fluid is going to be increasing in temperature as it moves through a heated section of pipe.</span>
-<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>We will say that a flow is "fully developed" when the relative shape of the temperature profile is unchanging with axial position: if every radial location is increasing in temperature at 2 K/m, the mean temperature is also changing at 2 K/m. Mathematically:</span>
-<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a>\frac{\partial}{\partial x}\left<span class="co">[</span><span class="ot">\frac{T_s(x) - T(r,x)}{T_s(x) - T_m(x)}\right</span><span class="co">]</span>_\text{fd} = 0.</span>
-<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a>The fact that the partial derivative with respect to $x$ is equal to zero tells us the fraction from above does not depend on $x$, but it will depend on $r$. </span>
-<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>For mathematical clarity, let's give a symbol to the fraction above (when it is fully developed):</span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a><span class="fu">### Entrance Region</span></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>A fluid entering a heated section of pipe will experience an "entrance region" where thermal and possibly hydrodynamic boundary layers are developing. The axial distance to being fully developed (in a velocity sense) is given by</span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a>\frac{L_{fd}}{D} \approx \begin{cases}0.05\,\text{Re}_D &amp; \text{for a flow that will be laminar} <span class="sc">\\</span> 10 &amp; \text{for turbulent}\end{cases}</span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a>where $\text{Re}_D = \rho u_m D/\mu$ is the Reynolds Number and $\text{Re}_{D,\text{crit}} \approx 2300$.</span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
 <span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a>M(r) \equiv \left<span class="co">[</span><span class="ot">\frac{T_s(x) - T(r,x)}{T_s(x) - T_m(x)}\right</span><span class="co">]</span>_\text{fd}.</span>
-<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>The above uses the Reynolds Number based on diameter -- the entrance length depends on whether the flow is destined to be laminar or turbulent.</span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a>Then we can write</span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a>For the thermal entrance length:</span>
 <span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a>\frac{\partial M}{\partial r}=\left(\frac{1}{T_s(x) - T_m(x)}\right)\left(-\frac{\partial T}{\partial r}\right).</span>
-<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a>OK, why should we care about this mathematical observation? Watch this: bring in Fourier's Law at the pipe wall, and set it equal to our desired form $h(T_s-T_m)$:</span>
-<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a>q_s'' = k_f\frac{\partial T}{\partial r} = h(T_s(x) - T_m(x)).</span>
-<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a>\frac{x_{fd}}{D} \approx \begin{cases}0.05\,\text{Re}_D\cdot\text{Pr} &amp; \text{laminar} <span class="sc">\\</span> 10 &amp; \text{turbulent}\end{cases}</span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a>::: {.column-margin}</span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a>Recall with the flat plate geometry that the boundary layer thickness scales with $1/\sqrt{\text{Re}_x}$ and the thermal boundary layer thickness scales with $1/\sqrt{\text{Pr}\text{Re}_x}$. The form of the thermal entrance length is not surprising!</span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a>From above we can substitute-in </span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a><span class="fu">### Fully developed flow</span></span>
 <span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a>q_s'' = -k_f M'(r)\cdot(T_s(x) - T_m(x)) = h(T_s(x) - T_m(x))</span>
-<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a>After the entrance length, the flow is "fully developed".</span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a>What does this mean? Is it "steady"? No -- heat is being added still, the temperature is changing. So... is there any mathematical benefit to assuming the flow is fully developed?</span>
 <span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a>and can cancel the $\Delta T$ to conclude</span>
-<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a>h = -k_f M'(r)\quad h \text{ is not a function of }x.</span>
-<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a>Really interesting! It turns out that, even though $T_s$ and $T_m$ are functions of $x$, $h$ is not! Once we know the flow speed, geometry, and fluid, $h$ will be constant for fully developed flow. </span>
-<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a>Correlations are summarized below.</span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a>We will say that a flow is "fully developed" when the relative shape of the temperature profile is unchanging with axial position: if every radial location is increasing in temperature at 2 K/m, the mean temperature is also changing at 2 K/m. Mathematically:</span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a>\frac{\partial}{\partial x}\left<span class="co">[</span><span class="ot">\frac{T_s(x) - T(r,x)}{T_s(x) - T_m(x)}\right</span><span class="co">]</span>_\text{fd} = 0.</span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a>The fact that the partial derivative with respect to $x$ is equal to zero tells us the fraction from above does not depend on $x$, but it will depend on $r$. </span>
+<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a>For mathematical clarity, let's give a symbol to the fraction above (when it is fully developed):</span>
 <span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- $$\text{Nu}_D = \frac{hD}{k} = \begin{cases}3.66 &amp; \text{laminar flow with }T_s = \text{const} \\ 4.36 &amp; \text{laminar flow with }q_s'' = \text{const}\end{cases}$$</span></span>
-<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a><span class="co"> --&gt;</span></span>
+<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a>M(r) \equiv \left<span class="co">[</span><span class="ot">\frac{T_s(x) - T(r,x)}{T_s(x) - T_m(x)}\right</span><span class="co">]</span>_\text{fd}.</span>
+<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a><span class="fu">### Entrance Region</span></span>
-<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a>However, we will not be limiting ourselves to cases where the flow is fully developed. A fluid entering a heated section of pipe will experience an "entrance region" where the flow is developing. The axial distance to being fully developed (in a velocity sense) is given by</span>
-<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a>\frac{L_{fd}}{D} \approx \begin{cases}0.05\,\text{Re}_D &amp; \text{for a flow that will be laminar} <span class="sc">\\</span> 10 &amp; \text{for turbulent}\end{cases}</span>
-<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a>where $\text{Re}_D = \rho u_m D/\mu$ is the Reynolds Number and $\text{Re}_{D,\text{crit}} \approx 2300$.</span>
-<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a>For the thermal entrance length:</span>
-<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a>Then we can write</span>
+<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a>\frac{\partial M}{\partial r}=\left(\frac{1}{T_s(x) - T_m(x)}\right)\left(-\frac{\partial T}{\partial r}\right).</span>
+<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a>OK, why should we care about this mathematical observation? Watch this: bring in Fourier's Law at the pipe wall, and set it equal to our desired form $h(T_s-T_m)$:</span>
+<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a>q_s'' = k_f\frac{\partial T}{\partial r} = h(T_s(x) - T_m(x)).</span>
+<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a>From above we can substitute-in </span>
 <span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a>\frac{x_{fd}}{D} \approx \begin{cases}0.05\,\text{Re}_D\cdot\text{Pr} &amp; \text{laminar} <span class="sc">\\</span> 10 &amp; \text{turbulent}\end{cases}</span>
+<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a>q_s'' = -k_f M'(r)\cdot(T_s(x) - T_m(x)) = h(T_s(x) - T_m(x))</span>
 <span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a>::: {.column-margin}</span>
-<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a>Recall with the flat plate geometry that the boundary layer thickness scales with $1/\sqrt{\text{Re}_x}$ and the thermal boundary layer thickness scales with $1/\sqrt{\text{Pr}\text{Re}_x}$. The form of the thermal entrance length is not surprising!</span>
-<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a>and can cancel the $\Delta T$ to conclude</span>
+<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a>h = -k_f M'(r)\quad h \text{ is not a function of }x.</span>
+<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pipe flow correlations for different shapes and turbulence</span></span>
+<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a>Really interesting! It turns out that, even though $T_s$ and $T_m$ are functions of $x$, $h$ is not! Once we know the flow speed, geometry, and fluid, $h$ will be constant for fully developed flow. </span>
 <span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a>We again collect $h$ values in Nusselt Number correlations. We learned that $h$ does not depend on position, but it does depend on the Reynolds Number and whether the flow is fully developed.</span>
+<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a>Correlations are summarized below.</span>
 <span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a><span class="fu">### Entrance Lengths</span></span>
+<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- $$\text{Nu}_D = \frac{hD}{k} = \begin{cases}3.66 &amp; \text{laminar flow with }T_s = \text{const} \\ 4.36 &amp; \text{laminar flow with }q_s'' = \text{const}\end{cases}$$</span></span>
 <span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a>Hydrodynamic:</span>
+<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a><span class="co"> --&gt;</span></span>
 <span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a>\frac{L_\text{fd}}{D}=</span>
-<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a>\begin{cases}</span>
-<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a>  0.05\,\text{Re}_D &amp; \text{if fully developed flow will be laminar, } \text{Re}_D&lt;2300 <span class="sc">\\</span></span>
-<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a>  10 &amp; \text{if fully developed flow will be turbulent}</span>
-<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a>\end{cases}</span>
-<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a>Thermal:</span>
-<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a>\frac{L_\text{fd}}{D}=</span>
-<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a>\begin{cases}</span>
-<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a>  0.05\,\text{Re}_D\,\text{Pr} &amp; \text{if fully developed flow will be laminar, } \text{Re}_D&lt;2300 <span class="sc">\\</span></span>
-<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a>  10 &amp; \text{if fully developed flow will be turbulent}</span>
-<span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a>\end{cases}</span>
-<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a><span class="fu">### Entrance Region Correlations</span></span>
-<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a>Laminar:</span>
-<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>If the flow is hydrodynamically fully developed, but not thermally:</span>
-<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a>  $$\overline{\text{Nu}}_D=3.66+\frac{0.0668(D/L)\,\text{Re}_D\,\text{Pr}}{1+0.04\left<span class="co">[</span><span class="ot">(D/L)\,\text{Re}_D\,\text{Pr}\right</span><span class="co">]</span>^{2/3}}$$</span>
-<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a>  This correlation is also typically used for fluids where $\text{Pr}\geq 5$, as the viscous diffusion in such a case is at least $5\times$ more rapid than the thermal diffusion, and so, hydrodynamically, it develops quickly.</span>
-<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>For a "combined entry length" that is developing both hydrodynamically and thermally:</span>
-<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a>  $$\overline{\text{Nu}}_D=1.86\left(\frac{\text{Re}_D\,\text{Pr}}{L/D}\right)^{1/3}\left(\frac{\mu}{\mu_\text{S}}\right)^{0.14}$$</span>
-<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a>  This is used for $\text{Pr}&lt;5$.</span>
-<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a>Technically both of these correlations are for $T_\text{S}=\text{constant}$. The book does not provide a correlation for the case where $q''_\text{S}=\text{constant}$, instead providing a plot for the local Nusselt Number. We might notice that the 3.66 factor in the first correlation is precisely the Nusselt Number for fully developed flow with $T_\text{S}=\text{constant}$. A reasonable approximation, then, might be to replace this factor with 4.36, the Nusselt Number for fully developed flow with $q''_\text{S}=\text{constant}$.</span>
-<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a>Turbulent: Typically we assume it is the same as for fully developed flow (given below).</span>
-<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a><span class="fu">### Fully Developed Correlations</span></span>
-<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Laminar</span></span>
-<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a>$\text{Re}_D&lt;2300$</span>
-<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
-<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a>\text{Nu}_D\equiv \frac{hD}{k}&amp;=3.66\qquad \text{for } T_\text{s}=\text{constant}<span class="sc">\\</span></span>
-<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a>&amp;=4.36\qquad \text{for } q''_\text{s}=\text{constant}</span>
-<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
-<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pipe flow correlations for different shapes and turbulence</span></span>
+<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a>We again collect $h$ values in Nusselt Number correlations. We learned that $h$ does not depend on position, but it does depend on the Reynolds Number and whether the flow is fully developed.</span>
+<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a><span class="fu">### Entrance Lengths</span></span>
+<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a>Reminder of the above</span>
+<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a>Hydrodynamic:</span>
+<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a>\frac{L_\text{fd}}{D}=</span>
+<span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a>\begin{cases}</span>
+<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a>  0.05\,\text{Re}_D &amp; \text{if fully developed flow will be laminar, } \text{Re}_D&lt;2300 <span class="sc">\\</span></span>
+<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a>  10 &amp; \text{if fully developed flow will be turbulent}</span>
+<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a>\end{cases}</span>
+<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a>Thermal:</span>
+<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a>\frac{L_\text{fd}}{D}=</span>
+<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a>\begin{cases}</span>
+<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a>  0.05\,\text{Re}_D\,\text{Pr} &amp; \text{if fully developed flow will be laminar, } \text{Re}_D&lt;2300 <span class="sc">\\</span></span>
+<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a>  10 &amp; \text{if fully developed flow will be turbulent}</span>
+<span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a>\end{cases}</span>
+<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a><span class="fu">### Entrance Region Correlations</span></span>
+<span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a>Laminar:</span>
+<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>If the flow is hydrodynamically fully developed, but not thermally:</span>
+<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a>  $$\overline{\text{Nu}}_D=3.66+\frac{0.0668(D/L)\,\text{Re}_D\,\text{Pr}}{1+0.04\left<span class="co">[</span><span class="ot">(D/L)\,\text{Re}_D\,\text{Pr}\right</span><span class="co">]</span>^{2/3}}$$</span>
+<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a>  This correlation is also typically used for fluids where $\text{Pr}\geq 5$, as the viscous diffusion in such a case is at least $5\times$ more rapid than the thermal diffusion, and so, hydrodynamically, it develops quickly.</span>
+<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>For a "combined entry length" that is developing both hydrodynamically and thermally:</span>
+<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a>  $$\overline{\text{Nu}}_D=1.86\left(\frac{\text{Re}_D\,\text{Pr}}{L/D}\right)^{1/3}\left(\frac{\mu}{\mu_\text{S}}\right)^{0.14}$$</span>
+<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a>  This is used for $\text{Pr}&lt;5$.</span>
+<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a>Technically both of these correlations are for $T_\text{S}=\text{constant}$. The book does not provide a correlation for the case where $q''_\text{S}=\text{constant}$, instead providing a plot for the local Nusselt Number. We might notice that the 3.66 factor in the first correlation is precisely the Nusselt Number for fully developed flow with $T_\text{S}=\text{constant}$. A reasonable approximation, then, might be to replace this factor with 4.36, the Nusselt Number for fully developed flow with $q''_\text{S}=\text{constant}$.</span>
+<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a>Turbulent: Typically we assume it is the same as for fully developed flow (given below).</span>
 <span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a><span class="fu">##### The effect of cross section</span></span>
+<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a><span class="fu">### Fully Developed Correlations</span></span>
 <span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a>For flows with non-circular cross sections, we use the "hydraulic diameter" in the Nusselt Number:</span>
+<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Laminar</span></span>
 <span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a>$$D_\text{H}\equiv \frac{4A_c}{P}$$</span>
+<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a>$\text{Re}_D&lt;2300$</span>
 <span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a>We also represent the friction factor in an analogous way: for circular laminar pipe flow it is $f=64/\text{Re}_D$, and we update the coefficient "64" according to the hydraulic diameter:</span>
-<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Cross Section <span class="pp">|</span> $b/a$ <span class="pp">|</span> $\text{Nu}_{D_\text{h}}$ (uniform $T_\text{S}$) | $\text{Nu}_{D_\text{h}}$ (uniform $q''_\text{s}$) | $f\,\text{Re}_{D_\text{h}}$ <span class="pp">|</span></span>
-<span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|---|</span></span>
-<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> circle <span class="pp">|</span> -- <span class="pp">|</span> 3.66 <span class="pp">|</span> 4.36 <span class="pp">|</span> 64 <span class="pp">|</span></span>
-<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> square <span class="pp">|</span> 1.0 <span class="pp">|</span> 2.98 <span class="pp">|</span> 3.61 <span class="pp">|</span> 57 <span class="pp">|</span></span>
-<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> rectangle <span class="pp">|</span> 1.43 <span class="pp">|</span> 3.08 <span class="pp">|</span> 3.73 <span class="pp">|</span> 59 <span class="pp">|</span></span>
-<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> rectangle <span class="pp">|</span> 2.0 <span class="pp">|</span> 3.39 <span class="pp">|</span> 4.12 <span class="pp">|</span> 62 <span class="pp">|</span></span>
-<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> rectangle <span class="pp">|</span> 3.0 <span class="pp">|</span> 3.96 <span class="pp">|</span> 4.79 <span class="pp">|</span> 69 <span class="pp">|</span></span>
-<span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> rectangle <span class="pp">|</span> 4.0 <span class="pp">|</span> 4.44 <span class="pp">|</span> 5.33 <span class="pp">|</span> 73 <span class="pp">|</span></span>
-<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> rectangle <span class="pp">|</span> 8.0 <span class="pp">|</span> 5.60 <span class="pp">|</span> 6.49 <span class="pp">|</span> 82 <span class="pp">|</span></span>
-<span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> rectangle <span class="pp">|</span> $\infty$ <span class="pp">|</span> 7.54 <span class="pp">|</span> 8.23 <span class="pp">|</span> 96 <span class="pp">|</span></span>
-<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> rectangle, insulated below <span class="pp">|</span> $\infty$ <span class="pp">|</span> 4.86 <span class="pp">|</span> 5.39 <span class="pp">|</span> 96 <span class="pp">|</span></span>
-<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> triangle <span class="pp">|</span> -- <span class="pp">|</span> 2.49 <span class="pp">|</span> 3.11 <span class="pp">|</span> 53 <span class="pp">|</span></span>
+<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a>\text{Nu}_D\equiv \frac{hD}{k}&amp;=3.66\qquad \text{for } T_\text{s}=\text{constant}<span class="sc">\\</span></span>
+<span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a>&amp;=4.36\qquad \text{for } q''_\text{s}=\text{constant}</span>
+<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a><span class="fu">##### The effect of cross section</span></span>
+<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a>For flows with non-circular cross sections, we use the "hydraulic diameter" in the Nusselt Number:</span>
+<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a>$$D_\text{H}\equiv \frac{4A_c}{P}$$</span>
+<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a>We also represent the friction factor in an analogous way: for circular laminar pipe flow it is $f=64/\text{Re}_D$, and we update the coefficient "64" according to the hydraulic diameter:</span>
 <span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Annulus</span></span>
-<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a>In the following, the diameter used in the Nu correlation is $D_\text{H}=D_\text{o}-D_\text{i}$.</span>
-<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a>For flow through an annulus, with one surface insulated and the other at constant temperature:</span>
-<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $D_i/D_o$ <span class="pp">|</span> $\text{Nu}_i$ <span class="pp">|</span> $\text{Nu}_o$ <span class="pp">|</span></span>
-<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
-<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0 <span class="pp">|</span> -- <span class="pp">|</span> 3.66 <span class="pp">|</span></span>
-<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0.05 <span class="pp">|</span> 17.46 <span class="pp">|</span> 4.06 <span class="pp">|</span></span>
-<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0.10 <span class="pp">|</span> 11.56 <span class="pp">|</span> 4.11 <span class="pp">|</span></span>
-<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0.25 <span class="pp">|</span> 7.37 <span class="pp">|</span> 4.23 <span class="pp">|</span></span>
-<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0.50 <span class="pp">|</span> 5.74 <span class="pp">|</span> 4.43 <span class="pp">|</span></span>
-<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0.999 <span class="pp">|</span> 4.86 <span class="pp">|</span> 4.86 <span class="pp">|</span></span>
+<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Cross Section <span class="pp">|</span> $b/a$ <span class="pp">|</span> $\text{Nu}_{D_\text{h}}$ (uniform $T_\text{S}$) | $\text{Nu}_{D_\text{h}}$ (uniform $q''_\text{s}$) | $f\,\text{Re}_{D_\text{h}}$ <span class="pp">|</span></span>
+<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|---|</span></span>
+<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> circle <span class="pp">|</span> -- <span class="pp">|</span> 3.66 <span class="pp">|</span> 4.36 <span class="pp">|</span> 64 <span class="pp">|</span></span>
+<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> square <span class="pp">|</span> 1.0 <span class="pp">|</span> 2.98 <span class="pp">|</span> 3.61 <span class="pp">|</span> 57 <span class="pp">|</span></span>
+<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> rectangle <span class="pp">|</span> 1.43 <span class="pp">|</span> 3.08 <span class="pp">|</span> 3.73 <span class="pp">|</span> 59 <span class="pp">|</span></span>
+<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> rectangle <span class="pp">|</span> 2.0 <span class="pp">|</span> 3.39 <span class="pp">|</span> 4.12 <span class="pp">|</span> 62 <span class="pp">|</span></span>
+<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> rectangle <span class="pp">|</span> 3.0 <span class="pp">|</span> 3.96 <span class="pp">|</span> 4.79 <span class="pp">|</span> 69 <span class="pp">|</span></span>
+<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> rectangle <span class="pp">|</span> 4.0 <span class="pp">|</span> 4.44 <span class="pp">|</span> 5.33 <span class="pp">|</span> 73 <span class="pp">|</span></span>
+<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> rectangle <span class="pp">|</span> 8.0 <span class="pp">|</span> 5.60 <span class="pp">|</span> 6.49 <span class="pp">|</span> 82 <span class="pp">|</span></span>
+<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> rectangle <span class="pp">|</span> $\infty$ <span class="pp">|</span> 7.54 <span class="pp">|</span> 8.23 <span class="pp">|</span> 96 <span class="pp">|</span></span>
+<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> rectangle, insulated below <span class="pp">|</span> $\infty$ <span class="pp">|</span> 4.86 <span class="pp">|</span> 5.39 <span class="pp">|</span> 96 <span class="pp">|</span></span>
+<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> triangle <span class="pp">|</span> -- <span class="pp">|</span> 2.49 <span class="pp">|</span> 3.11 <span class="pp">|</span> 53 <span class="pp">|</span></span>
+<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Annulus</span></span>
 <span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a>For uniform heat flux at both surfaces, a more complicated correlation is developed with</span>
+<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a>In the following, the diameter used in the Nu correlation is $D_\text{H}=D_\text{o}-D_\text{i}$.</span>
 <span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
-<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a>\text{Nu}_i&amp;=\frac{\text{Nu}_{ii}}{1-(q''_o/q''_i)\,\theta^*_i}<span class="sc">\\</span></span>
-<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a>\text{Nu}_o&amp;=\frac{\text{Nu}_{oo}}{1-(q''_i/q''_o)\,\theta^*_o}</span>
-<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
-<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $D_i/D_o$ <span class="pp">|</span> $\text{Nu}_{ii}$ | $\text{Nu}_{oo}$ <span class="pp">|</span> $\theta^*_i$ | $\theta^*_o$ <span class="pp">|</span></span>
-<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|---|</span></span>
-<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0 <span class="pp">|</span> -- <span class="pp">|</span> 4.364 <span class="pp">|</span> $\infty$ <span class="pp">|</span> 0 <span class="pp">|</span></span>
-<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0.05 <span class="pp">|</span> 17.81 <span class="pp">|</span> 4.792 <span class="pp">|</span> 2.18 <span class="pp">|</span> 0.0294 <span class="pp">|</span></span>
-<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0.10 <span class="pp">|</span> 11.91 <span class="pp">|</span> 4.834 <span class="pp">|</span> 1.383 <span class="pp">|</span> 0.0562 <span class="pp">|</span></span>
-<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0.20 <span class="pp">|</span> 8.499 <span class="pp">|</span> 4.833 <span class="pp">|</span> 0.905 <span class="pp">|</span> 0.1041 <span class="pp">|</span></span>
-<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0.40 <span class="pp">|</span> 6.583 <span class="pp">|</span> 4.979 <span class="pp">|</span> 0.603 <span class="pp">|</span> 0.1823 <span class="pp">|</span></span>
-<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0.60 <span class="pp">|</span> 5.912 <span class="pp">|</span> 5.099 <span class="pp">|</span> 0.473 <span class="pp">|</span> 0.2455 <span class="pp">|</span></span>
-<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0.80 <span class="pp">|</span> 5.58 <span class="pp">|</span> 5.24 <span class="pp">|</span> 0.401 <span class="pp">|</span> 0.299 <span class="pp">|</span></span>
-<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0.999 <span class="pp">|</span> 5.385 <span class="pp">|</span> 5.385 <span class="pp">|</span> 0.346 <span class="pp">|</span> 0.346 <span class="pp">|</span></span>
-<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a>Note: $q''_i$ and $q''_o$ may be positive or negative. In the above, we call both positive when they are flowing into the annulus.</span>
+<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a>For flow through an annulus, with one surface insulated and the other at constant temperature:</span>
+<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $D_i/D_o$ <span class="pp">|</span> $\text{Nu}_i$ <span class="pp">|</span> $\text{Nu}_o$ <span class="pp">|</span></span>
+<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
+<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0 <span class="pp">|</span> -- <span class="pp">|</span> 3.66 <span class="pp">|</span></span>
+<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0.05 <span class="pp">|</span> 17.46 <span class="pp">|</span> 4.06 <span class="pp">|</span></span>
+<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0.10 <span class="pp">|</span> 11.56 <span class="pp">|</span> 4.11 <span class="pp">|</span></span>
+<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0.25 <span class="pp">|</span> 7.37 <span class="pp">|</span> 4.23 <span class="pp">|</span></span>
+<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0.50 <span class="pp">|</span> 5.74 <span class="pp">|</span> 4.43 <span class="pp">|</span></span>
+<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0.999 <span class="pp">|</span> 4.86 <span class="pp">|</span> 4.86 <span class="pp">|</span></span>
+<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a>For uniform heat flux at both surfaces, a more complicated correlation is developed with</span>
+<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a>\text{Nu}_i&amp;=\frac{\text{Nu}_{ii}}{1-(q''_o/q''_i)\,\theta^*_i}<span class="sc">\\</span></span>
+<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a>\text{Nu}_o&amp;=\frac{\text{Nu}_{oo}}{1-(q''_i/q''_o)\,\theta^*_o}</span>
+<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a>Example of using this chart: Suppose the outside of the annulus is insulated. Then $q''_o=0$. For a concentric tube heat exchanger, especially in the counterflow configuration, it is reasonable to claim $q''_i=\text{constant} = \dot{Q}/A$ (we might determine this from thermodynamics... the heat needed to change a fluid's temperature by a known amount). Then, from the geometry $D_i/D_o$, we can read off all necessary values to determine $\text{Nu}_i$, and from there, $h_i$.</span>
-<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Turbulent flow</span></span>
-<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a>Turbulent, $\text{Re}_D&gt;2300$:</span>
-<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>For small temperature differences:</span>
-<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a>  $$\text{Nu}_D=0.023\,\text{Re}^{4/5}_D\,\text{Pr}^n$$</span>
-<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a>  where $n=0.4$ for heating ($T_\text{s}&gt;T_\text{m}$) and $n=0.3$ for cooling. Applicable for both uniform surface temperature and uniform heat flux.</span>
-<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>For large temperature differences:</span>
-<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a>  $$\text{Nu}_D=0.027\,\text{Re}^{4/5}_D\,\text{Pr}^{1/3}\left(\frac{\mu}{\mu_\text{s}}\right)^{0.14}$$</span>
-<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a>  where $\mu_\text{s}$ is evaluated at the surface temperature. Applicable for both uniform surface temperature and uniform heat flux.</span>
-<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Improved correlation, but more complicated to use:</span>
-<span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a>  $$\text{Nu}_D=\frac{(f/8)(\text{Re}_D-1000)\,\text{Pr}}{1+12.7(f/8)^{1/2}(\text{Pr}^{2/3}-1)}$$</span>
-<span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a>  where $f$ is the friction factor from the Moody diagram.</span>
-<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $D_i/D_o$ <span class="pp">|</span> $\text{Nu}_{ii}$ | $\text{Nu}_{oo}$ <span class="pp">|</span> $\theta^*_i$ | $\theta^*_o$ <span class="pp">|</span></span>
+<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|---|</span></span>
+<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0 <span class="pp">|</span> -- <span class="pp">|</span> 4.364 <span class="pp">|</span> $\infty$ <span class="pp">|</span> 0 <span class="pp">|</span></span>
+<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0.05 <span class="pp">|</span> 17.81 <span class="pp">|</span> 4.792 <span class="pp">|</span> 2.18 <span class="pp">|</span> 0.0294 <span class="pp">|</span></span>
+<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0.10 <span class="pp">|</span> 11.91 <span class="pp">|</span> 4.834 <span class="pp">|</span> 1.383 <span class="pp">|</span> 0.0562 <span class="pp">|</span></span>
+<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0.20 <span class="pp">|</span> 8.499 <span class="pp">|</span> 4.833 <span class="pp">|</span> 0.905 <span class="pp">|</span> 0.1041 <span class="pp">|</span></span>
+<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0.40 <span class="pp">|</span> 6.583 <span class="pp">|</span> 4.979 <span class="pp">|</span> 0.603 <span class="pp">|</span> 0.1823 <span class="pp">|</span></span>
+<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0.60 <span class="pp">|</span> 5.912 <span class="pp">|</span> 5.099 <span class="pp">|</span> 0.473 <span class="pp">|</span> 0.2455 <span class="pp">|</span></span>
+<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0.80 <span class="pp">|</span> 5.58 <span class="pp">|</span> 5.24 <span class="pp">|</span> 0.401 <span class="pp">|</span> 0.299 <span class="pp">|</span></span>
+<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0.999 <span class="pp">|</span> 5.385 <span class="pp">|</span> 5.385 <span class="pp">|</span> 0.346 <span class="pp">|</span> 0.346 <span class="pp">|</span></span>
+<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a>Note: $q''_i$ and $q''_o$ may be positive or negative. In the above, we call both positive when they are flowing into the annulus.</span>
+<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a>Example of using this chart: Suppose the outside of the annulus is insulated. Then $q''_o=0$. For a concentric tube heat exchanger, especially in the counterflow configuration, it is reasonable to claim $q''_i=\text{constant} = \dot{Q}/A$ (we might determine this from thermodynamics... the heat needed to change a fluid's temperature by a known amount). Then, from the geometry $D_i/D_o$, we can read off all necessary values to determine $\text{Nu}_i$, and from there, $h_i$.</span>
+<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Turbulent flow</span></span>
+<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a>Turbulent, $\text{Re}_D&gt;2300$:</span>
+<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>For small temperature differences:</span>
+<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a>  $$\text{Nu}_D=0.023\,\text{Re}^{4/5}_D\,\text{Pr}^n$$</span>
+<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a>  where $n=0.4$ for heating ($T_\text{s}&gt;T_\text{m}$) and $n=0.3$ for cooling. Applicable for both uniform surface temperature and uniform heat flux.</span>
 <span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>For large temperature differences:</span>
 <span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a>  $$\text{Nu}_D=0.027\,\text{Re}^{4/5}_D\,\text{Pr}^{1/3}\left(\frac{\mu}{\mu_\text{s}}\right)^{0.14}$$</span>
 <span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a><span class="fu">## Temperature Variation Along the Pipe</span></span>
+<span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a>  where $\mu_\text{s}$ is evaluated at the surface temperature. Applicable for both uniform surface temperature and uniform heat flux.</span>
 <span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a>How much pipe needs to be heated in order to reach a given operating temperature? Now that we have $h$, we can answer this question.</span>
-<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
-<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a><span class="fu">### Video</span></span>
+<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Improved correlation, but more complicated to use:</span>
+<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a>  $$\text{Nu}_D=\frac{(f/8)(\text{Re}_D-1000)\,\text{Pr}}{1+12.7(f/8)^{1/2}(\text{Pr}^{2/3}-1)}$$</span>
+<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a>  where $f$ is the friction factor from the Moody diagram.</span>
 <span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a>The content here is pretty similar to <span class="co">[</span><span class="ot">this linked video</span><span class="co">](https://canvas.colorado.edu/courses/136150/pages/pipe-flow-temperature-variation)</span>.</span>
-<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a><span class="fu">### Known surface temperature $T_s$</span></span>
+<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a><span class="fu">### 1. $T_s = \text{constant}$</span></span>
+<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a><span class="fu">## Temperature Variation Along the Pipe</span></span>
 <span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a>Write an energy balance relating thermodynamics and heat transfer</span>
-<span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-329"><a href="#cb1-329" aria-hidden="true" tabindex="-1"></a>d\dot{Q} = \dot{m}\,c_p\,dT_m = h\cdot P\cdot dx\cdot(T_s - T_m)</span>
-<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a>How much pipe needs to be heated in order to reach a given operating temperature? Now that we have $h$, we can answer this question.</span>
+<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-329"><a href="#cb1-329" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a><span class="fu">### Video</span></span>
 <span id="cb1-331"><a href="#cb1-331" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-332"><a href="#cb1-332" aria-hidden="true" tabindex="-1"></a>where $P$ is the perimeter. Rearranging and integrating</span>
-<span id="cb1-333"><a href="#cb1-333" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-335"><a href="#cb1-335" aria-hidden="true" tabindex="-1"></a>\int\frac{dT_m}{T_s - T_m} = \int\frac{hP}{\dot{m}c_p}\,dx</span>
-<span id="cb1-336"><a href="#cb1-336" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-339"><a href="#cb1-339" aria-hidden="true" tabindex="-1"></a>-\ln(T_s - T_m)\bigg|_{T_{m,i}}^{T_m(x)} = \frac{hP}{\dot{m}c_p}\,x</span>
-<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-341"><a href="#cb1-341" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-343"><a href="#cb1-343" aria-hidden="true" tabindex="-1"></a>\ln\left<span class="co">[</span><span class="ot">\frac{T_s - T_m(x)}{T_s - T_{m,i}}\right</span><span class="co">]</span> = -\frac{hP}{\dot{m}c_p}\,x</span>
-<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-345"><a href="#cb1-345" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a>we are left with</span>
-<span id="cb1-347"><a href="#cb1-347" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a>\frac{T_s - T_m(x)}{T_s - T_{m,i}} = \exp<span class="sc">\!</span>\left(\frac{-hP}{\dot{m}c_p}\,x\right).</span>
-<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a><span class="fu">### Known heat flux $q''_s$</span></span>
-<span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a>Again, write an energy balance:</span>
-<span id="cb1-355"><a href="#cb1-355" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-357"><a href="#cb1-357" aria-hidden="true" tabindex="-1"></a>\dot{m}\,c_p\,dT_m = q_s''\cdot P\cdot dx.</span>
-<span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-359"><a href="#cb1-359" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a>Rearrange and integrate</span>
-<span id="cb1-361"><a href="#cb1-361" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-362"><a href="#cb1-362" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a>\int dT_m = \int\frac{q_s''\cdot P}{\dot{m}\,c_p}\,dx</span>
-<span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a>leaving</span>
-<span id="cb1-367"><a href="#cb1-367" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a>T_m(x) = \frac{q_s''\,P}{\dot{m}\,c_p}\,x + T_{m,i}.</span>
-<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-371"><a href="#cb1-371" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-372"><a href="#cb1-372" aria-hidden="true" tabindex="-1"></a>Notice that this does not require $h$!</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-332"><a href="#cb1-332" aria-hidden="true" tabindex="-1"></a>The content here is pretty similar to <span class="co">[</span><span class="ot">this linked video</span><span class="co">](https://canvas.colorado.edu/courses/136150/pages/pipe-flow-temperature-variation)</span>.</span>
+<span id="cb1-333"><a href="#cb1-333" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-335"><a href="#cb1-335" aria-hidden="true" tabindex="-1"></a><span class="fu">### Known surface temperature $T_s$</span></span>
+<span id="cb1-336"><a href="#cb1-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a><span class="fu">### 1. $T_s = \text{constant}$</span></span>
+<span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-339"><a href="#cb1-339" aria-hidden="true" tabindex="-1"></a>Write an energy balance relating thermodynamics and heat transfer</span>
+<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-341"><a href="#cb1-341" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a>d\dot{Q} = \dot{m}\,c_p\,dT_m = h\cdot P\cdot dx\cdot(T_s - T_m)</span>
+<span id="cb1-343"><a href="#cb1-343" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-345"><a href="#cb1-345" aria-hidden="true" tabindex="-1"></a>where $P$ is the perimeter. Rearranging and integrating</span>
+<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-347"><a href="#cb1-347" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a>\int\frac{dT_m}{T_s - T_m} = \int\frac{hP}{\dot{m}c_p}\,dx</span>
+<span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a>-\ln(T_s - T_m)\bigg|_{T_{m,i}}^{T_m(x)} = \frac{hP}{\dot{m}c_p}\,x</span>
+<span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-355"><a href="#cb1-355" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a>\ln\left<span class="co">[</span><span class="ot">\frac{T_s - T_m(x)}{T_s - T_{m,i}}\right</span><span class="co">]</span> = -\frac{hP}{\dot{m}c_p}\,x</span>
+<span id="cb1-357"><a href="#cb1-357" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-359"><a href="#cb1-359" aria-hidden="true" tabindex="-1"></a>we are left with</span>
+<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-361"><a href="#cb1-361" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-362"><a href="#cb1-362" aria-hidden="true" tabindex="-1"></a>\frac{T_s - T_m(x)}{T_s - T_{m,i}} = \exp<span class="sc">\!</span>\left(\frac{-hP}{\dot{m}c_p}\,x\right).</span>
+<span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a><span class="fu">### Known heat flux $q''_s$</span></span>
+<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-367"><a href="#cb1-367" aria-hidden="true" tabindex="-1"></a>Again, write an energy balance:</span>
+<span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a>\dot{m}\,c_p\,dT_m = q_s''\cdot P\cdot dx.</span>
+<span id="cb1-371"><a href="#cb1-371" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-372"><a href="#cb1-372" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-373"><a href="#cb1-373" aria-hidden="true" tabindex="-1"></a>Rearrange and integrate</span>
+<span id="cb1-374"><a href="#cb1-374" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-375"><a href="#cb1-375" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-376"><a href="#cb1-376" aria-hidden="true" tabindex="-1"></a>\int dT_m = \int\frac{q_s''\cdot P}{\dot{m}\,c_p}\,dx</span>
+<span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-378"><a href="#cb1-378" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a>leaving</span>
+<span id="cb1-380"><a href="#cb1-380" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-381"><a href="#cb1-381" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-382"><a href="#cb1-382" aria-hidden="true" tabindex="-1"></a>T_m(x) = \frac{q_s''\,P}{\dot{m}\,c_p}\,x + T_{m,i}.</span>
+<span id="cb1-383"><a href="#cb1-383" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-384"><a href="#cb1-384" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-385"><a href="#cb1-385" aria-hidden="true" tabindex="-1"></a>Notice that this does not require $h$!</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
