@@ -91,9 +91,40 @@ $$
 
 and, since $T_m$ is definitely going to depend on $x$, $q''$ will depend on $x$. So... it is a fairly simple description for the heat flux, assuming we can make it work. Hopefully $h$ isn't going to depend on $x$ or anything like that -- it will turn into a complicated analysis if so, mandating an integral instead of a simple $hA\Delta T$.
 
+
+### Entrance Region
+
+A fluid entering a heated section of pipe will experience an "entrance region" where thermal and possibly hydrodynamic boundary layers are developing. The axial distance to being fully developed (in a velocity sense) is given by
+
+$$
+\frac{L_{fd}}{D} \approx \begin{cases}0.05\,\text{Re}_D & \text{for a flow that will be laminar} \\ 10 & \text{for turbulent}\end{cases}
+$$
+
+where $\text{Re}_D = \rho u_m D/\mu$ is the Reynolds Number and $\text{Re}_{D,\text{crit}} \approx 2300$.
+
+::: {.callout-note}
+
+The above uses the Reynolds Number based on diameter -- the entrance length depends on whether the flow is destined to be laminar or turbulent.
+
+:::
+
+For the thermal entrance length:
+
+
+$$
+\frac{x_{fd}}{D} \approx \begin{cases}0.05\,\text{Re}_D\cdot\text{Pr} & \text{laminar} \\ 10 & \text{turbulent}\end{cases}
+$$
+
+::: {.column-margin}
+Recall with the flat plate geometry that the boundary layer thickness scales with $1/\sqrt{\text{Re}_x}$ and the thermal boundary layer thickness scales with $1/\sqrt{\text{Pr}\text{Re}_x}$. The form of the thermal entrance length is not surprising!
+:::
+
+
 ### Fully developed flow
 
-What is a practical definition for "steady" and "transient" when heat is being added to a flow? A given parcel of fluid is going to be increasing in temperature as it moves through a heated section of pipe.
+After the entrance length, the flow is "fully developed".
+
+What does this mean? Is it "steady"? No -- heat is being added still, the temperature is changing. So... is there any mathematical benefit to assuming the flow is fully developed?
 
 We will say that a flow is "fully developed" when the relative shape of the temperature profile is unchanging with axial position: if every radial location is increasing in temperature at 2 K/m, the mean temperature is also changing at 2 K/m. Mathematically:
 
@@ -140,26 +171,6 @@ Correlations are summarized below.
  -->
 
 
-### Entrance Region
-
-However, we will not be limiting ourselves to cases where the flow is fully developed. A fluid entering a heated section of pipe will experience an "entrance region" where the flow is developing. The axial distance to being fully developed (in a velocity sense) is given by
-
-$$
-\frac{L_{fd}}{D} \approx \begin{cases}0.05\,\text{Re}_D & \text{for a flow that will be laminar} \\ 10 & \text{for turbulent}\end{cases}
-$$
-
-where $\text{Re}_D = \rho u_m D/\mu$ is the Reynolds Number and $\text{Re}_{D,\text{crit}} \approx 2300$.
-
-For the thermal entrance length:
-
-
-$$
-\frac{x_{fd}}{D} \approx \begin{cases}0.05\,\text{Re}_D\cdot\text{Pr} & \text{laminar} \\ 10 & \text{turbulent}\end{cases}
-$$
-
-::: {.column-margin}
-Recall with the flat plate geometry that the boundary layer thickness scales with $1/\sqrt{\text{Re}_x}$ and the thermal boundary layer thickness scales with $1/\sqrt{\text{Pr}\text{Re}_x}$. The form of the thermal entrance length is not surprising!
-:::
 
 
 ## Pipe flow correlations for different shapes and turbulence
@@ -167,6 +178,8 @@ Recall with the flat plate geometry that the boundary layer thickness scales wit
 We again collect $h$ values in Nusselt Number correlations. We learned that $h$ does not depend on position, but it does depend on the Reynolds Number and whether the flow is fully developed.
 
 ### Entrance Lengths
+
+Reminder of the above
 
 Hydrodynamic:
 
