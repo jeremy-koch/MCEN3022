@@ -4,7 +4,7 @@ Now we turn to "internal convection" -- fluids flowing inside channels, ducts, a
 
 We just finished external convection, where we typically had an obvious $\Delta T=T_s-T_\infty$. Internal convection is going to complicate that picture a bit -- once a fluid is confined inside a pipe, the temperature of the fluid itself is changing along the way, so there is no single $T_\infty$ to use in our convective heat transfer equation.
 
-The thermodynamics you already know will re-enter the picture here: $\dot{Q} = \dot{m}c_p\Delta T$ describes how much the bulk temperature rises. But thermodynamics glosses over a lot of physics, and we'll spend the first part of this chapter being more careful. After that, the approach mirrors what we did for external convection: look up a Nusselt Number correlation, extract $h$, and compute the heat transfer. The new wrinkle is that $h$ will let us track how the mean fluid temperature evolves along the pipe — not just at the outlet.
+The thermodynamics you already know will re-enter the picture here: $\dot{Q} = \dot{m}c_p\Delta T$ describes how much the bulk temperature rises in a flow due to heat addition. But thermodynamics glosses over a lot of physics -- we can't just insist that a certain amount of heat makes it into the pipe, we have to compute the convective heat transfer. The approach mirrors what we did for external convection: look up a Nusselt Number correlation, extract $h$, and compute $\dot{Q}$. The new wrinkle is that $h$ will let us track how the mean fluid temperature evolves along the pipe — not just at the outlet.
 
 ::: {.callout-note}
 Correlations in this chapter are again drawn from Incropera, DeWitt, Bergman, and Lavine "Fundamentals of Heat and Mass Transfer", sixth edition (2007).
@@ -47,7 +47,7 @@ $$ {#eq-thermo}
 But what have we ignored here?
 
 1. How can we just say how much heat flows into a system? We can burn a fuel+air mixture with known heat content, but there will be some thermal resistance/inefficiencies that means not all of that heat makes it into the working medium. And it's a convection process... doesn't $h$ depend on speed? Can we really adjust $\dot{Q}\sim h$ and $\dot{m}$ independently?
-2. Is it true that the entire cross-section of the flow changes temperature at the same time? We talked about the thermal boundary layer last chapter, which is probably relevant. But if there is indeed a temperature distribution for a given cross-section, what are the values of $T_1$ and $T_2$ in $\Delta T=T_2-T_1$?
+2. Is it true that the entire cross-section of the flow changes temperature at the same time? We talked about the thermal boundary layer last chapter, which is probably relevant. But if there is indeed a temperature distribution for a given cross-section, what are the values of $T_\text{in}$ and $T_\text{out}$ in $\Delta T=T_\text{out}-T_\text{in}$?
 
 To understand the nuances of the process, we need to be much more careful than we were in thermodynamics!
 
@@ -89,7 +89,7 @@ $$
 q'' = h(T_s - T_m)
 $$
 
-and, since $T_m$ is definitely going to depend on $x$, $q''$ will depend on $x$. So... it is a fairly simple description for the heat flux, assuming we can make it work. Hopefully $h$ isn't going to depend on $x$ or anything like that -- it will turn into a complicated analysis if so, mandating an integral instead of a simple $hA\Delta T$.
+and, since $T_m$ is definitely going to depend on $x$, $q''$ will depend on $x$. So it is a fairly simple description for the heat flux... assuming we can make it work! Hopefully $h$ isn't going to depend on $x$ or anything like that -- it will turn into a complicated analysis if so, mandating an integral instead of a simple $hA\Delta T$.
 
 
 ### Entrance Region
@@ -126,14 +126,14 @@ After the entrance length, the flow is "fully developed".
 
 What does this mean? Is it "steady"? No -- heat is being added still, the temperature is changing. So... is there any mathematical benefit to assuming the flow is fully developed?
 
-We will say that a flow is "fully developed" when the relative shape of the temperature profile is unchanging with axial position: if every radial location is increasing in temperature at 2 K/m, the mean temperature is also changing at 2 K/m. Mathematically:
+We will say that a flow is "fully developed" when the relative shape of the temperature profile is unchanging with axial position. Mathematically:
 
 $$
 \frac{\partial}{\partial x}\left[\frac{T_s(x) - T(r,x)}{T_s(x) - T_m(x)}\right]_\text{fd} = 0.
 $$
 
 The fact that the partial derivative with respect to $x$ is equal to zero tells us the fraction from above does not depend on $x$, but it will depend on $r$. 
-For mathematical clarity, let's give a symbol to the fraction above (when it is fully developed):
+For mathematical clarity, let's give a symbol to the fraction above:
 
 $$
 M(r) \equiv \left[\frac{T_s(x) - T(r,x)}{T_s(x) - T_m(x)}\right]_\text{fd}.
@@ -145,13 +145,13 @@ $$
 \frac{\partial M}{\partial r}=\left(\frac{1}{T_s(x) - T_m(x)}\right)\left(-\frac{\partial T}{\partial r}\right).
 $$
 
-OK, why should we care about this mathematical observation? Watch this: bring in Fourier's Law at the pipe wall, and set it equal to our desired form $h(T_s-T_m)$:
+OK, why should we care about this mathematical observation? Watch this: bring in Fourier's Law at the pipe wall, and set it equal to our desired convective form $h(T_s-T_m)$:
 
 $$
 q_s'' = k_f\frac{\partial T}{\partial r} = h(T_s(x) - T_m(x)).
 $$
 
-From above we can substitute-in 
+Then we can substitute-in 
 
 $$
 q_s'' = -k_f M'(r)\cdot(T_s(x) - T_m(x)) = h(T_s(x) - T_m(x))
@@ -159,10 +159,10 @@ $$
 
 and can cancel the $\Delta T$ to conclude
 $$
-h = -k_f M'(r)\quad h \text{ is not a function of }x.
+h = -k_f M'(r)\quad h \implies \text{ is not a function of }x.
 $$
 
-Really interesting! It turns out that, even though $T_s$ and $T_m$ are functions of $x$, $h$ is not! Once we know the flow speed, geometry, and fluid, $h$ will be constant for fully developed flow. 
+Really interesting! It turns out that, even though $T_m$ is a function of $x$, and $T_s$ might be a function of $x$ (depending on the boundary condition) $h$ is not! Once we know the flow speed, geometry, and fluid, $h$ will be constant.
 
 Correlations are summarized below.
 
@@ -175,11 +175,13 @@ Correlations are summarized below.
 
 ## Pipe flow correlations for different shapes and turbulence
 
-We again collect $h$ values in Nusselt Number correlations. We learned that $h$ does not depend on position, but it does depend on the Reynolds Number and whether the flow is fully developed.
+We again collect $h$ values in Nusselt Number correlations. We learned that $h$ does not depend on position, but it does depend on the Reynolds Number and whether the flow is fully developed. For all the following, we could call it an averaged Nusselt Number or a local Nusselt Number... none of the correlations depend on distance along the pipe.
+
+We will need to calculate property values at a particular temperature. When possible to calculate, a good option is $(T_s + T_\text{m,avg})/2$. That is: it's like a film temperature calculated with the average value of $T_m$.
 
 ### Entrance Lengths
 
-Reminder of the above
+Reminder of the entrance lengths, from above.
 
 Hydrodynamic:
 
@@ -240,7 +242,11 @@ For flows with non-circular cross sections, we use the "hydraulic diameter" in t
 
 $$D_\text{H}\equiv \frac{4A_c}{P}$$
 
-We also represent the friction factor in an analogous way: for circular laminar pipe flow it is $f=64/\text{Re}_D$, and we update the coefficient "64" according to the hydraulic diameter:
+We also represent the friction factor in an analogous way: for circular laminar pipe flow it is $f=64/\text{Re}_D$, and we update the coefficient "64" according to the hydraulic diameter. The table below includes correlations for rectangular and triangular cross-sections, and $b/a$ is the side length ratio.
+
+::: {.column-margin}
+$b/a=\infty$ is long, narrow cross-section. 
+:::
 
 | Cross Section | $b/a$ | $\text{Nu}_{D_\text{h}}$ (uniform $T_\text{S}$) | $\text{Nu}_{D_\text{h}}$ (uniform $q''_\text{s}$) | $f\,\text{Re}_{D_\text{h}}$ |
 |---|---|---|---|---|
@@ -257,7 +263,7 @@ We also represent the friction factor in an analogous way: for circular laminar 
 
 ##### Annulus
 
-In the following, the diameter used in the Nu correlation is $D_\text{H}=D_\text{o}-D_\text{i}$.
+In the following, the diameter used in the Nu correlation is $D_\text{H}=D_\text{o}-D_\text{i}$. The correlation is different depending on whether the flow is coming from the interior of the annulus ("i") or outside of the annulus ("o").
 
 For flow through an annulus, with one surface insulated and the other at constant temperature:
 
@@ -324,7 +330,7 @@ Turbulent, $\text{Re}_D>2300$:
 ## Temperature Variation Along the Pipe
 
 
-How much pipe needs to be heated in order to reach a given operating temperature? Now that we have $h$, we can answer this question.
+How much pipe needs to be heated in order to bring the fluid to a given temperature? Now that we have $h$, we can answer this question.
 
 ::: {.callout-tip}
 ### Video
@@ -334,7 +340,7 @@ The content here is pretty similar to [this linked video](https://canvas.colorad
 
 ### Known surface temperature $T_s$
 
-### 1. $T_s = \text{constant}$
+### $T_s = \text{constant}$
 
 Write an energy balance relating thermodynamics and heat transfer
 
