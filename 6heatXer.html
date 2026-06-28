@@ -1,0 +1,1694 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>6&nbsp; Heat Exchangers – MCEN3022: Heat Transfer</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./demos/wall_demo.html" rel="next">
+<link href="./5internal.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-de63f62b328812d8e578a4d74e282472.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-fac4203af49949a20fe3fe9828c3d202.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./6heatXer.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Heat Exchangers</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./images/logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./images/logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">MCEN3022: Heat Transfer</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Course Details</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./course_details/assessment_overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assessment Overview &amp; Philosophy</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./course_details/tier1_problems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tier 1 Practice Problems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./course_details/technical_reports.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Technical Reports</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./course_details/oral_exams.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Oral Exams</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./course_details/peer_discussions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Peer Discussions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./course_details/notebooklm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NotebookLM Portfolio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./course_details/capstone.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Capstone Project</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./0intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 0: Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./1conduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Conduction Eqn</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2fins.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fins</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3transient.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Transient</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./4convection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">External Convection</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./5internal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Internal Convection</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./6heatXer.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Heat Exchangers</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Demos</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./demos/wall_demo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Composite Plane Walls – Interactive Demo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./demos/fin_demo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fin Temperature Profile — Interactive Demo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./demos/sphere_demo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Sphere Temperature Profile — Interactive Demo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./demos/semi_infinite_demo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Semi-Infinite Solid — Interactive Demo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./demos/flat_plate_demo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Flat Plate — Interactive Demo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./demos/LMTD_demo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Log-Mean Temperature Difference — Interactive Demo</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#think-first" id="toc-think-first" class="nav-link active" data-scroll-target="#think-first"><span class="header-section-number">6.1</span> Think First</a></li>
+  <li><a href="#thermodynamics-isnt-enough" id="toc-thermodynamics-isnt-enough" class="nav-link" data-scroll-target="#thermodynamics-isnt-enough"><span class="header-section-number">6.2</span> Thermodynamics isn’t enough</a></li>
+  <li><a href="#heat-exchanger-design-variables" id="toc-heat-exchanger-design-variables" class="nav-link" data-scroll-target="#heat-exchanger-design-variables"><span class="header-section-number">6.3</span> Heat exchanger design variables</a></li>
+  <li><a href="#the-overall-heat-transfer-coefficient-u" id="toc-the-overall-heat-transfer-coefficient-u" class="nav-link" data-scroll-target="#the-overall-heat-transfer-coefficient-u"><span class="header-section-number">6.4</span> The Overall Heat Transfer Coefficient <span class="math inline">\(U\)</span></a></li>
+  <li><a href="#flow-configurations" id="toc-flow-configurations" class="nav-link" data-scroll-target="#flow-configurations"><span class="header-section-number">6.5</span> Flow Configurations</a>
+  <ul class="collapse">
+  <li><a href="#the-co-flow-or-parallel-flow-configuration" id="toc-the-co-flow-or-parallel-flow-configuration" class="nav-link" data-scroll-target="#the-co-flow-or-parallel-flow-configuration"><span class="header-section-number">6.5.1</span> The “co-flow” or “parallel-flow” configuration</a></li>
+  <li><a href="#the-counter-flow-configuration" id="toc-the-counter-flow-configuration" class="nav-link" data-scroll-target="#the-counter-flow-configuration"><span class="header-section-number">6.5.2</span> The “counter-flow” configuration</a></li>
+  </ul></li>
+  <li><a href="#the-log-mean-temperature-difference-lmtd" id="toc-the-log-mean-temperature-difference-lmtd" class="nav-link" data-scroll-target="#the-log-mean-temperature-difference-lmtd"><span class="header-section-number">6.6</span> The Log-Mean Temperature Difference (LMTD)</a>
+  <ul class="collapse">
+  <li><a href="#lmtd-formulas" id="toc-lmtd-formulas" class="nav-link" data-scroll-target="#lmtd-formulas"><span class="header-section-number">6.6.1</span> LMTD Formulas</a></li>
+  </ul></li>
+  <li><a href="#summary-of-the-heat-transfer-rate" id="toc-summary-of-the-heat-transfer-rate" class="nav-link" data-scroll-target="#summary-of-the-heat-transfer-rate"><span class="header-section-number">6.7</span> Summary of the heat transfer rate</a></li>
+  <li><a href="#the-ntu-method" id="toc-the-ntu-method" class="nav-link" data-scroll-target="#the-ntu-method"><span class="header-section-number">6.8</span> The NTU Method</a>
+  <ul class="collapse">
+  <li><a href="#problem-setup" id="toc-problem-setup" class="nav-link" data-scroll-target="#problem-setup"><span class="header-section-number">6.8.1</span> Problem setup</a></li>
+  <li><a href="#heat-capacity-rates-and-effectiveness" id="toc-heat-capacity-rates-and-effectiveness" class="nav-link" data-scroll-target="#heat-capacity-rates-and-effectiveness"><span class="header-section-number">6.8.2</span> Heat Capacity Rates and “Effectiveness”</a></li>
+  <li><a href="#ntu-and-c_r" id="toc-ntu-and-c_r" class="nav-link" data-scroll-target="#ntu-and-c_r"><span class="header-section-number">6.8.3</span> NTU and <span class="math inline">\(C_r\)</span></a></li>
+  <li><a href="#derivation-of-varepsilon-c_r-for-co-flow" id="toc-derivation-of-varepsilon-c_r-for-co-flow" class="nav-link" data-scroll-target="#derivation-of-varepsilon-c_r-for-co-flow"><span class="header-section-number">6.8.4</span> Derivation of <span class="math inline">\(\varepsilon\)</span>(, <span class="math inline">\(C_r\)</span>) for Co-flow</a></li>
+  <li><a href="#algorithm-for-hxer-design" id="toc-algorithm-for-hxer-design" class="nav-link" data-scroll-target="#algorithm-for-hxer-design"><span class="header-section-number">6.8.5</span> Algorithm for HXer Design</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Heat Exchangers</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Last week we talked about “internal convection”, in which we changed the temperature of a fluid with heat transfer through the walls of a pipe. We thought generically of a situation in which the pipe wall was at <span class="math inline">\(T_s\)</span>, or if there was a heat flux <span class="math inline">\(q_s''\)</span> through the walls. Heat exchangers involve pairings of internal flows: the heat lost from one goes into the other. We will be con</p>
+<p>Heat exchangers are usually in highly confined environments: we want the hot and fluids to</p>
+<p>the “hot” and “cold” flows run next to each other and we want as much of those</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>I</p>
+</div>
+</div>
+<section id="think-first" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="think-first"><span class="header-section-number">6.1</span> Think First</h2>
+<p>Recall</p>
+<ol type="1">
+<li></li>
+</ol>
+<p>Look Ahead</p>
+<ol type="1">
+<li></li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Video
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Start with</p>
+</div>
+</div>
+</section>
+<section id="thermodynamics-isnt-enough" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="thermodynamics-isnt-enough"><span class="header-section-number">6.2</span> Thermodynamics isn’t enough</h2>
+<p>We studied heat exchangers a bit in thermodynamics, and the problems looked something like this: A hot fluid with specific heat <span class="math inline">\(c_{p,\text{H}\)</span>, flowing at <span class="math inline">\(\dot{m}_\text{H}\)</span>, needs to be cooled from 90°C to 40°C. We use a cold fluid with <span class="math inline">\(c_{p,\text{C}\)</span> that starts at 5°C and must not exceed 20°C. What mass flow rate <span class="math inline">\(\dot{m}_\text{C}\)</span> do we need? The answer comes from the energy balance</p>
+<p><span class="math display">\[
+\dot{m}_\text{C}c_{p,\text{C} (T_{\text{C,out}}-T_{\text{C,in}})=\dot{m}_\text{H}c_{p,\text{H} (T_{\text{H,in}}-T_{\text{H,out}}).
+\]</span></p>
+<p>But we can’t just say the hot fluid is leaving at 40°C, we must design the heat exchanger to make that happen.</p>
+</section>
+<section id="heat-exchanger-design-variables" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="heat-exchanger-design-variables"><span class="header-section-number">6.3</span> Heat exchanger design variables</h2>
+<p>Let’s think intuitively about the ingredients in a heat exchanger design.</p>
+<ol type="1">
+<li>The “thermal mass” of the fluids is important: <span class="math inline">\(\dot{m}c_p\)</span> (or <span class="math inline">\(\rho c_p\)</span>). A fluid with a large specific heat will not change temperature as readily as one with a small specific heat, and if we have more flow, it is going to take more energy to change temperature.</li>
+<li>The surface area is important. As is always the case in heat transfer, greater surface area means greater heat transfer.</li>
+<li>Thick walls will increase thermal resistance. We don’t want the fluids separated by 2 cm of plastic, we want them separated by 0.5 mm of copper.</li>
+<li>Fins and turbulence will help. More surface area, more mixing, more heat transfer.</li>
+<li>Achieving the biggest <span class="math inline">\(\Delta T\)</span>, in general, will lead to more heat transfer.</li>
+</ol>
+<p>We are going to move towards a description that looks a lot like the standard convection</p>
+<p><span class="math display">\[
+\dot{Q}=hA \Delta T
+\]</span></p>
+<p>but of course there are complications: How do we describe <span class="math inline">\(h\)</span> when there are two fluids separated by a solid, possibly with fins? And what is the right <span class="math inline">\(\Delta T\)</span> to use, it’s going to be changing as we move through the heat exchanger as the cold fluid warms up and as the hot fluid cools down.</p>
+</section>
+<section id="the-overall-heat-transfer-coefficient-u" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="the-overall-heat-transfer-coefficient-u"><span class="header-section-number">6.4</span> The Overall Heat Transfer Coefficient <span class="math inline">\(U\)</span></h2>
+<p>At any location in the heat exchanger, we could write a little electrical circuit that describes the heat transfer from the hot fluid to the cold fluid (perpendicular to the flow directions):</p>
+<svg width="650" height="240" xmlns="http://www.w3.org/2000/svg">
+  <title>Heat exchanger thermal resistance network</title>
+  <!--
+    Series chain (y=120): T_H → 1/(h_H A) → L1/(k1 A) → L2/(k2 A) → left manifold (x=420)
+    Parallel section: top branch R_fin (y=70), bottom branch R_b (y=170) → right manifold (x=575) → T_C
+    Each resistor: 100px wide, 10px stubs, 5 half-periods × 16px = 80px body, amplitude ±12px
+      Polyline template (A=start x, cy=center y):
+        A,cy  A+10,cy  A+18,cy-12  A+34,cy+12  A+50,cy-12  A+66,cy+12  A+82,cy-12  A+90,cy  A+100,cy
+  -->
+
+  <!-- Lead in -->
+  <line x1="20" y1="120" x2="50" y2="120" stroke="black" stroke-width="2"></line>
+
+  <!-- R_conv,H  [1/(h_H A)],  A=50, cy=120 -->
+  <polyline points="50,120 60,120 68,108 84,132 100,108 116,132 132,108 140,120 150,120" fill="none" stroke="black" stroke-width="1.5"></polyline>
+  <foreignobject x="52" y="78" width="96" height="32">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center; font-size:14px; font-family:serif">\(\dfrac{1}{h_H A}\)</div>
+  </foreignobject>
+
+  <!-- Wire R1→R2 -->
+  <line x1="150" y1="120" x2="175" y2="120" stroke="black" stroke-width="2"></line>
+
+  <!-- R_cond,1  [L1/(k1 A)],  A=175, cy=120 -->
+  <polyline points="175,120 185,120 193,108 209,132 225,108 241,132 257,108 265,120 275,120" fill="none" stroke="black" stroke-width="1.5"></polyline>
+  <foreignobject x="177" y="78" width="96" height="32">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center; font-size:14px; font-family:serif">\(\dfrac{L_1}{k_1 A}\)</div>
+  </foreignobject>
+
+  <!-- Wire R2→R3 -->
+  <line x1="275" y1="120" x2="300" y2="120" stroke="black" stroke-width="2"></line>
+
+  <!-- R_cond,2  [L2/(k2 A)],  A=300, cy=120 -->
+  <polyline points="300,120 310,120 318,108 334,132 350,108 366,132 382,108 390,120 400,120" fill="none" stroke="black" stroke-width="1.5"></polyline>
+  <foreignobject x="302" y="78" width="96" height="32">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center; font-size:14px; font-family:serif">\(\dfrac{L_2}{k_2 A}\)</div>
+  </foreignobject>
+
+  <!-- Wire R3→left manifold -->
+  <line x1="400" y1="120" x2="420" y2="120" stroke="black" stroke-width="2"></line>
+
+  <!-- Left manifold -->
+  <line x1="420" y1="70" x2="420" y2="170" stroke="black" stroke-width="2"></line>
+  <circle cx="420" cy="120" r="3" fill="black"></circle>
+
+  <!-- Top branch: fin  (y=70) -->
+  <line x1="420" y1="70" x2="445" y2="70" stroke="black" stroke-width="2"></line>
+  <polyline points="445,70 455,70 463,58 479,82 495,58 511,82 527,58 535,70 545,70" fill="none" stroke="black" stroke-width="1.5"></polyline>
+  <line x1="545" y1="70" x2="575" y2="70" stroke="black" stroke-width="2"></line>
+  <foreignobject x="455" y="34" width="80" height="28">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center; font-size:14px; font-family:serif">\(R_{fin}\)</div>
+  </foreignobject>
+
+  <!-- Bottom branch: base convection  (y=170) -->
+  <line x1="420" y1="170" x2="445" y2="170" stroke="black" stroke-width="2"></line>
+  <polyline points="445,170 455,170 463,158 479,182 495,158 511,182 527,158 535,170 545,170" fill="none" stroke="black" stroke-width="1.5"></polyline>
+  <line x1="545" y1="170" x2="575" y2="170" stroke="black" stroke-width="2"></line>
+  <foreignobject x="455" y="188" width="80" height="28">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center; font-size:14px; font-family:serif">\(R_b\)</div>
+  </foreignobject>
+
+  <!-- Right manifold -->
+  <line x1="575" y1="70" x2="575" y2="170" stroke="black" stroke-width="2"></line>
+  <circle cx="575" cy="120" r="3" fill="black"></circle>
+
+  <!-- Lead out -->
+  <line x1="575" y1="120" x2="610" y2="120" stroke="black" stroke-width="2"></line>
+
+  <!-- T_H label -->
+  <foreignobject x="0" y="108" width="22" height="24">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:right; font-size:15px; font-family:serif">\(T_H\)</div>
+  </foreignobject>
+
+  <!-- T_C label -->
+  <foreignobject x="612" y="108" width="28" height="24">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:left; font-size:15px; font-family:serif">\(T_C\)</div>
+  </foreignobject>
+</svg>
+<p>Try to interpret the situation yourself, and then read…</p>
+<div class="callout callout-style-default callout-caution callout-empty-content callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>What’s going on here?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+</div>
+<p>Rather than carrying around all of the terms in our calculations, we summarize into an “overall heat transfer coefficient” <span class="math inline">\(U\)</span>, defined such that</p>
+<p><span class="math display">\[
+\frac{1}{UA} = \frac{1}{h_1 A} + \frac{L_2}{k_2 A} + ... .
+\]</span></p>
+<p>Notice that <span class="math inline">\(U\)</span> will have the same units as <span class="math inline">\(h\)</span>… we are going to use <span class="math inline">\(UA\)</span> in our convection equation instead of <span class="math inline">\(hA\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It is common to assume that the areas of all the layers are the same, but that not always true: e.g.&nbsp;if we have circular pipes with finite wall thickness.</p>
+<p>It is sometimes reasonable to claim the walls have no thermal resistance: thin sheets of metal are not going to hinder the heat transfer that much. Then we just focus on the convection elements (possibly including fins).</p>
+</div>
+</div>
+</section>
+<section id="flow-configurations" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="flow-configurations"><span class="header-section-number">6.5</span> Flow Configurations</h2>
+<p>We know that the amount heat transfer depends on temperature difference.</p>
+<section id="the-co-flow-or-parallel-flow-configuration" class="level3" data-number="6.5.1">
+<h3 data-number="6.5.1" class="anchored" data-anchor-id="the-co-flow-or-parallel-flow-configuration"><span class="header-section-number">6.5.1</span> The “co-flow” or “parallel-flow” configuration</h3>
+<p>We could have it where the cold inlet and hot inlet are next to each other – in such a case, we get a massive (local) <span class="math inline">\(\Delta T\)</span> at the inlet side… good news, right? Maybe, but the <span class="math inline">\(\Delta T\)</span> is going to decrease along the flow, and we will have the limitation that <span class="math inline">\(T_\text{C,out} &lt; T_\text{H,out}\)</span>.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We also might have concerns about “thermal stresses” because of the dramatic temperature gradients in the material.</p>
+</div>
+</div>
+</section>
+<section id="the-counter-flow-configuration" class="level3" data-number="6.5.2">
+<h3 data-number="6.5.2" class="anchored" data-anchor-id="the-counter-flow-configuration"><span class="header-section-number">6.5.2</span> The “counter-flow” configuration</h3>
+<p>We have another option: the cold inlet could be paired with the hot outlet, and the cold outlet could be paired with the hot inlet. In such a case we do not get the enormous <span class="math inline">\(\Delta T\)</span> at the inlet seen in the co-flow configuration, but we will get better average <span class="math inline">\(\Delta T\)</span> throughout the heat exchanger. This typically leads to better overall heat transfer. We also can have that <span class="math inline">\(T_\text{H,out} &lt; T_\text{C,out}\)</span>.</p>
+<p>A sketch of these two configurations:</p>
+<svg width="700" height="275" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="hxa-blk" markerwidth="6" markerheight="6" refx="5" refy="3" orient="auto">
+      <polygon points="0 0, 6 3, 0 6" fill="black"></polygon>
+    </marker>
+    <marker id="hxa-red" markerwidth="6" markerheight="6" refx="5" refy="3" orient="auto">
+      <polygon points="0 0, 6 3, 0 6" fill="red"></polygon>
+    </marker>
+    <marker id="hxa-blu" markerwidth="6" markerheight="6" refx="5" refy="3" orient="auto">
+      <polygon points="0 0, 6 3, 0 6" fill="#2266cc"></polygon>
+    </marker>
+  </defs>
+
+  <!-- CO-FLOW panel: plot area x=60..315, y=25..240 -->
+  <!-- T scale: 0-90°C -> y=240..25, so y(T) = 240 - T*2.39 -->
+  <!-- Hot: 80->50C (y: 49->121); Cold: 10->30C (y: 216->168) -->
+
+  <text x="187" y="15" text-anchor="middle" font-size="14" font-family="Georgia,serif">Co-flow</text>
+
+  <line x1="60" y1="240" x2="318" y2="240" stroke="black" stroke-width="1.5" marker-end="url(#hxa-blk)"></line>
+  <line x1="60" y1="240" x2="60" y2="20" stroke="black" stroke-width="1.5" marker-end="url(#hxa-blk)"></line>
+  <text x="323" y="244" font-size="13" font-family="Georgia,serif" font-style="italic">x</text>
+  <text x="48" y="17" font-size="13" font-family="Georgia,serif" font-style="italic">T</text>
+
+  <path d="M 60,49  C 130,62  220,103 315,121" fill="none" stroke="red" stroke-width="2.2"></path>
+  <path d="M 60,216 C 130,208 220,186 315,168" fill="none" stroke="#2266cc" stroke-width="2.2"></path>
+
+  <!-- flow-direction arrows (~mid-curve x=165) -->
+  <line x1="155" y1="76" x2="175" y2="82" stroke="red" stroke-width="2" marker-end="url(#hxa-red)"></line>
+  <line x1="155" y1="200" x2="175" y2="196" stroke="#2266cc" stroke-width="2" marker-end="url(#hxa-blu)"></line>
+
+  <text x="140" y="65" font-size="12" font-family="Georgia,serif" fill="red">Hot</text>
+  <text x="133" y="216" font-size="12" font-family="Georgia,serif" fill="#2266cc">Cold</text>
+
+  <text x="57" y="47" text-anchor="end" font-size="11" font-family="Georgia,serif" fill="red">T<tspan dy="3" font-size="9">H,i</tspan></text>
+  <text x="57" y="219" text-anchor="end" font-size="11" font-family="Georgia,serif" fill="#2266cc">T<tspan dy="3" font-size="9">C,i</tspan></text>
+  <text x="318" y="124" font-size="11" font-family="Georgia,serif" fill="red">T<tspan dy="3" font-size="9">H,o</tspan></text>
+  <text x="318" y="171" font-size="11" font-family="Georgia,serif" fill="#2266cc">T<tspan dy="3" font-size="9">C,o</tspan></text>
+
+
+  <!-- COUNTER-FLOW panel: plot area x=390..645, y=25..240 -->
+  <!-- Hot: 80->25C (y: 49->180); Cold flows right->left: exits left at 65C, enters right at 10C (y: 84->216) -->
+
+  <line x1="352" y1="8" x2="352" y2="260" stroke="#cccccc" stroke-width="1"></line>
+
+  <text x="517" y="15" text-anchor="middle" font-size="14" font-family="Georgia,serif">Counter-flow</text>
+
+  <line x1="390" y1="240" x2="648" y2="240" stroke="black" stroke-width="1.5" marker-end="url(#hxa-blk)"></line>
+  <line x1="390" y1="240" x2="390" y2="20" stroke="black" stroke-width="1.5" marker-end="url(#hxa-blk)"></line>
+  <text x="653" y="244" font-size="13" font-family="Georgia,serif" font-style="italic">x</text>
+  <text x="378" y="17" font-size="13" font-family="Georgia,serif" font-style="italic">T</text>
+
+  <path d="M 390,49 C 455,72  550,150 645,180" fill="none" stroke="red" stroke-width="2.2"></path>
+  <path d="M 390,84 C 455,107 550,185 645,216" fill="none" stroke="#2266cc" stroke-width="2.2"></path>
+
+  <!-- hot rightward (~x=484); cold leftward (draw right->left so arrowhead points left) -->
+  <line x1="484" y1="99" x2="504" y2="109" stroke="red" stroke-width="2" marker-end="url(#hxa-red)"></line>
+  <line x1="504" y1="144" x2="484" y2="134" stroke="#2266cc" stroke-width="2" marker-end="url(#hxa-blu)"></line>
+
+  <text x="470" y="88" font-size="12" font-family="Georgia,serif" fill="red">Hot</text>
+  <text x="510" y="167" font-size="12" font-family="Georgia,serif" fill="#2266cc">Cold</text>
+
+  <!-- left side: hot inlet, cold OUTLET (T_C,o > T_H,o is the key counter-flow feature) -->
+  <text x="387" y="47" text-anchor="end" font-size="11" font-family="Georgia,serif" fill="red">T<tspan dy="3" font-size="9">H,i</tspan></text>
+  <text x="387" y="87" text-anchor="end" font-size="11" font-family="Georgia,serif" fill="#2266cc">T<tspan dy="3" font-size="9">C,o</tspan></text>
+  <!-- right side: hot outlet, cold INLET -->
+  <text x="648" y="183" font-size="11" font-family="Georgia,serif" fill="red">T<tspan dy="3" font-size="9">H,o</tspan></text>
+  <text x="648" y="219" font-size="11" font-family="Georgia,serif" fill="#2266cc">T<tspan dy="3" font-size="9">C,i</tspan></text>
+</svg>
+</section>
+</section>
+<section id="the-log-mean-temperature-difference-lmtd" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="the-log-mean-temperature-difference-lmtd"><span class="header-section-number">6.6</span> The Log-Mean Temperature Difference (LMTD)</h2>
+<p>Reminder: our goal is to make it to something like <span class="math inline">\(\dot{Q}=hA\Delta T\)</span>. What is the relevant <span class="math inline">\(\Delta T\)</span> to use?</p>
+<p>The answer is the log-mean temperature difference, which we described <a href="./4convection.html#the-log-mean-temperature-difference">when we studied tube banks</a>. I’ll include the derivation below, if you are interested.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Expand for the derivation
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Thermodynamics:</p>
+<p><span class="math display">\[|\dot{Q}| = \dot{m}_C c_{p,C}(T_{C,o} - T_{C,i}) = \dot{m}_H c_{p,H}(T_{H,i} - T_{H,o}) = UA\cdot\Delta T\]</span></p>
+<p>Similar to pipe flow analysis (assuming co-flow, counter-flow is similar):</p>
+<p><em>Diagram: Two-channel heat exchanger, control volume <span class="math inline">\(dA\)</span>. <span class="math inline">\(\Delta T = T_H - T_C\)</span> locally.</em></p>
+<p>Energy balance:</p>
+<p><span class="math display">\[-\dot{m}_H c_{p,H}\,dT_H = \dot{m}_C c_{p,C}\,dT_C = U\,dA\,\Delta T = dq\]</span></p>
+<p>With <span class="math inline">\(\Delta T = T_H - T_C\)</span>, so <span class="math inline">\(d(\Delta T) = dT_H - dT_C\)</span>:</p>
+<p><span class="math display">\[d(\Delta T) = \frac{dq}{-\dot{m}_H c_{p,H}} - \frac{dq}{\dot{m}_C c_{p,C}} = -dq\left(\frac{1}{\dot{m}_H c_{p,H}} + \frac{1}{\dot{m}_C c_{p,C}}\right) = U\,dA\,\Delta T\left(\frac{1}{\dot{m}_H c_{p,H}} + \frac{1}{\dot{m}_C c_{p,C}}\right)\]</span></p>
+<p>This is a separable ODE:</p>
+<p><span class="math display">\[\int_\text{in}^\text{out}\frac{d(\Delta T)}{\Delta T} = \int_\text{in}^\text{out} -U\left(\frac{1}{\dot{m}_H c_{p,H}} + \frac{1}{\dot{m}_C c_{p,C}}\right)dA\]</span></p>
+<p><span class="math display">\[\ln\!\left(\frac{\Delta T_\text{out}}{\Delta T_\text{in}}\right) = -UA\left(\frac{1}{\dot{m}_H c_{p,H}} + \frac{1}{\dot{m}_C c_{p,C}}\right) = -UA\left(\frac{T_{H,\text{in}}-T_{H,\text{out}}}{\dot{Q}} + \frac{T_{C,\text{out}}-T_{C,\text{in}}}{\dot{Q}}\right)\]</span></p>
+<p><span class="math display">\[\therefore \quad \dot{Q} = UA\cdot\frac{(T_{H,\text{out}}-T_{C,\text{out}}) - (T_{H,\text{in}}-T_{C,\text{in}})}{\ln\!\left(\frac{T_{H,\text{out}}-T_{C,\text{out}}}{T_{H,\text{in}}-T_{C,\text{in}}}\right)} = UA\cdot\Delta T_{lm}\]</span></p>
+<p>where <span class="math inline">\(\Delta T_{lm}\)</span> is the <strong>log-mean temperature difference (LMTD)</strong>.</p>
+</div>
+</div>
+</div>
+<section id="lmtd-formulas" class="level3" data-number="6.6.1">
+<h3 data-number="6.6.1" class="anchored" data-anchor-id="lmtd-formulas"><span class="header-section-number">6.6.1</span> LMTD Formulas</h3>
+<p><strong>For co-flow:</strong> <span class="math inline">\(\Delta T_o = T_{H,o} - T_{C,o}\)</span>, <span class="math inline">\(\Delta T_i = T_{H,i} - T_{C,i}\)</span></p>
+<p><span class="math display">\[\boxed{\Delta T_{lm} = \frac{(T_{H,i} - T_{C,i}) - (T_{H,o} - T_{C,o})}{\ln\!\left(\frac{T_{H,i}-T_{C,i}}{T_{H,o}-T_{C,o}}\right)}} \qquad \text{co-flow}\]</span></p>
+<p><strong>For counter-flow:</strong> <span class="math inline">\(\Delta T_o = T_{H,o} - T_{C,i}\)</span>, <span class="math inline">\(\Delta T_i = T_{H,i} - T_{C,o}\)</span></p>
+<p><span class="math display">\[\boxed{\Delta T_{lm} = \frac{(T_{H,i} - T_{C,o}) - (T_{H,o} - T_{C,i})}{\ln\!\left(\frac{T_{H,i}-T_{C,o}}{T_{H,o}-T_{C,i}}\right)}} \qquad \text{counter-flow}\]</span></p>
+</section>
+</section>
+<section id="summary-of-the-heat-transfer-rate" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="summary-of-the-heat-transfer-rate"><span class="header-section-number">6.7</span> Summary of the heat transfer rate</h2>
+<p>We now have <span class="math display">\[
+\dot{Q} = UA\cdot\Delta T_{lm}
+\]</span></p>
+<p>where <span class="math inline">\(UA\)</span> accounts for both sides of the convection, the resistance through the solid wall, and any fins or turbulence enhancers in one term. The log-mean temperature difference <span class="math inline">\(\Delta T_{lm}\)</span> is a representation of the average temperature difference across the heat exchanger. So, ostensibly: if we know the flow rates (related to <span class="math inline">\(U\)</span>), heat exchanger size (basically <span class="math inline">\(A\)</span>) and temperature information (T_{lm}), we can predict the amount of heat transfer that will occur within the heat exchanger.</p>
+<p>But… aren’t we still in the same situation as we were in thermodynamics? We can’t just say what the outlet temperatures are! How would we know what heat exchanger to get to achieve the right outlet temperatures or heat transfer rate? We need to come up with a framework to help us make that decision.</p>
+</section>
+<section id="the-ntu-method" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="the-ntu-method"><span class="header-section-number">6.8</span> The NTU Method</h2>
+<section id="problem-setup" class="level3" data-number="6.8.1">
+<h3 data-number="6.8.1" class="anchored" data-anchor-id="problem-setup"><span class="header-section-number">6.8.1</span> Problem setup</h3>
+<p>A typical engineering problem looks like this: We are trying to cool down something that is hot, like an engine oil. We know it’s flow rate, and have a cold fluid (air or water) available at a known reservoir temperature. That is, we know <span class="math inline">\(\dot{m}_\text{H}\)</span>, <span class="math inline">\(T_\text{H,in}\)</span>, and <span class="math inline">\(T_\text{C,in}\)</span>.</p>
+<p>Our goal is to get the hot fluid down to an acceptable temperature <span class="math inline">\(T_\text{H,out}\)</span>.</p>
+<p>We need to determine <span class="math inline">\(\dot{m}_\text{C}\)</span> and the heat exchanger design size. (And <span class="math inline">\(T_\text{C,out}\)</span> and <span class="math inline">\(T_\text{H,out}\)</span> will follow once those are determined.)</p>
+<p>The NTU framework allows us to design/size HXers to attain the design requirements. <span class="math inline">\(\to\)</span> Determine size of HXer, <span class="math inline">\(\dot{m}_C\)</span>.</p>
+<p>The NTU “Number of Thermal Units” framework will allow us to determine the possibilities for <span class="math inline">\(\dot{m}_\text{C}\)</span> and <span class="math inline">\(UA\)</span> (effectively the heat exchanger design).</p>
+</section>
+<section id="heat-capacity-rates-and-effectiveness" class="level3" data-number="6.8.2">
+<h3 data-number="6.8.2" class="anchored" data-anchor-id="heat-capacity-rates-and-effectiveness"><span class="header-section-number">6.8.2</span> Heat Capacity Rates and “Effectiveness”</h3>
+<p>From thermodynamics:</p>
+<p><span class="math display">\[\dot{Q} = \underbrace{\dot{m}_C c_{p,C}}_{C_C}(T_{C,o}-T_{C,i}) = \underbrace{\dot{m}_H c_{p,H}}_{C_H}(T_{H,i}-T_{H,o})\]</span></p>
+<p>The max hypothetical temperature change is <span class="math inline">\(T_{H,i} - T_{C,i}\)</span>.</p>
+<p>The corresponding max amount of heat transfer:</p>
+<p><span class="math display">\[\dot{Q}_\text{max} = C_\text{min}(T_{H,i} - T_{C,i})\]</span></p>
+<p>where <span class="math inline">\(C_\text{min}\)</span> is the smaller of <span class="math inline">\(C_H\)</span> and <span class="math inline">\(C_C\)</span>.</p>
+<p>Logical to define an <strong>“effectiveness”</strong> <span class="math inline">\(\varepsilon\)</span>:</p>
+<p><span class="math display">\[\varepsilon \equiv \frac{\text{actual heat transfer}}{\text{hypothetical max heat transfer}} = \frac{C_H(T_{H,i}-T_{H,o})}{C_\text{min}(T_{H,i}-T_{C,i})}\]</span></p>
+<p>(or equivalently <span class="math inline">\(\frac{C_C(T_{C,o}-T_{C,i})}{C_\text{min}(T_{H,i}-T_{C,i})} = \dot{Q}_\text{actual}\)</span>)</p>
+<p>With this definition:</p>
+<p><span class="math display">\[\dot{Q} = C_H(T_{H,i}-T_{H,o}) = \varepsilon\, C_\text{min}(T_{H,i}-T_{C,i})\]</span></p>
+<p><strong>Practically, how could we increase <span class="math inline">\(\varepsilon\)</span>?</strong> - Could increase area <span class="math inline">\(\Rightarrow\)</span> increase HXer size - Could change <span class="math inline">\(\dot{m}_C\)</span> (or <span class="math inline">\(c_p\)</span>?) - Change inlet temperatures - Adding fins, increasing turbulence, reduce thermal resistance, narrow channels</p>
+</section>
+<section id="ntu-and-c_r" class="level3" data-number="6.8.3">
+<h3 data-number="6.8.3" class="anchored" data-anchor-id="ntu-and-c_r"><span class="header-section-number">6.8.3</span> NTU and <span class="math inline">\(C_r\)</span></h3>
+<p>(Buckingham-<span class="math inline">\(\Pi\)</span> strikes again?)</p>
+<p>The effectiveness (a dimensionless number) can be considered a function of other dimensionless numbers:</p>
+<p><span class="math display">\[\varepsilon\bigl(\text{NTU},\, C_r\bigr)\]</span></p>
+<p>where “NTU” = “Number of Thermal Units” — basically the size of the heat exchanger (function of area and design).</p>
+<p><span class="math display">\[C_r \equiv \frac{C_\text{min}}{C_\text{max}}\]</span></p>
+<p>The NTU is defined as:</p>
+<p><span class="math display">\[\text{NTU} = \frac{UA}{C_\text{min}}\]</span></p>
+<p>NTU is mostly about HXer size, while <span class="math inline">\(C_r \equiv C_\text{min}/C_\text{max}\)</span> is about flow rates. (However, recall <span class="math inline">\(U \sim h\)</span>, which is a function of Re.)</p>
+</section>
+<section id="derivation-of-varepsilon-c_r-for-co-flow" class="level3" data-number="6.8.4">
+<h3 data-number="6.8.4" class="anchored" data-anchor-id="derivation-of-varepsilon-c_r-for-co-flow"><span class="header-section-number">6.8.4</span> Derivation of <span class="math inline">\(\varepsilon\)</span>(, <span class="math inline">\(C_r\)</span>) for Co-flow</h3>
+<p>Assume <span class="math inline">\(C_\text{min} = C_H\)</span>. A step in the <span class="math inline">\(\Delta T_{lm}\)</span> derivation gave:</p>
+<p><span class="math display">\[\ln\!\left(\frac{\Delta T_o}{\Delta T_i}\right) = \ln\!\left(\frac{T_{H,o}-T_{C,o}}{T_{H,i}-T_{C,i}}\right) = -UA\!\left(\frac{1}{C_H} + \frac{1}{C_C}\right) = -\frac{UA}{C_\text{min}}\!\left(1 + \frac{C_\text{min}}{C_\text{max}}\right) = -\text{NTU}(1+C_r)\]</span></p>
+<p>After algebra (substituting <span class="math inline">\(C_r\)</span> and <span class="math inline">\(\varepsilon\)</span>):</p>
+<p><span class="math display">\[\frac{T_{H,o}-T_{C,o}}{T_{H,i}-T_{C,i}} = -\varepsilon + 1 - C_r\varepsilon\]</span></p>
+<p>Therefore:</p>
+<p><span class="math display">\[\ln(-\varepsilon + 1 - C_r\varepsilon) = -\text{NTU}(1+C_r)\]</span></p>
+<p>Rearranging:</p>
+<p><span class="math display">\[\boxed{\varepsilon = \frac{1 - \exp\bigl[-\text{NTU}(1+C_r)\bigr]}{1+C_r}} \qquad \text{(co-flow)}\]</span></p>
+<p><span class="math inline">\(\to\)</span> <span class="math inline">\(\varepsilon(\text{NTU}, C_r)\)</span> tabulated for different HXer designs (above for co-flow).</p>
+<p><em>Graph: <span class="math inline">\(\varepsilon\)</span> vs NTU for co-flow. Family of curves from <span class="math inline">\(C_r \approx 0\)</span> (top, highest <span class="math inline">\(\varepsilon\)</span>) to <span class="math inline">\(C_r = 1\)</span> (bottom, lowest <span class="math inline">\(\varepsilon\)</span>). All start at origin and saturate. A horizontal dashed line at <span class="math inline">\(\varepsilon_\text{goal}\)</span> shows how to read off the required NTU.</em></p>
+</section>
+<section id="algorithm-for-hxer-design" class="level3" data-number="6.8.5">
+<h3 data-number="6.8.5" class="anchored" data-anchor-id="algorithm-for-hxer-design"><span class="header-section-number">6.8.5</span> Algorithm for HXer Design</h3>
+<p><strong>0)</strong> Gather known and desired information, consider unknowns/flexible parameters.</p>
+<p><strong>1)</strong> Calculate <span class="math inline">\(\varepsilon \equiv \frac{C_H(T_{H,i}-T_{H,o})}{C_\text{min}(T_{H,i}-T_{C,i})}\)</span> and <span class="math inline">\(C_r = \frac{C_\text{min}}{C_\text{max}}\)</span></p>
+<p><strong>2)</strong> Use a chart to determine possibilities for <span class="math inline">\(\text{NTU}(\varepsilon, C_r, \text{design})\)</span> — e.g.&nbsp;brazed plate, shell &amp; tube, etc.</p>
+<p><strong>3)</strong> Consider capitalism / your CEO’s desire for a Ferrari, and pick a HXer.</p>
+<p><span class="math inline">\(\to\)</span> Consideration of: up-front cost (<span class="math inline">\(\sim\text{NTU}\)</span>), pumping cost (<span class="math inline">\(\sim\dot{m}_C\)</span>), space constraints, pressures (not every shell can hold 2 atm).</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A[Gather known and desired information, consider unknowns/flexible parameters] --&gt; B[Calculate $\varepsilon \equiv \frac{C_H(T_{H,i}-T_{H,o})}{C_\text{min}(T_{H,i}-T_{C,i})}$ and $C_r = \frac{C_\text{min}}{C_\text{max}}$]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+
+
+<!-- -->
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/jeremy-koch\.github\.io\/MCEN3022");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./5internal.html" class="pagination-link" aria-label="Internal Convection">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Internal Convection</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./demos/wall_demo.html" class="pagination-link" aria-label="Composite Plane Walls -- Interactive Demo">
+        <span class="nav-page-text">Composite Plane Walls – Interactive Demo</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Heat Exchangers</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Last week we talked about "internal convection", in which we changed the temperature of a fluid with heat transfer through the walls of a pipe. We thought generically of a situation in which the pipe wall was at $T_s$, or if there was a heat flux $q_s''$ through the walls. Heat exchangers involve pairings of internal flows: the heat lost from one goes into the other. We will be con</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>Heat exchangers are usually in highly confined environments: we want the hot and fluids to</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>the "hot" and "cold" flows run next to each other and we want as much of those </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>I</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## Think First</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>Recall</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>Look Ahead</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="fu">## Video</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>Start with </span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fu">## Thermodynamics isn't enough</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>We studied heat exchangers a bit in thermodynamics, and the problems looked something like this: A hot fluid with specific heat $c_{p,\text{H}$, flowing at $\dot{m}_\text{H}$, needs to be cooled from 90°C to 40°C. We use a cold fluid with $c_{p,\text{C}$ that starts at 5°C and must not exceed 20°C. What mass flow rate $\dot{m}_\text{C}$ do we need? The answer comes from the energy balance</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>\dot{m}_\text{C}c_{p,\text{C} (T_{\text{C,out}}-T_{\text{C,in}})=\dot{m}_\text{H}c_{p,\text{H} (T_{\text{H,in}}-T_{\text{H,out}}).</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>But we can't just say the hot fluid is leaving at 40°C, we must design the heat exchanger to make that happen. </span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="fu">## Heat exchanger design variables</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>Let's think intuitively about the ingredients in a heat exchanger design.</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>The "thermal mass" of the fluids is important: $\dot{m}c_p$ (or $\rho c_p$). A fluid with a large specific heat will not change temperature as readily as one with a small specific heat, and if we have more flow, it is going to take more energy to change temperature. </span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>The surface area is important. As is always the case in heat transfer, greater surface area means greater heat transfer.</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Thick walls will increase thermal resistance. We don't want the fluids separated by 2 cm of plastic, we want them separated by 0.5 mm of copper.</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Fins and turbulence will help. More surface area, more mixing, more heat transfer.</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Achieving the biggest $\Delta T$, in general, will lead to more heat transfer. </span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>We are going to move towards a description that looks a lot like the standard convection</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>\dot{Q}=hA \Delta T</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>but of course there are complications: How do we describe $h$ when there are two fluids separated by a solid, possibly with fins? And what is the right $\Delta T$ to use, it's going to be changing as we move through the heat exchanger as the cold fluid warms up and as the hot fluid cools down.</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="fu">## The Overall Heat Transfer Coefficient $U$</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>At any location in the heat exchanger, we could write a little electrical circuit that describes the heat transfer from the hot fluid to the cold fluid (perpendicular to the flow directions): </span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;svg width="650" height="240" xmlns="http://www.w3.org/2000/svg"&gt;</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;title&gt;Heat exchanger thermal resistance network&lt;/title&gt;</span></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!--</span></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="in">    Series chain (y=120): T_H → 1/(h_H A) → L1/(k1 A) → L2/(k2 A) → left manifold (x=420)</span></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="in">    Parallel section: top branch R_fin (y=70), bottom branch R_b (y=170) → right manifold (x=575) → T_C</span></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="in">    Each resistor: 100px wide, 10px stubs, 5 half-periods × 16px = 80px body, amplitude ±12px</span></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="in">      Polyline template (A=start x, cy=center y):</span></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="in">        A,cy  A+10,cy  A+18,cy-12  A+34,cy+12  A+50,cy-12  A+66,cy+12  A+82,cy-12  A+90,cy  A+100,cy</span></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a><span class="in">  --&gt;</span></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Lead in --&gt;</span></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="20" y1="120" x2="50" y2="120" stroke="black" stroke-width="2"/&gt;</span></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- R_conv,H  [1/(h_H A)],  A=50, cy=120 --&gt;</span></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;polyline points="50,120 60,120 68,108 84,132 100,108 116,132 132,108 140,120 150,120"</span></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="in">            fill="none" stroke="black" stroke-width="1.5"/&gt;</span></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;foreignObject x="52" y="78" width="96" height="32"&gt;</span></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center; font-size:14px; font-family:serif"&gt;\(\dfrac{1}{h_H A}\)&lt;/div&gt;</span></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/foreignObject&gt;</span></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Wire R1→R2 --&gt;</span></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="150" y1="120" x2="175" y2="120" stroke="black" stroke-width="2"/&gt;</span></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- R_cond,1  [L1/(k1 A)],  A=175, cy=120 --&gt;</span></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;polyline points="175,120 185,120 193,108 209,132 225,108 241,132 257,108 265,120 275,120"</span></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="in">            fill="none" stroke="black" stroke-width="1.5"/&gt;</span></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;foreignObject x="177" y="78" width="96" height="32"&gt;</span></span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center; font-size:14px; font-family:serif"&gt;\(\dfrac{L_1}{k_1 A}\)&lt;/div&gt;</span></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/foreignObject&gt;</span></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Wire R2→R3 --&gt;</span></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="275" y1="120" x2="300" y2="120" stroke="black" stroke-width="2"/&gt;</span></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- R_cond,2  [L2/(k2 A)],  A=300, cy=120 --&gt;</span></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;polyline points="300,120 310,120 318,108 334,132 350,108 366,132 382,108 390,120 400,120"</span></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a><span class="in">            fill="none" stroke="black" stroke-width="1.5"/&gt;</span></span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;foreignObject x="302" y="78" width="96" height="32"&gt;</span></span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center; font-size:14px; font-family:serif"&gt;\(\dfrac{L_2}{k_2 A}\)&lt;/div&gt;</span></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/foreignObject&gt;</span></span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Wire R3→left manifold --&gt;</span></span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="400" y1="120" x2="420" y2="120" stroke="black" stroke-width="2"/&gt;</span></span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Left manifold --&gt;</span></span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="420" y1="70" x2="420" y2="170" stroke="black" stroke-width="2"/&gt;</span></span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;circle cx="420" cy="120" r="3" fill="black"/&gt;</span></span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Top branch: fin  (y=70) --&gt;</span></span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="420" y1="70" x2="445" y2="70" stroke="black" stroke-width="2"/&gt;</span></span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;polyline points="445,70 455,70 463,58 479,82 495,58 511,82 527,58 535,70 545,70"</span></span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a><span class="in">            fill="none" stroke="black" stroke-width="1.5"/&gt;</span></span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="545" y1="70" x2="575" y2="70" stroke="black" stroke-width="2"/&gt;</span></span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;foreignObject x="455" y="34" width="80" height="28"&gt;</span></span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center; font-size:14px; font-family:serif"&gt;\(R_{fin}\)&lt;/div&gt;</span></span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/foreignObject&gt;</span></span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Bottom branch: base convection  (y=170) --&gt;</span></span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="420" y1="170" x2="445" y2="170" stroke="black" stroke-width="2"/&gt;</span></span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;polyline points="445,170 455,170 463,158 479,182 495,158 511,182 527,158 535,170 545,170"</span></span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a><span class="in">            fill="none" stroke="black" stroke-width="1.5"/&gt;</span></span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="545" y1="170" x2="575" y2="170" stroke="black" stroke-width="2"/&gt;</span></span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;foreignObject x="455" y="188" width="80" height="28"&gt;</span></span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center; font-size:14px; font-family:serif"&gt;\(R_b\)&lt;/div&gt;</span></span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/foreignObject&gt;</span></span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Right manifold --&gt;</span></span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="575" y1="70" x2="575" y2="170" stroke="black" stroke-width="2"/&gt;</span></span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;circle cx="575" cy="120" r="3" fill="black"/&gt;</span></span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Lead out --&gt;</span></span>
+<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="575" y1="120" x2="610" y2="120" stroke="black" stroke-width="2"/&gt;</span></span>
+<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- T_H label --&gt;</span></span>
+<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;foreignObject x="0" y="108" width="22" height="24"&gt;</span></span>
+<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;div xmlns="http://www.w3.org/1999/xhtml" style="text-align:right; font-size:15px; font-family:serif"&gt;\(T_H\)&lt;/div&gt;</span></span>
+<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/foreignObject&gt;</span></span>
+<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- T_C label --&gt;</span></span>
+<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;foreignObject x="612" y="108" width="28" height="24"&gt;</span></span>
+<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;div xmlns="http://www.w3.org/1999/xhtml" style="text-align:left; font-size:15px; font-family:serif"&gt;\(T_C\)&lt;/div&gt;</span></span>
+<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/foreignObject&gt;</span></span>
+<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/svg&gt;</span></span>
+<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a>Try to interpret the situation yourself, and then read...</span>
+<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a>::: {.callout-caution collapse="true"}</span>
+<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a><span class="fu">### What's going on here?</span></span>
+<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a>Rather than carrying around all of the terms in our calculations, we summarize into an "overall heat transfer coefficient" $U$, defined such that </span>
+<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a>\frac{1}{UA} = \frac{1}{h_1 A} + \frac{L_2}{k_2 A} + ... .</span>
+<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a>Notice that $U$ will have the same units as $h$... we are going to use $UA$ in our convection equation instead of $hA$. </span>
+<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a>It is common to assume that the areas of all the layers are the same, but that not always true: e.g. if we have circular pipes with finite wall thickness.</span>
+<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a>It is sometimes reasonable to claim the walls have no thermal resistance: thin sheets of metal are not going to hinder the heat transfer that much. Then we just focus on the convection elements (possibly including fins).</span>
+<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a><span class="fu">## Flow Configurations</span></span>
+<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a>We know that the amount heat transfer depends on temperature difference. </span>
+<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a><span class="fu">### The "co-flow" or "parallel-flow" configuration</span></span>
+<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a>We could have it where the cold inlet and hot inlet are next to each other -- in such a case, we get a massive (local) $\Delta T$ at the inlet side... good news, right? Maybe, but the $\Delta T$ is going to decrease along the flow, and we will have the limitation that $T_\text{C,out} &lt; T_\text{H,out}$. </span>
+<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a>::: {.callout-warning}</span>
+<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a>We also might have concerns about "thermal stresses" because of the dramatic temperature gradients in the material.</span>
+<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a><span class="fu">### The "counter-flow" configuration</span></span>
+<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a>We have another option: the cold inlet could be paired with the hot outlet, and the cold outlet could be paired with the hot inlet. In such a case we do not get the enormous $\Delta T$ at the inlet seen in the co-flow configuration, but we will get better average $\Delta T$ throughout the heat exchanger. This typically leads to better overall heat transfer. We also can have that $T_\text{H,out} &lt; T_\text{C,out}$.</span>
+<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a>A sketch of these two configurations:</span>
+<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
+<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;svg width="700" height="275" xmlns="http://www.w3.org/2000/svg"&gt;</span></span>
+<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;defs&gt;</span></span>
+<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;marker id="hxa-blk" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"&gt;</span></span>
+<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;polygon points="0 0, 6 3, 0 6" fill="black"/&gt;</span></span>
+<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/marker&gt;</span></span>
+<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;marker id="hxa-red" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"&gt;</span></span>
+<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;polygon points="0 0, 6 3, 0 6" fill="red"/&gt;</span></span>
+<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/marker&gt;</span></span>
+<span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;marker id="hxa-blu" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"&gt;</span></span>
+<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;polygon points="0 0, 6 3, 0 6" fill="#2266cc"/&gt;</span></span>
+<span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/marker&gt;</span></span>
+<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/defs&gt;</span></span>
+<span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- CO-FLOW panel: plot area x=60..315, y=25..240 --&gt;</span></span>
+<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- T scale: 0-90°C -&gt; y=240..25, so y(T) = 240 - T*2.39 --&gt;</span></span>
+<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Hot: 80-&gt;50C (y: 49-&gt;121); Cold: 10-&gt;30C (y: 216-&gt;168) --&gt;</span></span>
+<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="187" y="15" text-anchor="middle" font-size="14" font-family="Georgia,serif"&gt;Co-flow&lt;/text&gt;</span></span>
+<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="60" y1="240" x2="318" y2="240" stroke="black" stroke-width="1.5" marker-end="url(#hxa-blk)"/&gt;</span></span>
+<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="60" y1="240" x2="60"  y2="20"  stroke="black" stroke-width="1.5" marker-end="url(#hxa-blk)"/&gt;</span></span>
+<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="323" y="244" font-size="13" font-family="Georgia,serif" font-style="italic"&gt;x&lt;/text&gt;</span></span>
+<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="48"  y="17"  font-size="13" font-family="Georgia,serif" font-style="italic"&gt;T&lt;/text&gt;</span></span>
+<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;path d="M 60,49  C 130,62  220,103 315,121" fill="none" stroke="red"     stroke-width="2.2"/&gt;</span></span>
+<span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;path d="M 60,216 C 130,208 220,186 315,168" fill="none" stroke="#2266cc" stroke-width="2.2"/&gt;</span></span>
+<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- flow-direction arrows (~mid-curve x=165) --&gt;</span></span>
+<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="155" y1="76"  x2="175" y2="82"  stroke="red"     stroke-width="2" marker-end="url(#hxa-red)"/&gt;</span></span>
+<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="155" y1="200" x2="175" y2="196" stroke="#2266cc" stroke-width="2" marker-end="url(#hxa-blu)"/&gt;</span></span>
+<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="140" y="65"  font-size="12" font-family="Georgia,serif" fill="red"    &gt;Hot&lt;/text&gt;</span></span>
+<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="133" y="216" font-size="12" font-family="Georgia,serif" fill="#2266cc"&gt;Cold&lt;/text&gt;</span></span>
+<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="57"  y="47"  text-anchor="end" font-size="11" font-family="Georgia,serif" fill="red"    &gt;T&lt;tspan dy="3" font-size="9"&gt;H,i&lt;/tspan&gt;&lt;/text&gt;</span></span>
+<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="57"  y="219" text-anchor="end" font-size="11" font-family="Georgia,serif" fill="#2266cc"&gt;T&lt;tspan dy="3" font-size="9"&gt;C,i&lt;/tspan&gt;&lt;/text&gt;</span></span>
+<span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="318" y="124" font-size="11" font-family="Georgia,serif" fill="red"    &gt;T&lt;tspan dy="3" font-size="9"&gt;H,o&lt;/tspan&gt;&lt;/text&gt;</span></span>
+<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="318" y="171" font-size="11" font-family="Georgia,serif" fill="#2266cc"&gt;T&lt;tspan dy="3" font-size="9"&gt;C,o&lt;/tspan&gt;&lt;/text&gt;</span></span>
+<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- COUNTER-FLOW panel: plot area x=390..645, y=25..240 --&gt;</span></span>
+<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Hot: 80-&gt;25C (y: 49-&gt;180); Cold flows right-&gt;left: exits left at 65C, enters right at 10C (y: 84-&gt;216) --&gt;</span></span>
+<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="352" y1="8" x2="352" y2="260" stroke="#cccccc" stroke-width="1"/&gt;</span></span>
+<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="517" y="15" text-anchor="middle" font-size="14" font-family="Georgia,serif"&gt;Counter-flow&lt;/text&gt;</span></span>
+<span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="390" y1="240" x2="648" y2="240" stroke="black" stroke-width="1.5" marker-end="url(#hxa-blk)"/&gt;</span></span>
+<span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="390" y1="240" x2="390" y2="20"  stroke="black" stroke-width="1.5" marker-end="url(#hxa-blk)"/&gt;</span></span>
+<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="653" y="244" font-size="13" font-family="Georgia,serif" font-style="italic"&gt;x&lt;/text&gt;</span></span>
+<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="378" y="17"  font-size="13" font-family="Georgia,serif" font-style="italic"&gt;T&lt;/text&gt;</span></span>
+<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;path d="M 390,49 C 455,72  550,150 645,180" fill="none" stroke="red"     stroke-width="2.2"/&gt;</span></span>
+<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;path d="M 390,84 C 455,107 550,185 645,216" fill="none" stroke="#2266cc" stroke-width="2.2"/&gt;</span></span>
+<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- hot rightward (~x=484); cold leftward (draw right-&gt;left so arrowhead points left) --&gt;</span></span>
+<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="484" y1="99"  x2="504" y2="109" stroke="red"     stroke-width="2" marker-end="url(#hxa-red)"/&gt;</span></span>
+<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="504" y1="144" x2="484" y2="134" stroke="#2266cc" stroke-width="2" marker-end="url(#hxa-blu)"/&gt;</span></span>
+<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="470" y="88"  font-size="12" font-family="Georgia,serif" fill="red"    &gt;Hot&lt;/text&gt;</span></span>
+<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="510" y="167" font-size="12" font-family="Georgia,serif" fill="#2266cc"&gt;Cold&lt;/text&gt;</span></span>
+<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- left side: hot inlet, cold OUTLET (T_C,o &gt; T_H,o is the key counter-flow feature) --&gt;</span></span>
+<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="387" y="47" text-anchor="end" font-size="11" font-family="Georgia,serif" fill="red"    &gt;T&lt;tspan dy="3" font-size="9"&gt;H,i&lt;/tspan&gt;&lt;/text&gt;</span></span>
+<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="387" y="87" text-anchor="end" font-size="11" font-family="Georgia,serif" fill="#2266cc"&gt;T&lt;tspan dy="3" font-size="9"&gt;C,o&lt;/tspan&gt;&lt;/text&gt;</span></span>
+<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- right side: hot outlet, cold INLET --&gt;</span></span>
+<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="648" y="183" font-size="11" font-family="Georgia,serif" fill="red"    &gt;T&lt;tspan dy="3" font-size="9"&gt;H,o&lt;/tspan&gt;&lt;/text&gt;</span></span>
+<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="648" y="219" font-size="11" font-family="Georgia,serif" fill="#2266cc"&gt;T&lt;tspan dy="3" font-size="9"&gt;C,i&lt;/tspan&gt;&lt;/text&gt;</span></span>
+<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/svg&gt;</span></span>
+<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a><span class="fu">## The Log-Mean Temperature Difference (LMTD)</span></span>
+<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a>Reminder: our goal is to make it to something like $\dot{Q}=hA\Delta T$. What is the relevant $\Delta T$ to use?</span>
+<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a>The answer is the log-mean temperature difference, which we described <span class="co">[</span><span class="ot">when we studied tube banks</span><span class="co">](4convection.qmd#the-log-mean-temperature-difference)</span>. I'll include the derivation below, if you are interested.</span>
+<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a>::: {.callout-caution collapse="true"}</span>
+<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a><span class="fu">### Expand for the derivation</span></span>
+<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a>Thermodynamics:</span>
+<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a>$$|\dot{Q}| = \dot{m}_C c_{p,C}(T_{C,o} - T_{C,i}) = \dot{m}_H c_{p,H}(T_{H,i} - T_{H,o}) = UA\cdot\Delta T$$</span>
+<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a>Similar to pipe flow analysis (assuming co-flow, counter-flow is similar):</span>
+<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a>*Diagram: Two-channel heat exchanger, control volume $dA$. $\Delta T = T_H - T_C$ locally.*</span>
+<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a>Energy balance:</span>
+<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a>$$-\dot{m}_H c_{p,H}\,dT_H = \dot{m}_C c_{p,C}\,dT_C = U\,dA\,\Delta T = dq$$</span>
+<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a>With $\Delta T = T_H - T_C$, so $d(\Delta T) = dT_H - dT_C$:</span>
+<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a>$$d(\Delta T) = \frac{dq}{-\dot{m}_H c_{p,H}} - \frac{dq}{\dot{m}_C c_{p,C}} = -dq\left(\frac{1}{\dot{m}_H c_{p,H}} + \frac{1}{\dot{m}_C c_{p,C}}\right) = U\,dA\,\Delta T\left(\frac{1}{\dot{m}_H c_{p,H}} + \frac{1}{\dot{m}_C c_{p,C}}\right)$$</span>
+<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a>This is a separable ODE:</span>
+<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a>$$\int_\text{in}^\text{out}\frac{d(\Delta T)}{\Delta T} = \int_\text{in}^\text{out} -U\left(\frac{1}{\dot{m}_H c_{p,H}} + \frac{1}{\dot{m}_C c_{p,C}}\right)dA$$</span>
+<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a>$$\ln<span class="sc">\!</span>\left(\frac{\Delta T_\text{out}}{\Delta T_\text{in}}\right) = -UA\left(\frac{1}{\dot{m}_H c_{p,H}} + \frac{1}{\dot{m}_C c_{p,C}}\right) = -UA\left(\frac{T_{H,\text{in}}-T_{H,\text{out}}}{\dot{Q}} + \frac{T_{C,\text{out}}-T_{C,\text{in}}}{\dot{Q}}\right)$$</span>
+<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a>$$\therefore \quad \dot{Q} = UA\cdot\frac{(T_{H,\text{out}}-T_{C,\text{out}}) - (T_{H,\text{in}}-T_{C,\text{in}})}{\ln<span class="sc">\!</span>\left(\frac{T_{H,\text{out}}-T_{C,\text{out}}}{T_{H,\text{in}}-T_{C,\text{in}}}\right)} = UA\cdot\Delta T_{lm}$$</span>
+<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a>where $\Delta T_{lm}$ is the **log-mean temperature difference (LMTD)**.</span>
+<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a><span class="fu">### LMTD Formulas</span></span>
+<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a>**For co-flow:** $\Delta T_o = T_{H,o} - T_{C,o}$, $\Delta T_i = T_{H,i} - T_{C,i}$</span>
+<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a>$$\boxed{\Delta T_{lm} = \frac{(T_{H,i} - T_{C,i}) - (T_{H,o} - T_{C,o})}{\ln<span class="sc">\!</span>\left(\frac{T_{H,i}-T_{C,i}}{T_{H,o}-T_{C,o}}\right)}} \qquad \text{co-flow}$$</span>
+<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a>**For counter-flow:** $\Delta T_o = T_{H,o} - T_{C,i}$, $\Delta T_i = T_{H,i} - T_{C,o}$</span>
+<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a>$$\boxed{\Delta T_{lm} = \frac{(T_{H,i} - T_{C,o}) - (T_{H,o} - T_{C,i})}{\ln<span class="sc">\!</span>\left(\frac{T_{H,i}-T_{C,o}}{T_{H,o}-T_{C,i}}\right)}} \qquad \text{counter-flow}$$</span>
+<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a><span class="fu">## Summary of the heat transfer rate</span></span>
+<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a>We now have</span>
+<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a>\dot{Q} = UA\cdot\Delta T_{lm}</span>
+<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a>where $UA$ accounts for both sides of the convection, the resistance through the solid wall, and any fins or turbulence enhancers in one term. The log-mean temperature difference $\Delta T_{lm}$ is a representation of the average temperature difference across the heat exchanger. So, ostensibly: if we know the flow rates (related to $U$), heat exchanger size (basically $A$) and temperature information (\Delta T_{lm}), we can predict the amount of heat transfer that will occur within the heat exchanger.</span>
+<span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a>But... aren't we still in the same situation as we were in thermodynamics? We can't just say what the outlet temperatures are! How would we know what heat exchanger to get to achieve the right outlet temperatures or heat transfer rate? We need to come up with a framework to help us make that decision.</span>
+<span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a><span class="fu">## The NTU Method</span></span>
+<span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-329"><a href="#cb1-329" aria-hidden="true" tabindex="-1"></a><span class="fu">### Problem setup</span></span>
+<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-331"><a href="#cb1-331" aria-hidden="true" tabindex="-1"></a>A typical engineering problem looks like this: We are trying to cool down something that is hot, like an engine oil. We know it's flow rate, and have a cold fluid (air or water) available at a known reservoir temperature. That is, we know $\dot{m}_\text{H}$, $T_\text{H,in}$, and $T_\text{C,in}$.</span>
+<span id="cb1-332"><a href="#cb1-332" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-333"><a href="#cb1-333" aria-hidden="true" tabindex="-1"></a>Our goal is to get the hot fluid down to an acceptable temperature $T_\text{H,out}$.</span>
+<span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-335"><a href="#cb1-335" aria-hidden="true" tabindex="-1"></a>We need to determine $\dot{m}_\text{C}$ and the heat exchanger design size. (And $T_\text{C,out}$ and $T_\text{H,out}$ will follow once those are determined.)</span>
+<span id="cb1-336"><a href="#cb1-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a>The NTU framework allows us to design/size HXers to attain the design requirements. $\to$ Determine size of HXer, $\dot{m}_C$.</span>
+<span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-339"><a href="#cb1-339" aria-hidden="true" tabindex="-1"></a>The NTU "Number of Thermal Units" framework will allow us to determine the possibilities for $\dot{m}_\text{C}$ and $UA$ (effectively the heat exchanger design).</span>
+<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-341"><a href="#cb1-341" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a><span class="fu">### Heat Capacity Rates and "Effectiveness"</span></span>
+<span id="cb1-343"><a href="#cb1-343" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a>From thermodynamics:</span>
+<span id="cb1-345"><a href="#cb1-345" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a>$$\dot{Q} = \underbrace{\dot{m}_C c_{p,C}}_{C_C}(T_{C,o}-T_{C,i}) = \underbrace{\dot{m}_H c_{p,H}}_{C_H}(T_{H,i}-T_{H,o})$$</span>
+<span id="cb1-347"><a href="#cb1-347" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a>The max hypothetical temperature change is $T_{H,i} - T_{C,i}$.</span>
+<span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a>The corresponding max amount of heat transfer:</span>
+<span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a>$$\dot{Q}_\text{max} = C_\text{min}(T_{H,i} - T_{C,i})$$</span>
+<span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a>where $C_\text{min}$ is the smaller of $C_H$ and $C_C$.</span>
+<span id="cb1-355"><a href="#cb1-355" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a>Logical to define an **"effectiveness"** $\varepsilon$:</span>
+<span id="cb1-357"><a href="#cb1-357" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a>$$\varepsilon \equiv \frac{\text{actual heat transfer}}{\text{hypothetical max heat transfer}} = \frac{C_H(T_{H,i}-T_{H,o})}{C_\text{min}(T_{H,i}-T_{C,i})}$$</span>
+<span id="cb1-359"><a href="#cb1-359" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a>(or equivalently $\frac{C_C(T_{C,o}-T_{C,i})}{C_\text{min}(T_{H,i}-T_{C,i})} = \dot{Q}_\text{actual}$)</span>
+<span id="cb1-361"><a href="#cb1-361" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-362"><a href="#cb1-362" aria-hidden="true" tabindex="-1"></a>With this definition:</span>
+<span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a>$$\dot{Q} = C_H(T_{H,i}-T_{H,o}) = \varepsilon\, C_\text{min}(T_{H,i}-T_{C,i})$$</span>
+<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a>**Practically, how could we increase $\varepsilon$?**</span>
+<span id="cb1-367"><a href="#cb1-367" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Could increase area $\Rightarrow$ increase HXer size</span>
+<span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Could change $\dot{m}_C$ (or $c_p$?)</span>
+<span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Change inlet temperatures</span>
+<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Adding fins, increasing turbulence, reduce thermal resistance, narrow channels</span>
+<span id="cb1-371"><a href="#cb1-371" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-372"><a href="#cb1-372" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-373"><a href="#cb1-373" aria-hidden="true" tabindex="-1"></a><span class="fu">### NTU and $C_r$</span></span>
+<span id="cb1-374"><a href="#cb1-374" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-375"><a href="#cb1-375" aria-hidden="true" tabindex="-1"></a>(Buckingham-$\Pi$ strikes again?)</span>
+<span id="cb1-376"><a href="#cb1-376" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a>The effectiveness (a dimensionless number) can be considered a function of other dimensionless numbers:</span>
+<span id="cb1-378"><a href="#cb1-378" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a>$$\varepsilon\bigl(\text{NTU},\, C_r\bigr)$$</span>
+<span id="cb1-380"><a href="#cb1-380" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-381"><a href="#cb1-381" aria-hidden="true" tabindex="-1"></a>where "NTU" = "Number of Thermal Units" — basically the size of the heat exchanger (function of area and design).</span>
+<span id="cb1-382"><a href="#cb1-382" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-383"><a href="#cb1-383" aria-hidden="true" tabindex="-1"></a>$$C_r \equiv \frac{C_\text{min}}{C_\text{max}}$$</span>
+<span id="cb1-384"><a href="#cb1-384" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-385"><a href="#cb1-385" aria-hidden="true" tabindex="-1"></a>The NTU is defined as:</span>
+<span id="cb1-386"><a href="#cb1-386" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-387"><a href="#cb1-387" aria-hidden="true" tabindex="-1"></a>$$\text{NTU} = \frac{UA}{C_\text{min}}$$</span>
+<span id="cb1-388"><a href="#cb1-388" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-389"><a href="#cb1-389" aria-hidden="true" tabindex="-1"></a>NTU is mostly about HXer size, while $C_r \equiv C_\text{min}/C_\text{max}$ is about flow rates. (However, recall $U \sim h$, which is a function of Re.)</span>
+<span id="cb1-390"><a href="#cb1-390" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-391"><a href="#cb1-391" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-392"><a href="#cb1-392" aria-hidden="true" tabindex="-1"></a><span class="fu">### Derivation of $\varepsilon$(\text{NTU}, $C_r$) for Co-flow</span></span>
+<span id="cb1-393"><a href="#cb1-393" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-394"><a href="#cb1-394" aria-hidden="true" tabindex="-1"></a>Assume $C_\text{min} = C_H$. A step in the $\Delta T_{lm}$ derivation gave:</span>
+<span id="cb1-395"><a href="#cb1-395" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-396"><a href="#cb1-396" aria-hidden="true" tabindex="-1"></a>$$\ln<span class="sc">\!</span>\left(\frac{\Delta T_o}{\Delta T_i}\right) = \ln<span class="sc">\!</span>\left(\frac{T_{H,o}-T_{C,o}}{T_{H,i}-T_{C,i}}\right) = -UA<span class="sc">\!</span>\left(\frac{1}{C_H} + \frac{1}{C_C}\right) = -\frac{UA}{C_\text{min}}<span class="sc">\!</span>\left(1 + \frac{C_\text{min}}{C_\text{max}}\right) = -\text{NTU}(1+C_r)$$</span>
+<span id="cb1-397"><a href="#cb1-397" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-398"><a href="#cb1-398" aria-hidden="true" tabindex="-1"></a>After algebra (substituting $C_r$ and $\varepsilon$):</span>
+<span id="cb1-399"><a href="#cb1-399" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-400"><a href="#cb1-400" aria-hidden="true" tabindex="-1"></a>$$\frac{T_{H,o}-T_{C,o}}{T_{H,i}-T_{C,i}} = -\varepsilon + 1 - C_r\varepsilon$$</span>
+<span id="cb1-401"><a href="#cb1-401" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-402"><a href="#cb1-402" aria-hidden="true" tabindex="-1"></a>Therefore:</span>
+<span id="cb1-403"><a href="#cb1-403" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-404"><a href="#cb1-404" aria-hidden="true" tabindex="-1"></a>$$\ln(-\varepsilon + 1 - C_r\varepsilon) = -\text{NTU}(1+C_r)$$</span>
+<span id="cb1-405"><a href="#cb1-405" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-406"><a href="#cb1-406" aria-hidden="true" tabindex="-1"></a>Rearranging:</span>
+<span id="cb1-407"><a href="#cb1-407" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-408"><a href="#cb1-408" aria-hidden="true" tabindex="-1"></a>$$\boxed{\varepsilon = \frac{1 - \exp\bigl<span class="co">[</span><span class="ot">-\text{NTU}(1+C_r)\bigr</span><span class="co">]</span>}{1+C_r}} \qquad \text{(co-flow)}$$</span>
+<span id="cb1-409"><a href="#cb1-409" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-410"><a href="#cb1-410" aria-hidden="true" tabindex="-1"></a>$\to$ $\varepsilon(\text{NTU}, C_r)$ tabulated for different HXer designs (above for co-flow).</span>
+<span id="cb1-411"><a href="#cb1-411" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-412"><a href="#cb1-412" aria-hidden="true" tabindex="-1"></a>*Graph: $\varepsilon$ vs NTU for co-flow. Family of curves from $C_r \approx 0$ (top, highest $\varepsilon$) to $C_r = 1$ (bottom, lowest $\varepsilon$). All start at origin and saturate. A horizontal dashed line at $\varepsilon_\text{goal}$ shows how to read off the required NTU.*</span>
+<span id="cb1-413"><a href="#cb1-413" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-414"><a href="#cb1-414" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-415"><a href="#cb1-415" aria-hidden="true" tabindex="-1"></a><span class="fu">### Algorithm for HXer Design</span></span>
+<span id="cb1-416"><a href="#cb1-416" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-417"><a href="#cb1-417" aria-hidden="true" tabindex="-1"></a>**0)** Gather known and desired information, consider unknowns/flexible parameters.</span>
+<span id="cb1-418"><a href="#cb1-418" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-419"><a href="#cb1-419" aria-hidden="true" tabindex="-1"></a>**1)** Calculate $\varepsilon \equiv \frac{C_H(T_{H,i}-T_{H,o})}{C_\text{min}(T_{H,i}-T_{C,i})}$ and $C_r = \frac{C_\text{min}}{C_\text{max}}$</span>
+<span id="cb1-420"><a href="#cb1-420" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-421"><a href="#cb1-421" aria-hidden="true" tabindex="-1"></a>**2)** Use a chart to determine possibilities for $\text{NTU}(\varepsilon, C_r, \text{design})$ — e.g. brazed plate, shell &amp; tube, etc.</span>
+<span id="cb1-422"><a href="#cb1-422" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-423"><a href="#cb1-423" aria-hidden="true" tabindex="-1"></a>**3)** Consider capitalism / your CEO's desire for a Ferrari, and pick a HXer.</span>
+<span id="cb1-424"><a href="#cb1-424" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-425"><a href="#cb1-425" aria-hidden="true" tabindex="-1"></a>$\to$ Consideration of: up-front cost ($\sim\text{NTU}$), pumping cost ($\sim\dot{m}_C$), space constraints, pressures (not every shell can hold 2 atm).</span>
+<span id="cb1-426"><a href="#cb1-426" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-427"><a href="#cb1-427" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-430"><a href="#cb1-430" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
+<span id="cb1-431"><a href="#cb1-431" aria-hidden="true" tabindex="-1"></a>flowchart LR</span>
+<span id="cb1-432"><a href="#cb1-432" aria-hidden="true" tabindex="-1"></a>    A[Gather known <span class="ot">and</span> desired information, consider unknowns/flexible parameters] --&gt; B[Calculate <span class="wa">$\</span><span class="dt">varepsilon</span> \equiv \frac{C_H(T_{H,i}-T_{H,o})}{C_\text{min}(T_{H,i}-T_{C,i})}$ <span class="ot">and</span> <span class="dt">$C_r</span> = \frac{C_\text{min}}{C_\text{max}}<span class="wa">$]</span></span>
+<span id="cb1-433"><a href="#cb1-433" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
