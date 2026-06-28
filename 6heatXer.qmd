@@ -1,0 +1,431 @@
+# Heat Exchangers
+
+Last week we talked about "internal convection", in which we changed the temperature of a fluid with heat transfer through the walls of a pipe. We thought generically of a situation in which the pipe wall was at $T_s$, or if there was a heat flux $q_s''$ through the walls. Heat exchangers involve pairings of internal flows: the heat lost from one goes into the other. We will be con
+
+Heat exchangers are usually in highly confined environments: we want the hot and fluids to
+
+
+the "hot" and "cold" flows run next to each other and we want as much of those 
+
+::: {.callout-note}
+I
+:::
+
+## Think First
+
+Recall
+
+1. 
+
+Look Ahead
+
+1. 
+
+
+
+::: {.callout-tip}
+## Video
+
+Start with 
+:::
+
+## Thermodynamics isn't enough
+
+We studied heat exchangers a bit in thermodynamics, and the problems looked something like this: A hot fluid with specific heat $c_{p,\text{H}$, flowing at $\dot{m}_\text{H}$, needs to be cooled from 90°C to 40°C. We use a cold fluid with $c_{p,\text{C}$ that starts at 5°C and must not exceed 20°C. What mass flow rate $\dot{m}_\text{C}$ do we need? The answer comes from the energy balance
+
+$$
+\dot{m}_\text{C}c_{p,\text{C} (T_{\text{C,out}}-T_{\text{C,in}})=\dot{m}_\text{H}c_{p,\text{H} (T_{\text{H,in}}-T_{\text{H,out}}).
+$$
+
+But we can't just say the hot fluid is leaving at 40°C, we must design the heat exchanger to make that happen. 
+
+## Heat exchanger design variables
+
+Let's think intuitively about the ingredients in a heat exchanger design.
+
+1. The "thermal mass" of the fluids is important: $\dot{m}c_p$ (or $\rho c_p$). A fluid with a large specific heat will not change temperature as readily as one with a small specific heat, and if we have more flow, it is going to take more energy to change temperature. 
+2. The surface area is important. As is always the case in heat transfer, greater surface area means greater heat transfer.
+3. Thick walls will increase thermal resistance. We don't want the fluids separated by 2 cm of plastic, we want them separated by 0.5 mm of copper.
+4. Fins and turbulence will help. More surface area, more mixing, more heat transfer.
+5. Achieving the biggest $\Delta T$, in general, will lead to more heat transfer. 
+
+
+We are going to move towards a description that looks a lot like the standard convection
+
+$$
+\dot{Q}=hA \Delta T
+$$
+
+but of course there are complications: How do we describe $h$ when there are two fluids separated by a solid, possibly with fins? And what is the right $\Delta T$ to use, it's going to be changing as we move through the heat exchanger as the cold fluid warms up and as the hot fluid cools down.
+
+## The Overall Heat Transfer Coefficient $U$
+
+At any location in the heat exchanger, we could write a little electrical circuit that describes the heat transfer from the hot fluid to the cold fluid (perpendicular to the flow directions): 
+
+
+```{=html}
+<svg width="650" height="240" xmlns="http://www.w3.org/2000/svg">
+  <title>Heat exchanger thermal resistance network</title>
+  <!--
+    Series chain (y=120): T_H → 1/(h_H A) → L1/(k1 A) → L2/(k2 A) → left manifold (x=420)
+    Parallel section: top branch R_fin (y=70), bottom branch R_b (y=170) → right manifold (x=575) → T_C
+    Each resistor: 100px wide, 10px stubs, 5 half-periods × 16px = 80px body, amplitude ±12px
+      Polyline template (A=start x, cy=center y):
+        A,cy  A+10,cy  A+18,cy-12  A+34,cy+12  A+50,cy-12  A+66,cy+12  A+82,cy-12  A+90,cy  A+100,cy
+  -->
+
+  <!-- Lead in -->
+  <line x1="20" y1="120" x2="50" y2="120" stroke="black" stroke-width="2"/>
+
+  <!-- R_conv,H  [1/(h_H A)],  A=50, cy=120 -->
+  <polyline points="50,120 60,120 68,108 84,132 100,108 116,132 132,108 140,120 150,120"
+            fill="none" stroke="black" stroke-width="1.5"/>
+  <foreignObject x="52" y="78" width="96" height="32">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center; font-size:14px; font-family:serif">\(\dfrac{1}{h_H A}\)</div>
+  </foreignObject>
+
+  <!-- Wire R1→R2 -->
+  <line x1="150" y1="120" x2="175" y2="120" stroke="black" stroke-width="2"/>
+
+  <!-- R_cond,1  [L1/(k1 A)],  A=175, cy=120 -->
+  <polyline points="175,120 185,120 193,108 209,132 225,108 241,132 257,108 265,120 275,120"
+            fill="none" stroke="black" stroke-width="1.5"/>
+  <foreignObject x="177" y="78" width="96" height="32">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center; font-size:14px; font-family:serif">\(\dfrac{L_1}{k_1 A}\)</div>
+  </foreignObject>
+
+  <!-- Wire R2→R3 -->
+  <line x1="275" y1="120" x2="300" y2="120" stroke="black" stroke-width="2"/>
+
+  <!-- R_cond,2  [L2/(k2 A)],  A=300, cy=120 -->
+  <polyline points="300,120 310,120 318,108 334,132 350,108 366,132 382,108 390,120 400,120"
+            fill="none" stroke="black" stroke-width="1.5"/>
+  <foreignObject x="302" y="78" width="96" height="32">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center; font-size:14px; font-family:serif">\(\dfrac{L_2}{k_2 A}\)</div>
+  </foreignObject>
+
+  <!-- Wire R3→left manifold -->
+  <line x1="400" y1="120" x2="420" y2="120" stroke="black" stroke-width="2"/>
+
+  <!-- Left manifold -->
+  <line x1="420" y1="70" x2="420" y2="170" stroke="black" stroke-width="2"/>
+  <circle cx="420" cy="120" r="3" fill="black"/>
+
+  <!-- Top branch: fin  (y=70) -->
+  <line x1="420" y1="70" x2="445" y2="70" stroke="black" stroke-width="2"/>
+  <polyline points="445,70 455,70 463,58 479,82 495,58 511,82 527,58 535,70 545,70"
+            fill="none" stroke="black" stroke-width="1.5"/>
+  <line x1="545" y1="70" x2="575" y2="70" stroke="black" stroke-width="2"/>
+  <foreignObject x="455" y="34" width="80" height="28">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center; font-size:14px; font-family:serif">\(R_{fin}\)</div>
+  </foreignObject>
+
+  <!-- Bottom branch: base convection  (y=170) -->
+  <line x1="420" y1="170" x2="445" y2="170" stroke="black" stroke-width="2"/>
+  <polyline points="445,170 455,170 463,158 479,182 495,158 511,182 527,158 535,170 545,170"
+            fill="none" stroke="black" stroke-width="1.5"/>
+  <line x1="545" y1="170" x2="575" y2="170" stroke="black" stroke-width="2"/>
+  <foreignObject x="455" y="188" width="80" height="28">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center; font-size:14px; font-family:serif">\(R_b\)</div>
+  </foreignObject>
+
+  <!-- Right manifold -->
+  <line x1="575" y1="70" x2="575" y2="170" stroke="black" stroke-width="2"/>
+  <circle cx="575" cy="120" r="3" fill="black"/>
+
+  <!-- Lead out -->
+  <line x1="575" y1="120" x2="610" y2="120" stroke="black" stroke-width="2"/>
+
+  <!-- T_H label -->
+  <foreignObject x="0" y="108" width="22" height="24">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:right; font-size:15px; font-family:serif">\(T_H\)</div>
+  </foreignObject>
+
+  <!-- T_C label -->
+  <foreignObject x="612" y="108" width="28" height="24">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:left; font-size:15px; font-family:serif">\(T_C\)</div>
+  </foreignObject>
+</svg>
+```
+
+Try to interpret the situation yourself, and then read...
+
+::: {.callout-caution collapse="true"}
+### What's going on here?
+
+
+:::
+
+Rather than carrying around all of the terms in our calculations, we summarize into an "overall heat transfer coefficient" $U$, defined such that 
+
+$$
+\frac{1}{UA} = \frac{1}{h_1 A} + \frac{L_2}{k_2 A} + ... .
+$$
+
+Notice that $U$ will have the same units as $h$... we are going to use $UA$ in our convection equation instead of $hA$. 
+
+::: {.callout-tip}
+It is common to assume that the areas of all the layers are the same, but that not always true: e.g. if we have circular pipes with finite wall thickness.
+
+It is sometimes reasonable to claim the walls have no thermal resistance: thin sheets of metal are not going to hinder the heat transfer that much. Then we just focus on the convection elements (possibly including fins).
+:::
+
+
+## Flow Configurations
+
+We know that the amount heat transfer depends on temperature difference. 
+
+### The "co-flow" or "parallel-flow" configuration
+
+We could have it where the cold inlet and hot inlet are next to each other -- in such a case, we get a massive (local) $\Delta T$ at the inlet side... good news, right? Maybe, but the $\Delta T$ is going to decrease along the flow, and we will have the limitation that $T_\text{C,out} < T_\text{H,out}$. 
+
+::: {.callout-warning}
+We also might have concerns about "thermal stresses" because of the dramatic temperature gradients in the material.
+:::
+
+### The "counter-flow" configuration
+
+We have another option: the cold inlet could be paired with the hot outlet, and the cold outlet could be paired with the hot inlet. In such a case we do not get the enormous $\Delta T$ at the inlet seen in the co-flow configuration, but we will get better average $\Delta T$ throughout the heat exchanger. This typically leads to better overall heat transfer. We also can have that $T_\text{H,out} < T_\text{C,out}$.
+
+A sketch of these two configurations:
+
+```{=html}
+<svg width="700" height="275" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="hxa-blk" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <polygon points="0 0, 6 3, 0 6" fill="black"/>
+    </marker>
+    <marker id="hxa-red" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <polygon points="0 0, 6 3, 0 6" fill="red"/>
+    </marker>
+    <marker id="hxa-blu" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <polygon points="0 0, 6 3, 0 6" fill="#2266cc"/>
+    </marker>
+  </defs>
+
+  <!-- CO-FLOW panel: plot area x=60..315, y=25..240 -->
+  <!-- T scale: 0-90°C -> y=240..25, so y(T) = 240 - T*2.39 -->
+  <!-- Hot: 80->50C (y: 49->121); Cold: 10->30C (y: 216->168) -->
+
+  <text x="187" y="15" text-anchor="middle" font-size="14" font-family="Georgia,serif">Co-flow</text>
+
+  <line x1="60" y1="240" x2="318" y2="240" stroke="black" stroke-width="1.5" marker-end="url(#hxa-blk)"/>
+  <line x1="60" y1="240" x2="60"  y2="20"  stroke="black" stroke-width="1.5" marker-end="url(#hxa-blk)"/>
+  <text x="323" y="244" font-size="13" font-family="Georgia,serif" font-style="italic">x</text>
+  <text x="48"  y="17"  font-size="13" font-family="Georgia,serif" font-style="italic">T</text>
+
+  <path d="M 60,49  C 130,62  220,103 315,121" fill="none" stroke="red"     stroke-width="2.2"/>
+  <path d="M 60,216 C 130,208 220,186 315,168" fill="none" stroke="#2266cc" stroke-width="2.2"/>
+
+  <!-- flow-direction arrows (~mid-curve x=165) -->
+  <line x1="155" y1="76"  x2="175" y2="82"  stroke="red"     stroke-width="2" marker-end="url(#hxa-red)"/>
+  <line x1="155" y1="200" x2="175" y2="196" stroke="#2266cc" stroke-width="2" marker-end="url(#hxa-blu)"/>
+
+  <text x="140" y="65"  font-size="12" font-family="Georgia,serif" fill="red"    >Hot</text>
+  <text x="133" y="216" font-size="12" font-family="Georgia,serif" fill="#2266cc">Cold</text>
+
+  <text x="57"  y="47"  text-anchor="end" font-size="11" font-family="Georgia,serif" fill="red"    >T<tspan dy="3" font-size="9">H,i</tspan></text>
+  <text x="57"  y="219" text-anchor="end" font-size="11" font-family="Georgia,serif" fill="#2266cc">T<tspan dy="3" font-size="9">C,i</tspan></text>
+  <text x="318" y="124" font-size="11" font-family="Georgia,serif" fill="red"    >T<tspan dy="3" font-size="9">H,o</tspan></text>
+  <text x="318" y="171" font-size="11" font-family="Georgia,serif" fill="#2266cc">T<tspan dy="3" font-size="9">C,o</tspan></text>
+
+
+  <!-- COUNTER-FLOW panel: plot area x=390..645, y=25..240 -->
+  <!-- Hot: 80->25C (y: 49->180); Cold flows right->left: exits left at 65C, enters right at 10C (y: 84->216) -->
+
+  <line x1="352" y1="8" x2="352" y2="260" stroke="#cccccc" stroke-width="1"/>
+
+  <text x="517" y="15" text-anchor="middle" font-size="14" font-family="Georgia,serif">Counter-flow</text>
+
+  <line x1="390" y1="240" x2="648" y2="240" stroke="black" stroke-width="1.5" marker-end="url(#hxa-blk)"/>
+  <line x1="390" y1="240" x2="390" y2="20"  stroke="black" stroke-width="1.5" marker-end="url(#hxa-blk)"/>
+  <text x="653" y="244" font-size="13" font-family="Georgia,serif" font-style="italic">x</text>
+  <text x="378" y="17"  font-size="13" font-family="Georgia,serif" font-style="italic">T</text>
+
+  <path d="M 390,49 C 455,72  550,150 645,180" fill="none" stroke="red"     stroke-width="2.2"/>
+  <path d="M 390,84 C 455,107 550,185 645,216" fill="none" stroke="#2266cc" stroke-width="2.2"/>
+
+  <!-- hot rightward (~x=484); cold leftward (draw right->left so arrowhead points left) -->
+  <line x1="484" y1="99"  x2="504" y2="109" stroke="red"     stroke-width="2" marker-end="url(#hxa-red)"/>
+  <line x1="504" y1="144" x2="484" y2="134" stroke="#2266cc" stroke-width="2" marker-end="url(#hxa-blu)"/>
+
+  <text x="470" y="88"  font-size="12" font-family="Georgia,serif" fill="red"    >Hot</text>
+  <text x="510" y="167" font-size="12" font-family="Georgia,serif" fill="#2266cc">Cold</text>
+
+  <!-- left side: hot inlet, cold OUTLET (T_C,o > T_H,o is the key counter-flow feature) -->
+  <text x="387" y="47" text-anchor="end" font-size="11" font-family="Georgia,serif" fill="red"    >T<tspan dy="3" font-size="9">H,i</tspan></text>
+  <text x="387" y="87" text-anchor="end" font-size="11" font-family="Georgia,serif" fill="#2266cc">T<tspan dy="3" font-size="9">C,o</tspan></text>
+  <!-- right side: hot outlet, cold INLET -->
+  <text x="648" y="183" font-size="11" font-family="Georgia,serif" fill="red"    >T<tspan dy="3" font-size="9">H,o</tspan></text>
+  <text x="648" y="219" font-size="11" font-family="Georgia,serif" fill="#2266cc">T<tspan dy="3" font-size="9">C,i</tspan></text>
+</svg>
+```
+
+
+
+## The Log-Mean Temperature Difference (LMTD)
+
+Reminder: our goal is to make it to something like $\dot{Q}=hA\Delta T$. What is the relevant $\Delta T$ to use?
+
+The answer is the log-mean temperature difference, which we described [when we studied tube banks](4convection.qmd#the-log-mean-temperature-difference). I'll include the derivation below, if you are interested.
+
+
+::: {.callout-caution collapse="true"}
+### Expand for the derivation
+Thermodynamics:
+
+$$|\dot{Q}| = \dot{m}_C c_{p,C}(T_{C,o} - T_{C,i}) = \dot{m}_H c_{p,H}(T_{H,i} - T_{H,o}) = UA\cdot\Delta T$$
+
+Similar to pipe flow analysis (assuming co-flow, counter-flow is similar):
+
+*Diagram: Two-channel heat exchanger, control volume $dA$. $\Delta T = T_H - T_C$ locally.*
+
+Energy balance:
+
+$$-\dot{m}_H c_{p,H}\,dT_H = \dot{m}_C c_{p,C}\,dT_C = U\,dA\,\Delta T = dq$$
+
+With $\Delta T = T_H - T_C$, so $d(\Delta T) = dT_H - dT_C$:
+
+$$d(\Delta T) = \frac{dq}{-\dot{m}_H c_{p,H}} - \frac{dq}{\dot{m}_C c_{p,C}} = -dq\left(\frac{1}{\dot{m}_H c_{p,H}} + \frac{1}{\dot{m}_C c_{p,C}}\right) = U\,dA\,\Delta T\left(\frac{1}{\dot{m}_H c_{p,H}} + \frac{1}{\dot{m}_C c_{p,C}}\right)$$
+
+This is a separable ODE:
+
+$$\int_\text{in}^\text{out}\frac{d(\Delta T)}{\Delta T} = \int_\text{in}^\text{out} -U\left(\frac{1}{\dot{m}_H c_{p,H}} + \frac{1}{\dot{m}_C c_{p,C}}\right)dA$$
+
+$$\ln\!\left(\frac{\Delta T_\text{out}}{\Delta T_\text{in}}\right) = -UA\left(\frac{1}{\dot{m}_H c_{p,H}} + \frac{1}{\dot{m}_C c_{p,C}}\right) = -UA\left(\frac{T_{H,\text{in}}-T_{H,\text{out}}}{\dot{Q}} + \frac{T_{C,\text{out}}-T_{C,\text{in}}}{\dot{Q}}\right)$$
+
+$$\therefore \quad \dot{Q} = UA\cdot\frac{(T_{H,\text{out}}-T_{C,\text{out}}) - (T_{H,\text{in}}-T_{C,\text{in}})}{\ln\!\left(\frac{T_{H,\text{out}}-T_{C,\text{out}}}{T_{H,\text{in}}-T_{C,\text{in}}}\right)} = UA\cdot\Delta T_{lm}$$
+
+where $\Delta T_{lm}$ is the **log-mean temperature difference (LMTD)**.
+
+:::
+
+### LMTD Formulas
+
+**For co-flow:** $\Delta T_o = T_{H,o} - T_{C,o}$, $\Delta T_i = T_{H,i} - T_{C,i}$
+
+$$\boxed{\Delta T_{lm} = \frac{(T_{H,i} - T_{C,i}) - (T_{H,o} - T_{C,o})}{\ln\!\left(\frac{T_{H,i}-T_{C,i}}{T_{H,o}-T_{C,o}}\right)}} \qquad \text{co-flow}$$
+
+**For counter-flow:** $\Delta T_o = T_{H,o} - T_{C,i}$, $\Delta T_i = T_{H,i} - T_{C,o}$
+
+$$\boxed{\Delta T_{lm} = \frac{(T_{H,i} - T_{C,o}) - (T_{H,o} - T_{C,i})}{\ln\!\left(\frac{T_{H,i}-T_{C,o}}{T_{H,o}-T_{C,i}}\right)}} \qquad \text{counter-flow}$$
+
+
+
+## Summary of the heat transfer rate
+
+We now have
+$$
+\dot{Q} = UA\cdot\Delta T_{lm}
+$$
+
+where $UA$ accounts for both sides of the convection, the resistance through the solid wall, and any fins or turbulence enhancers in one term. The log-mean temperature difference $\Delta T_{lm}$ is a representation of the average temperature difference across the heat exchanger. So, ostensibly: if we know the flow rates (related to $U$), heat exchanger size (basically $A$) and temperature information (\Delta T_{lm}), we can predict the amount of heat transfer that will occur within the heat exchanger.
+
+But... aren't we still in the same situation as we were in thermodynamics? We can't just say what the outlet temperatures are! How would we know what heat exchanger to get to achieve the right outlet temperatures or heat transfer rate? We need to come up with a framework to help us make that decision.
+
+## The NTU Method
+
+
+### Problem setup
+
+A typical engineering problem looks like this: We are trying to cool down something that is hot, like an engine oil. We know it's flow rate, and have a cold fluid (air or water) available at a known reservoir temperature. That is, we know $\dot{m}_\text{H}$, $T_\text{H,in}$, and $T_\text{C,in}$.
+
+Our goal is to get the hot fluid down to an acceptable temperature $T_\text{H,out}$.
+
+We need to determine $\dot{m}_\text{C}$ and the heat exchanger design size. (And $T_\text{C,out}$ and $T_\text{H,out}$ will follow once those are determined.)
+
+The NTU framework allows us to design/size HXers to attain the design requirements. $\to$ Determine size of HXer, $\dot{m}_C$.
+
+The NTU "Number of Thermal Units" framework will allow us to determine the possibilities for $\dot{m}_\text{C}$ and $UA$ (effectively the heat exchanger design).
+
+
+### Heat Capacity Rates and "Effectiveness"
+
+From thermodynamics:
+
+$$\dot{Q} = \underbrace{\dot{m}_C c_{p,C}}_{C_C}(T_{C,o}-T_{C,i}) = \underbrace{\dot{m}_H c_{p,H}}_{C_H}(T_{H,i}-T_{H,o})$$
+
+The max hypothetical temperature change is $T_{H,i} - T_{C,i}$.
+
+The corresponding max amount of heat transfer:
+
+$$\dot{Q}_\text{max} = C_\text{min}(T_{H,i} - T_{C,i})$$
+
+where $C_\text{min}$ is the smaller of $C_H$ and $C_C$.
+
+Logical to define an **"effectiveness"** $\varepsilon$:
+
+$$\varepsilon \equiv \frac{\text{actual heat transfer}}{\text{hypothetical max heat transfer}} = \frac{C_H(T_{H,i}-T_{H,o})}{C_\text{min}(T_{H,i}-T_{C,i})}$$
+
+(or equivalently $\frac{C_C(T_{C,o}-T_{C,i})}{C_\text{min}(T_{H,i}-T_{C,i})} = \dot{Q}_\text{actual}$)
+
+With this definition:
+
+$$\dot{Q} = C_H(T_{H,i}-T_{H,o}) = \varepsilon\, C_\text{min}(T_{H,i}-T_{C,i})$$
+
+**Practically, how could we increase $\varepsilon$?**
+- Could increase area $\Rightarrow$ increase HXer size
+- Could change $\dot{m}_C$ (or $c_p$?)
+- Change inlet temperatures
+- Adding fins, increasing turbulence, reduce thermal resistance, narrow channels
+
+
+### NTU and $C_r$
+
+(Buckingham-$\Pi$ strikes again?)
+
+The effectiveness (a dimensionless number) can be considered a function of other dimensionless numbers:
+
+$$\varepsilon\bigl(\text{NTU},\, C_r\bigr)$$
+
+where "NTU" = "Number of Thermal Units" — basically the size of the heat exchanger (function of area and design).
+
+$$C_r \equiv \frac{C_\text{min}}{C_\text{max}}$$
+
+The NTU is defined as:
+
+$$\text{NTU} = \frac{UA}{C_\text{min}}$$
+
+NTU is mostly about HXer size, while $C_r \equiv C_\text{min}/C_\text{max}$ is about flow rates. (However, recall $U \sim h$, which is a function of Re.)
+
+
+### Derivation of $\varepsilon$(\text{NTU}, $C_r$) for Co-flow
+
+Assume $C_\text{min} = C_H$. A step in the $\Delta T_{lm}$ derivation gave:
+
+$$\ln\!\left(\frac{\Delta T_o}{\Delta T_i}\right) = \ln\!\left(\frac{T_{H,o}-T_{C,o}}{T_{H,i}-T_{C,i}}\right) = -UA\!\left(\frac{1}{C_H} + \frac{1}{C_C}\right) = -\frac{UA}{C_\text{min}}\!\left(1 + \frac{C_\text{min}}{C_\text{max}}\right) = -\text{NTU}(1+C_r)$$
+
+After algebra (substituting $C_r$ and $\varepsilon$):
+
+$$\frac{T_{H,o}-T_{C,o}}{T_{H,i}-T_{C,i}} = -\varepsilon + 1 - C_r\varepsilon$$
+
+Therefore:
+
+$$\ln(-\varepsilon + 1 - C_r\varepsilon) = -\text{NTU}(1+C_r)$$
+
+Rearranging:
+
+$$\boxed{\varepsilon = \frac{1 - \exp\bigl[-\text{NTU}(1+C_r)\bigr]}{1+C_r}} \qquad \text{(co-flow)}$$
+
+$\to$ $\varepsilon(\text{NTU}, C_r)$ tabulated for different HXer designs (above for co-flow).
+
+*Graph: $\varepsilon$ vs NTU for co-flow. Family of curves from $C_r \approx 0$ (top, highest $\varepsilon$) to $C_r = 1$ (bottom, lowest $\varepsilon$). All start at origin and saturate. A horizontal dashed line at $\varepsilon_\text{goal}$ shows how to read off the required NTU.*
+
+
+### Algorithm for HXer Design
+
+**0)** Gather known and desired information, consider unknowns/flexible parameters.
+
+**1)** Calculate $\varepsilon \equiv \frac{C_H(T_{H,i}-T_{H,o})}{C_\text{min}(T_{H,i}-T_{C,i})}$ and $C_r = \frac{C_\text{min}}{C_\text{max}}$
+
+**2)** Use a chart to determine possibilities for $\text{NTU}(\varepsilon, C_r, \text{design})$ — e.g. brazed plate, shell & tube, etc.
+
+**3)** Consider capitalism / your CEO's desire for a Ferrari, and pick a HXer.
+
+$\to$ Consideration of: up-front cost ($\sim\text{NTU}$), pumping cost ($\sim\dot{m}_C$), space constraints, pressures (not every shell can hold 2 atm).
+
+
+```{mermaid}
+flowchart LR
+    A[Gather known and desired information, consider unknowns/flexible parameters] --> B[Calculate $\varepsilon \equiv \frac{C_H(T_{H,i}-T_{H,o})}{C_\text{min}(T_{H,i}-T_{C,i})}$ and $C_r = \frac{C_\text{min}}{C_\text{max}}$]
+```

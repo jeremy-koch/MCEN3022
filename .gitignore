@@ -3,7 +3,6 @@ quarto_instructions.md
 /_book/
 /.quarto/
 CLAUDE_CODE_CONTEXT.md
-6heatXer.qmd
 7radiation.qmd
 admonitions.md
 **/*.quarto_ipynb
