@@ -12,13 +12,13 @@ Last week we talked about "internal convection": we changed the temperature of a
 
 Recall
 
-1. From thermodynamics: the energy balance $\dot{m}C c{p,C}(T_{C,\text{out}}-T_{C,\text{in}}) = \dot{m}H c{p,H}(T_{H,\text{in}}-T_{H,\text{out}})$ tells us how temperatures must be related.
-2. From convection: how did we define $h$, and what did "fin efficiency" let us do — that is, how did it let us lump complicated fin geometry into a simpler effective area?
+1. From thermodynamics: the energy balance $\dot{m}_\text{C} c_{p,\text{C}}(T_{C,\text{out}}-T_{C,\text{in}}) = \dot{m}_\text{H} c_{p,\text{H}}(T_{H,\text{in}}-T_{H,\text{out}})$ tells us how temperatures must be related.
+2. From convection: how did we define $h$, and what did "fin efficiency" let us do? How did it let us lump complicated fin geometry into a simpler effective area?
 3. What is the log-mean temperature difference, and why does the "average" temperature difference across a heat exchanger need to be a log-mean rather than a simple arithmetic mean?
 
 Look Ahead
 
-1. You can make a heat exchanger more effective by adding surface area — just make it longer. But as you keep doubling the length, does effectiveness keep doubling? Or does something prevent it from reaching 100%? What limits it physically?
+1. You can make a heat exchanger more effective by adding surface area -- just make it longer. But as you keep doubling the length, does effectiveness keep doubling? Or does something prevent it from reaching 100%? What limits it physically?
 2. Can the hot fluid in a heat exchanger leave with a temperature below the cold fluid's outlet temperature? (Can $T_{H,\text{out}}$ be smaller than $T_{C,\text{out}}$?)
 3. Suppose you need to cool engine oil from 120°C to 60°C using water at 15°C. If you're tight on space (limited room in the engine), how would you compensate?
 
@@ -43,9 +43,9 @@ But we can't just say the hot fluid is leaving at 40°C, we must design the heat
 
 Let's think intuitively about the ingredients in a heat exchanger design.
 
-1. The "thermal mass" of the fluids is important: $\dot{m}c_p$. A fluid with a large specific heat will not change temperature as readily as one with a small specific heat. And if we have more flow, it is going to take more energy to change its temperature. 
+1. The "thermal mass" (or "thermal capacity") of the fluid is important: $\dot{m}c_p$. A fluid with a large specific heat will not change temperature as readily as one with a small specific heat. And if we have more flow, it is going to take more energy to change its temperature. 
 2. The surface area is important. As is always the case in heat transfer, greater surface area means greater heat transfer.
-3. Thick walls will increase thermal resistance. We don't want the fluids separated by 2 cm of plastic, we want them separated by 0.5 mm of copper.
+3. Thick walls separating the hot and cold flows will increase thermal resistance. We don't want the fluids separated by 2 cm of plastic, we want them separated by 0.5 mm of copper.
 4. Fins and turbulence will help. More surface area, more mixing, more heat transfer.
 5. Achieving the biggest $\Delta T$, in general, will lead to more heat transfer. 
 
@@ -56,11 +56,11 @@ $$
 \dot{Q}=hA \cdot \Delta T
 $$
 
-but of course there are complications: How do we describe $h$ when there are two fluids separated by a solid wall, possibly with fins on it? And what is the right $\Delta T$ to use? It's going to be changing as we move through the heat exchanger... the cold fluid warms up and as the hot fluid cools down.
+but of course there are complications: How do we describe $h$ when there are two fluids separated by a solid wall, possibly with fins on it? And what is the right $\Delta T$ to use? The temperature difference is going to be changing as we move through the heat exchanger... the cold fluid warms up and as the hot fluid cools down.
 
 ### The Overall Heat Transfer Coefficient $U$
 
-At any location in the heat exchanger, we could write a little electrical circuit that describes the heat transfer from the hot fluid to the cold fluid. (I.e., we are considering a particular point in the heat exchanger where the fluid at $T_\text{H}$ is moving up and the fluid on the other side at $T_\text{C}$ is moving down.)
+At any location in the heat exchanger, we could write a little electrical circuit that describes the heat transfer from the hot fluid to the cold fluid. (I.e., we are considering a particular point in the heat exchanger where the fluid at $T_\text{H}$ is moving up and the fluid on the other side at $T_\text{C}$ is moving down, separated by a composite solid surface.)
 
 
 ```{=html}
@@ -153,7 +153,7 @@ Try to interpret the situation yourself, and then read...
 ::: {.callout-caution collapse="true"}
 ### What's going on here?
 
-The resistor diagram represents a cross-section through two adjacent flow channels — one hot, one cold — separated by a solid wall with two layers, with fins on the cold side:
+The resistor diagram represents a cross-section through two adjacent flow channels -- one hot, one cold -- separated by a solid wall with two layers, with fins on the cold side:
 
 ```{=html}
 <svg width="530" height="230" xmlns="http://www.w3.org/2000/svg" overflow="visible">
@@ -222,7 +222,7 @@ The resistor diagram represents a cross-section through two adjacent flow channe
 </svg>
 ```
 
-Heat flows left to right: the hot fluid convects to the left wall surface with coefficient $h_\mathrm{H}$, then conducts through the two wall layers ($L_1/k_1 A$ and $L_2/k_2 A$ in series). On the cold side, the same coefficient $h_\mathrm{C}$ drives heat transfer along two **parallel** paths — over the fin surfaces and over the exposed base area between fins. The fins expand the total cold-side area dramatically, which is the whole point of having them.
+Heat flows left to right: the hot fluid convects to the left wall surface with coefficient $h_\mathrm{H}$, then conducts through the two wall layers ($L_1/(k_1 A)$ and $L_2/(k_2 A)$ in series). On the cold side, the same coefficient $h_\mathrm{C}$ drives heat transfer along two parallel paths -- over the fin surfaces and over the exposed base area between fins. The fins expand the total cold-side area dramatically, which is the whole point of having them.
 
 :::
 
@@ -230,13 +230,13 @@ Heat flows left to right: the hot fluid convects to the left wall surface with c
 Rather than carrying around all of the terms in our calculations, we summarize into an "overall heat transfer coefficient" $U$, defined such that 
 
 $$
-\frac{1}{UA} = \frac{1}{h_\text{H} A} + \frac{L_1}{k_1 A} + ... .
+\frac{1}{UA} = R_\text{total} = \frac{1}{h_\text{H} A} + \frac{L_1}{k_1 A} + ... .
 $$
 
 Notice that $U$ will have the same units as $h$... we are going to use $UA$ in our convection equation instead of $hA$.
 
 ::: {.callout-tip}
-It is common to assume that the areas of all the layers are the same, but that is not always true: e.g. if we have circular pipes with finite wall thickness.
+It is common to assume that the areas of all the layers are the same, but that is not always true: e.g. if we have circular pipes with a wall thickness.
 
 It is sometimes reasonable to claim the walls have no thermal resistance: thin sheets of metal are not going to hinder the heat transfer that much. Then we just focus on the convection elements (possibly including fins).
 :::
@@ -365,16 +365,22 @@ $$
 dq=U\,dA\,\Delta T.
 $$
 
-We can also think thermodynamically about the change in $T_\text{H}$ over that $dA$, calling it $dT_\text{H}$, and similar $dT_\text{C}$:
+We can also think thermodynamically about the change in $T_\text{H}$ for the hot side over that $dA$, calling it $dT_\text{H}$. With a similar definition for $dT_\text{C}$:
 
 $$
 -\dot{m}_\text{H} c_{p,\text{H}}\,dT_\text{H} = \dot{m}_\text{C} c_{p,\text{C}}\,dT_\text{C} = dq.
 $$
 
-If we write, locally, $\Delta T \equiv T_\text{H} - T_\text{C}$, we can say $d(\Delta T) \equiv dT_\text{H} - dT_\text{C}$. Then, substituting:
+If we write, locally, $\Delta T \equiv T_\text{H} - T_\text{C}$, we can say $d(\Delta T) \equiv dT_\text{H} - dT_\text{C}$. Then, substituting a rearrangement of the previous result into this equation
 
 $$
-d(\Delta T) = \frac{dq}{-\dot{m}_\text{H} c_{p,\text{H}}} - \frac{dq}{\dot{m}_\text{C} c_{p,\text{C}}} = -dq\left(\frac{1}{\dot{m}_\text{H} c_{p,\text{H}}} + \frac{1}{\dot{m}_\text{C} c_{p,\text{C}}}\right) = U\,dA\,\Delta T\left(\frac{1}{\dot{m}_\text{H} c_{p,\text{H}}} + \frac{1}{\dot{m}_\text{C} c_{p,\text{C}}}\right).
+d(\Delta T) = \frac{dq}{-\dot{m}_\text{H} c_{p,\text{H}}} - \frac{dq}{\dot{m}_\text{C} c_{p,\text{C}}}
+$$
+
+and doing a little math, including bringing-in $dq=U\,dA\,\Delta T$
+
+$$
+d(\Delta T) = -dq\left(\frac{1}{\dot{m}_\text{H} c_{p,\text{H}}} + \frac{1}{\dot{m}_\text{C} c_{p,\text{C}}}\right) = U\,dA\,\Delta T\left(\frac{1}{\dot{m}_\text{H} c_{p,\text{H}}} + \frac{1}{\dot{m}_\text{C} c_{p,\text{C}}}\right).
 $$
 
 This is a separable ODE:
@@ -410,7 +416,7 @@ $$
 \dot{Q} = UA\cdot\Delta T_{lm}
 $$
 
-where $UA$ accounts for both sides of the convection, the resistance through the solid wall, and any fins or turbulence enhancers in one term. The log-mean temperature difference $\Delta T_{lm}$ is a representation of the average temperature difference across the heat exchanger. So, ostensibly: if we know the flow rates (related to $U$), heat exchanger size (basically $A$) and temperature information (\Delta T_{lm}), we can predict the amount of heat transfer that will occur within the heat exchanger.
+where $UA$ accounts for both sides of the convection, the resistance through the solid wall, and any fins in one term. The log-mean temperature difference $\Delta T_{lm}$ is a representation of the average temperature difference across the heat exchanger. So, ostensibly: if we know the flow rates (related to $U$), heat exchanger size (basically $A$) and temperature information ($\Delta T_{lm}$), we can predict the amount of heat transfer that will occur within the heat exchanger.
 
 But... aren't we still in the same situation as we were in thermodynamics? We can't just say what the outlet temperatures are! How would we know what heat exchanger to get to achieve the right outlet temperatures or heat transfer rate? We need to come up with a framework to help us make that decision.
 
@@ -426,9 +432,7 @@ Start with [this linked video](https://canvas.colorado.edu/courses/136150/pages/
 
 ### Problem setup
 
-A typical engineering problem looks like this: We are trying to cool down something that is hot, like an engine oil. We know its flow rate, and have a cold fluid (air or water) available at a known reservoir temperature. That is, we know $\dot{m}_\text{H}$, $T_\text{H,in}$, and $T_\text{C,in}$.
-
-Our goal is to get the hot fluid down to an acceptable temperature $T_\text{H,out}$. We need to determine $\dot{m}_\text{C}$ and the heat exchanger design and size.
+A typical engineering problem looks like this: We are trying to cool down something that is hot, like an engine oil. We know its flow rate, we know what the "too hot" temperature is, and we have a goal temperature in mind. And, presumably, we have a cold fluid (air or water) available at a known reservoir temperature. That is, we know $\dot{m}_\text{H}$, $T_\text{H,in}$, and $T_\text{C,in}$, and our goal is to get the hot fluid down to an acceptable temperature $T_\text{H,out}$. We need to determine $\dot{m}_\text{C}$ and the heat exchanger design and size.
 
 
 The NTU "Number of Thermal Units" framework will allow us to determine the possibilities for $\dot{m}_\text{C}$ and $UA$ (which is how we mathematically encode the heat exchanger design).
@@ -438,11 +442,13 @@ The NTU "Number of Thermal Units" framework will allow us to determine the possi
 
 From thermodynamics, the amount of heat transfer is
 
-$$\dot{Q} = \underbrace{\dot{m}_\text{C} c_{p,\text{C}}}_{C_\text{C}}(T_\text{C,out}-T_\text{C,in}) = \underbrace{\dot{m}_\text{H} c_{p,\text{H}}}_{C_\text{H}}(T_\text{H,in}-T_\text{H,out})$$
+$$
+\dot{Q} = \dot{m}_\text{C} c_{p,\text{C}}(T_\text{C,out}-T_\text{C,in}) = \dot{m}_\text{H} c_{p,\text{H}}(T_\text{H,in}-T_\text{H,out})
+$$
 
-where we define $C_\text{C}\equiv \dot{m}_\text{C} c_{p,\text{C}}$ and $C_\text{H} \equiv \dot{m}_\text{H} c_{p,\text{H}}$ as the capacities. (This will make the math cleaner below.)
+where we define $C_\text{C}\equiv \dot{m}_\text{C} c_{p,\text{C}}$ and $C_\text{H} \equiv \dot{m}_\text{H} c_{p,\text{H}}$ as the thermal capacities. (This will make the math cleaner below.)
 
-If we were completely unaware of the heat exchanger design (didn't know if it was co- or counter-flow, didn't know how much cold flow there was, didn't know how big it was), the maximum possible temperature change for the hot flow is $T_\text{H,in} - T_\text{C,in}$. Then the corresponding maximum possible amount of heat transfer is 
+If we were completely unaware of the heat exchanger design (didn't know if it was co- or counter-flow, didn't know how much cold flow there was, didn't know how big it was), the maximum possible temperature change for one of the flows is $T_\text{H,in} - T_\text{C,in}$. Then the corresponding maximum possible amount of heat transfer is 
 
 $$
 \dot{Q}_\text{max} = C_\text{min}(T_\text{H,in} - T_\text{C,in})
@@ -496,7 +502,7 @@ $$
 \dot{Q} = C_\text{C}(T_\text{C,out}-T_\text{C,in}) = \varepsilon\, C_\text{min}(T_\text{H,in}-T_\text{C,in}).
 $$
 
-This $\varepsilon$ must contain the effects of heat exchanger size and design (e.g. fins, channel width, etc.).
+This $\varepsilon$ will contain the effects of heat exchanger size and design (e.g. fins, channel width, etc.).
 
 
 
@@ -508,7 +514,7 @@ $$
 \text{NTU} \equiv \frac{UA}{C_\text{min}}
 $$
 
-a function of size and heat exchanger design, and the reduced heat capacity
+and the reduced heat capacity
 
 $$
 C_\text{r} \equiv \frac{C_\text{min}}{C_\text{max}}.
@@ -523,6 +529,8 @@ $$
 
 ### Derivation of $\varepsilon(\text{NTU}, C_\text{r})$ for co-flow
 
+The function $\varepsilon\bigl(\text{NTU},\, C_\text{r}\bigr)$ depends on the flow configuration... let's derive its form for a co-flow heat exchanger.
+
 Assume $C_\text{min} = C_\text{H}$. A step in the $\Delta T_{lm}$ derivation gave:
 
 $$\ln\!\left(\frac{\Delta T_\text{out}}{\Delta T_\text{in}}\right) = \ln\!\left(\frac{T_\text{H,out}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}}\right) = -UA\!\left(\frac{1}{C_\text{H}} + \frac{1}{C_\text{C}}\right) = -\frac{UA}{C_\text{min}}\!\left(1 + \frac{C_\text{min}}{C_\text{max}}\right) = -\text{NTU}(1+C_\text{r})$$
@@ -531,9 +539,17 @@ After algebra (substituting $C_\text{r}$ and $\varepsilon$):
 
 $$\frac{T_\text{H,out}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}} = -\varepsilon + 1 - C_\text{r}\varepsilon$$
 
+recognize that 
+
+$$
+...
+$$
+
 Therefore:
 
-$$\ln(-\varepsilon + 1 - C_\text{r}\varepsilon) = -\text{NTU}(1+C_\text{r})$$
+$$
+\ln(-\varepsilon + 1 - C_\text{r}\varepsilon) = -\text{NTU}(1+C_\text{r})
+$$
 
 Rearranging:
 
