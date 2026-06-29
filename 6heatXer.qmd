@@ -12,21 +12,21 @@ Last week we talked about "internal convection": we changed the temperature of a
 
 Recall
 
-1. From thermodynamics: the energy balance $\dot{m}_\text{C} c_{p,\text{C}}(T_{C,\text{out}}-T_{C,\text{in}}) = \dot{m}_\text{H} c_{p,\text{H}}(T_{H,\text{in}}-T_{H,\text{out}})$ tells us how temperatures must be related.
+1. From thermodynamics: the energy balance $\dot{m}_\text{C} c_{p,\text{C}}(T_\text{C,out}-T_\text{C,in}) = \dot{m}_\text{H} c_{p,\text{H}}(T_\text{H,in}-T_\text{H,out})$ tells us how temperatures must be related.
 2. From convection: how did we define $h$, and what did "fin efficiency" let us do? How did it let us lump complicated fin geometry into a simpler effective area?
 3. What is the log-mean temperature difference, and why does the "average" temperature difference across a heat exchanger need to be a log-mean rather than a simple arithmetic mean?
 
 Look Ahead
 
 1. You can make a heat exchanger more effective by adding surface area -- just make it longer. But as you keep doubling the length, does effectiveness keep doubling? Or does something prevent it from reaching 100%? What limits it physically?
-2. Can the hot fluid in a heat exchanger leave with a temperature below the cold fluid's outlet temperature? (Can $T_{H,\text{out}}$ be smaller than $T_{C,\text{out}}$?)
+2. Can the hot fluid in a heat exchanger leave with a temperature below the cold fluid's outlet temperature? (Can $T_\text{H,out}$ be smaller than $T_\text{C,out}$?)
 3. Suppose you need to cool engine oil from 120°C to 60°C using water at 15°C. If you're tight on space (limited room in the engine), how would you compensate?
 
 
 ::: {.callout-tip}
 ## Video
 
-Start with [this linked video](https://canvas.colorado.edu/courses/136150/pages/heat-exchangers) which introduces heat exchangers and describes the origins of $U$, the overall heat transfer coefficient.
+Start with [this linked video](https://canvas.colorado.edu/courses/136150/pages/heat-exchangers), which introduces heat exchangers and describes the origins of $U$, the overall heat transfer coefficient.
 :::
 
 ## Thermodynamics isn't enough
@@ -247,24 +247,24 @@ It is sometimes reasonable to claim the walls have no thermal resistance: thin s
 ::: {.callout-tip}
 ### Video
 
-Start with [this linked video](https://canvas.colorado.edu/courses/136150/pages/hxer-configurations) describes the co-flow and counter-flow configurations.
+Start with [this linked video](https://canvas.colorado.edu/courses/136150/pages/hxer-configurations), which describes the co-flow and counter-flow configurations.
 :::
 
-We know that the amount of heat transfer depends on temperature difference. 
+We know that the amount of heat transfer depends on the temperature difference. 
 
 **The "co-flow" or "parallel-flow" configuration**
 
 We could have it where the cold inlet and hot inlet are next to each other -- in such a case, we get a massive (local) $\Delta T$ at the inlet side... good news, right? Maybe, but the $\Delta T$ is going to decrease along the flow, and we will have the limitation that $T_\text{C,out} < T_\text{H,out}$. 
 
 ::: {.callout-warning}
-We also might have concerns about thermal stresses in the co-flow configuration. Here's the basic idea: solids expand when they heat up. If one side of a wall is dramatically hotter than the other -- as it is right at the inlet in co-flow -- the hot face wants to expand while the cold face doesn't. Since they're bonded to each other bending stresses develop.
+We also might have concerns about thermal stresses in the co-flow configuration. Here's the basic idea: solids expand when they heat up. If one side of a wall is dramatically hotter than the other -- as it is right at the inlet in co-flow -- the hot face wants to expand while the cold face doesn't. Since they're bonded to each other, bending stresses develop.
 
 In counter-flow, the temperature difference across the wall is much more uniform along the exchanger length, so there's no single hot-spot and therefore less thermal stress. Thermal stresses matter most for brittle materials (ceramics, cast iron), in thick-walled exchangers, and in applications with repeated thermal cycling (fatigue from stress fluctuations can cause failure).
 :::
 
 **The "counter-flow" configuration**
 
-We have another option: the cold inlet could be paired with the hot outlet, and the cold outlet could be paired with the hot inlet. In such a case we do not get the enormous $\Delta T$ at the inlet seen in the co-flow configuration, but we will get better average $\Delta T$ throughout the heat exchanger. This typically leads to better overall heat transfer. We also can have that $T_\text{H,out} < T_\text{C,out}$.
+We have another option: the cold inlet could be paired with the hot outlet, and the cold outlet could be paired with the hot inlet. In such a case we do not get the enormous $\Delta T$ at the inlet seen in the co-flow configuration, but we will get better average $\Delta T$ throughout the heat exchanger. This typically leads to better overall heat transfer. We can also have $T_\text{H,out} < T_\text{C,out}$.
 
 A sketch of these two configurations:
 
@@ -346,7 +346,7 @@ A sketch of these two configurations:
 
 Reminder: our goal is to make it to something like $\dot{Q}=hA\Delta T$. What is the relevant $\Delta T$ to use?
 
-The answer is the log-mean temperature difference, which we described [when we studied tube banks](4convection.qmd#the-log-mean-temperature-difference). I'll include the derivation below, if you are interested.
+The answer is the log-mean temperature difference, which we described [when we studied tube banks](4convection.qmd#the-log-mean-temperature-difference). The derivation is below, if you are interested.
 
 
 ::: {.callout-caution collapse="true"}
@@ -377,7 +377,7 @@ $$
 d(\Delta T) = \frac{dq}{-\dot{m}_\text{H} c_{p,\text{H}}} - \frac{dq}{\dot{m}_\text{C} c_{p,\text{C}}}
 $$
 
-and bringing-in $dq=U\,dA\,\Delta T$
+and bringing in $dq=U\,dA\,\Delta T$
 
 $$
 d(\Delta T) = -U\,dA\,\Delta T\left(\frac{1}{\dot{m}_\text{H} c_{p,\text{H}}} + \frac{1}{\dot{m}_\text{C} c_{p,\text{C}}}\right).
@@ -407,10 +407,10 @@ $$
 \dot{Q} = UA\cdot\frac{(T_\text{H,out}-T_\text{C,out}) - (T_\text{H,in}-T_\text{C,in})}{\ln\!\left(\frac{T_\text{H,out}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}}\right)}.
 $$
 
-That complicated temperature term is defined as $\Delta T_{lm}$, the **log-mean temperature difference (LMTD)**:
+That complicated temperature term is defined as $\Delta T_{\ell\text{m}}$, the **log-mean temperature difference (LMTD)**:
 
 $$
-\dot{Q}= UA\cdot\Delta T_{lm}.
+\dot{Q}= UA\cdot\Delta T_{\ell\text{m}}.
 $$
 
 :::
@@ -419,11 +419,11 @@ $$
 
 **For co-flow:** $\Delta T_\text{out} = T_\text{H,out} - T_\text{C,out}$, $\Delta T_\text{in} = T_\text{H,in} - T_\text{C,in}$
 
-$$\boxed{\Delta T_{lm} = \frac{(T_\text{H,in} - T_\text{C,in}) - (T_\text{H,out} - T_\text{C,out})}{\ln\!\left(\frac{T_\text{H,in}-T_\text{C,in}}{T_\text{H,out}-T_\text{C,out}}\right)}} \qquad \text{co-flow}$$
+$$\boxed{\Delta T_{\ell\text{m}} = \frac{(T_\text{H,in} - T_\text{C,in}) - (T_\text{H,out} - T_\text{C,out})}{\ln\!\left(\frac{T_\text{H,in}-T_\text{C,in}}{T_\text{H,out}-T_\text{C,out}}\right)}} \qquad \text{co-flow}$$
 
 **For counter-flow:** $\Delta T_\text{out} = T_\text{H,out} - T_\text{C,in}$, $\Delta T_\text{in} = T_\text{H,in} - T_\text{C,out}$
 
-$$\boxed{\Delta T_{lm} = \frac{(T_\text{H,in} - T_\text{C,out}) - (T_\text{H,out} - T_\text{C,in})}{\ln\!\left(\frac{T_\text{H,in}-T_\text{C,out}}{T_\text{H,out}-T_\text{C,in}}\right)}} \qquad \text{counter-flow}$$
+$$\boxed{\Delta T_{\ell\text{m}} = \frac{(T_\text{H,in} - T_\text{C,out}) - (T_\text{H,out} - T_\text{C,in})}{\ln\!\left(\frac{T_\text{H,in}-T_\text{C,out}}{T_\text{H,out}-T_\text{C,in}}\right)}} \qquad \text{counter-flow}$$
 
 
 
@@ -431,10 +431,10 @@ $$\boxed{\Delta T_{lm} = \frac{(T_\text{H,in} - T_\text{C,out}) - (T_\text{H,out
 
 We now have
 $$
-\dot{Q} = UA\cdot\Delta T_{lm}
+\dot{Q} = UA\cdot\Delta T_{\ell\text{m}}
 $$
 
-where $UA$ accounts for both sides of the convection, the resistance through the solid wall, and any fins in one term. The log-mean temperature difference $\Delta T_{lm}$ is a representation of the average temperature difference across the heat exchanger. So, ostensibly: if we know the flow rates (related to $U$), heat exchanger size (basically $A$) and temperature information ($\Delta T_{lm}$), we can predict the amount of heat transfer that will occur within the heat exchanger.
+where $UA$ accounts for both sides of the convection, the resistance through the solid wall, and any fins in one term. The log-mean temperature difference $\Delta T_{\ell\text{m}}$ is a representation of the average temperature difference across the heat exchanger. So, ostensibly: if we know the flow rates (related to $U$), heat exchanger size (basically $A$), and temperature information ($\Delta T_{\ell\text{m}}$), we can predict the amount of heat transfer that will occur within the heat exchanger.
 
 But... aren't we still in the same situation as we were in thermodynamics? We can't just say what the outlet temperatures are! How would we know what heat exchanger to get to achieve the right outlet temperatures or heat transfer rate? We need to come up with a framework to help us make that decision.
 
@@ -443,7 +443,7 @@ But... aren't we still in the same situation as we were in thermodynamics? We ca
 ::: {.callout-tip}
 ## Video
 
-Start with [this linked video](https://canvas.colorado.edu/courses/136150/pages/ntu-method) which describes the NTU Method.
+Start with [this linked video](https://canvas.colorado.edu/courses/136150/pages/ntu-method), which describes the NTU Method.
 :::
 
 
@@ -549,7 +549,7 @@ $$
 
 The function $\varepsilon\bigl(\text{NTU},\, C_\text{r}\bigr)$ depends on the flow configuration... let's derive its form for a co-flow heat exchanger.
 
-Assume $C_\text{min} = C_\text{H}$. A step in the $\Delta T_{lm}$ derivation (@eq-ref-later) gave:
+Assume $C_\text{min} = C_\text{H}$. A step in the $\Delta T_{\ell\text{m}}$ derivation (@eq-ref-later) gave:
 
 $$
 \ln\!\left(\frac{T_\text{H,out}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}}\right) = -UA\!\left(\frac{1}{C_\text{H}} + \frac{1}{C_\text{C}}\right).
@@ -558,49 +558,40 @@ $$
 We can re-interpret this to be in terms of $C_\text{min}$ and $C_\text{max}$
 
 $$
-\ln\!\left(\frac{T_\text{H,out}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}}\right) = -\frac{UA}{C_\text{min}}\!\left(1 + \frac{C_\text{min}}{C_\text{max}}\right) = 
+\ln\!\left(\frac{T_\text{H,out}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}}\right) = -\frac{UA}{C_\text{min}}\!\left(1 + \frac{C_\text{min}}{C_\text{max}}\right) 
 $$
 
 and, further, to be in terms of $\text{NTU}$ and $C_\text{r}$
 
 $$
 \ln\!\left(\frac{T_\text{H,out}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}}\right) = -\text{NTU}(1+C_\text{r}).
-$$
+$$ {#eq-before-aside}
 
-Let's work on temperature difference fraction a little bit, starting by adding zero to the numerator
-
-$$
-\frac{T_\text{H,out}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}} = \frac{T_\text{H,out}-T_\text{H,in} + T_\text{H,in}-T_\text{C,in}+T_\text{C,in}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}}
-$$
-
-this can then be rewritten as
+Let's work on the temperature difference fraction a little bit, starting by adding zero to the numerator
 
 $$
-=\frac{T_\text{H,out}-T_\text{H,in}}{T_\text{H,in}-T_\text{C,in}}+\frac{T_\text{H,in}-T_\text{C,in}}{T_\text{H,in}-T_\text{C,in}} + \frac{T_\text{C,in}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}} = 
+\frac{T_\text{H,out}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}} = \frac{T_\text{H,out}-T_\text{H,in} + T_\text{H,in}-T_\text{C,in}+T_\text{C,in}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}}.
 $$
 
-into 
-
-
-
-
-After algebra (substituting $C_\text{r}$ and $\varepsilon$):
-
-$$\frac{T_\text{H,out}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}} = -\varepsilon + 1 - C_\text{r}\varepsilon$$
-
-recognize that 
+This can then be rewritten as
 
 $$
-...
+=-\frac{T_\text{H,in}-T_\text{H,out}}{T_\text{H,in}-T_\text{C,in}}+\frac{T_\text{H,in}-T_\text{C,in}}{T_\text{H,in}-T_\text{C,in}} - \frac{T_\text{C,out}-T_\text{C,in}}{T_\text{H,in}-T_\text{C,in}}.
 $$
 
-Therefore:
+If $C_\text{H}=C_\text{min}$, the first term is just $-\varepsilon$ and the last term is $-C_\text{r} \varepsilon$; if $C_\text{C}=C_\text{min}$, the first term is just $-C_\text{r} \varepsilon$ and the last term is $-\varepsilon$. Either way,
+
+$$
+\frac{T_\text{H,out}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}} = -\varepsilon + 1 - C_\text{r}\varepsilon.
+$$
+
+We bring this result back into @eq-before-aside
 
 $$
 \ln(-\varepsilon + 1 - C_\text{r}\varepsilon) = -\text{NTU}(1+C_\text{r})
 $$
 
-Rearranging:
+and rearrange to 
 
 $$
 \boxed{\varepsilon = \frac{1 - \exp\bigl[-\text{NTU}(1+C_\text{r})\bigr]}{1+C_\text{r}}} \qquad \text{(co-flow)}.
@@ -706,8 +697,11 @@ This is our function $\varepsilon(\text{NTU}, C_\text{r})$ for this particular c
 
 ### Algorithm for HXer Design
 
-1. Gather information. Likely you will have known inlet temperatures and a known flow rate and goal temperature for one of the sides. ("We need to heat this up to..." or "we need to cool this down down to...".)
-2. Calculate $\varepsilon \equiv \frac{C_\text{H}(T_\text{H,in}-T_\text{H,out})}{C_\text{min}(T_\text{H,in}-T_\text{C,in})}=\frac{C_\text{C}(T_\text{C,in}-T_\text{C,out})}{C_\text{min}(T_\text{H,in}-T_\text{C,in})}$.
-3. Find charts/equations to determine the possibilities for $\text{NTU}(\varepsilon, C_\text{r})$.
+1. Gather information. Likely you will have known inlet temperatures for both the hot and cold sides, and a known flow rate and goal temperature for one of the sides. ("We need to heat this up to..." or "we need to cool this down to...".)
+2. Calculate $\varepsilon \equiv \frac{C_\text{H}(T_\text{H,in}-T_\text{H,out})}{C_\text{min}(T_\text{H,in}-T_\text{C,in})}=\frac{C_\text{C}(T_\text{C,out}-T_\text{C,in})}{C_\text{min}(T_\text{H,in}-T_\text{C,in})}$.
+3. Find charts/equations to determine the possibilities for $\text{NTU}(\varepsilon, C_\text{r})$ (these will be given by me).
 4. Then it is economics: consider the heat exchanger cost (larger NTU means a larger heat exchanger), pumping costs (larger $\dot{m}_\text{C}$ means more cost to run), space constraints, fluid pressures, etc.
 
+## Interactive Demo -- LMTD
+
+Don't forget about the interactive demo to explore the log-mean temperature difference. [Find it at this link](demos/LMTD_demo.qmd).
