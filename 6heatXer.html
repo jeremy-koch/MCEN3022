@@ -760,11 +760,14 @@ d(\Delta T) = \frac{dq}{-\dot{m}_\text{H} c_{p,\text{H}}} - \frac{dq}{\dot{m}_\t
 d(\Delta T) = -U\,dA\,\Delta T\left(\frac{1}{\dot{m}_\text{H} c_{p,\text{H}}} + \frac{1}{\dot{m}_\text{C} c_{p,\text{C}}}\right).
 \]</span></p>
 <p>This is a separable ODE that we integrate from the “in” to the “out”:</p>
-<p><span class="math display">\[\int_\text{in}^\text{out}\frac{d(\Delta T)}{\Delta T} = \int_\text{in}^\text{out} -U\left(\frac{1}{\dot{m}_\text{H} c_{p,\text{H}}} + \frac{1}{\dot{m}_\text{C} c_{p,\text{C}}}\right)dA\]</span></p>
 <p><span class="math display">\[
-\ln\!\left(\frac{\Delta T_\text{out}}{\Delta T_\text{in}}\right) = -UA\left(\frac{1}{\dot{m}_\text{H} c_{p,\text{H}}} + \frac{1}{\dot{m}_\text{C} c_{p,\text{C}}}\right).
+\int_\text{in}^\text{out}\frac{d(\Delta T)}{\Delta T} = \int_\text{in}^\text{out} -U\left(\frac{1}{\dot{m}_\text{H} c_{p,\text{H}}} + \frac{1}{\dot{m}_\text{C} c_{p,\text{C}}}\right)dA.
 \]</span></p>
-<p>Substituting:</p>
+<p>The integral of <span class="math inline">\(dA\)</span> from “in” to “out” is just the actual area <span class="math inline">\(A\)</span></p>
+<p><span id="eq-ref-later"><span class="math display">\[
+\ln\!\left(\frac{\Delta T_\text{out}}{\Delta T_\text{in}}\right) = -UA\left(\frac{1}{\dot{m}_\text{H} c_{p,\text{H}}} + \frac{1}{\dot{m}_\text{C} c_{p,\text{C}}}\right).
+\tag{6.1}\]</span></span></p>
+<p>(We will reference this equation later.) Substituting the two versions of <span class="math inline">\(\dot{m} c_p (T_\text{in}-T_\text{out})\)</span></p>
 <p><span class="math display">\[
 \ln\!\left(\frac{\Delta T_\text{out}}{\Delta T_\text{in}}\right) = -UA\left(\frac{T_\text{H,in}-T_\text{H,out}}{\dot{Q}} + \frac{T_\text{C,out}-T_\text{C,in}}{\dot{Q}}\right)
 \]</span></p>
@@ -887,8 +890,27 @@ C_\text{r} \equiv \frac{C_\text{min}}{C_\text{max}}.
 <section id="derivation-of-varepsilontextntu-c_textr-for-co-flow" class="level3" data-number="6.4.4">
 <h3 data-number="6.4.4" class="anchored" data-anchor-id="derivation-of-varepsilontextntu-c_textr-for-co-flow"><span class="header-section-number">6.4.4</span> Derivation of <span class="math inline">\(\varepsilon(\text{NTU}, C_\text{r})\)</span> for co-flow</h3>
 <p>The function <span class="math inline">\(\varepsilon\bigl(\text{NTU},\, C_\text{r}\bigr)\)</span> depends on the flow configuration… let’s derive its form for a co-flow heat exchanger.</p>
-<p>Assume <span class="math inline">\(C_\text{min} = C_\text{H}\)</span>. A step in the <span class="math inline">\(\Delta T_{lm}\)</span> derivation gave:</p>
-<p><span class="math display">\[\ln\!\left(\frac{\Delta T_\text{out}}{\Delta T_\text{in}}\right) = \ln\!\left(\frac{T_\text{H,out}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}}\right) = -UA\!\left(\frac{1}{C_\text{H}} + \frac{1}{C_\text{C}}\right) = -\frac{UA}{C_\text{min}}\!\left(1 + \frac{C_\text{min}}{C_\text{max}}\right) = -\text{NTU}(1+C_\text{r})\]</span></p>
+<p>Assume <span class="math inline">\(C_\text{min} = C_\text{H}\)</span>. A step in the <span class="math inline">\(\Delta T_{lm}\)</span> derivation (<a href="#eq-ref-later" class="quarto-xref">Equation&nbsp;<span>6.1</span></a>) gave:</p>
+<p><span class="math display">\[
+\ln\!\left(\frac{T_\text{H,out}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}}\right) = -UA\!\left(\frac{1}{C_\text{H}} + \frac{1}{C_\text{C}}\right).
+\]</span></p>
+<p>We can re-interpret this to be in terms of <span class="math inline">\(C_\text{min}\)</span> and <span class="math inline">\(C_\text{max}\)</span></p>
+<p><span class="math display">\[
+\ln\!\left(\frac{T_\text{H,out}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}}\right) = -\frac{UA}{C_\text{min}}\!\left(1 + \frac{C_\text{min}}{C_\text{max}}\right) =
+\]</span></p>
+<p>and, further, to be in terms of <span class="math inline">\(\text{NTU}\)</span> and <span class="math inline">\(C_\text{r}\)</span></p>
+<p><span class="math display">\[
+\ln\!\left(\frac{T_\text{H,out}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}}\right) = -\text{NTU}(1+C_\text{r}).
+\]</span></p>
+<p>Let’s work on temperature difference fraction a little bit, starting by adding zero to the numerator</p>
+<p><span class="math display">\[
+\frac{T_\text{H,out}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}} = \frac{T_\text{H,out}-T_\text{H,in} + T_\text{H,in}-T_\text{C,in}+T_\text{C,in}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}}
+\]</span></p>
+<p>this can then be rewritten as</p>
+<p><span class="math display">\[
+=\frac{T_\text{H,out}-T_\text{H,in}}{T_\text{H,in}-T_\text{C,in}}+\frac{T_\text{H,in}-T_\text{C,in}}{T_\text{H,in}-T_\text{C,in}} + \frac{T_\text{C,in}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}} =
+\]</span></p>
+<p>into</p>
 <p>After algebra (substituting <span class="math inline">\(C_\text{r}\)</span> and <span class="math inline">\(\varepsilon\)</span>):</p>
 <p><span class="math display">\[\frac{T_\text{H,out}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}} = -\varepsilon + 1 - C_\text{r}\varepsilon\]</span></p>
 <p>recognize that</p>
@@ -1857,296 +1879,331 @@ C_\text{r} \equiv \frac{C_\text{min}}{C_\text{max}}.
 <span id="cb1-385"><a href="#cb1-385" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-386"><a href="#cb1-386" aria-hidden="true" tabindex="-1"></a>This is a separable ODE that we integrate from the "in" to the "out":</span>
 <span id="cb1-387"><a href="#cb1-387" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-388"><a href="#cb1-388" aria-hidden="true" tabindex="-1"></a>$$\int_\text{in}^\text{out}\frac{d(\Delta T)}{\Delta T} = \int_\text{in}^\text{out} -U\left(\frac{1}{\dot{m}_\text{H} c_{p,\text{H}}} + \frac{1}{\dot{m}_\text{C} c_{p,\text{C}}}\right)dA$$</span>
-<span id="cb1-389"><a href="#cb1-389" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-388"><a href="#cb1-388" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-389"><a href="#cb1-389" aria-hidden="true" tabindex="-1"></a>\int_\text{in}^\text{out}\frac{d(\Delta T)}{\Delta T} = \int_\text{in}^\text{out} -U\left(\frac{1}{\dot{m}_\text{H} c_{p,\text{H}}} + \frac{1}{\dot{m}_\text{C} c_{p,\text{C}}}\right)dA.</span>
 <span id="cb1-390"><a href="#cb1-390" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-391"><a href="#cb1-391" aria-hidden="true" tabindex="-1"></a>\ln<span class="sc">\!</span>\left(\frac{\Delta T_\text{out}}{\Delta T_\text{in}}\right) = -UA\left(\frac{1}{\dot{m}_\text{H} c_{p,\text{H}}} + \frac{1}{\dot{m}_\text{C} c_{p,\text{C}}}\right).</span>
-<span id="cb1-392"><a href="#cb1-392" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-391"><a href="#cb1-391" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-392"><a href="#cb1-392" aria-hidden="true" tabindex="-1"></a>The integral of $dA$ from "in" to "out" is just the actual area $A$</span>
 <span id="cb1-393"><a href="#cb1-393" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-394"><a href="#cb1-394" aria-hidden="true" tabindex="-1"></a>Substituting:</span>
-<span id="cb1-395"><a href="#cb1-395" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-396"><a href="#cb1-396" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-397"><a href="#cb1-397" aria-hidden="true" tabindex="-1"></a>\ln<span class="sc">\!</span>\left(\frac{\Delta T_\text{out}}{\Delta T_\text{in}}\right) = -UA\left(\frac{T_\text{H,in}-T_\text{H,out}}{\dot{Q}} + \frac{T_\text{C,out}-T_\text{C,in}}{\dot{Q}}\right)</span>
-<span id="cb1-398"><a href="#cb1-398" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-394"><a href="#cb1-394" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-395"><a href="#cb1-395" aria-hidden="true" tabindex="-1"></a>\ln<span class="sc">\!</span>\left(\frac{\Delta T_\text{out}}{\Delta T_\text{in}}\right) = -UA\left(\frac{1}{\dot{m}_\text{H} c_{p,\text{H}}} + \frac{1}{\dot{m}_\text{C} c_{p,\text{C}}}\right).</span>
+<span id="cb1-396"><a href="#cb1-396" aria-hidden="true" tabindex="-1"></a>$$ {#eq-ref-later}</span>
+<span id="cb1-397"><a href="#cb1-397" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-398"><a href="#cb1-398" aria-hidden="true" tabindex="-1"></a>(We will reference this equation later.) Substituting the two versions of $\dot{m} c_p (T_\text{in}-T_\text{out})$</span>
 <span id="cb1-399"><a href="#cb1-399" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-400"><a href="#cb1-400" aria-hidden="true" tabindex="-1"></a>and rearranging</span>
-<span id="cb1-401"><a href="#cb1-401" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-400"><a href="#cb1-400" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-401"><a href="#cb1-401" aria-hidden="true" tabindex="-1"></a>\ln<span class="sc">\!</span>\left(\frac{\Delta T_\text{out}}{\Delta T_\text{in}}\right) = -UA\left(\frac{T_\text{H,in}-T_\text{H,out}}{\dot{Q}} + \frac{T_\text{C,out}-T_\text{C,in}}{\dot{Q}}\right)</span>
 <span id="cb1-402"><a href="#cb1-402" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-403"><a href="#cb1-403" aria-hidden="true" tabindex="-1"></a>\dot{Q} = UA\cdot\frac{(T_\text{H,out}-T_\text{C,out}) - (T_\text{H,in}-T_\text{C,in})}{\ln<span class="sc">\!</span>\left(\frac{T_\text{H,out}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}}\right)}.</span>
-<span id="cb1-404"><a href="#cb1-404" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-403"><a href="#cb1-403" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-404"><a href="#cb1-404" aria-hidden="true" tabindex="-1"></a>and rearranging</span>
 <span id="cb1-405"><a href="#cb1-405" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-406"><a href="#cb1-406" aria-hidden="true" tabindex="-1"></a>That complicated temperature term is defined as $\Delta T_{lm}$, the **log-mean temperature difference (LMTD)**:</span>
-<span id="cb1-407"><a href="#cb1-407" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-406"><a href="#cb1-406" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-407"><a href="#cb1-407" aria-hidden="true" tabindex="-1"></a>\dot{Q} = UA\cdot\frac{(T_\text{H,out}-T_\text{C,out}) - (T_\text{H,in}-T_\text{C,in})}{\ln<span class="sc">\!</span>\left(\frac{T_\text{H,out}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}}\right)}.</span>
 <span id="cb1-408"><a href="#cb1-408" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-409"><a href="#cb1-409" aria-hidden="true" tabindex="-1"></a>\dot{Q}= UA\cdot\Delta T_{lm}.</span>
-<span id="cb1-410"><a href="#cb1-410" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-409"><a href="#cb1-409" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-410"><a href="#cb1-410" aria-hidden="true" tabindex="-1"></a>That complicated temperature term is defined as $\Delta T_{lm}$, the **log-mean temperature difference (LMTD)**:</span>
 <span id="cb1-411"><a href="#cb1-411" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-412"><a href="#cb1-412" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-413"><a href="#cb1-413" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-414"><a href="#cb1-414" aria-hidden="true" tabindex="-1"></a>**LMTD Formulas**</span>
+<span id="cb1-412"><a href="#cb1-412" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-413"><a href="#cb1-413" aria-hidden="true" tabindex="-1"></a>\dot{Q}= UA\cdot\Delta T_{lm}.</span>
+<span id="cb1-414"><a href="#cb1-414" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-415"><a href="#cb1-415" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-416"><a href="#cb1-416" aria-hidden="true" tabindex="-1"></a>**For co-flow:** $\Delta T_\text{out} = T_\text{H,out} - T_\text{C,out}$, $\Delta T_\text{in} = T_\text{H,in} - T_\text{C,in}$</span>
+<span id="cb1-416"><a href="#cb1-416" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-417"><a href="#cb1-417" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-418"><a href="#cb1-418" aria-hidden="true" tabindex="-1"></a>$$\boxed{\Delta T_{lm} = \frac{(T_\text{H,in} - T_\text{C,in}) - (T_\text{H,out} - T_\text{C,out})}{\ln<span class="sc">\!</span>\left(\frac{T_\text{H,in}-T_\text{C,in}}{T_\text{H,out}-T_\text{C,out}}\right)}} \qquad \text{co-flow}$$</span>
+<span id="cb1-418"><a href="#cb1-418" aria-hidden="true" tabindex="-1"></a>**LMTD Formulas**</span>
 <span id="cb1-419"><a href="#cb1-419" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-420"><a href="#cb1-420" aria-hidden="true" tabindex="-1"></a>**For counter-flow:** $\Delta T_\text{out} = T_\text{H,out} - T_\text{C,in}$, $\Delta T_\text{in} = T_\text{H,in} - T_\text{C,out}$</span>
+<span id="cb1-420"><a href="#cb1-420" aria-hidden="true" tabindex="-1"></a>**For co-flow:** $\Delta T_\text{out} = T_\text{H,out} - T_\text{C,out}$, $\Delta T_\text{in} = T_\text{H,in} - T_\text{C,in}$</span>
 <span id="cb1-421"><a href="#cb1-421" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-422"><a href="#cb1-422" aria-hidden="true" tabindex="-1"></a>$$\boxed{\Delta T_{lm} = \frac{(T_\text{H,in} - T_\text{C,out}) - (T_\text{H,out} - T_\text{C,in})}{\ln<span class="sc">\!</span>\left(\frac{T_\text{H,in}-T_\text{C,out}}{T_\text{H,out}-T_\text{C,in}}\right)}} \qquad \text{counter-flow}$$</span>
+<span id="cb1-422"><a href="#cb1-422" aria-hidden="true" tabindex="-1"></a>$$\boxed{\Delta T_{lm} = \frac{(T_\text{H,in} - T_\text{C,in}) - (T_\text{H,out} - T_\text{C,out})}{\ln<span class="sc">\!</span>\left(\frac{T_\text{H,in}-T_\text{C,in}}{T_\text{H,out}-T_\text{C,out}}\right)}} \qquad \text{co-flow}$$</span>
 <span id="cb1-423"><a href="#cb1-423" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-424"><a href="#cb1-424" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-424"><a href="#cb1-424" aria-hidden="true" tabindex="-1"></a>**For counter-flow:** $\Delta T_\text{out} = T_\text{H,out} - T_\text{C,in}$, $\Delta T_\text{in} = T_\text{H,in} - T_\text{C,out}$</span>
 <span id="cb1-425"><a href="#cb1-425" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-426"><a href="#cb1-426" aria-hidden="true" tabindex="-1"></a><span class="fu">### Summary of the heat transfer rate</span></span>
+<span id="cb1-426"><a href="#cb1-426" aria-hidden="true" tabindex="-1"></a>$$\boxed{\Delta T_{lm} = \frac{(T_\text{H,in} - T_\text{C,out}) - (T_\text{H,out} - T_\text{C,in})}{\ln<span class="sc">\!</span>\left(\frac{T_\text{H,in}-T_\text{C,out}}{T_\text{H,out}-T_\text{C,in}}\right)}} \qquad \text{counter-flow}$$</span>
 <span id="cb1-427"><a href="#cb1-427" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-428"><a href="#cb1-428" aria-hidden="true" tabindex="-1"></a>We now have</span>
-<span id="cb1-429"><a href="#cb1-429" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-430"><a href="#cb1-430" aria-hidden="true" tabindex="-1"></a>\dot{Q} = UA\cdot\Delta T_{lm}</span>
-<span id="cb1-431"><a href="#cb1-431" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-432"><a href="#cb1-432" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-433"><a href="#cb1-433" aria-hidden="true" tabindex="-1"></a>where $UA$ accounts for both sides of the convection, the resistance through the solid wall, and any fins in one term. The log-mean temperature difference $\Delta T_{lm}$ is a representation of the average temperature difference across the heat exchanger. So, ostensibly: if we know the flow rates (related to $U$), heat exchanger size (basically $A$) and temperature information ($\Delta T_{lm}$), we can predict the amount of heat transfer that will occur within the heat exchanger.</span>
-<span id="cb1-434"><a href="#cb1-434" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-435"><a href="#cb1-435" aria-hidden="true" tabindex="-1"></a>But... aren't we still in the same situation as we were in thermodynamics? We can't just say what the outlet temperatures are! How would we know what heat exchanger to get to achieve the right outlet temperatures or heat transfer rate? We need to come up with a framework to help us make that decision.</span>
+<span id="cb1-428"><a href="#cb1-428" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-429"><a href="#cb1-429" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-430"><a href="#cb1-430" aria-hidden="true" tabindex="-1"></a><span class="fu">### Summary of the heat transfer rate</span></span>
+<span id="cb1-431"><a href="#cb1-431" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-432"><a href="#cb1-432" aria-hidden="true" tabindex="-1"></a>We now have</span>
+<span id="cb1-433"><a href="#cb1-433" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-434"><a href="#cb1-434" aria-hidden="true" tabindex="-1"></a>\dot{Q} = UA\cdot\Delta T_{lm}</span>
+<span id="cb1-435"><a href="#cb1-435" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-436"><a href="#cb1-436" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-437"><a href="#cb1-437" aria-hidden="true" tabindex="-1"></a><span class="fu">## The NTU Method</span></span>
+<span id="cb1-437"><a href="#cb1-437" aria-hidden="true" tabindex="-1"></a>where $UA$ accounts for both sides of the convection, the resistance through the solid wall, and any fins in one term. The log-mean temperature difference $\Delta T_{lm}$ is a representation of the average temperature difference across the heat exchanger. So, ostensibly: if we know the flow rates (related to $U$), heat exchanger size (basically $A$) and temperature information ($\Delta T_{lm}$), we can predict the amount of heat transfer that will occur within the heat exchanger.</span>
 <span id="cb1-438"><a href="#cb1-438" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-439"><a href="#cb1-439" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
-<span id="cb1-440"><a href="#cb1-440" aria-hidden="true" tabindex="-1"></a><span class="fu">## Video</span></span>
-<span id="cb1-441"><a href="#cb1-441" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-442"><a href="#cb1-442" aria-hidden="true" tabindex="-1"></a>Start with <span class="co">[</span><span class="ot">this linked video</span><span class="co">](https://canvas.colorado.edu/courses/136150/pages/ntu-method)</span> which describes the NTU Method.</span>
-<span id="cb1-443"><a href="#cb1-443" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-444"><a href="#cb1-444" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-439"><a href="#cb1-439" aria-hidden="true" tabindex="-1"></a>But... aren't we still in the same situation as we were in thermodynamics? We can't just say what the outlet temperatures are! How would we know what heat exchanger to get to achieve the right outlet temperatures or heat transfer rate? We need to come up with a framework to help us make that decision.</span>
+<span id="cb1-440"><a href="#cb1-440" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-441"><a href="#cb1-441" aria-hidden="true" tabindex="-1"></a><span class="fu">## The NTU Method</span></span>
+<span id="cb1-442"><a href="#cb1-442" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-443"><a href="#cb1-443" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb1-444"><a href="#cb1-444" aria-hidden="true" tabindex="-1"></a><span class="fu">## Video</span></span>
 <span id="cb1-445"><a href="#cb1-445" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-446"><a href="#cb1-446" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-447"><a href="#cb1-447" aria-hidden="true" tabindex="-1"></a><span class="fu">### Problem setup</span></span>
+<span id="cb1-446"><a href="#cb1-446" aria-hidden="true" tabindex="-1"></a>Start with <span class="co">[</span><span class="ot">this linked video</span><span class="co">](https://canvas.colorado.edu/courses/136150/pages/ntu-method)</span> which describes the NTU Method.</span>
+<span id="cb1-447"><a href="#cb1-447" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-448"><a href="#cb1-448" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-449"><a href="#cb1-449" aria-hidden="true" tabindex="-1"></a>A typical engineering problem looks like this: We are trying to cool down something that is hot, like an engine oil. We know its flow rate, we know what the "too hot" temperature is, and we have a goal temperature in mind. And, presumably, we have a cold fluid (air or water) available at a known reservoir temperature. That is, we know $\dot{m}_\text{H}$, $T_\text{H,in}$, and $T_\text{C,in}$, and our goal is to get the hot fluid down to an acceptable temperature $T_\text{H,out}$. We need to determine $\dot{m}_\text{C}$ and the heat exchanger design and size.</span>
+<span id="cb1-449"><a href="#cb1-449" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-450"><a href="#cb1-450" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-451"><a href="#cb1-451" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-452"><a href="#cb1-452" aria-hidden="true" tabindex="-1"></a>The NTU "Number of Thermal Units" framework will allow us to determine the possibilities for $\dot{m}_\text{C}$ and $UA$ (which is how we mathematically encode the heat exchanger design).</span>
-<span id="cb1-453"><a href="#cb1-453" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-451"><a href="#cb1-451" aria-hidden="true" tabindex="-1"></a><span class="fu">### Problem setup</span></span>
+<span id="cb1-452"><a href="#cb1-452" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-453"><a href="#cb1-453" aria-hidden="true" tabindex="-1"></a>A typical engineering problem looks like this: We are trying to cool down something that is hot, like an engine oil. We know its flow rate, we know what the "too hot" temperature is, and we have a goal temperature in mind. And, presumably, we have a cold fluid (air or water) available at a known reservoir temperature. That is, we know $\dot{m}_\text{H}$, $T_\text{H,in}$, and $T_\text{C,in}$, and our goal is to get the hot fluid down to an acceptable temperature $T_\text{H,out}$. We need to determine $\dot{m}_\text{C}$ and the heat exchanger design and size.</span>
 <span id="cb1-454"><a href="#cb1-454" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-455"><a href="#cb1-455" aria-hidden="true" tabindex="-1"></a><span class="fu">### Heat Capacity Rates and "Effectiveness"</span></span>
-<span id="cb1-456"><a href="#cb1-456" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-457"><a href="#cb1-457" aria-hidden="true" tabindex="-1"></a>From thermodynamics, the amount of heat transfer is</span>
+<span id="cb1-455"><a href="#cb1-455" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-456"><a href="#cb1-456" aria-hidden="true" tabindex="-1"></a>The NTU "Number of Thermal Units" framework will allow us to determine the possibilities for $\dot{m}_\text{C}$ and $UA$ (which is how we mathematically encode the heat exchanger design).</span>
+<span id="cb1-457"><a href="#cb1-457" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-458"><a href="#cb1-458" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-459"><a href="#cb1-459" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-460"><a href="#cb1-460" aria-hidden="true" tabindex="-1"></a>\dot{Q} = \dot{m}_\text{C} c_{p,\text{C}}(T_\text{C,out}-T_\text{C,in}) = \dot{m}_\text{H} c_{p,\text{H}}(T_\text{H,in}-T_\text{H,out})</span>
-<span id="cb1-461"><a href="#cb1-461" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-459"><a href="#cb1-459" aria-hidden="true" tabindex="-1"></a><span class="fu">### Heat Capacity Rates and "Effectiveness"</span></span>
+<span id="cb1-460"><a href="#cb1-460" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-461"><a href="#cb1-461" aria-hidden="true" tabindex="-1"></a>From thermodynamics, the amount of heat transfer is</span>
 <span id="cb1-462"><a href="#cb1-462" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-463"><a href="#cb1-463" aria-hidden="true" tabindex="-1"></a>where we define $C_\text{C}\equiv \dot{m}_\text{C} c_{p,\text{C}}$ and $C_\text{H} \equiv \dot{m}_\text{H} c_{p,\text{H}}$ as the thermal capacities. (This will make the math cleaner below.)</span>
-<span id="cb1-464"><a href="#cb1-464" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-465"><a href="#cb1-465" aria-hidden="true" tabindex="-1"></a>If we were completely unaware of the heat exchanger design (didn't know if it was co- or counter-flow, didn't know how much cold flow there was, didn't know how big it was), the maximum possible temperature change for one of the flows is $T_\text{H,in} - T_\text{C,in}$. Then the corresponding maximum possible amount of heat transfer is </span>
+<span id="cb1-463"><a href="#cb1-463" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-464"><a href="#cb1-464" aria-hidden="true" tabindex="-1"></a>\dot{Q} = \dot{m}_\text{C} c_{p,\text{C}}(T_\text{C,out}-T_\text{C,in}) = \dot{m}_\text{H} c_{p,\text{H}}(T_\text{H,in}-T_\text{H,out})</span>
+<span id="cb1-465"><a href="#cb1-465" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-466"><a href="#cb1-466" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-467"><a href="#cb1-467" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-468"><a href="#cb1-468" aria-hidden="true" tabindex="-1"></a>\dot{Q}_\text{max} = C_\text{min}(T_\text{H,in} - T_\text{C,in})</span>
-<span id="cb1-469"><a href="#cb1-469" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-467"><a href="#cb1-467" aria-hidden="true" tabindex="-1"></a>where we define $C_\text{C}\equiv \dot{m}_\text{C} c_{p,\text{C}}$ and $C_\text{H} \equiv \dot{m}_\text{H} c_{p,\text{H}}$ as the thermal capacities. (This will make the math cleaner below.)</span>
+<span id="cb1-468"><a href="#cb1-468" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-469"><a href="#cb1-469" aria-hidden="true" tabindex="-1"></a>If we were completely unaware of the heat exchanger design (didn't know if it was co- or counter-flow, didn't know how much cold flow there was, didn't know how big it was), the maximum possible temperature change for one of the flows is $T_\text{H,in} - T_\text{C,in}$. Then the corresponding maximum possible amount of heat transfer is </span>
 <span id="cb1-470"><a href="#cb1-470" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-471"><a href="#cb1-471" aria-hidden="true" tabindex="-1"></a>where $C_\text{min}$ is the smaller of $C_\text{H}$ and $C_\text{C}$.</span>
-<span id="cb1-472"><a href="#cb1-472" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-473"><a href="#cb1-473" aria-hidden="true" tabindex="-1"></a>::: {.callout-warning}</span>
-<span id="cb1-474"><a href="#cb1-474" aria-hidden="true" tabindex="-1"></a>It is tempting to want to include $C_\text{max}$ in this definition instead, but consider what happens thermodynamically if $C_\text{min} = C_\text{C}$:</span>
-<span id="cb1-475"><a href="#cb1-475" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-476"><a href="#cb1-476" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-477"><a href="#cb1-477" aria-hidden="true" tabindex="-1"></a>C_\text{max}(T_\text{H,in} - T_\text{C,in}) = C_\text{C}(T_\text{C,out} - T_\text{C,in}) \implies C_\text{max}(T_\text{H,in} - T_\text{C,in}) = C_\text{min}(T_\text{C,out} - T_\text{C,in}).</span>
-<span id="cb1-478"><a href="#cb1-478" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-471"><a href="#cb1-471" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-472"><a href="#cb1-472" aria-hidden="true" tabindex="-1"></a>\dot{Q}_\text{max} = C_\text{min}(T_\text{H,in} - T_\text{C,in})</span>
+<span id="cb1-473"><a href="#cb1-473" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-474"><a href="#cb1-474" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-475"><a href="#cb1-475" aria-hidden="true" tabindex="-1"></a>where $C_\text{min}$ is the smaller of $C_\text{H}$ and $C_\text{C}$.</span>
+<span id="cb1-476"><a href="#cb1-476" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-477"><a href="#cb1-477" aria-hidden="true" tabindex="-1"></a>::: {.callout-warning}</span>
+<span id="cb1-478"><a href="#cb1-478" aria-hidden="true" tabindex="-1"></a>It is tempting to want to include $C_\text{max}$ in this definition instead, but consider what happens thermodynamically if $C_\text{min} = C_\text{C}$:</span>
 <span id="cb1-479"><a href="#cb1-479" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-480"><a href="#cb1-480" aria-hidden="true" tabindex="-1"></a>Then</span>
-<span id="cb1-481"><a href="#cb1-481" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-480"><a href="#cb1-480" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-481"><a href="#cb1-481" aria-hidden="true" tabindex="-1"></a>C_\text{max}(T_\text{H,in} - T_\text{C,in}) = C_\text{C}(T_\text{C,out} - T_\text{C,in}) \implies C_\text{max}(T_\text{H,in} - T_\text{C,in}) = C_\text{min}(T_\text{C,out} - T_\text{C,in}).</span>
 <span id="cb1-482"><a href="#cb1-482" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-483"><a href="#cb1-483" aria-hidden="true" tabindex="-1"></a>T_\text{C,out}- T_\text{C,in} = \frac{C_\text{max}}{C_\text{min}}(T_\text{H,in} - T_\text{C,in})</span>
-<span id="cb1-484"><a href="#cb1-484" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-483"><a href="#cb1-483" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-484"><a href="#cb1-484" aria-hidden="true" tabindex="-1"></a>Then</span>
 <span id="cb1-485"><a href="#cb1-485" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-486"><a href="#cb1-486" aria-hidden="true" tabindex="-1"></a>which implies $T_\text{C,out} &gt; T_\text{H,in}$, impossible. It is a similar logic if $C_\text{min} = C_\text{H}$:</span>
-<span id="cb1-487"><a href="#cb1-487" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-486"><a href="#cb1-486" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-487"><a href="#cb1-487" aria-hidden="true" tabindex="-1"></a>T_\text{C,out}- T_\text{C,in} = \frac{C_\text{max}}{C_\text{min}}(T_\text{H,in} - T_\text{C,in})</span>
 <span id="cb1-488"><a href="#cb1-488" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-489"><a href="#cb1-489" aria-hidden="true" tabindex="-1"></a>T_\text{H,in}- T_\text{H,out} = \frac{C_\text{max}}{C_\text{min}}(T_\text{H,in} - T_\text{C,in})</span>
-<span id="cb1-490"><a href="#cb1-490" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-489"><a href="#cb1-489" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-490"><a href="#cb1-490" aria-hidden="true" tabindex="-1"></a>which implies $T_\text{C,out} &gt; T_\text{H,in}$, impossible. It is a similar logic if $C_\text{min} = C_\text{H}$:</span>
 <span id="cb1-491"><a href="#cb1-491" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-492"><a href="#cb1-492" aria-hidden="true" tabindex="-1"></a>which implies $T_\text{H,out} &lt; T_\text{C,in}$, impossible.</span>
-<span id="cb1-493"><a href="#cb1-493" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-494"><a href="#cb1-494" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-495"><a href="#cb1-495" aria-hidden="true" tabindex="-1"></a>Then it is reasonable to define an "effectiveness" as</span>
-<span id="cb1-496"><a href="#cb1-496" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-497"><a href="#cb1-497" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-498"><a href="#cb1-498" aria-hidden="true" tabindex="-1"></a>\varepsilon \equiv \frac{\text{actual heat transfer}}{\text{hypothetical max heat transfer}} = \frac{C_\text{H}(T_\text{H,in}-T_\text{H,out})}{C_\text{min}(T_\text{H,in}-T_\text{C,in})}</span>
-<span id="cb1-499"><a href="#cb1-499" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-492"><a href="#cb1-492" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-493"><a href="#cb1-493" aria-hidden="true" tabindex="-1"></a>T_\text{H,in}- T_\text{H,out} = \frac{C_\text{max}}{C_\text{min}}(T_\text{H,in} - T_\text{C,in})</span>
+<span id="cb1-494"><a href="#cb1-494" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-495"><a href="#cb1-495" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-496"><a href="#cb1-496" aria-hidden="true" tabindex="-1"></a>which implies $T_\text{H,out} &lt; T_\text{C,in}$, impossible.</span>
+<span id="cb1-497"><a href="#cb1-497" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-498"><a href="#cb1-498" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-499"><a href="#cb1-499" aria-hidden="true" tabindex="-1"></a>Then it is reasonable to define an "effectiveness" as</span>
 <span id="cb1-500"><a href="#cb1-500" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-501"><a href="#cb1-501" aria-hidden="true" tabindex="-1"></a>or equivalently</span>
-<span id="cb1-502"><a href="#cb1-502" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-503"><a href="#cb1-503" aria-hidden="true" tabindex="-1"></a>\varepsilon \equiv  </span>
-<span id="cb1-504"><a href="#cb1-504" aria-hidden="true" tabindex="-1"></a>\frac{C_\text{C}(T_\text{C,out}-T_\text{C,in})}{C_\text{min}(T_\text{H,in}-T_\text{C,in})}.</span>
-<span id="cb1-505"><a href="#cb1-505" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-506"><a href="#cb1-506" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-507"><a href="#cb1-507" aria-hidden="true" tabindex="-1"></a>With this definition:</span>
-<span id="cb1-508"><a href="#cb1-508" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-501"><a href="#cb1-501" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-502"><a href="#cb1-502" aria-hidden="true" tabindex="-1"></a>\varepsilon \equiv \frac{\text{actual heat transfer}}{\text{hypothetical max heat transfer}} = \frac{C_\text{H}(T_\text{H,in}-T_\text{H,out})}{C_\text{min}(T_\text{H,in}-T_\text{C,in})}</span>
+<span id="cb1-503"><a href="#cb1-503" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-504"><a href="#cb1-504" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-505"><a href="#cb1-505" aria-hidden="true" tabindex="-1"></a>or equivalently</span>
+<span id="cb1-506"><a href="#cb1-506" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-507"><a href="#cb1-507" aria-hidden="true" tabindex="-1"></a>\varepsilon \equiv  </span>
+<span id="cb1-508"><a href="#cb1-508" aria-hidden="true" tabindex="-1"></a>\frac{C_\text{C}(T_\text{C,out}-T_\text{C,in})}{C_\text{min}(T_\text{H,in}-T_\text{C,in})}.</span>
 <span id="cb1-509"><a href="#cb1-509" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-510"><a href="#cb1-510" aria-hidden="true" tabindex="-1"></a>\dot{Q} = C_\text{H}(T_\text{H,in}-T_\text{H,out}) = \varepsilon\, C_\text{min}(T_\text{H,in}-T_\text{C,in})</span>
-<span id="cb1-511"><a href="#cb1-511" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-510"><a href="#cb1-510" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-511"><a href="#cb1-511" aria-hidden="true" tabindex="-1"></a>With this definition:</span>
 <span id="cb1-512"><a href="#cb1-512" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-513"><a href="#cb1-513" aria-hidden="true" tabindex="-1"></a>and</span>
-<span id="cb1-514"><a href="#cb1-514" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-513"><a href="#cb1-513" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-514"><a href="#cb1-514" aria-hidden="true" tabindex="-1"></a>\dot{Q} = C_\text{H}(T_\text{H,in}-T_\text{H,out}) = \varepsilon\, C_\text{min}(T_\text{H,in}-T_\text{C,in})</span>
 <span id="cb1-515"><a href="#cb1-515" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-516"><a href="#cb1-516" aria-hidden="true" tabindex="-1"></a>\dot{Q} = C_\text{C}(T_\text{C,out}-T_\text{C,in}) = \varepsilon\, C_\text{min}(T_\text{H,in}-T_\text{C,in}).</span>
-<span id="cb1-517"><a href="#cb1-517" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-516"><a href="#cb1-516" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-517"><a href="#cb1-517" aria-hidden="true" tabindex="-1"></a>and</span>
 <span id="cb1-518"><a href="#cb1-518" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-519"><a href="#cb1-519" aria-hidden="true" tabindex="-1"></a>This $\varepsilon$ will contain the effects of heat exchanger size and design (e.g. fins, channel width, etc.).</span>
-<span id="cb1-520"><a href="#cb1-520" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-521"><a href="#cb1-521" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-519"><a href="#cb1-519" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-520"><a href="#cb1-520" aria-hidden="true" tabindex="-1"></a>\dot{Q} = C_\text{C}(T_\text{C,out}-T_\text{C,in}) = \varepsilon\, C_\text{min}(T_\text{H,in}-T_\text{C,in}).</span>
+<span id="cb1-521"><a href="#cb1-521" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-522"><a href="#cb1-522" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-523"><a href="#cb1-523" aria-hidden="true" tabindex="-1"></a><span class="fu">### NTU and $C_\text{r}$</span></span>
+<span id="cb1-523"><a href="#cb1-523" aria-hidden="true" tabindex="-1"></a>This $\varepsilon$ will contain the effects of heat exchanger size and design (e.g. fins, channel width, etc.).</span>
 <span id="cb1-524"><a href="#cb1-524" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-525"><a href="#cb1-525" aria-hidden="true" tabindex="-1"></a>The effectiveness (a dimensionless number) is going to be a function of $UA$ (wall thickness, fins, size, etc.) and the flows described by $C_\text{H}$ and $C_\text{C}$. We can encapsulate these effects into two more dimensionless numbers: the "Number of Thermal Units"</span>
+<span id="cb1-525"><a href="#cb1-525" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-526"><a href="#cb1-526" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-527"><a href="#cb1-527" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-528"><a href="#cb1-528" aria-hidden="true" tabindex="-1"></a>\text{NTU} \equiv \frac{UA}{C_\text{min}}</span>
-<span id="cb1-529"><a href="#cb1-529" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-527"><a href="#cb1-527" aria-hidden="true" tabindex="-1"></a><span class="fu">### NTU and $C_\text{r}$</span></span>
+<span id="cb1-528"><a href="#cb1-528" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-529"><a href="#cb1-529" aria-hidden="true" tabindex="-1"></a>The effectiveness (a dimensionless number) is going to be a function of $UA$ (wall thickness, fins, size, etc.) and the flows described by $C_\text{H}$ and $C_\text{C}$. We can encapsulate these effects into two more dimensionless numbers: the "Number of Thermal Units"</span>
 <span id="cb1-530"><a href="#cb1-530" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-531"><a href="#cb1-531" aria-hidden="true" tabindex="-1"></a>and the reduced heat capacity</span>
-<span id="cb1-532"><a href="#cb1-532" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-531"><a href="#cb1-531" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-532"><a href="#cb1-532" aria-hidden="true" tabindex="-1"></a>\text{NTU} \equiv \frac{UA}{C_\text{min}}</span>
 <span id="cb1-533"><a href="#cb1-533" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-534"><a href="#cb1-534" aria-hidden="true" tabindex="-1"></a>C_\text{r} \equiv \frac{C_\text{min}}{C_\text{max}}.</span>
-<span id="cb1-535"><a href="#cb1-535" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-534"><a href="#cb1-534" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-535"><a href="#cb1-535" aria-hidden="true" tabindex="-1"></a>and the reduced heat capacity</span>
 <span id="cb1-536"><a href="#cb1-536" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-537"><a href="#cb1-537" aria-hidden="true" tabindex="-1"></a>So we are thinking about the function </span>
-<span id="cb1-538"><a href="#cb1-538" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-537"><a href="#cb1-537" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-538"><a href="#cb1-538" aria-hidden="true" tabindex="-1"></a>C_\text{r} \equiv \frac{C_\text{min}}{C_\text{max}}.</span>
 <span id="cb1-539"><a href="#cb1-539" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-540"><a href="#cb1-540" aria-hidden="true" tabindex="-1"></a>\varepsilon\bigl(\text{NTU},\, C_\text{r}\bigr).</span>
-<span id="cb1-541"><a href="#cb1-541" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-540"><a href="#cb1-540" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-541"><a href="#cb1-541" aria-hidden="true" tabindex="-1"></a>So we are thinking about the function </span>
 <span id="cb1-542"><a href="#cb1-542" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-543"><a href="#cb1-543" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-544"><a href="#cb1-544" aria-hidden="true" tabindex="-1"></a><span class="fu">### Derivation of $\varepsilon(\text{NTU}, C_\text{r})$ for co-flow</span></span>
-<span id="cb1-545"><a href="#cb1-545" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-546"><a href="#cb1-546" aria-hidden="true" tabindex="-1"></a>The function $\varepsilon\bigl(\text{NTU},\, C_\text{r}\bigr)$ depends on the flow configuration... let's derive its form for a co-flow heat exchanger.</span>
+<span id="cb1-543"><a href="#cb1-543" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-544"><a href="#cb1-544" aria-hidden="true" tabindex="-1"></a>\varepsilon\bigl(\text{NTU},\, C_\text{r}\bigr).</span>
+<span id="cb1-545"><a href="#cb1-545" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-546"><a href="#cb1-546" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-547"><a href="#cb1-547" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-548"><a href="#cb1-548" aria-hidden="true" tabindex="-1"></a>Assume $C_\text{min} = C_\text{H}$. A step in the $\Delta T_{lm}$ derivation gave:</span>
+<span id="cb1-548"><a href="#cb1-548" aria-hidden="true" tabindex="-1"></a><span class="fu">### Derivation of $\varepsilon(\text{NTU}, C_\text{r})$ for co-flow</span></span>
 <span id="cb1-549"><a href="#cb1-549" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-550"><a href="#cb1-550" aria-hidden="true" tabindex="-1"></a>$$\ln<span class="sc">\!</span>\left(\frac{\Delta T_\text{out}}{\Delta T_\text{in}}\right) = \ln<span class="sc">\!</span>\left(\frac{T_\text{H,out}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}}\right) = -UA<span class="sc">\!</span>\left(\frac{1}{C_\text{H}} + \frac{1}{C_\text{C}}\right) = -\frac{UA}{C_\text{min}}<span class="sc">\!</span>\left(1 + \frac{C_\text{min}}{C_\text{max}}\right) = -\text{NTU}(1+C_\text{r})$$</span>
+<span id="cb1-550"><a href="#cb1-550" aria-hidden="true" tabindex="-1"></a>The function $\varepsilon\bigl(\text{NTU},\, C_\text{r}\bigr)$ depends on the flow configuration... let's derive its form for a co-flow heat exchanger.</span>
 <span id="cb1-551"><a href="#cb1-551" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-552"><a href="#cb1-552" aria-hidden="true" tabindex="-1"></a>After algebra (substituting $C_\text{r}$ and $\varepsilon$):</span>
+<span id="cb1-552"><a href="#cb1-552" aria-hidden="true" tabindex="-1"></a>Assume $C_\text{min} = C_\text{H}$. A step in the $\Delta T_{lm}$ derivation (@eq-ref-later) gave:</span>
 <span id="cb1-553"><a href="#cb1-553" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-554"><a href="#cb1-554" aria-hidden="true" tabindex="-1"></a>$$\frac{T_\text{H,out}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}} = -\varepsilon + 1 - C_\text{r}\varepsilon$$</span>
-<span id="cb1-555"><a href="#cb1-555" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-556"><a href="#cb1-556" aria-hidden="true" tabindex="-1"></a>recognize that </span>
+<span id="cb1-554"><a href="#cb1-554" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-555"><a href="#cb1-555" aria-hidden="true" tabindex="-1"></a>\ln<span class="sc">\!</span>\left(\frac{T_\text{H,out}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}}\right) = -UA<span class="sc">\!</span>\left(\frac{1}{C_\text{H}} + \frac{1}{C_\text{C}}\right).</span>
+<span id="cb1-556"><a href="#cb1-556" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-557"><a href="#cb1-557" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-558"><a href="#cb1-558" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-559"><a href="#cb1-559" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb1-558"><a href="#cb1-558" aria-hidden="true" tabindex="-1"></a>We can re-interpret this to be in terms of $C_\text{min}$ and $C_\text{max}$</span>
+<span id="cb1-559"><a href="#cb1-559" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-560"><a href="#cb1-560" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-561"><a href="#cb1-561" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-562"><a href="#cb1-562" aria-hidden="true" tabindex="-1"></a>Therefore:</span>
+<span id="cb1-561"><a href="#cb1-561" aria-hidden="true" tabindex="-1"></a>\ln<span class="sc">\!</span>\left(\frac{T_\text{H,out}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}}\right) = -\frac{UA}{C_\text{min}}<span class="sc">\!</span>\left(1 + \frac{C_\text{min}}{C_\text{max}}\right) = </span>
+<span id="cb1-562"><a href="#cb1-562" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-563"><a href="#cb1-563" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-564"><a href="#cb1-564" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-565"><a href="#cb1-565" aria-hidden="true" tabindex="-1"></a>\ln(-\varepsilon + 1 - C_\text{r}\varepsilon) = -\text{NTU}(1+C_\text{r})</span>
+<span id="cb1-564"><a href="#cb1-564" aria-hidden="true" tabindex="-1"></a>and, further, to be in terms of $\text{NTU}$ and $C_\text{r}$</span>
+<span id="cb1-565"><a href="#cb1-565" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-566"><a href="#cb1-566" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-567"><a href="#cb1-567" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-568"><a href="#cb1-568" aria-hidden="true" tabindex="-1"></a>Rearranging:</span>
+<span id="cb1-567"><a href="#cb1-567" aria-hidden="true" tabindex="-1"></a>\ln<span class="sc">\!</span>\left(\frac{T_\text{H,out}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}}\right) = -\text{NTU}(1+C_\text{r}).</span>
+<span id="cb1-568"><a href="#cb1-568" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-569"><a href="#cb1-569" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-570"><a href="#cb1-570" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-571"><a href="#cb1-571" aria-hidden="true" tabindex="-1"></a>\boxed{\varepsilon = \frac{1 - \exp\bigl<span class="co">[</span><span class="ot">-\text{NTU}(1+C_\text{r})\bigr</span><span class="co">]</span>}{1+C_\text{r}}} \qquad \text{(co-flow)}.</span>
+<span id="cb1-570"><a href="#cb1-570" aria-hidden="true" tabindex="-1"></a>Let's work on temperature difference fraction a little bit, starting by adding zero to the numerator</span>
+<span id="cb1-571"><a href="#cb1-571" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-572"><a href="#cb1-572" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-573"><a href="#cb1-573" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-574"><a href="#cb1-574" aria-hidden="true" tabindex="-1"></a>This is our function $\varepsilon(\text{NTU}, C_\text{r})$ for this particular configuration. </span>
+<span id="cb1-573"><a href="#cb1-573" aria-hidden="true" tabindex="-1"></a>\frac{T_\text{H,out}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}} = \frac{T_\text{H,out}-T_\text{H,in} + T_\text{H,in}-T_\text{C,in}+T_\text{C,in}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}}</span>
+<span id="cb1-574"><a href="#cb1-574" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-575"><a href="#cb1-575" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-576"><a href="#cb1-576" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
-<span id="cb1-577"><a href="#cb1-577" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;svg width="570" height="310" xmlns="http://www.w3.org/2000/svg"&gt;</span></span>
-<span id="cb1-578"><a href="#cb1-578" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!--</span></span>
-<span id="cb1-579"><a href="#cb1-579" aria-hidden="true" tabindex="-1"></a><span class="in">    Plot area: x=60..450, y=20..260  (width=390, height=240)</span></span>
-<span id="cb1-580"><a href="#cb1-580" aria-hidden="true" tabindex="-1"></a><span class="in">    x(NTU) = 60 + NTU*97.5   (NTU 0→4)</span></span>
-<span id="cb1-581"><a href="#cb1-581" aria-hidden="true" tabindex="-1"></a><span class="in">    y(ε)   = 260 − ε*240     (ε 0→1)</span></span>
-<span id="cb1-582"><a href="#cb1-582" aria-hidden="true" tabindex="-1"></a><span class="in">    Curve formula: ε = (1 − exp(−NTU·(1+Cr))) / (1+Cr)</span></span>
-<span id="cb1-583"><a href="#cb1-583" aria-hidden="true" tabindex="-1"></a><span class="in">    21 points: NTU = 0,.1,.2,.3,.4,.5,.6,.7,.8,.9,1,1.2,1.4,1.6,1.8,2,2.3,2.6,3,3.5,4</span></span>
-<span id="cb1-584"><a href="#cb1-584" aria-hidden="true" tabindex="-1"></a><span class="in">    x values:  60,69.75,79.5,89.25,99,108.75,118.5,128.25,138,147.75,157.5,177,196.5,216,235.5,255,284.25,313.5,352.5,401.25,450</span></span>
-<span id="cb1-585"><a href="#cb1-585" aria-hidden="true" tabindex="-1"></a><span class="in">  --&gt;</span></span>
-<span id="cb1-586"><a href="#cb1-586" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;defs&gt;</span></span>
-<span id="cb1-587"><a href="#cb1-587" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;marker id="ep-arr" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"&gt;</span></span>
-<span id="cb1-588"><a href="#cb1-588" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;polygon points="0 0, 6 3, 0 6" fill="black"/&gt;</span></span>
-<span id="cb1-589"><a href="#cb1-589" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/marker&gt;</span></span>
-<span id="cb1-590"><a href="#cb1-590" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/defs&gt;</span></span>
-<span id="cb1-591"><a href="#cb1-591" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-592"><a href="#cb1-592" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Light grid lines at ε = 0.2, 0.4, 0.6, 0.8, 1.0 --&gt;</span></span>
-<span id="cb1-593"><a href="#cb1-593" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="60" y1="212" x2="450" y2="212" stroke="#e0e0e0" stroke-width="1"/&gt;</span></span>
-<span id="cb1-594"><a href="#cb1-594" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="60" y1="164" x2="450" y2="164" stroke="#e0e0e0" stroke-width="1"/&gt;</span></span>
-<span id="cb1-595"><a href="#cb1-595" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="60" y1="116" x2="450" y2="116" stroke="#e0e0e0" stroke-width="1"/&gt;</span></span>
-<span id="cb1-596"><a href="#cb1-596" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="60" y1="68"  x2="450" y2="68"  stroke="#e0e0e0" stroke-width="1"/&gt;</span></span>
-<span id="cb1-597"><a href="#cb1-597" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="60" y1="20"  x2="450" y2="20"  stroke="#e0e0e0" stroke-width="1"/&gt;</span></span>
+<span id="cb1-576"><a href="#cb1-576" aria-hidden="true" tabindex="-1"></a>this can then be rewritten as</span>
+<span id="cb1-577"><a href="#cb1-577" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-578"><a href="#cb1-578" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-579"><a href="#cb1-579" aria-hidden="true" tabindex="-1"></a>=\frac{T_\text{H,out}-T_\text{H,in}}{T_\text{H,in}-T_\text{C,in}}+\frac{T_\text{H,in}-T_\text{C,in}}{T_\text{H,in}-T_\text{C,in}} + \frac{T_\text{C,in}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}} = </span>
+<span id="cb1-580"><a href="#cb1-580" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-581"><a href="#cb1-581" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-582"><a href="#cb1-582" aria-hidden="true" tabindex="-1"></a>into </span>
+<span id="cb1-583"><a href="#cb1-583" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-584"><a href="#cb1-584" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-585"><a href="#cb1-585" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-586"><a href="#cb1-586" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-587"><a href="#cb1-587" aria-hidden="true" tabindex="-1"></a>After algebra (substituting $C_\text{r}$ and $\varepsilon$):</span>
+<span id="cb1-588"><a href="#cb1-588" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-589"><a href="#cb1-589" aria-hidden="true" tabindex="-1"></a>$$\frac{T_\text{H,out}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}} = -\varepsilon + 1 - C_\text{r}\varepsilon$$</span>
+<span id="cb1-590"><a href="#cb1-590" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-591"><a href="#cb1-591" aria-hidden="true" tabindex="-1"></a>recognize that </span>
+<span id="cb1-592"><a href="#cb1-592" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-593"><a href="#cb1-593" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-594"><a href="#cb1-594" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb1-595"><a href="#cb1-595" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-596"><a href="#cb1-596" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-597"><a href="#cb1-597" aria-hidden="true" tabindex="-1"></a>Therefore:</span>
 <span id="cb1-598"><a href="#cb1-598" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-599"><a href="#cb1-599" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Cr=0: ε=1−exp(−NTU), asymptote→1 (y→20) --&gt;</span></span>
-<span id="cb1-600"><a href="#cb1-600" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;polyline points="60,260 69.75,237 79.5,217 89.25,198 99,181 108.75,166 118.5,152 128.25,139 138,128 147.75,118 157.5,108 177,92 196.5,79 216,69 235.5,60 255,53 284.25,44 313.5,38 352.5,32 401.25,27 450,24"</span></span>
-<span id="cb1-601"><a href="#cb1-601" aria-hidden="true" tabindex="-1"></a><span class="in">            fill="none" stroke="#1a4a9a" stroke-width="2"/&gt;</span></span>
+<span id="cb1-599"><a href="#cb1-599" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-600"><a href="#cb1-600" aria-hidden="true" tabindex="-1"></a>\ln(-\varepsilon + 1 - C_\text{r}\varepsilon) = -\text{NTU}(1+C_\text{r})</span>
+<span id="cb1-601"><a href="#cb1-601" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-602"><a href="#cb1-602" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-603"><a href="#cb1-603" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Cr=0.25: ε=(1−exp(−1.25·NTU))/1.25, asymptote→0.8 (y→68) --&gt;</span></span>
-<span id="cb1-604"><a href="#cb1-604" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;polyline points="60,260 69.75,237 79.5,218 89.25,200 99,184 108.75,171 118.5,159 128.25,148 138,139 147.75,130 157.5,123 177,111 196.5,101 216,94 235.5,88 255,84 284.25,79 313.5,75 352.5,73 401.25,70 450,69"</span></span>
-<span id="cb1-605"><a href="#cb1-605" aria-hidden="true" tabindex="-1"></a><span class="in">            fill="none" stroke="#4488cc" stroke-width="2"/&gt;</span></span>
-<span id="cb1-606"><a href="#cb1-606" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-607"><a href="#cb1-607" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Cr=0.5: ε=(1−exp(−1.5·NTU))/1.5, asymptote→0.667 (y→100) --&gt;</span></span>
-<span id="cb1-608"><a href="#cb1-608" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;polyline points="60,260 69.75,238 79.5,219 89.25,202 99,188 108.75,176 118.5,165 128.25,156 138,148 147.75,142 157.5,136 177,126 196.5,120 216,115 235.5,111 255,108 284.25,105 313.5,103 352.5,102 401.25,101 450,100"</span></span>
-<span id="cb1-609"><a href="#cb1-609" aria-hidden="true" tabindex="-1"></a><span class="in">            fill="none" stroke="#228855" stroke-width="2"/&gt;</span></span>
+<span id="cb1-603"><a href="#cb1-603" aria-hidden="true" tabindex="-1"></a>Rearranging:</span>
+<span id="cb1-604"><a href="#cb1-604" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-605"><a href="#cb1-605" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-606"><a href="#cb1-606" aria-hidden="true" tabindex="-1"></a>\boxed{\varepsilon = \frac{1 - \exp\bigl<span class="co">[</span><span class="ot">-\text{NTU}(1+C_\text{r})\bigr</span><span class="co">]</span>}{1+C_\text{r}}} \qquad \text{(co-flow)}.</span>
+<span id="cb1-607"><a href="#cb1-607" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-608"><a href="#cb1-608" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-609"><a href="#cb1-609" aria-hidden="true" tabindex="-1"></a>This is our function $\varepsilon(\text{NTU}, C_\text{r})$ for this particular configuration. </span>
 <span id="cb1-610"><a href="#cb1-610" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-611"><a href="#cb1-611" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Cr=0.75: ε=(1−exp(−1.75·NTU))/1.75, asymptote→0.571 (y→123) --&gt;</span></span>
-<span id="cb1-612"><a href="#cb1-612" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;polyline points="60,260 69.75,238 79.5,220 89.25,204 99,191 108.75,180 118.5,171 128.25,163 138,157 147.75,151 157.5,147 177,140 196.5,135 216,131 235.5,129 255,127 284.25,125 313.5,124 352.5,124 401.25,123 450,123"</span></span>
-<span id="cb1-613"><a href="#cb1-613" aria-hidden="true" tabindex="-1"></a><span class="in">            fill="none" stroke="#cc7722" stroke-width="2"/&gt;</span></span>
-<span id="cb1-614"><a href="#cb1-614" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-615"><a href="#cb1-615" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Cr=1: ε=(1−exp(−2·NTU))/2, asymptote→0.5 (y→140) --&gt;</span></span>
-<span id="cb1-616"><a href="#cb1-616" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;polyline points="60,260 69.75,238 79.5,220 89.25,206 99,194 108.75,184 118.5,176 128.25,170 138,164 147.75,160 157.5,156 177,151 196.5,147 216,145 235.5,143 255,142 284.25,141 313.5,141 352.5,140 401.25,140 450,140"</span></span>
-<span id="cb1-617"><a href="#cb1-617" aria-hidden="true" tabindex="-1"></a><span class="in">            fill="none" stroke="#992222" stroke-width="2"/&gt;</span></span>
-<span id="cb1-618"><a href="#cb1-618" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-619"><a href="#cb1-619" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- ε_goal dashed line at ε=0.64, y=106 --&gt;</span></span>
-<span id="cb1-620"><a href="#cb1-620" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="60" y1="106" x2="450" y2="106" stroke="#444" stroke-width="1.5" stroke-dasharray="7,4"/&gt;</span></span>
-<span id="cb1-621"><a href="#cb1-621" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;foreignObject x="63" y="88" width="100" height="20"&gt;</span></span>
-<span id="cb1-622"><a href="#cb1-622" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;div xmlns="http://www.w3.org/1999/xhtml" style="font-size:14px; font-family:serif; color:#333"&gt;\(\varepsilon_\text{goal}\)&lt;/div&gt;</span></span>
-<span id="cb1-623"><a href="#cb1-623" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/foreignObject&gt;</span></span>
-<span id="cb1-624"><a href="#cb1-624" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-625"><a href="#cb1-625" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Axes --&gt;</span></span>
-<span id="cb1-626"><a href="#cb1-626" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="60" y1="260" x2="456" y2="260" stroke="black" stroke-width="1.5" marker-end="url(#ep-arr)"/&gt;</span></span>
-<span id="cb1-627"><a href="#cb1-627" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="60" y1="260" x2="60"  y2="13"  stroke="black" stroke-width="1.5" marker-end="url(#ep-arr)"/&gt;</span></span>
-<span id="cb1-628"><a href="#cb1-628" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-629"><a href="#cb1-629" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- X ticks (NTU = 0,1,2,3,4 → x = 60,157.5,255,352.5,450) --&gt;</span></span>
-<span id="cb1-630"><a href="#cb1-630" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="60"    y1="260" x2="60"    y2="266" stroke="black" stroke-width="1"/&gt;</span></span>
-<span id="cb1-631"><a href="#cb1-631" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="157.5" y1="260" x2="157.5" y2="266" stroke="black" stroke-width="1"/&gt;</span></span>
-<span id="cb1-632"><a href="#cb1-632" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="255"   y1="260" x2="255"   y2="266" stroke="black" stroke-width="1"/&gt;</span></span>
-<span id="cb1-633"><a href="#cb1-633" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="352.5" y1="260" x2="352.5" y2="266" stroke="black" stroke-width="1"/&gt;</span></span>
-<span id="cb1-634"><a href="#cb1-634" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="450"   y1="260" x2="450"   y2="266" stroke="black" stroke-width="1"/&gt;</span></span>
-<span id="cb1-635"><a href="#cb1-635" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="60"    y="278" text-anchor="middle" font-size="11" font-family="Georgia,serif"&gt;0&lt;/text&gt;</span></span>
-<span id="cb1-636"><a href="#cb1-636" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="157.5" y="278" text-anchor="middle" font-size="11" font-family="Georgia,serif"&gt;1&lt;/text&gt;</span></span>
-<span id="cb1-637"><a href="#cb1-637" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="255"   y="278" text-anchor="middle" font-size="11" font-family="Georgia,serif"&gt;2&lt;/text&gt;</span></span>
-<span id="cb1-638"><a href="#cb1-638" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="352.5" y="278" text-anchor="middle" font-size="11" font-family="Georgia,serif"&gt;3&lt;/text&gt;</span></span>
-<span id="cb1-639"><a href="#cb1-639" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="450"   y="278" text-anchor="middle" font-size="11" font-family="Georgia,serif"&gt;4&lt;/text&gt;</span></span>
-<span id="cb1-640"><a href="#cb1-640" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="255"   y="298" text-anchor="middle" font-size="13" font-family="Georgia,serif"&gt;NTU&lt;/text&gt;</span></span>
+<span id="cb1-611"><a href="#cb1-611" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
+<span id="cb1-612"><a href="#cb1-612" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;svg width="570" height="310" xmlns="http://www.w3.org/2000/svg"&gt;</span></span>
+<span id="cb1-613"><a href="#cb1-613" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!--</span></span>
+<span id="cb1-614"><a href="#cb1-614" aria-hidden="true" tabindex="-1"></a><span class="in">    Plot area: x=60..450, y=20..260  (width=390, height=240)</span></span>
+<span id="cb1-615"><a href="#cb1-615" aria-hidden="true" tabindex="-1"></a><span class="in">    x(NTU) = 60 + NTU*97.5   (NTU 0→4)</span></span>
+<span id="cb1-616"><a href="#cb1-616" aria-hidden="true" tabindex="-1"></a><span class="in">    y(ε)   = 260 − ε*240     (ε 0→1)</span></span>
+<span id="cb1-617"><a href="#cb1-617" aria-hidden="true" tabindex="-1"></a><span class="in">    Curve formula: ε = (1 − exp(−NTU·(1+Cr))) / (1+Cr)</span></span>
+<span id="cb1-618"><a href="#cb1-618" aria-hidden="true" tabindex="-1"></a><span class="in">    21 points: NTU = 0,.1,.2,.3,.4,.5,.6,.7,.8,.9,1,1.2,1.4,1.6,1.8,2,2.3,2.6,3,3.5,4</span></span>
+<span id="cb1-619"><a href="#cb1-619" aria-hidden="true" tabindex="-1"></a><span class="in">    x values:  60,69.75,79.5,89.25,99,108.75,118.5,128.25,138,147.75,157.5,177,196.5,216,235.5,255,284.25,313.5,352.5,401.25,450</span></span>
+<span id="cb1-620"><a href="#cb1-620" aria-hidden="true" tabindex="-1"></a><span class="in">  --&gt;</span></span>
+<span id="cb1-621"><a href="#cb1-621" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;defs&gt;</span></span>
+<span id="cb1-622"><a href="#cb1-622" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;marker id="ep-arr" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"&gt;</span></span>
+<span id="cb1-623"><a href="#cb1-623" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;polygon points="0 0, 6 3, 0 6" fill="black"/&gt;</span></span>
+<span id="cb1-624"><a href="#cb1-624" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/marker&gt;</span></span>
+<span id="cb1-625"><a href="#cb1-625" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/defs&gt;</span></span>
+<span id="cb1-626"><a href="#cb1-626" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-627"><a href="#cb1-627" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Light grid lines at ε = 0.2, 0.4, 0.6, 0.8, 1.0 --&gt;</span></span>
+<span id="cb1-628"><a href="#cb1-628" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="60" y1="212" x2="450" y2="212" stroke="#e0e0e0" stroke-width="1"/&gt;</span></span>
+<span id="cb1-629"><a href="#cb1-629" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="60" y1="164" x2="450" y2="164" stroke="#e0e0e0" stroke-width="1"/&gt;</span></span>
+<span id="cb1-630"><a href="#cb1-630" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="60" y1="116" x2="450" y2="116" stroke="#e0e0e0" stroke-width="1"/&gt;</span></span>
+<span id="cb1-631"><a href="#cb1-631" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="60" y1="68"  x2="450" y2="68"  stroke="#e0e0e0" stroke-width="1"/&gt;</span></span>
+<span id="cb1-632"><a href="#cb1-632" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="60" y1="20"  x2="450" y2="20"  stroke="#e0e0e0" stroke-width="1"/&gt;</span></span>
+<span id="cb1-633"><a href="#cb1-633" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-634"><a href="#cb1-634" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Cr=0: ε=1−exp(−NTU), asymptote→1 (y→20) --&gt;</span></span>
+<span id="cb1-635"><a href="#cb1-635" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;polyline points="60,260 69.75,237 79.5,217 89.25,198 99,181 108.75,166 118.5,152 128.25,139 138,128 147.75,118 157.5,108 177,92 196.5,79 216,69 235.5,60 255,53 284.25,44 313.5,38 352.5,32 401.25,27 450,24"</span></span>
+<span id="cb1-636"><a href="#cb1-636" aria-hidden="true" tabindex="-1"></a><span class="in">            fill="none" stroke="#1a4a9a" stroke-width="2"/&gt;</span></span>
+<span id="cb1-637"><a href="#cb1-637" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-638"><a href="#cb1-638" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Cr=0.25: ε=(1−exp(−1.25·NTU))/1.25, asymptote→0.8 (y→68) --&gt;</span></span>
+<span id="cb1-639"><a href="#cb1-639" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;polyline points="60,260 69.75,237 79.5,218 89.25,200 99,184 108.75,171 118.5,159 128.25,148 138,139 147.75,130 157.5,123 177,111 196.5,101 216,94 235.5,88 255,84 284.25,79 313.5,75 352.5,73 401.25,70 450,69"</span></span>
+<span id="cb1-640"><a href="#cb1-640" aria-hidden="true" tabindex="-1"></a><span class="in">            fill="none" stroke="#4488cc" stroke-width="2"/&gt;</span></span>
 <span id="cb1-641"><a href="#cb1-641" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-642"><a href="#cb1-642" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Y ticks (ε = 0, 0.2, 0.4, 0.6, 0.8, 1.0 → y = 260,212,164,116,68,20) --&gt;</span></span>
-<span id="cb1-643"><a href="#cb1-643" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="60" y1="260" x2="54" y2="260" stroke="black" stroke-width="1"/&gt;</span></span>
-<span id="cb1-644"><a href="#cb1-644" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="60" y1="212" x2="54" y2="212" stroke="black" stroke-width="1"/&gt;</span></span>
-<span id="cb1-645"><a href="#cb1-645" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="60" y1="164" x2="54" y2="164" stroke="black" stroke-width="1"/&gt;</span></span>
-<span id="cb1-646"><a href="#cb1-646" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="60" y1="116" x2="54" y2="116" stroke="black" stroke-width="1"/&gt;</span></span>
-<span id="cb1-647"><a href="#cb1-647" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="60" y1="68"  x2="54" y2="68"  stroke="black" stroke-width="1"/&gt;</span></span>
-<span id="cb1-648"><a href="#cb1-648" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="60" y1="20"  x2="54" y2="20"  stroke="black" stroke-width="1"/&gt;</span></span>
-<span id="cb1-649"><a href="#cb1-649" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="50" y="264" text-anchor="end" font-size="11" font-family="Georgia,serif"&gt;0&lt;/text&gt;</span></span>
-<span id="cb1-650"><a href="#cb1-650" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="50" y="216" text-anchor="end" font-size="11" font-family="Georgia,serif"&gt;0.2&lt;/text&gt;</span></span>
-<span id="cb1-651"><a href="#cb1-651" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="50" y="168" text-anchor="end" font-size="11" font-family="Georgia,serif"&gt;0.4&lt;/text&gt;</span></span>
-<span id="cb1-652"><a href="#cb1-652" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="50" y="120" text-anchor="end" font-size="11" font-family="Georgia,serif"&gt;0.6&lt;/text&gt;</span></span>
-<span id="cb1-653"><a href="#cb1-653" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="50" y="72"  text-anchor="end" font-size="11" font-family="Georgia,serif"&gt;0.8&lt;/text&gt;</span></span>
-<span id="cb1-654"><a href="#cb1-654" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="50" y="24"  text-anchor="end" font-size="11" font-family="Georgia,serif"&gt;1.0&lt;/text&gt;</span></span>
-<span id="cb1-655"><a href="#cb1-655" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-656"><a href="#cb1-656" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Y axis label --&gt;</span></span>
-<span id="cb1-657"><a href="#cb1-657" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;foreignObject x="12" y="112" width="24" height="24"&gt;</span></span>
-<span id="cb1-658"><a href="#cb1-658" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;div xmlns="http://www.w3.org/1999/xhtml" style="font-size:16px; font-family:serif"&gt;\(\varepsilon\)&lt;/div&gt;</span></span>
-<span id="cb1-659"><a href="#cb1-659" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/foreignObject&gt;</span></span>
-<span id="cb1-660"><a href="#cb1-660" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-661"><a href="#cb1-661" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Curve labels at right end --&gt;</span></span>
-<span id="cb1-662"><a href="#cb1-662" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="454" y="28"  font-size="12" font-family="Georgia,serif" fill="#1a4a9a"&gt;C&lt;tspan baseline-shift="sub" font-size="9"&gt;r&lt;/tspan&gt;=0&lt;/text&gt;</span></span>
-<span id="cb1-663"><a href="#cb1-663" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="454" y="73"  font-size="12" font-family="Georgia,serif" fill="#4488cc"&gt;C&lt;tspan baseline-shift="sub" font-size="9"&gt;r&lt;/tspan&gt;=0.25&lt;/text&gt;</span></span>
-<span id="cb1-664"><a href="#cb1-664" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="454" y="104" font-size="12" font-family="Georgia,serif" fill="#228855"&gt;C&lt;tspan baseline-shift="sub" font-size="9"&gt;r&lt;/tspan&gt;=0.5&lt;/text&gt;</span></span>
-<span id="cb1-665"><a href="#cb1-665" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="454" y="127" font-size="12" font-family="Georgia,serif" fill="#cc7722"&gt;C&lt;tspan baseline-shift="sub" font-size="9"&gt;r&lt;/tspan&gt;=0.75&lt;/text&gt;</span></span>
-<span id="cb1-666"><a href="#cb1-666" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="454" y="150" font-size="12" font-family="Georgia,serif" fill="#992222"&gt;C&lt;tspan baseline-shift="sub" font-size="9"&gt;r&lt;/tspan&gt;=1&lt;/text&gt;</span></span>
-<span id="cb1-667"><a href="#cb1-667" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/svg&gt;</span></span>
-<span id="cb1-668"><a href="#cb1-668" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-669"><a href="#cb1-669" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-670"><a href="#cb1-670" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-671"><a href="#cb1-671" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-672"><a href="#cb1-672" aria-hidden="true" tabindex="-1"></a><span class="fu">### Algorithm for HXer Design</span></span>
-<span id="cb1-673"><a href="#cb1-673" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-674"><a href="#cb1-674" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Gather information. Likely you will have known inlet temperatures and a known flow rate and goal temperature for one of the sides. ("We need to heat this up to..." or "we need to cool this down down to...".)</span>
-<span id="cb1-675"><a href="#cb1-675" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Calculate $\varepsilon \equiv \frac{C_\text{H}(T_\text{H,in}-T_\text{H,out})}{C_\text{min}(T_\text{H,in}-T_\text{C,in})}=\frac{C_\text{C}(T_\text{C,in}-T_\text{C,out})}{C_\text{min}(T_\text{H,in}-T_\text{C,in})}$.</span>
-<span id="cb1-676"><a href="#cb1-676" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Find charts/equations to determine the possibilities for $\text{NTU}(\varepsilon, C_\text{r})$.</span>
-<span id="cb1-677"><a href="#cb1-677" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Then it is economics: consider the heat exchanger cost (larger NTU means a larger heat exchanger), pumping costs (larger $\dot{m}_\text{C}$ means more cost to run), space constraints, fluid pressures, etc.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-642"><a href="#cb1-642" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Cr=0.5: ε=(1−exp(−1.5·NTU))/1.5, asymptote→0.667 (y→100) --&gt;</span></span>
+<span id="cb1-643"><a href="#cb1-643" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;polyline points="60,260 69.75,238 79.5,219 89.25,202 99,188 108.75,176 118.5,165 128.25,156 138,148 147.75,142 157.5,136 177,126 196.5,120 216,115 235.5,111 255,108 284.25,105 313.5,103 352.5,102 401.25,101 450,100"</span></span>
+<span id="cb1-644"><a href="#cb1-644" aria-hidden="true" tabindex="-1"></a><span class="in">            fill="none" stroke="#228855" stroke-width="2"/&gt;</span></span>
+<span id="cb1-645"><a href="#cb1-645" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-646"><a href="#cb1-646" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Cr=0.75: ε=(1−exp(−1.75·NTU))/1.75, asymptote→0.571 (y→123) --&gt;</span></span>
+<span id="cb1-647"><a href="#cb1-647" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;polyline points="60,260 69.75,238 79.5,220 89.25,204 99,191 108.75,180 118.5,171 128.25,163 138,157 147.75,151 157.5,147 177,140 196.5,135 216,131 235.5,129 255,127 284.25,125 313.5,124 352.5,124 401.25,123 450,123"</span></span>
+<span id="cb1-648"><a href="#cb1-648" aria-hidden="true" tabindex="-1"></a><span class="in">            fill="none" stroke="#cc7722" stroke-width="2"/&gt;</span></span>
+<span id="cb1-649"><a href="#cb1-649" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-650"><a href="#cb1-650" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Cr=1: ε=(1−exp(−2·NTU))/2, asymptote→0.5 (y→140) --&gt;</span></span>
+<span id="cb1-651"><a href="#cb1-651" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;polyline points="60,260 69.75,238 79.5,220 89.25,206 99,194 108.75,184 118.5,176 128.25,170 138,164 147.75,160 157.5,156 177,151 196.5,147 216,145 235.5,143 255,142 284.25,141 313.5,141 352.5,140 401.25,140 450,140"</span></span>
+<span id="cb1-652"><a href="#cb1-652" aria-hidden="true" tabindex="-1"></a><span class="in">            fill="none" stroke="#992222" stroke-width="2"/&gt;</span></span>
+<span id="cb1-653"><a href="#cb1-653" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-654"><a href="#cb1-654" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- ε_goal dashed line at ε=0.64, y=106 --&gt;</span></span>
+<span id="cb1-655"><a href="#cb1-655" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="60" y1="106" x2="450" y2="106" stroke="#444" stroke-width="1.5" stroke-dasharray="7,4"/&gt;</span></span>
+<span id="cb1-656"><a href="#cb1-656" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;foreignObject x="63" y="88" width="100" height="20"&gt;</span></span>
+<span id="cb1-657"><a href="#cb1-657" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;div xmlns="http://www.w3.org/1999/xhtml" style="font-size:14px; font-family:serif; color:#333"&gt;\(\varepsilon_\text{goal}\)&lt;/div&gt;</span></span>
+<span id="cb1-658"><a href="#cb1-658" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/foreignObject&gt;</span></span>
+<span id="cb1-659"><a href="#cb1-659" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-660"><a href="#cb1-660" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Axes --&gt;</span></span>
+<span id="cb1-661"><a href="#cb1-661" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="60" y1="260" x2="456" y2="260" stroke="black" stroke-width="1.5" marker-end="url(#ep-arr)"/&gt;</span></span>
+<span id="cb1-662"><a href="#cb1-662" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="60" y1="260" x2="60"  y2="13"  stroke="black" stroke-width="1.5" marker-end="url(#ep-arr)"/&gt;</span></span>
+<span id="cb1-663"><a href="#cb1-663" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-664"><a href="#cb1-664" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- X ticks (NTU = 0,1,2,3,4 → x = 60,157.5,255,352.5,450) --&gt;</span></span>
+<span id="cb1-665"><a href="#cb1-665" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="60"    y1="260" x2="60"    y2="266" stroke="black" stroke-width="1"/&gt;</span></span>
+<span id="cb1-666"><a href="#cb1-666" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="157.5" y1="260" x2="157.5" y2="266" stroke="black" stroke-width="1"/&gt;</span></span>
+<span id="cb1-667"><a href="#cb1-667" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="255"   y1="260" x2="255"   y2="266" stroke="black" stroke-width="1"/&gt;</span></span>
+<span id="cb1-668"><a href="#cb1-668" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="352.5" y1="260" x2="352.5" y2="266" stroke="black" stroke-width="1"/&gt;</span></span>
+<span id="cb1-669"><a href="#cb1-669" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="450"   y1="260" x2="450"   y2="266" stroke="black" stroke-width="1"/&gt;</span></span>
+<span id="cb1-670"><a href="#cb1-670" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="60"    y="278" text-anchor="middle" font-size="11" font-family="Georgia,serif"&gt;0&lt;/text&gt;</span></span>
+<span id="cb1-671"><a href="#cb1-671" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="157.5" y="278" text-anchor="middle" font-size="11" font-family="Georgia,serif"&gt;1&lt;/text&gt;</span></span>
+<span id="cb1-672"><a href="#cb1-672" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="255"   y="278" text-anchor="middle" font-size="11" font-family="Georgia,serif"&gt;2&lt;/text&gt;</span></span>
+<span id="cb1-673"><a href="#cb1-673" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="352.5" y="278" text-anchor="middle" font-size="11" font-family="Georgia,serif"&gt;3&lt;/text&gt;</span></span>
+<span id="cb1-674"><a href="#cb1-674" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="450"   y="278" text-anchor="middle" font-size="11" font-family="Georgia,serif"&gt;4&lt;/text&gt;</span></span>
+<span id="cb1-675"><a href="#cb1-675" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="255"   y="298" text-anchor="middle" font-size="13" font-family="Georgia,serif"&gt;NTU&lt;/text&gt;</span></span>
+<span id="cb1-676"><a href="#cb1-676" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-677"><a href="#cb1-677" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Y ticks (ε = 0, 0.2, 0.4, 0.6, 0.8, 1.0 → y = 260,212,164,116,68,20) --&gt;</span></span>
+<span id="cb1-678"><a href="#cb1-678" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="60" y1="260" x2="54" y2="260" stroke="black" stroke-width="1"/&gt;</span></span>
+<span id="cb1-679"><a href="#cb1-679" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="60" y1="212" x2="54" y2="212" stroke="black" stroke-width="1"/&gt;</span></span>
+<span id="cb1-680"><a href="#cb1-680" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="60" y1="164" x2="54" y2="164" stroke="black" stroke-width="1"/&gt;</span></span>
+<span id="cb1-681"><a href="#cb1-681" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="60" y1="116" x2="54" y2="116" stroke="black" stroke-width="1"/&gt;</span></span>
+<span id="cb1-682"><a href="#cb1-682" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="60" y1="68"  x2="54" y2="68"  stroke="black" stroke-width="1"/&gt;</span></span>
+<span id="cb1-683"><a href="#cb1-683" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="60" y1="20"  x2="54" y2="20"  stroke="black" stroke-width="1"/&gt;</span></span>
+<span id="cb1-684"><a href="#cb1-684" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="50" y="264" text-anchor="end" font-size="11" font-family="Georgia,serif"&gt;0&lt;/text&gt;</span></span>
+<span id="cb1-685"><a href="#cb1-685" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="50" y="216" text-anchor="end" font-size="11" font-family="Georgia,serif"&gt;0.2&lt;/text&gt;</span></span>
+<span id="cb1-686"><a href="#cb1-686" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="50" y="168" text-anchor="end" font-size="11" font-family="Georgia,serif"&gt;0.4&lt;/text&gt;</span></span>
+<span id="cb1-687"><a href="#cb1-687" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="50" y="120" text-anchor="end" font-size="11" font-family="Georgia,serif"&gt;0.6&lt;/text&gt;</span></span>
+<span id="cb1-688"><a href="#cb1-688" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="50" y="72"  text-anchor="end" font-size="11" font-family="Georgia,serif"&gt;0.8&lt;/text&gt;</span></span>
+<span id="cb1-689"><a href="#cb1-689" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="50" y="24"  text-anchor="end" font-size="11" font-family="Georgia,serif"&gt;1.0&lt;/text&gt;</span></span>
+<span id="cb1-690"><a href="#cb1-690" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-691"><a href="#cb1-691" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Y axis label --&gt;</span></span>
+<span id="cb1-692"><a href="#cb1-692" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;foreignObject x="12" y="112" width="24" height="24"&gt;</span></span>
+<span id="cb1-693"><a href="#cb1-693" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;div xmlns="http://www.w3.org/1999/xhtml" style="font-size:16px; font-family:serif"&gt;\(\varepsilon\)&lt;/div&gt;</span></span>
+<span id="cb1-694"><a href="#cb1-694" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/foreignObject&gt;</span></span>
+<span id="cb1-695"><a href="#cb1-695" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-696"><a href="#cb1-696" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Curve labels at right end --&gt;</span></span>
+<span id="cb1-697"><a href="#cb1-697" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="454" y="28"  font-size="12" font-family="Georgia,serif" fill="#1a4a9a"&gt;C&lt;tspan baseline-shift="sub" font-size="9"&gt;r&lt;/tspan&gt;=0&lt;/text&gt;</span></span>
+<span id="cb1-698"><a href="#cb1-698" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="454" y="73"  font-size="12" font-family="Georgia,serif" fill="#4488cc"&gt;C&lt;tspan baseline-shift="sub" font-size="9"&gt;r&lt;/tspan&gt;=0.25&lt;/text&gt;</span></span>
+<span id="cb1-699"><a href="#cb1-699" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="454" y="104" font-size="12" font-family="Georgia,serif" fill="#228855"&gt;C&lt;tspan baseline-shift="sub" font-size="9"&gt;r&lt;/tspan&gt;=0.5&lt;/text&gt;</span></span>
+<span id="cb1-700"><a href="#cb1-700" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="454" y="127" font-size="12" font-family="Georgia,serif" fill="#cc7722"&gt;C&lt;tspan baseline-shift="sub" font-size="9"&gt;r&lt;/tspan&gt;=0.75&lt;/text&gt;</span></span>
+<span id="cb1-701"><a href="#cb1-701" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="454" y="150" font-size="12" font-family="Georgia,serif" fill="#992222"&gt;C&lt;tspan baseline-shift="sub" font-size="9"&gt;r&lt;/tspan&gt;=1&lt;/text&gt;</span></span>
+<span id="cb1-702"><a href="#cb1-702" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/svg&gt;</span></span>
+<span id="cb1-703"><a href="#cb1-703" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-704"><a href="#cb1-704" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-705"><a href="#cb1-705" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-706"><a href="#cb1-706" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-707"><a href="#cb1-707" aria-hidden="true" tabindex="-1"></a><span class="fu">### Algorithm for HXer Design</span></span>
+<span id="cb1-708"><a href="#cb1-708" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-709"><a href="#cb1-709" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Gather information. Likely you will have known inlet temperatures and a known flow rate and goal temperature for one of the sides. ("We need to heat this up to..." or "we need to cool this down down to...".)</span>
+<span id="cb1-710"><a href="#cb1-710" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Calculate $\varepsilon \equiv \frac{C_\text{H}(T_\text{H,in}-T_\text{H,out})}{C_\text{min}(T_\text{H,in}-T_\text{C,in})}=\frac{C_\text{C}(T_\text{C,in}-T_\text{C,out})}{C_\text{min}(T_\text{H,in}-T_\text{C,in})}$.</span>
+<span id="cb1-711"><a href="#cb1-711" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Find charts/equations to determine the possibilities for $\text{NTU}(\varepsilon, C_\text{r})$.</span>
+<span id="cb1-712"><a href="#cb1-712" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Then it is economics: consider the heat exchanger cost (larger NTU means a larger heat exchanger), pumping costs (larger $\dot{m}_\text{C}$ means more cost to run), space constraints, fluid pressures, etc.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
