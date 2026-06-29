@@ -1,6 +1,6 @@
 # Heat Exchangers
 
-Last week we talked about "internal convection": we changed the temperature of a fluid with heat transfer through the walls of a pipe. Heat exchangers involve pairings of internal flows: the heat lost from one fluid goes into the other.
+Last week we talked about "internal convection": we changed the temperature of a fluid with heat transfer through the walls of a pipe. Heat exchangers involve pairings of internal flows: the energy lost by one fluid is an energy-gain for another. That is a simple statement of the First Law of Thermodynamics, but we need more than thermodynamics to design them. If we want to get deep into the details, we need to think about conduction, convection, fins, turbulence... almost everything we've learned so far!
 
 
 
