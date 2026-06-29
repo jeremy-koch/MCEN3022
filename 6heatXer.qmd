@@ -377,23 +377,37 @@ $$
 d(\Delta T) = \frac{dq}{-\dot{m}_\text{H} c_{p,\text{H}}} - \frac{dq}{\dot{m}_\text{C} c_{p,\text{C}}}
 $$
 
-and doing a little math, including bringing-in $dq=U\,dA\,\Delta T$
+and bringing-in $dq=U\,dA\,\Delta T$
 
 $$
-d(\Delta T) = -dq\left(\frac{1}{\dot{m}_\text{H} c_{p,\text{H}}} + \frac{1}{\dot{m}_\text{C} c_{p,\text{C}}}\right) = U\,dA\,\Delta T\left(\frac{1}{\dot{m}_\text{H} c_{p,\text{H}}} + \frac{1}{\dot{m}_\text{C} c_{p,\text{C}}}\right).
+d(\Delta T) = -U\,dA\,\Delta T\left(\frac{1}{\dot{m}_\text{H} c_{p,\text{H}}} + \frac{1}{\dot{m}_\text{C} c_{p,\text{C}}}\right).
 $$
 
-This is a separable ODE:
+This is a separable ODE that we integrate from the "in" to the "out":
 
 $$\int_\text{in}^\text{out}\frac{d(\Delta T)}{\Delta T} = \int_\text{in}^\text{out} -U\left(\frac{1}{\dot{m}_\text{H} c_{p,\text{H}}} + \frac{1}{\dot{m}_\text{C} c_{p,\text{C}}}\right)dA$$
 
 $$
-\ln\!\left(\frac{\Delta T_\text{out}}{\Delta T_\text{in}}\right) = -UA\left(\frac{1}{\dot{m}_\text{H} c_{p,\text{H}}} + \frac{1}{\dot{m}_\text{C} c_{p,\text{C}}}\right) = -UA\left(\frac{T_\text{H,in}-T_\text{H,out}}{\dot{Q}} + \frac{T_\text{C,out}-T_\text{C,in}}{\dot{Q}}\right)
+\ln\!\left(\frac{\Delta T_\text{out}}{\Delta T_\text{in}}\right) = -UA\left(\frac{1}{\dot{m}_\text{H} c_{p,\text{H}}} + \frac{1}{\dot{m}_\text{C} c_{p,\text{C}}}\right).
 $$
 
-$$\therefore \quad \dot{Q} = UA\cdot\frac{(T_\text{H,out}-T_\text{C,out}) - (T_\text{H,in}-T_\text{C,in})}{\ln\!\left(\frac{T_\text{H,out}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}}\right)} = UA\cdot\Delta T_{lm}$$
+Substituting:
 
-where $\Delta T_{lm}$ is defined as the **log-mean temperature difference (LMTD)**.
+$$
+\ln\!\left(\frac{\Delta T_\text{out}}{\Delta T_\text{in}}\right) = -UA\left(\frac{T_\text{H,in}-T_\text{H,out}}{\dot{Q}} + \frac{T_\text{C,out}-T_\text{C,in}}{\dot{Q}}\right)
+$$
+
+and rearranging
+
+$$
+\dot{Q} = UA\cdot\frac{(T_\text{H,out}-T_\text{C,out}) - (T_\text{H,in}-T_\text{C,in})}{\ln\!\left(\frac{T_\text{H,out}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}}\right)}.
+$$
+
+That complicated temperature term is defined as $\Delta T_{lm}$, the **log-mean temperature difference (LMTD)**:
+
+$$
+\dot{Q}= UA\cdot\Delta T_{lm}.
+$$
 
 :::
 
