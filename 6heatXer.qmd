@@ -1,26 +1,26 @@
 # Heat Exchangers
 
-Last week we talked about "internal convection", in which we changed the temperature of a fluid with heat transfer through the walls of a pipe. We thought generically of a situation in which the pipe wall was at $T_s$, or if there was a heat flux $q_s''$ through the walls. Heat exchangers involve pairings of internal flows: the heat lost from one goes into the other. We will be con
-
-Heat exchangers are usually in highly confined environments: we want the hot and fluids to
+Last week we talked about "internal convection": we changed the temperature of a fluid with heat transfer through the walls of a pipe. Heat exchangers involve pairings of internal flows: the heat lost from one fluid goes into the other.
 
 
-the "hot" and "cold" flows run next to each other and we want as much of those 
 
-::: {.callout-note}
-I
-:::
+<!-- ::: {.callout-note}
+
+::: -->
 
 ## Think First
 
 Recall
 
-1. 
+1. From thermodynamics: the energy balance $\dot{m}C c{p,C}(T_{C,\text{out}}-T_{C,\text{in}}) = \dot{m}H c{p,H}(T_{H,\text{in}}-T_{H,\text{out}})$ tells us how temperatures must be related.
+2. From convection: how did we define $h$, and what did "fin efficiency" let us do — that is, how did it let us lump complicated fin geometry into a simpler effective area?
+3. What is the log-mean temperature difference, and why does the "average" temperature difference across a heat exchanger need to be a log-mean rather than a simple arithmetic mean?
 
 Look Ahead
 
-1. 
-
+1. You can make a heat exchanger more effective by adding surface area — just make it longer. But as you keep doubling the length, does effectiveness keep doubling? Or does something prevent it from reaching 100%? What limits it physically?
+2. Can the hot fluid in a heat exchanger leave with a temperature below the cold fluid's outlet temperature? (Can $T_{H,\text{out}}$ be smaller than $T_{C,\text{out}}$?)
+3. Suppose you need to cool engine oil from 120°C to 60°C using water at 15°C. If you're tight on space (limited room in the engine), how would you compensate?
 
 
 ::: {.callout-tip}
@@ -31,7 +31,7 @@ Start with
 
 ## Thermodynamics isn't enough
 
-We studied heat exchangers a bit in thermodynamics, and the problems looked something like this: A hot fluid with specific heat $c_{p,\text{H}}$, flowing at $\dot{m}_\text{H}$, needs to be cooled from 90°C to 40°C. We use a cold fluid with $c_{p,\text{C}}$ that starts at 5°C and must not exceed 20°C. What mass flow rate $\dot{m}_\text{C}$ do we need? The answer comes from the energy balance
+We studied heat exchangers a bit in thermodynamics, and the problems looked something like this: A hot fluid with specific heat $c_{p,\text{H}}$ flowing with a mass flow rate of $\dot{m}_\text{H}$ needs to be cooled from 90°C to 40°C. We use a cold fluid with $c_{p,\text{C}}$ that starts at 5°C and must not exceed 20°C. What mass flow rate $\dot{m}_\text{C}$ do we need? The answer comes from an energy balance:
 
 $$
 \dot{m}_\text{C}c_{p,\text{C}} (T_{\text{C,out}}-T_{\text{C,in}})=\dot{m}_\text{H}c_{p,\text{H}} (T_{\text{H,in}}-T_{\text{H,out}}).
@@ -236,7 +236,7 @@ $$
 Notice that $U$ will have the same units as $h$... we are going to use $UA$ in our convection equation instead of $hA$.
 
 ::: {.callout-tip}
-It is common to assume that the areas of all the layers are the same, but that not always true: e.g. if we have circular pipes with finite wall thickness.
+It is common to assume that the areas of all the layers are the same, but that is not always true: e.g. if we have circular pipes with finite wall thickness.
 
 It is sometimes reasonable to claim the walls have no thermal resistance: thin sheets of metal are not going to hinder the heat transfer that much. Then we just focus on the convection elements (possibly including fins).
 :::
@@ -244,14 +244,16 @@ It is sometimes reasonable to claim the walls have no thermal resistance: thin s
 
 ### Flow Configurations
 
-We know that the amount heat transfer depends on temperature difference. 
+We know that the amount of heat transfer depends on temperature difference. 
 
 **The "co-flow" or "parallel-flow" configuration**
 
 We could have it where the cold inlet and hot inlet are next to each other -- in such a case, we get a massive (local) $\Delta T$ at the inlet side... good news, right? Maybe, but the $\Delta T$ is going to decrease along the flow, and we will have the limitation that $T_\text{C,out} < T_\text{H,out}$. 
 
 ::: {.callout-warning}
-We also might have concerns about "thermal stresses" because of the dramatic temperature gradients in the material.
+We also might have concerns about thermal stresses in the co-flow configuration. Here's the basic idea: solids expand when they heat up. If one side of a wall is dramatically hotter than the other -- as it is right at the inlet in co-flow -- the hot face wants to expand while the cold face doesn't. Since they're bonded to each other bending stresses develop.
+
+In counter-flow, the temperature difference across the wall is much more uniform along the exchanger length, so there's no single hot-spot and therefore less thermal stress. Thermal stresses matter most for brittle materials (ceramics, cast iron), in thick-walled exchangers, and in applications with repeated thermal cycling (fatigue from stress fluctuations can cause failure).
 :::
 
 **The "counter-flow" configuration**
@@ -363,9 +365,11 @@ This is a separable ODE:
 
 $$\int_\text{in}^\text{out}\frac{d(\Delta T)}{\Delta T} = \int_\text{in}^\text{out} -U\left(\frac{1}{\dot{m}_\text{H} c_{p,\text{H}}} + \frac{1}{\dot{m}_\text{C} c_{p,\text{C}}}\right)dA$$
 
-$$\ln\!\left(\frac{\Delta T_\text{out}}{\Delta T_\text{in}}\right) = -UA\left(\frac{1}{\dot{m}_\text{H} c_{p,\text{H}}} + \frac{1}{\dot{m}_\text{C} c_{p,\text{C}}}\right) = -UA\left(\frac{T_{H,\text{in}}-T_{H,\text{out}}}{\dot{Q}} + \frac{T_{C,\text{out}}-T_{C,\text{in}}}{\dot{Q}}\right)$$
+$$
+\ln\!\left(\frac{\Delta T_\text{out}}{\Delta T_\text{in}}\right) = -UA\left(\frac{1}{\dot{m}_\text{H} c_{p,\text{H}}} + \frac{1}{\dot{m}_\text{C} c_{p,\text{C}}}\right) = -UA\left(\frac{T_\text{H,in}-T_\text{H,out}}{\dot{Q}} + \frac{T_\text{C,out}-T_\text{C,in}}{\dot{Q}}\right)
+$$
 
-$$\therefore \quad \dot{Q} = UA\cdot\frac{(T_{H,\text{out}}-T_{C,\text{out}}) - (T_{H,\text{in}}-T_{C,\text{in}})}{\ln\!\left(\frac{T_{H,\text{out}}-T_{C,\text{out}}}{T_{H,\text{in}}-T_{C,\text{in}}}\right)} = UA\cdot\Delta T_{lm}$$
+$$\therefore \quad \dot{Q} = UA\cdot\frac{(T_\text{H,out}-T_\text{C,out}) - (T_\text{H,in}-T_\text{C,in})}{\ln\!\left(\frac{T_\text{H,out}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}}\right)} = UA\cdot\Delta T_{lm}$$
 
 where $\Delta T_{lm}$ is the **log-mean temperature difference (LMTD)**.
 
@@ -399,7 +403,7 @@ But... aren't we still in the same situation as we were in thermodynamics? We ca
 
 ### Problem setup
 
-A typical engineering problem looks like this: We are trying to cool down something that is hot, like an engine oil. We know it's flow rate, and have a cold fluid (air or water) available at a known reservoir temperature. That is, we know $\dot{m}_\text{H}$, $T_\text{H,in}$, and $T_\text{C,in}$.
+A typical engineering problem looks like this: We are trying to cool down something that is hot, like an engine oil. We know its flow rate, and have a cold fluid (air or water) available at a known reservoir temperature. That is, we know $\dot{m}_\text{H}$, $T_\text{H,in}$, and $T_\text{C,in}$.
 
 Our goal is to get the hot fluid down to an acceptable temperature $T_\text{H,out}$. We need to determine $\dot{m}_\text{C}$ and the heat exchanger design and size.
 
@@ -415,7 +419,7 @@ $$\dot{Q} = \underbrace{\dot{m}_\text{C} c_{p,\text{C}}}_{C_\text{C}}(T_\text{C,
 
 where we define $C_\text{C}\equiv \dot{m}_\text{C} c_{p,\text{C}}$ and $C_\text{H} \equiv \dot{m}_\text{H} c_{p,\text{H}}$ as the capacities. (This will make the math cleaner below.)
 
-If we were completely unaware of the heat exchanger design (didn't know if it was co- or counter-flow, didn't know how much cold flow there was, didn't know how bit it was), the maximum possible temperature change for the hot flow is $T_\text{H,in} - T_\text{C,in}$. Then the corresponding maximum possible amount of heat transfer is 
+If we were completely unaware of the heat exchanger design (didn't know if it was co- or counter-flow, didn't know how much cold flow there was, didn't know how big it was), the maximum possible temperature change for the hot flow is $T_\text{H,in} - T_\text{C,in}$. Then the corresponding maximum possible amount of heat transfer is 
 
 $$
 \dot{Q}_\text{max} = C_\text{min}(T_\text{H,in} - T_\text{C,in})
@@ -453,7 +457,7 @@ $$
 
 or equivalently
 $$
-\varepsilon \equiv = 
+\varepsilon \equiv  
 \frac{C_\text{C}(T_\text{C,out}-T_\text{C,in})}{C_\text{min}(T_\text{H,in}-T_\text{C,in})}.
 $$
 
@@ -466,7 +470,7 @@ $$
 and
 
 $$
-\dot{Q} = C_\text{C}(T_\text{C,out}-T_\text{C,in}) = \varepsilon\, C_\text{min}(T_\text{H,in}-T_\text{C,in})..
+\dot{Q} = C_\text{C}(T_\text{C,out}-T_\text{C,in}) = \varepsilon\, C_\text{min}(T_\text{H,in}-T_\text{C,in}).
 $$
 
 This $\varepsilon$ must contain the effects of heat exchanger size and design (e.g. fins, channel width, etc.).
