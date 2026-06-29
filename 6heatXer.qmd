@@ -26,7 +26,7 @@ Look Ahead
 ::: {.callout-tip}
 ## Video
 
-Start with 
+Start with [this linked video](https://canvas.colorado.edu/courses/136150/pages/heat-exchangers) which introduces heat exchangers and describes the origins of $U$, the overall heat transfer coefficient.
 :::
 
 ## Thermodynamics isn't enough
@@ -244,6 +244,12 @@ It is sometimes reasonable to claim the walls have no thermal resistance: thin s
 
 ### Flow Configurations
 
+::: {.callout-tip}
+### Video
+
+Start with [this linked video](https://canvas.colorado.edu/courses/136150/pages/hxer-configurations) describes the co-flow and counter-flow configurations.
+:::
+
 We know that the amount of heat transfer depends on temperature difference. 
 
 **The "co-flow" or "parallel-flow" configuration**
@@ -345,21 +351,31 @@ The answer is the log-mean temperature difference, which we described [when we s
 
 ::: {.callout-caution collapse="true"}
 ### Expand for the derivation
-Thermodynamics:
+<!-- From thermodynamics, we can write an overall
 
-$$|\dot{Q}| = \dot{m}_\text{C} c_{p,\text{C}}(T_\text{C,out} - T_\text{C,in}) = \dot{m}_\text{H} c_{p,\text{H}}(T_\text{H,in} - T_\text{H,out}) = UA\cdot\Delta T$$
+$$
+\dot{Q} = \dot{m}_\text{C} c_{p,\text{C}}(T_\text{C,out} - T_\text{C,in}) = \dot{m}_\text{H} c_{p,\text{H}}(T_\text{H,in} - T_\text{H,out}).
+$$ -->
 
-Similar to pipe flow analysis (assuming co-flow, counter-flow is similar):
 
-*Diagram: Two-channel heat exchanger, control volume $dA$. $\Delta T = T_\text{H} - T_\text{C}$ locally.*
 
-Energy balance:
+We can think about a "local" $\Delta T \equiv T_\text{H} - T_\text{C}$ at a certain location within the heat exchanger with size $dA$ such that, from a heat transfer perspective,
 
-$$-\dot{m}_\text{H} c_{p,\text{H}}\,dT_\text{H} = \dot{m}_\text{C} c_{p,\text{C}}\,dT_\text{C} = U\,dA\,\Delta T = dq$$
+$$
+dq=U\,dA\,\Delta T.
+$$
 
-With $\Delta T = T_\text{H} - T_\text{C}$, so $d(\Delta T) = dT_\text{H} - dT_\text{C}$:
+We can also think thermodynamically about the change in $T_\text{H}$ over that $dA$, calling it $dT_\text{H}$, and similar $dT_\text{C}$:
 
-$$d(\Delta T) = \frac{dq}{-\dot{m}_\text{H} c_{p,\text{H}}} - \frac{dq}{\dot{m}_\text{C} c_{p,\text{C}}} = -dq\left(\frac{1}{\dot{m}_\text{H} c_{p,\text{H}}} + \frac{1}{\dot{m}_\text{C} c_{p,\text{C}}}\right) = U\,dA\,\Delta T\left(\frac{1}{\dot{m}_\text{H} c_{p,\text{H}}} + \frac{1}{\dot{m}_\text{C} c_{p,\text{C}}}\right)$$
+$$
+-\dot{m}_\text{H} c_{p,\text{H}}\,dT_\text{H} = \dot{m}_\text{C} c_{p,\text{C}}\,dT_\text{C} = dq.
+$$
+
+If we write, locally, $\Delta T \equiv T_\text{H} - T_\text{C}$, we can say $d(\Delta T) \equiv dT_\text{H} - dT_\text{C}$. Then, substituting:
+
+$$
+d(\Delta T) = \frac{dq}{-\dot{m}_\text{H} c_{p,\text{H}}} - \frac{dq}{\dot{m}_\text{C} c_{p,\text{C}}} = -dq\left(\frac{1}{\dot{m}_\text{H} c_{p,\text{H}}} + \frac{1}{\dot{m}_\text{C} c_{p,\text{C}}}\right) = U\,dA\,\Delta T\left(\frac{1}{\dot{m}_\text{H} c_{p,\text{H}}} + \frac{1}{\dot{m}_\text{C} c_{p,\text{C}}}\right).
+$$
 
 This is a separable ODE:
 
@@ -371,7 +387,7 @@ $$
 
 $$\therefore \quad \dot{Q} = UA\cdot\frac{(T_\text{H,out}-T_\text{C,out}) - (T_\text{H,in}-T_\text{C,in})}{\ln\!\left(\frac{T_\text{H,out}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}}\right)} = UA\cdot\Delta T_{lm}$$
 
-where $\Delta T_{lm}$ is the **log-mean temperature difference (LMTD)**.
+where $\Delta T_{lm}$ is defined as the **log-mean temperature difference (LMTD)**.
 
 :::
 
@@ -399,6 +415,13 @@ where $UA$ accounts for both sides of the convection, the resistance through the
 But... aren't we still in the same situation as we were in thermodynamics? We can't just say what the outlet temperatures are! How would we know what heat exchanger to get to achieve the right outlet temperatures or heat transfer rate? We need to come up with a framework to help us make that decision.
 
 ## The NTU Method
+
+::: {.callout-tip}
+## Video
+
+Start with [this linked video](https://canvas.colorado.edu/courses/136150/pages/ntu-method) which describes the NTU Method.
+:::
+
 
 
 ### Problem setup
