@@ -385,13 +385,17 @@ $$
 
 This is a separable ODE that we integrate from the "in" to the "out":
 
-$$\int_\text{in}^\text{out}\frac{d(\Delta T)}{\Delta T} = \int_\text{in}^\text{out} -U\left(\frac{1}{\dot{m}_\text{H} c_{p,\text{H}}} + \frac{1}{\dot{m}_\text{C} c_{p,\text{C}}}\right)dA$$
+$$
+\int_\text{in}^\text{out}\frac{d(\Delta T)}{\Delta T} = \int_\text{in}^\text{out} -U\left(\frac{1}{\dot{m}_\text{H} c_{p,\text{H}}} + \frac{1}{\dot{m}_\text{C} c_{p,\text{C}}}\right)dA.
+$$
+
+The integral of $dA$ from "in" to "out" is just the actual area $A$
 
 $$
 \ln\!\left(\frac{\Delta T_\text{out}}{\Delta T_\text{in}}\right) = -UA\left(\frac{1}{\dot{m}_\text{H} c_{p,\text{H}}} + \frac{1}{\dot{m}_\text{C} c_{p,\text{C}}}\right).
-$$
+$$ {#eq-ref-later}
 
-Substituting:
+(We will reference this equation later.) Substituting the two versions of $\dot{m} c_p (T_\text{in}-T_\text{out})$
 
 $$
 \ln\!\left(\frac{\Delta T_\text{out}}{\Delta T_\text{in}}\right) = -UA\left(\frac{T_\text{H,in}-T_\text{H,out}}{\dot{Q}} + \frac{T_\text{C,out}-T_\text{C,in}}{\dot{Q}}\right)
@@ -545,9 +549,40 @@ $$
 
 The function $\varepsilon\bigl(\text{NTU},\, C_\text{r}\bigr)$ depends on the flow configuration... let's derive its form for a co-flow heat exchanger.
 
-Assume $C_\text{min} = C_\text{H}$. A step in the $\Delta T_{lm}$ derivation gave:
+Assume $C_\text{min} = C_\text{H}$. A step in the $\Delta T_{lm}$ derivation (@eq-ref-later) gave:
 
-$$\ln\!\left(\frac{\Delta T_\text{out}}{\Delta T_\text{in}}\right) = \ln\!\left(\frac{T_\text{H,out}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}}\right) = -UA\!\left(\frac{1}{C_\text{H}} + \frac{1}{C_\text{C}}\right) = -\frac{UA}{C_\text{min}}\!\left(1 + \frac{C_\text{min}}{C_\text{max}}\right) = -\text{NTU}(1+C_\text{r})$$
+$$
+\ln\!\left(\frac{T_\text{H,out}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}}\right) = -UA\!\left(\frac{1}{C_\text{H}} + \frac{1}{C_\text{C}}\right).
+$$
+
+We can re-interpret this to be in terms of $C_\text{min}$ and $C_\text{max}$
+
+$$
+\ln\!\left(\frac{T_\text{H,out}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}}\right) = -\frac{UA}{C_\text{min}}\!\left(1 + \frac{C_\text{min}}{C_\text{max}}\right) = 
+$$
+
+and, further, to be in terms of $\text{NTU}$ and $C_\text{r}$
+
+$$
+\ln\!\left(\frac{T_\text{H,out}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}}\right) = -\text{NTU}(1+C_\text{r}).
+$$
+
+Let's work on temperature difference fraction a little bit, starting by adding zero to the numerator
+
+$$
+\frac{T_\text{H,out}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}} = \frac{T_\text{H,out}-T_\text{H,in} + T_\text{H,in}-T_\text{C,in}+T_\text{C,in}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}}
+$$
+
+this can then be rewritten as
+
+$$
+=\frac{T_\text{H,out}-T_\text{H,in}}{T_\text{H,in}-T_\text{C,in}}+\frac{T_\text{H,in}-T_\text{C,in}}{T_\text{H,in}-T_\text{C,in}} + \frac{T_\text{C,in}-T_\text{C,out}}{T_\text{H,in}-T_\text{C,in}} = 
+$$
+
+into 
+
+
+
 
 After algebra (substituting $C_\text{r}$ and $\varepsilon$):
 
